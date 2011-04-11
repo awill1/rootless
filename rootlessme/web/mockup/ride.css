@@ -1,0 +1,135 @@
+/* 
+    Document   : profile.css
+    Created on : Mar 16, 2011, 7:44:43 PM
+    Author     : awilliams
+    Description:
+        This stylesheet formats the profile pages of the rootlessme website.
+*/
+
+#findARideFieldset {
+    float: left;
+}
+
+#findARideForm {
+    width: 250px;
+    background-color: #EAEAEA;
+    border: 1px solid;
+    
+}
+
+legend {
+    color: #3D3D3D;
+    font-weight: bold;
+}
+
+#findARideForm label {
+    position: absolute;
+    font-weight: bold;
+    margin: 0px 10px 0px 0px;
+    width: 130px;
+    border: 1px solid;
+}
+
+#findARideForm input,
+#findARideForm select {
+    margin-left: 140px;
+}
+
+td {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 10px;
+}
+
+th {
+    margin: 0px 0px 0px 0px;
+    padding: 10px 0px 10px 10px;
+    text-align: left;
+}
+
+tr {
+    margin: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
+}
+
+thead {
+    padding: 10px 10px 10px 10px;
+    font-size: 120%;
+    font-weight: bold;
+    font-style: italic;
+}
+
+tbody {
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+}
+
+#rideTable {
+    clear: right;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0px 10px 0px;
+}
+
+#rideMapImage {
+    width: 453px;
+    height: 305px;
+   /* float: right;*/
+}
+
+
+.rideListNotSelectedRow {
+    background-color: #EAEAEA;
+    height: 67px;
+    padding: 0px 0px 0px 0px;
+}
+
+.rideListNotSelectedAltRow {
+    background-color: #FFFFFF;
+    height: 67px;
+    padding: 0px 0px 0px 0px;
+}
+
+.rideListSelectedRow {
+    background-image: url(highlightedListItemBackground.JPG);
+    color: white;
+    height: 67px;
+    padding: 0px 0px 0px 0px;
+}
+
+.rideListDriverCreatorProfileImage {
+    vertical-align: middle;
+}
+
+#mainRideDate {
+    float: left;
+}
+
+.dateBlockLarge {
+    width: 60px;
+    color: #FFFFFF;
+    background-color: #606060;
+    text-align: center;
+}
+
+.dateBlockMonth {
+}
+
+.dateBlockDate {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 200%;
+    background-color: #303030;
+}
+
+.dateBlockTime {
+    font-size: 80%;
+}
+
+#mainRideSummary {
+    float: left;
+    width: 250px;
+    margin: 20px 0px 0px 0px;
+}
+
+#mainRideInformation {
+}

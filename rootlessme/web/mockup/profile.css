@@ -1,0 +1,222 @@
+/* 
+    Document   : profile.css
+    Created on : Mar 16, 2011, 7:44:43 PM
+    Author     : awilliams
+    Description:
+        This stylesheet formats the profile pages of the rootlessme website.
+*/
+
+#mainProfileTitle {
+    padding: 0px 0px 0px 0px;
+    margin-bottom: 0px;
+}
+
+#mainProfileSubtitle {
+    font-style: italic;
+    text-decoration: none;
+    color: #3d3d3d;
+}
+
+.locationLink{
+    color: #119F49;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+}
+
+#middleProfileSummary {
+    float: none;
+}
+
+#middleProfileBadge {
+    float: right;
+}
+
+#middleProfileDetails {
+    clear: right;
+    float: left;
+    width: 100%;
+    padding: 12px 0px 12px 0px;
+    margin: 0px 0px 0px 0px;
+}
+
+.middleProfileTabContent {
+    padding: 12px 12px 12px 12px;
+    background: #EAEAEA;
+    clear: both;
+    float: left;
+    width: 100%;
+}
+
+
+#mainProfileTitleEditLink{
+    font-size: 40%;
+    font-weight: normal;
+    color: #F55830;
+    font-style: italic;
+    text-decoration: none;
+}
+
+.middleProfileBadgeInfo{
+    height: 40px;
+    width: 349px;
+    margin-top: 8px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    padding: 0px 0px 0px 0px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.tabList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.tabList li {
+    margin: 0;
+    float: left;
+}
+
+
+.tabList a {
+    display: block;
+    text-align: center;
+    padding: 8px 5px 5px 5px;
+    font-weight: bold;
+    font-size: 120%;
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.tabSelectedItem {
+    width: 112px;
+    height: 44px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #FFFFFF;
+    text-decoration: none;
+    background-image: url("tabSelectedBackground.JPG");
+}
+
+.tabNotSelectedItem {
+    width: 111px;
+    height: 44px;
+    float: left;
+    background-image: url("tabNotSelectedBackground.JPG");
+}
+
+#fragment-id .middleProfileTabContentLeftColumn {
+    width: 260px;
+    float: left;
+}
+
+ #fragment-id .middleProfileTabContentRightColumn {
+    width: 450px;
+    float: right;
+}
+
+#fragment-interests .middleProfileTabContentLeftColumn {
+    width: 350px;
+    float: left;
+}
+
+#fragment-interests .middleProfileTabContentRightColumn {
+    width: 350px;
+    float: right;
+}
+
+.middleFriendsList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.middleFriendsListItem {
+    margin: 0px 10px 8px 0px;
+    float: left;
+}
+
+.middleFriendsListMore {
+    clear: left;
+    text-align: right;
+    margin: 0px 10px 0px 0px;
+}
+
+#feedbackSummaryList {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+
+.feedbackSummaryListItem {
+    font-size: 200%;
+    font-weight: bold;
+    text-align: right;
+    margin: 6px 0px 6px 0px;
+}
+
+.feedbackRatingBar {
+    width: 280px;
+    display: block;
+    float: left;
+    color: #119F49;
+    text-align: left;
+}
+
+.feedbackRatingBarValue {
+    background-color: #ACDDA9;
+    height: 100%;
+    padding: 6px 0px 6px 0px;
+    text-indent: 4px;
+    
+}
+
+.feedbackRatingBarLabel {
+    padding: 6px 0px 6px 0px;
+
+}
+
+#driverReviewsViewBox {
+    text-align: right;
+}
+
+#driverReviewsList {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+
+.driverReviewsListItem {
+    margin: 8px 0px 8px 0px;
+    padding: 4px 0px 4px 0px;
+}
+
+.feedbackProfilePicture {
+    float: left;
+    margin: 0px 6px 6px 0px;
+}
+
+.feedbackProfileHeading {
+    margin: 0px 0px 0px 0px;
+}
+
+.feedbackProfileComment {
+    margin: 0px 0px 0px 0px;
+}
+
+.feedbackProfileReply {
+    float: right;
+}
+
+.replyTextarea {
+    width: 100%;
+    
+}

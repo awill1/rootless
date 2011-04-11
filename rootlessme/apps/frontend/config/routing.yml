@@ -1,0 +1,37 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+# profile rules
+profile:
+  class:   sfDoctrineRouteCollection
+  options: { model: Profiles }
+
+profile_show_user:
+  url:   /profile/:idprofile
+  class:   sfDoctrineRoute
+  options: { model: Profiles, type: object }
+  param: { module: profile, action: show }
+  requirements:
+    sf_method: [get]
+
+#profile:
+#  url: /profile
+#  param: { module: profile, action: index }
+#
+#profile_show_user:
+#  url:   /profile/:idprofile
+#  param: { module: profile, action: show }
+
+# default rules
+homepage:
+  url:   /
+  param: { module: default, action: index }
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+#default:
+  url:   /:module/:action/*

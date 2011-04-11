@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+  <head>
+    <title>Rootless Me - Rideboard</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="rootlessme.css" />
+    <link rel="stylesheet" type="text/css" href="ride.css" />
+    
+  </head>
+  <body>
+      <div id="container">
+
+        <!-- Header -->
+        <div id="header">
+            <a href="." ><img id="headerLogo" src="logo.png" alt="RootlessMe" /></a>
+            <div id="headerControls">
+
+                <ul id="headerControlsList">
+                    <li class="headerControlsListItem">
+                        <form action="search.php" >
+                            <input id="searchInput" />
+                        </form>
+                    </li>
+                    <li class="headerControlsListItem"><a href="#" class="headerControl">Donate</a></li>
+                    <li class="headerControlsListItem">|</li>
+                    <li class="headerControlsListItem"><a href="#" class="headerControl">Inbox <img src="messageSmall.JPG" alt="1 message" /></a></li>
+                    <li class="headerControlsListItem">|</li>
+                    <li class="headerControlsListItem">
+                        <a href="#" class="headerControl">
+                        <img src="russ_profile_tiny.JPG" alt="Tiny profile picture" />
+                        Russell Wells
+                        <img src="menuDownArrow.JPG" alt="Profile Menu" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- End of header -->
+
+        <div id="content">
+
+            <div id="leftColumn">
+                <ul id="navigation">
+                    <li class="navigationItem"><a href="home.html">Dashboard</a></li>
+                    <li class="navigationItemSelected"><a href="rides.html">Rides</a></li>
+                    <li class="navigationItem"><a href="event.html">Events</a></li>
+                    <li class="navigationItem"><a href="profile.html">Travelers</a></li>
+                    <li class="navigationItem"><a href="collective.html">Collective</a></li>
+                    <li class="navigationItem"><a href="message.html">Messages</a></li>
+                </ul>
+                <div id="leftContent" >
+                    <div id="leftProfile" class="leftWidget" >
+                        <img id="leftProfilePicture" src="russ_profile_small.JPG" alt="Russell Wells" />
+                        <h3 id="leftProfileName" class="leftWidgetTitle">Russell Wellington</h3>
+                        <a href="#" id="leftProfileLocation" >+Cincinnati</a> <br />
+                        View Profile
+                    </div>
+                    <div id="leftActions" class="leftWidget">
+                        <ul id="leftActionsList">
+                            <li class="leftActionItem"><button class="leftActionButton" >+ Offer a Ride</button></li>
+                            <li class="leftActionItem"><button class="leftActionButton" >+ Request a Ride</button></li>
+                        </ul>
+                    </div>
+                    <div id="leftRides" class="leftWidget">
+                        <h3 class="leftWidgetTitle">Upcoming Rides</h3>
+                        <ul id="leftRideList">
+                            <li class="leftRideItem">
+                                <img class="leftRideDateImage" src="dateImage.JPG" alt="April 02, 2011" />
+                                <div class="leftRideName">Bonnaroo</div>
+                                <div class="leftRideLocation">Chicago</div>
+                            </li>
+                            <li class="leftRideItem">
+                                <img class="leftRideDateImage" src="dateImage.JPG" alt="April 02, 2011" />
+                                <div class="leftRideName">+ Chicago</div>
+                                <div class="leftRideLocation">Chicago</div>
+                            </li>
+                            <li class="leftRideItem">
+                                <img class="leftRideDateImage" src="dateImage.JPG" alt="April 02, 2011" />
+                                <div class="leftRideName">E3</div>
+                                <div class="leftRideLocation">Chicago</div>
+                            </li>
+                            <li class="leftRideItem">
+                                <img class="leftRideDateImage" src="dateImage.JPG" alt="April 02, 2011" />
+                                <div class="leftRideName">MACRoCK</div>
+                                <div class="leftRideLocation">Chicago</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!--<div id="rightColumn"><p>This is my rightColumn</p></div> -->
+
+            <div id="middleContent">
+                <h1>Rideboard</h1>
+                <form id="findARideForm" action="rides.html">
+                    <fieldset id="findARideFieldset">
+                        <legend>Find a Ride</legend>
+                        <h3>Find a Ride</h3>
+                        <label>Look For</label>
+                        <select>
+                            <option>Offers and Requests</option>
+                            <option>Offers Only</option>
+                            <option>Requests Only</option>
+                        </select><br />
+                        <label>Origin</label><input /><br />
+                        <label>Date</label><input /><br />
+                        <label>Gender Preference</label>
+                        <select>
+                            <option>None</option>
+                            <option>Female Only</option>
+                            <option>Male Only</option>
+                        </select><br />
+                        <label>One Way or Round Trip</label>
+                        <select>
+                            <option>One Way</option>
+                            <option>Round Trip</option>
+                        </select><br />
+                        <label>One Way</label><input type="radio" name="group1" value="OneWay" > <br />
+                        <label>Round Trip</label><input type="radio" name="group1" value="RoundTrip" > <br />
+                        <button >Find Ride</button>
+                    </fieldset>
+                </form>
+                <img id="rideMapImage" src="columbusMap.JPG" alt="Interactive Map" />
+                <table id="rideTable">
+                    <thead>
+                    <tr >
+                        <th>Date</th>
+                        <th>Origin</th>
+                        <th>&nbsp;</th>
+                        <th>Destination</th>
+                        <th>Creator</th>
+                        <th>Type</th>
+                        <th># of Seats</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="rideListNotSelectedRow">
+                        <td><img src="dateImage.JPG" alt="January 2, 8:00am" /></td>
+                        <td>Cincinnati, OH</td>
+                        <td>to</td>
+                        <td>Columbus, OH</td>
+                        <td><img class="rideListDriverCreatorProfileImage" src="lauren_profile_small.JPG" alt="Lauren Prestifillipo" />Lauren Prestifillipo</td>
+                        <td>Offer</td>
+                        <td>1</td>
+                    </tr>
+                    <tr class="rideListSelectedRow">
+                        <td><img src="dateImage.JPG" alt="January 2, 8:00am" /></td>
+                        <td>Cincinnati, OH</td>
+                        <td>to</td>
+                        <td>Columbus, OH</td>
+                        <td><img class="rideListDriverCreatorProfileImage" src="lauren_profile_small.JPG" alt="Lauren Prestifillipo" />Maggie Snarl</td>
+                        <td>Offer</td>
+                        <td>1</td>
+                    </tr>
+                    <tr class="rideListNotSelectedRow">
+                        <td><img src="dateImage.JPG" alt="January 3, 8:00am" /></td>
+                        <td>Cincinnati, OH</td>
+                        <td>to</td>
+                        <td>Pickerington, OH</td>
+                        <td><img class="rideListDriverCreatorProfileImage" src="lauren_profile_small.JPG" alt="Lauren Prestifillipo" />Ruthy Hunt</td>
+                        <td>Request</td>
+                        <td>3</td>
+                    </tr>
+                    <tr class="rideListNotSelectedAltRow">
+                        <td><img src="dateImage.JPG" alt="January 3, 8:00am" /></td>
+                        <td>Cincinnati, OH</td>
+                        <td>to</td>
+                        <td>Renoyldsberg, OH<div>Rock the Bells</div></td>
+                        <td><img class="rideListDriverCreatorProfileImage" src="lauren_profile_small.JPG" alt="Lauren Prestifillipo" />Emily Lind</td>
+                        <td>Request</td>
+                        <td>4</td>
+                    </tr>
+                    <tr class="rideListNotSelectedRow">
+                        <td><img src="dateImage.JPG" alt="January 4, 8:00am" /></td>
+                        <td>Cincinnati, OH</td>
+                        <td>to</td>
+                        <td>Toledo, OH</td>
+                        <td><img class="rideListDriverCreatorProfileImage" src="lauren_profile_small.JPG" alt="Lauren Prestifillipo" />Lauren Prestifillipo</td>
+                        <td>Offer</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td colspan="7">Loading More</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <!--<ul id="rideList">
+                    <li class="rideListHeader">
+                        <div class="dateCell">Date</div>
+                        <div class="originCell">Origin</div>
+                        <div class="toCell">&nbsp;</div>
+                        <div class="destinationCell">Destination</div>
+                        <div class="creatorCell">Creator</div>
+                        <div class="typeCell">Type</div>
+                        <div class="seatCell"># of Seats</div>
+                    </li>
+                    <li class="rideListItem">
+                        <div class="dateCell"><img src="dateImage.JPG" alt="January 2, 8:00am" /></div>
+                        <div class="originCell">Cincinnati, OH</div>
+                        <div class="toCell">to</div>
+                        <div class="destinationCell">Columbus, OH</div>
+                        <div class="creatorCell"><img src="lauren_profile_small.JPG" alt="Lauren Prestifillipo" />Lauren Prestifillipo</div>
+                        <div class="typeCell">Offer</div>
+                        <div class="seatCell">1</div>
+                    </li>
+                    <li class="rideListSelectedItem">
+                        <div class="dateCell"><img src="dateImage.JPG" alt="January 2, 8:00am" /></div>
+                        <div class="originCell">Cincinnati, OH</div>
+                        <div class="toCell">to</div>
+                        <div class="destinationCell">Columbus, OH</div>
+                        <div class="creatorCell"><img src="lauren_profile_small.JPG" alt="Lauren Prestifillipo" />Maggie Snarl</div>
+                        <div class="typeCell">Offer</div>
+                        <div class="seatCell">1</div>
+                    </li>
+                    <li class="rideListItem">
+                        <div class="dateCell"><img src="dateImage.JPG" alt="January 2, 8:00am" /></div>
+                        <div class="originCell">Cincinnati, OH</div>
+                        <div class="toCell">to</div>
+                        <div class="destinationCell">Pickerington, OH</div>
+                        <div class="creatorCell"><img src="lauren_profile_small.JPG" alt="Lauren Prestifillipo" />Ruthy Hunt</div>
+                        <div class="typeCell">Request</div>
+                        <div class="seatCell">3</div>
+                    </li>
+                    <li class="rideListItem">
+                        <div class="dateCell"><img src="dateImage.JPG" alt="January 3, 8:00am" /></div>
+                        <div class="originCell">Cincinnati, OH</div>
+                        <div class="toCell">to</div>
+                        <div class="destinationCell">Rock the Bells</div>
+                        <div class="creatorCell"><img src="lauren_profile_small.JPG" alt="Lauren Prestifillipo" />Emily Lind</div>
+                        <div class="typeCell">Request</div>
+                        <div class="seatCell">4</div>
+                    </li>
+                    <li class="rideListItem">
+                        <div class="dateCell"><img src="dateImage.JPG" alt="January 4, 8:00am" /></div>
+                        <div class="originCell">Cincinnati, OH</div>
+                        <div class="toCell">to</div>
+                        <div class="destinationCell">Toledo, OH</div>
+                        <div class="creatorCell"><img src="lauren_profile_small.JPG" alt="Lauren Prestifillipo" />Lauren Prestifillipo</div>
+                        <div class="typeCell">Offer</div>
+                        <div class="seatCell">1</div>
+                    </li>
+                </ul>-->
+
+            </div>
+        </div>
+        <!-- Footer -->
+        <div id="footer">
+            <hr class="footerBar" />
+            &copy;2011 Star Banana, LLC. All rights reserved.
+        </div>
+        <!-- End of footer -->
+
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,354 @@
+/* 
+    Document   : rootlessme.css
+    Created on : Mar 6, 2011, 1:44:43 PM
+    Author     : awilliams
+    Description:
+        Stylesheet for the format of the rootlessme website.
+*/
+
+
+body {
+    /*font-family: Verdana, Geneva, sans-serif;*/
+    font-family: Arial, Geneva, sans-serif;
+    font-size: 80%;
+    margin: 0px;
+    background-image: url("headerBackground.JPG");
+    background-repeat: repeat-x;
+    background-color: #FFFFFF;
+    color: #3D3D3D;
+}
+
+img {
+    border: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+textarea {
+    font-family: Arial, Geneva, sans-serif;
+    font-size: 100%;
+}
+
+#container {
+    width: 960px;
+    margin-top: 0px;
+    margin-left: auto ;
+    margin-right: auto ;
+
+}
+
+#header {
+    /*background: #333333;*/
+    color: #FFFFFF;
+    vertical-align: middle;
+    height: 62px;
+    position: relative;
+}
+
+#headerControls {
+    float: right;
+    vertical-align: bottom;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+#headerControls form {
+    display: inline;
+}
+
+#searchInput
+{
+    background-image: url("searchBarBackground.JPG");
+    border: none;
+    height: 35px;
+    width: 158px;
+    padding: 0px 14px 0px 14px;
+    margin: 0px 20px 0px 20px;
+}
+
+#searchButton {
+    border-width: 0px;
+    margin: 0px;
+    padding: 0px 5px 0px 8px;
+    background: url(magni_glass.png) transparent no-repeat top left;
+    cursor: pointer;
+    height: 24px;
+}
+
+.magnifyingIcon {
+    background: url(messageSmall.JPG) transparent no-repeat top left;
+    height: 18px;
+    width: 18px;
+}
+
+#headerControlsList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.headerControlsListItem {
+    float: left;
+    margin: auto;
+    line-height: 35px;
+}
+
+.headerControl {
+    color: #FFFFFF;
+    text-decoration: none;
+    margin: 0px 6px 0px 6px;
+}
+
+#headerLogo {
+    border-width: 0;
+}
+
+#content {
+    clear: both;
+}
+
+#leftColumn {
+    width: 202px;
+    float: left;
+    background: #FFFFFF;
+}
+
+#navigation {
+    margin: 0;
+    padding: 0;
+}
+
+.navigationItem {
+  list-style: none;
+  color: #3D3D3D;
+  font-weight: bold;
+  font-size: 175%;
+  height: 35px;
+  text-align: left;
+  margin: 0px 0px 0px 0px;
+  padding: 2px 6px 2px 13px;
+  background-image: url("navigationBackground.JPG");
+  background-repeat: no-repeat;
+}
+
+.navigationItemSelected {
+  list-style: none;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 175%;
+  height: 35px;
+  text-align: left;
+  margin: 0px 0px 0px 0px;
+  padding: 2px 6px 2px 13px;
+  background-image: url("navigationSelectedBackground.JPG");
+  background-repeat: no-repeat;
+}
+
+.navigationItem a {
+  color: #3D3D3D;
+}
+
+.navigationItemSelected a {
+  color: #FFFFFF;
+}
+
+#leftContent {
+    background-color: #999999;
+    margin-top: 20px;
+    background-image: url("leftContentBackground.JPG");
+    background-repeat: repeat-y;
+    width: 153px;
+    padding: 12px 12px 12px 12px;
+}
+
+#leftProfilePicture {
+    font-weight: bold;
+    float: left;
+    margin: 0px 6px 6px 0px;
+}
+
+#leftProfileName {
+    font-weight: bold;
+}
+
+#leftProfileLocation {
+    font-style: italic;
+    color: #119F49;
+    font-weight: bold;
+}
+
+#leftProfileViewLink {
+    font-style: italic;
+    font-size: 80%;
+    color: #3D3D3D;
+
+}
+
+.leftWidget {
+    margin: 0px 0px 20px 0px;
+    clear: both;
+}
+
+.leftWidgetTitle {
+    font-weight: bold;
+    font-size: 110%;
+    margin: 0px 0px 0px 0px;
+}
+
+#leftActionsList {
+    margin: 0;
+    padding: 0;
+
+}
+
+.leftActionItem {
+    list-style: none;
+    margin: 4px 0px 4px 0px;
+    padding: 4px 0px 4px 0px;
+}
+
+.leftActionButton {
+    background-image: url(leftActionButtonBackground.JPG);
+    width: 155px;
+    height: 24px;
+    font-weight: bold;
+    color: #FFFFFF;
+    border: 0px;
+}
+
+#leftActivityList {
+    margin: 0;
+    padding: 0;
+}
+
+.leftActivityItem {
+    list-style: none;
+    margin: 4px 0px 4px 0px;
+    padding: 4px 0px 4px 0px;
+}
+
+.leftActivityLink {
+    font-style: italic;
+    color: #F55830;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#leftEventList {
+    margin: 0;
+    padding: 0;
+}
+
+.leftEventItem {
+    clear: both;
+    list-style: none;
+    margin: 4px 0px 4px 0px;
+    padding: 4px 0px 4px 0px;
+}
+
+.leftEventName {
+    color: #119F49;
+    font-weight: bold;
+    font-size: 110%;
+    font-style: italic;
+    margin: 4px 0px 4px 0px;
+}
+
+.leftEventLocation {
+    color: #606060;
+    font-weight: normal;
+    font-style: italic;
+    font-size: 80%;
+    margin: 4px 0px 4px 0px;
+}
+
+.leftEventDateImage {
+    float: left;
+    margin: 0px 6px 0px 0px;
+}
+
+#leftRideList {
+    margin: 0;
+    padding: 0;
+}
+
+.leftRideItem {
+    clear: both;
+    list-style: none;
+    margin: 4px 0px 4px 0px;
+    padding: 4px 0px 4px 0px;
+}
+
+.leftRideName {
+    color: #119F49;
+    font-weight: bold;
+    font-size: 110%;
+    font-style: italic;
+    margin: 4px 0px 4px 0px;
+}
+
+.leftRideLocation {
+    color: #606060;
+    font-weight: normal;
+    font-style: italic;
+    font-size: 80%;
+    margin: 4px 0px 4px 0px;
+}
+
+.leftRideViewLink {
+    color: #606060;
+    font-weight: normal;
+    font-style: italic;
+    font-size: 80%;
+    margin: 4px 0px 4px 0px;
+}
+
+.leftRideDateImage {
+    float: left;
+    margin: 0px 6px 0px 0px;
+}
+
+#rightColumn {
+    width: 200px;
+    float: right;
+    background: #FFFFCC;
+}
+
+#middleContent {
+    margin-left: 212px;
+ /*   margin-right: 210px;*/
+    margin-right: 10px;
+}
+
+
+#footer {
+    clear: both;
+    padding: 20px 0px 20px 0px;
+}
+
+#footerBar {
+    color: #3D3D3D;
+}
+
+.actionLink {
+    color: #F55830;
+    font-style: italic;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.seeMoreLink {
+    color: #119F49;
+    font-style: italic;
+    margin: 0px 0px 0px 0px;
+}
+
+.locationLink{
+    color: #119F49;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+}
