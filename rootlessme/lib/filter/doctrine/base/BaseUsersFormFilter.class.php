@@ -13,13 +13,15 @@ abstract class BaseUsersFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'email'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'encryptedpassword' => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'person_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('People'), 'add_empty' => true)),
+      'email'              => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'encrypted_password' => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(
-      'email'             => new sfValidatorPass(array('required' => false)),
-      'encryptedpassword' => new sfValidatorPass(array('required' => false)),
+      'person_id'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('People'), 'column' => 'person_id')),
+      'email'              => new sfValidatorPass(array('required' => false)),
+      'encrypted_password' => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('users_filters[%s]');
@@ -39,9 +41,10 @@ abstract class BaseUsersFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'username'          => 'Text',
-      'email'             => 'Text',
-      'encryptedpassword' => 'Text',
+      'user_name'          => 'Text',
+      'person_id'          => 'ForeignKey',
+      'email'              => 'Text',
+      'encrypted_password' => 'Text',
     );
   }
 }

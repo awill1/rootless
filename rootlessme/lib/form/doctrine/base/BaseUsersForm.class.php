@@ -15,15 +15,17 @@ abstract class BaseUsersForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'username'          => new sfWidgetFormInputHidden(),
-      'email'             => new sfWidgetFormInputText(),
-      'encryptedpassword' => new sfWidgetFormInputText(),
+      'user_name'          => new sfWidgetFormInputHidden(),
+      'person_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('People'), 'add_empty' => false)),
+      'email'              => new sfWidgetFormInputText(),
+      'encrypted_password' => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
-      'username'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('username')), 'empty_value' => $this->getObject()->get('username'), 'required' => false)),
-      'email'             => new sfValidatorString(array('max_length' => 45)),
-      'encryptedpassword' => new sfValidatorString(array('max_length' => 128)),
+      'user_name'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('user_name')), 'empty_value' => $this->getObject()->get('user_name'), 'required' => false)),
+      'person_id'          => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('People'))),
+      'email'              => new sfValidatorString(array('max_length' => 45)),
+      'encrypted_password' => new sfValidatorString(array('max_length' => 128)),
     ));
 
     $this->widgetSchema->setNameFormat('users[%s]');

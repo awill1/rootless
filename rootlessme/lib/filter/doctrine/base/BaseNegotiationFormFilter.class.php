@@ -30,8 +30,8 @@ abstract class BaseNegotiationFormFilter extends BaseFormFilterDoctrine
       'time'              => new sfValidatorPass(array('required' => false)),
       'comments'          => new sfValidatorPass(array('required' => false)),
       'idnegotiationtype' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Negotiationtypes'), 'column' => 'idnegotiationtype')),
-      'pickuplocation'    => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Locations'), 'column' => 'idlocation')),
-      'dropofflocation'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Locations_4'), 'column' => 'idlocation')),
+      'pickuplocation'    => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Locations'), 'column' => 'location_id')),
+      'dropofflocation'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Locations_4'), 'column' => 'location_id')),
     ));
 
     $this->widgetSchema->setNameFormat('negotiation_filters[%s]');

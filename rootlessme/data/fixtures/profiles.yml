@@ -1,69 +1,78 @@
 # data/fixtures/profiles.yml
 
+People:
+  person_aaron:
+    person_id: 1
+  person_christy:
+    person_id: 2
+
+
 Users:
   user_aaron:
-    username:    user_aaron
+    user_name:   user_aaron
+    person_id:   1
     email:       aaron@testuser.com
-    encryptedpassword: bldslfdslkjdsflkjfdsalkjfdslkjfdslkj
+    encrypted_password: bldslfdslkjdsflkjfdsalkjfdslkjfdslkj
   user_christy:
-    username:    user_christy
+    user_name:   user_christy
+    person_id:   2
     email:       christy@testuser.com
-    encryptedpassword: kjrewlkjifdsoiufdsoiuwrjrewljfdsjjiofs
+    encrypted_password: kjrewlkjifdsoiufdsoiuwrjrewljfdsjjiofs
 
 
 Profiles:
   profile_aaron:
-    idprofile:    profile_aaron
-    firstname:    Aaron
-    lastname:     Williams
-    pictureurl:   resources/users/profile_aaron_profile.jpg
-    pictureurllarge:   resources/users/profile_aaron_profileLarge.jpg
-    pictureurlmedium:   resources/users/profile_aaron_profileMedium.jpg
-    pictureurlsmall:   resources/users/profile_aaron_profileSmall.jpg
-    pictureurltiny:   resources/users/profile_aaron_profileTiny.jpg
-    address1:      313 Rutherford Ave.
+    profile_name:    profile_aaron
+    person_id:   1
+    first_name:    Aaron
+    last_name:     Williams
+    picture_url:   resources/users/profile_aaron_profile.jpg
+    picture_url_large:   resources/users/profile_aaron_profileLarge.jpg
+    picture_url_medium:   resources/users/profile_aaron_profileMedium.jpg
+    picture_url_small:   resources/users/profile_aaron_profileSmall.jpg
+    picture_url_tiny:   resources/users/profile_aaron_profileTiny.jpg
+    address_1:      313 Rutherford Ave.
     city:         Delaware
     state:        OH
-    postalcode:   43015
+    postal_code:   43015
     country:      USA
     birthday:     '2011-05-26'
     gender:       'Male'
-    aboutme:      I am a fake person that has been added into the database to test the website
-    top5:         Christy, Christy, Christy, Christy, Churros
-    wantstotravelto: Peru
+    about_me:      I am a fake person that has been added into the database to test the website
+    top_5:         Christy, Christy, Christy, Christy, Churros
+    wants_to_travel_to: Peru
     music:        The Beastie Boys
     movies:       Pulp Fiction
     books:        Catch-22, Kurt Vonnegut
     interests:    Stuff
-    favoritewebsites: failblog.org, lamebook.com, christyandaarontracker.com, espn.com
-    websiteurl:   http://www.christyandaarontracker.com
-    users_username:    user_aaron
+    favorite_websites: failblog.org, lamebook.com, christyandaarontracker.com, espn.com
+    website_url:   http://www.christyandaarontracker.com
   profile_christy:
-    idprofile:    profile_christy
-    firstname:    Christy
-    lastname:     Williams
-    pictureurl:   resources/users/profile_christy_profile.jpg
-    pictureurllarge:   resources/users/profile_christy_profileLarge.jpg
-    pictureurlmedium:   resources/users/profile_christy_profileMedium.jpg
-    pictureurlsmall:   resources/users/profile_christy_profileSmall.jpg
-    pictureurltiny:   resources/users/profile_christy_profileTiny.jpg
-    address1:     11245 Mallard Pond Ct.
+    profile_name:    profile_christy
+    person_id:   2
+    first_name:    Christy
+    last_name:     Williams
+    picture_url:   resources/users/profile_christy_profile.jpg
+    picture_url_large:   resources/users/profile_christy_profileLarge.jpg
+    picture_url_medium:   resources/users/profile_christy_profileMedium.jpg
+    picture_url_small:   resources/users/profile_christy_profileSmall.jpg
+    picture_url_tiny:   resources/users/profile_christy_profileTiny.jpg
+    address_1:     11245 Mallard Pond Ct.
     city:         Pickerington
     state:        OH
-    postalcode:   43147
+    postal_code:   43147
     country:      USA
     birthday:     '2011-04-03'
     gender:       'Female'
-    aboutme:      I am a fake person that has been added into the database to test the website
-    top5:         Aaron, Family and Friends, Homer, Taveling, Movies
-    wantstotravelto: Cincinnati
+    about_me:      I am a fake person that has been added into the database to test the website
+    top_5:         Aaron, Family and Friends, Homer, Taveling, Movies
+    wants_to_travel_to: Cincinnati
     music:        Katy Perry, Brittany Spears
     movies:       Changes all the time. Currently... Black Swan, Bad Santa, and How to Train Your Dragon
     books:        Harry Potter, The Life of Pi
     interests:    Movies, dogs, and cake
-    favoritewebsites: failblog.org, lamebook.com, christyandaarontracker.com
-    websiteurl:   http://www.christyandaarontracker.com
-    users_username:    user_christy
+    favorite_websites: failblog.org, lamebook.com, christyandaarontracker.com
+    website_url:   http://www.christyandaarontracker.com
 
 
 

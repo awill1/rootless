@@ -15,19 +15,17 @@ abstract class BaseFriendshipsForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'travelers_idusers'  => new sfWidgetFormInputHidden(),
-      'travelers_idusers1' => new sfWidgetFormInputHidden(),
-      'pending'            => new sfWidgetFormInputText(),
-      'initiatedby'        => new sfWidgetFormInputText(),
-      'createdon'          => new sfWidgetFormInputText(),
+      'friend_1_id' => new sfWidgetFormInputHidden(),
+      'friend_2_id' => new sfWidgetFormInputHidden(),
+      'created_at'  => new sfWidgetFormDateTime(),
+      'updated_at'  => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
-      'travelers_idusers'  => new sfValidatorChoice(array('choices' => array($this->getObject()->get('travelers_idusers')), 'empty_value' => $this->getObject()->get('travelers_idusers'), 'required' => false)),
-      'travelers_idusers1' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('travelers_idusers1')), 'empty_value' => $this->getObject()->get('travelers_idusers1'), 'required' => false)),
-      'pending'            => new sfValidatorInteger(array('required' => false)),
-      'initiatedby'        => new sfValidatorString(array('max_length' => 45, 'required' => false)),
-      'createdon'          => new sfValidatorString(array('max_length' => 45, 'required' => false)),
+      'friend_1_id' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('friend_1_id')), 'empty_value' => $this->getObject()->get('friend_1_id'), 'required' => false)),
+      'friend_2_id' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('friend_2_id')), 'empty_value' => $this->getObject()->get('friend_2_id'), 'required' => false)),
+      'created_at'  => new sfValidatorDateTime(array('required' => false)),
+      'updated_at'  => new sfValidatorDateTime(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('friendships[%s]');

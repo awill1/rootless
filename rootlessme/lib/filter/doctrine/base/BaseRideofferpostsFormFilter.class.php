@@ -25,15 +25,15 @@ abstract class BaseRideofferpostsFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'travelers_idusers'  => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Profiles'), 'column' => 'idprofile')),
+      'travelers_idusers'  => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Profiles'), 'column' => 'profile_name')),
       'price'              => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'numberofseats'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'date'               => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'time'               => new sfValidatorPass(array('required' => false)),
       'comments'           => new sfValidatorPass(array('required' => false)),
-      'origin'             => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Locations'), 'column' => 'idlocation')),
-      'destination'        => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Locations_3'), 'column' => 'idlocation')),
-      'vehicles_idvehicle' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Vehicles'), 'column' => 'idvehicle')),
+      'origin'             => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Locations'), 'column' => 'location_id')),
+      'destination'        => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Locations_3'), 'column' => 'location_id')),
+      'vehicles_idvehicle' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Vehicles'), 'column' => 'vehicle_id')),
     ));
 
     $this->widgetSchema->setNameFormat('rideofferposts_filters[%s]');

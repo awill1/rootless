@@ -15,19 +15,19 @@ abstract class BaseTravelersAttendingEventForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'events_idevent'       => new sfWidgetFormInputHidden(),
-      'travelers_idtraveler' => new sfWidgetFormInputHidden(),
-      'status'               => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Attendingstatustype'), 'add_empty' => false)),
-      'createdon'            => new sfWidgetFormDateTime(),
-      'modifiedon'           => new sfWidgetFormDateTime(),
+      'event_id'   => new sfWidgetFormInputHidden(),
+      'person_id'  => new sfWidgetFormInputHidden(),
+      'status'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AttendingStatusType'), 'add_empty' => false)),
+      'created_at' => new sfWidgetFormDateTime(),
+      'updated_at' => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
-      'events_idevent'       => new sfValidatorChoice(array('choices' => array($this->getObject()->get('events_idevent')), 'empty_value' => $this->getObject()->get('events_idevent'), 'required' => false)),
-      'travelers_idtraveler' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('travelers_idtraveler')), 'empty_value' => $this->getObject()->get('travelers_idtraveler'), 'required' => false)),
-      'status'               => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Attendingstatustype'))),
-      'createdon'            => new sfValidatorDateTime(array('required' => false)),
-      'modifiedon'           => new sfValidatorDateTime(array('required' => false)),
+      'event_id'   => new sfValidatorChoice(array('choices' => array($this->getObject()->get('event_id')), 'empty_value' => $this->getObject()->get('event_id'), 'required' => false)),
+      'person_id'  => new sfValidatorChoice(array('choices' => array($this->getObject()->get('person_id')), 'empty_value' => $this->getObject()->get('person_id'), 'required' => false)),
+      'status'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('AttendingStatusType'))),
+      'created_at' => new sfValidatorDateTime(array('required' => false)),
+      'updated_at' => new sfValidatorDateTime(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('travelers_attending_event[%s]');

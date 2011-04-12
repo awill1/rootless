@@ -6031,3 +6031,660 @@ Apr 02 01:07:11 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Fou
 Apr 02 01:07:11 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
 Apr 02 01:07:11 symfony [info] {sfWebDebugLogger} Configuration 527.65 ms (5)
 Apr 02 01:07:11 symfony [info] {sfWebDebugLogger} Factories 2883.19 ms (1)
+Apr 11 21:40:49 symfony [info] {sfPatternRouting} Match route "profile" (/profile.:sf_format) for /profile with parameters array (  'module' => 'profile',  'action' => 'index',  'sf_format' => 'html',)
+Apr 11 21:40:51 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 21:40:51 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 21:40:51 symfony [info] {profileActions} Call "profileActions->executeIndex()"
+Apr 11 21:40:52 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 21:40:52 symfony [info] {Doctrine_Connection_Mysql} query : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p - ()
+Apr 11 21:40:52 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/indexSuccess.php"
+Apr 11 21:40:53 symfony [err] {Doctrine_Record_UnknownPropertyException} Unknown record property / related component "idprofile" on "Profiles"
+Apr 11 21:40:53 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Apr 11 21:40:53 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 21:40:53 symfony [info] {sfWebDebugLogger} Configuration 3024.28 ms (10)
+Apr 11 21:40:53 symfony [info] {sfWebDebugLogger} Factories 2419.40 ms (1)
+Apr 11 21:40:53 symfony [info] {sfWebDebugLogger} Action "profile/index" 568.24 ms (1)
+Apr 11 21:40:53 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 21:40:53 symfony [info] {sfWebDebugLogger} View "Success" for "profile/index" 1444.24 ms (1)
+Apr 11 21:46:24 symfony [info] {sfPatternRouting} Match route "profile" (/profile.:sf_format) for /profile with parameters array (  'module' => 'profile',  'action' => 'index',  'sf_format' => 'html',)
+Apr 11 21:46:24 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 21:46:24 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 21:46:24 symfony [info] {profileActions} Call "profileActions->executeIndex()"
+Apr 11 21:46:24 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 21:46:24 symfony [info] {Doctrine_Connection_Mysql} query : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p - ()
+Apr 11 21:46:25 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/indexSuccess.php"
+Apr 11 21:46:25 symfony [err] {Doctrine_Record_UnknownPropertyException} Unknown record property / related component "address1" on "Profiles"
+Apr 11 21:46:25 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Apr 11 21:46:25 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 21:46:25 symfony [info] {sfWebDebugLogger} Configuration 227.31 ms (9)
+Apr 11 21:46:25 symfony [info] {sfWebDebugLogger} Factories 337.19 ms (1)
+Apr 11 21:46:25 symfony [info] {sfWebDebugLogger} Action "profile/index" 165.97 ms (1)
+Apr 11 21:46:25 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 21:46:25 symfony [info] {sfWebDebugLogger} View "Success" for "profile/index" 622.63 ms (1)
+Apr 11 21:46:51 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/idprofile/profile_aaron with parameters array (  'module' => 'profile',  'action' => 'show',  'idprofile' => 'profile_aaron',)
+Apr 11 21:46:51 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 21:46:51 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 21:46:51 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 21:46:51 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 21:46:51 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - ()
+Apr 11 21:46:51 symfony [err] {sfError404Exception} This request has been forwarded to a 404 error page by the action "profile/show".
+Apr 11 21:46:52 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 21:46:52 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 21:46:52 symfony [info] {sfWebDebugLogger} Configuration 191.83 ms (8)
+Apr 11 21:46:52 symfony [info] {sfWebDebugLogger} Factories 363.49 ms (1)
+Apr 11 21:46:52 symfony [info] {sfWebDebugLogger} Action "profile/show" 634.33 ms (1)
+Apr 11 21:46:52 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 21:47:40 symfony [info] {sfPatternRouting} Match route "profile_show_user" (/profile/:idprofile) for /profile/profile_aaron with parameters array (  'module' => 'profile',  'action' => 'show',  'idprofile' => 'profile_aaron',)
+Apr 11 21:47:41 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 21:47:41 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 21:47:41 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 21:47:41 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 21:47:41 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - ()
+Apr 11 21:47:41 symfony [err] {sfError404Exception} This request has been forwarded to a 404 error page by the action "profile/show".
+Apr 11 21:47:41 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 21:47:41 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 21:47:41 symfony [info] {sfWebDebugLogger} Configuration 188.25 ms (8)
+Apr 11 21:47:41 symfony [info] {sfWebDebugLogger} Factories 338.87 ms (1)
+Apr 11 21:47:41 symfony [info] {sfWebDebugLogger} Action "profile/show" 638.64 ms (1)
+Apr 11 21:47:41 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 21:48:44 symfony [info] {sfPatternRouting} Match route "profile" (/profile.:sf_format) for /profile with parameters array (  'module' => 'profile',  'action' => 'index',  'sf_format' => 'html',)
+Apr 11 21:48:44 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 21:48:44 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 21:48:44 symfony [info] {profileActions} Call "profileActions->executeIndex()"
+Apr 11 21:48:44 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 21:48:44 symfony [info] {Doctrine_Connection_Mysql} query : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p - ()
+Apr 11 21:48:45 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/indexSuccess.php"
+Apr 11 21:48:45 symfony [err] {Doctrine_Record_UnknownPropertyException} Unknown record property / related component "address1" on "Profiles"
+Apr 11 21:48:45 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Apr 11 21:48:45 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 21:48:45 symfony [info] {sfWebDebugLogger} Configuration 267.64 ms (9)
+Apr 11 21:48:45 symfony [info] {sfWebDebugLogger} Factories 392.80 ms (1)
+Apr 11 21:48:45 symfony [info] {sfWebDebugLogger} Action "profile/index" 151.56 ms (1)
+Apr 11 21:48:45 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 21:48:45 symfony [info] {sfWebDebugLogger} View "Success" for "profile/index" 578.63 ms (1)
+Apr 11 21:56:06 symfony [info] {sfPatternRouting} Match route "profile_new" (/profile/new.:sf_format) for /profile/new with parameters array (  'module' => 'profile',  'action' => 'new',  'sf_format' => 'html',)
+Apr 11 21:56:06 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 21:56:06 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 21:56:06 symfony [info] {profileActions} Call "profileActions->executeNew()"
+Apr 11 21:56:07 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/newSuccess.php"
+Apr 11 21:56:07 symfony [info] {sfPartialView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/_form.php"
+Apr 11 21:56:07 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 21:56:07 symfony [info] {Doctrine_Connection_Mysql} query : SELECT p.person_id AS p__person_id, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM people p - ()
+Apr 11 21:56:08 symfony [info] {sfPHPView} Decorate content with "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\templates/layout.php"
+Apr 11 21:56:08 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\templates/layout.php"
+Apr 11 21:56:08 symfony [info] {main} Get slot "title"
+Apr 11 21:56:08 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Apr 11 21:56:08 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 21:56:08 symfony [info] {sfWebDebugLogger} Configuration 225.68 ms (9)
+Apr 11 21:56:08 symfony [info] {sfWebDebugLogger} Factories 313.84 ms (1)
+Apr 11 21:56:08 symfony [info] {sfWebDebugLogger} Action "profile/new" 246.17 ms (1)
+Apr 11 21:56:08 symfony [info] {sfWebDebugLogger} View "Success" for "profile/new" 1135.49 ms (1)
+Apr 11 21:56:08 symfony [info] {sfWebDebugLogger} Partial "profile/_form" 692.28 ms (1)
+Apr 11 21:56:08 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 21:56:08 symfony [info] {sfWebResponse} Send content (70588 o)
+Apr 11 21:56:10 symfony [err] {sfError404Exception} Empty module and/or action after parsing the URL "/profile/russ_profile_tiny.JPG" (/).
+Apr 11 21:56:10 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 21:56:10 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 21:56:10 symfony [info] {sfWebDebugLogger} Configuration 265.87 ms (5)
+Apr 11 21:56:10 symfony [info] {sfWebDebugLogger} Factories 777.78 ms (1)
+Apr 11 21:56:10 symfony [err] {sfError404Exception} Empty module and/or action after parsing the URL "/profile/dateImage.JPG" (/).
+Apr 11 21:56:10 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 21:56:10 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 21:56:10 symfony [info] {sfWebDebugLogger} Configuration 333.74 ms (5)
+Apr 11 21:56:10 symfony [info] {sfWebDebugLogger} Factories 809.90 ms (1)
+Apr 11 21:56:11 symfony [err] {sfError404Exception} Empty module and/or action after parsing the URL "/profile/russ_profile_small.JPG" (/).
+Apr 11 21:56:11 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 21:56:11 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 21:56:11 symfony [info] {sfWebDebugLogger} Configuration 353.64 ms (5)
+Apr 11 21:56:11 symfony [info] {sfWebDebugLogger} Factories 1111.13 ms (1)
+Apr 11 21:56:19 symfony [info] {sfPatternRouting} Match route "profile" (/profile.:sf_format) for /profile with parameters array (  'module' => 'profile',  'action' => 'index',  'sf_format' => 'html',)
+Apr 11 21:56:19 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 21:56:19 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 21:56:19 symfony [info] {profileActions} Call "profileActions->executeIndex()"
+Apr 11 21:56:19 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 21:56:19 symfony [info] {Doctrine_Connection_Mysql} query : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p - ()
+Apr 11 21:56:19 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/indexSuccess.php"
+Apr 11 21:56:20 symfony [err] {Doctrine_Record_UnknownPropertyException} Unknown record property / related component "address1" on "Profiles"
+Apr 11 21:56:20 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Apr 11 21:56:20 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 21:56:20 symfony [info] {sfWebDebugLogger} Configuration 266.83 ms (9)
+Apr 11 21:56:20 symfony [info] {sfWebDebugLogger} Factories 363.58 ms (1)
+Apr 11 21:56:20 symfony [info] {sfWebDebugLogger} Action "profile/index" 166.96 ms (1)
+Apr 11 21:56:20 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 21:56:20 symfony [info] {sfWebDebugLogger} View "Success" for "profile/index" 603.19 ms (1)
+Apr 11 21:56:34 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/idprofile/profile_aaron with parameters array (  'module' => 'profile',  'action' => 'show',  'idprofile' => 'profile_aaron',)
+Apr 11 21:56:34 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 21:56:34 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 21:56:34 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 21:56:34 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 21:56:34 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - ()
+Apr 11 21:56:34 symfony [err] {sfError404Exception} This request has been forwarded to a 404 error page by the action "profile/show".
+Apr 11 21:56:34 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 21:56:34 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 21:56:34 symfony [info] {sfWebDebugLogger} Configuration 176.12 ms (8)
+Apr 11 21:56:34 symfony [info] {sfWebDebugLogger} Factories 345.15 ms (1)
+Apr 11 21:56:34 symfony [info] {sfWebDebugLogger} Action "profile/show" 453.25 ms (1)
+Apr 11 21:56:34 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 21:56:45 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/profile_aaron with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'profile_aaron',)
+Apr 11 21:56:45 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 21:56:45 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 21:56:45 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 21:56:46 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 21:56:46 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (profile_aaron)
+Apr 11 21:56:46 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/showSuccess.php"
+Apr 11 21:56:46 symfony [notice] {sfWebDebugLogger}  Notice at C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules\profile\templates\showSuccess.php on line 5 (Undefined variable: profiles)
+Apr 11 21:57:08 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/edit/profile_name/profile_aaron with parameters array (  'module' => 'profile',  'action' => 'edit',  'profile_name' => 'profile_aaron',)
+Apr 11 21:57:08 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 21:57:08 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 21:57:08 symfony [info] {profileActions} Call "profileActions->executeEdit()"
+Apr 11 21:57:08 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 21:57:08 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (profile_aaron)
+Apr 11 21:57:09 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/editSuccess.php"
+Apr 11 21:57:09 symfony [info] {sfPartialView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/_form.php"
+Apr 11 21:57:09 symfony [info] {Doctrine_Connection_Mysql} query : SELECT p.person_id AS p__person_id, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM people p - ()
+Apr 11 21:57:09 symfony [info] {sfPHPView} Decorate content with "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\templates/layout.php"
+Apr 11 21:57:09 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\templates/layout.php"
+Apr 11 21:57:09 symfony [info] {main} Get slot "title"
+Apr 11 21:57:09 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Apr 11 21:57:09 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 21:57:09 symfony [info] {sfWebDebugLogger} Configuration 341.22 ms (9)
+Apr 11 21:57:09 symfony [info] {sfWebDebugLogger} Factories 355.74 ms (1)
+Apr 11 21:57:09 symfony [info] {sfWebDebugLogger} Action "profile/edit" 440.89 ms (1)
+Apr 11 21:57:09 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (3)
+Apr 11 21:57:09 symfony [info] {sfWebDebugLogger} View "Success" for "profile/edit" 691.21 ms (1)
+Apr 11 21:57:09 symfony [info] {sfWebDebugLogger} Partial "profile/_form" 451.90 ms (1)
+Apr 11 21:57:09 symfony [info] {sfWebResponse} Send content (77644 o)
+Apr 11 21:57:10 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/edit/profile_name/russ_profile_tiny.JPG with parameters array (  'module' => 'profile',  'action' => 'edit',  'profile_name' => 'russ_profile_tiny.JPG',)
+Apr 11 21:57:11 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/edit/profile_name/dateImage.JPG with parameters array (  'module' => 'profile',  'action' => 'edit',  'profile_name' => 'dateImage.JPG',)
+Apr 11 21:57:11 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 21:57:11 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 21:57:11 symfony [info] {profileActions} Call "profileActions->executeEdit()"
+Apr 11 21:57:11 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/edit/profile_name/russ_profile_small.JPG with parameters array (  'module' => 'profile',  'action' => 'edit',  'profile_name' => 'russ_profile_small.JPG',)
+Apr 11 21:57:11 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 21:57:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (russ_profile_tiny.JPG)
+Apr 11 21:57:11 symfony [err] {sfError404Exception} Object profile does not exist (russ_profile_tiny.JPG).
+Apr 11 21:57:11 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 21:57:11 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 21:57:11 symfony [info] {sfWebDebugLogger} Configuration 301.97 ms (8)
+Apr 11 21:57:11 symfony [info] {sfWebDebugLogger} Factories 695.51 ms (1)
+Apr 11 21:57:11 symfony [info] {sfWebDebugLogger} Action "profile/edit" 573.10 ms (1)
+Apr 11 21:57:11 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 21:57:12 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 21:57:12 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 21:57:12 symfony [info] {profileActions} Call "profileActions->executeEdit()"
+Apr 11 21:57:12 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 21:57:12 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (dateImage.JPG)
+Apr 11 21:57:12 symfony [err] {sfError404Exception} Object profile does not exist (dateImage.JPG).
+Apr 11 21:57:12 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 21:57:12 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 21:57:12 symfony [info] {sfWebDebugLogger} Configuration 304.80 ms (8)
+Apr 11 21:57:12 symfony [info] {sfWebDebugLogger} Factories 1351.90 ms (1)
+Apr 11 21:57:12 symfony [info] {sfWebDebugLogger} Action "profile/edit" 482.71 ms (1)
+Apr 11 21:57:12 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 21:57:13 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 21:57:13 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 21:57:13 symfony [info] {profileActions} Call "profileActions->executeEdit()"
+Apr 11 21:57:13 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 21:57:13 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (russ_profile_small.JPG)
+Apr 11 21:57:13 symfony [err] {sfError404Exception} Object profile does not exist (russ_profile_small.JPG).
+Apr 11 21:57:13 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 21:57:13 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 21:57:13 symfony [info] {sfWebDebugLogger} Configuration 370.97 ms (8)
+Apr 11 21:57:13 symfony [info] {sfWebDebugLogger} Factories 1847.43 ms (1)
+Apr 11 21:57:13 symfony [info] {sfWebDebugLogger} Action "profile/edit" 465.12 ms (1)
+Apr 11 21:57:13 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 21:57:24 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/profile_aaron with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'profile_aaron',)
+Apr 11 21:57:24 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 21:57:24 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 21:57:24 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 21:57:24 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 21:57:24 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (profile_aaron)
+Apr 11 21:57:25 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/showSuccess.php"
+Apr 11 21:57:25 symfony [notice] {sfWebDebugLogger}  Notice at C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules\profile\templates\showSuccess.php on line 5 (Undefined variable: profiles)
+Apr 11 21:58:09 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/profile_aaron with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'profile_aaron',)
+Apr 11 21:58:09 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 21:58:09 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 21:58:09 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 21:58:09 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 21:58:09 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (profile_aaron)
+Apr 11 21:58:09 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/showSuccess.php"
+Apr 11 21:58:10 symfony [err] {Doctrine_Record_UnknownPropertyException} Unknown record property / related component "firstname" on "Profiles"
+Apr 11 21:58:10 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Apr 11 21:58:10 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 21:58:10 symfony [info] {sfWebDebugLogger} Configuration 242.86 ms (9)
+Apr 11 21:58:10 symfony [info] {sfWebDebugLogger} Factories 394.50 ms (1)
+Apr 11 21:58:10 symfony [info] {sfWebDebugLogger} Action "profile/show" 300.51 ms (1)
+Apr 11 21:58:10 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 21:58:10 symfony [info] {sfWebDebugLogger} View "Success" for "profile/show" 695.63 ms (1)
+Apr 11 21:59:11 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/profile_aaron with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'profile_aaron',)
+Apr 11 21:59:11 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 21:59:11 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 21:59:11 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 21:59:11 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 21:59:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (profile_aaron)
+Apr 11 21:59:12 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/showSuccess.php"
+Apr 11 21:59:12 symfony [info] {main} Set slot "title"
+Apr 11 21:59:12 symfony [err] {Doctrine_Record_UnknownPropertyException} Unknown record property / related component "firstname" on "Profiles"
+Apr 11 21:59:12 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Apr 11 21:59:12 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 21:59:12 symfony [info] {sfWebDebugLogger} Configuration 236.24 ms (9)
+Apr 11 21:59:12 symfony [info] {sfWebDebugLogger} Factories 332.72 ms (1)
+Apr 11 21:59:12 symfony [info] {sfWebDebugLogger} Action "profile/show" 190.49 ms (1)
+Apr 11 21:59:12 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 21:59:12 symfony [info] {sfWebDebugLogger} View "Success" for "profile/show" 584.58 ms (1)
+Apr 11 22:00:12 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/profile_aaron with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'profile_aaron',)
+Apr 11 22:00:13 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:00:13 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:00:13 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:00:13 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:00:13 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (profile_aaron)
+Apr 11 22:00:13 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/showSuccess.php"
+Apr 11 22:00:13 symfony [info] {main} Set slot "title"
+Apr 11 22:00:13 symfony [err] {Doctrine_Record_UnknownPropertyException} Unknown record property / related component "firstname" on "Profiles"
+Apr 11 22:00:14 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Apr 11 22:00:14 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:00:14 symfony [info] {sfWebDebugLogger} Configuration 350.81 ms (9)
+Apr 11 22:00:14 symfony [info] {sfWebDebugLogger} Factories 507.48 ms (1)
+Apr 11 22:00:14 symfony [info] {sfWebDebugLogger} Action "profile/show" 356.04 ms (1)
+Apr 11 22:00:14 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:00:14 symfony [info] {sfWebDebugLogger} View "Success" for "profile/show" 900.53 ms (1)
+Apr 11 22:00:28 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/profile_aaron with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'profile_aaron',)
+Apr 11 22:00:28 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:00:28 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:00:28 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:00:28 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:00:28 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (profile_aaron)
+Apr 11 22:00:28 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/showSuccess.php"
+Apr 11 22:00:28 symfony [err] {Doctrine_Record_UnknownPropertyException} Unknown record property / related component "address1" on "Profiles"
+Apr 11 22:00:29 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Apr 11 22:00:29 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:00:29 symfony [info] {sfWebDebugLogger} Configuration 269.69 ms (9)
+Apr 11 22:00:29 symfony [info] {sfWebDebugLogger} Factories 418.75 ms (1)
+Apr 11 22:00:29 symfony [info] {sfWebDebugLogger} Action "profile/show" 217.53 ms (1)
+Apr 11 22:00:29 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:00:29 symfony [info] {sfWebDebugLogger} View "Success" for "profile/show" 708.34 ms (1)
+Apr 11 22:01:07 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/profile_aaron with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'profile_aaron',)
+Apr 11 22:01:07 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:01:07 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:01:07 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:01:08 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:01:08 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (profile_aaron)
+Apr 11 22:01:08 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/showSuccess.php"
+Apr 11 22:01:08 symfony [err] {Doctrine_Record_UnknownPropertyException} Unknown record property / related component "top5" on "Profiles"
+Apr 11 22:01:08 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Apr 11 22:01:08 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:01:08 symfony [info] {sfWebDebugLogger} Configuration 369.72 ms (9)
+Apr 11 22:01:08 symfony [info] {sfWebDebugLogger} Factories 474.01 ms (1)
+Apr 11 22:01:08 symfony [info] {sfWebDebugLogger} Action "profile/show" 228.46 ms (1)
+Apr 11 22:01:08 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:01:08 symfony [info] {sfWebDebugLogger} View "Success" for "profile/show" 639.10 ms (1)
+Apr 11 22:01:23 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/profile_aaron with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'profile_aaron',)
+Apr 11 22:01:24 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:01:24 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:01:24 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:01:24 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:01:24 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (profile_aaron)
+Apr 11 22:01:24 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/showSuccess.php"
+Apr 11 22:01:24 symfony [info] {sfPHPView} Decorate content with "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\templates/layout.php"
+Apr 11 22:01:24 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\templates/layout.php"
+Apr 11 22:01:24 symfony [info] {main} Get slot "title"
+Apr 11 22:01:24 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Apr 11 22:01:24 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:01:24 symfony [info] {sfWebDebugLogger} Configuration 324.02 ms (9)
+Apr 11 22:01:24 symfony [info] {sfWebDebugLogger} Factories 487.63 ms (1)
+Apr 11 22:01:24 symfony [info] {sfWebDebugLogger} Action "profile/show" 236.17 ms (1)
+Apr 11 22:01:24 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:01:24 symfony [info] {sfWebDebugLogger} View "Success" for "profile/show" 311.70 ms (1)
+Apr 11 22:01:24 symfony [info] {sfWebResponse} Send content (46827 o)
+Apr 11 22:01:26 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/russ_profile_small.JPG with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'russ_profile_small.JPG',)
+Apr 11 22:01:26 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/russ_profile_tiny.JPG with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'russ_profile_tiny.JPG',)
+Apr 11 22:01:26 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/dateImage.JPG with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'dateImage.JPG',)
+Apr 11 22:01:27 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:01:27 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:01:27 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:01:27 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:01:27 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (russ_profile_small.JPG)
+Apr 11 22:01:27 symfony [err] {sfError404Exception} This request has been forwarded to a 404 error page by the action "profile/show".
+Apr 11 22:01:27 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 22:01:27 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:01:27 symfony [info] {sfWebDebugLogger} Configuration 304.49 ms (8)
+Apr 11 22:01:27 symfony [info] {sfWebDebugLogger} Factories 770.35 ms (1)
+Apr 11 22:01:27 symfony [info] {sfWebDebugLogger} Action "profile/show" 531.09 ms (1)
+Apr 11 22:01:27 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:01:28 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:01:28 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:01:28 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:01:28 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:01:28 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (russ_profile_tiny.JPG)
+Apr 11 22:01:28 symfony [err] {sfError404Exception} This request has been forwarded to a 404 error page by the action "profile/show".
+Apr 11 22:01:28 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 22:01:28 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:01:28 symfony [info] {sfWebDebugLogger} Configuration 437.64 ms (8)
+Apr 11 22:01:28 symfony [info] {sfWebDebugLogger} Factories 1508.31 ms (1)
+Apr 11 22:01:28 symfony [info] {sfWebDebugLogger} Action "profile/show" 487.74 ms (1)
+Apr 11 22:01:28 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:01:29 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:01:29 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:01:29 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:01:29 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:01:29 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (dateImage.JPG)
+Apr 11 22:01:29 symfony [err] {sfError404Exception} This request has been forwarded to a 404 error page by the action "profile/show".
+Apr 11 22:01:29 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 22:01:29 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:01:29 symfony [info] {sfWebDebugLogger} Configuration 500.48 ms (8)
+Apr 11 22:01:29 symfony [info] {sfWebDebugLogger} Factories 2379.12 ms (1)
+Apr 11 22:01:29 symfony [info] {sfWebDebugLogger} Action "profile/show" 493.26 ms (1)
+Apr 11 22:01:29 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:01:59 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/profile_aaron with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'profile_aaron',)
+Apr 11 22:01:59 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:01:59 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:01:59 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:01:59 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:01:59 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (profile_aaron)
+Apr 11 22:02:00 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/showSuccess.php"
+Apr 11 22:02:00 symfony [err] {Doctrine_Record_UnknownPropertyException} Unknown record property / related component "address1" on "Profiles"
+Apr 11 22:02:00 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Apr 11 22:02:00 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:02:00 symfony [info] {sfWebDebugLogger} Configuration 205.45 ms (9)
+Apr 11 22:02:00 symfony [info] {sfWebDebugLogger} Factories 266.39 ms (1)
+Apr 11 22:02:00 symfony [info] {sfWebDebugLogger} Action "profile/show" 237.75 ms (1)
+Apr 11 22:02:00 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:02:00 symfony [info] {sfWebDebugLogger} View "Success" for "profile/show" 689.68 ms (1)
+Apr 11 22:02:23 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/profile_aaron with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'profile_aaron',)
+Apr 11 22:02:23 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:02:23 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:02:23 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:02:23 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:02:23 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (profile_aaron)
+Apr 11 22:02:23 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/showSuccess.php"
+Apr 11 22:02:23 symfony [err] {Doctrine_Record_UnknownPropertyException} Unknown record property / related component "top5" on "Profiles"
+Apr 11 22:02:24 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Apr 11 22:02:24 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:02:24 symfony [info] {sfWebDebugLogger} Configuration 334.65 ms (9)
+Apr 11 22:02:24 symfony [info] {sfWebDebugLogger} Factories 368.66 ms (1)
+Apr 11 22:02:24 symfony [info] {sfWebDebugLogger} Action "profile/show" 223.64 ms (1)
+Apr 11 22:02:24 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:02:24 symfony [info] {sfWebDebugLogger} View "Success" for "profile/show" 654.56 ms (1)
+Apr 11 22:02:36 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/profile_aaron with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'profile_aaron',)
+Apr 11 22:02:36 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:02:36 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:02:36 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:02:36 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:02:36 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (profile_aaron)
+Apr 11 22:02:36 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/showSuccess.php"
+Apr 11 22:02:36 symfony [info] {sfPHPView} Decorate content with "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\templates/layout.php"
+Apr 11 22:02:36 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\templates/layout.php"
+Apr 11 22:02:36 symfony [info] {main} Get slot "title"
+Apr 11 22:02:36 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Apr 11 22:02:36 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:02:36 symfony [info] {sfWebDebugLogger} Configuration 215.81 ms (9)
+Apr 11 22:02:36 symfony [info] {sfWebDebugLogger} Factories 368.21 ms (1)
+Apr 11 22:02:36 symfony [info] {sfWebDebugLogger} Action "profile/show" 214.38 ms (1)
+Apr 11 22:02:36 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:02:36 symfony [info] {sfWebDebugLogger} View "Success" for "profile/show" 281.17 ms (1)
+Apr 11 22:02:37 symfony [info] {sfWebResponse} Send content (47003 o)
+Apr 11 22:02:38 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/dateImage.JPG with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'dateImage.JPG',)
+Apr 11 22:02:38 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/russ_profile_small.JPG with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'russ_profile_small.JPG',)
+Apr 11 22:02:38 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/russ_profile_tiny.JPG with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'russ_profile_tiny.JPG',)
+Apr 11 22:02:38 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:02:38 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:02:38 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:02:39 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:02:39 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (dateImage.JPG)
+Apr 11 22:02:39 symfony [err] {sfError404Exception} This request has been forwarded to a 404 error page by the action "profile/show".
+Apr 11 22:02:39 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 22:02:39 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:02:39 symfony [info] {sfWebDebugLogger} Configuration 403.39 ms (8)
+Apr 11 22:02:39 symfony [info] {sfWebDebugLogger} Factories 833.85 ms (1)
+Apr 11 22:02:39 symfony [info] {sfWebDebugLogger} Action "profile/show" 484.23 ms (1)
+Apr 11 22:02:39 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:02:39 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:02:39 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:02:39 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:02:40 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:02:40 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (russ_profile_small.JPG)
+Apr 11 22:02:40 symfony [err] {sfError404Exception} This request has been forwarded to a 404 error page by the action "profile/show".
+Apr 11 22:02:40 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 22:02:40 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:02:40 symfony [info] {sfWebDebugLogger} Configuration 393.78 ms (8)
+Apr 11 22:02:40 symfony [info] {sfWebDebugLogger} Factories 1495.55 ms (1)
+Apr 11 22:02:40 symfony [info] {sfWebDebugLogger} Action "profile/show" 483.34 ms (1)
+Apr 11 22:02:40 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:02:40 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:02:40 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:02:40 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:02:40 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:02:40 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (russ_profile_tiny.JPG)
+Apr 11 22:02:41 symfony [err] {sfError404Exception} This request has been forwarded to a 404 error page by the action "profile/show".
+Apr 11 22:02:41 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 22:02:41 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:02:41 symfony [info] {sfWebDebugLogger} Configuration 384.81 ms (8)
+Apr 11 22:02:41 symfony [info] {sfWebDebugLogger} Factories 1896.84 ms (1)
+Apr 11 22:02:41 symfony [info] {sfWebDebugLogger} Action "profile/show" 481.10 ms (1)
+Apr 11 22:02:41 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:06:47 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/profile_aaron with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'profile_aaron',)
+Apr 11 22:06:47 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:06:47 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:06:47 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:06:48 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:06:48 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (profile_aaron)
+Apr 11 22:06:48 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/showSuccess.php"
+Apr 11 22:06:48 symfony [info] {main} Set slot "title"
+Apr 11 22:06:48 symfony [err] {Doctrine_Record_UnknownPropertyException} Unknown record property / related component "firstname" on "Profiles"
+Apr 11 22:06:48 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Apr 11 22:06:48 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:06:48 symfony [info] {sfWebDebugLogger} Configuration 255.72 ms (9)
+Apr 11 22:06:48 symfony [info] {sfWebDebugLogger} Factories 395.44 ms (1)
+Apr 11 22:06:48 symfony [info] {sfWebDebugLogger} Action "profile/show" 249.33 ms (1)
+Apr 11 22:06:48 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:06:48 symfony [info] {sfWebDebugLogger} View "Success" for "profile/show" 675.76 ms (1)
+Apr 11 22:07:21 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/profile_aaron with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'profile_aaron',)
+Apr 11 22:07:21 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:07:21 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:07:21 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:07:21 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:07:21 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (profile_aaron)
+Apr 11 22:07:22 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/showSuccess.php"
+Apr 11 22:07:22 symfony [info] {main} Set slot "title"
+Apr 11 22:07:22 symfony [err] {Doctrine_Record_UnknownPropertyException} Unknown record property / related component "lastname" on "Profiles"
+Apr 11 22:07:22 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Apr 11 22:07:22 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:07:22 symfony [info] {sfWebDebugLogger} Configuration 269.26 ms (9)
+Apr 11 22:07:22 symfony [info] {sfWebDebugLogger} Factories 384.89 ms (1)
+Apr 11 22:07:22 symfony [info] {sfWebDebugLogger} Action "profile/show" 233.76 ms (1)
+Apr 11 22:07:22 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:07:22 symfony [info] {sfWebDebugLogger} View "Success" for "profile/show" 688.88 ms (1)
+Apr 11 22:11:42 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/profile_aaron with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'profile_aaron',)
+Apr 11 22:11:42 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:11:42 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:11:42 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:11:42 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:11:42 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (profile_aaron)
+Apr 11 22:11:42 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/showSuccess.php"
+Apr 11 22:11:42 symfony [info] {main} Set slot "title"
+Apr 11 22:11:42 symfony [info] {sfPHPView} Decorate content with "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\templates/layout.php"
+Apr 11 22:11:42 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\templates/layout.php"
+Apr 11 22:11:42 symfony [info] {main} Get slot "title"
+Apr 11 22:11:42 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Apr 11 22:11:42 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:11:42 symfony [info] {sfWebDebugLogger} Configuration 302.05 ms (9)
+Apr 11 22:11:42 symfony [info] {sfWebDebugLogger} Factories 381.02 ms (1)
+Apr 11 22:11:42 symfony [info] {sfWebDebugLogger} Action "profile/show" 220.81 ms (1)
+Apr 11 22:11:42 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:11:42 symfony [info] {sfWebDebugLogger} View "Success" for "profile/show" 265.40 ms (1)
+Apr 11 22:11:43 symfony [info] {sfWebResponse} Send content (55770 o)
+Apr 11 22:11:45 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/russ_profile_small.JPG with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'russ_profile_small.JPG',)
+Apr 11 22:11:45 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/dateImage.JPG with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'dateImage.JPG',)
+Apr 11 22:11:45 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/resources/users/profile_aaron_profileLarge.jpg with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'resources',  'users' => 'profile_aaron_profileLarge.jpg',)
+Apr 11 22:11:46 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/lauren_profile_small.JPG with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'lauren_profile_small.JPG',)
+Apr 11 22:11:46 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/russ_profile_tiny.JPG with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'russ_profile_tiny.JPG',)
+Apr 11 22:11:46 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/carPicture.JPG with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'carPicture.JPG',)
+Apr 11 22:11:46 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:11:46 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:11:46 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:11:46 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:11:46 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (russ_profile_small.JPG)
+Apr 11 22:11:46 symfony [err] {sfError404Exception} This request has been forwarded to a 404 error page by the action "profile/show".
+Apr 11 22:11:46 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 22:11:46 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:11:46 symfony [info] {sfWebDebugLogger} Configuration 676.46 ms (8)
+Apr 11 22:11:46 symfony [info] {sfWebDebugLogger} Factories 1802.66 ms (1)
+Apr 11 22:11:46 symfony [info] {sfWebDebugLogger} Action "profile/show" 513.41 ms (1)
+Apr 11 22:11:46 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:11:47 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:11:47 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:11:47 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:11:47 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:11:47 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (dateImage.JPG)
+Apr 11 22:11:47 symfony [err] {sfError404Exception} This request has been forwarded to a 404 error page by the action "profile/show".
+Apr 11 22:11:47 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 22:11:47 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:11:47 symfony [info] {sfWebDebugLogger} Configuration 565.06 ms (8)
+Apr 11 22:11:47 symfony [info] {sfWebDebugLogger} Factories 2369.43 ms (1)
+Apr 11 22:11:47 symfony [info] {sfWebDebugLogger} Action "profile/show" 476.93 ms (1)
+Apr 11 22:11:47 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:11:48 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:11:48 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:11:48 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:11:48 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:11:48 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (resources)
+Apr 11 22:11:48 symfony [err] {sfError404Exception} This request has been forwarded to a 404 error page by the action "profile/show".
+Apr 11 22:11:48 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 22:11:48 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:11:48 symfony [info] {sfWebDebugLogger} Configuration 639.75 ms (8)
+Apr 11 22:11:48 symfony [info] {sfWebDebugLogger} Factories 3187.86 ms (1)
+Apr 11 22:11:48 symfony [info] {sfWebDebugLogger} Action "profile/show" 536.14 ms (1)
+Apr 11 22:11:48 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:11:49 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:11:49 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:11:49 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:11:49 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:11:49 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (lauren_profile_small.JPG)
+Apr 11 22:11:49 symfony [err] {sfError404Exception} This request has been forwarded to a 404 error page by the action "profile/show".
+Apr 11 22:11:49 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 22:11:49 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:11:49 symfony [info] {sfWebDebugLogger} Configuration 687.68 ms (8)
+Apr 11 22:11:49 symfony [info] {sfWebDebugLogger} Factories 3367.44 ms (1)
+Apr 11 22:11:49 symfony [info] {sfWebDebugLogger} Action "profile/show" 534.30 ms (1)
+Apr 11 22:11:49 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:11:50 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:11:50 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:11:50 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:11:50 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:11:50 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (russ_profile_tiny.JPG)
+Apr 11 22:11:50 symfony [err] {sfError404Exception} This request has been forwarded to a 404 error page by the action "profile/show".
+Apr 11 22:11:50 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 22:11:50 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:11:50 symfony [info] {sfWebDebugLogger} Configuration 627.76 ms (8)
+Apr 11 22:11:50 symfony [info] {sfWebDebugLogger} Factories 4273.55 ms (1)
+Apr 11 22:11:50 symfony [info] {sfWebDebugLogger} Action "profile/show" 590.63 ms (1)
+Apr 11 22:11:50 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:11:51 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:11:51 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:11:51 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:11:51 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:11:51 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (carPicture.JPG)
+Apr 11 22:11:51 symfony [err] {sfError404Exception} This request has been forwarded to a 404 error page by the action "profile/show".
+Apr 11 22:11:51 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 22:11:51 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:11:51 symfony [info] {sfWebDebugLogger} Configuration 709.30 ms (8)
+Apr 11 22:11:51 symfony [info] {sfWebDebugLogger} Factories 5309.79 ms (1)
+Apr 11 22:11:51 symfony [info] {sfWebDebugLogger} Action "profile/show" 531.83 ms (1)
+Apr 11 22:11:51 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:12:14 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/profile_christy with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'profile_christy',)
+Apr 11 22:12:14 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:12:14 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:12:14 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:12:14 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:12:14 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (profile_christy)
+Apr 11 22:12:15 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/showSuccess.php"
+Apr 11 22:12:15 symfony [info] {main} Set slot "title"
+Apr 11 22:12:15 symfony [info] {sfPHPView} Decorate content with "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\templates/layout.php"
+Apr 11 22:12:15 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\templates/layout.php"
+Apr 11 22:12:15 symfony [info] {main} Get slot "title"
+Apr 11 22:12:15 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Apr 11 22:12:15 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:12:15 symfony [info] {sfWebDebugLogger} Configuration 284.83 ms (9)
+Apr 11 22:12:15 symfony [info] {sfWebDebugLogger} Factories 380.66 ms (1)
+Apr 11 22:12:15 symfony [info] {sfWebDebugLogger} Action "profile/show" 168.43 ms (1)
+Apr 11 22:12:15 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:12:15 symfony [info] {sfWebDebugLogger} View "Success" for "profile/show" 211.41 ms (1)
+Apr 11 22:12:15 symfony [info] {sfWebResponse} Send content (56120 o)
+Apr 11 22:12:16 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/dateImage.JPG with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'dateImage.JPG',)
+Apr 11 22:12:17 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/lauren_profile_small.JPG with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'lauren_profile_small.JPG',)
+Apr 11 22:12:17 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/carPicture.JPG with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'carPicture.JPG',)
+Apr 11 22:12:17 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/resources/users/profile_christy_profileLarge.jpg with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'resources',  'users' => 'profile_christy_profileLarge.jpg',)
+Apr 11 22:12:17 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/russ_profile_small.JPG with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'russ_profile_small.JPG',)
+Apr 11 22:12:17 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:12:17 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:12:17 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:12:17 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/russ_profile_tiny.JPG with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'russ_profile_tiny.JPG',)
+Apr 11 22:12:17 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:12:17 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (dateImage.JPG)
+Apr 11 22:12:17 symfony [err] {sfError404Exception} This request has been forwarded to a 404 error page by the action "profile/show".
+Apr 11 22:12:18 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 22:12:18 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:12:18 symfony [info] {sfWebDebugLogger} Configuration 377.78 ms (8)
+Apr 11 22:12:18 symfony [info] {sfWebDebugLogger} Factories 878.51 ms (1)
+Apr 11 22:12:18 symfony [info] {sfWebDebugLogger} Action "profile/show" 423.88 ms (1)
+Apr 11 22:12:18 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:12:18 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:12:18 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:12:18 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:12:18 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:12:18 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (lauren_profile_small.JPG)
+Apr 11 22:12:18 symfony [err] {sfError404Exception} This request has been forwarded to a 404 error page by the action "profile/show".
+Apr 11 22:12:18 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 22:12:18 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:12:18 symfony [info] {sfWebDebugLogger} Configuration 361.05 ms (8)
+Apr 11 22:12:18 symfony [info] {sfWebDebugLogger} Factories 1551.48 ms (1)
+Apr 11 22:12:18 symfony [info] {sfWebDebugLogger} Action "profile/show" 401.49 ms (1)
+Apr 11 22:12:18 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:12:19 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:12:19 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:12:19 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:12:19 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:12:19 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (carPicture.JPG)
+Apr 11 22:12:19 symfony [err] {sfError404Exception} This request has been forwarded to a 404 error page by the action "profile/show".
+Apr 11 22:12:19 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 22:12:19 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:12:19 symfony [info] {sfWebDebugLogger} Configuration 457.48 ms (8)
+Apr 11 22:12:19 symfony [info] {sfWebDebugLogger} Factories 2366.60 ms (1)
+Apr 11 22:12:19 symfony [info] {sfWebDebugLogger} Action "profile/show" 415.31 ms (1)
+Apr 11 22:12:19 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:12:19 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:12:19 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:12:19 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:12:19 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:12:19 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (resources)
+Apr 11 22:12:20 symfony [err] {sfError404Exception} This request has been forwarded to a 404 error page by the action "profile/show".
+Apr 11 22:12:20 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 22:12:20 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:12:20 symfony [info] {sfWebDebugLogger} Configuration 433.11 ms (8)
+Apr 11 22:12:20 symfony [info] {sfWebDebugLogger} Factories 3154.81 ms (1)
+Apr 11 22:12:20 symfony [info] {sfWebDebugLogger} Action "profile/show" 376.72 ms (1)
+Apr 11 22:12:20 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:12:20 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:12:20 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:12:20 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:12:20 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:12:20 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (russ_profile_small.JPG)
+Apr 11 22:12:20 symfony [err] {sfError404Exception} This request has been forwarded to a 404 error page by the action "profile/show".
+Apr 11 22:12:20 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 22:12:20 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:12:20 symfony [info] {sfWebDebugLogger} Configuration 371.23 ms (8)
+Apr 11 22:12:20 symfony [info] {sfWebDebugLogger} Factories 3399.98 ms (1)
+Apr 11 22:12:20 symfony [info] {sfWebDebugLogger} Action "profile/show" 425.66 ms (1)
+Apr 11 22:12:20 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 11 22:12:21 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 11 22:12:21 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 11 22:12:21 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 11 22:12:21 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 11 22:12:21 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (russ_profile_tiny.JPG)
+Apr 11 22:12:21 symfony [err] {sfError404Exception} This request has been forwarded to a 404 error page by the action "profile/show".
+Apr 11 22:12:21 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Apr 11 22:12:21 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 11 22:12:21 symfony [info] {sfWebDebugLogger} Configuration 468.48 ms (8)
+Apr 11 22:12:21 symfony [info] {sfWebDebugLogger} Factories 4175.81 ms (1)
+Apr 11 22:12:21 symfony [info] {sfWebDebugLogger} Action "profile/show" 427.85 ms (1)
+Apr 11 22:12:21 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)

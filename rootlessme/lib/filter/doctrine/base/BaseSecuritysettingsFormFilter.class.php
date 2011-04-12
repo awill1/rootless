@@ -1,30 +1,30 @@
 <?php
 
 /**
- * Securitysettings filter form base class.
+ * SecuritySettings filter form base class.
  *
  * @package    RootlessMe
  * @subpackage filter
  * @author     Your name here
  * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 29570 2010-05-21 14:49:47Z Kris.Wallsmith $
  */
-abstract class BaseSecuritysettingsFormFilter extends BaseFormFilterDoctrine
+abstract class BaseSecuritySettingsFormFilter extends BaseFormFilterDoctrine
 {
   public function setup()
   {
     $this->setWidgets(array(
-      'canemailpromotions' => new sfWidgetFormFilterInput(),
-      'canemailpartners'   => new sfWidgetFormFilterInput(),
-      'users_username'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Users'), 'add_empty' => true)),
+      'person_id'            => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('People'), 'add_empty' => true)),
+      'can_email_promotions' => new sfWidgetFormFilterInput(),
+      'can_email_partners'   => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'canemailpromotions' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'canemailpartners'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'users_username'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Users'), 'column' => 'username')),
+      'person_id'            => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('People'), 'column' => 'person_id')),
+      'can_email_promotions' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'can_email_partners'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
-    $this->widgetSchema->setNameFormat('securitysettings_filters[%s]');
+    $this->widgetSchema->setNameFormat('security_settings_filters[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -35,16 +35,16 @@ abstract class BaseSecuritysettingsFormFilter extends BaseFormFilterDoctrine
 
   public function getModelName()
   {
-    return 'Securitysettings';
+    return 'SecuritySettings';
   }
 
   public function getFields()
   {
     return array(
-      'idsecuritysettings' => 'Number',
-      'canemailpromotions' => 'Number',
-      'canemailpartners'   => 'Number',
-      'users_username'     => 'ForeignKey',
+      'security_settings_id' => 'Number',
+      'person_id'            => 'ForeignKey',
+      'can_email_promotions' => 'Number',
+      'can_email_partners'   => 'Number',
     );
   }
 }

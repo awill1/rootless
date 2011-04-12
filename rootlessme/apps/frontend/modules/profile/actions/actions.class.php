@@ -12,14 +12,15 @@ class profileActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->profiless = Doctrine_Core::getTable('Profiles')
+    $this->profiles = Doctrine_Core::getTable('Profiles')
       ->createQuery('a')
       ->execute();
   }
 
   public function executeShow(sfWebRequest $request)
   {
-      $this->profiles = $this->getRoute()->getObject();
+    $this->profile = Doctrine_Core::getTable('Profiles')->find(array($request->getParameter('profile_name')));
+    $this->forward404Unless($this->profile);
   }
 
   public function executeNew(sfWebRequest $request)
@@ -40,15 +41,15 @@ class profileActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($profiles = Doctrine_Core::getTable('Profiles')->find(array($request->getParameter('idprofile'))), sprintf('Object profiles does not exist (%s).', $request->getParameter('idprofile')));
-    $this->form = new ProfilesForm($profiles);
+    $this->forward404Unless($profile = Doctrine_Core::getTable('Profiles')->find(array($request->getParameter('profile_name'))), sprintf('Object profile does not exist (%s).', $request->getParameter('profile_name')));
+    $this->form = new ProfilesForm($profile);
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($profiles = Doctrine_Core::getTable('Profiles')->find(array($request->getParameter('idprofile'))), sprintf('Object profiles does not exist (%s).', $request->getParameter('idprofile')));
-    $this->form = new ProfilesForm($profiles);
+    $this->forward404Unless($profile = Doctrine_Core::getTable('Profiles')->find(array($request->getParameter('profile_name'))), sprintf('Object profile does not exist (%s).', $request->getParameter('profile_name')));
+    $this->form = new ProfilesForm($profile);
 
     $this->processForm($request, $this->form);
 
@@ -59,8 +60,8 @@ class profileActions extends sfActions
   {
     $request->checkCSRFProtection();
 
-    $this->forward404Unless($profiles = Doctrine_Core::getTable('Profiles')->find(array($request->getParameter('idprofile'))), sprintf('Object profiles does not exist (%s).', $request->getParameter('idprofile')));
-    $profiles->delete();
+    $this->forward404Unless($profile = Doctrine_Core::getTable('Profiles')->find(array($request->getParameter('profile_name'))), sprintf('Object profile does not exist (%s).', $request->getParameter('profile_name')));
+    $profile->delete();
 
     $this->redirect('profile/index');
   }
@@ -70,9 +71,9 @@ class profileActions extends sfActions
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid())
     {
-      $profiles = $form->save();
+      $profile = $form->save();
 
-      $this->redirect('profile/edit?idprofile='.$profiles->getIdprofile());
+      $this->redirect('profile/edit?profile_name='.$profile->getProfileName());
     }
   }
 }

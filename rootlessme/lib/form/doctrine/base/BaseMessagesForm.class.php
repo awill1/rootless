@@ -15,21 +15,21 @@ abstract class BaseMessagesForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'idmessages'       => new sfWidgetFormInputHidden(),
-      'subject'          => new sfWidgetFormInputText(),
-      'body'             => new sfWidgetFormTextarea(),
-      'sender'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Profiles'), 'add_empty' => false)),
-      'createdon'        => new sfWidgetFormDateTime(),
-      'repliedtomessage' => new sfWidgetFormInputText(),
+      'id_message'      => new sfWidgetFormInputHidden(),
+      'conversation_id' => new sfWidgetFormInputHidden(),
+      'author_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('People'), 'add_empty' => false)),
+      'body'            => new sfWidgetFormTextarea(),
+      'created_at'      => new sfWidgetFormDateTime(),
+      'updated_at'      => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
-      'idmessages'       => new sfValidatorChoice(array('choices' => array($this->getObject()->get('idmessages')), 'empty_value' => $this->getObject()->get('idmessages'), 'required' => false)),
-      'subject'          => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'body'             => new sfValidatorString(array('required' => false)),
-      'sender'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Profiles'))),
-      'createdon'        => new sfValidatorDateTime(array('required' => false)),
-      'repliedtomessage' => new sfValidatorInteger(),
+      'id_message'      => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id_message')), 'empty_value' => $this->getObject()->get('id_message'), 'required' => false)),
+      'conversation_id' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('conversation_id')), 'empty_value' => $this->getObject()->get('conversation_id'), 'required' => false)),
+      'author_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('People'))),
+      'body'            => new sfValidatorString(),
+      'created_at'      => new sfValidatorDateTime(array('required' => false)),
+      'updated_at'      => new sfValidatorDateTime(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('messages[%s]');

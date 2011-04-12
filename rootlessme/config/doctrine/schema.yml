@@ -1,15 +1,29 @@
-Attendingstatustype:
+AttendingStatusType:
   connection: doctrine
-  tableName: attendingstatustype
+  tableName: attending_status_type
   columns:
-    idattendingstatustype:
+    attending_status_type_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: true
-    status:
+    display_text:
       type: string(45)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
       fixed: false
       unsigned: false
       primary: false
@@ -17,25 +31,357 @@ Attendingstatustype:
       autoincrement: false
   relations:
     TravelersAttendingEvent:
-      local: idattendingstatustype
+      local: attending_status_type_id
       foreign: status
       type: many
-Events:
+Carpools:
   connection: doctrine
-  tableName: events
+  tableName: carpools
   columns:
-    idevent:
+    carpool_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
+      autoincrement: true
+    route_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    vehicle_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    start_date:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    start_time:
+      type: time(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    description:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    Routes:
+      local: route_id
+      foreign: route_id
+      type: one
+    Vehicles:
+      local: vehicle_id
+      foreign: vehicle_id
+      type: one
+    Drivers:
+      local: carpool_id
+      foreign: carpool_id
+      type: many
+    SeatNegotiations:
+      local: carpool_id
+      foreign: carpool_id
+      type: many
+    Seats:
+      local: carpool_id
+      foreign: carpool_id
+      type: many
+Comments:
+  connection: doctrine
+  tableName: comments
+  columns:
+    comment_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    event_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    person_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    comment:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    Events:
+      local: event_id
+      foreign: event_id
+      type: one
+    People:
+      local: person_id
+      foreign: person_id
+      type: one
+ConversationParticipants:
+  connection: doctrine
+  tableName: conversation_participants
+  columns:
+    conversation_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    person_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    unread:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    Conversations:
+      local: conversation_id
+      foreign: conversation_id
+      type: one
+    People:
+      local: person_id
+      foreign: person_id
+      type: one
+Conversations:
+  connection: doctrine
+  tableName: conversations
+  columns:
+    conversation_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    author_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    subject:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    People:
+      local: author_id
+      foreign: person_id
+      type: one
+    ConversationParticipants:
+      local: conversation_id
+      foreign: conversation_id
+      type: many
+    Messages:
+      local: conversation_id
+      foreign: conversation_id
+      type: many
+Drivers:
+  connection: doctrine
+  tableName: drivers
+  columns:
+    driver_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    person_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    solo_route_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    carpool_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    seats_available:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    start_date:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    start_time:
+      type: time(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    asking_price:
+      type: float()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    description:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    People:
+      local: person_id
+      foreign: person_id
+      type: one
+    Routes:
+      local: solo_route_id
+      foreign: route_id
+      type: one
+    Carpools:
+      local: carpool_id
+      foreign: carpool_id
+      type: one
+Events:
+  connection: doctrine
+  tableName: events
+  columns:
+    event_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    location_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
       autoincrement: false
     name:
       type: string(45)
       fixed: false
       unsigned: false
       primary: false
-      notnull: false
+      notnull: true
       autoincrement: false
     date:
       type: date(25)
@@ -51,8 +397,15 @@ Events:
       primary: false
       notnull: false
       autoincrement: false
-    pictureurl:
-      type: string(45)
+    picture_url_large:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    picture_url_small:
+      type: string(255)
       fixed: false
       unsigned: false
       primary: false
@@ -65,7 +418,7 @@ Events:
       primary: false
       notnull: false
       autoincrement: false
-    url:
+    website_url:
       type: string(255)
       fixed: false
       unsigned: false
@@ -79,28 +432,14 @@ Events:
       primary: false
       notnull: false
       autoincrement: false
-    createdby:
-      type: string(45)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    location:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    createdon:
+    created_at:
       type: timestamp(25)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    modifiedon:
+    updated_at:
       type: timestamp(25)
       fixed: false
       unsigned: false
@@ -108,75 +447,227 @@ Events:
       notnull: false
       autoincrement: false
   relations:
-    Profiles:
-      local: createdby
-      foreign: idprofile
-      type: one
     Locations:
-      local: location
-      foreign: idlocation
+      local: location_id
+      foreign: location_id
       type: one
-    TravelersAttendingEvent:
-      local: idevent
-      foreign: events_idevent
+    Comments:
+      local: event_id
+      foreign: event_id
       type: many
-Friendships:
+    TravelersAttendingEvent:
+      local: event_id
+      foreign: event_id
+      type: many
+FriendshipRequests:
   connection: doctrine
-  tableName: friendships
+  tableName: friendship_requests
   columns:
-    travelers_idusers:
-      type: string(45)
+    requestor_id:
+      type: integer(4)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: false
-    travelers_idusers1:
-      type: string(45)
+    requestee_id:
+      type: integer(4)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: false
-    pending:
+    friendship_status_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    abuse:
       type: integer(1)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    initiatedby:
-      type: string(45)
+    abuse_comment:
+      type: string()
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    createdon:
-      type: string(45)
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
   relations:
-    Profiles:
-      local: travelers_idusers
-      foreign: idprofile
+    People:
+      local: requestor_id
+      foreign: person_id
       type: one
-    Profiles_2:
-      class: Profiles
-      local: travelers_idusers1
-      foreign: idprofile
+    People_2:
+      class: People
+      local: requestee_id
+      foreign: person_id
       type: one
-Locations:
+    FriendshipStatuses:
+      local: friendship_status_id
+      foreign: friendship_status_id
+      type: one
+FriendshipStatuses:
   connection: doctrine
-  tableName: locations
+  tableName: friendship_statuses
   columns:
-    idlocation:
+    friendship_status_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: true
+    display_text:
+      type: string(45)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    FriendshipRequests:
+      local: friendship_status_id
+      foreign: friendship_status_id
+      type: many
+Friendships:
+  connection: doctrine
+  tableName: friendships
+  columns:
+    friend_1_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    friend_2_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    People:
+      local: friend_1_id
+      foreign: person_id
+      type: one
+    People_2:
+      class: People
+      local: friend_2_id
+      foreign: person_id
+      type: one
+Legs:
+  connection: doctrine
+  tableName: legs
+  columns:
+    leg_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    route_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    sequence_order:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    Routes:
+      local: route_id
+      foreign: route_id
+      type: one
+    SeatsFilledLegs:
+      local: leg_id
+      foreign: legs_leg_id
+      type: many
+    Steps:
+      local: leg_id
+      foreign: leg_id
+      type: many
+Locations:
+  connection: doctrine
+  tableName: locations
+  columns:
+    location_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    step_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
     name:
       type: string(255)
       fixed: false
@@ -184,14 +675,14 @@ Locations:
       primary: false
       notnull: false
       autoincrement: false
-    'street 1':
+    street_1:
       type: string(255)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    'street 2':
+    'street _2':
       type: string(255)
       fixed: false
       unsigned: false
@@ -212,7 +703,7 @@ Locations:
       primary: false
       notnull: false
       autoincrement: false
-    postalcode:
+    postal_code:
       type: string(45)
       fixed: false
       unsigned: false
@@ -240,318 +731,367 @@ Locations:
       primary: false
       notnull: false
       autoincrement: false
-    searchstring:
+    search_string:
       type: string(255)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-  relations:
-    Events:
-      local: idlocation
-      foreign: location
-      type: many
-    Negotiation:
-      local: idlocation
-      foreign: pickuplocation
-      type: many
-    Negotiation_4:
-      class: Negotiation
-      local: idlocation
-      foreign: dropofflocation
-      type: many
-    Rideofferposts:
-      local: idlocation
-      foreign: origin
-      type: many
-    Rideofferposts_3:
-      class: Rideofferposts
-      local: idlocation
-      foreign: destination
-      type: many
-    Seatneededposts:
-      local: idlocation
-      foreign: pickuplocation
-      type: many
-    Seatneededposts_3:
-      class: Seatneededposts
-      local: idlocation
-      foreign: dropofflocation
-      type: many
-    Waypoints:
-      local: idlocation
-      foreign: locations_idlocation
-      type: many
-Messagerecipients:
-  connection: doctrine
-  tableName: messagerecipients
-  columns:
-    messages_idmessages:
+    sequence_order:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    travelers_idtraveler:
-      type: string(45)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-  relations:
-    Messages:
-      local: messages_idmessages
-      foreign: idmessages
-      type: one
-    Profiles:
-      local: travelers_idtraveler
-      foreign: idprofile
-      type: one
-Messages:
-  connection: doctrine
-  tableName: messages
-  columns:
-    idmessages:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    subject:
-      type: string(255)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    body:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    sender:
-      type: string(45)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    createdon:
+    created_at:
       type: timestamp(25)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    repliedtomessage:
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    Steps:
+      local: step_id
+      foreign: step_id
+      type: one
+    Events:
+      local: location_id
+      foreign: location_id
+      type: many
+Messages:
+  connection: doctrine
+  tableName: messages
+  columns:
+    id_message:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    conversation_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    author_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
+    body:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
   relations:
-    Profiles:
-      local: sender
-      foreign: idprofile
+    Conversations:
+      local: conversation_id
+      foreign: conversation_id
       type: one
-    Messages:
-      local: idmessages
-      foreign: repliedtomessage
-      type: many
-    Messagerecipients:
-      local: idmessages
-      foreign: messages_idmessages
-      type: many
-Negotiation:
+    People:
+      local: author_id
+      foreign: person_id
+      type: one
+Passengers:
   connection: doctrine
-  tableName: negotiation
+  tableName: passengers
   columns:
-    idnegotiation:
+    passenger_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: true
-    price:
-      type: float()
+    person_id:
+      type: integer(4)
       fixed: false
       unsigned: false
       primary: false
-      notnull: false
+      notnull: true
       autoincrement: false
-    numberofseats:
+    solo_route_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    seat_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    passenger_count:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    date:
+    start_date:
       type: date(25)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    time:
+    start_time:
       type: time(25)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    comments:
-      type: string(1024)
+    asking_price:
+      type: float()
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    idseatrequest:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    idnegotiationtype:
-      type: integer(4)
+    description:
+      type: string()
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
+      notnull: false
       autoincrement: false
-    pickuplocation:
-      type: integer(4)
+    created_at:
+      type: timestamp(25)
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
+      notnull: false
       autoincrement: false
-    dropofflocation:
-      type: integer(4)
+    updated_at:
+      type: timestamp(25)
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
+      notnull: false
       autoincrement: false
   relations:
-    Seatrequests:
-      local: idseatrequest
-      foreign: idseatrequest
+    People:
+      local: person_id
+      foreign: person_id
       type: one
-    Negotiationtypes:
-      local: idnegotiationtype
-      foreign: idnegotiationtype
+    Routes:
+      local: solo_route_id
+      foreign: route_id
       type: one
-    Locations:
-      local: pickuplocation
-      foreign: idlocation
+    Seats:
+      local: seat_id
+      foreign: seat_id
       type: one
-    Locations_4:
-      class: Locations
-      local: dropofflocation
-      foreign: idlocation
-      type: one
-Negotiationtypes:
+    SeatNegotiations:
+      local: passenger_id
+      foreign: passenger_id
+      type: many
+People:
   connection: doctrine
-  tableName: negotiationtypes
+  tableName: people
   columns:
-    idnegotiationtype:
+    person_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: true
-    name:
-      type: string(45)
+    created_at:
+      type: timestamp(25)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    isfinal:
-      type: integer(1)
+    updated_at:
+      type: timestamp(25)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
   relations:
-    Negotiation:
-      local: idnegotiationtype
-      foreign: idnegotiationtype
+    Comments:
+      local: person_id
+      foreign: person_id
+      type: many
+    ConversationParticipants:
+      local: person_id
+      foreign: person_id
+      type: many
+    Conversations:
+      local: person_id
+      foreign: author_id
+      type: many
+    Drivers:
+      local: person_id
+      foreign: person_id
+      type: many
+    FriendshipRequests:
+      local: person_id
+      foreign: requestor_id
+      type: many
+    FriendshipRequests_2:
+      class: FriendshipRequests
+      local: person_id
+      foreign: requestee_id
+      type: many
+    Friendships:
+      local: person_id
+      foreign: friend_1_id
+      type: many
+    Friendships_2:
+      class: Friendships
+      local: person_id
+      foreign: friend_2_id
+      type: many
+    Messages:
+      local: person_id
+      foreign: author_id
+      type: many
+    Passengers:
+      local: person_id
+      foreign: person_id
+      type: many
+    Profiles:
+      local: person_id
+      foreign: person_id
+      type: many
+    Reviews:
+      local: person_id
+      foreign: reviewer_id
+      type: many
+    Reviews_2:
+      class: Reviews
+      local: person_id
+      foreign: reviewee_id
+      type: many
+    SeatNegotiationMessage:
+      local: person_id
+      foreign: author_id
+      type: many
+    SecuritySettings:
+      local: person_id
+      foreign: person_id
+      type: many
+    TravelersAttendingEvent:
+      local: person_id
+      foreign: person_id
+      type: many
+    Users:
+      local: person_id
+      foreign: person_id
+      type: many
+    Vehicles:
+      local: person_id
+      foreign: person_id
       type: many
 Profiles:
   connection: doctrine
   tableName: profiles
   columns:
-    idprofile:
+    profile_name:
       type: string(45)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: false
-    firstname:
+    person_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    first_name:
       type: string(45)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    lastname:
+    last_name:
       type: string(45)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    pictureurl:
+    picture_url:
       type: string(255)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    pictureurllarge:
+    picture_url_large:
       type: string(255)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    pictureurlmedium:
+    picture_url_medium:
       type: string(255)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    pictureurlsmall:
+    picture_url_small:
       type: string(255)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    pictureurltiny:
+    picture_url_tiny:
       type: string(255)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    address1:
+    address_1:
       type: string(255)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    address2:
+    address_2:
       type: string(255)
       fixed: false
       unsigned: false
@@ -572,7 +1112,7 @@ Profiles:
       primary: false
       notnull: false
       autoincrement: false
-    postalcode:
+    postal_code:
       type: string(45)
       fixed: false
       unsigned: false
@@ -600,21 +1140,21 @@ Profiles:
       primary: false
       notnull: false
       autoincrement: false
-    aboutme:
+    about_me:
       type: string()
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    top5:
+    top_5:
       type: string()
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    wantstotravelto:
+    wants_to_travel_to:
       type: string()
       fixed: false
       unsigned: false
@@ -649,161 +1189,99 @@ Profiles:
       primary: false
       notnull: false
       autoincrement: false
-    favoritewebsites:
+    favorite_websites:
       type: string()
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    websiteurl:
+    website_url:
       type: string(128)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    facebookusername:
+    facebook_user_name:
       type: string(45)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    twitterusername:
+    twitter_user_name:
       type: string(45)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    createdon:
+    created_at:
       type: timestamp(25)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    modifiedon:
+    updated_at:
       type: timestamp(25)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
-      autoincrement: false
-    users_username:
-      type: string(45)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
       autoincrement: false
   relations:
-    Users:
-      local: users_username
-      foreign: username
+    People:
+      local: person_id
+      foreign: person_id
       type: one
-    Events:
-      local: idprofile
-      foreign: createdby
-      type: many
-    Friendships:
-      local: idprofile
-      foreign: travelers_idusers
-      type: many
-    Friendships_2:
-      class: Friendships
-      local: idprofile
-      foreign: travelers_idusers1
-      type: many
-    Messagerecipients:
-      local: idprofile
-      foreign: travelers_idtraveler
-      type: many
-    Messages:
-      local: idprofile
-      foreign: sender
-      type: many
-    Reviews:
-      local: idprofile
-      foreign: reviewer
-      type: many
-    Reviews_2:
-      class: Reviews
-      local: idprofile
-      foreign: reviewee
-      type: many
-    Rideofferposts:
-      local: idprofile
-      foreign: travelers_idusers
-      type: many
-    Seatneededposts:
-      local: idprofile
-      foreign: travelers_idusers
-      type: many
-    Seatrequests:
-      local: idprofile
-      foreign: driverid
-      type: many
-    Seatrequests_2:
-      class: Seatrequests
-      local: idprofile
-      foreign: passengerid
-      type: many
-    TravelersAttendingEvent:
-      local: idprofile
-      foreign: travelers_idtraveler
-      type: many
-    Vehicles:
-      local: idprofile
-      foreign: travelers_idusers
-      type: many
 Reviews:
   connection: doctrine
   tableName: reviews
   columns:
-    ratingid:
+    rating_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: true
-    reviewer:
-      type: string(45)
+    reviewer_id:
+      type: integer(4)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
-    reviewee:
-      type: string(45)
+    reviewee_id:
+      type: integer(4)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
-    safetyrating:
+    was_safe:
       type: integer(1)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    friendlinessrating:
+    was_friendly:
       type: integer(1)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    punctualityrating:
+    was_punctual:
       type: integer(1)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    courtesyrating:
+    was_courteous:
       type: integer(1)
       fixed: false
       unsigned: false
@@ -817,49 +1295,233 @@ Reviews:
       primary: false
       notnull: false
       autoincrement: false
-    createdon:
+    driver_review:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    passenger_review:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    created_at:
       type: timestamp(25)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    driverreview:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    passengerreview:
-      type: integer(1)
+    updated_at:
+      type: timestamp(25)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
   relations:
-    Profiles:
-      local: reviewer
-      foreign: idprofile
+    People:
+      local: reviewer_id
+      foreign: person_id
       type: one
-    Profiles_2:
-      class: Profiles
-      local: reviewee
-      foreign: idprofile
+    People_2:
+      class: People
+      local: reviewee_id
+      foreign: person_id
       type: one
-Rideofferposts:
+Routes:
   connection: doctrine
-  tableName: rideofferposts
+  tableName: routes
   columns:
-    idrideofferpost:
+    route_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: true
-    travelers_idusers:
+    copyright:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    summary:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    warning:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    Carpools:
+      local: route_id
+      foreign: route_id
+      type: many
+    Drivers:
+      local: route_id
+      foreign: solo_route_id
+      type: many
+    Legs:
+      local: route_id
+      foreign: route_id
+      type: many
+    Passengers:
+      local: route_id
+      foreign: solo_route_id
+      type: many
+    SeatNegotiations:
+      local: route_id
+      foreign: proposed_route_id
+      type: many
+SeatNegotiationMessage:
+  connection: doctrine
+  tableName: seat_negotiation_message
+  columns:
+    seat_negotiation_message_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    seat_negotiation_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    author_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    message:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    SeatNegotiations:
+      local: seat_negotiation_id
+      foreign: seat_negotiation_id
+      type: one
+    People:
+      local: author_id
+      foreign: person_id
+      type: one
+SeatNegotiationStatuses:
+  connection: doctrine
+  tableName: seat_negotiation_statuses
+  columns:
+    seat_negotiation_statuses_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    display_text:
       type: string(45)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    SeatNegotiations:
+      local: seat_negotiation_statuses_id
+      foreign: seat_negotiation_statuses_id
+      type: many
+SeatNegotiations:
+  connection: doctrine
+  tableName: seat_negotiations
+  columns:
+    seat_negotiation_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    proposed_route_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    seat_negotiation_statuses_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    carpool_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    passenger_id:
+      type: integer(4)
       fixed: false
       unsigned: false
       primary: false
@@ -872,89 +1534,85 @@ Rideofferposts:
       primary: false
       notnull: false
       autoincrement: false
-    numberofseats:
+    seat_count:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    date:
-      type: date(25)
+    pickup_date:
+      type: string(45)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    time:
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    pickup_time:
       type: time(25)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    comments:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    origin:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    destination:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    vehicles_idvehicle:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
   relations:
-    Profiles:
-      local: travelers_idusers
-      foreign: idprofile
+    Routes:
+      local: proposed_route_id
+      foreign: route_id
       type: one
-    Locations:
-      local: origin
-      foreign: idlocation
+    SeatNegotiationStatuses:
+      local: seat_negotiation_statuses_id
+      foreign: seat_negotiation_statuses_id
       type: one
-    Locations_3:
-      class: Locations
-      local: destination
-      foreign: idlocation
+    Carpools:
+      local: carpool_id
+      foreign: carpool_id
       type: one
-    Vehicles:
-      local: vehicles_idvehicle
-      foreign: idvehicle
+    Passengers:
+      local: passenger_id
+      foreign: passenger_id
       type: one
-    Waypoints:
-      local: idrideofferpost
-      foreign: rideofferposts_idrideofferpost
+    SeatNegotiationMessage:
+      local: seat_negotiation_id
+      foreign: seat_negotiation_id
       type: many
-Seatneededposts:
+    Seats:
+      local: seat_negotiation_id
+      foreign: seat_negotiation_id
+      type: many
+Seats:
   connection: doctrine
-  tableName: seatneededposts
+  tableName: seats
   columns:
-    idseatneededpost:
+    seat_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: true
-    travelers_idusers:
-      type: string(45)
+    carpool_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    seat_negotiation_id:
+      type: integer(4)
       fixed: false
       unsigned: false
       primary: false
@@ -967,87 +1625,42 @@ Seatneededposts:
       primary: false
       notnull: false
       autoincrement: false
-    numberofseats:
+    seat_count:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    date:
+    pickup_date:
       type: date(25)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    time:
+    pickup_time:
       type: time(25)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    comments:
+    description:
       type: string()
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    pickuplocation:
-      type: integer(4)
+    created_at:
+      type: timestamp(25)
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
+      notnull: false
       autoincrement: false
-    dropofflocation:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    Profiles:
-      local: travelers_idusers
-      foreign: idprofile
-      type: one
-    Locations:
-      local: pickuplocation
-      foreign: idlocation
-      type: one
-    Locations_3:
-      class: Locations
-      local: dropofflocation
-      foreign: idlocation
-      type: one
-Seatrequests:
-  connection: doctrine
-  tableName: seatrequests
-  columns:
-    idseatrequest:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    driverid:
-      type: string(45)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    passengerid:
-      type: string(45)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    createdon:
+    updated_at:
       type: timestamp(25)
       fixed: false
       unsigned: false
@@ -1055,77 +1668,184 @@ Seatrequests:
       notnull: false
       autoincrement: false
   relations:
-    Profiles:
-      local: driverid
-      foreign: idprofile
+    Carpools:
+      local: carpool_id
+      foreign: carpool_id
       type: one
-    Profiles_2:
-      class: Profiles
-      local: passengerid
-      foreign: idprofile
+    SeatNegotiations:
+      local: seat_negotiation_id
+      foreign: seat_negotiation_id
       type: one
-    Negotiation:
-      local: idseatrequest
-      foreign: idseatrequest
+    Passengers:
+      local: seat_id
+      foreign: seat_id
       type: many
-Securitysettings:
+    SeatsFilledLegs:
+      local: seat_id
+      foreign: seats_seat_id
+      type: many
+SeatsFilledLegs:
   connection: doctrine
-  tableName: securitysettings
+  tableName: seats_filled_legs
   columns:
-    idsecuritysettings:
+    seats_seat_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: false
-    canemailpromotions:
-      type: integer(1)
+    legs_leg_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    canemailpartners:
-      type: integer(1)
+    updated_at:
+      type: timestamp(25)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    users_username:
-      type: string(45)
+  relations:
+    Seats:
+      local: seats_seat_id
+      foreign: seat_id
+      type: one
+    Legs:
+      local: legs_leg_id
+      foreign: leg_id
+      type: one
+SecuritySettings:
+  connection: doctrine
+  tableName: security_settings
+  columns:
+    security_settings_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    person_id:
+      type: integer(4)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
+    can_email_promotions:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    can_email_partners:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
   relations:
-    Users:
-      local: users_username
-      foreign: username
+    People:
+      local: person_id
+      foreign: person_id
       type: one
-Tags:
+Steps:
   connection: doctrine
-  tableName: tags
+  tableName: steps
   columns:
-    idtags:
+    step_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
+      autoincrement: true
+    leg_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
       autoincrement: false
+    instructions:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    distance:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    duration:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    encoded_polyline:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    sequence_order:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    Legs:
+      local: leg_id
+      foreign: leg_id
+      type: one
+    Locations:
+      local: step_id
+      foreign: step_id
+      type: many
 TravelersAttendingEvent:
   connection: doctrine
   tableName: travelers_attending_event
   columns:
-    events_idevent:
+    event_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
-      autoincrement: false
-    travelers_idtraveler:
-      type: string(45)
+      autoincrement: true
+    person_id:
+      type: integer(4)
       fixed: false
       unsigned: false
       primary: true
@@ -1137,14 +1857,14 @@ TravelersAttendingEvent:
       primary: false
       notnull: true
       autoincrement: false
-    createdon:
+    created_at:
       type: timestamp(25)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    modifiedon:
+    updated_at:
       type: timestamp(25)
       fixed: false
       unsigned: false
@@ -1152,27 +1872,34 @@ TravelersAttendingEvent:
       notnull: false
       autoincrement: false
   relations:
-    Profiles:
-      local: travelers_idtraveler
-      foreign: idprofile
-      type: one
     Events:
-      local: events_idevent
-      foreign: idevent
+      local: event_id
+      foreign: event_id
       type: one
-    Attendingstatustype:
+    AttendingStatusType:
       local: status
-      foreign: idattendingstatustype
+      foreign: attending_status_type_id
+      type: one
+    People:
+      local: person_id
+      foreign: person_id
       type: one
 Users:
   connection: doctrine
   tableName: users
   columns:
-    username:
+    user_name:
       type: string(45)
       fixed: false
       unsigned: false
       primary: true
+      autoincrement: false
+    person_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
       autoincrement: false
     email:
       type: string(45)
@@ -1181,7 +1908,7 @@ Users:
       primary: false
       notnull: true
       autoincrement: false
-    encryptedpassword:
+    encrypted_password:
       type: string(128)
       fixed: false
       unsigned: false
@@ -1189,40 +1916,43 @@ Users:
       notnull: true
       autoincrement: false
   relations:
-    Profiles:
-      local: username
-      foreign: users_username
-      type: many
-    Securitysettings:
-      local: username
-      foreign: users_username
-      type: many
+    People:
+      local: person_id
+      foreign: person_id
+      type: one
 Vehicles:
   connection: doctrine
   tableName: vehicles
   columns:
-    idvehicle:
+    vehicle_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: true
-    seatcount:
+    person_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    seat_count:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    gasmilage:
-      type: string(45)
+    gas_milage:
+      type: float()
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    year:
-      type: string(45)
+    model_year:
+      type: integer(8)
       fixed: false
       unsigned: false
       primary: false
@@ -1249,79 +1979,61 @@ Vehicles:
       primary: false
       notnull: false
       autoincrement: false
-    licenseplate:
+    license_plate:
       type: string(45)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    baggagecount:
+    baggage_count:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    travelers_idusers:
-      type: string(45)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    createdon:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    comments:
+    description:
       type: string()
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-  relations:
-    Profiles:
-      local: travelers_idusers
-      foreign: idprofile
-      type: one
-    Rideofferposts:
-      local: idvehicle
-      foreign: vehicles_idvehicle
-      type: many
-Waypoints:
-  connection: doctrine
-  tableName: waypoints
-  columns:
-    rideofferposts_idrideofferpost:
-      type: integer(4)
+    image_url_large:
+      type: string(255)
       fixed: false
       unsigned: false
-      primary: true
+      primary: false
+      notnull: false
       autoincrement: false
-    locations_idlocation:
-      type: integer(4)
+    image_url_small:
+      type: string(255)
       fixed: false
       unsigned: false
-      primary: true
+      primary: false
+      notnull: false
       autoincrement: false
-    sequence:
-      type: integer(4)
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: string(45)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
   relations:
-    Rideofferposts:
-      local: rideofferposts_idrideofferpost
-      foreign: idrideofferpost
+    People:
+      local: person_id
+      foreign: person_id
       type: one
-    Locations:
-      local: locations_idlocation
-      foreign: idlocation
-      type: one
+    Carpools:
+      local: vehicle_id
+      foreign: vehicle_id
+      type: many

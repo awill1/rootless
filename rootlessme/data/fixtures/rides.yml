@@ -1,0 +1,47 @@
+# data/fixtures/rides.yml
+
+Vehicles:
+  vehichle_aaron:
+    vehicle_id: 1
+    person_id: 1
+    seat_count: 4
+    gas_milage: 30.0
+    model_year: 2001
+    make: Honda
+    model: Civic
+    color: black
+    license_plate: California 12345
+    baggage_count: 2
+    description: Just an average 2 door old model civic. Nice and reliable.
+    image_url_large: resources/vehicles/profile_aaron_1.jpg
+    image_url_small: resources/vehicles/profile_aaron_1_small.jpg
+  vehichle_christy_1:
+    vehicle_id: 2
+    person_id: 2
+    seat_count: 4
+    gas_milage: 30.0
+    model_year: 2001
+    make: Honda
+    model: Civic
+    color: black
+    license_plate: California 12345
+    baggage_count: 2
+    description: Just an average 2 door old model civic. Nice and reliable.
+    image_url_large: resources/vehicles/profile_christy_2.jpg
+    image_url_small: resources/vehicles/profile_christy_2_small.jpg
+  vehichle_christy_2:
+    vehicle_id: 3
+    person_id: 2
+    seat_count: 1
+    gas_milage: 30.0
+    model_year: 2001
+    make: Yamaha
+    model: FZ6
+    color: Galaxy Blue
+    license_plate: NC 12SDF34S5
+    baggage_count: 0
+    description: Super fast motorcycle
+    image_url_large: resources/vehicles/profile_christy_3.jpg
+    image_url_small: resources/vehicles/profile_christy_3_small.jpg
+
+

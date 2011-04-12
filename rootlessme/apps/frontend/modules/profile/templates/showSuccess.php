@@ -2,25 +2,25 @@
 
 <?php slot(
   'title',
-  sprintf('Rootless Me - %s %s', $profiles->getFirstname(), $profiles->getLastname()))
+  sprintf('Rootless Me - %s %s', $profile->getFirstName(), $profile->getLastName()))
 ?>
 
-<h1 id="mainProfileTitle"><?php echo $profiles->getFirstname() ?> <?php echo $profiles->getLastname() ?> <a id="mainProfileTitleEditLink" href="#">Edit&nbsp;Profile</a></h1>
-<a id="mainProfileSubtitle" href="<?php echo $profiles->getWebsiteurl() ?>"><?php echo $profiles->getWebsiteurl() ?></a>
+<h1 id="mainProfileTitle"><?php echo $profile->getFirstName() ?> <?php echo $profile->getLastName() ?> <a id="mainProfileTitleEditLink" href="#">Edit&nbsp;Profile</a></h1>
+<a id="mainProfileSubtitle" href="<?php echo $profile->getWebsiteUrl() ?>"><?php echo $profile->getWebsiteUrl() ?></a>
 
 <div id="middleProfileBadge">
-    <img src="<?php echo $profiles->getPictureurllarge() ?>" alt="<?php echo $profiles->getFirstname() ?> <?php echo $profiles->getLastname() ?> profile picture"/>
+    <img src="<?php echo $profile->getPictureUrlLarge() ?>" alt="<?php echo $profile->getFirstName() ?> <?php echo $profile->getLastName() ?> profile picture"/>
     <div class="middleProfileBadgeInfo">Rides Given <strong>10</strong> Rides Received <strong>38</strong> <a href="#"><img src="/images/messageButton.JPG" alt="Message" /></a></div>
 </div>
-     <h2><?php echo $profiles->getBirthday() ?> year old <?php echo $profiles->getGender() ?> from
-         <a id="mainProfileLocationLink" href="#" class="locationLink">+<?php echo $profiles->getCity() ?></a></h2>
+     <h2><?php echo $profile->getBirthday() ?> year old <?php echo $profile->getGender() ?> from
+         <a id="mainProfileLocationLink" href="#" class="locationLink">+<?php echo $profile->getCity() ?></a></h2>
 <p>
-    <?php echo $profiles->getAboutme() ?>
+    <?php echo $profile->getAboutMe() ?>
 </p>
 <h3 id="middleTop5">Top 5</h3>
-<p><?php echo $profiles->getTop5() ?></p>
+<p><?php // echo $profiles->getTop5() ?></p>
 
-<h3><?php echo $profiles->getFirstname() ?> wants to go to <a href="#" class="locationLink">Bonneroo</a></h3>
+<h3><?php echo $profile->getFirstName() ?> wants to go to <a href="#" class="locationLink">Bonneroo</a></h3>
 
 
 <div id="middleProfileDetails">
@@ -33,7 +33,7 @@
 
         <div class="middleProfileTabContentLeftColumn">
 
-            <p><img src="carPicture.JPG" alt="My car" /><?php echo $profiles->getFirstname() ?> drives a Mercury Cougar 2000s Series 1000.</p>
+            <p><img src="carPicture.JPG" alt="My car" /><?php echo $profile->getFirstName() ?> drives a Mercury Cougar 2000s Series 1000.</p>
 
             <h3>Rootless Me Friends</h3>
             <ul class="middleFriendsList">
@@ -120,29 +120,29 @@
         <div class="middleProfileTabContentLeftColumn">
             <h3>Places you want to go</h3>
             <p>
-                <?php echo $profiles->getWantstotravelto() ?>
+                <?php echo $profile->getWantsToTravelTo()?>
             </p>
             <h3>Music</h3>
             <p>
-                <?php echo $profiles->getMusic() ?>
+                <?php echo $profile->getMusic() ?>
             </p>
             <h3>Movies</h3>
             <p>
-                <?php echo $profiles->getMovies() ?>
+                <?php echo $profile->getMovies() ?>
             </p>
         </div>
         <div class="middleProfileTabContentRightColumn">
             <h3>Books</h3>
             <p>
-                <?php echo $profiles->getBooks() ?>
+                <?php echo $profile->getBooks() ?>
             </p>
             <h3>Interests</h3>
             <p>
-                <?php echo $profiles->getInterests() ?>
+                <?php echo $profile->getInterests() ?>
             </p>
             <h3>Favorite Websites</h3>
             <p>
-                <?php echo $profiles->getFavoritewebsites() ?>
+                <?php echo $profile->getFavoriteWebsites() ?>
             </p>
         </div>
     </div>
@@ -160,140 +160,133 @@
 
 
 
-
-
-
-
-
-
 <table>
   <tbody>
     <tr>
-      <th>Idprofile:</th>
-      <td><?php echo $profiles->getIdprofile() ?></td>
+      <th>Profile name:</th>
+      <td><?php echo $profile->getProfileName() ?></td>
     </tr>
     <tr>
-      <th>Firstname:</th>
-      <td><?php echo $profiles->getFirstname() ?></td>
+      <th>Person:</th>
+      <td><?php echo $profile->getPersonId() ?></td>
     </tr>
     <tr>
-      <th>Lastname:</th>
-      <td><?php echo $profiles->getLastname() ?></td>
+      <th>First name:</th>
+      <td><?php echo $profile->getFirstName() ?></td>
     </tr>
     <tr>
-      <th>Pictureurl:</th>
-      <td><?php echo $profiles->getPictureurl() ?></td>
+      <th>Last name:</th>
+      <td><?php echo $profile->getLastName() ?></td>
     </tr>
     <tr>
-      <th>Pictureurllarge:</th>
-      <td><?php echo $profiles->getPictureurllarge() ?></td>
+      <th>Picture url:</th>
+      <td><?php echo $profile->getPictureUrl() ?></td>
     </tr>
     <tr>
-      <th>Pictureurlmedium:</th>
-      <td><?php echo $profiles->getPictureurlmedium() ?></td>
+      <th>Picture url large:</th>
+      <td><?php echo $profile->getPictureUrlLarge() ?></td>
     </tr>
     <tr>
-      <th>Pictureurlsmall:</th>
-      <td><?php echo $profiles->getPictureurlsmall() ?></td>
+      <th>Picture url medium:</th>
+      <td><?php echo $profile->getPictureUrlMedium() ?></td>
     </tr>
     <tr>
-      <th>Pictureurltiny:</th>
-      <td><?php echo $profiles->getPictureurltiny() ?></td>
+      <th>Picture url small:</th>
+      <td><?php echo $profile->getPictureUrlSmall() ?></td>
     </tr>
     <tr>
-      <th>Address1:</th>
-      <td><?php echo $profiles->getAddress1() ?></td>
+      <th>Picture url tiny:</th>
+      <td><?php echo $profile->getPictureUrlTiny() ?></td>
     </tr>
     <tr>
-      <th>Address2:</th>
-      <td><?php echo $profiles->getAddress2() ?></td>
+      <th>Address 1:</th>
+      <td><?php //echo $profile->getAddress1() ?></td>
+    </tr>
+    <tr>
+      <th>Address 2:</th>
+      <td><?php // echo $profile->getAddress2() ?></td>
     </tr>
     <tr>
       <th>City:</th>
-      <td><?php echo $profiles->getCity() ?></td>
+      <td><?php echo $profile->getCity() ?></td>
     </tr>
     <tr>
       <th>State:</th>
-      <td><?php echo $profiles->getState() ?></td>
+      <td><?php echo $profile->getState() ?></td>
     </tr>
     <tr>
-      <th>Postalcode:</th>
-      <td><?php echo $profiles->getPostalcode() ?></td>
+      <th>Postal code:</th>
+      <td><?php echo $profile->getPostalCode() ?></td>
     </tr>
     <tr>
       <th>Country:</th>
-      <td><?php echo $profiles->getCountry() ?></td>
+      <td><?php echo $profile->getCountry() ?></td>
     </tr>
     <tr>
       <th>Birthday:</th>
-      <td><?php echo $profiles->getBirthday() ?></td>
+      <td><?php echo $profile->getBirthday() ?></td>
     </tr>
     <tr>
       <th>Gender:</th>
-      <td><?php echo $profiles->getGender() ?></td>
+      <td><?php echo $profile->getGender() ?></td>
     </tr>
     <tr>
-      <th>Aboutme:</th>
-      <td><?php echo $profiles->getAboutme() ?></td>
+      <th>About me:</th>
+      <td><?php echo $profile->getAboutMe() ?></td>
     </tr>
     <tr>
-      <th>Top5:</th>
-      <td><?php echo $profiles->getTop5() ?></td>
+      <th>Top 5:</th>
+      <td><?php // echo $profile->getTop5() ?></td>
     </tr>
     <tr>
-      <th>Wantstotravelto:</th>
-      <td><?php echo $profiles->getWantstotravelto() ?></td>
+      <th>Wants to travel to:</th>
+      <td><?php echo $profile->getWantsToTravelTo() ?></td>
     </tr>
     <tr>
       <th>Music:</th>
-      <td><?php echo $profiles->getMusic() ?></td>
+      <td><?php echo $profile->getMusic() ?></td>
     </tr>
     <tr>
       <th>Movies:</th>
-      <td><?php echo $profiles->getMovies() ?></td>
+      <td><?php echo $profile->getMovies() ?></td>
     </tr>
     <tr>
       <th>Books:</th>
-      <td><?php echo $profiles->getBooks() ?></td>
+      <td><?php echo $profile->getBooks() ?></td>
     </tr>
     <tr>
       <th>Interests:</th>
-      <td><?php echo $profiles->getInterests() ?></td>
+      <td><?php echo $profile->getInterests() ?></td>
     </tr>
     <tr>
-      <th>Favoritewebsites:</th>
-      <td><?php echo $profiles->getFavoritewebsites() ?></td>
+      <th>Favorite websites:</th>
+      <td><?php echo $profile->getFavoriteWebsites() ?></td>
     </tr>
     <tr>
-      <th>Websiteurl:</th>
-      <td><?php echo $profiles->getWebsiteurl() ?></td>
+      <th>Website url:</th>
+      <td><?php echo $profile->getWebsiteUrl() ?></td>
     </tr>
     <tr>
-      <th>Facebookusername:</th>
-      <td><?php echo $profiles->getFacebookusername() ?></td>
+      <th>Facebook user name:</th>
+      <td><?php echo $profile->getFacebookUserName() ?></td>
     </tr>
     <tr>
-      <th>Twitterusername:</th>
-      <td><?php echo $profiles->getTwitterusername() ?></td>
+      <th>Twitter user name:</th>
+      <td><?php echo $profile->getTwitterUserName() ?></td>
     </tr>
     <tr>
-      <th>Createdon:</th>
-      <td><?php echo $profiles->getCreatedon() ?></td>
+      <th>Created at:</th>
+      <td><?php echo $profile->getCreatedAt() ?></td>
     </tr>
     <tr>
-      <th>Modifiedon:</th>
-      <td><?php echo $profiles->getModifiedon() ?></td>
-    </tr>
-    <tr>
-      <th>Users username:</th>
-      <td><?php echo $profiles->getUsersUsername() ?></td>
+      <th>Updated at:</th>
+      <td><?php echo $profile->getUpdatedAt() ?></td>
     </tr>
   </tbody>
 </table>
 
 <hr />
 
-<a href="<?php echo url_for('profile/edit?idprofile='.$profiles->getIdprofile()) ?>">Edit</a>
+<a href="<?php echo url_for('profile/edit?profile_name='.$profile->getProfileName()) ?>">Edit</a>
 &nbsp;
 <a href="<?php echo url_for('profile/index') ?>">List</a>
-<!--<a href="<?php echo url_for('profile/index') ?>">List</a>-->

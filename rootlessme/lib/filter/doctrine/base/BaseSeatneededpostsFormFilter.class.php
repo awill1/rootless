@@ -24,14 +24,14 @@ abstract class BaseSeatneededpostsFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'travelers_idusers' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Profiles'), 'column' => 'idprofile')),
+      'travelers_idusers' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Profiles'), 'column' => 'profile_name')),
       'price'             => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'numberofseats'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'date'              => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'time'              => new sfValidatorPass(array('required' => false)),
       'comments'          => new sfValidatorPass(array('required' => false)),
-      'pickuplocation'    => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Locations'), 'column' => 'idlocation')),
-      'dropofflocation'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Locations_3'), 'column' => 'idlocation')),
+      'pickuplocation'    => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Locations'), 'column' => 'location_id')),
+      'dropofflocation'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Locations_3'), 'column' => 'location_id')),
     ));
 
     $this->widgetSchema->setNameFormat('seatneededposts_filters[%s]');
