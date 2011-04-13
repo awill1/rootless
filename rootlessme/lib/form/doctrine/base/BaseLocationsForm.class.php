@@ -7,7 +7,7 @@
  *
  * @package    RootlessMe
  * @subpackage form
- * @author     Your name here
+ * @author     awilliams
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
 abstract class BaseLocationsForm extends BaseFormDoctrine
@@ -19,7 +19,7 @@ abstract class BaseLocationsForm extends BaseFormDoctrine
       'step_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Steps'), 'add_empty' => false)),
       'name'           => new sfWidgetFormInputText(),
       'street_1'       => new sfWidgetFormInputText(),
-      'street _2'      => new sfWidgetFormInputText(),
+      'street_2'       => new sfWidgetFormInputText(),
       'city'           => new sfWidgetFormInputText(),
       'state'          => new sfWidgetFormInputText(),
       'postal_code'    => new sfWidgetFormInputText(),
@@ -37,7 +37,7 @@ abstract class BaseLocationsForm extends BaseFormDoctrine
       'step_id'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Steps'))),
       'name'           => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'street_1'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'street _2'      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'street_2'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'city'           => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'state'          => new sfValidatorString(array('max_length' => 2, 'required' => false)),
       'postal_code'    => new sfValidatorString(array('max_length' => 45, 'required' => false)),

@@ -6922,3 +6922,53 @@ Apr 12 23:08:42 symfony [info] {sfWebDebugLogger} Factories 723.42 ms (1)
 Apr 12 23:08:42 symfony [info] {sfWebDebugLogger} Action "profile/show" 186.09 ms (1)
 Apr 12 23:08:42 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
 Apr 12 23:08:42 symfony [info] {sfWebDebugLogger} View "Success" for "profile/show" 697.07 ms (1)
+Apr 13 11:40:50 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/profile_aaron with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'profile_aaron',)
+Apr 13 11:40:51 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 13 11:40:51 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 13 11:40:51 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 13 11:40:52 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 13 11:40:52 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (profile_aaron)
+Apr 13 11:40:52 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/showSuccess.php"
+Apr 13 11:40:53 symfony [info] {main} Set slot "title"
+Apr 13 11:40:53 symfony [err] {Doctrine_Record_UnknownPropertyException} Unknown record property / related component "address1" on "Profiles"
+Apr 13 11:40:53 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Apr 13 11:40:53 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 13 11:40:53 symfony [info] {sfWebDebugLogger} Configuration 2263.48 ms (10)
+Apr 13 11:40:53 symfony [info] {sfWebDebugLogger} Factories 1624.94 ms (1)
+Apr 13 11:40:53 symfony [info] {sfWebDebugLogger} Action "profile/show" 425.33 ms (1)
+Apr 13 11:40:53 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 13 11:40:53 symfony [info] {sfWebDebugLogger} View "Success" for "profile/show" 1293.63 ms (1)
+Apr 13 11:41:33 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/profile_aaron with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'profile_aaron',)
+Apr 13 11:41:33 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 13 11:41:33 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 13 11:41:33 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 13 11:41:33 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 13 11:41:33 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (profile_aaron)
+Apr 13 11:41:33 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/showSuccess.php"
+Apr 13 11:41:33 symfony [info] {main} Set slot "title"
+Apr 13 11:41:33 symfony [err] {Doctrine_Record_UnknownPropertyException} Unknown record property / related component "address1" on "Profiles"
+Apr 13 11:41:34 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Apr 13 11:41:34 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 13 11:41:34 symfony [info] {sfWebDebugLogger} Configuration 211.14 ms (9)
+Apr 13 11:41:34 symfony [info] {sfWebDebugLogger} Factories 324.42 ms (1)
+Apr 13 11:41:34 symfony [info] {sfWebDebugLogger} Action "profile/show" 197.39 ms (1)
+Apr 13 11:41:34 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 13 11:41:34 symfony [info] {sfWebDebugLogger} View "Success" for "profile/show" 601.21 ms (1)
+Apr 13 17:05:48 symfony [info] {sfPatternRouting} Match route "default_index" (/:module/:action/*) for /profile/show/profile_name/profile_aaron with parameters array (  'module' => 'profile',  'action' => 'show',  'profile_name' => 'profile_aaron',)
+Apr 13 17:05:48 symfony [info] {myUser} Automatic user logout due to timeout
+Apr 13 17:05:48 symfony [info] {myUser} User is not authenticated
+Apr 13 17:05:50 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 13 17:05:50 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 13 17:05:50 symfony [info] {profileActions} Call "profileActions->executeShow()"
+Apr 13 17:05:50 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 13 17:05:50 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.profile_name AS p__profile_name, p.person_id AS p__person_id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.picture_url AS p__picture_url, p.picture_url_large AS p__picture_url_large, p.picture_url_medium AS p__picture_url_medium, p.picture_url_small AS p__picture_url_small, p.picture_url_tiny AS p__picture_url_tiny, p.address_1 AS p__address_1, p.address_2 AS p__address_2, p.city AS p__city, p.state AS p__state, p.postal_code AS p__postal_code, p.country AS p__country, p.birthday AS p__birthday, p.gender AS p__gender, p.about_me AS p__about_me, p.top_5 AS p__top_5, p.wants_to_travel_to AS p__wants_to_travel_to, p.music AS p__music, p.movies AS p__movies, p.books AS p__books, p.interests AS p__interests, p.favorite_websites AS p__favorite_websites, p.website_url AS p__website_url, p.facebook_user_name AS p__facebook_user_name, p.twitter_user_name AS p__twitter_user_name, p.created_at AS p__created_at, p.updated_at AS p__updated_at FROM profiles p WHERE (p.profile_name = ?) LIMIT 1 - (profile_aaron)
+Apr 13 17:05:51 symfony [info] {sfPHPView} Render "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs\RootlessMe\apps\frontend\modules/profile/templates/showSuccess.php"
+Apr 13 17:05:52 symfony [info] {main} Set slot "title"
+Apr 13 17:05:52 symfony [err] {Doctrine_Record_UnknownPropertyException} Unknown record property / related component "address1" on "Profiles"
+Apr 13 17:05:53 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Apr 13 17:05:53 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 13 17:05:53 symfony [info] {sfWebDebugLogger} Configuration 2234.25 ms (10)
+Apr 13 17:05:53 symfony [info] {sfWebDebugLogger} Factories 2142.28 ms (1)
+Apr 13 17:05:53 symfony [info] {sfWebDebugLogger} Action "profile/show" 773.14 ms (1)
+Apr 13 17:05:53 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Apr 13 17:05:53 symfony [info] {sfWebDebugLogger} View "Success" for "profile/show" 2250.64 ms (1)

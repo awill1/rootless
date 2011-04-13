@@ -35,7 +35,7 @@ Doctrine_Manager::getInstance()->bindComponent('Legs', 'doctrine');
  * 
  * @package    RootlessMe
  * @subpackage model
- * @author     Your name here
+ * @author     awilliams
  * @version    SVN: $Id: Builder.php 7691 2011-02-04 15:43:29Z jwage $
  */
 abstract class BaseLegs extends sfDoctrineRecord
@@ -98,7 +98,7 @@ abstract class BaseLegs extends sfDoctrineRecord
 
         $this->hasMany('SeatsFilledLegs', array(
              'local' => 'leg_id',
-             'foreign' => 'legs_leg_id'));
+             'foreign' => 'leg_id'));
 
         $this->hasMany('Steps', array(
              'local' => 'leg_id',

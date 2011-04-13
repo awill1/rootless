@@ -5,7 +5,7 @@
  *
  * @package    RootlessMe
  * @subpackage filter
- * @author     Your name here
+ * @author     awilliams
  * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 29570 2010-05-21 14:49:47Z Kris.Wallsmith $
  */
 abstract class BaseLocationsFormFilter extends BaseFormFilterDoctrine
@@ -16,7 +16,7 @@ abstract class BaseLocationsFormFilter extends BaseFormFilterDoctrine
       'step_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Steps'), 'add_empty' => true)),
       'name'           => new sfWidgetFormFilterInput(),
       'street_1'       => new sfWidgetFormFilterInput(),
-      'street _2'      => new sfWidgetFormFilterInput(),
+      'street_2'       => new sfWidgetFormFilterInput(),
       'city'           => new sfWidgetFormFilterInput(),
       'state'          => new sfWidgetFormFilterInput(),
       'postal_code'    => new sfWidgetFormFilterInput(),
@@ -33,7 +33,7 @@ abstract class BaseLocationsFormFilter extends BaseFormFilterDoctrine
       'step_id'        => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Steps'), 'column' => 'step_id')),
       'name'           => new sfValidatorPass(array('required' => false)),
       'street_1'       => new sfValidatorPass(array('required' => false)),
-      'street _2'      => new sfValidatorPass(array('required' => false)),
+      'street_2'       => new sfValidatorPass(array('required' => false)),
       'city'           => new sfValidatorPass(array('required' => false)),
       'state'          => new sfValidatorPass(array('required' => false)),
       'postal_code'    => new sfValidatorPass(array('required' => false)),
@@ -67,7 +67,7 @@ abstract class BaseLocationsFormFilter extends BaseFormFilterDoctrine
       'step_id'        => 'ForeignKey',
       'name'           => 'Text',
       'street_1'       => 'Text',
-      'street _2'      => 'Text',
+      'street_2'       => 'Text',
       'city'           => 'Text',
       'state'          => 'Text',
       'postal_code'    => 'Text',

@@ -7,7 +7,7 @@
  *
  * @package    RootlessMe
  * @subpackage form
- * @author     Your name here
+ * @author     awilliams
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
 abstract class BasePassengersForm extends BaseFormDoctrine
@@ -18,7 +18,6 @@ abstract class BasePassengersForm extends BaseFormDoctrine
       'passenger_id'    => new sfWidgetFormInputHidden(),
       'person_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('People'), 'add_empty' => false)),
       'solo_route_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Routes'), 'add_empty' => false)),
-      'seat_id'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Seats'), 'add_empty' => false)),
       'passenger_count' => new sfWidgetFormInputText(),
       'start_date'      => new sfWidgetFormDate(),
       'start_time'      => new sfWidgetFormTime(),
@@ -32,7 +31,6 @@ abstract class BasePassengersForm extends BaseFormDoctrine
       'passenger_id'    => new sfValidatorChoice(array('choices' => array($this->getObject()->get('passenger_id')), 'empty_value' => $this->getObject()->get('passenger_id'), 'required' => false)),
       'person_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('People'))),
       'solo_route_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Routes'))),
-      'seat_id'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Seats'))),
       'passenger_count' => new sfValidatorInteger(array('required' => false)),
       'start_date'      => new sfValidatorDate(array('required' => false)),
       'start_time'      => new sfValidatorTime(array('required' => false)),

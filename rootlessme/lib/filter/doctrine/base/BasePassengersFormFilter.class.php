@@ -5,7 +5,7 @@
  *
  * @package    RootlessMe
  * @subpackage filter
- * @author     Your name here
+ * @author     awilliams
  * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 29570 2010-05-21 14:49:47Z Kris.Wallsmith $
  */
 abstract class BasePassengersFormFilter extends BaseFormFilterDoctrine
@@ -15,7 +15,6 @@ abstract class BasePassengersFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'person_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('People'), 'add_empty' => true)),
       'solo_route_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Routes'), 'add_empty' => true)),
-      'seat_id'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Seats'), 'add_empty' => true)),
       'passenger_count' => new sfWidgetFormFilterInput(),
       'start_date'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'start_time'      => new sfWidgetFormFilterInput(),
@@ -28,7 +27,6 @@ abstract class BasePassengersFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'person_id'       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('People'), 'column' => 'person_id')),
       'solo_route_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Routes'), 'column' => 'route_id')),
-      'seat_id'         => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Seats'), 'column' => 'seat_id')),
       'passenger_count' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'start_date'      => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'start_time'      => new sfValidatorPass(array('required' => false)),
@@ -58,7 +56,6 @@ abstract class BasePassengersFormFilter extends BaseFormFilterDoctrine
       'passenger_id'    => 'Number',
       'person_id'       => 'ForeignKey',
       'solo_route_id'   => 'ForeignKey',
-      'seat_id'         => 'ForeignKey',
       'passenger_count' => 'Number',
       'start_date'      => 'Date',
       'start_time'      => 'Text',

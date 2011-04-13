@@ -10,10 +10,10 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @property integer $person_id
  * @property timestamp $created_at
  * @property timestamp $updated_at
+ * @property Doctrine_Collection $Carpools
  * @property Doctrine_Collection $Comments
  * @property Doctrine_Collection $ConversationParticipants
  * @property Doctrine_Collection $Conversations
- * @property Doctrine_Collection $Drivers
  * @property Doctrine_Collection $FriendshipRequests
  * @property Doctrine_Collection $FriendshipRequests_2
  * @property Doctrine_Collection $Friendships
@@ -23,7 +23,6 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @property Doctrine_Collection $Profiles
  * @property Doctrine_Collection $Reviews
  * @property Doctrine_Collection $Reviews_2
- * @property Doctrine_Collection $SeatNegotiationMessage
  * @property Doctrine_Collection $SecuritySettings
  * @property Doctrine_Collection $TravelersAttendingEvent
  * @property Doctrine_Collection $Users
@@ -32,10 +31,10 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @method integer             getPersonId()                 Returns the current record's "person_id" value
  * @method timestamp           getCreatedAt()                Returns the current record's "created_at" value
  * @method timestamp           getUpdatedAt()                Returns the current record's "updated_at" value
+ * @method Doctrine_Collection getCarpools()                 Returns the current record's "Carpools" collection
  * @method Doctrine_Collection getComments()                 Returns the current record's "Comments" collection
  * @method Doctrine_Collection getConversationParticipants() Returns the current record's "ConversationParticipants" collection
  * @method Doctrine_Collection getConversations()            Returns the current record's "Conversations" collection
- * @method Doctrine_Collection getDrivers()                  Returns the current record's "Drivers" collection
  * @method Doctrine_Collection getFriendshipRequests()       Returns the current record's "FriendshipRequests" collection
  * @method Doctrine_Collection getFriendshipRequests2()      Returns the current record's "FriendshipRequests_2" collection
  * @method Doctrine_Collection getFriendships()              Returns the current record's "Friendships" collection
@@ -45,7 +44,6 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @method Doctrine_Collection getProfiles()                 Returns the current record's "Profiles" collection
  * @method Doctrine_Collection getReviews()                  Returns the current record's "Reviews" collection
  * @method Doctrine_Collection getReviews2()                 Returns the current record's "Reviews_2" collection
- * @method Doctrine_Collection getSeatNegotiationMessage()   Returns the current record's "SeatNegotiationMessage" collection
  * @method Doctrine_Collection getSecuritySettings()         Returns the current record's "SecuritySettings" collection
  * @method Doctrine_Collection getTravelersAttendingEvent()  Returns the current record's "TravelersAttendingEvent" collection
  * @method Doctrine_Collection getUsers()                    Returns the current record's "Users" collection
@@ -53,10 +51,10 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @method People              setPersonId()                 Sets the current record's "person_id" value
  * @method People              setCreatedAt()                Sets the current record's "created_at" value
  * @method People              setUpdatedAt()                Sets the current record's "updated_at" value
+ * @method People              setCarpools()                 Sets the current record's "Carpools" collection
  * @method People              setComments()                 Sets the current record's "Comments" collection
  * @method People              setConversationParticipants() Sets the current record's "ConversationParticipants" collection
  * @method People              setConversations()            Sets the current record's "Conversations" collection
- * @method People              setDrivers()                  Sets the current record's "Drivers" collection
  * @method People              setFriendshipRequests()       Sets the current record's "FriendshipRequests" collection
  * @method People              setFriendshipRequests2()      Sets the current record's "FriendshipRequests_2" collection
  * @method People              setFriendships()              Sets the current record's "Friendships" collection
@@ -66,7 +64,6 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @method People              setProfiles()                 Sets the current record's "Profiles" collection
  * @method People              setReviews()                  Sets the current record's "Reviews" collection
  * @method People              setReviews2()                 Sets the current record's "Reviews_2" collection
- * @method People              setSeatNegotiationMessage()   Sets the current record's "SeatNegotiationMessage" collection
  * @method People              setSecuritySettings()         Sets the current record's "SecuritySettings" collection
  * @method People              setTravelersAttendingEvent()  Sets the current record's "TravelersAttendingEvent" collection
  * @method People              setUsers()                    Sets the current record's "Users" collection
@@ -74,7 +71,7 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * 
  * @package    RootlessMe
  * @subpackage model
- * @author     Your name here
+ * @author     awilliams
  * @version    SVN: $Id: Builder.php 7691 2011-02-04 15:43:29Z jwage $
  */
 abstract class BasePeople extends sfDoctrineRecord
@@ -113,6 +110,10 @@ abstract class BasePeople extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasMany('Carpools', array(
+             'local' => 'person_id',
+             'foreign' => 'driver_id'));
+
         $this->hasMany('Comments', array(
              'local' => 'person_id',
              'foreign' => 'person_id'));
@@ -124,10 +125,6 @@ abstract class BasePeople extends sfDoctrineRecord
         $this->hasMany('Conversations', array(
              'local' => 'person_id',
              'foreign' => 'author_id'));
-
-        $this->hasMany('Drivers', array(
-             'local' => 'person_id',
-             'foreign' => 'person_id'));
 
         $this->hasMany('FriendshipRequests', array(
              'local' => 'person_id',
@@ -164,10 +161,6 @@ abstract class BasePeople extends sfDoctrineRecord
         $this->hasMany('Reviews as Reviews_2', array(
              'local' => 'person_id',
              'foreign' => 'reviewee_id'));
-
-        $this->hasMany('SeatNegotiationMessage', array(
-             'local' => 'person_id',
-             'foreign' => 'author_id'));
 
         $this->hasMany('SecuritySettings', array(
              'local' => 'person_id',

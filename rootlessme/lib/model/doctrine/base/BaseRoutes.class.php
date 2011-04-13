@@ -11,40 +11,40 @@ Doctrine_Manager::getInstance()->bindComponent('Routes', 'doctrine');
  * @property string $copyright
  * @property string $summary
  * @property string $warning
+ * @property string $encoded_polyline
  * @property timestamp $created_at
  * @property timestamp $updated_at
  * @property Doctrine_Collection $Carpools
- * @property Doctrine_Collection $Drivers
+ * @property Doctrine_Collection $Carpools_3
  * @property Doctrine_Collection $Legs
  * @property Doctrine_Collection $Passengers
- * @property Doctrine_Collection $SeatNegotiations
  * 
  * @method integer             getRouteId()          Returns the current record's "route_id" value
  * @method string              getCopyright()        Returns the current record's "copyright" value
  * @method string              getSummary()          Returns the current record's "summary" value
  * @method string              getWarning()          Returns the current record's "warning" value
+ * @method string              getEncodedPolyline()  Returns the current record's "encoded_polyline" value
  * @method timestamp           getCreatedAt()        Returns the current record's "created_at" value
  * @method timestamp           getUpdatedAt()        Returns the current record's "updated_at" value
  * @method Doctrine_Collection getCarpools()         Returns the current record's "Carpools" collection
- * @method Doctrine_Collection getDrivers()          Returns the current record's "Drivers" collection
+ * @method Doctrine_Collection getCarpools3()        Returns the current record's "Carpools_3" collection
  * @method Doctrine_Collection getLegs()             Returns the current record's "Legs" collection
  * @method Doctrine_Collection getPassengers()       Returns the current record's "Passengers" collection
- * @method Doctrine_Collection getSeatNegotiations() Returns the current record's "SeatNegotiations" collection
  * @method Routes              setRouteId()          Sets the current record's "route_id" value
  * @method Routes              setCopyright()        Sets the current record's "copyright" value
  * @method Routes              setSummary()          Sets the current record's "summary" value
  * @method Routes              setWarning()          Sets the current record's "warning" value
+ * @method Routes              setEncodedPolyline()  Sets the current record's "encoded_polyline" value
  * @method Routes              setCreatedAt()        Sets the current record's "created_at" value
  * @method Routes              setUpdatedAt()        Sets the current record's "updated_at" value
  * @method Routes              setCarpools()         Sets the current record's "Carpools" collection
- * @method Routes              setDrivers()          Sets the current record's "Drivers" collection
+ * @method Routes              setCarpools3()        Sets the current record's "Carpools_3" collection
  * @method Routes              setLegs()             Sets the current record's "Legs" collection
  * @method Routes              setPassengers()       Sets the current record's "Passengers" collection
- * @method Routes              setSeatNegotiations() Sets the current record's "SeatNegotiations" collection
  * 
  * @package    RootlessMe
  * @subpackage model
- * @author     Your name here
+ * @author     awilliams
  * @version    SVN: $Id: Builder.php 7691 2011-02-04 15:43:29Z jwage $
  */
 abstract class BaseRoutes extends sfDoctrineRecord
@@ -87,6 +87,15 @@ abstract class BaseRoutes extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => '',
              ));
+        $this->hasColumn('encoded_polyline', 'string', null, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => '',
+             ));
         $this->hasColumn('created_at', 'timestamp', 25, array(
              'type' => 'timestamp',
              'fixed' => 0,
@@ -114,7 +123,7 @@ abstract class BaseRoutes extends sfDoctrineRecord
              'local' => 'route_id',
              'foreign' => 'route_id'));
 
-        $this->hasMany('Drivers', array(
+        $this->hasMany('Carpools as Carpools_3', array(
              'local' => 'route_id',
              'foreign' => 'solo_route_id'));
 
@@ -125,9 +134,5 @@ abstract class BaseRoutes extends sfDoctrineRecord
         $this->hasMany('Passengers', array(
              'local' => 'route_id',
              'foreign' => 'solo_route_id'));
-
-        $this->hasMany('SeatNegotiations', array(
-             'local' => 'route_id',
-             'foreign' => 'proposed_route_id'));
     }
 }

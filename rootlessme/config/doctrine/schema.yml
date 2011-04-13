@@ -44,7 +44,7 @@ Carpools:
       unsigned: false
       primary: true
       autoincrement: true
-    route_id:
+    driver_id:
       type: integer(4)
       fixed: false
       unsigned: false
@@ -58,6 +58,27 @@ Carpools:
       primary: false
       notnull: true
       autoincrement: false
+    route_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    solo_route_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    seats_available:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
     start_date:
       type: date(25)
       fixed: false
@@ -67,6 +88,13 @@ Carpools:
       autoincrement: false
     start_time:
       type: time(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    asking_price:
+      type: float()
       fixed: false
       unsigned: false
       primary: false
@@ -102,14 +130,15 @@ Carpools:
       local: vehicle_id
       foreign: vehicle_id
       type: one
-    Drivers:
-      local: carpool_id
-      foreign: carpool_id
-      type: many
-    SeatNegotiations:
-      local: carpool_id
-      foreign: carpool_id
-      type: many
+    Routes_3:
+      class: Routes
+      local: solo_route_id
+      foreign: route_id
+      type: one
+    People:
+      local: driver_id
+      foreign: person_id
+      type: one
     Seats:
       local: carpool_id
       foreign: carpool_id
@@ -266,99 +295,6 @@ Conversations:
       local: conversation_id
       foreign: conversation_id
       type: many
-Drivers:
-  connection: doctrine
-  tableName: drivers
-  columns:
-    driver_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    person_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    solo_route_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    carpool_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    seats_available:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    start_date:
-      type: date(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    start_time:
-      type: time(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    asking_price:
-      type: float()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    description:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    People:
-      local: person_id
-      foreign: person_id
-      type: one
-    Routes:
-      local: solo_route_id
-      foreign: route_id
-      type: one
-    Carpools:
-      local: carpool_id
-      foreign: carpool_id
-      type: one
 Events:
   connection: doctrine
   tableName: events
@@ -645,7 +581,7 @@ Legs:
       type: one
     SeatsFilledLegs:
       local: leg_id
-      foreign: legs_leg_id
+      foreign: leg_id
       type: many
     Steps:
       local: leg_id
@@ -682,7 +618,7 @@ Locations:
       primary: false
       notnull: false
       autoincrement: false
-    'street _2':
+    street_2:
       type: string(255)
       fixed: false
       unsigned: false
@@ -772,7 +708,7 @@ Messages:
   connection: doctrine
   tableName: messages
   columns:
-    id_message:
+    message_id:
       type: integer(4)
       fixed: false
       unsigned: false
@@ -845,13 +781,6 @@ Passengers:
       primary: false
       notnull: true
       autoincrement: false
-    seat_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
     passenger_count:
       type: integer(4)
       fixed: false
@@ -911,10 +840,6 @@ Passengers:
       foreign: route_id
       type: one
     Seats:
-      local: seat_id
-      foreign: seat_id
-      type: one
-    SeatNegotiations:
       local: passenger_id
       foreign: passenger_id
       type: many
@@ -943,6 +868,10 @@ People:
       notnull: false
       autoincrement: false
   relations:
+    Carpools:
+      local: person_id
+      foreign: driver_id
+      type: many
     Comments:
       local: person_id
       foreign: person_id
@@ -954,10 +883,6 @@ People:
     Conversations:
       local: person_id
       foreign: author_id
-      type: many
-    Drivers:
-      local: person_id
-      foreign: person_id
       type: many
     FriendshipRequests:
       local: person_id
@@ -997,10 +922,6 @@ People:
       class: Reviews
       local: person_id
       foreign: reviewee_id
-      type: many
-    SeatNegotiationMessage:
-      local: person_id
-      foreign: author_id
       type: many
     SecuritySettings:
       local: person_id
@@ -1364,66 +1285,7 @@ Routes:
       primary: false
       notnull: false
       autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    Carpools:
-      local: route_id
-      foreign: route_id
-      type: many
-    Drivers:
-      local: route_id
-      foreign: solo_route_id
-      type: many
-    Legs:
-      local: route_id
-      foreign: route_id
-      type: many
-    Passengers:
-      local: route_id
-      foreign: solo_route_id
-      type: many
-    SeatNegotiations:
-      local: route_id
-      foreign: proposed_route_id
-      type: many
-SeatNegotiationMessage:
-  connection: doctrine
-  tableName: seat_negotiation_message
-  columns:
-    seat_negotiation_message_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    seat_negotiation_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    author_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    message:
+    encoded_polyline:
       type: string()
       fixed: false
       unsigned: false
@@ -1445,19 +1307,28 @@ SeatNegotiationMessage:
       notnull: false
       autoincrement: false
   relations:
-    SeatNegotiations:
-      local: seat_negotiation_id
-      foreign: seat_negotiation_id
-      type: one
-    People:
-      local: author_id
-      foreign: person_id
-      type: one
-SeatNegotiationStatuses:
+    Carpools:
+      local: route_id
+      foreign: route_id
+      type: many
+    Carpools_3:
+      class: Carpools
+      local: route_id
+      foreign: solo_route_id
+      type: many
+    Legs:
+      local: route_id
+      foreign: route_id
+      type: many
+    Passengers:
+      local: route_id
+      foreign: solo_route_id
+      type: many
+SeatRequestTypes:
   connection: doctrine
-  tableName: seat_negotiation_statuses
+  tableName: seat_request_types
   columns:
-    seat_negotiation_statuses_id:
+    seat_request_type_id:
       type: integer(4)
       fixed: false
       unsigned: false
@@ -1468,7 +1339,14 @@ SeatNegotiationStatuses:
       fixed: false
       unsigned: false
       primary: false
-      notnull: false
+      notnull: true
+      autoincrement: false
+    slug:
+      type: string(45)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
       autoincrement: false
     created_at:
       type: timestamp(25)
@@ -1485,68 +1363,33 @@ SeatNegotiationStatuses:
       notnull: false
       autoincrement: false
   relations:
-    SeatNegotiations:
-      local: seat_negotiation_statuses_id
-      foreign: seat_negotiation_statuses_id
+    Seats:
+      local: seat_request_type_id
+      foreign: seat_request_type_id
       type: many
-SeatNegotiations:
+SeatStatuses:
   connection: doctrine
-  tableName: seat_negotiations
+  tableName: seat_statuses
   columns:
-    seat_negotiation_id:
+    seat_status_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: true
-    proposed_route_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    seat_negotiation_statuses_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    carpool_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    passenger_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    price:
-      type: float()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    seat_count:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    pickup_date:
+    display_text:
       type: string(45)
       fixed: false
       unsigned: false
       primary: false
-      notnull: false
+      notnull: true
+      autoincrement: false
+    slug:
+      type: string(45)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
       autoincrement: false
     created_at:
       type: timestamp(25)
@@ -1562,37 +1405,10 @@ SeatNegotiations:
       primary: false
       notnull: false
       autoincrement: false
-    pickup_time:
-      type: time(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
   relations:
-    Routes:
-      local: proposed_route_id
-      foreign: route_id
-      type: one
-    SeatNegotiationStatuses:
-      local: seat_negotiation_statuses_id
-      foreign: seat_negotiation_statuses_id
-      type: one
-    Carpools:
-      local: carpool_id
-      foreign: carpool_id
-      type: one
-    Passengers:
-      local: passenger_id
-      foreign: passenger_id
-      type: one
-    SeatNegotiationMessage:
-      local: seat_negotiation_id
-      foreign: seat_negotiation_id
-      type: many
     Seats:
-      local: seat_negotiation_id
-      foreign: seat_negotiation_id
+      local: seat_status_id
+      foreign: seat_status_id
       type: many
 Seats:
   connection: doctrine
@@ -1611,7 +1427,21 @@ Seats:
       primary: false
       notnull: true
       autoincrement: false
-    seat_negotiation_id:
+    passenger_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    seat_status_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    seat_request_type_id:
       type: integer(4)
       fixed: false
       unsigned: false
@@ -1672,29 +1502,33 @@ Seats:
       local: carpool_id
       foreign: carpool_id
       type: one
-    SeatNegotiations:
-      local: seat_negotiation_id
-      foreign: seat_negotiation_id
+    SeatStatuses:
+      local: seat_status_id
+      foreign: seat_status_id
+      type: one
+    SeatRequestTypes:
+      local: seat_request_type_id
+      foreign: seat_request_type_id
       type: one
     Passengers:
-      local: seat_id
-      foreign: seat_id
-      type: many
+      local: passenger_id
+      foreign: passenger_id
+      type: one
     SeatsFilledLegs:
       local: seat_id
-      foreign: seats_seat_id
+      foreign: seat_id
       type: many
 SeatsFilledLegs:
   connection: doctrine
   tableName: seats_filled_legs
   columns:
-    seats_seat_id:
+    seat_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: false
-    legs_leg_id:
+    leg_id:
       type: integer(4)
       fixed: false
       unsigned: false
@@ -1716,11 +1550,11 @@ SeatsFilledLegs:
       autoincrement: false
   relations:
     Seats:
-      local: seats_seat_id
+      local: seat_id
       foreign: seat_id
       type: one
     Legs:
-      local: legs_leg_id
+      local: leg_id
       foreign: leg_id
       type: one
 SecuritySettings:

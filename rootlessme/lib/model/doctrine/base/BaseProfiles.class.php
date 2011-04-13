@@ -104,7 +104,7 @@ Doctrine_Manager::getInstance()->bindComponent('Profiles', 'doctrine');
  * 
  * @package    RootlessMe
  * @subpackage model
- * @author     Your name here
+ * @author     awilliams
  * @version    SVN: $Id: Builder.php 7691 2011-02-04 15:43:29Z jwage $
  */
 abstract class BaseProfiles extends sfDoctrineRecord

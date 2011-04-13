@@ -10,7 +10,6 @@ Doctrine_Manager::getInstance()->bindComponent('Passengers', 'doctrine');
  * @property integer $passenger_id
  * @property integer $person_id
  * @property integer $solo_route_id
- * @property integer $seat_id
  * @property integer $passenger_count
  * @property date $start_date
  * @property time $start_time
@@ -20,43 +19,38 @@ Doctrine_Manager::getInstance()->bindComponent('Passengers', 'doctrine');
  * @property timestamp $updated_at
  * @property People $People
  * @property Routes $Routes
- * @property Seats $Seats
- * @property Doctrine_Collection $SeatNegotiations
+ * @property Doctrine_Collection $Seats
  * 
- * @method integer             getPassengerId()      Returns the current record's "passenger_id" value
- * @method integer             getPersonId()         Returns the current record's "person_id" value
- * @method integer             getSoloRouteId()      Returns the current record's "solo_route_id" value
- * @method integer             getSeatId()           Returns the current record's "seat_id" value
- * @method integer             getPassengerCount()   Returns the current record's "passenger_count" value
- * @method date                getStartDate()        Returns the current record's "start_date" value
- * @method time                getStartTime()        Returns the current record's "start_time" value
- * @method float               getAskingPrice()      Returns the current record's "asking_price" value
- * @method string              getDescription()      Returns the current record's "description" value
- * @method timestamp           getCreatedAt()        Returns the current record's "created_at" value
- * @method timestamp           getUpdatedAt()        Returns the current record's "updated_at" value
- * @method People              getPeople()           Returns the current record's "People" value
- * @method Routes              getRoutes()           Returns the current record's "Routes" value
- * @method Seats               getSeats()            Returns the current record's "Seats" value
- * @method Doctrine_Collection getSeatNegotiations() Returns the current record's "SeatNegotiations" collection
- * @method Passengers          setPassengerId()      Sets the current record's "passenger_id" value
- * @method Passengers          setPersonId()         Sets the current record's "person_id" value
- * @method Passengers          setSoloRouteId()      Sets the current record's "solo_route_id" value
- * @method Passengers          setSeatId()           Sets the current record's "seat_id" value
- * @method Passengers          setPassengerCount()   Sets the current record's "passenger_count" value
- * @method Passengers          setStartDate()        Sets the current record's "start_date" value
- * @method Passengers          setStartTime()        Sets the current record's "start_time" value
- * @method Passengers          setAskingPrice()      Sets the current record's "asking_price" value
- * @method Passengers          setDescription()      Sets the current record's "description" value
- * @method Passengers          setCreatedAt()        Sets the current record's "created_at" value
- * @method Passengers          setUpdatedAt()        Sets the current record's "updated_at" value
- * @method Passengers          setPeople()           Sets the current record's "People" value
- * @method Passengers          setRoutes()           Sets the current record's "Routes" value
- * @method Passengers          setSeats()            Sets the current record's "Seats" value
- * @method Passengers          setSeatNegotiations() Sets the current record's "SeatNegotiations" collection
+ * @method integer             getPassengerId()     Returns the current record's "passenger_id" value
+ * @method integer             getPersonId()        Returns the current record's "person_id" value
+ * @method integer             getSoloRouteId()     Returns the current record's "solo_route_id" value
+ * @method integer             getPassengerCount()  Returns the current record's "passenger_count" value
+ * @method date                getStartDate()       Returns the current record's "start_date" value
+ * @method time                getStartTime()       Returns the current record's "start_time" value
+ * @method float               getAskingPrice()     Returns the current record's "asking_price" value
+ * @method string              getDescription()     Returns the current record's "description" value
+ * @method timestamp           getCreatedAt()       Returns the current record's "created_at" value
+ * @method timestamp           getUpdatedAt()       Returns the current record's "updated_at" value
+ * @method People              getPeople()          Returns the current record's "People" value
+ * @method Routes              getRoutes()          Returns the current record's "Routes" value
+ * @method Doctrine_Collection getSeats()           Returns the current record's "Seats" collection
+ * @method Passengers          setPassengerId()     Sets the current record's "passenger_id" value
+ * @method Passengers          setPersonId()        Sets the current record's "person_id" value
+ * @method Passengers          setSoloRouteId()     Sets the current record's "solo_route_id" value
+ * @method Passengers          setPassengerCount()  Sets the current record's "passenger_count" value
+ * @method Passengers          setStartDate()       Sets the current record's "start_date" value
+ * @method Passengers          setStartTime()       Sets the current record's "start_time" value
+ * @method Passengers          setAskingPrice()     Sets the current record's "asking_price" value
+ * @method Passengers          setDescription()     Sets the current record's "description" value
+ * @method Passengers          setCreatedAt()       Sets the current record's "created_at" value
+ * @method Passengers          setUpdatedAt()       Sets the current record's "updated_at" value
+ * @method Passengers          setPeople()          Sets the current record's "People" value
+ * @method Passengers          setRoutes()          Sets the current record's "Routes" value
+ * @method Passengers          setSeats()           Sets the current record's "Seats" collection
  * 
  * @package    RootlessMe
  * @subpackage model
- * @author     Your name here
+ * @author     awilliams
  * @version    SVN: $Id: Builder.php 7691 2011-02-04 15:43:29Z jwage $
  */
 abstract class BasePassengers extends sfDoctrineRecord
@@ -82,15 +76,6 @@ abstract class BasePassengers extends sfDoctrineRecord
              'length' => 4,
              ));
         $this->hasColumn('solo_route_id', 'integer', 4, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => true,
-             'autoincrement' => false,
-             'length' => 4,
-             ));
-        $this->hasColumn('seat_id', 'integer', 4, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
@@ -175,11 +160,7 @@ abstract class BasePassengers extends sfDoctrineRecord
              'local' => 'solo_route_id',
              'foreign' => 'route_id'));
 
-        $this->hasOne('Seats', array(
-             'local' => 'seat_id',
-             'foreign' => 'seat_id'));
-
-        $this->hasMany('SeatNegotiations', array(
+        $this->hasMany('Seats', array(
              'local' => 'passenger_id',
              'foreign' => 'passenger_id'));
     }

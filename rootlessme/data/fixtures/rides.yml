@@ -1,5 +1,29 @@
 # data/fixtures/rides.yml
 
+SeatStatuses:
+  seat_status_pending:
+    seat_status_id: 1
+    display_text: Pending
+    slug: pending
+  seat_status_accepted:
+    seat_status_id: 2
+    display_text: Accepted
+    slug: accepted
+  seat_status_declined:
+    seat_status_id: 3
+    display_text: Declined
+    slug: declined
+
+SeatRequestTypes:
+  seat_request_type_offer:
+    seat_request_type_id: 1
+    display_text: Offer
+    slug: offer
+  seat_request_type_request:
+    seat_request_type_id: 2
+    display_text: Request
+    slug: request
+
 Vehicles:
   vehichle_aaron:
     vehicle_id: 1
@@ -347,24 +371,15 @@ Steps:
 Carpools:
   carpool_1:
     carpool_id: 1
+    driver_id: 1
+    solo_route_id: 2
     route_id: 2
     vehicle_id: 1
     start_date: "2011-04-13"
     start_time: "11:00:00"
     description: "Driving across the country."
-
-
-
-Drivers:
-  driver_aaron:
-    driver_id: 1
-    person_id: 1
-    carpool_id: 1
-    solo_route_id: 2
-    start_date: "2011-04-13"
-    start_time: "11:00:00"
+    seats_available: 3
     asking_price: 3.50
-    description: "Driving across the country."
 
 
 Passengers:
@@ -372,7 +387,9 @@ Passengers:
     passenger_id: 1
     person_id: 2
     solo_route_id: 1
+    passenger_count: 1
     start_date: "2011-04-15"
     start_time: "13:00:00"
     asking_price: 3.50
     description: "Need a ride from the airport"
+
