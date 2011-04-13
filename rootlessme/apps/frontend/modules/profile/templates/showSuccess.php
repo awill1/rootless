@@ -200,7 +200,7 @@
     </tr>
     <tr>
       <th>Address 1:</th>
-      <td><?php //echo $profile->getAddress1() ?></td>
+      <td><?php echo $profile->getAddress1() ?></td>
     </tr>
     <tr>
       <th>Address 2:</th>
