@@ -500,13 +500,13 @@ Friendships:
   connection: doctrine
   tableName: friendships
   columns:
-    friend_1_id:
+    friend1_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: false
-    friend_2_id:
+    friend2_id:
       type: integer(4)
       fixed: false
       unsigned: false
@@ -528,12 +528,12 @@ Friendships:
       autoincrement: false
   relations:
     People:
-      local: friend_1_id
+      local: friend1_id
       foreign: person_id
       type: one
     People_2:
       class: People
-      local: friend_2_id
+      local: friend2_id
       foreign: person_id
       type: one
 Legs:
@@ -611,14 +611,14 @@ Locations:
       primary: false
       notnull: false
       autoincrement: false
-    street_1:
+    street1:
       type: string(255)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    street_2:
+    street2:
       type: string(255)
       fixed: false
       unsigned: false
@@ -895,12 +895,12 @@ People:
       type: many
     Friendships:
       local: person_id
-      foreign: friend_1_id
+      foreign: friend1_id
       type: many
     Friendships_2:
       class: Friendships
       local: person_id
-      foreign: friend_2_id
+      foreign: friend2_id
       type: many
     Messages:
       local: person_id
@@ -1005,14 +1005,14 @@ Profiles:
       primary: false
       notnull: false
       autoincrement: false
-    address_1:
+    address1:
       type: string(255)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    address_2:
+    address2:
       type: string(255)
       fixed: false
       unsigned: false
@@ -1068,7 +1068,7 @@ Profiles:
       primary: false
       notnull: false
       autoincrement: false
-    top_5:
+    top5:
       type: string()
       fixed: false
       unsigned: false

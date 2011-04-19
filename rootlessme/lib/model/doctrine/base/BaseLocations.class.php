@@ -10,8 +10,8 @@ Doctrine_Manager::getInstance()->bindComponent('Locations', 'doctrine');
  * @property integer $location_id
  * @property integer $step_id
  * @property string $name
- * @property string $street_1
- * @property string $street_2
+ * @property string $street1
+ * @property string $street2
  * @property string $city
  * @property string $state
  * @property string $postal_code
@@ -28,8 +28,8 @@ Doctrine_Manager::getInstance()->bindComponent('Locations', 'doctrine');
  * @method integer             getLocationId()     Returns the current record's "location_id" value
  * @method integer             getStepId()         Returns the current record's "step_id" value
  * @method string              getName()           Returns the current record's "name" value
- * @method string              getStreet1()        Returns the current record's "street_1" value
- * @method string              getStreet2()        Returns the current record's "street_2" value
+ * @method string              getStreet1()        Returns the current record's "street1" value
+ * @method string              getStreet2()        Returns the current record's "street2" value
  * @method string              getCity()           Returns the current record's "city" value
  * @method string              getState()          Returns the current record's "state" value
  * @method string              getPostalCode()     Returns the current record's "postal_code" value
@@ -45,8 +45,8 @@ Doctrine_Manager::getInstance()->bindComponent('Locations', 'doctrine');
  * @method Locations           setLocationId()     Sets the current record's "location_id" value
  * @method Locations           setStepId()         Sets the current record's "step_id" value
  * @method Locations           setName()           Sets the current record's "name" value
- * @method Locations           setStreet1()        Sets the current record's "street_1" value
- * @method Locations           setStreet2()        Sets the current record's "street_2" value
+ * @method Locations           setStreet1()        Sets the current record's "street1" value
+ * @method Locations           setStreet2()        Sets the current record's "street2" value
  * @method Locations           setCity()           Sets the current record's "city" value
  * @method Locations           setState()          Sets the current record's "state" value
  * @method Locations           setPostalCode()     Sets the current record's "postal_code" value
@@ -96,7 +96,7 @@ abstract class BaseLocations extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 255,
              ));
-        $this->hasColumn('street_1', 'string', 255, array(
+        $this->hasColumn('street1', 'string', 255, array(
              'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,
@@ -105,7 +105,7 @@ abstract class BaseLocations extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 255,
              ));
-        $this->hasColumn('street_2', 'string', 255, array(
+        $this->hasColumn('street2', 'string', 255, array(
              'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,

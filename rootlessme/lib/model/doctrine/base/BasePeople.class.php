@@ -136,11 +136,11 @@ abstract class BasePeople extends sfDoctrineRecord
 
         $this->hasMany('Friendships', array(
              'local' => 'person_id',
-             'foreign' => 'friend_1_id'));
+             'foreign' => 'friend1_id'));
 
         $this->hasMany('Friendships as Friendships_2', array(
              'local' => 'person_id',
-             'foreign' => 'friend_2_id'));
+             'foreign' => 'friend2_id'));
 
         $this->hasMany('Messages', array(
              'local' => 'person_id',

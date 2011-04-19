@@ -16,8 +16,8 @@ Doctrine_Manager::getInstance()->bindComponent('Profiles', 'doctrine');
  * @property string $picture_url_medium
  * @property string $picture_url_small
  * @property string $picture_url_tiny
- * @property string $address_1
- * @property string $address_2
+ * @property string $address1
+ * @property string $address2
  * @property string $city
  * @property string $state
  * @property string $postal_code
@@ -25,7 +25,7 @@ Doctrine_Manager::getInstance()->bindComponent('Profiles', 'doctrine');
  * @property date $birthday
  * @property string $gender
  * @property string $about_me
- * @property string $top_5
+ * @property string $top5
  * @property string $wants_to_travel_to
  * @property string $music
  * @property string $movies
@@ -48,8 +48,8 @@ Doctrine_Manager::getInstance()->bindComponent('Profiles', 'doctrine');
  * @method string    getPictureUrlMedium()   Returns the current record's "picture_url_medium" value
  * @method string    getPictureUrlSmall()    Returns the current record's "picture_url_small" value
  * @method string    getPictureUrlTiny()     Returns the current record's "picture_url_tiny" value
- * @method string    getAddress1()           Returns the current record's "address_1" value
- * @method string    getAddress2()           Returns the current record's "address_2" value
+ * @method string    getAddress1()           Returns the current record's "address1" value
+ * @method string    getAddress2()           Returns the current record's "address2" value
  * @method string    getCity()               Returns the current record's "city" value
  * @method string    getState()              Returns the current record's "state" value
  * @method string    getPostalCode()         Returns the current record's "postal_code" value
@@ -57,7 +57,7 @@ Doctrine_Manager::getInstance()->bindComponent('Profiles', 'doctrine');
  * @method date      getBirthday()           Returns the current record's "birthday" value
  * @method string    getGender()             Returns the current record's "gender" value
  * @method string    getAboutMe()            Returns the current record's "about_me" value
- * @method string    getTop5()               Returns the current record's "top_5" value
+ * @method string    getTop5()               Returns the current record's "top5" value
  * @method string    getWantsToTravelTo()    Returns the current record's "wants_to_travel_to" value
  * @method string    getMusic()              Returns the current record's "music" value
  * @method string    getMovies()             Returns the current record's "movies" value
@@ -79,8 +79,8 @@ Doctrine_Manager::getInstance()->bindComponent('Profiles', 'doctrine');
  * @method Profiles  setPictureUrlMedium()   Sets the current record's "picture_url_medium" value
  * @method Profiles  setPictureUrlSmall()    Sets the current record's "picture_url_small" value
  * @method Profiles  setPictureUrlTiny()     Sets the current record's "picture_url_tiny" value
- * @method Profiles  setAddress1()           Sets the current record's "address_1" value
- * @method Profiles  setAddress2()           Sets the current record's "address_2" value
+ * @method Profiles  setAddress1()           Sets the current record's "address1" value
+ * @method Profiles  setAddress2()           Sets the current record's "address2" value
  * @method Profiles  setCity()               Sets the current record's "city" value
  * @method Profiles  setState()              Sets the current record's "state" value
  * @method Profiles  setPostalCode()         Sets the current record's "postal_code" value
@@ -88,7 +88,7 @@ Doctrine_Manager::getInstance()->bindComponent('Profiles', 'doctrine');
  * @method Profiles  setBirthday()           Sets the current record's "birthday" value
  * @method Profiles  setGender()             Sets the current record's "gender" value
  * @method Profiles  setAboutMe()            Sets the current record's "about_me" value
- * @method Profiles  setTop5()               Sets the current record's "top_5" value
+ * @method Profiles  setTop5()               Sets the current record's "top5" value
  * @method Profiles  setWantsToTravelTo()    Sets the current record's "wants_to_travel_to" value
  * @method Profiles  setMusic()              Sets the current record's "music" value
  * @method Profiles  setMovies()             Sets the current record's "movies" value
@@ -192,7 +192,7 @@ abstract class BaseProfiles extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 255,
              ));
-        $this->hasColumn('address_1', 'string', 255, array(
+        $this->hasColumn('address1', 'string', 255, array(
              'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,
@@ -201,7 +201,7 @@ abstract class BaseProfiles extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 255,
              ));
-        $this->hasColumn('address_2', 'string', 255, array(
+        $this->hasColumn('address2', 'string', 255, array(
              'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,
@@ -273,7 +273,7 @@ abstract class BaseProfiles extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => '',
              ));
-        $this->hasColumn('top_5', 'string', null, array(
+        $this->hasColumn('top5', 'string', null, array(
              'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,
