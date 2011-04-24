@@ -352,3 +352,24 @@ textarea {
     font-style: italic;
     text-decoration: none;
 }
+
+.dateBlockLarge {
+    width: 55px;
+    color: #FFFFFF;
+    background-color: #606060;
+    text-align: center;
+}
+
+.dateBlockMonth {
+}
+
+.dateBlockDate {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 180%;
+    background-color: #303030;
+}
+
+.dateBlockTime {
+    font-size: 80%;
+}
