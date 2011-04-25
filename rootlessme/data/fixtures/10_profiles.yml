@@ -1,10 +1,12 @@
-# data/fixtures/profiles.yml
+# data/fixtures/10_profiles.yml
 
 People:
   person_aaron:
     person_id: 1
   person_christy:
     person_id: 2
+  person_lauren:
+    person_id: 3
 
 
 Users:
@@ -17,6 +19,11 @@ Users:
     user_name:   user_christy
     person_id:   2
     email:       christy@testuser.com
+    encrypted_password: kjrewlkjifdsoiufdsoiuwrjrewljfdsjjiofs
+  user_lauren:
+    user_name:   user_lauren
+    person_id:   3
+    email:       lauren@testuser.com
     encrypted_password: kjrewlkjifdsoiufdsoiuwrjrewljfdsjjiofs
 
 
@@ -31,15 +38,15 @@ Profiles:
     picture_url_medium:   resources/users/profile_aaron_profileMedium.jpg
     picture_url_small:   resources/users/profile_aaron_profileSmall.jpg
     picture_url_tiny:   resources/users/profile_aaron_profileTiny.jpg
-    address_1:      313 Rutherford Ave.
+    address1:      313 Rutherford Ave.
     city:         Delaware
     state:        OH
     postal_code:   43015
     country:      USA
-    birthday:     '2011-05-26'
+    birthday:     '1984-05-26'
     gender:       'Male'
     about_me:      I am a fake person that has been added into the database to test the website
-    top_5:         Christy, Christy, Christy, Christy, Churros
+    top5:         Christy, Christy, Christy, Christy, Churros
     wants_to_travel_to: Peru
     music:        The Beastie Boys
     movies:       Pulp Fiction
@@ -57,15 +64,15 @@ Profiles:
     picture_url_medium:   resources/users/profile_christy_profileMedium.jpg
     picture_url_small:   resources/users/profile_christy_profileSmall.jpg
     picture_url_tiny:   resources/users/profile_christy_profileTiny.jpg
-    address_1:     11245 Mallard Pond Ct.
+    address1:     11245 Mallard Pond Ct.
     city:         Pickerington
     state:        OH
     postal_code:   43147
     country:      USA
-    birthday:     '2011-04-03'
+    birthday:     '1985-04-03'
     gender:       'Female'
     about_me:      I am a fake person that has been added into the database to test the website
-    top_5:         Aaron, Family and Friends, Homer, Taveling, Movies
+    top5:         Aaron, Family and Friends, Homer, Traveling, Movies
     wants_to_travel_to: Cincinnati
     music:        Katy Perry, Brittany Spears
     movies:       Changes all the time. Currently... Black Swan, Bad Santa, and How to Train Your Dragon
@@ -73,6 +80,32 @@ Profiles:
     interests:    Movies, dogs, and cake
     favorite_websites: failblog.org, lamebook.com, christyandaarontracker.com
     website_url:   http://www.christyandaarontracker.com
+  profile_lauren:
+    profile_name:    profile_lauren
+    person_id:   3
+    first_name:    Lauren
+    last_name:     Prestifillipo
+    picture_url:   resources/users/profile_lauren_profile.jpg
+    picture_url_large:   resources/users/profile_lauren_profileLarge.jpg
+    picture_url_medium:   resources/users/profile_lauren_profileMedium.jpg
+    picture_url_small:   resources/users/profile_lauren_profileSmall.jpg
+    picture_url_tiny:   resources/users/profile_lauren_profileTiny.jpg
+    address1:     16 Vine St.
+    city:         Cincinnati
+    state:        OH
+    postal_code:   45507
+    country:      USA
+    birthday:     '1989-11-18'
+    gender:       'Female'
+    about_me:      I am a fake person that has been added into the database to test the website
+    top5:         Aaron, Family and Friends, Homer, Taveling, Movies
+    wants_to_travel_to: Home
+    music:        Katy Perry, Brittany Spears
+    movies:       Changes all the time. Currently... Black Swan, Bad Santa, and How to Train Your Dragon
+    books:        Harry Potter, The Life of Pi
+    interests:    Movies, dogs, and cake
+    favorite_websites: failblog.org, lamebook.com, christyandaarontracker.com
+    website_url:   http://www.laurenprestifillipo.com
 
 
 

@@ -1,0 +1,57 @@
+# data/fixtures/20_messages.yml
+
+Conversations:
+  conversation_1:
+    conversation_id: 1
+    author_id: 1
+    subject: "What are you doing Friday?"
+  conversation_2:
+    conversation_id: 2
+    author_id: 2
+    subject: "Party"
+
+ConversationParticipants:
+  conversation_1_participant_1:
+    conversation_id: 1
+    person_id: 1
+    unread: 0
+  conversation_1_participant_2:
+    conversation_id: 1
+    person_id: 2
+    unread: 1
+  conversation_1_participant_3:
+    conversation_id: 1
+    person_id: 3
+    unread: 1
+  conversation_2_participant_1:
+    conversation_id: 2
+    person_id: 2
+    unread: 0
+  conversation_2_participant_2:
+    conversation_id: 2
+    person_id: 1
+    unread: 0
+
+Messages:
+  message_1:
+    message_id: 1
+    conversation_id: 1
+    author_id: 1
+    body: "What are you guys doing friday? I am so bored sitting at home and I want to do something."
+  message_2:
+    message_id: 2
+    conversation_id: 1
+    author_id: 3
+    body: "I am stuck in Cincinnati. I do think I can do anything."
+  message_3:
+    message_id: 3
+    conversation_id: 2
+    author_id: 2
+    body: "Do you want to go to Ben's birthday party? I do not know if I am going to go."
+  message_4:
+    message_id: 4
+    conversation_id: 1
+    author_id: 2
+    body: "I want to watch a movie. I hear Source Code is good."
+
+

@@ -1,0 +1,9 @@
+# data/fixtures/20_friendships.yml
+
+Friendships:
+  friendship_1:
+    friend1_id: 1
+    friend2_id: 2
+  friendship_2:
+    friend1_id: 1
+    friend2_id: 3
