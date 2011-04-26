@@ -33,11 +33,11 @@ Profiles:
     person_id:   1
     first_name:    Aaron
     last_name:     Williams
-    picture_url:   profile_aaron_profile.jpg
-    picture_url_large:   profile_aaron_profileLarge.jpg
-    picture_url_medium:   profile_aaron_profileMedium.jpg
-    picture_url_small:   profile_aaron_profileSmall.jpg
-    picture_url_tiny:   profile_aaron_profileTiny.jpg
+    picture_url:   profile_aaron.jpg
+    picture_url_large:   profile_aaron_large.jpg
+    picture_url_medium:   profile_aaron_medium.jpg
+    picture_url_small:   profile_aaron_small.jpg
+    picture_url_tiny:   profile_aaron_tiny.jpg
     address1:      313 Rutherford Ave.
     city:         Delaware
     state:        OH
@@ -59,11 +59,11 @@ Profiles:
     person_id:   2
     first_name:    Christy
     last_name:     Williams
-    picture_url:   profile_christy_profile.jpg
-    picture_url_large:   profile_christy_profileLarge.jpg
-    picture_url_medium:   profile_christy_profileMedium.jpg
-    picture_url_small:   profile_christy_profileSmall.jpg
-    picture_url_tiny:   profile_christy_profileTiny.jpg
+    picture_url:   profile_christy.jpg
+    picture_url_large:   profile_christy_large.jpg
+    picture_url_medium:   profile_christy_medium.jpg
+    picture_url_small:   profile_christy_small.jpg
+    picture_url_tiny:   profile_christy_tiny.jpg
     address1:     11245 Mallard Pond Ct.
     city:         Pickerington
     state:        OH

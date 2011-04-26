@@ -17,7 +17,7 @@
 
         <!-- Header -->
         <div id="header">
-            <a href="." ><img id="headerLogo" src="/images/logo.png" alt="RootlessMe" /></a>
+            <a href="." ><img id="headerLogo" src="/images/logo.PNG" alt="RootlessMe" /></a>
             <div id="headerControls">
 
                 <ul id="headerControlsList">

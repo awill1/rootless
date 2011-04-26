@@ -1,5 +1,6 @@
 <?php use_stylesheet('message.css') ?>
 <?php use_helper('Text') ?>
+<?php use_helper('Date') ?>
 
 <?php slot(
   'title',
@@ -17,13 +18,13 @@
 
         <div class="message">
             <div class="messageAuthorInformation">
-                <a href="<?php echo url_for("profile/".$profile->getProfileName()) ?>"><?php echo $profile->getFirstName()." ".$profile->getLastName(); ?></a><br />
-                <?php echo $message->getCreatedAt('m/d/Y') ?>
+                <a href="<?php echo url_for("profiles/".$profile->getProfileName()) ?>"><?php echo $profile->getFirstName()." ".$profile->getLastName(); ?></a><br />
+                <?php echo format_date($message->getCreatedAt(), 'M/d/y') ?>
             </div>
             <div class="messageAuthorPicture">
                 
                 <a href="<?php echo url_for("profiles/".$profile->getProfileName()) ?>">
-                    <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $profile->getPictureUrlSmall() ?>" alt="<?php echo $message->getAuthorId() ?>" />
+                    <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $profile->getPictureUrlSmall() ?>" alt="<?php echo $profile->getFirstName()." ".$profile->getLastName(); ?>" />
                 </a>
             </div>
             <div class="messageBody">
