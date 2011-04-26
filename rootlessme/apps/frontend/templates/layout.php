@@ -31,11 +31,16 @@
                     <li class="headerControlsListItem"><a href="#" class="headerControl">Inbox <img src="/images/messageSmall.JPG" alt="1 message" /></a></li>
                     <li class="headerControlsListItem">|</li>
                     <li class="headerControlsListItem">
-                        <a href="#" class="headerControl">
-                        <img src="russ_profile_tiny.JPG" alt="Tiny profile picture" />
-                        Russell Wells
-                        <img src="/images/menuDownArrow.JPG" alt="Profile Menu" />
-                        </a>
+                        <?php if ($sf_user->isAuthenticated()): ?>
+                            <a href="#" class="headerControl">
+                            <img src="russ_profile_tiny.JPG" alt="Tiny profile picture" />
+                            Russell Wells
+                            <img src="/images/menuDownArrow.JPG" alt="Profile Menu" />
+                            </a>
+                            <?php echo link_to('Logout', 'sf_guard_signout') ?>
+                        <?php else: ?>
+                            <?php echo link_to('Login', 'sf_guard_signin') ?>
+                        <?php endif ?>
                     </li>
                 </ul>
             </div>
