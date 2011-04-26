@@ -33,11 +33,11 @@ Profiles:
     person_id:   1
     first_name:    Aaron
     last_name:     Williams
-    picture_url:   resources/users/profile_aaron_profile.jpg
-    picture_url_large:   resources/users/profile_aaron_profileLarge.jpg
-    picture_url_medium:   resources/users/profile_aaron_profileMedium.jpg
-    picture_url_small:   resources/users/profile_aaron_profileSmall.jpg
-    picture_url_tiny:   resources/users/profile_aaron_profileTiny.jpg
+    picture_url:   profile_aaron_profile.jpg
+    picture_url_large:   profile_aaron_profileLarge.jpg
+    picture_url_medium:   profile_aaron_profileMedium.jpg
+    picture_url_small:   profile_aaron_profileSmall.jpg
+    picture_url_tiny:   profile_aaron_profileTiny.jpg
     address1:      313 Rutherford Ave.
     city:         Delaware
     state:        OH
@@ -59,11 +59,11 @@ Profiles:
     person_id:   2
     first_name:    Christy
     last_name:     Williams
-    picture_url:   resources/users/profile_christy_profile.jpg
-    picture_url_large:   resources/users/profile_christy_profileLarge.jpg
-    picture_url_medium:   resources/users/profile_christy_profileMedium.jpg
-    picture_url_small:   resources/users/profile_christy_profileSmall.jpg
-    picture_url_tiny:   resources/users/profile_christy_profileTiny.jpg
+    picture_url:   profile_christy_profile.jpg
+    picture_url_large:   profile_christy_profileLarge.jpg
+    picture_url_medium:   profile_christy_profileMedium.jpg
+    picture_url_small:   profile_christy_profileSmall.jpg
+    picture_url_tiny:   profile_christy_profileTiny.jpg
     address1:     11245 Mallard Pond Ct.
     city:         Pickerington
     state:        OH
@@ -85,11 +85,11 @@ Profiles:
     person_id:   3
     first_name:    Lauren
     last_name:     Prestifillipo
-    picture_url:   resources/users/profile_lauren_profile.jpg
-    picture_url_large:   resources/users/profile_lauren_profileLarge.jpg
-    picture_url_medium:   resources/users/profile_lauren_profileMedium.jpg
-    picture_url_small:   resources/users/profile_lauren_profileSmall.jpg
-    picture_url_tiny:   resources/users/profile_lauren_profileTiny.jpg
+    picture_url:   profile_lauren.jpg
+    picture_url_large:   profile_lauren_large.jpg
+    picture_url_medium:   profile_lauren_medium.jpg
+    picture_url_small:   profile_lauren_small.jpg
+    picture_url_tiny:   profile_lauren_tiny.jpg
     address1:     16 Vine St.
     city:         Cincinnati
     state:        OH

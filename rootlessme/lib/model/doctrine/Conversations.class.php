@@ -12,5 +12,12 @@
  */
 class Conversations extends BaseConversations
 {
+    public function getActiveMessages()
+    {
+      $q = Doctrine_Query::create()
+        ->from('Messages m')
+        ->where('m.conversation_id = ?', $this->getConversationId());
 
+      return Doctrine_Core::getTable('Messages')->getMessages($q);
+    }
 }

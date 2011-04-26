@@ -3,24 +3,74 @@
 
 # profile rules
 profile:
+  url: /profiles
   class:   sfDoctrineRouteCollection
-  options: { model: Profiles }
+  param:
+    module: profile
+    action: index
+  options:
+    model: Profiles
 
 profile_show_user:
-  url:   /profile/:idprofile
+  url:   /profiles/:profile_name
   class:   sfDoctrineRoute
   options: { model: Profiles, type: object }
   param: { module: profile, action: show }
   requirements:
     sf_method: [get]
 
-#profile:
-#  url: /profile
-#  param: { module: profile, action: index }
-#
-#profile_show_user:
-#  url:   /profile/:idprofile
-#  param: { module: profile, action: show }
+profile_edit_user:
+  url:   /profiles/edit/:profile_name
+  class:   sfDoctrineRoute
+  options: { model: Profiles, type: object }
+  param: { module: profile, action: edit }
+  requirements:
+    sf_method: [get]
+
+# message rules
+messages:
+  url: /messages
+  class:   sfDoctrineRouteCollection
+  param:
+    module: message
+    action: index
+  options:
+    model: Messages
+
+messages_show:
+  url:   /messages/:conversation_id/:message_id
+  class:   sfDoctrineRoute
+  options: { model: Messages, type: object }
+  param: { module: message, action: show }
+  requirements:
+    sf_method: [get]
+
+messages_edit:
+  url:   /messages/edit/:conversation_id/:message_id
+  class:   sfDoctrineRoute
+  options: { model: Messages, type: object }
+  param: { module: message, action: edit }
+  requirements:
+    sf_method: [get]
+
+conversations:
+  url: /conversations
+  class:   sfDoctrineRouteCollection
+  param:
+    module: conversation
+    action: index
+  options:
+    model: Conversations
+
+conversations_show:
+  url:   /conversations/:conversation_id
+  class:   sfDoctrineRoute
+  options: { model: Conversations, type: object }
+  param: { module: conversation, action: show }
+  requirements:
+    sf_method: [get]
+
+
 
 # default rules
 homepage:

@@ -1,0 +1,155 @@
+/* 
+    Document   : message.css
+    Created on : Mar 16, 2011, 7:44:43 PM
+    Author     : awilliams
+    Description:
+        This stylesheet formats the message pages of the rootlessme website.
+*/
+
+
+td {
+    margin: 0px 0px 0px 0px;
+    padding: 10px 0px 10px 10px;
+}
+
+th {
+    margin: 0px 0px 0px 0px;
+    padding: 10px 0px 10px 10px;
+    text-align: left;
+}
+
+tr {
+    margin: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
+}
+
+thead {
+    padding: 10px 10px 10px 10px;
+    font-size: 120%;
+    font-weight: bold;
+    font-style: italic;
+}
+
+tbody {
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+}
+
+#messageTable {
+    clear: right;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0px 0px 10px 0px;
+}
+
+.messageListRow {
+    background-color: #EAEAEA;
+    padding: 0px 0px 0px 0px;
+}
+
+
+.messageListAltRow {
+    background-color: #FFFFFF;
+    padding: 0px 0px 0px 0px;
+}
+
+.messageListSelectedRow {
+    background-image: url(highlightedListItemBackground.JPG);
+    color: white;
+    padding: 0px 0px 0px 0px;
+}
+
+.messageListAuthorLink {
+    font-weight: bold;
+    color: #119F49;
+}
+
+.messageListAuthorProfileImage {
+    vertical-align: middle;
+}
+
+.messageUnread {
+    font-weight: bold;
+}
+
+.messageListTitleLink {
+    font-weight: bold;
+    color: #119F49;
+}
+
+.messageBar {
+    width: 100%;
+    background-color: #303030;
+    background-image: url(headerBackground.JPG);
+    font-weight: bold;
+    color: #FFFFFF;
+    padding: 6px 6px 6px 6px;
+    font-size: 120%;
+}
+
+.messageThread {
+    float: left;
+}
+
+.message {
+    clear: both;
+    float:left;
+    margin: 30px 0px 0px 0px;
+    width: 100%;
+}
+
+.messageAuthorInformation {
+    float: left;
+    width: 136px;
+    text-align: right;
+}
+
+.messageAuthorPicture {
+    float: left;
+    margin: 0px 0px 0px 10px;
+}
+
+.messageBody {
+    margin: 0px 0px 0px 210px;
+}
+
+.messageDividerBar {
+    margin: 30px 0px 0px 136px;
+}
+
+/* Form styles */
+
+.middleCreateForm {
+    width: 500px;
+}
+
+legend {
+    background-color: #303030;
+    width: 100%;
+    color: #FFFFFF;
+    font-weight: bold;
+    margin: 0px 0px 0px 0px;
+    padding: 4px 0px 4px 0px;
+}
+
+fieldset {
+    background-color: #EAEAEA;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+.formLabelCell {
+    vertical-align: top;
+    text-align: right;
+    font-weight: bold;
+}
+
+.formInputCell {
+    width: 100%;
+    margin: 0px 0px 0px 0px;
+    padding: 10px 10px 10px 10px;
+}
+
+.middleFormInput {
+    width: 100%;
+}

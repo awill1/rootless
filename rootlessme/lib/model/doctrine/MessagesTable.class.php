@@ -16,4 +16,21 @@ class MessagesTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Messages');
     }
+
+    public function getMessages(Doctrine_Query $q = null)
+    {
+        return $this->addActiveMessagesQuery($q)->execute();
+    }
+
+    public function addActiveMessagesQuery(Doctrine_Query $q = null)
+    {
+        if (is_null($q))
+        {
+            $q = Doctrine_Query::create()
+                 ->from('Messages m');
+        }
+
+        return $q;
+      }
+
 }
