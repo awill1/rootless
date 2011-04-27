@@ -1,6 +1,11 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
+# static pages rules
+home:
+  url: /home
+  param: { module: static, action: home }
+
 # profile rules
 profile:
   url: /profiles
