@@ -12,5 +12,17 @@
  */
 class Carpools extends BaseCarpools
 {
+    public function getOriginLocation()
+    {
+        $first_location = $this->getRoutes()->getOriginLocation();
 
+        return $first_location;
+    }
+
+    public function getDestinationLocation()
+    {
+        $last_location = $this->getRoutes()->getDestinationLocation();
+
+        return $last_location;
+    }
 }

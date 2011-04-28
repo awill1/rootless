@@ -18,13 +18,13 @@
 
         <div class="message">
             <div class="messageAuthorInformation">
-                <a href="<?php echo url_for("profiles/".$profile->getProfileName()) ?>"><?php echo $profile->getFirstName()." ".$profile->getLastName(); ?></a><br />
+                <a href="<?php echo url_for("profiles/".$profile->getProfileName()) ?>"><?php echo $profile->getFullName(); ?></a><br />
                 <?php echo format_date($message->getCreatedAt(), 'M/d/y') ?>
             </div>
             <div class="messageAuthorPicture">
                 
                 <a href="<?php echo url_for("profiles/".$profile->getProfileName()) ?>">
-                    <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $profile->getPictureUrlSmall() ?>" alt="<?php echo $profile->getFirstName()." ".$profile->getLastName(); ?>" />
+                    <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $profile->getPictureUrlSmall() ?>" alt="<?php echo $profile->getFullName(); ?>" />
                 </a>
             </div>
             <div class="messageBody">

@@ -12,5 +12,14 @@
  */
 class Profiles extends BaseProfiles
 {
-
+    public function getFullName()
+    {
+        $fullName = $this->getFirstName();
+        if ($this->getFirstName() != null && $this->getLastName() != null)
+        {
+            $fullName = $fullName . " ";
+        }
+        $fullName = $fullName . $this->getLastName();
+        return $fullName;
+    }
 }

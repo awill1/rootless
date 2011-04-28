@@ -84,63 +84,6 @@ textarea {
     width: 18px;
 }
 
-
-/* From Rotten Tomatoes */
-
-#searchBar {display: inline-block;  zoom: 1; *display:inline; margin-left: 20px; vertical-align: top; margin-top: 20px; }
-#searchBar .searchBox {
-	background-color: #fff;
-	border-radius:5px;
-	-moz-border-radius:5px;
-	padding-left: 5px;
-	position: relative;
-	z-index: 4;
-}
-#searchBar input {width: 176px; border-style: hidden;
-	font: bold 12px Arial,Helvetica,sans-serif;
-	padding: 6px 0 5px 20px;
-	color: #666;
-	margin: 0px;
-	border-width: 0px;
-}
-
-#searchBar input.loading {
-	background: url('http://images.rottentomatoescdn.com/images/wait.16px.gif') white no-repeat 0px 6px;
-}
-
-#searchBar .selected input {
-	color: #000;
-}
-
-#searchBar .selected .searchBox.results {
-	border-bottom-left-radius:0px;
-	border-bottom-right-radius:0px;
-	-moz-border-radius-bottomleft:0px;
-	-moz-border-radius-bottomright:0px;
-}
-#searchBar button {
-    border-width: 0px;
-    margin: 0px;
-    padding: 0px 5px 0px 8px;
-    background-color: transparent;
-    cursor: pointer;
-    height: 24px;
-}
-.icon.magnify {
-	background: url(../images/magni_glass.png) transparent no-repeat top left;
-	height: 18px;
-	width: 18px;
-}
-#searchBar button:hover .icon.magnify {background-position: 0px -18px;}
-#searchBar button:active .icon.magnify {background-position: 0px -17px;}
-
-
-/* End from Rotten Tomatoes */
-
-
-
-
-
 #headerControlsList {
     list-style: none;
     margin: 0;
@@ -204,6 +147,14 @@ textarea {
   background-repeat: no-repeat;
 }
 
+.navigationItem a {
+  color: #3D3D3D;
+}
+
+.navigationItemSelected a {
+  color: #FFFFFF;
+}
+
 #leftContent {
     background-color: #999999;
     margin-top: 20px;
@@ -245,6 +196,27 @@ textarea {
     font-weight: bold;
     font-size: 110%;
     margin: 0px 0px 0px 0px;
+}
+
+#leftActionsList {
+    margin: 0;
+    padding: 0;
+
+}
+
+.leftActionItem {
+    list-style: none;
+    margin: 4px 0px 4px 0px;
+    padding: 4px 0px 4px 0px;
+}
+
+.leftActionButton {
+    background-image: url(leftActionButtonBackground.JPG);
+    width: 155px;
+    height: 24px;
+    font-weight: bold;
+    color: #FFFFFF;
+    border: 0px;
 }
 
 #leftActivityList {
@@ -372,4 +344,32 @@ textarea {
     color: #119F49;
     font-style: italic;
     margin: 0px 0px 0px 0px;
+}
+
+.locationLink{
+    color: #119F49;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+}
+
+.dateBlockLarge {
+    width: 55px;
+    color: #FFFFFF;
+    background-color: #606060;
+    text-align: center;
+}
+
+.dateBlockMonth {
+}
+
+.dateBlockDate {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 180%;
+    background-color: #303030;
+}
+
+.dateBlockTime {
+    font-size: 80%;
 }

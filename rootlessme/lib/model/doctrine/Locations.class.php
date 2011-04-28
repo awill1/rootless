@@ -12,5 +12,28 @@
  */
 class Locations extends BaseLocations
 {
+    public function getCityStateString()
+    {
+        // Return variables
+        $returnString = "";
+        $city = $this->getCity();
+        $state = $this->getState();
 
+        // Depending on what information is known, build the return string
+        if ($city != null )
+        {
+            $returnString = $city;
+        }
+        if ($city != null && $state != null )
+        {
+            $returnString = $returnString.", ";
+        }
+        if ($state != null)
+        {
+            $returnString = $returnString.$state;
+        }
+
+        return $returnString;
+
+    }
 }

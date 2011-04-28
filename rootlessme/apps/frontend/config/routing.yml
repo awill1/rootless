@@ -4,17 +4,22 @@
 # static pages rules
 home:
   url: /home
-  param: { module: static, action: home }
+  param:
+    module: static
+    action: home
 
 # profile rules
 profile:
   url: /profiles
-  class:   sfDoctrineRouteCollection
+  class:   sfDoctrineRoute
   param:
     module: profile
     action: index
   options:
     model: Profiles
+    type: list
+  requirements:
+    sf_method: [get]
 
 profile_show_user:
   url:   /profiles/:profile_name
@@ -29,6 +34,14 @@ profile_edit_user:
   class:   sfDoctrineRoute
   options: { model: Profiles, type: object }
   param: { module: profile, action: edit }
+  requirements:
+    sf_method: [get]
+
+profile_new_user:
+  url:   /profiles/new
+  class:   sfDoctrineRoute
+  options: { model: Profiles, type: object }
+  param: { module: profile, action: new }
   requirements:
     sf_method: [get]
 
@@ -60,12 +73,15 @@ messages_edit:
 
 conversations:
   url: /conversations
-  class:   sfDoctrineRouteCollection
+  class:   sfDoctrineRoute
   param:
     module: conversation
     action: index
   options:
     model: Conversations
+    type: list
+  requirements:
+    sf_method: [get]
 
 conversations_show:
   url:   /conversations/:conversation_id
@@ -88,17 +104,37 @@ sf_guard_password:
   url:   /request_password
   param: { module: sfGuardAuth, action: password }
 
+# ride rules
+ride:
+  url: /rides
+  param:
+    module: ride
+    action: index
+
+driver:
+  url: /rides/offers/:carpool_id
+  class:   sfDoctrineRoute
+  param:
+    module: ride
+    action: showOffer
+  options:
+    model: Carpools
+    type: object
+  requirements:
+    sf_method: [get]
+
+
 
 # default rules
 homepage:
   url:   /
-  param: { module: default, action: index }
+  param: { module: static, action: home }
 
 # generic rules
 # please, remove them by adding more specific rules
-default_index:
-  url:   /:module
-  param: { action: index }
+#default_index:
+#  url:   /:module
+#  param: { action: index }
 
 #default:
-  url:   /:module/:action/*
+#  url:   /:module/:action/*

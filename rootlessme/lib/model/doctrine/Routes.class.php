@@ -12,5 +12,21 @@
  */
 class Routes extends BaseRoutes
 {
+    public function getOriginLocation()
+    {
+        $first_leg = $this->getLegs()->getFirst();
+        $first_step = $first_leg->getSteps()->getFirst();
+        $first_location = $first_step->getLocations()->getFirst();
 
+        return $first_location;
+    }
+
+    public function getDestinationLocation()
+    {
+        $last_leg = $this->getLegs()->getLast();
+        $last_step = $last_leg->getSteps()->getLast();
+        $last_location = $last_step->getLocations()->getLast();
+
+        return $last_location;
+    }
 }
