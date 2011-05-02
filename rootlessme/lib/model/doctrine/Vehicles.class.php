@@ -12,5 +12,16 @@
  */
 class Vehicles extends BaseVehicles
 {
+    public function __toString()
+    {
+        $vehicleName = "";
 
+        $vehicleName = join(" ",array($this->getModelYear(),$this->getMake(),$this->getModel()));
+
+       // $vehicleName = preg_replace('/\s+/', ' ', $vehicleName);
+        $vehicleName = trim($vehicleName);
+
+        return $vehicleName;
+
+    }
 }

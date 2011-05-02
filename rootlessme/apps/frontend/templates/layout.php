@@ -11,6 +11,9 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
+    <?php if (has_slot('gmapheader')): ?>
+        <?php include_slot('gmapheader') ?>
+    <?php endif; ?>
   </head>
   <body>
       <div id="container">

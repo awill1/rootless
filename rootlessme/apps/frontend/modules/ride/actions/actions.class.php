@@ -10,29 +10,88 @@
  */
 class rideActions extends sfActions
 {
- /**
-  * Executes index action
-  *
-  * @param sfRequest $request A request object
-  */
-  public function executeIndex(sfWebRequest $request)
-  {
-    $this->forward('default', 'module');
-  }
+    /**
+    * Executes index action
+    *
+    * @param sfRequest $request A request object
+    */
+    public function executeIndex(sfWebRequest $request)
+    {
+        $this->forward('default', 'module');
+    }
 
-   /**
-  * Executes show offer action
-  *
-  * @param sfRequest $request A request object
-  */
-  public function executeShowOffer(sfWebRequest $request)
-  {
-    //$this->carpool = Doctrine_Core::getTable('Carpools')->find(array($request->getParameter('carpool_id')));
-    $this->carpool = $this->getRoute()->getObject();
-    $this->carpoolRoute = $this->carpool->getRoutes();
-    $this->origin = $this->carpool->getOriginLocation();
-    $this->destination = $this->carpool->getDestinationLocation();
-    $this->driver = $this->carpool->getPeople()->getProfiles()->getFirst();
-    $this->forward404Unless($this->carpool);
-  }
+    /**
+    * Executes show offer action
+    *
+    * @param sfRequest $request A request object
+    */
+    public function executeShowOffer(sfWebRequest $request)
+    {
+        //$this->carpool = Doctrine_Core::getTable('Carpools')->find(array($request->getParameter('carpool_id')));
+        $this->carpool = $this->getRoute()->getObject();
+        $this->carpoolRoute = $this->carpool->getRoutes();
+        $this->origin = $this->carpool->getOriginLocation();
+        $this->destination = $this->carpool->getDestinationLocation();
+        $this->driver = $this->carpool->getPeople()->getProfiles()->getFirst();
+        $this->forward404Unless($this->carpool);
+    }
+
+    /**
+    * Executes new offer action
+    *
+    * @param sfRequest $request A request object
+    */
+    public function executeNewOffer(sfWebRequest $request)
+    {
+        $this->form = new CarpoolsForm();
+    }
+
+      public function executeCreateOffer(sfWebRequest $request)
+      {
+        $this->forward404Unless($request->isMethod(sfRequest::POST));
+
+        $this->form = new CarpoolsForm();
+
+        $this->processForm($request, $this->form);
+
+        $this->setTemplate('new');
+      }
+      
+      public function executeEditOffer(sfWebRequest $request)
+      {
+        $this->forward404Unless($carpool = Doctrine_Core::getTable('Carpools')->find(array($request->getParameter('carpool_id'))), sprintf('Object profile does not exist (%s).', $request->getParameter('carpool_id')));
+        $this->form = new CarpoolsForm($carpool);
+      }
+
+      public function executeUpdateOffer(sfWebRequest $request)
+      {
+        $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
+        $this->forward404Unless($carpool = Doctrine_Core::getTable('Carpools')->find(array($request->getParameter('carpool_id'))), sprintf('Object profile does not exist (%s).', $request->getParameter('carpool_id')));
+        $this->form = new CarpoolsForm($carpool);
+
+        $this->processForm($request, $this->form);
+
+        $this->setTemplate('edit');
+      }
+
+      public function executeDeleteOffer(sfWebRequest $request)
+      {
+        $request->checkCSRFProtection();
+
+        $this->forward404Unless($carpool = Doctrine_Core::getTable('Carpools')->find(array($request->getParameter('carpool_id'))), sprintf('Object profile does not exist (%s).', $request->getParameter('carpool_id')));
+        $carpool->delete();
+
+        $this->redirect('rides/offers');
+      }
+
+      protected function processFormOffer(sfWebRequest $request, sfForm $form)
+      {
+        $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+        if ($form->isValid())
+        {
+          $carpool = $form->save();
+
+          $this->redirect('rides/offers/edit?carpool_id='.$carpool->getCarpoolId());
+        }
+      }
 }

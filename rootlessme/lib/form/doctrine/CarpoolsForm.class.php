@@ -12,5 +12,7 @@ class CarpoolsForm extends BaseCarpoolsForm
 {
   public function configure()
   {
+      $this->setWidget('origin', new sfWidgetFormInputText());
+      $this->setWidget('destination', new sfWidgetFormInputText());
   }
 }

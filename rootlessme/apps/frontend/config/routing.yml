@@ -110,8 +110,44 @@ ride:
   param:
     module: ride
     action: index
+    
+ride_offer_new:
+  url: /rides/offers/new
+  class:   sfDoctrineRoute
+  param:
+    module: ride
+    action: newOffer
+  options:
+    model: Carpools
+    type: object
+  requirements:
+    sf_method: [get]
 
-driver:
+ride_offer_create:
+  url: /rides/offers/create
+  class:   sfDoctrineRoute
+  param:
+    module: ride
+    action: createOffer
+  options:
+    model: Carpools
+    type: object
+  requirements:
+    sf_method: [post]
+
+ride_offer_update:
+  url: /rides/offers/update
+  class:   sfDoctrineRoute
+  param:
+    module: ride
+    action: updateOffer
+  options:
+    model: Carpools
+    type: object
+  requirements:
+    sf_method: [post]
+
+ride_offer:
   url: /rides/offers/:carpool_id
   class:   sfDoctrineRoute
   param:
@@ -122,6 +158,7 @@ driver:
     type: object
   requirements:
     sf_method: [get]
+
 
 
 

@@ -12,5 +12,13 @@
  */
 class People extends BasePeople
 {
-
+    public function __toString()
+    {
+        $personName = "";
+        if ($this->getProfiles()->getFirst()->getFullName() != null)
+        {
+            $personName = $this->getProfiles()->getFirst()->getFullName();
+        }
+        return $personName;
+    }
 }
