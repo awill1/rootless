@@ -52,9 +52,9 @@ class rideActions extends sfActions
 
         $this->form = new CarpoolsForm();
 
-        $this->processForm($request, $this->form);
+        $this->processFormOffer($request, $this->form);
 
-        $this->setTemplate('new');
+        $this->setTemplate('newOffer');
       }
       
       public function executeEditOffer(sfWebRequest $request)
@@ -89,7 +89,34 @@ class rideActions extends sfActions
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid())
         {
-          $carpool = $form->save();
+            // Handle the route from the javascript
+            $this->logMessage('The value of carpools_route follows:', 'debug');
+            $this->logMessage($form->getValue('route'), 'debug');
+            $jRoute = json_decode($form->getValue('route'), true);
+            $this->logMessage("JSON last error: ".json_last_error(), 'debug');
+            $this->logMessage("Object: ".$jRoute, 'debug');
+            $this->logMessage("Status: ".$jRoute["status"], 'debug');
+            $routeNumber = 0;
+            $this->logMessage("Summary: ".$jRoute["routes"][$routeNumber]["summary"], 'debug');
+            $this->logMessage("Copyright: ".$jRoute["routes"][$routeNumber]["copyrights"], 'debug');
+            $copyright = $jRoute["routes"][$routeNumber]["copyrights"];
+            $summary = $jRoute["routes"][$routeNumber]["summary"];
+            //$warnings = $jRoute["routes"][$routeNumber]["warnings"];
+            $polyline = $jRoute["routes"][$routeNumber]["overview_polyline"]["points"];
+            $routeToSave = new Routes();
+            $routeToSave->setCopyright($copyright);
+            $routeToSave->setSummary($summary);
+            //$routeToSave->setWarning($warnings);
+            $routeToSave->setEncodedPolyline($polyline);
+
+            $savedRoute = $routeToSave->save();
+
+            //$this->routeID = $routeToSave->getRouteId();
+            $form->routeId = $routeToSave->getRouteId();
+
+            // Save the form
+            $carpool = $form->save();
+          
 
           $this->redirect('rides/offers/edit?carpool_id='.$carpool->getCarpoolId());
         }

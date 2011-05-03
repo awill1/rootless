@@ -34,7 +34,7 @@
 
 
             // Preview Route button
-            $('#previewRouteButton').click(previewRoute);
+            //$('#previewRouteButton').click(previewRoute);
 
             // Route preview changes whenever the user finished editing the
             // origin or destination textboxes
@@ -112,7 +112,15 @@
           };
           directionsService.route(request, function(result, status) {
             if (status == google.maps.DirectionsStatus.OK) {
-              directionsDisplay.setDirections(result);
+
+                // Set the route field to the results object for posting to the
+                // server
+                //$("#carpools_route").val(result);
+                $("#carpools_route").val(JSON.stringify(result));
+                //$("#carpools_route").val('This is the result');
+
+                // Display the directions
+                directionsDisplay.setDirections(result);
             }
           });
         }
@@ -194,6 +202,6 @@
 <?php end_slot();?>
 
 <h1>New Offer</h1>
-<?php include_partial('form', array('form' => $form)) ?>
-<input id="previewRouteButton" type="button" value="Preview route" />
+<!--<input id="previewRouteButton" type="button" value="Preview route" />-->
 <div id="map" style="width: 400px; height: 400px;"></div>
+<?php include_partial('form', array('form' => $form)) ?>

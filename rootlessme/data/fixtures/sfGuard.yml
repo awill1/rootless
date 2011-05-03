@@ -7,14 +7,45 @@ sfGuardUser:
     password:       admin
     is_super_admin: true
     Groups:         [Group_admin]
+  User_aaron:
+    first_name:     Aaron
+    last_name:      Williams
+    email_address:  aaron@rootless.me
+    username:       aaron
+    password:       aaron
+    is_super_admin: false
+    Groups:         [Group_user]
+  User_christy:
+    first_name:     Christy
+    last_name:      Williams
+    email_address:  christy@rootless.me
+    username:       christy
+    password:       christy
+    is_super_admin: false
+    Groups:         [Group_user]
+  User_lauren:
+    first_name:     Lauren
+    last_name:      Prestifillipo
+    email_address:  lauren@rootless.me
+    username:       lauren
+    password:       lauren
+    is_super_admin: false
+    Groups:         [Group_user]
 
 sfGuardGroup:
   Group_admin:
     name:           admin
     description:    Administrator group
     Permissions:    [Permission_admin]
+  Group_user:
+    name:           user
+    description:    User group
+    Permissions:    [Permission_user]
 
 sfGuardPermission:
   Permission_admin:
     name:           admin
     description:    Administrator permission
+  Permission_user:
+    name:           user
+    description:    User permission
