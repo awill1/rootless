@@ -927,6 +927,10 @@ People:
       local: person_id
       foreign: person_id
       type: many
+    sfGuardUser:
+      local: person_id
+      foreign: person_id
+      type: many
     TravelersAttendingEvent:
       local: person_id
       foreign: person_id

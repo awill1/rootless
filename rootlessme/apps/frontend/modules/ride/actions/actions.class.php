@@ -17,7 +17,10 @@ class rideActions extends sfActions
     */
     public function executeIndex(sfWebRequest $request)
     {
-        $this->forward('default', 'module');
+        $this->carpools = Doctrine_Core::getTable('Carpools')
+             ->getWithProfiles();
+        $this->passengers = Doctrine_Core::getTable('Passengers')
+             ->getWithProfiles();
     }
 
     /**

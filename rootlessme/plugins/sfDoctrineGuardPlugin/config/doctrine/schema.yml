@@ -53,6 +53,13 @@ sfGuardGroupPermission:
 sfGuardUser:
   actAs: [Timestampable]
   columns:
+    person_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
     first_name: string(255)
     last_name: string(255)
     email_address:
@@ -93,6 +100,10 @@ sfGuardUser:
       foreign: permission_id
       refClass: sfGuardUserPermission
       foreignAlias: Users
+    People:
+      local: person_id
+      foreign: person_id
+      type: one
 
 sfGuardUserPermission:
   options:

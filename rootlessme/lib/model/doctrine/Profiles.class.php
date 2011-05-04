@@ -22,4 +22,11 @@ class Profiles extends BaseProfiles
         $fullName = $fullName . $this->getLastName();
         return $fullName;
     }
+
+    public function getFriendsProfiles()
+    {
+        // Is this the correct place for this???
+        //use this SQL statement as a reference
+        // select * from profiles pr, friendships f where (pr.person_id = f.friend1_id and f.friend2_id = 1) or (pr.person_id = f.friend2_id and f.friend1_id = 1);
+    }
 }

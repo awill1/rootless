@@ -47,7 +47,7 @@
 <!--<img id="rideMapImage" src="columbusMap.JPG" alt="Interactive Map" />-->
 
 <div id="mainRidePeople">
-    <a href="profile.html">
+    <a href="<?php echo url_for("profile_show_user", $driver)  ?>">
         <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driver->getPictureUrlLarge() ?>" alt="<?php echo $driver->getFullName() ?>" />
     </a>
     <h3>Riding</h3>
@@ -58,7 +58,7 @@
     </ul>
 </div>
 <div id="mainRideDetails">
-    <h3>Posted By: <a href="<?php url_for("/profiles/".$driver->getProfileName() )  ?>"><?php echo $driver->getFullName() ?></a></h3>
+    <h3>Posted By: <a href="<?php echo url_for("profile_show_user", $driver)  ?>"><?php echo $driver->getFullName() ?></a></h3>
     <h3>Trip Value: $50</h3>
     <h3>Asking Price: $<?php echo $carpool->getAskingPrice() ?> per person</h3>
     <p id="mainRideInformation"><?php echo $carpool->getDescription() ?>

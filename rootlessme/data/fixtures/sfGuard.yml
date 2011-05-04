@@ -1,5 +1,6 @@
 sfGuardUser:
   User_admin:
+    person_id:      1
     first_name:     John
     last_name:      Doe
     email_address:  john.doe@gmail.com
@@ -8,6 +9,7 @@ sfGuardUser:
     is_super_admin: true
     Groups:         [Group_admin]
   User_aaron:
+    person_id:      1
     first_name:     Aaron
     last_name:      Williams
     email_address:  aaron@rootless.me
@@ -16,6 +18,7 @@ sfGuardUser:
     is_super_admin: false
     Groups:         [Group_user]
   User_christy:
+    person_id:      2
     first_name:     Christy
     last_name:      Williams
     email_address:  christy@rootless.me
@@ -24,6 +27,7 @@ sfGuardUser:
     is_super_admin: false
     Groups:         [Group_user]
   User_lauren:
+    person_id:      3
     first_name:     Lauren
     last_name:      Prestifillipo
     email_address:  lauren@rootless.me

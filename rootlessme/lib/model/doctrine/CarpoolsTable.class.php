@@ -16,4 +16,13 @@ class CarpoolsTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Carpools');
     }
+
+    public function getWithProfiles()
+    {
+        $q = $this->createQuery('c')
+          ->leftJoin('c.People p')
+          ->leftJoin('p.Profiles pr');;
+
+        return $q->execute();
+    }
 }

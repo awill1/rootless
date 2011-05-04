@@ -36,9 +36,9 @@
                     <li class="headerControlsListItem">
                         <?php if ($sf_user->isAuthenticated()): ?>
                             <a href="#" class="headerControl">
-                            <img src="russ_profile_tiny.JPG" alt="Tiny profile picture" />
-                            Russell Wells
-                            <img src="/images/menuDownArrow.JPG" alt="Profile Menu" />
+                                <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlTiny(); ?>" alt="Tiny profile picture" />
+                                <?php echo $sf_user->getGuardUser()->getPeople(); ?>
+                                <img src="/images/menuDownArrow.JPG" alt="Profile Menu" />
                             </a>
                             <?php echo link_to('Logout', 'sf_guard_signout') ?>
                         <?php else: ?>
@@ -55,18 +55,45 @@
 
             <div id="leftColumn">
                 <ul id="navigation">
-                    <li class="navigationItem">Dashboard</li>
-                    <li class="navigationItem">Rides</li>
-                    <li class="navigationItem">Events</li>
-                    <li class="navigationItemSelected">Travelers</li>
-                    <li class="navigationItem">Collective</li>
-                    <li class="navigationItem">Messages</li>
+                    <li class="navigationItem">
+                        <a href="#">
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="navigationItem">
+                        <a href="<?php echo url_for("ride") ?>">
+                            Rides
+                        </a>
+                    </li>
+                    <li class="navigationItem">
+                        <a href="#">
+                            Events
+                        </a>
+                    </li>
+                    <li class="navigationItemSelected">
+                        <a href="<?php echo url_for("profile") ?>">
+                            Travelers
+                        </a>
+                    </li>
+                    <li class="navigationItem">
+                        <a href="#">
+                            Collective
+                        </a>
+                    </li>
+                    <li class="navigationItem">
+                        <a href="<?php echo url_for("conversations") ?>">
+                            Messages
+                        </a>
+                    </li>
                 </ul>
                 <div id="leftContent" >
+                    <?php if ($sf_user->isAuthenticated()): ?>
                     <div id="leftProfile" class="leftWidget" >
-                        <img id="leftProfilePicture" src="russ_profile_small.JPG" alt="Russell Wells" />
-                        <h3 id="leftProfileName" class="leftWidgetTitle">Russell Wellington</h3>
-                        <a href="#" id="leftProfileLocation" >+Cincinnati</a> <br />
+                        <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>" alt="<?php echo $sf_user->getGuardUser()->getPeople(); ?>" />
+                        <h3 id="leftProfileName" class="leftWidgetTitle"><?php echo $sf_user->getGuardUser()->getPeople(); ?></h3>
+                        
+                        
+                        <a href="#" id="leftProfileLocation" >+<?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getCity(); ?></a> <br />
                         <a href="#" id="leftProfileViewLink" >View Profile</a>
                     </div>
                     <div id="leftActivity" class="leftWidget">
@@ -130,6 +157,7 @@
                             </li>
                         </ul>
                     </div>
+                    <?php endif ?>
                 </div>
             </div>
 

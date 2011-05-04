@@ -16,4 +16,13 @@ class PassengersTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Passengers');
     }
+
+    public function getWithProfiles()
+    {
+        $q = $this->createQuery('c')
+          ->leftJoin('c.People p')
+          ->leftJoin('p.Profiles pr');;
+
+        return $q->execute();
+    }
 }

@@ -24,6 +24,7 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @property Doctrine_Collection $Reviews
  * @property Doctrine_Collection $Reviews_2
  * @property Doctrine_Collection $SecuritySettings
+ * @property Doctrine_Collection $sfGuardUser
  * @property Doctrine_Collection $TravelersAttendingEvent
  * @property Doctrine_Collection $Users
  * @property Doctrine_Collection $Vehicles
@@ -45,6 +46,7 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @method Doctrine_Collection getReviews()                  Returns the current record's "Reviews" collection
  * @method Doctrine_Collection getReviews2()                 Returns the current record's "Reviews_2" collection
  * @method Doctrine_Collection getSecuritySettings()         Returns the current record's "SecuritySettings" collection
+ * @method Doctrine_Collection getSfGuardUser()              Returns the current record's "sfGuardUser" collection
  * @method Doctrine_Collection getTravelersAttendingEvent()  Returns the current record's "TravelersAttendingEvent" collection
  * @method Doctrine_Collection getUsers()                    Returns the current record's "Users" collection
  * @method Doctrine_Collection getVehicles()                 Returns the current record's "Vehicles" collection
@@ -65,6 +67,7 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @method People              setReviews()                  Sets the current record's "Reviews" collection
  * @method People              setReviews2()                 Sets the current record's "Reviews_2" collection
  * @method People              setSecuritySettings()         Sets the current record's "SecuritySettings" collection
+ * @method People              setSfGuardUser()              Sets the current record's "sfGuardUser" collection
  * @method People              setTravelersAttendingEvent()  Sets the current record's "TravelersAttendingEvent" collection
  * @method People              setUsers()                    Sets the current record's "Users" collection
  * @method People              setVehicles()                 Sets the current record's "Vehicles" collection
@@ -72,7 +75,7 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @package    RootlessMe
  * @subpackage model
  * @author     awilliams
- * @version    SVN: $Id: Builder.php 7691 2011-02-04 15:43:29Z jwage $
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BasePeople extends sfDoctrineRecord
 {
@@ -163,6 +166,10 @@ abstract class BasePeople extends sfDoctrineRecord
              'foreign' => 'reviewee_id'));
 
         $this->hasMany('SecuritySettings', array(
+             'local' => 'person_id',
+             'foreign' => 'person_id'));
+
+        $this->hasMany('sfGuardUser', array(
              'local' => 'person_id',
              'foreign' => 'person_id'));
 
