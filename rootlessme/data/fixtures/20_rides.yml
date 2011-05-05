@@ -75,11 +75,12 @@ Routes:
     copyright: "Map data Â©2011 Google"
     summary: "I-270 N and US-23 N"
     warning: "Roads may be closed."
+    encoded_polyline: "{bcsF~k{xN}CAw@dAOn@KtEDvCnBrHj@fFk@zS_@r@i@PyGGm@x@M`Ag@x[h@dGv@nF`@zFBlCc@zM@lGlA|QTdJcAzh@YdBaAxB_BtAoAb@kBF}Bg@y@a@_BoBmCmFs@{@_V{h@cGgK}DiIiAmDkDgN_CyFoAaBiBeBiEoAgAMkC?_Dl@oRjIyEdA_CXeZSahCcI{JMoNXoM~@sMjBsnAhYgFv@uE^qDJ_EC_y@sCo[w@aC@sHr@cHxAiEzA_F~B}FxDkDxCgDvDeDnE_DpF}DzJoCtJkBbKwSrfBsMdkAaJxt@qPzyAuA`S{@dUaDprBwAvgAo@jOGrGm@tFgAlDyEvJkAdAgAXeCFiSm@o@PeMWsO@_aBxE}lBlG_UlBm~@hJiFt@eNrAwG`A}|B~b@_@E}P`DefDbo@iEhA}BfAyDnCgf@bd@uk@nk@q\p]qHtGsT`PsKzGsJfFcl@t`@_KhFwFtB{F`BqGrAsKlAkHT}HIyHe@oH_AyA[}BoAyIuHwBkAoCy@eZwFeCu@gFaCic@uUsE}AyBYcFBuFxAuVxM}B~@_Cd@gC?wCg@}B_AwHaEaDeAiAKiCHcDx@gl@rVeClAQ\uErCoO~HaKbEiJnCAbFk@`AsAt@Gh@]ZSh@IdAKtKLlAv@`DiCvAXtBLzCw@jNP|Az@t@pHVr@StAgCt@]lJ\RuL"
   route_2_city_to_city:
     route_id: 2
     copyright: "Map data Â©2011 Europa Technologies, Google"
     summary: "I-40 W"
-    encoded_polyline: "eir~FdezuOfgOvssCkvSbyq@tCxiqAjlh@pjkErb]pqd@exJt|KamRhanFmd@`uxHzdg@hpeEq\\dvgG|zr@xso@`{@xtq@xki@n~j@bbd@p`vAej@rm`I|~\\d~vBmkFl{|Bc|lAp|oEkq@xgbEnaeAjhqFf}|AdftBzmGphsB`~Wd}rAlvnAbfvBowLhzpA`sWpjpAv~YpfVgg[ly[nlFraZyfShyo@ve]bgiB|eF|vtBv`\\`t}@rnp@li^ft@r__A{`W|op@zuGxyf@`yp@b_|@tlAjsdBuzLbam@hdm@nakFewVfm_@g{I|nz@`}cAv{pAbYpm~@tvf@j`Jntk@waHv_v@~wg@tu[v_n@hrrArpm@|w`@dcp@vaWb}L~`k@tpiBt_Cpuo@~ocBfkfCzxv@voLjue@|c`@~zt@zeRx|R~yxAtzr@ftcAl|`@rqxAt|GzlaAxihBvvpAdmY_hLfkZv`Yf`B|agC"
+    encoded_polyline: "eir~FdezuOren@|rfBtc~@tsE`vnApw{A`dw@~w\buN|pf@f{Y|_Fblh@rxo@b}@xxS~xtAllk@`yaBoJxlcBb~t@zbh@jc|Bx}C`rv@rw|@rlhA~dVzeo@vrSnc}Axf]fjz@xfFbw~@dz{A~d{A|zOxbrBbdUvpo@`cFp~xBc`Hk@nurDznmFfwMbwz@bbl@lq~@loPpxq@bw_@v|{CbtY~jGqeMb{iF|n\~mbDzeVh_Wr|Efc\x`Ij{kE}mAb~uF{cNd}xBjp]fulBiwJpgg@|kHntyArpb@bijCk_Kv~eGyqTj_|@`uV`k|DcsNdwxAknt@zpq@mmc@lbaCxvHdak@dse@x{p@zpiAp|gEicy@`omFbaEnko@ufQ|ilApqGze~AsyRzrjAb__@ftyBooIhr_BxjmAbwQftNboWzoAlzp@mz`@|}_@fda@jakEitAn{fB_a]lexClshBtmqAdmY_hLxiZd~XtaBndgC"
 
 
 Legs:

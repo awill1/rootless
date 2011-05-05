@@ -19,9 +19,9 @@
         $(document).ready(function(){
 
             // Google map loading
-            var latlng = new google.maps.LatLng(-34.397, 150.644);
+            var latlng = new google.maps.LatLng(<?php echo sfConfig::get('app_google_map_default_latitude') ?>, <?php echo sfConfig::get('app_google_map_default_longitude') ?>);
             var myOptions = {
-                zoom: 8,
+                zoom: <?php echo sfConfig::get('app_google_map_default_zoom') ?>,
                 center: latlng,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
@@ -38,26 +38,26 @@
 
             // Route preview changes whenever the user finished editing the
             // origin or destination textboxes
-            $('#carpools_origin').change(previewRoute);
-            $('#carpools_destination').change(previewRoute);
+            $('#carpools_route_origin').change(previewRoute);
+            $('#carpools_route_destination').change(previewRoute);
            
         });
 
         function previewRoute() {
-            if ($("#carpools_origin").val())
+            if ($("#carpools_route_origin").val())
             {
                 // Get the location of the origin, and place a marker on the map
-                var originValue = $("#carpools_origin").val();
+                var originValue = $("#carpools_route_origin").val();
                 var originGeocodeRequest = {
                     address: originValue
                 };
                 geocoder.geocode(originGeocodeRequest, showResults);
             }
 
-            if ($("#carpools_destination").val())
+            if ($("#carpools_route_destination").val())
             {
                 // Get the location of the destination, and place a marker on the map
-                var destinationValue = $("#carpools_destination").val();
+                var destinationValue = $("#carpools_route_destination").val();
                 var destinationGeocodeRequest = {
                     address: destinationValue
                 };
@@ -103,8 +103,8 @@
         }
 
         function calcRoute() {
-          var start = $("#carpools_origin").val();
-          var end = $("#carpools_destination").val();
+          var start = $("#carpools_route_origin").val();
+          var end = $("#carpools_route_destination").val();
           var request = {
             origin:start,
             destination:end,
@@ -115,9 +115,9 @@
 
                 // Set the route field to the results object for posting to the
                 // server
-                //$("#carpools_route").val(result);
-                $("#carpools_route").val(JSON.stringify(result));
-                //$("#carpools_route").val('This is the result');
+                //$("#carpools_route_route_data").val(result);
+                $("#carpools_route_route_data").val(JSON.stringify(result));
+                //$("#carpools_route_route_data").val('This is the result');
 
                 // Display the directions
                 directionsDisplay.setDirections(result);
