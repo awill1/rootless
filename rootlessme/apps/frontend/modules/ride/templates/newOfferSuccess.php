@@ -1,4 +1,5 @@
 <?php use_javascript("jquery.js") ?>
+<?php use_stylesheet("ride.css") ?>
 
 <?php slot(
   'title',
@@ -14,6 +15,7 @@
         var directionDisplay;
         var directionsService = new google.maps.DirectionsService();
         var geocoder;
+        var locations = new Array();
 
         // Function when the page is ready
         $(document).ready(function(){
@@ -31,11 +33,6 @@
             directionsDisplay = new google.maps.DirectionsRenderer();
             directionsDisplay.setMap(map);
 
-
-
-            // Preview Route button
-            //$('#previewRouteButton').click(previewRoute);
-
             // Route preview changes whenever the user finished editing the
             // origin or destination textboxes
             $('#carpools_route_origin').change(previewRoute);
@@ -51,7 +48,7 @@
                 var originGeocodeRequest = {
                     address: originValue
                 };
-                geocoder.geocode(originGeocodeRequest, showResults);
+                geocoder.geocode(originGeocodeRequest, geocodeOrigin);
             }
 
             if ($("#carpools_route_destination").val())
@@ -61,31 +58,30 @@
                 var destinationGeocodeRequest = {
                     address: destinationValue
                 };
-                geocoder.geocode(destinationGeocodeRequest, showResults);
+                geocoder.geocode(destinationGeocodeRequest, geocodeDestination);
             }
+
+            // Send the geocoded information to the server
+            $("#carpools_route_origin_data").val(JSON.stringify(locations[0]));
+            $("#carpools_route_destination_data").val(JSON.stringify(locations[1]));
 
             // Get the directions
             calcRoute();
         }
 
-        function showResults(results, status) {
-          //var reverse = (clickMarker != null);
+        function geocodeOrigin(results, status) {
+            showResults(results, status,0);
+        }
 
+        function geocodeDestination(results, status) {
+            showResults(results, status,1);
+        }
+
+        function showResults(results, status, locationNumber) {
           if (! results) {
             alert("Geocoder did not return a valid response");
           } else {
-//            document.getElementById("statusValue").innerHTML = status;
-//            document.getElementById("statusDescription").innerHTML = GeocoderStatusDescription[status];
-//
-//            document.getElementById("responseInfo").style.display = "block";
-//            document.getElementById("responseStatus").style.display = "block";
-
             if (status == google.maps.GeocoderStatus.OK) {
-//              document.getElementById("matchCount").innerHTML = results.length;
-//              document.getElementById("responseCount").style.display = "block";
-//              plotMatchesOnMap(results, reverse);
-
-
                 var myLatlng = results[0].geometry.location;
                 var marker = new google.maps.Marker({
                    position: myLatlng,
@@ -93,11 +89,9 @@
                      title:"Hello World!"
                 });
                 map.panTo(myLatlng);
+                locations[locationNumber] = results[0];
             } else {
-//              if (! reverse) {
-//                map.setCenter(new google.maps.LatLng(0.0, 0.0));
-//                map.setZoom(1);
-//              }
+
             }
           }
         }
@@ -115,9 +109,7 @@
 
                 // Set the route field to the results object for posting to the
                 // server
-                //$("#carpools_route_route_data").val(result);
                 $("#carpools_route_route_data").val(JSON.stringify(result));
-                //$("#carpools_route_route_data").val('This is the result');
 
                 // Display the directions
                 directionsDisplay.setDirections(result);
@@ -131,5 +123,5 @@
 
 <h1>New Offer</h1>
 <!--<input id="previewRouteButton" type="button" value="Preview route" />-->
-<div id="map" style="width: 400px; height: 400px;"></div>
+<div id="map"></div>
 <?php include_partial('form', array('form' => $form)) ?>

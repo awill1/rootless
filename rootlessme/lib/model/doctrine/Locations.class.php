@@ -36,4 +36,76 @@ class Locations extends BaseLocations
         return $returnString;
 
     }
+
+    public function createFromGoogleGeocode($googleGeocode = null)
+    {
+        sfContext::getInstance()->getLogger()->debug($googleGeocode);
+
+        // Make sure the geocode is not null
+        if ($googleGeocode == null)
+        {
+            sfContext::getInstance()->getLogger()->error("googleGeocode is null.");
+            return;
+        }
+
+        // The geocode should be in JSON format, so decode them
+        $jLocation = json_decode($googleGeocode, true);
+        if (json_last_error() != JSON_ERROR_NONE)
+        {
+            sfContext::getInstance()->getLogger()->error("JSON last error: ".json_last_error());
+            return;
+        }
+
+        // Update the location based on the geocoded information
+        $this->setName($jLocation['formatted_address']);
+        $streetNumber = "";
+        $street1 = "";
+        foreach ($jLocation['address_components'] as $addressComponent)
+        {
+            
+            // Street Number
+            if (in_array("street_number",$addressComponent["types"]))
+            {
+                $streetNumber = $addressComponent["long_name"];
+            }
+            // Street1
+            if (in_array("route",$addressComponent["types"]))
+            {
+                $street1 = $addressComponent["long_name"];
+            }
+            // Postal Code
+            if (in_array("postal_code",$addressComponent["types"]))
+            {
+                $this->setPostalCode($addressComponent["long_name"]);
+            }
+            // City
+            if (in_array("locality",$addressComponent["types"]))
+            {
+                $this->setCity($addressComponent["long_name"]);
+            }
+            // State
+            if (in_array("administrative_area_level_1",$addressComponent["types"]))
+            {
+                $this->setState($addressComponent["short_name"]);
+            }
+            // Country
+            if (in_array("country",$addressComponent["types"]))
+            {
+                $this->setCountry($addressComponent["short_name"]);
+            }
+        }
+
+        // Update the street if either component was found
+        if ( $streetNumber!="" || $street1 != "")
+        {
+            $this->setStreet1(trim($streetNumber." ".$street1));
+        }
+
+        
+        // Save this location with the updates
+        $this->save();
+
+        return;
+
+    }
 }
