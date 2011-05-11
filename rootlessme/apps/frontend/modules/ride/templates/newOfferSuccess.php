@@ -1,4 +1,5 @@
-<?php use_javascript("jquery.js") ?>
+<?php use_javascript(sfConfig::get('app_jquery_script')) ?>
+<?php use_javascript(sfConfig::get('app_google_map_script')) ?>
 <?php use_stylesheet("ride.css") ?>
 
 <?php slot(
@@ -7,9 +8,6 @@
 ?>
 
 <?php slot('gmapheader'); ?>
-    <script type="text/javascript"
-        src="http://maps.google.com/maps/api/js?sensor=false">
-    </script>
     <script type="text/javascript">
         var map = null;
         var directionDisplay;
@@ -61,20 +59,22 @@
                 geocoder.geocode(destinationGeocodeRequest, geocodeDestination);
             }
 
-            // Send the geocoded information to the server
-            $("#carpools_route_origin_data").val(JSON.stringify(locations[0]));
-            $("#carpools_route_destination_data").val(JSON.stringify(locations[1]));
-
             // Get the directions
             calcRoute();
         }
 
         function geocodeOrigin(results, status) {
-            showResults(results, status,0);
+            var locationNumber = 0;
+            showResults(results, status, locationNumber);
+            // Send the geocoded information to the server
+            $("#carpools_route_origin_data").val(JSON.stringify(locations[ locationNumber]));
         }
 
         function geocodeDestination(results, status) {
-            showResults(results, status,1);
+            var locationNumber = 1;
+            showResults(results, status, locationNumber);
+            // Send the geocoded information to the server
+            $("#carpools_route_destination_data").val(JSON.stringify(locations[locationNumber]));
         }
 
         function showResults(results, status, locationNumber) {

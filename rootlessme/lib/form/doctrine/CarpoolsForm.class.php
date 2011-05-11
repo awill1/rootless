@@ -20,31 +20,35 @@ class CarpoolsForm extends BaseCarpoolsForm
         $solo_route_form = new RoutesForm($solo_route);
         $this->embedForm('route', $solo_route_form);
 
+        // Change the vehicle list to only include the user's vehicles
+        $personId = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
+        $this->setWidget('vehicle_id', new sfWidgetFormDoctrineChoice(array(
+            'model' => $this->getRelatedModelName('Vehicles'),
+            'add_empty' => false,
+            'query' => Doctrine::getTable('Vehicles')->getQueryForPerson($personId)
+                )));
+
+        // Choose the fields that will be displayed
         unset($this['created_at']);
         unset($this['updated_at']);
-
         $this->useFields(array(
             'carpool_id',
-//            'origin',
-//            'destination',
-//            'copyright',
             'route',
-//            'solo_route_id',
-//            'route_id',
-            'driver_id',
             'vehicle_id',
-//            'route_id',
             'seats_available',
             'start_date',
             'start_time',
             'asking_price',
             'description'));
 
+
+
     }
     
     public function doSave($con = null) {
 //        sfContext::getInstance()->getLogger()->info('Save values:');
 //        sfContext::getInstance()->getLogger()->info(var_dump($this->getValues()));
+
         
         $route_data = $this->values['route']['route_data'];
 
@@ -60,9 +64,12 @@ class CarpoolsForm extends BaseCarpoolsForm
         $origin_data = $this->values['route']['origin_data'];
         $origin = $route->getOriginLocation();
         $origin->createFromGoogleGeocode($origin_data);
-//        $destination_data = $this->values['route']['destination_data'];
-//        $destination = $route->getDestinationLocation();
-//        $destination->createFromGoogleGeocode($destination_data);
+        $destination_data = $this->values['route']['destination_data'];
+        $destination = $route->getDestinationLocation();
+        $destination->createFromGoogleGeocode($destination_data);
+
+        // The driver should be the user who is logged in
+        $this->values['driver_id'] = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
 
         return parent::doSave($con);
     }

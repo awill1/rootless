@@ -16,4 +16,26 @@ class VehiclesTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Vehicles');
     }
+
+    public function getVehiclesForPerson($person_id)
+    {
+//        $q = $this->createQueryDoctrine_Query::create()
+//            ->from('Vehicles v')
+//            ->where('v.person_id = ?', $person_id);
+         $q = $this->createQuery('v')
+            ->where('v.person_id = ?', $person_id);
+
+        return $q->execute();
+    }
+
+        public function getQueryForPerson($person_id)
+    {
+//        $q = $this->createQueryDoctrine_Query::create()
+//            ->from('Vehicles v')
+//            ->where('v.person_id = ?', $person_id);
+         $q = $this->createQuery('v')
+            ->where('v.person_id = ?', $person_id);
+
+        return $q;
+    }
 }

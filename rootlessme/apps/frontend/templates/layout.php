@@ -96,6 +96,13 @@
                         <a href="#" id="leftProfileLocation" >+<?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getCity(); ?></a> <br />
                         <a href="#" id="leftProfileViewLink" >View Profile</a>
                     </div>
+                    <div id="leftActions" class="leftWidget">
+                        <ul id="leftActionsList">
+                            <li class="leftActionItem"><button class="leftActionButton" >+ Create an Event</button></li>
+                            <li class="leftActionItem"><button class="leftActionButton" onClick="location.href='<?php echo url_for(); ?>';" >+ Offer a Ride</button></li>
+                            <li class="leftActionItem"><button class="leftActionButton" >+ Request a Ride</button></li>
+                        </ul>
+                    </div>
                     <div id="leftActivity" class="leftWidget">
                         <h3 class="leftWidgetTitle">Recent Activity</h3>
                         <ul id="leftActivityList">
@@ -105,31 +112,6 @@
                             <li class="leftActivityItem"><a href="#" class="leftActivityLink">Janet Dickenson</a> left a testimonial on your <a href="#" class="leftActivityLink">profile.</a></li>
                             <li class="leftActivityItem">You and <a href="#" class="leftActivityLink">Colin Hoell</a> are attending <a href="#" class="leftActivityLink">Bonnaroo</a>.</li>
                             <li class="leftActivityItem"><a href="#" class="leftActivityLink">Janet Dickenson</a> left a testimonial on your <a href="#" class="leftActivityLink">profile.</a></li>
-                        </ul>
-                    </div>
-                    <div id="leftEvents" class="leftWidget">
-                        <h3 class="leftWidgetTitle">Upcoming Events</h3>
-                        <ul id="leftEventList">
-                            <li class="leftEventItem">
-                                <img class="leftEventDateImage" src="dateImage.JPG" alt="April 02, 2011" />
-                                <div class="leftEventName">Bonnaroo</div>
-                                <div class="leftEventLocation">Chicago</div>
-                            </li>
-                            <li class="leftEventItem">
-                                <img class="leftEventDateImage" src="dateImage.JPG" alt="April 02, 2011" />
-                                <div class="leftEventName">Bonnaroo</div>
-                                <div class="leftEventLocation">Chicago</div>
-                            </li>
-                            <li class="leftEventItem">
-                                <img class="leftEventDateImage" src="dateImage.JPG" alt="April 02, 2011" />
-                                <div class="leftEventName">Bonnaroo</div>
-                                <div class="leftEventLocation">Chicago</div>
-                            </li>
-                            <li class="leftEventItem">
-                                <img class="leftEventDateImage" src="dateImage.JPG" alt="April 02, 2011" />
-                                <div class="leftEventName">Bonnaroo</div>
-                                <div class="leftEventLocation">Chicago</div>
-                            </li>
                         </ul>
                     </div>
                     <div id="leftRides" class="leftWidget">
