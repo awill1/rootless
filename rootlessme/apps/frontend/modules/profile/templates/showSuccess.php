@@ -1,15 +1,22 @@
+<?php use_javascript(sfConfig::get('app_jquery_script')) ?>
 <?php use_stylesheet('profile.css') ?>
 
 <?php slot(
   'title',
-  sprintf('Rootless Me - %s %s', $profile->getFirstName(), $profile->getLastName()))
+  sprintf('Rootless Me - %s', $profile->getFullName()))
 ?>
 
-<h1 id="mainProfileTitle"><?php echo $profile->getFirstName() ?> <?php echo $profile->getLastName() ?> <a id="mainProfileTitleEditLink" href="#">Edit&nbsp;Profile</a></h1>
+<?php slot('gmapheader'); ?>
+    <script type="text/javascript">
+
+    </script>
+<?php end_slot();?>
+
+<h1 id="mainProfileTitle"><?php echo $profile->getFullName() ?> <a id="mainProfileTitleEditLink" href="#">Edit&nbsp;Profile</a></h1>
 <a id="mainProfileSubtitle" href="<?php echo $profile->getWebsiteUrl() ?>"><?php echo $profile->getWebsiteUrl() ?></a>
 
 <div id="middleProfileBadge">
-    <img src="<?php echo $profile->getPictureUrlLarge() ?>" alt="<?php echo $profile->getFirstName() ?> <?php echo $profile->getLastName() ?> profile picture"/>
+    <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $profile->getPictureUrlLarge() ?>" alt="<?php echo $profile->getFullName() ?> profile picture"/>
     <div class="middleProfileBadgeInfo">Rides Given <strong>10</strong> Rides Received <strong>38</strong> <a href="#"><img src="/images/messageButton.JPG" alt="Message" /></a></div>
 </div>
      <h2><?php echo $profile->getBirthday() ?> year old <?php echo $profile->getGender() ?> from
@@ -18,10 +25,9 @@
     <?php echo $profile->getAboutMe() ?>
 </p>
 <h3 id="middleTop5">Top 5</h3>
-<p><?php // echo $profiles->getTop5() ?></p>
+<p><?php  echo $profile->getTop5() ?></p>
 
 <h3><?php echo $profile->getFirstName() ?> wants to go to <a href="#" class="locationLink">Bonneroo</a></h3>
-
 
 <div id="middleProfileDetails">
     <ul class="tabList">
@@ -160,7 +166,7 @@
 
 
 
-<table>
+<!--<table>
   <tbody>
     <tr>
       <th>Profile name:</th>
@@ -289,4 +295,4 @@
 
 <a href="<?php echo url_for('profile/edit?profile_name='.$profile->getProfileName()) ?>">Edit</a>
 &nbsp;
-<a href="<?php echo url_for('profile/index') ?>">List</a>
+<a href="<?php echo url_for('profile/index') ?>">List</a>-->

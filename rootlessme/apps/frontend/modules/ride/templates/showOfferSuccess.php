@@ -26,15 +26,15 @@
             +<?php echo $destination->getCityStateString() ?>
         </a>
     </h1>
-    <p>going to <a href="#">Sun Country at Bogarts</a></p>
-    <?php echo $carpool->getSeatsAvailable() ?>
-    <?php echo ($carpool->getSeatsAvailable() == 1 ? "seat" : "seats") ?>
-    available
-    Ride Offer
+    <p>Ride Offer</p>
+    <p>
+        <?php echo $carpool->getSeatsAvailable() ?>
+        <?php echo ($carpool->getSeatsAvailable() == 1 ? "seat" : "seats") ?>
+        available
+    </p>
     <!-- TODO: Add smoking -->
-    Smoking: Yes
-    One Way Trip
-    <a id="mainEventSubtitle" href="www.coachella.com">www.coachella.com</a>
+    <p>Smoking: Yes</p>
+    <p>One Way Trip</p>
     <ul>
         <li><a href="#">Request a Ride</a></li>
     </ul>
@@ -47,8 +47,10 @@
 <!--<img id="rideMapImage" src="columbusMap.JPG" alt="Interactive Map" />-->
 
 <div id="mainRidePeople">
+    <h3>Driving</h3>
     <a href="<?php echo url_for("profile_show_user", $driver)  ?>">
-        <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driver->getPictureUrlLarge() ?>" alt="<?php echo $driver->getFullName() ?>" />
+        <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driver->getPictureUrlSmall() ?>" alt="<?php echo $driver->getFullName() ?>" />
+        <div><?php echo $driver->getFullName() ?></div>
     </a>
     <h3>Riding</h3>
     <ul>
