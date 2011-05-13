@@ -23,10 +23,20 @@ class Profiles extends BaseProfiles
         return $fullName;
     }
 
-    public function getFriendsProfiles()
+    public function getAge()
     {
-        // Is this the correct place for this???
-        //use this SQL statement as a reference
-        // select * from profiles pr, friendships f where (pr.person_id = f.friend1_id and f.friend2_id = 1) or (pr.person_id = f.friend2_id and f.friend1_id = 1);
+
+        $birth_date = $this->getBirthday();
+        list($birth_year,$birth_month,$birth_day) = explode("-", $birth_date);
+        $year_diff=date("Y")-$birth_year;
+        $this_birthday=date("Y").$birth_month.$birth_day;
+        $date=date("Ymd");
+
+        if($this_birthday>$date){
+            $year_diff--;
+        }
+
+        return $year_diff;
+
     }
 }

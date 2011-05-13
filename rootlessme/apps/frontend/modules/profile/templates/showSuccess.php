@@ -19,7 +19,7 @@
     <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $profile->getPictureUrlLarge() ?>" alt="<?php echo $profile->getFullName() ?> profile picture"/>
     <div class="middleProfileBadgeInfo">Rides Given <strong>10</strong> Rides Received <strong>38</strong> <a href="#"><img src="/images/messageButton.JPG" alt="Message" /></a></div>
 </div>
-     <h2><?php echo $profile->getBirthday() ?> year old <?php echo $profile->getGender() ?> from
+     <h2><?php echo $profile->getAge() ?> year old <?php echo $profile->getGender() ?> from
          <a id="mainProfileLocationLink" href="#" class="locationLink">+<?php echo $profile->getCity() ?></a></h2>
 <p>
     <?php echo $profile->getAboutMe() ?>
