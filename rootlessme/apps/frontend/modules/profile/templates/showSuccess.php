@@ -43,14 +43,9 @@
 
             <h3>Rootless Me Friends</h3>
             <ul class="middleFriendsList">
-                <li class="middleFriendsListItem"><a href="profile_aaron"><img src="lauren_profile_small.JPG" alt="Aaron Williams" /></a></li>
-                <li class="middleFriendsListItem"><a href="profile_christy"><img src="lauren_profile_small.JPG" alt="Christy Williams" /></a></li>
-                <li class="middleFriendsListItem"><a href="#"><img src="lauren_profile_small.JPG" alt="Friend1" /></a></li>
-                <li class="middleFriendsListItem"><a href="#"><img src="lauren_profile_small.JPG" alt="Friend1" /></a></li>
-                <li class="middleFriendsListItem"><a href="#"><img src="lauren_profile_small.JPG" alt="Friend1" /></a></li>
-                <li class="middleFriendsListItem"><a href="#"><img src="lauren_profile_small.JPG" alt="Friend1" /></a></li>
-                <li class="middleFriendsListItem"><a href="#"><img src="lauren_profile_small.JPG" alt="Friend1" /></a></li>
-                <li class="middleFriendsListItem"><a href="#"><img src="lauren_profile_small.JPG" alt="Friend1" /></a></li>
+            <?php foreach ($friends as $friend): ?>
+                <li class="middleFriendsListItem"><a href="<?php echo $friend->getProfileName() ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $friend->getPictureUrlSmall() ?>" alt="<?php echo $friend->getFullName() ?>" /></a></li>
+            <?php endforeach; ?>
             </ul>
             <div class="middleFriendsListMore"><a class="seeMoreLink" href="#">&gt;&gt;see more</a></div>
 

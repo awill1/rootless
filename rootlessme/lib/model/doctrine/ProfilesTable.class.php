@@ -16,4 +16,23 @@ class ProfilesTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Profiles');
     }
+
+    public function getFriendsProfiles($person_id)
+    {
+        // Need this function to match this query
+        // select * from profiles
+        // where person_id IN (
+        // select f.friend1_id as friend_id
+        // from friendships f
+        // where f.friend2_id = 1
+        // union all
+        // select f2.friend2_id as friend_id
+        // from friendships f2
+        // where f2.friend1_id = 1);
+
+        $q = $this->createQuery('p')
+                ->where('p.person_id IN (select friend1_id as friend_id from friendships where friend2_id = ? union all select friend2_id as friend_id from friendships where friend1_id = ?)', array($person_id, $person_id));
+
+        return $q->execute();
+    }
 }

@@ -16,35 +16,4 @@ class FriendshipsTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Friendships');
     }
-
-    public function getFriendsWithProfilesForPerson($personId = null)
-    {
-        // Need to match this query
-        // SELECT * FROM profiles p, friendships f
-        // WHERE
-        // (f.friend2_id=p.person_id AND f.friend1_id = 2)
-        // OR
-        // (f.friend1_id=p.person_id AND f.friend2_id = 2);
-        //
-        // Or this query
-        // SELECT * FROM friendships f
-        // LEFT JOIN people p ON (p.person_id = f.friend1_id AND f.friend2_id = 1) OR (p.person_id = f.friend2_id AND f.friend1_id = 1)
-        // LEFT JOIN profiles pr ON pr.person_id = p.person_id;
-
-//        $q = Doctrine_Query::create()
-//          ->from('Profiles p, Friendships f')
-//          ->where('(f.friend2_id=p.person_id AND f.friend1_id = 2) OR (f.friend1_id=p.person_id AND f.friend2_id = 2)');
-
-//        $q = $this->createQuery('f')
-//                ->addFrom('Profiles p')
-//                ->where('(f.friend2_id=p.person_id AND f.friend1_id = 2) OR (f.friend1_id=p.person_id AND f.friend2_id = 2)');
-
-        $q = $this->createQuery('f')
-          ->leftJoin('f.People p ON (p.person_id = f.friend1_id AND f.friend2_id = 1) OR (p.person_id = f.friend2_id AND f.friend1_id = 1)');
-//          ->leftJoin('u.Phonenumbers p ON u.id = p.user_id AND p.primary_num = ?', true);
-//          ->leftJoin('p.Profiles pr')
-//          ->      ;
-
-        return $q->execute();
-    }
 }
