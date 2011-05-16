@@ -26,10 +26,62 @@ class rideActions extends sfActions
         // ORDER BY start_date, start_time;
         // Need to add the query at the appropriate place in the model.
 
+        $this->searchForm = new RideSearchForm();
         $this->carpools = Doctrine_Core::getTable('Carpools')
              ->getWithProfiles();
         $this->passengers = Doctrine_Core::getTable('Passengers')
              ->getWithProfiles();
+
+        // AJAX parts for rendering the results
+        if ($request->isXmlHttpRequest())
+        {
+            if (!$this->carpools)
+            {
+                return $this->renderText('No results.');
+            }
+
+            return $this->renderPartial('job/list', array('jobs' => $this->jobs));
+        }
+    }
+
+    /**
+    * Executes search action
+    *
+    * @param sfRequest $request A request object
+    */
+    public function executeSearch(sfWebRequest $request)
+    {
+        // Get the request parameters
+        $this->date = $request->getParameter('rides_date');
+
+        // Will need to change this to use the search results
+//        $this->carpools = Doctrine_Core::getTable('Carpools')
+//             ->getWithProfiles();
+        // Hardcoding
+        $myStartLatitude = 40.31;
+        $myStartLongitude = -83.09;
+        $myEndLatitude = 41.05;
+        $myEndLongitude = -85.26;
+        $myDistance = 10;
+        $this->carpools = Doctrine_Core::getTable('Carpools')
+             ->getNearPoints($myStartLatitude, $myStartLongitude, $myEndLatitude, $myEndLongitude, $myDistance);
+        $this->passengers = Doctrine_Core::getTable('Passengers')
+             ->getWithProfiles();
+
+
+        //$this->forwardUnless($query = $request->getParameter('query'), 'job', 'index');
+
+
+        if ($request->isXmlHttpRequest())
+        {
+            //if ('*' == $query || !$this->carpools)
+            if (!$this->passengers)
+            {
+              return $this->renderText('No results.');
+            }
+
+            return $this->renderPartial('ridesList', array('carpools' => $this->passengers));
+        }
     }
 
     /**

@@ -25,4 +25,82 @@ class CarpoolsTable extends Doctrine_Table
 
         return $q->execute();
     }
+
+    public function getNearPoints ($originLatitude, $originLongitude, $destinationLatitude, $destinationLongitude, $distance)
+    {
+        // Use a query similar to the following
+        // SELECT * FROM carpools c
+        // INNER JOIN routes r
+        // ON c.route_id = r.route_id
+        // WHERE EXISTS
+        // (
+        //         SELECT *,  MIN(DISTANCE($origin->getLatitude(), $origin->getLongitude(), o.latitude, o.longitude)) as start_distance
+        //         FROM locations o
+        //         INNER JOIN  steps os
+        //         ON os.step_id = o.step_id
+        //         INNER JOIN  legs ole
+        //         ON ole.leg_id = os.leg_id
+        //         INNER JOIN routes oro
+        //         ON oro.route_id = ole.route_id
+        //         GROUP BY oro.route_id
+        //         HAVING start_distance < $distance
+        //           AND r.route_id = oro.route_id
+        // )
+        // AND EXISTS (
+        //         SELECT *,  MIN(DISTANCE($destination->getLatitude(), $destination->getLongitude, d.latitude, d.longitude)) as end_distance
+        //         FROM locations d
+        //         INNER JOIN  steps ds
+        //         ON ds.step_id = d.step_id
+        //         INNER JOIN  legs dle
+        //         ON dle.leg_id = ds.leg_id
+        //         INNER JOIN routes dro
+        //         ON dro.route_id = dle.route_id
+        //         GROUP BY dro.route_id
+        //         HAVING end_distance < $distance
+        //           AND r.route_id = dro.route_id
+        // );
+        $q = $this->createQuery('c')
+          ->leftJoin('c.Routes r')
+          ->andWhere('EXISTS (
+                 SELECT *,  MIN(DISTANCE(?, ?, o.latitude, o.longitude)) as start_distance
+                 FROM locations o
+                 INNER JOIN  steps os
+                 ON os.step_id = o.step_id
+                 INNER JOIN  legs ole
+                 ON ole.leg_id = os.leg_id
+                 INNER JOIN routes oro
+                 ON oro.route_id = ole.route_id
+                 GROUP BY oro.route_id
+                 HAVING start_distance < ?
+                   AND r.route_id = oro.route_id
+                 )', array($originLatitude,
+                            $originLongitude,
+                            $distance))
+          ->andWhere('EXISTS (
+                 SELECT *,  MIN(DISTANCE(?, ?, d.latitude, d.longitude)) as end_distance
+                 FROM locations d
+                 INNER JOIN  steps ds
+                 ON ds.step_id = d.step_id
+                 INNER JOIN  legs dle
+                 ON dle.leg_id = ds.leg_id
+                 INNER JOIN routes dro
+                 ON dro.route_id = dle.route_id
+                 GROUP BY dro.route_id
+                 HAVING end_distance < ?
+                   AND r.route_id = dro.route_id
+                  )', array($destinationLatitude,
+                            $destinationLongitude,
+                            $distance));
+
+        // Try raw sql
+        $q = new Doctrine_RawSql();
+        $q->select('*');
+        $q->from('carpools c');
+//        $q->innerJoin('c.Routes r');
+        // ON c.route_id = r.route_id
+        $q->addComponent('c', 'carpools');
+//        $q->addComponent('r', 'carpools.Routes r');
+
+        return $q->execute();
+    }
 }

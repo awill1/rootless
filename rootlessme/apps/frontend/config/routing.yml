@@ -110,6 +110,12 @@ ride:
   param:
     module: ride
     action: index
+
+ride_search:
+  url: /rides/search
+  param: { module: ride, action: search, sf_format: html }
+  requirements:
+    sf_format: (?:html)
     
 ride_offer_new:
   url: /rides/offers/new
