@@ -10,7 +10,12 @@
  */
 class ProfilesForm extends BaseProfilesForm
 {
-  public function configure()
-  {
-  }
+    public function configure()
+    {
+        // Set up the extra widgets
+        $this->setWidget('profile_picture', new sfWidgetFormInputFile());
+
+        // Setup the extra validators
+        $this->setValidator('profile_picture', new sfValidatorFile());
+    }
 }

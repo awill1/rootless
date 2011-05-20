@@ -42,7 +42,9 @@ class profileActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($profile = Doctrine_Core::getTable('Profiles')->find(array($request->getParameter('profile_name'))), sprintf('Object profile does not exist (%s).', $request->getParameter('profile_name')));
+    //$this->forward404Unless($profile = Doctrine_Core::getTable('Profiles')->find(array($request->getParameter('profile_name'))), sprintf('Object profile does not exist (%s).', $request->getParameter('profile_name')));
+    $this->forward404Unless($profile = $this->getUser()->getGuardUser()->getPeople()->getProfiles()->getFirst(), sprintf('Object profile does not exist.'));
+
     $this->form = new ProfilesForm($profile);
   }
 
