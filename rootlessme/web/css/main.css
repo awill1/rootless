@@ -84,6 +84,11 @@ textarea {
     width: 18px;
 }
 
+
+/* Menu CSS styling modelled after the example at
+ * http://javascript-array.com/scripts/jquery_simple_drop_down_menu/
+ */
+
 #headerControlsList {
     list-style: none;
     margin: 0;
@@ -94,13 +99,57 @@ textarea {
     float: left;
     margin: auto;
     line-height: 35px;
+    list-style: none;
 }
 
 .headerControl {
     color: #FFFFFF;
     text-decoration: none;
     margin: 0px 6px 0px 6px;
+    display: block;
+    white-space: nowrap;
 }
+
+.headerControl:hover
+{
+    background: #1A4473;
+}
+
+.headerControlsListSublist
+{
+    float: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    visibility: hidden;
+    border-top: 1px solid white;
+}
+
+.headerControlsListSublistItem
+{
+    float: none;
+    display: block;
+    background-color: yellow;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    border: 1px solid;
+    line-height: normal;
+}
+
+.headerSublistControl
+{
+    color: #FFFFFF;
+    width: auto;
+    background: #9F1B1B;
+    margin: 0px 0px 0px 0px;
+    padding: 10px 10px 10px 10px;
+}
+
+.headerSublistControl:hover
+{
+    background: #7F1616;
+}
+
 
 #headerLogo {
     border-width: 0;

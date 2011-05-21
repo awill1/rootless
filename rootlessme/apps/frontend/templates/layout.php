@@ -9,18 +9,47 @@
           <?php endif; ?>
       </title>
     <link rel="shortcut icon" href="/favicon.ico" />
+    <?php use_javascript(sfConfig::get('app_jquery_script')) ?>
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
     <?php if (has_slot('gmapheader')): ?>
         <?php include_slot('gmapheader') ?>
     <?php endif; ?>
+    <script type="text/javascript">
+        var timeout    = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        function jsddm_open()
+        {  jsddm_canceltimer();
+           jsddm_close();
+           ddmenuitem = $(this).find('ul').css('visibility', 'visible');}
+
+        function jsddm_close()
+        {  if(ddmenuitem) ddmenuitem.css('visibility', 'hidden');}
+
+        function jsddm_timer()
+        {  closetimer = window.setTimeout(jsddm_close, timeout);}
+
+        function jsddm_canceltimer()
+        {  if(closetimer)
+           {  window.clearTimeout(closetimer);
+              closetimer = null;}}
+
+        $(document).ready(function()
+        {  $('.headerControlsListItem').bind('mouseover', jsddm_open)
+           $('.headerControlsListItem').bind('mouseout',  jsddm_timer)});
+
+        document.onclick = jsddm_close;
+
+    </script>
   </head>
   <body>
       <div id="container">
 
         <!-- Header -->
         <div id="header">
-            <a href="." ><img id="headerLogo" src="/images/logo.PNG" alt="RootlessMe" /></a>
+            <a href="<?php echo url_for('home') ?>" ><img id="headerLogo" src="/images/logo.PNG" alt="RootlessMe" /></a>
             <div id="headerControls">
 
                 <ul id="headerControlsList">
@@ -31,20 +60,37 @@
                     </li>
                     <li class="headerControlsListItem"><a href="#" class="headerControl">Donate</a></li>
                     <li class="headerControlsListItem">|</li>
-                    <li class="headerControlsListItem"><a href="#" class="headerControl">Inbox <img src="/images/messageSmall.JPG" alt="1 message" /></a></li>
+                    <?php if ($sf_user->isAuthenticated()): ?>
+                    <li class="headerControlsListItem">
+                        <a href="<?php echo url_for('conversations') ?>" class="headerControl">
+                        Inbox <img src="/images/messageSmall.JPG" alt="1 message" />
+                        </a>
+                    </li>
                     <li class="headerControlsListItem">|</li>
                     <li class="headerControlsListItem">
-                        <?php if ($sf_user->isAuthenticated()): ?>
-                            <a href="#" class="headerControl">
-                                <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlTiny(); ?>" alt="Tiny profile picture" />
-                                <?php echo $sf_user->getGuardUser()->getPeople(); ?>
-                                <img src="/images/menuDownArrow.JPG" alt="Profile Menu" />
-                            </a>
-                            <?php echo link_to('Logout', 'sf_guard_signout') ?>
-                        <?php else: ?>
-                            <?php echo link_to('Login', 'sf_guard_signin') ?>
-                        <?php endif ?>
+                        <a href="<?php echo url_for('profile_show_user',$sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()) ?>" class="headerControl">
+                            <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlTiny(); ?>" alt="Tiny profile picture" />
+                            <?php echo $sf_user->getGuardUser()->getPeople(); ?>
+                            <img src="/images/menuDownArrow.JPG" alt="Profile Menu" />
+                        </a>
+                        <ul class="headerControlsListSublist">
+                            <li class="headerControlsListSublistItem">
+                                <a class="headerSublistControl" href="<?php echo url_for('profile_edit_user') ?>">
+                                    Settings
+                                </a>
+                            </li>
+                            <li class="headerControlsListSublistItem">
+                                <a class="headerSublistControl" href="<?php echo url_for('sf_guard_signout') ?>">
+                                    Sign out
+                                </a>
+                            </li>
+                        </ul>
                     </li>
+                    <?php else: ?>
+                    <li class="headerControlsListItem">
+                        <?php echo link_to('Login', 'sf_guard_signin') ?>
+                    </li>
+                    <?php endif ?>
                 </ul>
             </div>
         </div>
@@ -99,7 +145,7 @@
                     <div id="leftActions" class="leftWidget">
                         <ul id="leftActionsList">
                             <li class="leftActionItem"><button class="leftActionButton" >+ Create an Event</button></li>
-                            <li class="leftActionItem"><button class="leftActionButton" onClick="location.href='<?php echo url_for(); ?>';" >+ Offer a Ride</button></li>
+                            <li class="leftActionItem"><button class="leftActionButton" >+ Offer a Ride</button></li>
                             <li class="leftActionItem"><button class="leftActionButton" >+ Request a Ride</button></li>
                         </ul>
                     </div>
