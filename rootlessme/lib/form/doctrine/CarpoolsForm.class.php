@@ -27,6 +27,11 @@ class CarpoolsForm extends BaseCarpoolsForm
             'add_empty' => false,
             'query' => Doctrine::getTable('Vehicles')->getQueryForPerson($personId)
                 )));
+        // Change the start date and time widgets to be  textboxs for the
+        // date and time picker.
+        // The default date validator will still work
+        $this->setWidget('start_date',new sfWidgetFormInputText());
+        $this->setWidget('start_time',new sfWidgetFormInputText());
 
         // Choose the fields that will be displayed
         unset($this['created_at']);

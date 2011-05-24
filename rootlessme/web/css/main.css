@@ -108,18 +108,20 @@ textarea {
     margin: 0px 6px 0px 6px;
     display: block;
     white-space: nowrap;
+    border: transparent 1px solid;
 }
 
 .headerControl:hover
 {
     background: #1A4473;
+    border: #FFFFFF 1px solid;
 }
 
 .headerControlsListSublist
 {
     float: none;
-    margin: 0;
-    padding: 0;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
     position: absolute;
     visibility: hidden;
     border-top: 1px solid white;
@@ -130,7 +132,7 @@ textarea {
     float: none;
     display: block;
     background-color: yellow;
-    margin: 0px 0px 0px 0px;
+    margin: 20px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
     border: 1px solid;
     line-height: normal;
@@ -141,7 +143,7 @@ textarea {
     color: #FFFFFF;
     width: auto;
     background: #9F1B1B;
-    margin: 0px 0px 0px 0px;
+    margin: 10px 0px 0px 0px;
     padding: 10px 10px 10px 10px;
 }
 

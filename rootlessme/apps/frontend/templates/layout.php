@@ -10,39 +10,16 @@
       </title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php use_javascript(sfConfig::get('app_jquery_script')) ?>
+    <?php use_javascript(sfConfig::get('app_jquery_ui_script')) ?>
+    <?php use_javascript('jquery-ui-timepicker-addon.js') ?>
+    <?php use_stylesheet(sfConfig::get('app_jquery_ui_stylesheet')) ?>
+    <?php use_javascript('headerMenu') ?>
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
     <?php if (has_slot('gmapheader')): ?>
         <?php include_slot('gmapheader') ?>
     <?php endif; ?>
-    <script type="text/javascript">
-        var timeout    = 500;
-        var closetimer = 0;
-        var ddmenuitem = 0;
 
-        function jsddm_open()
-        {  jsddm_canceltimer();
-           jsddm_close();
-           ddmenuitem = $(this).find('ul').css('visibility', 'visible');}
-
-        function jsddm_close()
-        {  if(ddmenuitem) ddmenuitem.css('visibility', 'hidden');}
-
-        function jsddm_timer()
-        {  closetimer = window.setTimeout(jsddm_close, timeout);}
-
-        function jsddm_canceltimer()
-        {  if(closetimer)
-           {  window.clearTimeout(closetimer);
-              closetimer = null;}}
-
-        $(document).ready(function()
-        {  $('.headerControlsListItem').bind('mouseover', jsddm_open)
-           $('.headerControlsListItem').bind('mouseout',  jsddm_timer)});
-
-        document.onclick = jsddm_close;
-
-    </script>
   </head>
   <body>
       <div id="container">
@@ -59,14 +36,12 @@
                         </form>
                     </li>
                     <li class="headerControlsListItem"><a href="#" class="headerControl">Donate</a></li>
-                    <li class="headerControlsListItem">|</li>
                     <?php if ($sf_user->isAuthenticated()): ?>
                     <li class="headerControlsListItem">
                         <a href="<?php echo url_for('conversations') ?>" class="headerControl">
                         Inbox <img src="/images/messageSmall.JPG" alt="1 message" />
                         </a>
                     </li>
-                    <li class="headerControlsListItem">|</li>
                     <li class="headerControlsListItem">
                         <a href="<?php echo url_for('profile_show_user',$sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()) ?>" class="headerControl">
                             <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlTiny(); ?>" alt="Tiny profile picture" />
@@ -88,7 +63,9 @@
                     </li>
                     <?php else: ?>
                     <li class="headerControlsListItem">
-                        <?php echo link_to('Login', 'sf_guard_signin') ?>
+                        <a class="headerControl" href="<?php echo url_for('sf_guard_signin') ?>">
+                            Log in
+                        </a>
                     </li>
                     <?php endif ?>
                 </ul>
@@ -101,32 +78,22 @@
 
             <div id="leftColumn">
                 <ul id="navigation">
-                    <li class="navigationItem">
+                    <li id="navigationDashboard" class="navigationItem">
                         <a href="#">
                             Dashboard
                         </a>
                     </li>
-                    <li class="navigationItem">
+                    <li id="navigationRides" class="navigationItem">
                         <a href="<?php echo url_for("ride") ?>">
                             Rides
                         </a>
                     </li>
-                    <li class="navigationItem">
-                        <a href="#">
-                            Events
-                        </a>
-                    </li>
-                    <li class="navigationItemSelected">
+                    <li id="navigationTravelers" class="navigationItemSelected">
                         <a href="<?php echo url_for("profile") ?>">
                             Travelers
                         </a>
                     </li>
-                    <li class="navigationItem">
-                        <a href="#">
-                            Collective
-                        </a>
-                    </li>
-                    <li class="navigationItem">
+                    <li  id="navigationMessages" class="navigationItem">
                         <a href="<?php echo url_for("conversations") ?>">
                             Messages
                         </a>

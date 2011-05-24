@@ -1,4 +1,3 @@
-<?php use_javascript(sfConfig::get('app_jquery_script')) ?>
 <?php use_javascript(sfConfig::get('app_google_map_script')) ?>
 <?php use_stylesheet("ride.css") ?>
 
@@ -8,6 +7,12 @@
 ?>
 
 <?php slot('gmapheader'); ?>
+    <script type="text/javascript">
+        $(function() {
+		$( "#carpools_start_date" ).datepicker();
+		$( "#carpools_start_time" ).timepicker({ampm: true});
+	});
+    </script>
     <script type="text/javascript">
         var map = null;
         var directionDisplay;

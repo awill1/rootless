@@ -1,4 +1,3 @@
-<?php use_javascript(sfConfig::get('app_jquery_script')) ?>
 <?php use_stylesheet('profile.css') ?>
 
 <?php slot(
@@ -8,7 +7,9 @@
 
 <?php slot('gmapheader'); ?>
     <script type="text/javascript">
-
+        $(function() {
+		$( "#middleProfileDetails" ).tabs();
+	});
     </script>
 <?php end_slot();?>
 
