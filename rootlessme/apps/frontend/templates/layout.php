@@ -14,6 +14,7 @@
     <?php use_javascript('jquery-ui-timepicker-addon.js') ?>
     <?php use_stylesheet(sfConfig::get('app_jquery_ui_stylesheet')) ?>
     <?php use_javascript('headerMenu') ?>
+    <?php use_javascript('navigation') ?>
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
     <?php if (has_slot('gmapheader')): ?>
@@ -88,7 +89,7 @@
                             Rides
                         </a>
                     </li>
-                    <li id="navigationTravelers" class="navigationItemSelected">
+                    <li id="navigationTravelers" class="navigationItem">
                         <a href="<?php echo url_for("profile") ?>">
                             Travelers
                         </a>
