@@ -79,11 +79,13 @@
 
             <div id="leftColumn">
                 <ul id="navigation">
+                    <?php if ($sf_user->isAuthenticated()): ?>
                     <li id="navigationDashboard" class="navigationItem">
                         <a href="#">
                             Dashboard
                         </a>
                     </li>
+                    <?php endif ?>
                     <li id="navigationRides" class="navigationItem">
                         <a href="<?php echo url_for("ride") ?>">
                             Rides
@@ -94,14 +96,16 @@
                             Travelers
                         </a>
                     </li>
+                    <?php if ($sf_user->isAuthenticated()): ?>
                     <li  id="navigationMessages" class="navigationItem">
                         <a href="<?php echo url_for("conversations") ?>">
                             Messages
                         </a>
                     </li>
+                    <?php endif ?>
                 </ul>
+                <?php if ($sf_user->isAuthenticated()): ?>
                 <div id="leftContent" >
-                    <?php if ($sf_user->isAuthenticated()): ?>
                     <div id="leftProfile" class="leftWidget" >
                         <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>" alt="<?php echo $sf_user->getGuardUser()->getPeople(); ?>" />
                         <h3 id="leftProfileName" class="leftWidgetTitle"><?php echo $sf_user->getGuardUser()->getPeople(); ?></h3>
@@ -113,7 +117,7 @@
                     <div id="leftActions" class="leftWidget">
                         <ul id="leftActionsList">
                             <li class="leftActionItem"><button class="leftActionButton" >+ Create an Event</button></li>
-                            <li class="leftActionItem"><button class="leftActionButton" >+ Offer a Ride</button></li>
+                            <li class="leftActionItem"><button class="leftActionButton" onClick="window.location='<?php echo url_for('ride_offer_new') ?>'" >+ Offer a Ride</button></li>
                             <li class="leftActionItem"><button class="leftActionButton" >+ Request a Ride</button></li>
                         </ul>
                     </div>
@@ -153,8 +157,8 @@
                             </li>
                         </ul>
                     </div>
-                    <?php endif ?>
                 </div>
+                <?php endif ?>
             </div>
 
             <!--<div id="rightColumn"><p>This is my rightColumn</p></div> -->

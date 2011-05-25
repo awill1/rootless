@@ -1,0 +1,19 @@
+# data/fixtures/20_reviews.yml
+
+Reviews:
+  review_1:
+    rating_id: 1
+    reviewer_id: 2
+    reviewee_id: 1
+    was_safe: 1
+    was_friendly: 1
+    was_punctual: 1
+    was_courteous: 1
+    comments: "Aaron was a great driver. We had a fun time."
+    driver_review: 1
+    passenger_review: 0
+    created_at:
+    updated_at:
+  friendship_2:
+    friend1_id: 1
+    friend2_id: 3

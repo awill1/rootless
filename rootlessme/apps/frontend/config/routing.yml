@@ -49,7 +49,7 @@ profile_update_user:
   url:   /profiles/update
   class:   sfDoctrineRoute
   options: { model: Profiles, type: object }
-  param: { module: profile, action: edit }
+  param: { module: profile, action: update }
   requirements:
     sf_method: [post]
     
@@ -120,6 +120,10 @@ sf_guard_signout:
 sf_guard_password:
   url:   /request_password
   param: { module: sfGuardAuth, action: password }
+
+sf_guard_register:
+  url:   /register
+  param: { module: sfGuardRegister, action: index }
 
 # ride rules
 ride:
