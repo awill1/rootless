@@ -13,7 +13,12 @@
     </script>
 <?php end_slot();?>
 
-<h1 id="mainProfileTitle"><?php echo $profile->getFullName() ?> <a id="mainProfileTitleEditLink" href="#">Edit&nbsp;Profile</a></h1>
+<h1 id="mainProfileTitle">
+    <?php echo $profile->getFullName() ?>
+    <?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->getPersonId() == $profile->getPersonId()): ?>
+        <a id="mainProfileTitleEditLink" href="<?php echo url_for('profile_edit_user') ?>">Edit&nbsp;Profile</a>
+    <?php endif ?>
+</h1>
 <a id="mainProfileSubtitle" href="<?php echo $profile->getWebsiteUrl() ?>"><?php echo $profile->getWebsiteUrl() ?></a>
 
 <div id="middleProfileBadge">

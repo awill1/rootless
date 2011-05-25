@@ -13,9 +13,19 @@ class ProfilesForm extends BaseProfilesForm
     public function configure()
     {
         // Set up the extra widgets
-        $this->setWidget('profile_picture', new sfWidgetFormInputFile());
+        $this->setWidget('picture_url', new sfWidgetFormInputFile());
+
+        // Change the birthday widget to be a textbox
+        $this->setWidget('birthday', new sfWidgetFormInputText());
 
         // Setup the extra validators
-        $this->setValidator('profile_picture', new sfValidatorFile());
+        $this->setValidator('picture_url', new sfValidatorFile(array(
+            'required' => false,
+            'mime_types' => 'web_images',
+            'path' => sfConfig::get('sf_upload_dir').'/assets/profile_pictures')));
+
+        unset($this['person_id']);
+        unset($this['created_at']);
+        unset($this['updated_at']);
     }
 }

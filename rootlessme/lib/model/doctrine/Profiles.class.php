@@ -27,6 +27,12 @@ class Profiles extends BaseProfiles
     {
 
         $birth_date = $this->getBirthday();
+        //Make sure the birth date is specified
+        if(!$birth_date)
+        {
+            // If not, return null
+            return null;
+        }
         list($birth_year,$birth_month,$birth_day) = explode("-", $birth_date);
         $year_diff=date("Y")-$birth_year;
         $this_birthday=date("Y").$birth_month.$birth_day;
