@@ -24,8 +24,8 @@ abstract class BaseSeatsFilledLegsForm extends BaseFormDoctrine
     $this->setValidators(array(
       'seat_id'    => new sfValidatorChoice(array('choices' => array($this->getObject()->get('seat_id')), 'empty_value' => $this->getObject()->get('seat_id'), 'required' => false)),
       'leg_id'     => new sfValidatorChoice(array('choices' => array($this->getObject()->get('leg_id')), 'empty_value' => $this->getObject()->get('leg_id'), 'required' => false)),
-      'created_at' => new sfValidatorDateTime(array('required' => false)),
-      'updated_at' => new sfValidatorDateTime(array('required' => false)),
+      'created_at' => new sfValidatorDateTime(),
+      'updated_at' => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('seats_filled_legs[%s]');

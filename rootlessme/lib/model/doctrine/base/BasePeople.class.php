@@ -28,6 +28,7 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @property Doctrine_Collection $TravelersAttendingEvent
  * @property Doctrine_Collection $Users
  * @property Doctrine_Collection $Vehicles
+ * @property Doctrine_Collection $MessageRecipients
  * 
  * @method integer             getPersonId()                 Returns the current record's "person_id" value
  * @method timestamp           getCreatedAt()                Returns the current record's "created_at" value
@@ -50,6 +51,7 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @method Doctrine_Collection getTravelersAttendingEvent()  Returns the current record's "TravelersAttendingEvent" collection
  * @method Doctrine_Collection getUsers()                    Returns the current record's "Users" collection
  * @method Doctrine_Collection getVehicles()                 Returns the current record's "Vehicles" collection
+ * @method Doctrine_Collection getMessageRecipients()        Returns the current record's "MessageRecipients" collection
  * @method People              setPersonId()                 Sets the current record's "person_id" value
  * @method People              setCreatedAt()                Sets the current record's "created_at" value
  * @method People              setUpdatedAt()                Sets the current record's "updated_at" value
@@ -71,11 +73,12 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @method People              setTravelersAttendingEvent()  Sets the current record's "TravelersAttendingEvent" collection
  * @method People              setUsers()                    Sets the current record's "Users" collection
  * @method People              setVehicles()                 Sets the current record's "Vehicles" collection
+ * @method People              setMessageRecipients()        Sets the current record's "MessageRecipients" collection
  * 
  * @package    RootlessMe
  * @subpackage model
  * @author     awilliams
- * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
+ * @version    SVN: $Id: Builder.php 7691 2011-02-04 15:43:29Z jwage $
  */
 abstract class BasePeople extends sfDoctrineRecord
 {
@@ -184,5 +187,12 @@ abstract class BasePeople extends sfDoctrineRecord
         $this->hasMany('Vehicles', array(
              'local' => 'person_id',
              'foreign' => 'person_id'));
+
+        $this->hasMany('MessageRecipients', array(
+             'local' => 'person_id',
+             'foreign' => 'person_id'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $this->actAs($timestampable0);
     }
 }

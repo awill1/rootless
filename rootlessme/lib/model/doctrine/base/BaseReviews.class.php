@@ -10,6 +10,7 @@ Doctrine_Manager::getInstance()->bindComponent('Reviews', 'doctrine');
  * @property integer $rating_id
  * @property integer $reviewer_id
  * @property integer $reviewee_id
+ * @property integer $seat_id
  * @property integer $was_safe
  * @property integer $was_friendly
  * @property integer $was_punctual
@@ -17,14 +18,17 @@ Doctrine_Manager::getInstance()->bindComponent('Reviews', 'doctrine');
  * @property string $comments
  * @property integer $driver_review
  * @property integer $passenger_review
+ * @property date $ride_date
  * @property timestamp $created_at
  * @property timestamp $updated_at
  * @property People $People
  * @property People $People_2
+ * @property Seats $Seats
  * 
  * @method integer   getRatingId()         Returns the current record's "rating_id" value
  * @method integer   getReviewerId()       Returns the current record's "reviewer_id" value
  * @method integer   getRevieweeId()       Returns the current record's "reviewee_id" value
+ * @method integer   getSeatId()           Returns the current record's "seat_id" value
  * @method integer   getWasSafe()          Returns the current record's "was_safe" value
  * @method integer   getWasFriendly()      Returns the current record's "was_friendly" value
  * @method integer   getWasPunctual()      Returns the current record's "was_punctual" value
@@ -32,13 +36,16 @@ Doctrine_Manager::getInstance()->bindComponent('Reviews', 'doctrine');
  * @method string    getComments()         Returns the current record's "comments" value
  * @method integer   getDriverReview()     Returns the current record's "driver_review" value
  * @method integer   getPassengerReview()  Returns the current record's "passenger_review" value
+ * @method date      getRideDate()         Returns the current record's "ride_date" value
  * @method timestamp getCreatedAt()        Returns the current record's "created_at" value
  * @method timestamp getUpdatedAt()        Returns the current record's "updated_at" value
  * @method People    getPeople()           Returns the current record's "People" value
  * @method People    getPeople2()          Returns the current record's "People_2" value
+ * @method Seats     getSeats()            Returns the current record's "Seats" value
  * @method Reviews   setRatingId()         Sets the current record's "rating_id" value
  * @method Reviews   setReviewerId()       Sets the current record's "reviewer_id" value
  * @method Reviews   setRevieweeId()       Sets the current record's "reviewee_id" value
+ * @method Reviews   setSeatId()           Sets the current record's "seat_id" value
  * @method Reviews   setWasSafe()          Sets the current record's "was_safe" value
  * @method Reviews   setWasFriendly()      Sets the current record's "was_friendly" value
  * @method Reviews   setWasPunctual()      Sets the current record's "was_punctual" value
@@ -46,15 +53,17 @@ Doctrine_Manager::getInstance()->bindComponent('Reviews', 'doctrine');
  * @method Reviews   setComments()         Sets the current record's "comments" value
  * @method Reviews   setDriverReview()     Sets the current record's "driver_review" value
  * @method Reviews   setPassengerReview()  Sets the current record's "passenger_review" value
+ * @method Reviews   setRideDate()         Sets the current record's "ride_date" value
  * @method Reviews   setCreatedAt()        Sets the current record's "created_at" value
  * @method Reviews   setUpdatedAt()        Sets the current record's "updated_at" value
  * @method Reviews   setPeople()           Sets the current record's "People" value
  * @method Reviews   setPeople2()          Sets the current record's "People_2" value
+ * @method Reviews   setSeats()            Sets the current record's "Seats" value
  * 
  * @package    RootlessMe
  * @subpackage model
  * @author     awilliams
- * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
+ * @version    SVN: $Id: Builder.php 7691 2011-02-04 15:43:29Z jwage $
  */
 abstract class BaseReviews extends sfDoctrineRecord
 {
@@ -84,6 +93,15 @@ abstract class BaseReviews extends sfDoctrineRecord
              'unsigned' => false,
              'primary' => false,
              'notnull' => true,
+             'autoincrement' => false,
+             'length' => 4,
+             ));
+        $this->hasColumn('seat_id', 'integer', 4, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
              'autoincrement' => false,
              'length' => 4,
              ));
@@ -150,6 +168,15 @@ abstract class BaseReviews extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 1,
              ));
+        $this->hasColumn('ride_date', 'date', 25, array(
+             'type' => 'date',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 25,
+             ));
         $this->hasColumn('created_at', 'timestamp', 25, array(
              'type' => 'timestamp',
              'fixed' => 0,
@@ -180,5 +207,12 @@ abstract class BaseReviews extends sfDoctrineRecord
         $this->hasOne('People as People_2', array(
              'local' => 'reviewee_id',
              'foreign' => 'person_id'));
+
+        $this->hasOne('Seats', array(
+             'local' => 'seat_id',
+             'foreign' => 'seat_id'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $this->actAs($timestampable0);
     }
 }

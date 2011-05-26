@@ -76,8 +76,8 @@ abstract class BaseProfilesForm extends BaseFormDoctrine
       'website_url'        => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'facebook_user_name' => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'twitter_user_name'  => new sfValidatorString(array('max_length' => 45, 'required' => false)),
-      'created_at'         => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'         => new sfValidatorDateTime(array('required' => false)),
+      'created_at'         => new sfValidatorDateTime(),
+      'updated_at'         => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('profiles[%s]');

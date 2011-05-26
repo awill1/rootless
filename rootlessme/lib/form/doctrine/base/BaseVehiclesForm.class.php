@@ -29,7 +29,7 @@ abstract class BaseVehiclesForm extends BaseFormDoctrine
       'image_url_large' => new sfWidgetFormInputText(),
       'image_url_small' => new sfWidgetFormInputText(),
       'created_at'      => new sfWidgetFormDateTime(),
-      'updated_at'      => new sfWidgetFormInputText(),
+      'updated_at'      => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
@@ -46,8 +46,8 @@ abstract class BaseVehiclesForm extends BaseFormDoctrine
       'description'     => new sfValidatorString(array('required' => false)),
       'image_url_large' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'image_url_small' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'created_at'      => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'      => new sfValidatorString(array('max_length' => 45, 'required' => false)),
+      'created_at'      => new sfValidatorDateTime(),
+      'updated_at'      => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('vehicles[%s]');

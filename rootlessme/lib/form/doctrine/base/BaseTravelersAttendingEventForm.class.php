@@ -26,8 +26,8 @@ abstract class BaseTravelersAttendingEventForm extends BaseFormDoctrine
       'event_id'   => new sfValidatorChoice(array('choices' => array($this->getObject()->get('event_id')), 'empty_value' => $this->getObject()->get('event_id'), 'required' => false)),
       'person_id'  => new sfValidatorChoice(array('choices' => array($this->getObject()->get('person_id')), 'empty_value' => $this->getObject()->get('person_id'), 'required' => false)),
       'status'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('AttendingStatusType'))),
-      'created_at' => new sfValidatorDateTime(array('required' => false)),
-      'updated_at' => new sfValidatorDateTime(array('required' => false)),
+      'created_at' => new sfValidatorDateTime(),
+      'updated_at' => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('travelers_attending_event[%s]');

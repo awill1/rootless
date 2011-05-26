@@ -19,6 +19,8 @@ abstract class BaseSecuritySettingsForm extends BaseFormDoctrine
       'person_id'            => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('People'), 'add_empty' => false)),
       'can_email_promotions' => new sfWidgetFormInputText(),
       'can_email_partners'   => new sfWidgetFormInputText(),
+      'created_at'           => new sfWidgetFormDateTime(),
+      'updated_at'           => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
@@ -26,6 +28,8 @@ abstract class BaseSecuritySettingsForm extends BaseFormDoctrine
       'person_id'            => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('People'))),
       'can_email_promotions' => new sfValidatorInteger(array('required' => false)),
       'can_email_partners'   => new sfValidatorInteger(array('required' => false)),
+      'created_at'           => new sfValidatorDateTime(),
+      'updated_at'           => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('security_settings[%s]');

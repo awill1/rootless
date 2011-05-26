@@ -12,8 +12,3 @@ Reviews:
     comments: "Aaron was a great driver. We had a fun time."
     driver_review: 1
     passenger_review: 0
-    created_at:
-    updated_at:
-  friendship_2:
-    friend1_id: 1
-    friend2_id: 3

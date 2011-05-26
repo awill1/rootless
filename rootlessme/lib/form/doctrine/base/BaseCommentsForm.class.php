@@ -28,8 +28,8 @@ abstract class BaseCommentsForm extends BaseFormDoctrine
       'event_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Events'))),
       'person_id'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('People'))),
       'comment'    => new sfValidatorString(),
-      'created_at' => new sfValidatorDateTime(array('required' => false)),
-      'updated_at' => new sfValidatorDateTime(array('required' => false)),
+      'created_at' => new sfValidatorDateTime(),
+      'updated_at' => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('comments[%s]');

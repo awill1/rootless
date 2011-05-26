@@ -40,8 +40,8 @@ abstract class BaseSeatsForm extends BaseFormDoctrine
       'pickup_date'          => new sfValidatorDate(array('required' => false)),
       'pickup_time'          => new sfValidatorTime(array('required' => false)),
       'description'          => new sfValidatorString(array('required' => false)),
-      'created_at'           => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'           => new sfValidatorDateTime(array('required' => false)),
+      'created_at'           => new sfValidatorDateTime(),
+      'updated_at'           => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('seats[%s]');

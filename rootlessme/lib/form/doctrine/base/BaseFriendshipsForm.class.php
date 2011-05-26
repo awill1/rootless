@@ -24,8 +24,8 @@ abstract class BaseFriendshipsForm extends BaseFormDoctrine
     $this->setValidators(array(
       'friend1_id' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('friend1_id')), 'empty_value' => $this->getObject()->get('friend1_id'), 'required' => false)),
       'friend2_id' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('friend2_id')), 'empty_value' => $this->getObject()->get('friend2_id'), 'required' => false)),
-      'created_at' => new sfValidatorDateTime(array('required' => false)),
-      'updated_at' => new sfValidatorDateTime(array('required' => false)),
+      'created_at' => new sfValidatorDateTime(),
+      'updated_at' => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('friendships[%s]');

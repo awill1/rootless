@@ -26,8 +26,8 @@ abstract class BaseConversationsForm extends BaseFormDoctrine
       'conversation_id' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('conversation_id')), 'empty_value' => $this->getObject()->get('conversation_id'), 'required' => false)),
       'author_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('People'))),
       'subject'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'created_at'      => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'      => new sfValidatorDateTime(array('required' => false)),
+      'created_at'      => new sfValidatorDateTime(),
+      'updated_at'      => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('conversations[%s]');

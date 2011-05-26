@@ -14,8 +14,8 @@ abstract class BaseTravelersAttendingEventFormFilter extends BaseFormFilterDoctr
   {
     $this->setWidgets(array(
       'status'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AttendingStatusType'), 'add_empty' => true)),
-      'created_at' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
-      'updated_at' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'created_at' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'updated_at' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
     ));
 
     $this->setValidators(array(

@@ -36,7 +36,7 @@ Doctrine_Manager::getInstance()->bindComponent('Comments', 'doctrine');
  * @package    RootlessMe
  * @subpackage model
  * @author     awilliams
- * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
+ * @version    SVN: $Id: Builder.php 7691 2011-02-04 15:43:29Z jwage $
  */
 abstract class BaseComments extends sfDoctrineRecord
 {
@@ -108,5 +108,8 @@ abstract class BaseComments extends sfDoctrineRecord
         $this->hasOne('People', array(
              'local' => 'person_id',
              'foreign' => 'person_id'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $this->actAs($timestampable0);
     }
 }

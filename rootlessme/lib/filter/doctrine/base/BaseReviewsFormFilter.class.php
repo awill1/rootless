@@ -15,6 +15,7 @@ abstract class BaseReviewsFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'reviewer_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('People'), 'add_empty' => true)),
       'reviewee_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('People_2'), 'add_empty' => true)),
+      'seat_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Seats'), 'add_empty' => true)),
       'was_safe'         => new sfWidgetFormFilterInput(),
       'was_friendly'     => new sfWidgetFormFilterInput(),
       'was_punctual'     => new sfWidgetFormFilterInput(),
@@ -22,13 +23,15 @@ abstract class BaseReviewsFormFilter extends BaseFormFilterDoctrine
       'comments'         => new sfWidgetFormFilterInput(),
       'driver_review'    => new sfWidgetFormFilterInput(),
       'passenger_review' => new sfWidgetFormFilterInput(),
-      'created_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
-      'updated_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'ride_date'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'created_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'updated_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
     ));
 
     $this->setValidators(array(
       'reviewer_id'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('People'), 'column' => 'person_id')),
       'reviewee_id'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('People_2'), 'column' => 'person_id')),
+      'seat_id'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Seats'), 'column' => 'seat_id')),
       'was_safe'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'was_friendly'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'was_punctual'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -36,6 +39,7 @@ abstract class BaseReviewsFormFilter extends BaseFormFilterDoctrine
       'comments'         => new sfValidatorPass(array('required' => false)),
       'driver_review'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'passenger_review' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'ride_date'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'created_at'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
     ));
@@ -60,6 +64,7 @@ abstract class BaseReviewsFormFilter extends BaseFormFilterDoctrine
       'rating_id'        => 'Number',
       'reviewer_id'      => 'ForeignKey',
       'reviewee_id'      => 'ForeignKey',
+      'seat_id'          => 'ForeignKey',
       'was_safe'         => 'Number',
       'was_friendly'     => 'Number',
       'was_punctual'     => 'Number',
@@ -67,6 +72,7 @@ abstract class BaseReviewsFormFilter extends BaseFormFilterDoctrine
       'comments'         => 'Text',
       'driver_review'    => 'Number',
       'passenger_review' => 'Number',
+      'ride_date'        => 'Date',
       'created_at'       => 'Date',
       'updated_at'       => 'Date',
     );

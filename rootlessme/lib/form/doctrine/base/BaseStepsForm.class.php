@@ -34,8 +34,8 @@ abstract class BaseStepsForm extends BaseFormDoctrine
       'duration'         => new sfValidatorInteger(array('required' => false)),
       'encoded_polyline' => new sfValidatorString(array('required' => false)),
       'sequence_order'   => new sfValidatorInteger(array('required' => false)),
-      'created_at'       => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'       => new sfValidatorDateTime(array('required' => false)),
+      'created_at'       => new sfValidatorDateTime(),
+      'updated_at'       => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('steps[%s]');

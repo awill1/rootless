@@ -24,8 +24,8 @@ abstract class BaseAttendingStatusTypeForm extends BaseFormDoctrine
     $this->setValidators(array(
       'attending_status_type_id' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('attending_status_type_id')), 'empty_value' => $this->getObject()->get('attending_status_type_id'), 'required' => false)),
       'display_text'             => new sfValidatorString(array('max_length' => 45, 'required' => false)),
-      'created_at'               => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'               => new sfValidatorDateTime(array('required' => false)),
+      'created_at'               => new sfValidatorDateTime(),
+      'updated_at'               => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('attending_status_type[%s]');

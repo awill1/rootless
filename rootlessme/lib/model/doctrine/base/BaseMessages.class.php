@@ -10,33 +10,39 @@ Doctrine_Manager::getInstance()->bindComponent('Messages', 'doctrine');
  * @property integer $message_id
  * @property integer $conversation_id
  * @property integer $author_id
+ * @property string $subject
  * @property string $body
  * @property timestamp $created_at
  * @property timestamp $updated_at
  * @property Conversations $Conversations
+ * @property Doctrine_Collection $MessageRecipients
  * @property People $People
  * 
- * @method integer       getMessageId()       Returns the current record's "message_id" value
- * @method integer       getConversationId()  Returns the current record's "conversation_id" value
- * @method integer       getAuthorId()        Returns the current record's "author_id" value
- * @method string        getBody()            Returns the current record's "body" value
- * @method timestamp     getCreatedAt()       Returns the current record's "created_at" value
- * @method timestamp     getUpdatedAt()       Returns the current record's "updated_at" value
- * @method Conversations getConversations()   Returns the current record's "Conversations" value
- * @method People        getPeople()          Returns the current record's "People" value
- * @method Messages      setMessageId()       Sets the current record's "message_id" value
- * @method Messages      setConversationId()  Sets the current record's "conversation_id" value
- * @method Messages      setAuthorId()        Sets the current record's "author_id" value
- * @method Messages      setBody()            Sets the current record's "body" value
- * @method Messages      setCreatedAt()       Sets the current record's "created_at" value
- * @method Messages      setUpdatedAt()       Sets the current record's "updated_at" value
- * @method Messages      setConversations()   Sets the current record's "Conversations" value
- * @method Messages      setPeople()          Sets the current record's "People" value
+ * @method integer             getMessageId()         Returns the current record's "message_id" value
+ * @method integer             getConversationId()    Returns the current record's "conversation_id" value
+ * @method integer             getAuthorId()          Returns the current record's "author_id" value
+ * @method string              getSubject()           Returns the current record's "subject" value
+ * @method string              getBody()              Returns the current record's "body" value
+ * @method timestamp           getCreatedAt()         Returns the current record's "created_at" value
+ * @method timestamp           getUpdatedAt()         Returns the current record's "updated_at" value
+ * @method Conversations       getConversations()     Returns the current record's "Conversations" value
+ * @method Doctrine_Collection getMessageRecipients() Returns the current record's "MessageRecipients" collection
+ * @method People              getPeople()            Returns the current record's "People" value
+ * @method Messages            setMessageId()         Sets the current record's "message_id" value
+ * @method Messages            setConversationId()    Sets the current record's "conversation_id" value
+ * @method Messages            setAuthorId()          Sets the current record's "author_id" value
+ * @method Messages            setSubject()           Sets the current record's "subject" value
+ * @method Messages            setBody()              Sets the current record's "body" value
+ * @method Messages            setCreatedAt()         Sets the current record's "created_at" value
+ * @method Messages            setUpdatedAt()         Sets the current record's "updated_at" value
+ * @method Messages            setConversations()     Sets the current record's "Conversations" value
+ * @method Messages            setMessageRecipients() Sets the current record's "MessageRecipients" collection
+ * @method Messages            setPeople()            Sets the current record's "People" value
  * 
  * @package    RootlessMe
  * @subpackage model
  * @author     awilliams
- * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
+ * @version    SVN: $Id: Builder.php 7691 2011-02-04 15:43:29Z jwage $
  */
 abstract class BaseMessages extends sfDoctrineRecord
 {
@@ -55,7 +61,7 @@ abstract class BaseMessages extends sfDoctrineRecord
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
-             'primary' => true,
+             'primary' => false,
              'autoincrement' => false,
              'length' => 4,
              ));
@@ -67,6 +73,15 @@ abstract class BaseMessages extends sfDoctrineRecord
              'notnull' => true,
              'autoincrement' => false,
              'length' => 4,
+             ));
+        $this->hasColumn('subject', 'string', 255, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 255,
              ));
         $this->hasColumn('body', 'string', null, array(
              'type' => 'string',
@@ -104,8 +119,15 @@ abstract class BaseMessages extends sfDoctrineRecord
              'local' => 'conversation_id',
              'foreign' => 'conversation_id'));
 
+        $this->hasMany('MessageRecipients', array(
+             'local' => 'message_id',
+             'foreign' => 'message_id'));
+
         $this->hasOne('People', array(
              'local' => 'author_id',
              'foreign' => 'person_id'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $this->actAs($timestampable0);
     }
 }

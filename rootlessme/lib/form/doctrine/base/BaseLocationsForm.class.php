@@ -46,8 +46,8 @@ abstract class BaseLocationsForm extends BaseFormDoctrine
       'longitude'      => new sfValidatorNumber(array('required' => false)),
       'search_string'  => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'sequence_order' => new sfValidatorInteger(array('required' => false)),
-      'created_at'     => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'     => new sfValidatorDateTime(array('required' => false)),
+      'created_at'     => new sfValidatorDateTime(),
+      'updated_at'     => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('locations[%s]');

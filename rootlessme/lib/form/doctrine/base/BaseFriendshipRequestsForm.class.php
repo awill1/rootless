@@ -30,8 +30,8 @@ abstract class BaseFriendshipRequestsForm extends BaseFormDoctrine
       'friendship_status_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('FriendshipStatuses'))),
       'abuse'                => new sfValidatorInteger(array('required' => false)),
       'abuse_comment'        => new sfValidatorString(array('required' => false)),
-      'created_at'           => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'           => new sfValidatorDateTime(array('required' => false)),
+      'created_at'           => new sfValidatorDateTime(),
+      'updated_at'           => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('friendship_requests[%s]');

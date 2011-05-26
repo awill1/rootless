@@ -26,8 +26,8 @@ abstract class BaseSeatRequestTypesForm extends BaseFormDoctrine
       'seat_request_type_id' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('seat_request_type_id')), 'empty_value' => $this->getObject()->get('seat_request_type_id'), 'required' => false)),
       'display_text'         => new sfValidatorString(array('max_length' => 45)),
       'slug'                 => new sfValidatorString(array('max_length' => 45)),
-      'created_at'           => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'           => new sfValidatorDateTime(array('required' => false)),
+      'created_at'           => new sfValidatorDateTime(),
+      'updated_at'           => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('seat_request_types[%s]');

@@ -30,7 +30,7 @@ Doctrine_Manager::getInstance()->bindComponent('SeatsFilledLegs', 'doctrine');
  * @package    RootlessMe
  * @subpackage model
  * @author     awilliams
- * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
+ * @version    SVN: $Id: Builder.php 7691 2011-02-04 15:43:29Z jwage $
  */
 abstract class BaseSeatsFilledLegs extends sfDoctrineRecord
 {
@@ -83,5 +83,8 @@ abstract class BaseSeatsFilledLegs extends sfDoctrineRecord
         $this->hasOne('Legs', array(
              'local' => 'leg_id',
              'foreign' => 'leg_id'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $this->actAs($timestampable0);
     }
 }

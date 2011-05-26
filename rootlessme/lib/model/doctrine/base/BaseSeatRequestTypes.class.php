@@ -30,7 +30,7 @@ Doctrine_Manager::getInstance()->bindComponent('SeatRequestTypes', 'doctrine');
  * @package    RootlessMe
  * @subpackage model
  * @author     awilliams
- * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
+ * @version    SVN: $Id: Builder.php 7691 2011-02-04 15:43:29Z jwage $
  */
 abstract class BaseSeatRequestTypes extends sfDoctrineRecord
 {
@@ -89,5 +89,8 @@ abstract class BaseSeatRequestTypes extends sfDoctrineRecord
         $this->hasMany('Seats', array(
              'local' => 'seat_request_type_id',
              'foreign' => 'seat_request_type_id'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $this->actAs($timestampable0);
     }
 }

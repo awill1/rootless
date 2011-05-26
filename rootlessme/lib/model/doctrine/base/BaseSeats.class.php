@@ -24,6 +24,7 @@ Doctrine_Manager::getInstance()->bindComponent('Seats', 'doctrine');
  * @property SeatRequestTypes $SeatRequestTypes
  * @property Passengers $Passengers
  * @property Doctrine_Collection $SeatsFilledLegs
+ * @property Doctrine_Collection $Reviews
  * 
  * @method integer             getSeatId()               Returns the current record's "seat_id" value
  * @method integer             getCarpoolId()            Returns the current record's "carpool_id" value
@@ -42,6 +43,7 @@ Doctrine_Manager::getInstance()->bindComponent('Seats', 'doctrine');
  * @method SeatRequestTypes    getSeatRequestTypes()     Returns the current record's "SeatRequestTypes" value
  * @method Passengers          getPassengers()           Returns the current record's "Passengers" value
  * @method Doctrine_Collection getSeatsFilledLegs()      Returns the current record's "SeatsFilledLegs" collection
+ * @method Doctrine_Collection getReviews()              Returns the current record's "Reviews" collection
  * @method Seats               setSeatId()               Sets the current record's "seat_id" value
  * @method Seats               setCarpoolId()            Sets the current record's "carpool_id" value
  * @method Seats               setPassengerId()          Sets the current record's "passenger_id" value
@@ -59,11 +61,12 @@ Doctrine_Manager::getInstance()->bindComponent('Seats', 'doctrine');
  * @method Seats               setSeatRequestTypes()     Sets the current record's "SeatRequestTypes" value
  * @method Seats               setPassengers()           Sets the current record's "Passengers" value
  * @method Seats               setSeatsFilledLegs()      Sets the current record's "SeatsFilledLegs" collection
+ * @method Seats               setReviews()              Sets the current record's "Reviews" collection
  * 
  * @package    RootlessMe
  * @subpackage model
  * @author     awilliams
- * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
+ * @version    SVN: $Id: Builder.php 7691 2011-02-04 15:43:29Z jwage $
  */
 abstract class BaseSeats extends sfDoctrineRecord
 {
@@ -201,5 +204,12 @@ abstract class BaseSeats extends sfDoctrineRecord
         $this->hasMany('SeatsFilledLegs', array(
              'local' => 'seat_id',
              'foreign' => 'seat_id'));
+
+        $this->hasMany('Reviews', array(
+             'local' => 'seat_id',
+             'foreign' => 'seat_id'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $this->actAs($timestampable0);
     }
 }

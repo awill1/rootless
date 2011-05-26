@@ -26,8 +26,8 @@ abstract class BaseLegsForm extends BaseFormDoctrine
       'leg_id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('leg_id')), 'empty_value' => $this->getObject()->get('leg_id'), 'required' => false)),
       'route_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Routes'))),
       'sequence_order' => new sfValidatorInteger(array('required' => false)),
-      'created_at'     => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'     => new sfValidatorDateTime(array('required' => false)),
+      'created_at'     => new sfValidatorDateTime(),
+      'updated_at'     => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('legs[%s]');

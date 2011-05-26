@@ -40,8 +40,8 @@ abstract class BaseEventsForm extends BaseFormDoctrine
       'description'       => new sfValidatorString(array('max_length' => 1024, 'required' => false)),
       'website_url'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'certification'     => new sfValidatorString(array('max_length' => 45, 'required' => false)),
-      'created_at'        => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'        => new sfValidatorDateTime(array('required' => false)),
+      'created_at'        => new sfValidatorDateTime(),
+      'updated_at'        => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('events[%s]');

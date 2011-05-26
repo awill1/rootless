@@ -16,8 +16,9 @@ abstract class BaseMessagesForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'message_id'      => new sfWidgetFormInputHidden(),
-      'conversation_id' => new sfWidgetFormInputHidden(),
+      'conversation_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Conversations'), 'add_empty' => true)),
       'author_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('People'), 'add_empty' => false)),
+      'subject'         => new sfWidgetFormInputText(),
       'body'            => new sfWidgetFormTextarea(),
       'created_at'      => new sfWidgetFormDateTime(),
       'updated_at'      => new sfWidgetFormDateTime(),
@@ -25,11 +26,12 @@ abstract class BaseMessagesForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'message_id'      => new sfValidatorChoice(array('choices' => array($this->getObject()->get('message_id')), 'empty_value' => $this->getObject()->get('message_id'), 'required' => false)),
-      'conversation_id' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('conversation_id')), 'empty_value' => $this->getObject()->get('conversation_id'), 'required' => false)),
+      'conversation_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Conversations'), 'required' => false)),
       'author_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('People'))),
+      'subject'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'body'            => new sfValidatorString(),
-      'created_at'      => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'      => new sfValidatorDateTime(array('required' => false)),
+      'created_at'      => new sfValidatorDateTime(),
+      'updated_at'      => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('messages[%s]');

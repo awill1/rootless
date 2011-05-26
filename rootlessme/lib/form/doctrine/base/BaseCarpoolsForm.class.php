@@ -17,7 +17,7 @@ abstract class BaseCarpoolsForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'carpool_id'      => new sfWidgetFormInputHidden(),
       'driver_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('People'), 'add_empty' => false)),
-      'vehicle_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Vehicles'), 'add_empty' => false)),
+      'vehicle_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Vehicles'), 'add_empty' => true)),
       'route_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Routes'), 'add_empty' => false)),
       'solo_route_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Routes_3'), 'add_empty' => false)),
       'seats_available' => new sfWidgetFormInputText(),
@@ -32,16 +32,16 @@ abstract class BaseCarpoolsForm extends BaseFormDoctrine
     $this->setValidators(array(
       'carpool_id'      => new sfValidatorChoice(array('choices' => array($this->getObject()->get('carpool_id')), 'empty_value' => $this->getObject()->get('carpool_id'), 'required' => false)),
       'driver_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('People'))),
-      'vehicle_id'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Vehicles'))),
+      'vehicle_id'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Vehicles'), 'required' => false)),
       'route_id'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Routes'))),
       'solo_route_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Routes_3'))),
       'seats_available' => new sfValidatorInteger(array('required' => false)),
-      'start_date'      => new sfValidatorDate(array('required' => false)),
+      'start_date'      => new sfValidatorDate(),
       'start_time'      => new sfValidatorTime(array('required' => false)),
       'asking_price'    => new sfValidatorNumber(array('required' => false)),
       'description'     => new sfValidatorString(array('required' => false)),
-      'created_at'      => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'      => new sfValidatorDateTime(array('required' => false)),
+      'created_at'      => new sfValidatorDateTime(),
+      'updated_at'      => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('carpools[%s]');

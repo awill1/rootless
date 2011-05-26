@@ -1,6 +1,7 @@
 AttendingStatusType:
   connection: doctrine
   tableName: attending_status_type
+  actAs: { Timestampable: ~ }
   columns:
     attending_status_type_id:
       type: integer(4)
@@ -37,6 +38,7 @@ AttendingStatusType:
 Carpools:
   connection: doctrine
   tableName: carpools
+  actAs: { Timestampable: ~ }
   columns:
     carpool_id:
       type: integer(4)
@@ -56,7 +58,7 @@ Carpools:
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
+      notnull: false
       autoincrement: false
     route_id:
       type: integer(4)
@@ -84,7 +86,7 @@ Carpools:
       fixed: false
       unsigned: false
       primary: false
-      notnull: false
+      notnull: true
       autoincrement: false
     start_time:
       type: time(25)
@@ -146,6 +148,7 @@ Carpools:
 Comments:
   connection: doctrine
   tableName: comments
+  actAs: { Timestampable: ~ }
   columns:
     comment_id:
       type: integer(4)
@@ -200,6 +203,7 @@ Comments:
 ConversationParticipants:
   connection: doctrine
   tableName: conversation_participants
+  actAs: { Timestampable: ~ }
   columns:
     conversation_id:
       type: integer(4)
@@ -247,6 +251,7 @@ ConversationParticipants:
 Conversations:
   connection: doctrine
   tableName: conversations
+  actAs: { Timestampable: ~ }
   columns:
     conversation_id:
       type: integer(4)
@@ -298,6 +303,7 @@ Conversations:
 Events:
   connection: doctrine
   tableName: events
+  actAs: { Timestampable: ~ }
   columns:
     event_id:
       type: integer(4)
@@ -398,6 +404,7 @@ Events:
 FriendshipRequests:
   connection: doctrine
   tableName: friendship_requests
+  actAs: { Timestampable: ~ }
   columns:
     requestor_id:
       type: integer(4)
@@ -463,6 +470,7 @@ FriendshipRequests:
 FriendshipStatuses:
   connection: doctrine
   tableName: friendship_statuses
+  actAs: { Timestampable: ~ }
   columns:
     friendship_status_id:
       type: integer(4)
@@ -499,6 +507,7 @@ FriendshipStatuses:
 Friendships:
   connection: doctrine
   tableName: friendships
+  actAs: { Timestampable: ~ }
   columns:
     friend1_id:
       type: integer(4)
@@ -539,6 +548,7 @@ Friendships:
 Legs:
   connection: doctrine
   tableName: legs
+  actAs: { Timestampable: ~ }
   columns:
     leg_id:
       type: integer(4)
@@ -590,6 +600,7 @@ Legs:
 Locations:
   connection: doctrine
   tableName: locations
+  actAs: { Timestampable: ~ }
   columns:
     location_id:
       type: integer(4)
@@ -704,9 +715,58 @@ Locations:
       local: location_id
       foreign: location_id
       type: many
+MessageRecipients:
+  connection: doctrine
+  tableName: message_recipients
+  actAs: { Timestampable: ~ }
+  columns:
+    message_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    person_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    unread:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '1'
+      notnull: true
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    Messages:
+      local: message_id
+      foreign: message_id
+      type: one
+    People:
+      local: person_id
+      foreign: person_id
+      type: one
 Messages:
   connection: doctrine
   tableName: messages
+  actAs: { Timestampable: ~ }
   columns:
     message_id:
       type: integer(4)
@@ -718,7 +778,7 @@ Messages:
       type: integer(4)
       fixed: false
       unsigned: false
-      primary: true
+      primary: false
       autoincrement: false
     author_id:
       type: integer(4)
@@ -726,6 +786,13 @@ Messages:
       unsigned: false
       primary: false
       notnull: true
+      autoincrement: false
+    subject:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
       autoincrement: false
     body:
       type: string()
@@ -753,6 +820,10 @@ Messages:
       local: conversation_id
       foreign: conversation_id
       type: one
+    MessageRecipients:
+      local: message_id
+      foreign: message_id
+      type: many
     People:
       local: author_id
       foreign: person_id
@@ -760,6 +831,7 @@ Messages:
 Passengers:
   connection: doctrine
   tableName: passengers
+  actAs: { Timestampable: ~ }
   columns:
     passenger_id:
       type: integer(4)
@@ -846,6 +918,7 @@ Passengers:
 People:
   connection: doctrine
   tableName: people
+  actAs: { Timestampable: ~ }
   columns:
     person_id:
       type: integer(4)
@@ -946,6 +1019,7 @@ People:
 Profiles:
   connection: doctrine
   tableName: profiles
+  actAs: { Timestampable: ~ }
   columns:
     profile_name:
       type: string(45)
@@ -1164,6 +1238,7 @@ Profiles:
 Reviews:
   connection: doctrine
   tableName: reviews
+  actAs: { Timestampable: ~ }
   columns:
     rating_id:
       type: integer(4)
@@ -1184,6 +1259,13 @@ Reviews:
       unsigned: false
       primary: false
       notnull: true
+      autoincrement: false
+    seat_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
       autoincrement: false
     was_safe:
       type: integer(1)
@@ -1234,6 +1316,13 @@ Reviews:
       primary: false
       notnull: false
       autoincrement: false
+    ride_date:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
     created_at:
       type: timestamp(25)
       fixed: false
@@ -1258,9 +1347,14 @@ Reviews:
       local: reviewee_id
       foreign: person_id
       type: one
+    Seats:
+      local: seat_id
+      foreign: seat_id
+      type: one
 Routes:
   connection: doctrine
   tableName: routes
+  actAs: { Timestampable: ~ }
   columns:
     route_id:
       type: integer(4)
@@ -1331,6 +1425,7 @@ Routes:
 SeatRequestTypes:
   connection: doctrine
   tableName: seat_request_types
+  actAs: { Timestampable: ~ }
   columns:
     seat_request_type_id:
       type: integer(4)
@@ -1374,6 +1469,7 @@ SeatRequestTypes:
 SeatStatuses:
   connection: doctrine
   tableName: seat_statuses
+  actAs: { Timestampable: ~ }
   columns:
     seat_status_id:
       type: integer(4)
@@ -1417,6 +1513,7 @@ SeatStatuses:
 Seats:
   connection: doctrine
   tableName: seats
+  actAs: { Timestampable: ~ }
   columns:
     seat_id:
       type: integer(4)
@@ -1522,9 +1619,14 @@ Seats:
       local: seat_id
       foreign: seat_id
       type: many
+    Reviews:
+      local: seat_id
+      foreign: seat_id
+      type: many
 SeatsFilledLegs:
   connection: doctrine
   tableName: seats_filled_legs
+  actAs: { Timestampable: ~ }
   columns:
     seat_id:
       type: integer(4)
@@ -1564,6 +1666,7 @@ SeatsFilledLegs:
 SecuritySettings:
   connection: doctrine
   tableName: security_settings
+  actAs: { Timestampable: ~ }
   columns:
     security_settings_id:
       type: integer(4)
@@ -1592,6 +1695,20 @@ SecuritySettings:
       primary: false
       notnull: false
       autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
   relations:
     People:
       local: person_id
@@ -1600,6 +1717,7 @@ SecuritySettings:
 Steps:
   connection: doctrine
   tableName: steps
+  actAs: { Timestampable: ~ }
   columns:
     step_id:
       type: integer(4)
@@ -1675,6 +1793,7 @@ Steps:
 TravelersAttendingEvent:
   connection: doctrine
   tableName: travelers_attending_event
+  actAs: { Timestampable: ~ }
   columns:
     event_id:
       type: integer(4)
@@ -1725,6 +1844,7 @@ TravelersAttendingEvent:
 Users:
   connection: doctrine
   tableName: users
+  actAs: { Timestampable: ~ }
   columns:
     user_name:
       type: string(45)
@@ -1753,6 +1873,20 @@ Users:
       primary: false
       notnull: true
       autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
   relations:
     People:
       local: person_id
@@ -1761,6 +1895,7 @@ Users:
 Vehicles:
   connection: doctrine
   tableName: vehicles
+  actAs: { Timestampable: ~ }
   columns:
     vehicle_id:
       type: integer(4)

@@ -40,8 +40,8 @@ abstract class BaseProfilesFormFilter extends BaseFormFilterDoctrine
       'website_url'        => new sfWidgetFormFilterInput(),
       'facebook_user_name' => new sfWidgetFormFilterInput(),
       'twitter_user_name'  => new sfWidgetFormFilterInput(),
-      'created_at'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
-      'updated_at'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'created_at'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'updated_at'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
     ));
 
     $this->setValidators(array(

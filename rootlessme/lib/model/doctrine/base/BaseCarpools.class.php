@@ -63,7 +63,7 @@ Doctrine_Manager::getInstance()->bindComponent('Carpools', 'doctrine');
  * @package    RootlessMe
  * @subpackage model
  * @author     awilliams
- * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
+ * @version    SVN: $Id: Builder.php 7691 2011-02-04 15:43:29Z jwage $
  */
 abstract class BaseCarpools extends sfDoctrineRecord
 {
@@ -92,7 +92,7 @@ abstract class BaseCarpools extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => true,
+             'notnull' => false,
              'autoincrement' => false,
              'length' => 4,
              ));
@@ -128,7 +128,7 @@ abstract class BaseCarpools extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => false,
+             'notnull' => true,
              'autoincrement' => false,
              'length' => 25,
              ));
@@ -201,5 +201,8 @@ abstract class BaseCarpools extends sfDoctrineRecord
         $this->hasMany('Seats', array(
              'local' => 'carpool_id',
              'foreign' => 'carpool_id'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $this->actAs($timestampable0);
     }
 }

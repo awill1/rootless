@@ -42,7 +42,7 @@ Doctrine_Manager::getInstance()->bindComponent('FriendshipRequests', 'doctrine')
  * @package    RootlessMe
  * @subpackage model
  * @author     awilliams
- * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
+ * @version    SVN: $Id: Builder.php 7691 2011-02-04 15:43:29Z jwage $
  */
 abstract class BaseFriendshipRequests extends sfDoctrineRecord
 {
@@ -126,5 +126,8 @@ abstract class BaseFriendshipRequests extends sfDoctrineRecord
         $this->hasOne('FriendshipStatuses', array(
              'local' => 'friendship_status_id',
              'foreign' => 'friendship_status_id'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $this->actAs($timestampable0);
     }
 }

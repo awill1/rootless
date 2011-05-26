@@ -30,8 +30,8 @@ abstract class BaseRoutesForm extends BaseFormDoctrine
       'summary'          => new sfValidatorString(array('required' => false)),
       'warning'          => new sfValidatorString(array('required' => false)),
       'encoded_polyline' => new sfValidatorString(array('required' => false)),
-      'created_at'       => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'       => new sfValidatorDateTime(array('required' => false)),
+      'created_at'       => new sfValidatorDateTime(),
+      'updated_at'       => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('routes[%s]');

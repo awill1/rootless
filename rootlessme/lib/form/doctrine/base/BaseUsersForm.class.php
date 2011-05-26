@@ -19,6 +19,8 @@ abstract class BaseUsersForm extends BaseFormDoctrine
       'person_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('People'), 'add_empty' => false)),
       'email'              => new sfWidgetFormInputText(),
       'encrypted_password' => new sfWidgetFormInputText(),
+      'created_at'         => new sfWidgetFormDateTime(),
+      'updated_at'         => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
@@ -26,6 +28,8 @@ abstract class BaseUsersForm extends BaseFormDoctrine
       'person_id'          => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('People'))),
       'email'              => new sfValidatorString(array('max_length' => 45)),
       'encrypted_password' => new sfValidatorString(array('max_length' => 128)),
+      'created_at'         => new sfValidatorDateTime(),
+      'updated_at'         => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('users[%s]');
