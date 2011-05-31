@@ -116,6 +116,11 @@ tbody {
 #mainRideInformation {
 }
 
+.middleRidesFormArea
+{
+    display: inline-block;
+}
+
 #map {
     width: 400px;
     height: 400px;

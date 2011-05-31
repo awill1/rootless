@@ -128,5 +128,7 @@
 
 <h1>New Offer</h1>
 <!--<input id="previewRouteButton" type="button" value="Preview route" />-->
-<div id="map"></div>
+<div id="newRideFormArea" class="middleRidesFormArea">
 <?php include_partial('form', array('form' => $form)) ?>
+</div>
+<div id="map"></div>

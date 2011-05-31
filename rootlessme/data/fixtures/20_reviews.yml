@@ -9,6 +9,55 @@ Reviews:
     was_friendly: 1
     was_punctual: 1
     was_courteous: 1
-    comments: "Aaron was a great driver. We had a fun time."
+    ride_date: '2007-04-02'
+    comments: "Aaron was a great driver. We made it all the way to Florida with no issues."
     driver_review: 1
     passenger_review: 0
+  review_2:
+    rating_id: 2
+    reviewer_id: 2
+    reviewee_id: 1
+    was_safe: 1
+    was_friendly: 1
+    was_punctual: 1
+    was_courteous: 1
+    ride_date: '2011-04-12'
+    comments: "Once again, Aaron was a great driver. I love traveling with him."
+    driver_review: 1
+    passenger_review: 0
+  review_3:
+    rating_id: 3
+    reviewer_id: 3
+    reviewee_id: 1
+    was_safe: 1
+    was_friendly: 0
+    was_punctual: 1
+    was_courteous: 1
+    ride_date: '2011-05-11'
+    comments: "Aaron was a good driver. He did not talk much though. You can feel boot about accepting rides from him, but do not expect much in the way of conversation."
+    driver_review: 1
+    passenger_review: 0
+  review_4:
+    rating_id: 4
+    reviewer_id: 1
+    reviewee_id: 2
+    was_safe: 1
+    was_friendly: 1
+    was_punctual: 1
+    was_courteous: 1
+    ride_date: '2011-04-12'
+    comments: "Christy is a great passenger!"
+    driver_review: 2
+    passenger_review: 1
+  review_5:
+    rating_id: 5
+    reviewer_id: 2
+    reviewee_id: 1
+    was_safe: 1
+    was_friendly: 1
+    was_punctual: 1
+    was_courteous: 1
+    ride_date: '2011-05-27'
+    comments: "A great ride to Philly. It sure is better than driving alone."
+    driver_review: 1
+    passenger_review: 1

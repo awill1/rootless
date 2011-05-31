@@ -21,7 +21,7 @@ class CarpoolsTable extends Doctrine_Table
     {
         $q = $this->createQuery('c')
           ->leftJoin('c.People p')
-          ->leftJoin('p.Profiles pr');;
+          ->leftJoin('p.Profiles pr');
 
         return $q->execute();
     }

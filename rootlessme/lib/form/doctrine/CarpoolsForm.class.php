@@ -20,6 +20,7 @@ class CarpoolsForm extends BaseCarpoolsForm
         $solo_route_form = new RoutesForm($solo_route);
         $this->embedForm('route', $solo_route_form);
 
+
         // Change the vehicle list to only include the user's vehicles
         $personId = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
         $this->setWidget('vehicle_id', new sfWidgetFormDoctrineChoice(array(

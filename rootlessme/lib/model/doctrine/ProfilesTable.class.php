@@ -35,4 +35,33 @@ class ProfilesTable extends Doctrine_Table
 
         return $q->execute();
     }
+
+    public function getMutualFriendsProfiles($person1_id, $person2_id)
+    {
+        // Need this function to match this query
+        // select * from profiles p
+        // where p.person_id in (
+        //     select f.friend1_id as friend_id
+        //     from friendships f
+        //     where f.friend2_id = 2
+        //     union all
+        //     select f2.friend2_id as friend_id
+        //     from friendships f2
+        //     where f2.friend1_id = 2)
+        // AND p.person_id in (
+        //     select f.friend1_id as friend_id
+        //     from friendships f
+        //     where f.friend2_id = 3
+        //     union all
+        //     select f2.friend2_id as friend_id
+        //     from friendships f2
+        //     where f2.friend1_id = 3
+        // );
+
+        $q = $this->createQuery('p')
+                ->where('p.person_id IN (select friend1_id as friend_id from friendships where friend2_id = ? union all select friend2_id as friend_id from friendships where friend1_id = ?)', array($person1_id, $person1_id))
+                ->andWhere('p.person_id IN (select friend1_id as friend_id from friendships where friend2_id = ? union all select friend2_id as friend_id from friendships where friend1_id = ?)', array($person2_id, $person2_id));
+
+        return $q->execute();
+    }
 }

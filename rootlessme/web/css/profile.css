@@ -94,8 +94,6 @@
 
 
 .tabSelectedItem {
-    width: 112px;
-    height: 44px;
     margin-left: auto;
     margin-right: auto;
     color: #FFFFFF;
@@ -104,8 +102,6 @@
 }
 
 .tabNotSelectedItem {
-    width: 111px;
-    height: 44px;
     float: left;
     background-image: url("../images/tabNotSelectedBackground.JPG");
 }
@@ -117,7 +113,7 @@
 
  #fragment-id .middleProfileTabContentRightColumn {
     width: 450px;
-    float: right;
+    float: left;
 }
 
 #fragment-interests .middleProfileTabContentLeftColumn {
@@ -197,6 +193,7 @@
 .driverReviewsListItem {
     margin: 8px 0px 8px 0px;
     padding: 4px 0px 4px 0px;
+    clear: left;
 }
 
 .feedbackProfilePicture {
