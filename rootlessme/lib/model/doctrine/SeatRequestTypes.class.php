@@ -12,5 +12,8 @@
  */
 class SeatRequestTypes extends BaseSeatRequestTypes
 {
-
+    public function __toString()
+    {
+        return $this->getDisplayText();
+    }
 }

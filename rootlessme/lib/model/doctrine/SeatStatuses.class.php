@@ -12,5 +12,8 @@
  */
 class SeatStatuses extends BaseSeatStatuses
 {
-
+    public function __toString()
+    {
+        return $this->getDisplayText();
+    }
 }
