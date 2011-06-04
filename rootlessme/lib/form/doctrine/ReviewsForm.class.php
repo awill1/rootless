@@ -33,6 +33,10 @@ class ReviewsForm extends BaseReviewsForm
 
         $this->setWidget('ride_date',new sfWidgetFormInputText());
 
+        // Hidden fields
+        $this->setWidget('reviewer_id', new sfWidgetFormInputHidden());
+        $this->setWidget('reviewee_id', new sfWidgetFormInputHidden());
+
         // Choose the fields that will be displayed
         unset($this['created_at']);
         unset($this['updated_at']);
