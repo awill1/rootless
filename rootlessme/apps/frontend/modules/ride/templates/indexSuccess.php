@@ -141,5 +141,5 @@
 <div id="map"></div>
 <div id="results">
     <?php include_partial('ridesList', array('carpools' => $carpools)) ?>
-    <img id="loader" src="/images/ajax-loader.gif" style="vertical-align: middle; display: none" />
+    <img id="loader" alt="Loading spinner" src="/images/ajax-loader.gif" style="vertical-align: middle; display: none" />
 </div>

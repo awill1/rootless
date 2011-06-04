@@ -25,8 +25,6 @@ class profileActions extends sfActions
 
     // Get additional information needed for the profile show page
     $this->friends = Doctrine_Core::getTable('Profiles')->getFriendsProfiles($personID);
-    $this->ratings = Doctrine_Core::getTable('Reviews')->getReviewsSummaryForPerson($personID);
-    $this->reviews = Doctrine_Core::getTable('Reviews')->getReviewsForPersonWithProfile($personID);
     $this->travelSummary = Doctrine_Core::getTable('Seats')->getTravelSummaryForPerson($personID);
     $this->vehicle = $this->profile->getPeople()->getVehicles()->getFirst();
 
@@ -40,7 +38,7 @@ class profileActions extends sfActions
         $newReview->setReviewerId($personID);
         // Set the reviewee
 //        $newReview->setPeople($this->profile->getPeople());
-        $newReview->setRevieweeId($this->profile->getPersonId());
+        $newReview->setRevieweeId($this->getUser()->getGuardUser()->getPersonId());
         $this->reviewForm = new ReviewsForm($newReview);
 
         // Only get mutual friends if the user is logged in

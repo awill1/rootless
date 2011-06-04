@@ -243,6 +243,12 @@ review_show:
   param:   { module: review, action: show}
   requirements: { sf_method: get }
 
+review_ratings:
+  url:     /reviews/:id/graph
+  class:   sfRoute
+  param:   { module: review, action: graph}
+  requirements: { sf_method: get }
+
 
 # default rules
 homepage:

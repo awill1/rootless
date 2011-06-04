@@ -40,7 +40,7 @@ class rideActions extends sfActions
                 return $this->renderText('No results.');
             }
 
-            return $this->renderPartial('job/list', array('jobs' => $this->jobs));
+            return $this->renderPartial('ride/ridesList', array('carpools' => $this->carpools));
         }
     }
 
@@ -75,12 +75,12 @@ class rideActions extends sfActions
         if ($request->isXmlHttpRequest())
         {
             //if ('*' == $query || !$this->carpools)
-            if (!$this->passengers)
+            if (!$this->carpools)
             {
               return $this->renderText('No results.');
             }
 
-            return $this->renderPartial('ridesList', array('carpools' => $this->passengers));
+            return $this->renderPartial('ride/ridesList', array('carpools' => $this->carpools));
         }
     }
 

@@ -63,6 +63,9 @@
                         $( "#dialogFormDiv" ).toggle();
             });
 
+            // Hide the new review form initially
+            $('#dialogFormDiv').hide();
+
 
 	});
 

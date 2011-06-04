@@ -31,13 +31,29 @@ class reviewActions extends sfActions
 
   public function executeCreate(sfWebRequest $request)
   {
-    $this->forward404Unless($request->isMethod(sfRequest::POST));
+      $this->forward404Unless($request->isMethod(sfRequest::POST));
 
-    $this->form = new ReviewsForm();
+      $this->form = new ReviewsForm();
 
-    $this->processForm($request, $this->form);
+      $review = $this->processForm($request, $this->form);
 
-    $this->setTemplate('new');
+      $this->setTemplate('new');
+
+      if ($request->isXmlHttpRequest())
+      {
+          // This is an ajax request so return the new object
+          if (!$this->passengers)
+          {
+            return $this->renderText('No results.');
+          }
+
+          return $this->renderPartial('review/reviewList', array('review' => $this->carpools));
+      }
+      else
+      {
+        // Not an AJAX call so redirect to the new review page
+        $this->redirect('review_show',$review);
+      }
   }
 
   public function executeEdit(sfWebRequest $request)
@@ -67,6 +83,23 @@ class reviewActions extends sfActions
     $this->redirect('review/index');
   }
 
+  public function executeGraph(sfWebRequest $request)
+  {
+    $personId = $request->getParameter('id');
+    $this->ratings = Doctrine_Core::getTable('Reviews')->getReviewsSummaryForPerson($personId);
+    
+    // AJAX parts for rendering the new graphs
+//    if ($request->isXmlHttpRequest())
+//    {
+        if (!$this->ratings)
+        {
+            return $this->renderText('No results.');
+        }
+
+        return $this->renderPartial('review/ratingGraphs', array('ratings' => $this->ratings));
+//    }
+  }
+
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
@@ -74,7 +107,9 @@ class reviewActions extends sfActions
     {
       $review = $form->save();
 
-      $this->redirect('review/edit?rating_id='.$review->getRatingId());
+      //$this->redirect('review/edit?rating_id='.$review->getRatingId());
     }
+
+    return $review;
   }
 }

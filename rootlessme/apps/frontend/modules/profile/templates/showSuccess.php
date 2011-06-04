@@ -76,39 +76,11 @@
 
         </div>
         <div class="middleProfileTabContentRightColumn">
-            <div id="DriverRatingSummary">
-                <ul id="feedbackSummaryList">
-                    <li class="feedbackSummaryListItem"><div id="safeDriverRating" class="feedbackRatingBar"><div class="feedbackRatingBarValue" style="width: <?php echo round($ratings['safetyAverage']) ?>%;"><?php echo round($ratings['safetyAverage']) ?>%</div></div><div class="feedbackRatingBarLabel">Safe Driver</div></li>
-                    <li class="feedbackSummaryListItem"><div id="puncualityRating" class="feedbackRatingBar"><div class="feedbackRatingBarValue" style="width: <?php echo round($ratings['punctualityAverage']) ?>%;"><?php echo round($ratings['punctualityAverage']) ?>%</div></div><div class="feedbackRatingBarLabel">Punctuality</div></li>
-                    <li class="feedbackSummaryListItem"><div id="friendlinessRating" class="feedbackRatingBar"><div class="feedbackRatingBarValue" style="width: <?php echo round($ratings['friendlinessAverage']) ?>%;"><?php echo round($ratings['friendlinessAverage']) ?>%</div></div><div class="feedbackRatingBarLabel">Friendliness</div></li>
-                    <li class="feedbackSummaryListItem"><div id="goodRiderRating" class="feedbackRatingBar"><div class="feedbackRatingBarValue" style="width: <?php echo round($ratings['riderAverage']) ?>%;"><?php echo round($ratings['riderAverage']) ?>%</div></div><div class="feedbackRatingBarLabel">Good Rider</div></li>
-                </ul>
-            </div>
-            <div id="driverReviews">
-                <div id="driverReviewsViewBox"><a class="actionLink" href="#" >View Testimonials</a></div>
-                <?php if ($sf_user->isAuthenticated() && ($sf_user->getGuardUser()->getPersonId() != $profile->getPersonId())): ?>
-                <?php include_partial('profile/reviews', array('form' => $reviewForm, 'option' => true)) ?>
-                <?php endif ?>
-                <ul id="driverReviewsList">
-                    <?php foreach ($reviews as $review): ?>
-                     <li class="driverReviewsListItem">
-                         <a href="<?php echo $review->getPeople()->getProfiles()->getFirst()->getProfileName() ?>">
-                             <img class="feedbackProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $review->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall() ?>" alt="<?php echo $review->getPeople()->getProfiles()->getFirst()->getFullName() ?>" />
-                         </a>
-                        <h3 class="feedbackProfileHeading">         
-                          <a href="<?php echo $review->getPeople()->getProfiles()->getFirst()->getProfileName() ?>">
-                            <?php echo $review->getPeople()->getProfiles()->getFirst()->getFullName() ?>
-                          </a>
-                        </h3>
-                        <p class="feedbackProfileComment">
-                            <?php echo $review->getComments() ?>
-                        </p>
-                        <div class="feedbackProfileReply"><a class="actionLink" href="#" >Reply</a></div>
-                    </li>
-                    <?php endforeach; ?>
-                </ul>
-                <div class="middleFriendsListMore"><a class="seeMoreLink" href="#">&gt;&gt;see more</a></div>
-            </div>
+            
+                
+                <?php include_component('review', 'Reviews', array('profile_name' => $profile->getProfileName())) ?>
+
+               
         </div>
     </div>
     <div id="fragment-travel_log" class="middleProfileTabContent">
