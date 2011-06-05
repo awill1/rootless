@@ -42,12 +42,12 @@ class reviewActions extends sfActions
       if ($request->isXmlHttpRequest())
       {
           // This is an ajax request so return the new object
-          if (!$this->passengers)
+          if (!$review)
           {
-            return $this->renderText('No results.');
+            return $this->renderText('No new item.');
           }
 
-          return $this->renderPartial('review/reviewList', array('review' => $this->carpools));
+          return $this->renderPartial('review/reviewListItem', array('review' => $review));
       }
       else
       {

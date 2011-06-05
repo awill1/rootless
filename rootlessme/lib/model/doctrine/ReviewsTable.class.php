@@ -28,7 +28,7 @@ class ReviewsTable extends Doctrine_Table
                 ->leftJoin('r.People p')
                 ->leftJoin('p.Profiles pr')
                 ->where('r.reviewee_id = ?', $person_id)
-                ->orderBy('created_at');
+                ->orderBy('r.created_at DESC');
 
         return $q->execute();
     }
