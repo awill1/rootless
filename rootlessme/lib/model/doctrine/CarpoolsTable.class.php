@@ -26,7 +26,7 @@ class CarpoolsTable extends Doctrine_Table
         return $q->execute();
     }
 
-    public function getNearPoints ($originLatitude, $originLongitude, $destinationLatitude, $destinationLongitude, $distance)
+    public function getNearPoints ($originLatitude, $originLongitude, $destinationLatitude, $destinationLongitude, $distance, $date)
     {
         // Use a query similar to the following
         // SELECT * FROM carpools c
@@ -90,7 +90,8 @@ class CarpoolsTable extends Doctrine_Table
                    AND r.route_id = dro.route_id
                   )', array($destinationLatitude,
                             $destinationLongitude,
-                            $distance));
+                            $distance))
+          ->andWhere('c.start_date = ?', array($date));
 
         // Try raw sql
         $q = new Doctrine_RawSql();
@@ -100,6 +101,11 @@ class CarpoolsTable extends Doctrine_Table
         // ON c.route_id = r.route_id
         $q->addComponent('c', 'carpools');
 //        $q->addComponent('r', 'carpools.Routes r');
+
+        if ($date != null)
+        {
+            $q = $q->andWhere('c.start_date = ?', $date);
+        }
 
         return $q->execute();
     }

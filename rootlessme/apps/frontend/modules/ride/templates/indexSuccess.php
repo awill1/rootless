@@ -7,6 +7,9 @@
 ?>
 
 <?php slot('gmapheader'); ?>
+
+    <script type="text/javascript" src="/js/jquery.form.js"></script>
+    
     <script type="text/javascript">
         $(function() {
 		$( "#rides_date" ).datepicker();
@@ -41,15 +44,23 @@
             $('#rides_destination').change(previewRoute);
 
                // Handler for the find button
-              $('#rides_find').click(function()
-              {
-                 $('#loader').show();
-                  $('#results').load(
-                    $(this).parents('form').attr('action'),
-                    {  },
-                    function() { $('#loader').hide(); }
-                  );
-              });
+//              $('#rides_find').click(function()
+//              {
+//                 $('#loader').show();
+//                  $('#results').load(
+//                    $(this).parents('form').attr('action'),
+//                    {  },
+//                    function() { $('#loader').hide(); }
+//                  );
+//              });
+            $('#rideSearchForm').ajaxForm(
+            {
+                target: '#results',
+                success: function()
+                {
+                    // This handler function will run when the form is complete
+                }
+            });
            
         });
 

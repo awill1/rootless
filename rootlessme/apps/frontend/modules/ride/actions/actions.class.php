@@ -64,7 +64,7 @@ class rideActions extends sfActions
         $myEndLongitude = -85.26;
         $myDistance = 10;
         $this->carpools = Doctrine_Core::getTable('Carpools')
-             ->getNearPoints($myStartLatitude, $myStartLongitude, $myEndLatitude, $myEndLongitude, $myDistance);
+             ->getNearPoints($myStartLatitude, $myStartLongitude, $myEndLatitude, $myEndLongitude, $myDistance, $this->date);
         $this->passengers = Doctrine_Core::getTable('Passengers')
              ->getWithProfiles();
 

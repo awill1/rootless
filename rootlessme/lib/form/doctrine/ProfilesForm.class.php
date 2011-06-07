@@ -15,6 +15,13 @@ class ProfilesForm extends BaseProfilesForm
         // Set up the extra widgets
         $this->setWidget('picture_url', new sfWidgetFormInputFile());
 
+        // Hide the other file inputs since they will be derived from the
+        // uploaded file
+        $this->setWidget('picture_url_large', new sfWidgetFormInputHidden());
+        $this->setWidget('picture_url_medium', new sfWidgetFormInputHidden());
+        $this->setWidget('picture_url_small', new sfWidgetFormInputHidden());
+        $this->setWidget('picture_url_tiny', new sfWidgetFormInputHidden());
+
         // Change the birthday widget to be a textbox
         $this->setWidget('birthday', new sfWidgetFormInputText());
 
@@ -73,9 +80,10 @@ class ProfilesForm extends BaseProfilesForm
                     $pictureSizeInfo = sfConfig::get('app_picture_sizes_'.$size);
                     $maxWidth = $pictureSizeInfo['width'];
                     $maxHeight = $pictureSizeInfo['height'];
+                    $transformMethod = $pictureSizeInfo['method'];
 
                     // Resize the image
-                    $img->thumbnail($maxWidth, $maxHeight);
+                    $img->thumbnail($maxWidth, $maxHeight, $transformMethod);
 //                    if($img->getWidth() > $maxWidth || $img->getHeight() > $maxHeight) {
 //                        if($img->getWidth() > $img->getHeight())
 //                        {
