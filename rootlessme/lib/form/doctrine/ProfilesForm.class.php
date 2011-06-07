@@ -50,33 +50,36 @@ class ProfilesForm extends BaseProfilesForm
             // Save the form data to the database
             $response = parent::doSave($con);
 
-            // Get the new filename for the uploaded file
-//            $shortFilename = $this->getValue('picture_url');
-            $shortFilename = $this->getObject()->getPictureUrl();
-            $filename = sfConfig::get('sf_upload_dir').'/assets/profile_pictures/'.$shortFilename;
+            // Get the filename information for the uploaded file
+            // For example:
+            //$this->getObject()->getPictureUrl() returns picture1.jpg
+            // basename => picture1.jpg, filename => picture1, extension => jpg
+            $pathParts = pathinfo($this->getObject()->getPictureUrl());
+            $basename = $pathParts['basename'];
+            // short file name look
+            $shortFilename = $pathParts['filename'];
+            $fileLocation = sfConfig::get('sf_upload_dir').'/assets/profile_pictures/';
+            $originalFilePath = $fileLocation.$basename;
+            $extention = $pathParts['extension'];
+
 
             if ($this->getValue('picture_url')) {
                 
                 // Resize the picture for each desired times
                 $sizes = array('tiny', 'small', 'medium', 'large');
-                $filenames = array();
-                $shortFilenames = array();
-                $mime = 'image/jpg';
                 
                 // Create the resized picture filenames
                 foreach ($sizes as $size)
                 {
-                    $newFileExtention = '.'.$size.'.jpg';
-                    $filenames[$size] = $filename.$newFileExtention;
-                    $shortFilenames[$size] = $shortFilename.$newFileExtention;
-                    $this->values['picture_url_'.$size] = $shortFilenames[$size];
-                }
-                
-                
-                // Now resize the original picture to make the smaller versions
-                foreach ($sizes as $size)
-                {
-                    $img = new sfImage($filename, $mime, 'GD');
+                    // New file name looks like picture1_small.jpg
+                    $newFileExtention = '_'.$size.'.'.$extention;
+                    $newFilename = $fileLocation.$shortFilename.$newFileExtention;
+                    $newShortFilename = $shortFilename.$newFileExtention;
+                    // Update the file name to be saved in the database
+                    $this->values['picture_url_'.$size] = $newShortFilename;
+
+                    // Now resize the original picture to make the smaller versions
+                    $img = new sfImage($originalFilePath);
                     $pictureSizeInfo = sfConfig::get('app_picture_sizes_'.$size);
                     $maxWidth = $pictureSizeInfo['width'];
                     $maxHeight = $pictureSizeInfo['height'];
@@ -84,28 +87,13 @@ class ProfilesForm extends BaseProfilesForm
 
                     // Resize the image
                     $img->thumbnail($maxWidth, $maxHeight, $transformMethod);
-//                    if($img->getWidth() > $maxWidth || $img->getHeight() > $maxHeight) {
-//                        if($img->getWidth() > $img->getHeight())
-//                        {
-//                            $img->resize($maxWidth,null);
-//                        }
-//                        else
-//                        {
-//                            $img->resize(null,$maxHeight);
-//                        }
-//                    }
-                    $img->saveAs($filenames[$size], $mime);
+                    $img->saveAs($newFilename);
                 }
 
                 // Save the resized files to the database
                 $response = parent::doSave($con);
             }
-            else {
-                // There is no picture_url, so just save using the parent 
-                // function
-                //$response = parent::doSave($con);
-            }
-
+            
             return $response;
         }
         return parent::doSave($con);
