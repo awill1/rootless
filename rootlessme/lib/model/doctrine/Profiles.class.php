@@ -45,4 +45,25 @@ class Profiles extends BaseProfiles
         return $year_diff;
 
     }
+
+    public function isMyFriend()
+    {
+        $myId = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
+        $profileId = $this->getPersonId();
+
+        // Need sql to match this query
+        // select * from friendships f
+        // where f.friend1_id = 1 and f.friend2_id = 2
+        //    or f.friend2_id = 1 and f.friend1_id = 2;
+//        $q = $this->createQuery('f')
+        $q = Doctrine_Query::create()
+                ->select('profile_name')
+                ->from('friendships f')
+                ->where('f.friend1_id = ? AND f.friend2_id = ?', array($myId, $profileId))
+                ->orWhere('f.friend2_id = ? AND f.friend1_id = ?', array($myId, $profileId));
+
+        // Return a boolean indicating whether there was a friendship
+        // record found.
+        return ($q->count() > 0) ;
+    }
 }

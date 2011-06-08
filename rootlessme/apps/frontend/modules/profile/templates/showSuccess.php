@@ -17,10 +17,12 @@
     <?php echo $profile->getFullName() ?>
     <?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->getPersonId() == $profile->getPersonId()): ?>
         <a id="mainProfileTitleEditLink" href="<?php echo url_for('profile_edit_user') ?>">Edit&nbsp;Profile</a>
+    <?php endif ?>     
+    <?php if ($sf_user->isAuthenticated() && !$profile->isMyFriend()): ?>
+        <input type="button" value="Add as friend" />
     <?php endif ?>
 </h1>
 <a id="mainProfileSubtitle" href="<?php echo $profile->getWebsiteUrl() ?>"><?php echo $profile->getWebsiteUrl() ?></a>
-
 <div id="middleProfileBadge">
     <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $profile->getPictureUrlLarge() ?>" alt="<?php echo $profile->getFullName() ?> profile picture"/>
     <div class="middleProfileBadgeInfo">
