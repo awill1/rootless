@@ -38,11 +38,7 @@
                     </li>
                     <li class="headerControlsListItem"><a href="#" class="headerControl">Donate</a></li>
                     <?php if ($sf_user->isAuthenticated()): ?>
-                    <li class="headerControlsListItem">
-                        <a href="<?php echo url_for('conversations') ?>" class="headerControl">
-                        Inbox <img src="/images/messageSmall.JPG" alt="1 message" />
-                        </a>
-                    </li>
+                        <?php include_component('message', 'messageMenu') ?>
                     <li class="headerControlsListItem">
                         <a href="<?php echo url_for('profile_show_user',$sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()) ?>" class="headerControl">
                             <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlTiny(); ?>" alt="Tiny profile picture" />

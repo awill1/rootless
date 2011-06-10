@@ -31,6 +31,70 @@ class MessagesTable extends Doctrine_Table
         }
 
         return $q;
-      }
+    }
+
+    public function getMyMessages()
+    {
+        // Create the return value
+        $messages = null;
+
+        if (sfContext::getInstance()->getUser()->isAuthenticated())
+        {
+            // Get the authenticated user's personId
+            $myId = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
+
+            // Build the query to get the user's messages
+            // The query should be similar to
+            // select * from messages m
+            // inner join message_recipients mr
+            // on m.message_id = mr.message_id
+            // inner join profiles p
+            // on p.person_id = m.author_id
+            // where mr.person_id = 1;
+            $q = $this->createQuery('m')
+                ->innerJoin('m.MessageRecipients mr')
+                ->innerJoin('m.People p')
+                ->innerJoin('p.Profiles pr')
+                ->where('mr.person_id = ?', $myId)
+                ->orderBy('m.created_at DESC');
+
+            $messages = $q->execute();
+        }
+
+        return $messages;
+    }
+
+        public function getMyNewMessages()
+    {
+        // Create the return value
+        $messages = null;
+
+        if (sfContext::getInstance()->getUser()->isAuthenticated())
+        {
+            // Get the authenticated user's personId
+            $myId = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
+
+            // Build the query to get the user's messages
+            // The query should be similar to
+            // select * from messages m
+            // inner join message_recipients mr
+            // on m.message_id = mr.message_id
+            // inner join profiles p
+            // on p.person_id = m.author_id
+            // where mr.person_id = 1
+            // and mr.unread = 1;
+            $q = $this->createQuery('m')
+                ->innerJoin('m.MessageRecipients mr')
+                ->innerJoin('m.People p')
+                ->innerJoin('p.Profiles pr')
+                ->where('mr.person_id = ?', $myId)
+                ->andWhere('mr.unread = 1')
+                ->orderBy('m.created_at DESC');
+
+            $messages = $q->execute();
+        }
+
+        return $messages;
+    }
 
 }

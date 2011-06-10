@@ -72,15 +72,42 @@ profile_show_user:
 # message rules
 messages:
   url: /messages
-  class:   sfDoctrineRouteCollection
+  class:   sfDoctrineRoute
   param:
     module: message
     action: index
   options:
     model: Messages
+    type: list
+  requirements:
+    sf_method: [get]
+
+messages_new:
+  url: /messages/new
+  class:   sfDoctrineRoute
+  param:
+    module: message
+    action: new
+  options:
+    model: Messages
+    type: object
+  requirements:
+    sf_method: [get]
+
+messages_create:
+  url: /messages/create
+  class:   sfDoctrineRoute
+  param:
+    module: message
+    action: create
+  options:
+    model: Messages
+    type: object
+  requirements:
+    sf_method: [post]
 
 messages_show:
-  url:   /messages/:conversation_id/:message_id
+  url:   /messages/:message_id
   class:   sfDoctrineRoute
   options: { model: Messages, type: object }
   param: { module: message, action: show }
@@ -88,7 +115,7 @@ messages_show:
     sf_method: [get]
 
 messages_edit:
-  url:   /messages/edit/:conversation_id/:message_id
+  url:   /messages/edit/:message_id
   class:   sfDoctrineRoute
   options: { model: Messages, type: object }
   param: { module: message, action: edit }

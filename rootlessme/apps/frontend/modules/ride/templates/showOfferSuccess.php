@@ -16,7 +16,7 @@
 
 
         $(function() {
-            $( "#dialogFormDiv" ).dialog({
+/*           $( "#dialogFormDiv" ).dialog({
                 autoOpen: false,
                 //height: 300,
                 //width: 350,
@@ -51,12 +51,12 @@
                 close: function() {
                         allFields.val( "" ).removeClass( "ui-state-error" );
                 }
-            });
-
+            });*/
+/*
             $( "#requestRideButton" ).button()
                 .click(function() {
                         $( "#dialogFormDiv" ).dialog( "open" );
-            });
+            });*/
 
             $( "#requestRideButton" ).button()
                 .click(function() {
@@ -240,7 +240,7 @@
 
 
 <div id="dialogFormDiv" title="Request a ride">
-    <?php include_component('seat', 'SeatForm') ?>
+    <?php include_component('seat', 'seatForm') ?>
 </div>
 
 <div id="mainRidePeople">
@@ -251,9 +251,9 @@
     </a>
     <h3>Riding</h3>
     <ul>
-        <li><a href="profile.html"><img src="russ_profile_small.JPG" alt="DJ" />DJ</a></li>
-        <li><a href="profile.html"><img src="russ_profile_small.JPG" alt="Zach" />Zach</a></li>
-        <li><a href="profile.html"><img src="russ_profile_small.JPG" alt="Peter" />Peter</a></li>
+        <li><a href="profile.html"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?>russ_profile_small.JPG" alt="DJ" />DJ</a></li>
+        <li><a href="profile.html"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?>russ_profile_small.JPG" alt="Zach" />Zach</a></li>
+        <li><a href="profile.html"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?>russ_profile_small.JPG" alt="Peter" />Peter</a></li>
     </ul>
 </div>
 <div id="mainRideDetails">

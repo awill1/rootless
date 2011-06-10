@@ -18,7 +18,7 @@
     <?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->getPersonId() == $profile->getPersonId()): ?>
         <a id="mainProfileTitleEditLink" href="<?php echo url_for('profile_edit_user') ?>">Edit&nbsp;Profile</a>
     <?php endif ?>     
-    <?php if ($sf_user->isAuthenticated() && !$profile->isMyFriend()): ?>
+    <?php if ($sf_user->isAuthenticated() && !$profile->isMyFriend() && $sf_user->getGuardUser()->getPersonId() != $profile->getPersonId()): ?>
         <input type="button" value="Add as friend" />
     <?php endif ?>
 </h1>

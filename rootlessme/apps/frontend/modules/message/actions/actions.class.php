@@ -12,9 +12,12 @@ class messageActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->messages = Doctrine_Core::getTable('Messages')
-      ->createQuery('a')
-      ->execute();
+//    $this->messages = Doctrine_Core::getTable('Messages')
+//      ->createQuery('a')
+//      ->execute();
+//
+      // Get the current user's messages
+      $this->messages = Doctrine_Core::getTable('Messages')->getMyMessages();
   }
 
   public function executeShow(sfWebRequest $request)
@@ -22,7 +25,7 @@ class messageActions extends sfActions
     //$this->message = Doctrine_Core::getTable('Messages')->find(array($request->getParameter('message_id'), $request->getParameter('conversation_id')));
     $this->messages = Doctrine_Core::getTable('Messages')->find(array($request->getParameter('conversation_id')));
 
-    $this->forward404Unless($this->message);
+    $this->forward404Unless($this->messages);
   }
 
   public function executeNew(sfWebRequest $request)
