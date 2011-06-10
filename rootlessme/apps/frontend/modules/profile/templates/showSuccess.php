@@ -80,7 +80,7 @@
         <div class="middleProfileTabContentRightColumn">
             
                 
-                <?php include_component('review', 'Reviews', array('profile_name' => $profile->getProfileName())) ?>
+                <?php include_component('review', 'reviews', array('profile_name' => $profile->getProfileName())) ?>
 
                
         </div>
