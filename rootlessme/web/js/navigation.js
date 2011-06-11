@@ -31,7 +31,7 @@ $(document).ready(function()
            $('#navigationTravelers').addClass('navigationItemSelected');
     }
     // Messages
-    else if(loc.indexOf('/conversations') > -1){
+    else if(loc.indexOf('/messages') > -1){
            $('#navigationMessages').removeClass('navigationItem');
            $('#navigationMessages').addClass('navigationItemSelected');
     }

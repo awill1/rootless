@@ -94,7 +94,7 @@
                     </li>
                     <?php if ($sf_user->isAuthenticated()): ?>
                     <li  id="navigationMessages" class="navigationItem">
-                        <a href="<?php echo url_for("conversations") ?>">
+                        <a href="<?php echo url_for("messages") ?>">
                             Messages
                         </a>
                     </li>
