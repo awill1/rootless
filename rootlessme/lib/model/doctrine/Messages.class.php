@@ -12,5 +12,8 @@
  */
 class Messages extends BaseMessages
 {
+    public function getBodyPreview($length = 40) {
+        return substr($this->getBody(), 0, $length);
+    }
 
 }
