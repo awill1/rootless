@@ -7,6 +7,8 @@ People:
     person_id: 2
   person_lauren:
     person_id: 3
+  person_colin:
+    person_id: 4
 
 
 Users:
@@ -25,6 +27,11 @@ Users:
     person_id:   3
     email:       lauren@testuser.com
     encrypted_password: kjrewlkjifdsoiufdsoiuwrjrewljfdsjjiofs
+  user_colin:
+    user_name:   user_colin
+    person_id:   4
+    email:       colin@testuser.com
+    encrypted_password: kjrewlkjifdsoiufdsoiuwrjrewljfdsjjiofz
 
 
 Profiles:
@@ -106,6 +113,32 @@ Profiles:
     interests:    Movies, dogs, and cake
     favorite_websites: failblog.org, lamebook.com,
     website_url:   http://www.laurenprestifillipo.com
+  profile_colin:
+    profile_name:    profile_colin
+    person_id:   4
+    first_name:    Colin
+    last_name:     Hoell
+    picture_url:   profile_aaron.jpg
+    picture_url_large:   profile_aaron_large.jpg
+    picture_url_medium:   profile_aaron_medium.jpg
+    picture_url_small:   profile_aaron_small.jpg
+    picture_url_tiny:   profile_aaron_tiny.jpg
+    address1:      362 Bryant Avenue
+    city:         Cincinnati
+    state:        OH
+    postal_code:   45220
+    country:      USA
+    birthday:     '1988-11-08'
+    gender:       'Male'
+    about_me:      I am a real person who is super super cool.
+    top5:         Myself, My dog, food, music, and sports
+    wants_to_travel_to: Canada
+    music:        The Beastie Boys
+    movies:       Pulp Fiction
+    books:        Catch-22, Kurt Vonnegut
+    interests:    Things
+    favorite_websites: reddit.com, facebook.com, newsmap.jp
+    website_url:   www.colinhoell.com
 
 
 
