@@ -1,5 +1,10 @@
 <?php use_stylesheet('message.css') ?>
 
+<?php slot(
+  'title',
+  sprintf('Rootless Me - Messages'))
+?>
+
 <h1>Messages</h1>
 <form name='messages_list_form' action="messages.html">
     <script type="text/javascript">

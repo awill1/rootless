@@ -1,19 +1,29 @@
-<table>
-    <?php foreach ($messages as $message): ?>
-        <tr>
-          <td><a href="<?php echo url_for('messages_show',array($message)) ?>"><?php echo $message->getMessageId() ?></a></td>
-          <td><a href="<?php echo url_for('conversations_show',array($message->getConversations())) ?>"><?php echo $message->getConversationId() ?></a></td>
-          <td><?php echo $message->getAuthorId() ?></td>
-          <td><?php echo $message->getBody() ?></td>
-          <td><?php echo $message->getCreatedAt() ?></td>
-          <td><?php echo $message->getUpdatedAt() ?></td>
-        </tr>
-    <?php endforeach; ?>
-</table>
+<?php use_stylesheet('message.css') ?>
 
-<!--
-<hr />
+<?php slot(
+  'title',
+  sprintf('Rootless Me - %s', $message->getSubject()))
+?>
 
-<a href="<?php echo url_for('message/edit?message_id='.$message->getMessageId().'&conversation_id='.$message->getConversationId()) ?>">Edit</a>
-&nbsp;
-<a href="<?php echo url_for('message/index') ?>">List</a>-->
+<h1><?php echo $message->getSubject() ?></h1>
+<div class="messageThread">
+    <div class="message">
+        <div class="messageAuthorInformation">
+            <a href="<?php echo url_for("profile_show_user", $author)  ?>"><?php echo $author->getFullName() ?></a>
+            <br />
+            <?php echo $message->getCreatedAt() ?>
+
+        </div>
+        <div class="messageAuthorPicture">
+            <a href="<?php echo url_for("profile_show_user", $author)  ?>">
+                <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $author->getPictureUrlSmall() ?>" />
+            </a>
+        </div>
+        <div class="messageBody">
+            <?php echo $message->getBody() ?>
+        </div>
+        <hr class="messageDividerBar" />
+    </div>
+</div>
+<h2>Reply</h2>
+<?php include_partial('reply', array('form' => $replyForm)) ?>
