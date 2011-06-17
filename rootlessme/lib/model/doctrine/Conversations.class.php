@@ -20,4 +20,15 @@ class Conversations extends BaseConversations
 
       return Doctrine_Core::getTable('Messages')->getMessages($q);
     }
+
+    public function getActiveMessagesWithProfiles()
+    {
+      $q = Doctrine_Query::create()
+        ->from('Messages m')
+        ->leftJoin('c.People p')
+        ->leftJoin('p.Profiles pr')
+        ->where('m.conversation_id = ?', $this->getConversationId());
+
+      return Doctrine_Core::getTable('Messages')->getMessages($q);
+    }
 }

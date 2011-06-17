@@ -25,7 +25,9 @@ class conversationActions extends sfActions
     public function executeShow(sfWebRequest $request)
     {
         $this->conversation = $this->getRoute()->getObject();
-        $this->messages = $this->conversation->getActiveMessages();
+        //$this->messages = $this->conversation->getActiveMessages();
+        $this->messages = Doctrine_Core::getTable('Messages')
+                ->getMyConversationMessagesWithProfiles($this->conversation->getConversationId());
     }
 
 }
