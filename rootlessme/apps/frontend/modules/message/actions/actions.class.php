@@ -25,15 +25,17 @@ class messageActions extends sfActions
       // Create the reply form
       $replyMessage = new Messages();
       // Set the known reply features
-      $replyMessage->setPeople($this->getUser()->getGuardUser()->getPeople());
+      //$replyMessage->setPeople($this->getUser()->getGuardUser()->getPeople());
       $replyMessage->setSubject('re: '.$this->message->getSubject());
+      $replyMessage->setConversationId($this->message->getConversationId());
       // Set the recipient to be the original author
-      $replyRecipient = new MessageRecipients();
-      $replyRecipient->setPeople($this->message->getPeople());
+      //$replyRecipient = new MessageRecipients();
+      //$replyRecipient->setPeople($this->message->getPeople());
       // Link the message and the recipient together
-      $replyRecipient->setMessages($replyMessage);
+      //$replyRecipient->setMessages($replyMessage);
       // Add the reply message to the reply form
       $this->replyForm = new MessagesForm($replyMessage);
+      // Set the recipient to be the old author
 
       $this->forward404Unless($this->message);
   }
