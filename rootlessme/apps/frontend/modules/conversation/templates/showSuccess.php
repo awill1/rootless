@@ -32,7 +32,7 @@
                     <?php echo $message->getSubject() ?>
                 </div>
                 <div >
-                    <?php echo $message->getBody() ?>
+                    <?php echo nl2br($message->getBody()) ?>
                 </div>
             </div>
             <hr class="messageDividerBar" />
