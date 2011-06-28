@@ -35,7 +35,7 @@ class Routes extends BaseRoutes
         // Make sure the directions are not null
         if ($googleDirections == null)
         {
-            sfContext::getInstance()->getLogger()->error("$googleDirections is null.");
+            sfContext::getInstance()->getLogger()->err("googleDirections is null.");
             return;
         }
 

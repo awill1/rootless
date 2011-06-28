@@ -260,6 +260,6 @@
     <h3>Posted By: <a href="<?php echo url_for("profile_show_user", $driver)  ?>"><?php echo $driver->getFullName() ?></a></h3>
     <h3>Trip Value: $50</h3>
     <h3>Asking Price: $<?php echo $carpool->getAskingPrice() ?> per person</h3>
-    <p id="mainRideInformation"><?php echo $carpool->getDescription() ?>
+    <p id="mainRideInformation"><?php echo nl2br($carpool->getDescription()) ?>
     </p>
 </div>

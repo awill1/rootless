@@ -3,12 +3,8 @@
 
 <form class="userInputForm" action="<?php echo url_for(($form->getObject()->isNew() ? 'ride_offer_create' : 'ride_offer_update').(!$form->getObject()->isNew() ? '?carpool_id='.$form->getObject()->getCarpoolId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
 <?php if (!$form->getObject()->isNew()): ?>
-<input type="hidden" name="sf_method" value="put" />
+  <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
-<?php
-echo $form->renderGlobalErrors();
-echo $form->renderHiddenFields();
-?>
 
   <table>
     <tfoot>
