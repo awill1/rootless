@@ -82,22 +82,27 @@
             map = new google.maps.Map(document.getElementById("map"),
                 myOptions);
             geocoder = new google.maps.Geocoder();
-            
-            // EXAMPLE
-              var flightPlanCoordinates = [
-                new google.maps.LatLng(37.772323, -122.214897),
-                new google.maps.LatLng(21.291982, -157.821856),
-                new google.maps.LatLng(-18.142599, 178.431),
-                new google.maps.LatLng(-27.46758, 153.027892)
-              ];
-              var flightPath = new google.maps.Polyline({
-                path: flightPlanCoordinates,
-                strokeColor: "#FF0000",
-                strokeOpacity: 1.0,
-                strokeWeight: 2
-              });
 
-              flightPath.setMap(map);
+            // Decode the polyline for the route
+            // Workaround for javascript strings, needs backslashes escaped
+            var encodedPolyline = "<?php echo str_replace('\\','\\\\',$carpoolRoute->getEncodedPolyline()); ?>";
+            var routeCoordinates  = google.maps.geometry.encoding.decodePath(encodedPolyline);
+            var routePath = new google.maps.Polyline({
+                path: routeCoordinates,
+                strokeColor: "#119F49",
+                strokeOpacity: .5,
+                strokeWeight: 5
+            });
+
+            routePath.setMap(map);
+            
+            // Set the bounds of the map to center and zoom on the route
+            var bounds = new google.maps.LatLngBounds();
+            for (var i = 0; i < routeCoordinates.length; i++) {
+                bounds.extend(routeCoordinates[i]);
+            }
+            map.fitBounds(bounds);
+
 
             directionsDisplay = new google.maps.DirectionsRenderer();
             directionsDisplay.setMap(map);
