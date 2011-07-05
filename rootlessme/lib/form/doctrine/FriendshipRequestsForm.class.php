@@ -12,5 +12,8 @@ class FriendshipRequestsForm extends BaseFriendshipRequestsForm
 {
   public function configure()
   {
+        // Choose the fields that will be displayed
+        unset($this['created_at']);
+        unset($this['updated_at']);
   }
 }

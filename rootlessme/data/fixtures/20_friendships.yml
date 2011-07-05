@@ -1,5 +1,16 @@
 # data/fixtures/20_friendships.yml
 
+FriendshipStatuses:
+  friendship_status_1:
+    friendship_status_id: 1
+    display_text: 'Accepted'
+  friendship_status_2:
+    friendship_status_id: 2
+    display_text: 'Declined'
+  friendship_status_3:
+    friendship_status_id: 3
+    display_text: 'Pending'
+
 Friendships:
   friendship_1:
     friend1_id: 1
@@ -7,3 +18,20 @@ Friendships:
   friendship_2:
     friend1_id: 1
     friend2_id: 3
+
+FriendshipRequests:
+  friendship_request_1:
+    requestor_id: 1
+    requestee_id: 2
+    friendship_status_id: 1
+  friendship_request_2:
+    requestor_id: 1
+    requestee_id: 3
+    friendship_status_id: 1
+  friendship_request_3:
+    requestor_id: 2
+    requestee_id: 3
+    friendship_status_id: 3
+
+    
+

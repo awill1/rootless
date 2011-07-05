@@ -12,5 +12,9 @@
  */
 class FriendshipStatuses extends BaseFriendshipStatuses
 {
+    public function __toString()
+    {
+        return $this->getDisplayText();
 
+    }
 }

@@ -77,24 +77,24 @@
                 <ul id="navigation">
                     <?php if ($sf_user->isAuthenticated()): ?>
                     <li id="navigationDashboard" class="navigationItem">
-                        <a href="#">
+                        <a class="navigationItemLink" href="#">
                             Dashboard
                         </a>
                     </li>
                     <?php endif ?>
                     <li id="navigationRides" class="navigationItem">
-                        <a href="<?php echo url_for("ride") ?>">
+                        <a class="navigationItemLink" href="<?php echo url_for("ride") ?>">
                             Rides
                         </a>
                     </li>
                     <li id="navigationTravelers" class="navigationItem">
-                        <a href="<?php echo url_for("profile") ?>">
+                        <a class="navigationItemLink" href="<?php echo url_for("profile") ?>">
                             Travelers
                         </a>
                     </li>
                     <?php if ($sf_user->isAuthenticated()): ?>
                     <li  id="navigationMessages" class="navigationItem">
-                        <a href="<?php echo url_for("messages") ?>">
+                        <a class="navigationItemLink" href="<?php echo url_for("messages") ?>">
                             Messages
                         </a>
                     </li>

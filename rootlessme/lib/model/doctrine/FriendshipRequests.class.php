@@ -12,5 +12,22 @@
  */
 class FriendshipRequests extends BaseFriendshipRequests
 {
+    public function getFriendshipRequestStatus($personID)
+    {
+        $myId = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
 
+        // Need sql to match this query
+        // select * from friendship_requests fr
+        // where fr.requestor_id = 1 and fr.requestee_id = 2
+        //    or fr.requestee_id = 1 and fr.requestor_id = 2;
+        $q = Doctrine_Query::create()
+                ->select('friendship_status_id')
+                ->from('friendship_requests fr')
+                ->where('fr.requestor_id = ? AND fr.requestee_id = ?', array($myId, $personID))
+                ->orWhere('fr.requestee_id = ? AND fr.requestor_id = ?', array($myId, $personID));
+
+        // Return a boolean indicating whether there was a friendship
+        // record found.
+        return $q->execute();
+    }
 }
