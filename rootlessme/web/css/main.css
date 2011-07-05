@@ -184,7 +184,7 @@ textarea {
 .navigationItem {
   list-style: none;
   color: #3D3D3D;
-  font-weight: regular;
+  font-weight: normal;
   font-size: 175%;
   height: 35px;
   text-align: left;
@@ -197,7 +197,7 @@ textarea {
 .navigationItemSelected {
   list-style: none;
   color: #3D3D3D;
-  font-weight: regular;
+  font-weight: normal;
   font-style: italic;
   font-size: 175%;
   height: 35px;
@@ -208,12 +208,10 @@ textarea {
   background-repeat: no-repeat;
 }
 
-.navigationItem a {
+.navigationItemLink {
   color: #3D3D3D;
-}
-
-.navigationItemSelected a {
-  color: #3D3D3D;
+  display: block;
+  width: 100%;
 }
 
 #leftContent {

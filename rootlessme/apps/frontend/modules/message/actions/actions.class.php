@@ -13,7 +13,8 @@ class messageActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
       // Get the current user's messages
-      $this->messages = Doctrine_Core::getTable('Messages')->getMyMessages();
+      //$this->messages = Doctrine_Core::getTable('Messages')->getMyMessages();
+      $this->messages = Doctrine_Core::getTable('Messages')->getMyLastMessagesForConversationWithProfiles();
   }
 
   public function executeShow(sfWebRequest $request)

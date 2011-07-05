@@ -54,14 +54,16 @@ tbody {
 }
 
 .messageListSelectedRow {
-    background-image: url(highlightedListItemBackground.JPG);
-    color: white;
+    /*background-image: url(highlightedListItemBackground.JPG);*/
+    background-color: #393C39;
+    color: #FFFFFF;
     padding: 0px 0px 0px 0px;
+    cursor: pointer;
 }
 
 .messageListAuthorLink {
-    font-weight: bold;
-    color: #119F49;
+    /*font-weight: bold;
+    color: #119F49;*/
 }
 
 .messageListAuthorProfileImage {
@@ -73,8 +75,8 @@ tbody {
 }
 
 .messageListTitleLink {
-    font-weight: bold;
-    color: #119F49;
+    /*font-weight: bold;
+    color: #119F49;*/
 }
 
 .messageBar {

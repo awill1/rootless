@@ -130,4 +130,54 @@ class MessagesTable extends Doctrine_Table
         return $messages;
     }
 
+        public function getMyLastMessagesForConversationWithProfiles()
+    {
+        // Create the return value
+        $messages = null;
+
+        if (sfContext::getInstance()->getUser()->isAuthenticated())
+        {
+            // Get the authenticated user's personId
+            $myId = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
+
+            // Build the query to get the user's messages
+            // The query should be similar to
+            // SELECT *
+            // FROM (
+            //   SELECT *
+            //   FROM messages
+            //   ORDER BY created_at DESC
+            // ) AS m
+            // INNER JOIN message_recipients mr
+            // ON m.message_id = mr.message_id
+            // INNER JOIN profiles p
+            // ON p.person_id = m.author_id
+            // WHERE mr.person_id = 1 OR m.author_id = 1
+            // GROUP BY m.conversation_id
+            // HAVING m.conversation_id IS NOT NULL
+            // ORDER BY m.created_at DESC;
+//            $q = $this->createQuery('m')
+//                ->innerJoin('m.MessageRecipients mr')
+//                ->innerJoin('m.People p')
+//                ->innerJoin('p.Profiles pr')
+//                ->where('(mr.person_id = ? OR m.author_id = ?)', array($myId,$myId))
+//                ->groupBy('m.conversation_id')
+//                ->having('m.conversation_id IS NOT NULL')
+//                ->orderBy('m.created_at DESC');
+            $q = Doctrine_Query::create()
+                ->select('*')
+                ->from('Messages AS m')
+                ->innerJoin('m.MessageRecipients mr')
+                ->innerJoin('m.People p')
+                ->innerJoin('p.Profiles pr')
+                ->where('(mr.person_id = ? OR m.author_id = ?)', array($myId,$myId))
+                ->groupBy('m.conversation_id')
+                ->having('m.conversation_id IS NOT NULL')
+                ->orderBy('m.created_at DESC');
+
+            $messages = $q->execute();
+        }
+
+        return $messages;
+    }
 }
