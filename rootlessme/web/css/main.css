@@ -12,7 +12,7 @@ body {
     font-family: Arial, Geneva, sans-serif;
     font-size: 80%;
     margin: 0px;
-    background-image: url("../images/headerBackground.JPG");
+    background-image: url("../images/headerBackground.jpg");
     background-repeat: repeat-x;
     background-color: #FFFFFF;
     color: #3D3D3D;
@@ -68,7 +68,7 @@ textarea {
 
 #searchInput
 {
-    background-image: url("../images/searchBarBackground.JPG");
+    background-image: url("../images/searchBarBackground.jpg");
     image-repeat-y: no-repeat;
     image-repeat-x: no-repeat;
     border: none;
@@ -88,7 +88,7 @@ textarea {
 }
 
 .magnifyingIcon {
-    background: url(../images/messageSmall.JPG) transparent no-repeat top left;
+    background: url(../images/messageSmall.jpg) transparent no-repeat top left;
     height: 18px;
     width: 18px;
 }
@@ -190,7 +190,7 @@ textarea {
   text-align: left;
   margin: -2px 0px 0px 0px;
   padding: 0px 6px 2px 10px;
-  background-image: url("../images/navigationBackground.JPG");
+  background-image: url("../images/navigationBackground.jpg");
   background-repeat: no-repeat;
 }
 
@@ -204,7 +204,7 @@ textarea {
   text-align: left;
   margin: -2px 0px 0px 0px;
   padding: 0px 6px 2px 10px;
-  background-image: url("../images/navigationSelectedBackground.JPG");
+  background-image: url("../images/navigationSelectedBackground.jpg");
   background-repeat: no-repeat;
 }
 
@@ -217,7 +217,7 @@ textarea {
 #leftContent {
     background-color: #999999;
     margin-top: 40px;
-    background-image: url("../images/leftContentBackground.JPG");
+    background-image: url("../images/leftContentBackground.jpg");
     background-repeat: repeat-y;
     width: 159px;
     padding: 12px 12px 12px 12px;
