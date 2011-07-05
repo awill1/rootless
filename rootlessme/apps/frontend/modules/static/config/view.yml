@@ -1,0 +1,6 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/book/1_2/07-Inside-the-View-Layer
+
+# The static pages use the static layout file
+all:
+  layout: staticLayout
