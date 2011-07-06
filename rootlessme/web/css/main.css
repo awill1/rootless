@@ -58,7 +58,7 @@ textarea {
     float: right;
     vertical-align: bottom;
     position: absolute;
-    bottom: 10px;
+    bottom: 18px;
     right: 10px;
 }
 
@@ -171,7 +171,7 @@ textarea {
 }
 
 #leftColumn {
-    width: 202px;
+    width: 211px;
     float: left;
     background: #FFFFFF;
 }
@@ -188,8 +188,8 @@ textarea {
   font-size: 175%;
   height: 35px;
   text-align: left;
-  margin: -2px 0px 0px 0px;
-  padding: 0px 6px 2px 10px;
+  margin: -2px 22px 0px 0px;
+  padding: 0px 14px 2px 0px;
   background-image: url("../images/navigationBackground.jpg");
   background-repeat: no-repeat;
 }
@@ -203,12 +203,13 @@ textarea {
   height: 35px;
   text-align: left;
   margin: -2px 0px 0px 0px;
-  padding: 0px 6px 2px 10px;
+  padding: 0px 6px 2px 0px;
   background-image: url("../images/navigationSelectedBackground.jpg");
   background-repeat: no-repeat;
 }
 
 .navigationItemLink {
+  padding: 4px 0px 0px 10px;
   color: #3D3D3D;
   display: block;
   width: 100%;
