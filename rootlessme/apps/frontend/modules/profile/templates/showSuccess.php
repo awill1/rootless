@@ -43,6 +43,7 @@
         <li class="tabSelectedItem"><a href="#fragment-id">I.D.</a></li>
         <li class="tabNotSelectedItem"><a href="#fragment-travel_log">Travel Log</a></li>
         <li class="tabNotSelectedItem"><a href="#fragment-interests">Interests</a></li>
+        <li class="tabNotSelectedItem"><a href="#fragment-friends">Friends</a></li>
     </ul>
     <div id="fragment-id" class="middleProfileTabContent">
 
@@ -116,5 +117,8 @@
                 <?php echo $profile->getFavoriteWebsites() ?>
             </p>
         </div>
+    </div>
+    <div id="fragment-friends" class="middleProfileTabContent">
+        Friends
     </div>
 </div>
