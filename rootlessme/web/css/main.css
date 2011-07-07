@@ -33,7 +33,7 @@ textarea {
 }
 
 .userInputForm {
-    background-color: #F5F5F5;
+    background-color: #F4F4F4;
     padding: 0px 10px 0px 0px;
     border: 1px solid transparent;
 }
@@ -62,7 +62,10 @@ textarea {
     right: 10px;
 }
 
-#headerControls form {
+#headerSearchForm {
+    position: absolute;
+    bottom: 27px;
+    margin: 0px 0px 0px 60px;
     display: inline;
 }
 
@@ -75,7 +78,7 @@ textarea {
     height: 24px;
     width: 276px;
     padding: 0px 0px 0px 0px;
-    margin: -40px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
 }
 
 #searchButton {
@@ -216,9 +219,9 @@ textarea {
 }
 
 #leftContent {
-    background-color: #999999;
+    background-color: #F4F4F4;
     margin-top: 40px;
-    background-image: url("../images/leftContentBackground.jpg");
+/*    background-image: url("../images/leftContentBackground.jpg");*/
     background-repeat: repeat-y;
     width: 159px;
     padding: 12px 12px 12px 12px;
