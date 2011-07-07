@@ -16,4 +16,25 @@ class Messages extends BaseMessages
         return substr($this->getBody(), 0, $length);
     }
 
+    public function isUnread() {
+        // Create the return value
+        $isUnread = false;
+
+        if (sfContext::getInstance()->getUser()->isAuthenticated())
+        {
+            // Get the authenticated user's personId
+            $myId = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
+
+            // Check to see if the message is unread for the user
+            $myRecipientInfo = null;
+            //$myRecipientInfo = $this->getMessageRecipients()->get(array("message_id" => $this->getMessageId(), "person_id" => $myId));
+            if ($myRecipientInfo != null)
+            {
+               $isUnread = $myRecipientInfo->getUnread();
+            }
+        }
+
+        return $isUnread;
+    }
+
 }

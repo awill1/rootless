@@ -2,28 +2,31 @@
 
 <?php slot(
   'title',
-  sprintf('Rootless Me - %s', $message->getSubject()))
+  sprintf('Rootless Me - %s', $conversation->getSubject()))
 ?>
-
-<h1><?php echo $message->getSubject() ?></h1>
+<h1><?php echo $conversation->getSubject() ?></h1>
 <div class="messageThread">
+    <?php foreach ($messages as $i => $message):
+        $author = $message->getPeople()->getProfiles()->getFirst(); ?>
     <div class="message">
-        <div class="messageAuthorInformation">
-            <a href="<?php echo url_for("profile_show_user", $author)  ?>"><?php echo $author->getFullName() ?></a>
-            <br />
-            <?php echo date("n\/j\/Y g\:ia",strtotime($message->getCreatedAt())) ?>
-
-        </div>
         <div class="messageAuthorPicture">
             <a href="<?php echo url_for("profile_show_user", $author)  ?>">
-                <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $author->getPictureUrlSmall() ?>" />
+                <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $author->getPictureUrlSmall() ?>" alt="<?php echo $author->getFullName() ?>" />
             </a>
         </div>
         <div class="messageBody">
-            <?php echo nl2br($message->getBody()) ?>
+        <div class="messageAuthorInformation">
+            <a class="messageAuthorLink" href="<?php echo url_for("profile_show_user", $author)  ?>"><?php echo $author->getFullName() ?></a>
+            <br />
+            <?php echo date("n\/j\/Y g\:ia",strtotime($message->getCreatedAt())) ?>
         </div>
-        <hr class="messageDividerBar" />
+            <p>
+                <?php echo nl2br($message->getBody()) ?>
+            </p>
+        </div>
     </div>
+    <hr class="messageDividerBar" />
+    <?php endforeach; ?>
     <div class="messageReply">
         <h2>Reply</h2>
         <?php include_partial('reply', array('form' => $replyForm)) ?>

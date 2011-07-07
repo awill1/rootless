@@ -54,7 +54,6 @@ tbody {
 }
 
 .messageListSelectedRow {
-    /*background-image: url(highlightedListItemBackground.JPG);*/
     background-color: #393C39;
     color: #FFFFFF;
     padding: 0px 0px 0px 0px;
@@ -62,8 +61,6 @@ tbody {
 }
 
 .messageListAuthorLink {
-    /*font-weight: bold;
-    color: #119F49;*/
 }
 
 .messageListAuthorProfileImage {
@@ -74,9 +71,12 @@ tbody {
     font-weight: bold;
 }
 
-.messageListTitleLink {
-    /*font-weight: bold;
-    color: #119F49;*/
+.messageListLink {
+    color: #3D3D3D;
+}
+
+.messageListSelectedRow  .messageListLink {
+    color: #FFFFFF;
 }
 
 .messageBar {
@@ -91,32 +91,34 @@ tbody {
 
 .messageThread {
     float: left;
+    width: 500px;
 }
 
 .message {
-    clear: both;
-    float:left;
     margin: 30px 0px 0px 0px;
     width: 100%;
 }
 
 .messageAuthorInformation {
-    float: left;
-    width: 136px;
-    text-align: right;
+    margin: 0px 0px 0px 6px;
 }
 
 .messageAuthorPicture {
     float: left;
-    margin: 0px 0px 0px 10px;
+    margin: 0px 0px 0px 0px;
+}
+
+.messageAuthorLink {
+    color: #3D3D3D;
 }
 
 .messageBody {
-    margin: 0px 0px 0px 210px;
+    float: left;
+    margin: 0px 0px 0px 6px;
 }
 
 .messageDividerBar {
-    margin: 30px 0px 0px 136px;
+    clear:left;
 }
 
 /* Form styles */

@@ -436,3 +436,7 @@ textarea {
 .dateBlockTime {
     font-size: 80%;
 }
+
+.watermark {
+    color: #606060;
+}

@@ -122,7 +122,7 @@ class MessagesTable extends Doctrine_Table
                 ->innerJoin('p.Profiles pr')
                 ->where('(mr.person_id = ? OR m.author_id = ?)', array($myId,$myId))
                 ->andWhere('m.conversation_id = ?', $conversationId)
-                ->orderBy('m.created_at DESC');
+                ->orderBy('m.created_at ASC');
 
             $messages = $q->execute();
         }
@@ -164,18 +164,56 @@ class MessagesTable extends Doctrine_Table
 //                ->groupBy('m.conversation_id')
 //                ->having('m.conversation_id IS NOT NULL')
 //                ->orderBy('m.created_at DESC');
-            $q = Doctrine_Query::create()
-                ->select('*')
-                ->from('Messages AS m')
-                ->innerJoin('m.MessageRecipients mr')
-                ->innerJoin('m.People p')
-                ->innerJoin('p.Profiles pr')
-                ->where('(mr.person_id = ? OR m.author_id = ?)', array($myId,$myId))
-                ->groupBy('m.conversation_id')
-                ->having('m.conversation_id IS NOT NULL')
-                ->orderBy('m.created_at DESC');
+//            $q = Doctrine_Query::create()
+//                ->select('*')
+//                ->from('(SELECT * FROM messages ORDER BY created_at DESC) AS m')
+//                ->innerJoin('m.MessageRecipients mr')
+//                ->innerJoin('m.People p')
+//                ->innerJoin('p.Profiles pr')
+//                ->where('(mr.person_id = ? OR m.author_id = ?)', array($myId,$myId))
+//                ->groupBy('m.conversation_id')
+//                ->having('m.conversation_id IS NOT NULL')
+//                ->orderBy('m.created_at DESC');
+//            $q = Doctrine_Query::create()
+//                ->select('*')
+//                ->from('Messages AS m')
+//                ->leftJoin('m.Messages md ON m.conversation_id = md.conversation_id')
+//                ->innerJoin('m.MessageRecipients mr')
+//                ->innerJoin('m.People p')
+//                ->innerJoin('p.Profiles pr')
+//                ->where('(mr.person_id = ? OR m.author_id = ?)', array($myId,$myId))
+//                ->groupBy('m.conversation_id')
+//                ->having('m.conversation_id IS NOT NULL')
+//                ->orderBy('m.created_at DESC');
+            // Due to the complexity of the query, raw sql needs to be used
+            $q = new Doctrine_RawSql();
+            $q->select('{m1.*}, {mr.*}, {p.*}, {pr.*}')
+              ->from('messages m1')
+              ->leftJoin('messages m2 ON m1.conversation_id = m2.conversation_id AND m1.created_at < m2.created_at')
+              ->leftJoin('message_recipients mr ON (m1.message_id = mr.message_id AND mr.person_id = ?)', array($myId))
+              ->innerJoin('people p ON m1.author_id = p.person_id')
+              ->innerJoin('profiles pr ON p.person_id = pr.person_id')
+              ->where('m2.conversation_id IS NULL')
+              ->andWhere('m1.conversation_id IS NOT NULL')
+              ->andWhere('(mr.person_id = ? OR m1.author_id = ?)', array($myId,$myId))
+              ->orderBy('m1.created_at DESC')
+              ->addComponent('m1', 'Messages m1')
+              ->addComponent('mr', 'm1.MessageRecipients mr')
+              ->addComponent('p', 'm1.People p')
+              ->addComponent('pr', 'p.Profiles pr');
+//            select m1.*
+//from messages m1
+//left join messages m2
+//on m1.conversation_id=m2.conversation_id
+//and m1.created_at < m2.created_at
+//where m2.conversation_id IS NULL
+//and m1.conversation_id IS NOT NULL
+//ORDER BY m1.created_at DESC;
 
-            $messages = $q->execute();
+            // The query needs to return an array to minimize the number
+            // of followup queries needed for the author profile and unread
+            // flag.
+            $messages = $q->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
         }
 
         return $messages;

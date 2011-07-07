@@ -20,15 +20,19 @@ class messageActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
       // Get the message
-      $this->message = $this->getRoute()->getObject();
-      $this->author = $this->message->getPeople()->getProfiles()->getFirst();
+      $message = $this->getRoute()->getObject();
+      $this->author = $message->getPeople()->getProfiles()->getFirst();
+
+      // Get all messages in the conversation
+      $this->conversation = $message->getConversations();
+      $this->messages = Doctrine_Core::getTable('Messages')->getMyConversationMessagesWithProfiles($this->conversation->getConversationId());
 
       // Create the reply form
       $replyMessage = new Messages();
       // Set the known reply features
       //$replyMessage->setPeople($this->getUser()->getGuardUser()->getPeople());
-      $replyMessage->setSubject('re: '.$this->message->getSubject());
-      $replyMessage->setConversationId($this->message->getConversationId());
+      $replyMessage->setSubject($this->conversation->getSubject());
+      $replyMessage->setConversationId($this->conversation->getConversationId());
       // Set the recipient to be the original author
       //$replyRecipient = new MessageRecipients();
       //$replyRecipient->setPeople($this->message->getPeople());
@@ -38,7 +42,7 @@ class messageActions extends sfActions
       $this->replyForm = new MessagesForm($replyMessage);
       // Set the recipient to be the old author
 
-      $this->forward404Unless($this->message);
+      $this->forward404Unless($message);
   }
 
   public function executeNew(sfWebRequest $request)
