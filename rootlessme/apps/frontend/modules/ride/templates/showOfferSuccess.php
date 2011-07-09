@@ -60,7 +60,7 @@
 
             $( "#requestRideButton" ).button()
                 .click(function() {
-                        $( "#dialogFormDiv" ).toggle();
+                        $( "#dialogFormDiv" ).toggle('blind');
             });
 
             // Hide the new review form initially
@@ -229,24 +229,19 @@
     <p>
         <?php echo $carpool->getSeatsAvailable() ?>
         <?php echo ($carpool->getSeatsAvailable() == 1 ? "seat" : "seats") ?>
-        available
+        available <button id="requestRideButton">Request a Ride</button>
     </p>
+    <div id="dialogFormDiv" title="Request a ride">
+        <?php include_component('seat', 'seatForm') ?>
+    </div>
     <!-- TODO: Add smoking -->
     <p>Smoking: Yes</p>
     <p>One Way Trip</p>
-    <ul>
-        <li><button id="requestRideButton">Request a Ride</button></li>
-    </ul>
+
 </div>
 
 <div id="map"></div>
 
-<img id="rideMapImage" src="http://maps.google.com/maps/api/staticmap?size=453x305&path=weight:5|color:0x119F49|enc:<?php echo $carpoolRoute->getEncodedPolyline() ?>&sensor=false" alt="Interactive Map" />
-
-
-<div id="dialogFormDiv" title="Request a ride">
-    <?php include_component('seat', 'seatForm') ?>
-</div>
 
 <div id="mainRidePeople">
     <h3>Driving</h3>

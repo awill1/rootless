@@ -28,7 +28,6 @@
       <?php echo $form['start_time']->renderRow() ?>
       <?php echo $form['asking_price']->renderRow() ?>
       <?php echo $form['description']->renderRow() ?>
-      <?php //echo $form ?>
     </tbody>
   </table>
 </form>

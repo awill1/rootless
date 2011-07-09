@@ -109,11 +109,15 @@ tbody {
 
 #mainRideSummary {
     float: left;
-    width: 250px;
+    width: 280px;
     margin: 20px 0px 0px 0px;
 }
 
 #mainRideInformation {
+}
+
+#mainRidePeople {
+    clear: both;
 }
 
 .middleRidesFormArea

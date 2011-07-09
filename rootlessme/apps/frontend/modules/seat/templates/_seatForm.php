@@ -4,7 +4,17 @@
 <form class="userInputForm" action="<?php echo url_for('ride_search') ?>" method="post">
   <table>
     <tbody>
-      <?php echo $seatForm ?>
+      <?php echo $seatForm->renderHiddenFields() ?>
+      <?php echo $seatForm['route']['origin']->renderRow() ?>
+      <?php echo $seatForm['route']['destination']->renderRow() ?>
+      <?php echo $seatForm['carpool_id']->renderRow() ?>
+      <?php echo $seatForm['passenger_id']->renderRow() ?>
+      <?php echo $seatForm['seat_status_id']->renderRow() ?>
+      <?php echo $seatForm['seat_request_type_id']->renderRow() ?>
+      <?php echo $seatForm['price']->renderRow() ?>
+      <?php echo $seatForm['seat_count']->renderRow() ?>
+      <?php echo $seatForm['description']->renderRow() ?>
+      <?php //echo $seatForm ?>
     </tbody>
     <tfoot>
       <tr>
