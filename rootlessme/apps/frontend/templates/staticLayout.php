@@ -29,14 +29,12 @@
         <!-- Header -->
         <div id="header">
             <a href="<?php echo url_for('home') ?>" ><img id="headerLogo" src="/images/Logo.png" alt="RootlessMe" /></a>
+                <form id="headerSearchForm" action="search.php" >
+                      <input id="searchInput" />
+                </form>
             <div id="headerControls">
 
                 <ul id="headerControlsList">
-                    <li class="headerControlsListItem">
-                        <form action="search.php" >
-                            <input id="searchInput" />
-                        </form>
-                    </li>
                     <li class="headerControlsListItem"><a href="#" class="headerControl">Donate</a></li>
                     <?php if ($sf_user->isAuthenticated()): ?>
                         <?php include_component('message', 'messageMenu') ?>
