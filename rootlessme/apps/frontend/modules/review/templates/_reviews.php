@@ -68,41 +68,9 @@
                              $('#newReviewButton').show();
                         }
                     );
-                    // Update the review list
-//                    $('#test').load(
-//                        '<?php echo url_for('review_show', array('id' => $personID) ) ?>',
-//                        data,
-//                        function() {
-//                            // Hide the loader and show the review graphs
-//                            $('#graphLoader').hide();
-//                            $('#driverRatingSummary').show();
-//                            // Clear the form
-//                            // Show the add a review button
-//                             $('#newReviewButton').show();
-//                        }
-//                    );
                 }
             });
         }
-//        if ($('#saveNewReviewButton').length)
-//        {
-//            $('#saveNewReviewButton').click(function()
-//            {
-//                // $('#loader').show();
-//                $('#newReviewForm').submit();
-//                 $('#driverReviewsList').load(
-//                    $(this).parents('form').attr('action'),
-//                    {  },
-//                    function() {
-//                       // $('#loader').hide();
-//                        $('#driverRatingSummary').load(
-//                                                       '<?php echo url_for('review_ratings', array('id' => $personID) ) ?>',
-//                                                       { },
-//                                                       function() {});
-//                    }
-//                  );
-//            });
-//        }
     });
     
 

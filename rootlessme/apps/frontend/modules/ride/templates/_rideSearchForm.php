@@ -1,10 +1,18 @@
 <?php use_stylesheets_for_form($rideSearchForm) ?>
 <?php use_javascripts_for_form($rideSearchForm) ?>
 
-<form id="rideSearchForm" class="userInputForm" action="<?php echo url_for('ride_search') ?>" method="post">
+<form id="rideSearchForm" class="userInputForm" action="<?php echo url_for('ride_search') ?>" method="get">
   <table>
     <tbody>
-      <?php echo $rideSearchForm ?>
+
+      <?php echo $rideSearchForm['origin']->renderRow() ?>
+      <?php echo $rideSearchForm['destination']->renderRow() ?>
+      <?php echo $rideSearchForm['date']->renderRow() ?>
+      <tr>
+          <td colspan="2"><a id="advanceOptionsLink">Advance Options</a></td>
+      </tr>
+      <?php echo $rideSearchForm['gender_preference']->renderRow() ?>
+      <?php //echo $rideSearchForm ?>
     </tbody>
     <tfoot>
       <tr>

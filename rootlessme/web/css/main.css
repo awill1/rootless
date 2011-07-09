@@ -29,8 +29,9 @@ a {
 textarea {
     font-family: Arial, Geneva, sans-serif;
     font-size: 100%;
-    width: 176px;
+    width: 150px;
 }
+
 
 .userInputForm {
     background-color: #F4F4F4;

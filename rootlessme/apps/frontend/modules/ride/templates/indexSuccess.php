@@ -43,25 +43,27 @@
             $('#rides_origin').change(previewRoute);
             $('#rides_destination').change(previewRoute);
 
-               // Handler for the find button
-//              $('#rides_find').click(function()
-//              {
-//                 $('#loader').show();
+            // Handler for the find button
+              $('#rides_find').click(function()
+              {
+                 $('#loader').show();
+                 $('#results').toggle('blind');
 //                  $('#results').load(
 //                    $(this).parents('form').attr('action'),
 //                    {  },
 //                    function() { $('#loader').hide(); }
 //                  );
-//              });
+              });
             $('#rideSearchForm').ajaxForm(
             {
                 target: '#results',
                 success: function()
                 {
                     // This handler function will run when the form is complete
+                    $('#loader').hide();
+                    $('#results').toggle('blind');
                 }
             });
-           
         });
 
         function previewRoute() {
@@ -150,7 +152,7 @@
     <?php include_partial('rideSearchForm', array('rideSearchForm' => $searchForm)) ?>
 </div>
 <div id="map"></div>
+<img id="loader" alt="Loading spinner" src="/images/ajax-loader.gif" style="vertical-align: middle; display: none" />
 <div id="results">
-    <?php include_partial('ridesList', array('carpools' => $carpools)) ?>
-    <img id="loader" alt="Loading spinner" src="/images/ajax-loader.gif" style="vertical-align: middle; display: none" />
+    <?php //include_partial('ridesList', array('carpools' => $carpools)) ?>
 </div>

@@ -52,7 +52,10 @@ class rideActions extends sfActions
     public function executeSearch(sfWebRequest $request)
     {
         // Get the request parameters
-        $this->date = $request->getParameter('rides_date');
+        $ride_parameters = $this->getRequestParameter('rides');
+        $this->date = $ride_parameters['date'];
+
+        //$this->date = $request->getParameter('rides_date');
 
         // Will need to change this to use the search results
 //        $this->carpools = Doctrine_Core::getTable('Carpools')
@@ -65,15 +68,13 @@ class rideActions extends sfActions
         $myDistance = 10;
         $this->carpools = Doctrine_Core::getTable('Carpools')
              ->getNearPoints($myStartLatitude, $myStartLongitude, $myEndLatitude, $myEndLongitude, $myDistance, $this->date);
-        $this->passengers = Doctrine_Core::getTable('Passengers')
-             ->getWithProfiles();
-
-
+        
         //$this->forwardUnless($query = $request->getParameter('query'), 'job', 'index');
 
 
         if ($request->isXmlHttpRequest())
         {
+            // This is an ajax request
             //if ('*' == $query || !$this->carpools)
             if (!$this->carpools)
             {
@@ -82,6 +83,12 @@ class rideActions extends sfActions
 
             return $this->renderPartial('ride/ridesList', array('carpools' => $this->carpools));
         }
+        else
+        {
+            // This is not an ajax request
+            return $this->renderPartial('ride/ridesList', array('carpools' => $this->carpools));
+        }
+
     }
 
     /**

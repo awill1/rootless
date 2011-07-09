@@ -87,13 +87,21 @@
             alert("Geocoder did not return a valid response");
           } else {
             if (status == google.maps.GeocoderStatus.OK) {
+                // Check to see if the location has already been added to the
+                // map
+//                if (locations.length >=)
+//                {
+                    // Remove the location marker from the map
+                  //  locations[locationNumber].setMep(null);
+//                }
                 var myLatlng = results[0].geometry.location;
                 var marker = new google.maps.Marker({
                    position: myLatlng,
                    map: map,
-                     title:"Hello World!"
+                   title:"Hello World!"
                 });
                 map.panTo(myLatlng);
+                // Add the new location information to the locations array
                 locations[locationNumber] = results[0];
             } else {
 
@@ -127,8 +135,7 @@
 <?php end_slot();?>
 
 <h1>New Offer</h1>
-<!--<input id="previewRouteButton" type="button" value="Preview route" />-->
 <div id="newRideFormArea" class="middleRidesFormArea">
-<?php include_partial('form', array('form' => $form)) ?>
+<?php include_partial('rideOfferForm', array('form' => $form)) ?>
 </div>
 <div id="map"></div>

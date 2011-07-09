@@ -97,15 +97,17 @@ class CarpoolsTable extends Doctrine_Table
         $q = new Doctrine_RawSql();
         $q->select('*');
         $q->from('carpools c');
+        if ($date != null)
+        {
+            // Reformat the date to work with the database
+            $date = date('Y-m-d', strtotime($date));
+            $q = $q->andWhere('c.start_date = ?', $date);
+        }
 //        $q->innerJoin('c.Routes r');
         // ON c.route_id = r.route_id
         $q->addComponent('c', 'carpools');
 //        $q->addComponent('r', 'carpools.Routes r');
 
-        if ($date != null)
-        {
-            $q = $q->andWhere('c.start_date = ?', $date);
-        }
 
         return $q->execute();
     }
