@@ -62,7 +62,7 @@
                     // This handler function will run when the form is complete
                     $('#loader').hide();
                     $('#results').toggle('blind');
-                    $("tbody tr")
+                    $("#rideTable tbody tr")
                     //.click(function(){
                     //    // Navigate to the first link's reference
                     //    DoNav($(this).find("a").attr("href"));
@@ -78,7 +78,12 @@
                         {
                             UnHighlightRow($(this))
                         }
-                    );
+                    )
+                    .find('td:not(:has(:checkbox, a))')
+                        .click(function () {
+                        //DoNav("http://www.yahoo.com");
+                        window.location = $(this).parent().find("a").attr("href");
+                    });
                 }
             });
 
@@ -164,13 +169,14 @@
 
         function HighlightRow(tableRow)
         {
-            tableRow.addClass("messageListSelectedRow");
-            tableRow.css("background-color","red");
+            //tableRow.addClass("selectedRow");
+            tableRow.addClass("rideListSelectedRow");
 
         }
         function UnHighlightRow(tableRow)
         {
-            tableRow.removeClass("messageListSelectedRow");
+            //tableRow.removeClass("selectedRow");
+            tableRow.removeClass("rideListSelectedRow");
         }
 
         function DoNav(theUrl)

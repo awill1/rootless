@@ -30,11 +30,10 @@
             <td>to</td>
             <td><?php echo $carpool->getDestinationLocation()->getCityStateString() ?></td>
             <td>
-                <a href="<?php echo url_for("profile_show_user", $carpool->getPeople()->getProfiles()->getFirst()) ?>">
-                    <img class="rideListDriverCreatorProfileImage" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $carpool->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>" alt="<?php echo $carpool->getPeople() ?>" /> <?php echo $carpool->getPeople() ?>
-                </a>
+                    <img class="rideListDriverCreatorProfileImage" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $carpool->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>" alt="<?php echo $carpool->getPeople() ?>" />
+                    <?php echo $carpool->getPeople() ?>
             </td>
-            <td><a href="<?php echo url_for("ride_offer",$carpool) ?>">Offer</a></td>
+            <td><a class="tableLink" href="<?php echo url_for("ride_offer",$carpool) ?>">Offer</a></td>
             <td><?php echo $carpool->getSeatsAvailable() ?></td>
         </tr>
         <?php endforeach; ?>

@@ -29,6 +29,11 @@ $(document).ready(function(){
         });
 });
 
+function PrepareTable()
+{
+    // need to fill this in
+}
+
 function HighlightRow(tableRow)
 {
     tableRow.addClass("selectedRow");

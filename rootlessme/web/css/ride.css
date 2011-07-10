@@ -92,11 +92,16 @@ tbody {
     padding: 0px 0px 0px 0px;
 }
 
+
+
 .rideListSelectedRow {
-    background-image: url(highlightedListItemBackground.JPG);
+    background-color: #393C39;
     color: white;
-    height: 67px;
-    padding: 0px 0px 0px 0px;
+    cursor: pointer;
+}
+
+.rideListSelectedRow .tableLink {
+    color: white;
 }
 
 .rideListDriverCreatorProfileImage {
