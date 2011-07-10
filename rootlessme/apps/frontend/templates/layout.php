@@ -75,7 +75,7 @@
                 <ul id="navigation">
                     <?php if ($sf_user->isAuthenticated()): ?>
                     <li id="navigationDashboard" class="navigationItem">
-                        <a class="navigationItemLink" href="#">
+                        <a class="navigationItemLink" href="<?php echo url_for("dashboard") ?>">
                             Dashboard
                         </a>
                     </li>

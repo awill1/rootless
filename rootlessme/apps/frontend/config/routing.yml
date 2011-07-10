@@ -8,6 +8,13 @@ home:
     module: static
     action: home
 
+# static pages rules
+dashboard:
+  url: /dashboard
+  param:
+    module: dashboard
+    action: index
+
 # friendship rules
 friendship:
   url:     /friendships
