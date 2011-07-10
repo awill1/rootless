@@ -1,0 +1,330 @@
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <script type="text/javascript">
+//<![CDATA[
+document.domain = 'assembla.com';
+//]]>
+</script>
+    <title>rootlessme/web/images/leftContentBackground.jpg | Source/SVN | Assembla</title>
+    <link href="https://assets2.assembla.com/favicon.ico?1309882901" type="image/x-icon" rel="shortcut icon" />
+    <link href="https://assets0.assembla.com/favicon.ico?1309882901" type="image/x-icon" rel="icon" />
+
+    <link href="https://assets0.assembla.com/stylesheets/base_app_and_alerts_packaged.css?1309883564" media="all" rel="stylesheet" type="text/css" />
+    
+    
+    <link href="https://assets0.assembla.com/stylesheets/code_packaged.css?1309883564" media="all" rel="stylesheet" type="text/css" />
+  
+
+          <style type="text/css" media="all" rel="stylesheet" id="branded_css">
+        
+        
+      </style>
+        
+    <link href="https://assets0.assembla.com/stylesheets/print.css?1309882901" media="print" rel="stylesheet" type="text/css" />
+
+    <!--[if IE 7]>
+        <link rel="stylesheet" type="text/css" href="/stylesheets/ie7.css">
+    <![endif]-->
+
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" type="text/css" href="/stylesheets/ie8.css">
+    <![endif]-->
+
+    <script src="https://assets0.assembla.com/javascripts/base_packaged.js?1309883554" type="text/javascript"></script>
+    
+    
+    
+    
+    <script src="https://assets1.assembla.com/javascripts/code_packaged.js?1309883555" type="text/javascript"></script>
+  <script type="text/javascript">
+//<![CDATA[
+I18n.locale = 'en'
+//]]>
+</script>
+  
+
+
+    
+  
+  
+    
+
+
+    <!-- prevents swf file caching -->
+    <meta http-equiv="PRAGMA" content="NO-CACHE" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    
+
+  </head>
+  <body>
+    <div class="b-wrapper">
+      <a name="pagetop"></a>
+      
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2641193-1']);
+    _gaq.push(['_setDomainName'', '.assembla.com']);
+    _gaq.push(['_setCustomVar',1,'Logged','true',1]);
+    
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+    })();
+  </script>
+
+
+
+      <div class="hidden">
+        <a href="#content">Skip to contents</a>
+      </div>
+
+      
+
+      <div id="header-w">
+
+  <div id="header" class="_">
+
+    <div id="header-links">
+      <div id="user-box">
+        
+Sean Price <span>|</span>
+  
+      
+        <a href="/start"><strong>My Start Page</strong></a>
+      
+      <span>|</span>
+  
+  <a href="/user/logout">Logout</a>
+
+      </div>
+      <div>
+      <span id="space-role">Free/Private Space <span>|</span> Member</span>
+      </div>
+    </div>
+
+    <div id="logo">
+      
+        <a href="/">
+          <img src="/images/assembla-logo-small.png" alt="Go to Assembla" title="Go to Assembla" />
+        </a>
+      
+    </div>
+
+    
+      
+        
+      
+    
+
+    
+      <h1 class="header-w clear-float">
+        <span>RootlessMe</span>
+      </h1>
+    
+
+    <div class="cut">&nbsp;</div>
+
+  </div><!-- /header -->
+</div><!-- /header-w -->
+
+      
+
+  
+    <div id="main-menu-w">
+      <ul class='clear-float' id='main-menu'><li class='current'><a href="/code/rootlessme/subversion/nodes">Source/SVN</a></li><li class=''><a href="/spaces/rootlessme/team">Team</a></li><li class=''><a href="/spaces/rootlessme/stream">Stream</a></li><li class='grayed-out'><a href="/spaces/rootlessme/upgrade/tickets">Tickets</a></li><li class='grayed-out'><a href="/spaces/rootlessme/upgrade/add_a_server">Add a server</a></li><li class='grayed-out'><a href="/spaces/rootlessme/upgrade/wiki">Wiki</a></li><li class='grayed-out'><a href="/spaces/rootlessme/upgrade/management">Management</a></li><li class="search-field"><form action="/spaces/rootlessme/search" id="search-form" method="get"><input id="object_scope_top_right" name="object_scope" type="hidden" value="10" />
+<input class="main-search" id="q" name="q" onfocus="this.value == 'Search this space' ? this.value = '' : true" size="15" type="text" value="Search this space" />
+</form></li></ul>
+    </div><!-- /main-menu-w -->
+  
+
+  
+    <ul class='menu-submenu'><li><a href="/code/rootlessme/subversion/nodes" class="first selected">Browse</a></li><li><a href="/code/rootlessme/subversion/changesets" class="">Changesets</a></li><li><a href="/code/rootlessme/subversion/changesets/comments" class="">Comments</a></li><li><a href="/code/rootlessme/subversion/merge_requests" class="">Patch Requests</a></li><li><a href="/code/rootlessme/subversion/forks" class="">Fork Network</a></li><li><a href="/code/rootlessme/subversion/sites" class="">Sites</a></li><li><a href="/code/rootlessme/subversion/repo/instructions" class="">Instructions</a></li></ul><div class='cut'></div>
+  
+
+      
+      <script type="text/javascript">
+      if(!Breakout){var Breakout = {};}
+      Breakout.space_wiki_name = "rootlessme";
+              Breakout.user_id = "dB-bqSQYer4iD2eJe4gwI3"          </script>
+    
+
+
+      <div id="content" >
+        
+        <script type="text/javascript">
+//<![CDATA[
+hideFlashNotice();
+//]]>
+</script>
+        
+        
+  
+  
+
+  
+<div class="repository-browser">
+  <h1 class="icon-breadcrumb-path"><a href="/code/rootlessme/subversion/nodes?rev=85" class="root">root</a>/<a href="/code/rootlessme/subversion/nodes/rootlessme?rev=85">rootlessme</a>/<a href="/code/rootlessme/subversion/nodes/rootlessme/web?rev=85">web</a>/<a href="/code/rootlessme/subversion/nodes/rootlessme/web/images?rev=85">images</a>/<span>leftContentBackground.jpg</span><span>    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
+            width="110"
+            height="14"
+            id="clippy" >
+    <param name="movie" value="/clippy.swf"/>
+    <param name="allowScriptAccess" value="always" />
+    <param name="quality" value="high" />
+    <param name="scale" value="noscale" />
+    <param NAME="FlashVars" value="text=https://www.assembla.com/code/rootlessme/subversion/nodes/rootlessme/web/images/leftContentBackground.jpg?rev=85" />
+    <param name="bgcolor" value="#FFFFFF" />
+    <param name="wmode" value="transparent" />
+    <embed src="/clippy.swf"
+           width="110"
+           height="14"
+           name="clippy"
+           quality="high"
+           allowScriptAccess="always"
+           type="application/x-shockwave-flash"
+           pluginspage="http://www.macromedia.com/go/getflashplayer"
+           FlashVars="text=https://www.assembla.com/code/rootlessme/subversion/nodes/rootlessme/web/images/leftContentBackground.jpg?rev=85"
+           bgcolor="#FFFFFF"
+           wmode="transparent"
+    />
+    </object>
+</span></h1>
+  
+
+<div class="commit-infobox">
+  <div class="commit-options">
+    <a href="/code/rootlessme/subversion/node/logs/rootlessme/web/images/leftContentBackground.jpg?rev=85" class="revision-log" rel="nofollow">Revision log</a>
+    
+      <div style="margin-right: 10px;" class="small-icon-button">
+        <a href="/code/rootlessme/subversion/node/live/85/rootlessme/web/images/leftContentBackground.jpg" class="view-icon" rel="nofollow">View as a web page</a>
+      </div>
+    
+
+    
+      
+  <div style="margin-right: 10px;" class="small-icon-button">
+    <a class="download-icon" href="#" onclick="nobotGoto('!/code/rootlessme/subversion/nodes/rootlessme/web/images/leftContentBackground.jpg?_format=raw&amp;rev=85'); return false;">Download</a>
+  </div>
+
+
+    
+
+    
+    <div style="margin-right: 10px;" class="small-icon-button">
+      <a href="/code/rootlessme/subversion/sites/new?path=rootlessme%2Fweb%2Fimages%2FleftContentBackground.jpg" class="publish-icon" title="Publish as a Web site">Publish</a>
+    </div>
+    
+  </div>
+
+  <div class="committer-pic">
+    <img alt="User picture" src="https://assets1.assembla.com/images/no-picture.png?1309882901" />
+  </div>
+
+  
+<div class="commit-info">
+  
+
+      <p class="committer-info"><span>Author:</span> <a href="/profile/ColinHoell" tabindex="-1" target="_blank" title="Show Profile">ColinHoell</a></p>
+  
+
+  <p class="committer-info"><span>Revision:</span> <a href="/code/rootlessme/subversion/changesets/65">65</a> (<span>«<a href="/code/rootlessme/subversion/nodes/rootlessme/web/images/leftContentBackground.jpg?rev=84">Previous</a></span> <span><a href="/code/rootlessme/subversion/nodes/rootlessme/web/images/leftContentBackground.jpg?rev=86">Next</a>»</span> <a href="/code/rootlessme/subversion/nodes/rootlessme/web/images/leftContentBackground.jpg">Latest</a>)</p>
+  <p class="commit-date">(Jun 18 01:15) 23 days ago</p>
+</div>
+
+
+  <p class="commit-description">
+    <pre>Updated Top Bar and Side Nav with new design
+</pre>
+  </p>
+</div>
+
+<div class="cut">&nbsp;</div>
+
+
+  <img alt="leftContentBackground.jpg" src="https://assets2.assembla.com/code/rootlessme/subversion/node/blob/rootlessme/web/images/leftContentBackground.jpg?rev=85" />
+</div>
+
+
+  
+
+      </div><!-- /content -->
+      
+  
+
+      <div class="push-app"></div>
+    </div><!-- /b-wrapper -->
+    <div id="footer-w">
+  <div class="tutorial-and-bookmark">
+          <div class="video-link" style="text-align: center;"><a href="/features/popup_video?video=12" rel="fancybox">Watch our tutorial video for the Source/SVN Tool</a></div>
+    
+    
+  </div>
+
+  
+
+  <div id="footer">
+    
+
+    <p>
+      <a href="/">Home</a>
+      / <a href="/community">Community</a>
+    
+      / <a href="http://www.assembla.com/wiki/show/c8A2BGQEWr2RUvaaeP0Qfc">Documentation</a>
+      
+        / <a href="http://forum.assembla.com/" target="_blank">Report bugs</a>
+        / <a href="http://feedback.assembla.com/" target="_blank">Send us Suggestions</a>
+      
+      
+        / <a href="/spaces/rootlessme/prepare_copy">Copy this space</a>
+      
+    
+    </p>
+
+    
+      <p>
+        
+      </p>
+    
+
+    <p id="copyr-contact">
+  
+     Rootlessme is powered by Assembla Workspaces. <a href="/">Learn More</a>
+  </p>
+
+  </div><!-- /footer -->
+</div><!-- /footer-w -->
+
+
+  
+    
+  
+
+
+    
+  
+  
+
+
+
+
+
+  </body>
+</html>
+
+
