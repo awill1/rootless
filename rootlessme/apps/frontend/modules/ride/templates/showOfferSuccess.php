@@ -79,7 +79,7 @@
                 center: latlng,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
-            map = new google.maps.Map(document.getElementById("map"),
+            map = new google.maps.Map(document.getElementById("rideProfileMap"),
                 myOptions);
             geocoder = new google.maps.Geocoder();
 
@@ -217,49 +217,52 @@
         </div>
     </div>
     <h1 id="mainEventTitle">
-        <a class="locationLink" href="#">
+        <span class="rideLocations">
             +<?php echo $origin->getCityStateString() ?>
-        </a>
+        </span>
+        <span class="rideMiddleWord">
         to
-        <a class="locationLink" href="#">
+        </span>
+        <span class="rideLocations">
             +<?php echo $destination->getCityStateString() ?>
-        </a>
+        </span>
+       
     </h1>
-    <p>Ride Offer</p>
-    <p>
+    <p class="seatsAvailable">
+        
         <?php echo $carpool->getSeatsAvailable() ?>
         <?php echo ($carpool->getSeatsAvailable() == 1 ? "seat" : "seats") ?>
-        available <button id="requestRideButton">Request a Ride</button>
+        available 
+        
     </p>
     <div id="dialogFormDiv" title="Request a ride">
         <?php include_component('seat', 'seatForm') ?>
     </div>
     <!-- TODO: Add smoking -->
-    <p>Smoking: Yes</p>
-    <p>One Way Trip</p>
+    <p class="smokingPreference">Smoking: Yes</p>
+    <p class="tripDistance">One Way Trip</p>
+    <p><button id="requestRideButton">Request a Ride</button></p>
 
 </div>
 
-<div id="map"></div>
+    <div id="rideProfileMap"></div>
 
-
+    <div id="informationContainer">
 <div id="mainRidePeople">
-    <h3>Driving</h3>
     <a href="<?php echo url_for("profile_show_user", $driver)  ?>">
-        <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driver->getPictureUrlSmall() ?>" alt="<?php echo $driver->getFullName() ?>" />
-        <div><?php echo $driver->getFullName() ?></div>
+        <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driver->getPictureUrlLarge() ?>" alt="<?php echo $driver->getFullName() ?>" />
+<!--        <div><?php echo $driver->getFullName() ?></div>-->
     </a>
     <h3>Riding</h3>
-    <ul>
-        <li><a href="profile.html"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?>russ_profile_small.JPG" alt="DJ" />DJ</a></li>
-        <li><a href="profile.html"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?>russ_profile_small.JPG" alt="Zach" />Zach</a></li>
-        <li><a href="profile.html"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?>russ_profile_small.JPG" alt="Peter" />Peter</a></li>
-    </ul>
+        <p class="riderPicturesFirst"><a href="profile.html"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?>profile_lauren_small.JPG" alt="DJ" /></a></p>
+        <p class="riderPictures"><a href="profile.html"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?>profile_lauren_small.JPG" alt="Zach" /></a></p>
+        <p class="riderPictures"><a href="profile.html"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?>profile_lauren_small.JPG" alt="Peter" /></a></p>
 </div>
 <div id="mainRideDetails">
-    <h3>Posted By: <a href="<?php echo url_for("profile_show_user", $driver)  ?>"><?php echo $driver->getFullName() ?></a></h3>
+    <h3 class="postedByStyles">Posted By: <a class="personLink" href="<?php echo url_for("profile_show_user", $driver)  ?>"><?php echo $driver->getFullName() ?></a></h3>
     <h3>Trip Value: $50</h3>
     <h3>Asking Price: $<?php echo $carpool->getAskingPrice() ?> per person</h3>
     <p id="mainRideInformation"><?php echo nl2br($carpool->getDescription()) ?>
     </p>
+</div>
 </div>

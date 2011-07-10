@@ -462,3 +462,8 @@ textarea {
 .selectedRow  .tableLink {
     color: #FFFFFF;
 }
+
+.personLink {
+    color: #119F49;
+    font-style: italic;
+}

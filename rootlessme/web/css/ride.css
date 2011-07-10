@@ -108,21 +108,59 @@ tbody {
     vertical-align: middle;
 }
 
+.rideLocations {
+    font-style: italic;
+}
+
+.rideMiddleWord {
+    font-weight: lighter;
+}
+
+.seatsAvailable {
+    font-weight: bold;
+    font-size: 130%;
+    
+}
+.smokingPreference {
+    font-size: 80%;
+    margin: -15px 0px 0px 0px;
+    font-style: italic;
+}
+.tripDistance {
+    font-weight: bold;
+}
+
 #mainRideDate {
     float: left;
+    margin: 50px, 0px, 0px, 0px;
 }
 
 #mainRideSummary {
     float: left;
     width: 280px;
-    margin: 20px 0px 0px 0px;
+    margin: 45px 0px 0px 0px;
 }
 
 #mainRideInformation {
+    
 }
 
 #mainRidePeople {
-    clear: both;
+    
+
+    
+    float: left;
+    
+}
+
+#mainRideDetails {
+    float: left;
+    margin: 0px 0px 0px 50px;
+    
+}
+
+#mainEventTitle {
+    margin: 0px 0px 0px 70px;
 }
 
 .middleRidesFormArea
@@ -132,8 +170,39 @@ tbody {
 
 #map {
     width: 400px;
-    height: 400px;
+    height: 230px;
     float: right;
-    /* Need to lower the z-index so the javascript menus appear over the map. */
-    z-index: -1;
+    /* Need to lower the z-index so the javascript menus appear over the map.
+       Commented out because it disabled mouse control*/
+/*    z-index: -1;*/
+/*    margin-top: 50px;
+    margin-bottom: 50px;*/
+}
+
+#rideProfileMap {
+    width: 400px;
+    height: 230px;
+    float: right;
+    /* Need to lower the z-index so the javascript menus appear over the map. 
+       Commented out because it disabled mouse control*/
+/*    z-index: -1;*/
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#informationContainer {
+    clear: right;
+}
+
+.postedByStyles {
+    margin: 0px 0px 0px 0px;
+}
+
+.riderPictures {
+    float: left;
+    margin: 0px 0px 0px 20px;
+}
+.riderPicturesFirst {
+    float: left;
+    margin: 0px 0px 0px 0px;
 }
