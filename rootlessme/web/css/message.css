@@ -42,24 +42,6 @@ tbody {
     margin: 0px 0px 10px 0px;
 }
 
-.messageListRow {
-    background-color: #E3E3E3;
-    padding: 0px 0px 0px 0px;
-}
-
-
-.messageListAltRow {
-    background-color: #FFFFFF;
-    padding: 0px 0px 0px 0px;
-}
-
-.messageListSelectedRow {
-    background-color: #393C39;
-    color: #FFFFFF;
-    padding: 0px 0px 0px 0px;
-    cursor: pointer;
-}
-
 .messageListAuthorLink {
 }
 
@@ -69,14 +51,6 @@ tbody {
 
 .messageUnread {
     font-weight: bold;
-}
-
-.messageListLink {
-    color: #3D3D3D;
-}
-
-.messageListSelectedRow  .messageListLink {
-    color: #FFFFFF;
 }
 
 .messageBar {

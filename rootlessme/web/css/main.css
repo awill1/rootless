@@ -73,8 +73,7 @@ textarea {
 #searchInput
 {
     background-image: url("../images/searchBarBackground.jpg");
-    image-repeat-y: no-repeat;
-    image-repeat-x: no-repeat;
+    background-repeat: no-repeat;
     border: none;
     height: 24px;
     width: 276px;
@@ -440,4 +439,26 @@ textarea {
 
 .watermark {
     color: #606060;
+}
+
+.tableRow {
+    background-color: #E3E3E3;
+}
+
+.tableAltRow {
+    background-color: #FFFFFF;
+}
+
+.selectedRow {
+    color: #FFFFFF;
+    background-color: #393C39;
+    cursor: pointer;
+}
+
+.tableLink {
+    color: #3D3D3D;
+}
+
+.selectedRow  .tableLink {
+    color: #FFFFFF;
 }

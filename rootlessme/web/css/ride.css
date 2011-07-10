@@ -129,4 +129,6 @@ tbody {
     width: 400px;
     height: 400px;
     float: right;
+    /* Need to lower the z-index so the javascript menus appear over the map. */
+    z-index: -1;
 }

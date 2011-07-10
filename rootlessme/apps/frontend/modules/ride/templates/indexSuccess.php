@@ -62,8 +62,27 @@
                     // This handler function will run when the form is complete
                     $('#loader').hide();
                     $('#results').toggle('blind');
+                    $("tbody tr")
+                    //.click(function(){
+                    //    // Navigate to the first link's reference
+                    //    DoNav($(this).find("a").attr("href"));
+                    //    //DoNav("http://www.rootless.me.localhost/frontend_dev.php/messages/22");
+                    //})
+                    // Change the hover style
+                    .hover(
+                        function()
+                        {
+                            HighlightRow($(this))
+                        }
+                        ,function()
+                        {
+                            UnHighlightRow($(this))
+                        }
+                    );
                 }
             });
+
+            
         });
 
         function previewRoute() {
@@ -141,6 +160,22 @@
                 directionsDisplay.setDirections(result);
             }
           });
+        }
+
+        function HighlightRow(tableRow)
+        {
+            tableRow.addClass("messageListSelectedRow");
+            tableRow.css("background-color","red");
+
+        }
+        function UnHighlightRow(tableRow)
+        {
+            tableRow.removeClass("messageListSelectedRow");
+        }
+
+        function DoNav(theUrl)
+        {
+            document.location.href = theUrl;
         }
 
     </script>

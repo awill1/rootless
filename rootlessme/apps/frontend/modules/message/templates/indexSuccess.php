@@ -1,13 +1,12 @@
 <?php use_stylesheet('message.css') ?>
-
 <?php slot(
   'title',
   sprintf('Rootless Me - Messages'))
 ?>
 
 <?php slot('gmapheader'); ?>
-    
-    <script type="text/javascript">
+    <script type="text/javascript" src="/js/tableRowNavigation.js"></script>
+<!--    <script type="text/javascript">
         // Function when the page is ready
         $(document).ready(function(){
             // Make the entire message row clickable
@@ -48,7 +47,7 @@
         {
             document.location.href = theUrl;
         }
-    </script>
+    </script>-->
 <?php end_slot();?>
 
 
@@ -87,7 +86,7 @@
             //$author = $message->getPeople()->getProfiles()->getFirst();
             $author = $message['People']['Profiles'][0];
             ?>
-            <tr class="<?php echo fmod($i, 2) ? 'messageListAltRow' : 'messageListRow' ?>
+            <tr class="<?php echo fmod($i, 2) ? 'tableAltRow' : 'tableRow' ?>
                        <?php if (count($message['MessageRecipients']) > 0 && $message['MessageRecipients'][0]['unread'] ) echo 'messageUnread' ?>">
                 <td><input id="entry_box_4" class="message_list_check_box" type='checkbox' name='messages_selected[]' value='5'></td>
                 <td>
@@ -98,7 +97,7 @@
                         <?php echo $author['first_name'].' '.$author['last_name'] ?>
                 </td>
                 <td>
-                    <a class="messageListLink" href="<?php echo url_for("messages_show", array('message_id' => $message['message_id'])) ?>">
+                    <a class="tableLink" href="<?php echo url_for("messages_show", array('message_id' => $message['message_id'])) ?>">
                     <div>
                             <?php echo $message['subject'] ?>
                     </div>
