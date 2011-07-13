@@ -8,7 +8,7 @@
     <?php $myProfile = $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst(); ?>
     <div class="messageAuthorPicture">
         <a href="<?php echo url_for("profile_show_user", $myProfile)  ?>">
-            <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $myProfile->getPictureUrlSmall() ?>" alt="<?php echo $myProfile->getFullName() ?>" />
+            <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $myProfile->getPictureUrlTiny() ?>" alt="<?php echo $myProfile->getFullName() ?>" />
         </a>
     </div>
     <div class="messageAuthorInformation">

@@ -69,36 +69,52 @@ tbody {
 }
 
 .message {
-    margin: 30px 0px 0px 0px;
+    margin: 20px 0px 0px 0px;
     width: 100%;
 }
 
 .messageAuthorInformation {
-    margin: 0px 0px 0px 6px;
+    margin: 0px 0px 40px 0px;
+    
 }
 
 .messageAuthorPicture {
-    float: left;
-    margin: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 40px;
+    padding: 0px 0px 0px 0px;
+
 }
 
 .messageAuthorLink {
-    color: #3D3D3D;
+    color: #4D4D4D;
+    float: left;
+    padding-top: 5px;
+    margin: 0px 0px 0px 0px;
 }
 
 .messageBody {
+    clear: both;
     float: left;
-    margin: 0px 0px 0px 6px;
+    padding: 0px 0px 10px 0px;
+    margin: -58px 0px 0px 110px;
+    display: inline;
 }
 
 .messageDividerBar {
     clear:left;
+    color: #F4F4F4;
 }
 
 /* Form styles */
 
 .middleCreateForm {
     width: 500px;
+}
+
+.dateText {
+    padding-bottom: 15px;
+    font-size: 70%;
+    float: left;
+    
 }
 
 legend {

@@ -18,7 +18,9 @@
         <div class="messageAuthorInformation">
             <a class="messageAuthorLink" href="<?php echo url_for("profile_show_user", $author)  ?>"><?php echo $author->getFullName() ?></a>
             <br />
-            <?php echo date("n\/j\/Y g\:ia",strtotime($message->getCreatedAt())) ?>
+            <br />
+            <span class ="dateText"><?php echo date("n\/j\/Y g\:ia",strtotime($message->getCreatedAt())) ?></span>
+            <br />
         </div>
             <p>
                 <?php echo nl2br($message->getBody()) ?>
