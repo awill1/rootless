@@ -103,8 +103,8 @@ textarea {
 
 #headerControlsList {
     list-style: none;
-    margin: 0;
-    padding: 0;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
 }
 
 .headerControlsListItem {
@@ -125,8 +125,9 @@ textarea {
 
 .headerControl:hover
 {
-    background: #1A4473;
+    background: #3D3D3D;
     border: #FFFFFF 1px solid;
+    color: #FFFFFF;
 }
 
 .headerControlsListSublist
@@ -136,15 +137,14 @@ textarea {
     padding: 0px 0px 0px 0px;
     position: absolute;
     visibility: hidden;
-    border-top: 1px solid white;
 }
 
 .headerControlsListSublistItem
 {
     float: none;
     display: block;
-    background-color: yellow;
-    margin: 20px 0px 0px 0px;
+    background-color: #3D3D3D;
+    margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
     border: 1px solid;
     line-height: normal;
@@ -152,16 +152,16 @@ textarea {
 
 .headerSublistControl
 {
+    display: block;
     color: #FFFFFF;
-    width: auto;
-    background: #9F1B1B;
-    margin: 10px 0px 0px 0px;
+    background: #3D3D3D;
+    margin: 0px 0px 0px 0px;
     padding: 10px 10px 10px 10px;
 }
 
 .headerSublistControl:hover
 {
-    background: #7F1616;
+    background: #535353;
 }
 
 
