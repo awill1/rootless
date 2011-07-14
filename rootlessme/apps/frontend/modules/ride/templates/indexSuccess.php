@@ -21,6 +21,8 @@
         var directionsService = new google.maps.DirectionsService();
         var geocoder;
         var locations = new Array();
+        var originMarker;
+        var destinationMarker;
 
         // Function when the page is ready
         $(document).ready(function(){
@@ -37,6 +39,16 @@
             geocoder = new google.maps.Geocoder();
             directionsDisplay = new google.maps.DirectionsRenderer();
             directionsDisplay.setMap(map);
+            
+            // Setup the origin and destination marker
+//            originMarker = new google.map.Marker();
+//            originMarker.setPosition(latlng);
+//            originMarker.setMap(map);
+            originMarker = new google.maps.Marker({
+                   position: latlng,
+                   map: map,
+                   title:"Hello World!"
+                });
 
             // Route preview changes whenever the user finished editing the
             // origin or destination textboxes
@@ -81,7 +93,6 @@
                     )
                     .find('td:not(:has(:checkbox, a))')
                         .click(function () {
-                        //DoNav("http://www.yahoo.com");
                         window.location = $(this).parent().find("a").attr("href");
                     });
                 }
@@ -101,6 +112,10 @@
                 };
                 geocoder.geocode(originGeocodeRequest, geocodeOrigin);
             }
+            else {
+                // There is no origin so clear the marker from the map
+                originMarker.setMap(null);
+            }
 
             if (destinationValue)
             {
@@ -110,6 +125,10 @@
                 };
                 geocoder.geocode(destinationGeocodeRequest, geocodeDestination);
             }
+            else {
+                // There is no destination so clear the marker from the map
+                destinationMarker.setMap(null);
+            }
 
             // Get the directions
             calcRoute(originValue, destinationValue);
@@ -117,29 +136,34 @@
 
         function geocodeOrigin(results, status) {
             var locationNumber = 0;
-            showResults(results, status, locationNumber);
+//            originMarker.setPosition(results[0].geometry.location);
+            showResults(results, status, originMarker);
             // Send the geocoded information to the server
-            $("#carpools_route_origin_data").val(JSON.stringify(locations[ locationNumber]));
+            $("#rides_origin_latitude").val(JSON.stringify(locations[locationNumber].lat()));
+            $("#rides_origin_longitude").val(JSON.stringify(locations[locationNumber].lng()));
         }
 
         function geocodeDestination(results, status) {
             var locationNumber = 1;
-            showResults(results, status, locationNumber);
+            showResults(results, status, destinationMarker);
             // Send the geocoded information to the server
-            $("#carpools_route_destination_data").val(JSON.stringify(locations[locationNumber]));
+            $("#rides_destination_latitude").val(JSON.stringify(locations[locationNumber].lat()));
+            $("#rides_destination_longitude").val(JSON.stringify(locations[locationNumber].lng()));
         }
 
-        function showResults(results, status, locationNumber) {
+        function showResults(results, status, marker) {
           if (! results) {
             alert("Geocoder did not return a valid response");
           } else {
             if (status == google.maps.GeocoderStatus.OK) {
-                var myLatlng = results[0].geometry.location;
-                var marker = new google.maps.Marker({
-                   position: myLatlng,
-                   map: map,
-                     title:"Hello World!"
-                });
+                var myLatLng = results[0].geometry.location;
+                marker.setPosition(myLatLng);
+                marker.setMap(map);
+//                var marker = new google.maps.Marker({
+//                   position: myLatLng,
+//                   map: map,
+//                     title:"Hello World!"
+//                });
                 map.panTo(myLatlng);
                 locations[locationNumber] = results[0];
             } else {

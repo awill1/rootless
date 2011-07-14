@@ -18,6 +18,10 @@ class RideSearchForm extends BaseForm
           'destination'   => new sfWidgetFormInputText(),
           'date'   => new sfWidgetFormInputText(),
           'gender_preference'   => new sfWidgetFormInputText(),
+          'origin_latitude' => new sfWidgetFormInputHidden(),
+          'origin_longitude' => new sfWidgetFormInputHidden(),
+          'destination_latitude' => new sfWidgetFormInputHidden(),
+          'destination_longitude' => new sfWidgetFormInputHidden()
         ));
 
         $this->widgetSchema->setNameFormat('rides[%s]');

@@ -200,43 +200,6 @@ messages_edit:
   requirements:
     sf_method: [get]
 
-conversations:
-  url: /conversations
-  class:   sfDoctrineRoute
-  param:
-    module: conversation
-    action: index
-  options:
-    model: Conversations
-    type: list
-  requirements:
-    sf_method: [get]
-
-conversations_show:
-  url:   /conversations/:conversation_id
-  class:   sfDoctrineRoute
-  options: { model: Conversations, type: object }
-  param: { module: conversation, action: show }
-  requirements:
-    sf_method: [get]
-
-# sfGuard routes
-sf_guard_signin:
-  url:   /login
-  param: { module: sfGuardAuth, action: signin }
-
-sf_guard_signout:
-  url:   /logout
-  param: { module: sfGuardAuth, action: signout }
-
-sf_guard_password:
-  url:   /request_password
-  param: { module: sfGuardAuth, action: password }
-
-sf_guard_register:
-  url:   /register
-  param: { module: sfGuardRegister, action: index }
-
 # ride rules
 ride:
   url: /rides
@@ -353,6 +316,76 @@ review_ratings:
   class:   sfRoute
   param:   { module: review, action: graph}
   requirements: { sf_method: get }
+
+# seat rules
+seats:
+  url: /seats
+  class:   sfDoctrineRoute
+  param:
+    module: seat
+    action: index
+  options:
+    model: Seats
+    type: list
+  requirements:
+    sf_method: [get]
+
+seats_new:
+  url: /seats/new
+  class:   sfDoctrineRoute
+  param:
+    module: seat
+    action: new
+  options:
+    model: Seats
+    type: object
+  requirements:
+    sf_method: [get]
+
+seats_create:
+  url: /seats/create
+  class:   sfDoctrineRoute
+  param:
+    module: seat
+    action: create
+  options:
+    model: Seats
+    type: object
+  requirements:
+    sf_method: [post]
+
+seats_show:
+  url:   /seats/:seat_id
+  class:   sfDoctrineRoute
+  options: { model: Seats, type: object }
+  param: { module: seat, action: show }
+  requirements:
+    sf_method: [get]
+
+seats_edit:
+  url:   /seats/edit/:seat_id
+  class:   sfDoctrineRoute
+  options: { model: Seats, type: object }
+  param: { module: seat, action: edit }
+  requirements:
+    sf_method: [get]
+
+# sfGuard routes
+sf_guard_signin:
+  url:   /login
+  param: { module: sfGuardAuth, action: signin }
+
+sf_guard_signout:
+  url:   /logout
+  param: { module: sfGuardAuth, action: signout }
+
+sf_guard_password:
+  url:   /request_password
+  param: { module: sfGuardAuth, action: password }
+
+sf_guard_register:
+  url:   /register
+  param: { module: sfGuardRegister, action: index }
 
 
 # default rules

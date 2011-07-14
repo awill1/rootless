@@ -4,7 +4,7 @@
 <form id="rideSearchForm" class="userInputForm" action="<?php echo url_for('ride_search') ?>" method="get">
   <table>
     <tbody>
-
+      <?php echo $rideSearchForm->renderHiddenFields() ?>
       <?php echo $rideSearchForm['origin']->renderRow() ?>
       <?php echo $rideSearchForm['destination']->renderRow() ?>
       <?php echo $rideSearchForm['date']->renderRow() ?>

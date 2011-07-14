@@ -16,6 +16,9 @@ class SeatsForm extends BaseSeatsForm
         $route = new Routes();
         //$this->getObject()->Routes = $route;
         $route_form = new RoutesForm($route);
+        // Override the labe for a few select fields
+        $route_form->widgetSchema->setLabel('origin', 'Pickup Location');
+        $route_form->widgetSchema->setLabel('destination', 'Dropoff Location');
         $this->embedForm('route', $route_form);
 
         // Change the pickup date and time widgets to be textboxs for the
@@ -37,5 +40,6 @@ class SeatsForm extends BaseSeatsForm
             'price',
             'seat_count',
             'description'));
+
     }
 }
