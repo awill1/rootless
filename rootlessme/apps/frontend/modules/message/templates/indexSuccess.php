@@ -56,7 +56,7 @@
 <?php end_slot();?>
 
 
-<h1>Messages</h1>
+<h1>Welcome to your inbox, Aaron!</h1>
 <div id="middleMessageDetails">
     <ul class="tabList">
         <li class="tabSelectedItem"><a href="#fragment-inbox">Inbox</a></li>
@@ -89,9 +89,7 @@
                         <th>
                             <input type="checkbox" name="CheckAll" value="Check All" onClick="javascript: if (this.checked) checkAll(document.messages_list_form); else uncheckAll(document.messages_list_form);">
                         </th>
-                        <th>Sent</th>
-                        <th>From</th>
-                        <th>Subject</th>
+                        <a class="messageButton" href="<?php echo url_for('message/new') ?>">+ Message</a>
                     </tr>
                 </thead>
                 <tbody>
@@ -135,4 +133,4 @@
         <h2>Compose</h2>
     </div>
 </div>
-<a href="<?php echo url_for('message/new') ?>">New</a>
+

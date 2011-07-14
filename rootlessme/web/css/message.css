@@ -86,8 +86,22 @@ tbody {
     
 }
 
+.messageAuthorInformationReply {
+    margin: 10px 0px 10px 0px;
+    padding: 10px 0px 30px 0px;
+    
+}
+
 .messageAuthorPicture {
     margin: 0px 0px 0px 40px;
+    padding: 0px 0px 0px 0px;
+
+}
+
+.messageAuthorPictureReply {
+    float: left;
+    width: 33px;
+    margin: 20px 0px 0px 70px;
     padding: 0px 0px 0px 0px;
 
 }
@@ -112,6 +126,10 @@ tbody {
     color: #F4F4F4;
 }
 
+.messageReplyBox {
+    margin: 0px 0px 0px 30px;
+}
+
 /* Form styles */
 
 .middleCreateForm {
@@ -124,6 +142,15 @@ tbody {
     float: left;
     
 }
+
+.messageButton {
+    padding: 5px 5px 5px 5px;
+    float: right;
+    font-size: 120%;
+    color: #FFFFFF;
+    background-color: #119F49;
+}
+
 
 legend {
     background-color: #303030;
@@ -156,3 +183,7 @@ fieldset {
     width: 100%;
 }
 
+.backtoListLink {
+    float: right;
+    color: #D25A36;
+}
