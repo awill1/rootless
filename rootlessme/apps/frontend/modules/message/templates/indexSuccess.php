@@ -6,6 +6,11 @@
 
 <?php slot('gmapheader'); ?>
     <script type="text/javascript" src="/js/tableRowNavigation.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $( "#middleMessageDetails" ).tabs();
+	});
+    </script>
 <!--    <script type="text/javascript">
         // Function when the page is ready
         $(document).ready(function(){
@@ -52,63 +57,82 @@
 
 
 <h1>Messages</h1>
-<form name='messages_list_form' action="messages.html">
-    <script type="text/javascript">
-        <!-- Begin
-        // <input type=button name="CheckAll"   value="Check All" onClick="checkAll(document.myform.list)">
-        // <input type=button name="UnCheckAll" value="Uncheck All" onClick="uncheckAll(document.myform.list)">
-        function checkAll(field)
-        {
-                for (i = 0; i < field.length; i++)
-                        field[i].checked = true ;
-        }
+<div id="middleMessageDetails">
+    <ul class="tabList">
+        <li class="tabSelectedItem"><a href="#fragment-inbox">Inbox</a></li>
+        <li class="tabNotSelectedItem"><a href="#fragment-sent">Sent</a></li>
+        <li class="tabNotSelectedItem"><a href="#fragment-trash">Trash</a></li>
+        <li class="tabNotSelectedItem"><a href="#fragment-compose">Compose</a></li>
+    </ul>
+    <div id="fragment-inbox" class="middleProfileTabContent">
+        <form name='messages_list_form' action="messages.html">
+            <script type="text/javascript">
+                <!-- Begin
+                // <input type=button name="CheckAll"   value="Check All" onClick="checkAll(document.myform.list)">
+                // <input type=button name="UnCheckAll" value="Uncheck All" onClick="uncheckAll(document.myform.list)">
+                function checkAll(field)
+                {
+                        for (i = 0; i < field.length; i++)
+                                field[i].checked = true ;
+                }
 
-        function uncheckAll(field)
-        {
-                for (i = 0; i < field.length; i++)
-                        field[i].checked = false ;
-        }
-        //  End -->
-    </script>
-    <table id="messageTable">
-      <thead>
-        <tr>
-            <th>
-                <input type="checkbox" name="CheckAll" value="Check All" onClick="javascript: if (this.checked) checkAll(document.messages_list_form); else uncheckAll(document.messages_list_form);">
-            </th>
-            <th>Sent</th>
-            <th>From</th>
-            <th>Subject</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($messages as $i => $message):
-            //$author = $message->getPeople()->getProfiles()->getFirst();
-            $author = $message['People']['Profiles'][0];
-            ?>
-            <tr class="<?php echo fmod($i, 2) ? 'tableAltRow' : 'tableRow' ?>
-                       <?php if (count($message['MessageRecipients']) > 0 && $message['MessageRecipients'][0]['unread'] ) echo 'messageUnread' ?>">
-                <td><input id="entry_box_4" class="message_list_check_box" type='checkbox' name='messages_selected[]' value='5'></td>
-                <td>
-                    <?php echo date("F j\, Y",strtotime($message['created_at'])) ?>
-                </td>
-                <td>
-                        <img class="messageListAuthorProfileImage" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $author['picture_url_tiny']; ?>" alt="<?php echo $author['first_name'].' '.$author['last_name'] ?>" />
-                        <?php echo $author['first_name'].' '.$author['last_name'] ?>
-                </td>
-                <td>
-                    <a class="tableLink" href="<?php echo url_for("messages_show", array('message_id' => $message['message_id'])) ?>">
-                    <div>
-                            <?php echo $message['subject'] ?>
-                    </div>
-                    <div>
-                        <?php echo substr($message['body'],0,40) ?>...
-                    </div>
-                    </a>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-      </tbody>
-    </table>
-</form>
+                function uncheckAll(field)
+                {
+                        for (i = 0; i < field.length; i++)
+                                field[i].checked = false ;
+                }
+                //  End -->
+            </script>
+            <table id="messageTable">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox" name="CheckAll" value="Check All" onClick="javascript: if (this.checked) checkAll(document.messages_list_form); else uncheckAll(document.messages_list_form);">
+                        </th>
+                        <th>Sent</th>
+                        <th>From</th>
+                        <th>Subject</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($messages as $i => $message):
+                        //$author = $message->getPeople()->getProfiles()->getFirst();
+                        $author = $message['People']['Profiles'][0];
+                        ?>
+                        <tr class="<?php echo fmod($i, 2) ? 'tableAltRow' : 'tableRow' ?>
+                                   <?php if (count($message['MessageRecipients']) > 0 && $message['MessageRecipients'][0]['unread'] ) echo 'messageUnread' ?>">
+                            <td><input id="entry_box_4" class="message_list_check_box" type='checkbox' name='messages_selected[]' value='5'></td>
+                            <td>
+                                <?php echo date("F j\, Y",strtotime($message['created_at'])) ?>
+                            </td>
+                            <td>
+                                    <img class="messageListAuthorProfileImage" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $author['picture_url_tiny']; ?>" alt="<?php echo $author['first_name'].' '.$author['last_name'] ?>" />
+                                    <?php echo $author['first_name'].' '.$author['last_name'] ?>
+                            </td>
+                            <td>
+                                <a class="tableLink" href="<?php echo url_for("messages_show", array('message_id' => $message['message_id'])) ?>">
+                                <div>
+                                        <?php echo $message['subject'] ?>
+                                </div>
+                                <div>
+                                    <?php echo substr($message['body'],0,40) ?>...
+                                </div>
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <div id="fragment-sent" class="middleProfileTabContent">
+        <h2>Sent</h2>
+    </div>
+    <div id="fragment-trash" class="middleProfileTabContent">
+        <h2>Trash</h2>
+    </div>
+    <div id="fragment-compose" class="middleProfileTabContent">
+        <h2>Compose</h2>
+    </div>
+</div>
 <a href="<?php echo url_for('message/new') ?>">New</a>

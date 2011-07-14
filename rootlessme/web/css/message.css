@@ -35,6 +35,14 @@ tbody {
     margin: 10px 10px 10px 10px;
 }
 
+#middleMessageDetails {
+    clear: right;
+    float: left;
+    width: 100%;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}
+
 #messageTable {
     clear: right;
     width: 100%;
@@ -147,3 +155,4 @@ fieldset {
 .middleFormInput {
     width: 100%;
 }
+
