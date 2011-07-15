@@ -217,3 +217,9 @@
     width: 100%;
     
 }
+
+.imageCaption {
+    background-color: #E5E5E5;
+    color: #FFFFFF;
+    font-weight: bold;
+}
