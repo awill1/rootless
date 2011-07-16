@@ -53,25 +53,19 @@ class rideActions extends sfActions
     {
         // Get the request parameters
         $ride_parameters = $this->getRequestParameter('rides');
-        $this->date = $ride_parameters['date'];
-
-        //$this->date = $request->getParameter('rides_date');
-
-        // Will need to change this to use the search results
-//        $this->carpools = Doctrine_Core::getTable('Carpools')
-//             ->getWithProfiles();
-        // Hardcoding
-        $myStartLatitude = 40.31;
-        $myStartLongitude = -83.09;
-        $myEndLatitude = 41.05;
-        $myEndLongitude = -85.26;
-        $myDistance = 10;
-        $this->carpools = Doctrine_Core::getTable('Carpools')
-             ->getNearPoints($myStartLatitude, $myStartLongitude, $myEndLatitude, $myEndLongitude, $myDistance, $this->date);
+        $searchDate = $ride_parameters['date'];
         
-        //$this->forwardUnless($query = $request->getParameter('query'), 'job', 'index');
+        // Get the search parameters
+        $myStartLatitude = $ride_parameters['origin_latitude'];
+        $myStartLongitude = $ride_parameters['origin_longitude'];
+        $myEndLatitude = $ride_parameters['destination_latitude'];
+        $myEndLongitude = $ride_parameters['destination_longitude'];
+        // Use the application default distance setting
+        $myDistance = sfConfig::get('app_default_search_distance');
 
-
+        $this->carpools = Doctrine_Core::getTable('Carpools')
+             ->getNearPoints($myDistance, $myStartLatitude, $myStartLongitude, $myEndLatitude, $myEndLongitude, $searchDate);
+        
         if ($request->isXmlHttpRequest())
         {
             // This is an ajax request

@@ -40,14 +40,18 @@
             directionsDisplay = new google.maps.DirectionsRenderer();
             directionsDisplay.setMap(map);
             
-            // Setup the origin and destination marker
-//            originMarker = new google.map.Marker();
-//            originMarker.setPosition(latlng);
-//            originMarker.setMap(map);
+            // Setup the origin and destination marker, the maps are null
+            // because the markers are hidden
             originMarker = new google.maps.Marker({
                    position: latlng,
-                   map: map,
-                   title:"Hello World!"
+                   map: null,
+                   title:"Origin"
+                });
+
+            destinationMarker = new google.maps.Marker({
+                   position: latlng,
+                   map: null,
+                   title:"Destination"
                 });
 
             // Route preview changes whenever the user finished editing the
@@ -60,11 +64,6 @@
               {
                  $('#loader').show();
                  $('#results').toggle('blind');
-//                  $('#results').load(
-//                    $(this).parents('form').attr('action'),
-//                    {  },
-//                    function() { $('#loader').hide(); }
-//                  );
               });
             $('#rideSearchForm').ajaxForm(
             {
@@ -75,11 +74,6 @@
                     $('#loader').hide();
                     $('#results').toggle('blind');
                     $("#rideTable tbody tr")
-                    //.click(function(){
-                    //    // Navigate to the first link's reference
-                    //    DoNav($(this).find("a").attr("href"));
-                    //    //DoNav("http://www.rootless.me.localhost/frontend_dev.php/messages/22");
-                    //})
                     // Change the hover style
                     .hover(
                         function()
@@ -115,6 +109,10 @@
             else {
                 // There is no origin so clear the marker from the map
                 originMarker.setMap(null);
+                // Clear the search parameters too
+                $("#rides_origin_latitude").val("");
+                $("#rides_origin_longitude").val("");
+
             }
 
             if (destinationValue)
@@ -128,33 +126,53 @@
             else {
                 // There is no destination so clear the marker from the map
                 destinationMarker.setMap(null);
+                // Clear the search parameters too
+                $("#rides_destination_latitude").val("");
+                $("#rides_destination_longitude").val("");
             }
 
-            // Get the directions
-            calcRoute(originValue, destinationValue);
+            if (originValue && destinationValue)
+            {
+                // Get the directions
+                calcRoute(originValue, destinationValue);
+            }
+            else
+            {
+                // At least one of the points was not specified so clear the
+                // directions display
+                directionsDisplay.setMap(null);
+                directionsDisplay.setDirections(null);
+            }
+
         }
 
         function geocodeOrigin(results, status) {
             var locationNumber = 0;
 //            originMarker.setPosition(results[0].geometry.location);
+            $("#rides_origin_latitude").val("54.9009");
             showResults(results, status, originMarker);
             // Send the geocoded information to the server
-            $("#rides_origin_latitude").val(JSON.stringify(locations[locationNumber].lat()));
-            $("#rides_origin_longitude").val(JSON.stringify(locations[locationNumber].lng()));
+//            $("#rides_origin_latitude").val(JSON.stringify(locations[locationNumber].lat()));
+//            $("#rides_origin_longitude").val(JSON.stringify(locations[locationNumber].lng()));
+            $("#rides_origin_latitude").val(originMarker.getPosition().lat());
+            $("#rides_origin_longitude").val(originMarker.getPosition().lng());
         }
 
         function geocodeDestination(results, status) {
             var locationNumber = 1;
             showResults(results, status, destinationMarker);
             // Send the geocoded information to the server
-            $("#rides_destination_latitude").val(JSON.stringify(locations[locationNumber].lat()));
-            $("#rides_destination_longitude").val(JSON.stringify(locations[locationNumber].lng()));
+//            $("#rides_destination_latitude").val(JSON.stringify(locations[locationNumber].lat()));
+//            $("#rides_destination_longitude").val(JSON.stringify(locations[locationNumber].lng()));
+            $("#rides_destination_latitude").val(destinationMarker.getPosition().lat());
+            $("#rides_destination_longitude").val(destinationMarker.getPosition().lng());
         }
 
         function showResults(results, status, marker) {
           if (! results) {
             alert("Geocoder did not return a valid response");
-          } else {
+          }
+          else {
             if (status == google.maps.GeocoderStatus.OK) {
                 var myLatLng = results[0].geometry.location;
                 marker.setPosition(myLatLng);
@@ -164,10 +182,8 @@
 //                   map: map,
 //                     title:"Hello World!"
 //                });
-                map.panTo(myLatlng);
-                locations[locationNumber] = results[0];
-            } else {
-
+                map.panTo(myLatLng);
+//                locations[locationNumber] = results[0];
             }
           }
         }
@@ -183,10 +199,11 @@
 
                 // Set the route field to the results object for posting to the
                 // server
-                $("#carpools_route_route_data").val(JSON.stringify(result));
+                //$("#carpools_route_route_data").val(JSON.stringify(result));
 
                 // Display the directions
                 directionsDisplay.setDirections(result);
+                directionsDisplay.setMap(map);
             }
           });
         }

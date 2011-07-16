@@ -87,8 +87,12 @@ class Routes extends BaseRoutes
                 {
                     $location_data = $step_data["path"][$currentLocation];
                     $location = new Locations();
-                    $location->setLatitude($location_data['Ia']);
-                    $location->setLongitude($location_data['Ja']);
+                    // The shortcut accessors for the latitude and longitude
+                    // seem to vary with the version of the google map API.
+                    // TODO: A permanent soulution needs to be found for the
+                    // changing coorinate array keys.
+                    $location->setLatitude($location_data['Ja']);
+                    $location->setLongitude($location_data['Ka']);
                     $location->setSequenceOrder($currentLocation);
                     $location->setSteps($step);
                     $location->save();

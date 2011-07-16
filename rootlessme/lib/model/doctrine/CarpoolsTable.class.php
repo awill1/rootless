@@ -17,6 +17,12 @@ class CarpoolsTable extends Doctrine_Table
         return Doctrine_Core::getTable('Carpools');
     }
 
+    /**
+     * Returns all Carpools with people and profiles
+     *
+     * @return Doctrine_Collection Returns a Carpools collection with profiles
+     * and people included
+     */
     public function getWithProfiles()
     {
         $q = $this->createQuery('c')
@@ -26,7 +32,26 @@ class CarpoolsTable extends Doctrine_Table
         return $q->execute();
     }
 
-    public function getNearPoints ($originLatitude, $originLongitude, $destinationLatitude, $destinationLongitude, $distance, $date)
+    /**
+     * Returns carpools that are within $distance of the origin and destination
+     * coordinates and optionally on a specified date.
+     *
+     * @param        float $distance The distance to search within
+     * @param        float $originLatitude The latitude of the origin
+     * @param        float $originLongitude The longitude of the origin
+     * @param        float $destinationLatitude The latitude of the destination
+     * @param        float $destinationLongitude The longitude of the destination
+     * @param        string $date The date to search on
+     *
+     * @return Doctrine_Collection Returns a Carpools collection with profiles
+     * and people included
+     */
+    public function getNearPoints ($distance,
+                                   $originLatitude = null,
+                                   $originLongitude =null,
+                                   $destinationLatitude = null,
+                                   $destinationLongitude = null,
+                                   $date = null)
     {
         // Use a query similar to the following
         // SELECT * FROM carpools c
@@ -59,9 +84,17 @@ class CarpoolsTable extends Doctrine_Table
         //         HAVING end_distance < $distance
         //           AND r.route_id = dro.route_id
         // );
-        $q = $this->createQuery('c')
-          ->leftJoin('c.Routes r')
-          ->andWhere('EXISTS (
+        // Use a raw sql query because the relationship enforcement is less
+        $q = new Doctrine_RawSql();
+        // Curly braces are needed for component hydration
+        $q->select('{c.*}, {r.*}');
+        $q->from('carpools c');
+        $q->innerJoin('routes r ON c.route_id = r.route_id');
+        // See if we need to add a where clause for the origin location
+        if ($originLatitude != null && $originLongitude != null){
+            // Add the where clause that searchs for routes near the start
+            // location
+            $q->andWhere('EXISTS (
                  SELECT *,  MIN(DISTANCE(?, ?, o.latitude, o.longitude)) as start_distance
                  FROM locations o
                  INNER JOIN  steps os
@@ -75,8 +108,14 @@ class CarpoolsTable extends Doctrine_Table
                    AND r.route_id = oro.route_id
                  )', array($originLatitude,
                             $originLongitude,
-                            $distance))
-          ->andWhere('EXISTS (
+                            $distance));
+        }
+        // See if we need to add a where clause for the destination location
+        if ($destinationLatitude != null && $destinationLongitude != null)
+        {
+            // Add the where clause that searchs for routes near the end
+            // location
+            $q->andWhere('EXISTS (
                  SELECT *,  MIN(DISTANCE(?, ?, d.latitude, d.longitude)) as end_distance
                  FROM locations d
                  INNER JOIN  steps ds
@@ -90,25 +129,22 @@ class CarpoolsTable extends Doctrine_Table
                    AND r.route_id = dro.route_id
                   )', array($destinationLatitude,
                             $destinationLongitude,
-                            $distance))
-          ->andWhere('c.start_date = ?', array($date));
-
-        // Try raw sql
-        $q = new Doctrine_RawSql();
-        $q->select('*');
-        $q->from('carpools c');
+                            $distance));
+        }
+        // See if we need to add a where clause for the date
         if ($date != null)
         {
             // Reformat the date to work with the database
             $date = date('Y-m-d', strtotime($date));
             $q = $q->andWhere('c.start_date = ?', $date);
         }
-//        $q->innerJoin('c.Routes r');
         // ON c.route_id = r.route_id
-        $q->addComponent('c', 'carpools');
-//        $q->addComponent('r', 'carpools.Routes r');
+        // Add the components to the query so the results get hydrated into
+        // their proper objects
+        $q->addComponent('c', 'Carpools c');
+        $q->addComponent('r', 'c.Routes r');
 
-
+        // Run the query and return the results
         return $q->execute();
     }
 }
