@@ -125,9 +125,7 @@ textarea {
 
 .headerControl:hover
 {
-    background: #3D3D3D;
-    border: #FFFFFF 1px solid;
-    color: #FFFFFF;
+    background: #EDEDED;
 }
 
 .headerControlsListSublist
@@ -143,7 +141,7 @@ textarea {
 {
     float: none;
     display: block;
-    background-color: #3D3D3D;
+    background-color: #F4F4F4;
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
     border: 1px solid;
@@ -153,15 +151,15 @@ textarea {
 .headerSublistControl
 {
     display: block;
-    color: #FFFFFF;
-    background: #3D3D3D;
+    color: #3D3D3D;
+    background: #F4F4F4;
     margin: 0px 0px 0px 0px;
     padding: 10px 10px 10px 10px;
 }
 
 .headerSublistControl:hover
 {
-    background: #535353;
+    background: #EDEDED;
 }
 
 
