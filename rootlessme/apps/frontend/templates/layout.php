@@ -41,7 +41,7 @@
                         <a href="<?php echo url_for('profile_show_user',$sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()) ?>" class="headerControl">
                             <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlTiny(); ?>" alt="Tiny profile picture" />
                             <?php echo $sf_user->getGuardUser()->getPeople(); ?>
-                            <img src="/images/menuDownArrow.JPG" alt="Profile Menu" />
+                            <img src="/images/downArrow.png" alt="Profile Menu" />
                         </a>
                         <ul class="headerControlsListSublist">
                             <li class="headerControlsListSublistItem">
@@ -112,9 +112,8 @@
                     </div>
                     <div id="leftActions" class="leftWidget">
                         <ul id="leftActionsList">
-                            <li class="leftActionItem"><button class="leftActionButton" >+ Create an Event</button></li>
                             <li class="leftActionItem"><button class="leftActionButton" onClick="window.location='<?php echo url_for('ride_offer_new') ?>'" >+ Offer a Ride</button></li>
-                            <li class="leftActionItem"><button class="leftActionButton" >+ Request a Ride</button></li>
+                            <li class="leftActionItem"><button class="leftActionButton" onClick="window.location='<?php echo url_for('ride_new', array('ride_type'=>'request')) ?>'" >+ Request a Ride</button></li>
                         </ul>
                     </div>
                     <div id="leftActivity" class="leftWidget">
