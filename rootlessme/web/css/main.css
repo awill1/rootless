@@ -73,9 +73,10 @@ textarea {
 #searchInput
 {
     background-image: url("../images/searchBar.png");
+    background-color: transparent;
     background-repeat: no-repeat;
     border: none;
-    height: 24px;
+    height: 26px;
     width: 276px;
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 0px;
