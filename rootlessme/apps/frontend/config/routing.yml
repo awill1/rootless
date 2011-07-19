@@ -2,13 +2,49 @@
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
 # static pages rules
+about:
+  url: /about
+  param:
+    module: static
+    action: about
+
+contact:
+  url: /contact
+  param:
+    module: static
+    action: contact
+
+help:
+  url: /help
+  param:
+    module: static
+    action: help
+
 home:
   url: /home
   param:
     module: static
     action: home
 
-# static pages rules
+privacy:
+  url: /privacy
+  param:
+    module: static
+    action: privacy
+
+safety:
+  url: /safety
+  param:
+    module: static
+    action: safety
+
+terms:
+  url: /terms
+  param:
+    module: static
+    action: terms
+
+# dashboard rules
 dashboard:
   url: /dashboard
   param:
@@ -86,67 +122,6 @@ friendship_request_show:
   param:   { module: friendship, action: show}
   requirements: { sf_method: get }
 
-# profile rules
-profile:
-  url: /profiles
-  class:   sfDoctrineRoute
-  param:
-    module: profile
-    action: index
-  options:
-    model: Profiles
-    type: list
-  requirements:
-    sf_method: [get]
-
-profile_new_user:
-  url:   /profiles/new
-  class:   sfDoctrineRoute
-  options: { model: Profiles, type: object }
-  param: { module: profile, action: new }
-  requirements:
-    sf_method: [get]
-    
-profile_create_user:
-  url:   /profiles/create
-  class:   sfDoctrineRoute
-  options: { model: Profiles, type: object }
-  param: { module: profile, action: create }
-  requirements:
-    sf_method: [post]
-
-profile_edit_user:
-  url:   /profiles/edit
-  class:   sfDoctrineRoute
-  options: { model: Profiles, type: object }
-  param: { module: profile, action: edit }
-  requirements:
-    sf_method: [get]
-
-profile_update_user:
-  url:   /profiles/update
-#  class:   sfDoctrineRoute
-  class:   sfRoute
-  options:
-    model: Profiles
-    type: object
-  param:
-#    module: static
-#    action: home
-    module: profile
-    action: update
-  requirements:
-    sf_method: [post]
-    
-profile_show_user:
-  url:   /profiles/:profile_name
-  class:   sfDoctrineRoute
-  options: { model: Profiles, type: object }
-  param: { module: profile, action: show }
-  requirements:
-    sf_method: [get]
-
-
 # message rules
 messages:
   url: /messages
@@ -200,64 +175,63 @@ messages_edit:
   requirements:
     sf_method: [get]
 
-# ride rules
-ride:
-  url: /rides
-  param:
-    module: ride
-    action: index
-
-ride_search:
-  url: /rides/search
-  param: { module: ride, action: search, sf_format: html }
-  requirements:
-    sf_format: (?:html)
-    
-ride_offer_new:
-  url: /rides/offers/new
+# profile rules
+profile:
+  url: /profiles
   class:   sfDoctrineRoute
   param:
-    module: ride
-    action: newOffer
+    module: profile
+    action: index
   options:
-    model: Carpools
-    type: object
+    model: Profiles
+    type: list
   requirements:
     sf_method: [get]
 
-ride_offer_create:
-  url: /rides/offers/create
+profile_new_user:
+  url:   /profiles/new
   class:   sfDoctrineRoute
-  param:
-    module: ride
-    action: createOffer
-  options:
-    model: Carpools
-    type: object
+  options: { model: Profiles, type: object }
+  param: { module: profile, action: new }
+  requirements:
+    sf_method: [get]
+
+profile_create_user:
+  url:   /profiles/create
+  class:   sfDoctrineRoute
+  options: { model: Profiles, type: object }
+  param: { module: profile, action: create }
   requirements:
     sf_method: [post]
 
-ride_offer_update:
-  url: /rides/offers/update
+profile_edit_user:
+  url:   /profiles/edit
   class:   sfDoctrineRoute
-  param:
-    module: ride
-    action: updateOffer
+  options: { model: Profiles, type: object }
+  param: { module: profile, action: edit }
+  requirements:
+    sf_method: [get]
+
+profile_update_user:
+  url:   /profiles/update
+#  class:   sfDoctrineRoute
+  class:   sfRoute
   options:
-    model: Carpools
+    model: Profiles
     type: object
+  param:
+#    module: static
+#    action: home
+    module: profile
+    action: update
   requirements:
     sf_method: [post]
 
-ride_offer:
-  url: /rides/offers/:carpool_id
+profile_show_user:
+  url:   /profiles/:profile_name
   class:   sfDoctrineRoute
-  param:
-    module: ride
-    action: showOffer
-  options:
-    model: Carpools
-    type: object
+  options: { model: Profiles, type: object }
+  param: { module: profile, action: show }
   requirements:
     sf_method: [get]
 
@@ -316,6 +290,109 @@ review_ratings:
   class:   sfRoute
   param:   { module: review, action: graph}
   requirements: { sf_method: get }
+
+# ride rules
+ride:
+  url: /rides
+  param:
+    module: ride
+    action: index
+
+ride_search:
+  url: /rides/search
+  param: { module: ride, action: search, sf_format: html }
+  requirements:
+    sf_format: (?:html)
+
+# New generic ride creation
+ride_new:
+  url: /rides/:ride_type/new
+  class:   sfRoute
+#  class:   sfDoctrineRoute
+  param:
+    module: ride
+    action: new
+#  options:
+#    model: Carpools
+#    type: object
+  requirements:
+    sf_method: [get]
+    ride_type: (offer|request)
+
+ride_create:
+  url: /rides/:ride_type/create
+  class:   sfRoute
+#  class:   sfDoctrineRoute
+  param:
+    module: ride
+    action: create
+#  options:
+#    model: Carpools
+#    type: object
+  requirements:
+    sf_method: [get]
+    ride_type: (offer|request)
+
+ride_show:
+  url: /rides/:ride_type/:ride_id
+#  class:   sfDoctrineRoute
+  param:
+    module: ride
+    action: show
+#  options:
+#    model: Carpools
+#    type: object
+  requirements:
+    sf_method: [get]
+    ride_type: (offer|request)
+    
+ride_offer_new:
+  url: /rides/offers/new
+  class:   sfDoctrineRoute
+  param:
+    module: ride
+    action: newOffer
+  options:
+    model: Carpools
+    type: object
+  requirements:
+    sf_method: [get]
+
+ride_offer_create:
+  url: /rides/offers/create
+  class:   sfDoctrineRoute
+  param:
+    module: ride
+    action: createOffer
+  options:
+    model: Carpools
+    type: object
+  requirements:
+    sf_method: [post]
+
+ride_offer_update:
+  url: /rides/offers/update
+  class:   sfDoctrineRoute
+  param:
+    module: ride
+    action: updateOffer
+  options:
+    model: Carpools
+    type: object
+  requirements:
+    sf_method: [post]
+
+ride_offer:
+  url: /rides/offers/:carpool_id
+  class:   sfDoctrineRoute
+  param:
+    module: ride
+    action: showOffer
+  options:
+    model: Carpools
+    type: object
+  requirements:
+    sf_method: [get]
 
 # seat rules
 seats:
