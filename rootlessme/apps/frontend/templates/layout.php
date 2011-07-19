@@ -113,7 +113,7 @@
                     <div id="leftActions" class="leftWidget">
                         <ul id="leftActionsList">
                             <li class="leftActionItem"><button class="leftActionButton" onClick="window.location='<?php echo url_for('ride_offer_new') ?>'" >+ Offer a Ride</button></li>
-                            <li class="leftActionItem"><button class="leftActionButton" onClick="window.location='<?php echo url_for('ride_new', array('ride_type'=>'request')) ?>'" >+ Request a Ride</button></li>
+                            <li class="leftActionItem"><button class="leftActionButton" onClick="window.location='<?php echo '#' //url_for('ride_new', array('ride_type'=>'request')) ?>'" >+ Request a Ride</button></li>
                         </ul>
                     </div>
                     <div id="leftActivity" class="leftWidget">
