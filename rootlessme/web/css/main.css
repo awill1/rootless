@@ -206,7 +206,7 @@ textarea {
   text-align: left;
   margin: -2px 0px 0px 0px;
   padding: 0px 6px 2px 0px;
-  background-image: url("../images/navigationSelectedBackground.jpg");
+  background-image: url("../images/activeNav.png");
   background-repeat: no-repeat;
 }
 
