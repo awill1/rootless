@@ -40,7 +40,7 @@
 
 <div id="middleProfileDetails">
     <ul class="tabList">
-        <li class="tabSelectedItem"><a href="#fragment-feedback">Feedback</a></li>
+        <li class="tabSelectedItem"><a href="#fragment-id">Feedback</a></li>
         <li class="tabNotSelectedItem"><a href="#fragment-travel_log">Travel Log</a></li>
         <li class="tabNotSelectedItem"><a href="#fragment-interests">Interests</a></li>
         <li class="tabNotSelectedItem"><a href="#fragment-friends">Friends</a></li>
