@@ -162,12 +162,14 @@
     width: 280px;
     display: block;
     float: left;
-    color: #119F49;
+    color: #D05A36;
     text-align: left;
+    font-style: italic;
 }
 
 .feedbackRatingBarValue {
-    background-color: #ACDDA9;
+    background-image: url('../images/ratingBar.png');
+    background-repeat: repeat;
     height: 100%;
     padding: 6px 0px 6px 0px;
     text-indent: 4px;
