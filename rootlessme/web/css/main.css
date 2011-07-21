@@ -53,6 +53,7 @@ textarea {
     vertical-align: middle;
     height: 62px;
     position: relative;
+    z-index: 1000;
 }
 
 #headerControls {
