@@ -9,9 +9,12 @@
  */
 
 // Function when the page is ready
-$(document).ready(function(){
+$(document).ready(PrepareTable());
+
+function PrepareTable()
+{
     // Make the entire message row clickable
-    $("tbody tr")
+    $(".messageTable tbody tr")
         // Change the hover style
         .hover(
             function()
@@ -27,11 +30,6 @@ $(document).ready(function(){
             .click(function () {
                 window.location = $(this).parent().find("a").attr("href");
         });
-});
-
-function PrepareTable()
-{
-    // need to fill this in
 }
 
 function HighlightRow(tableRow)

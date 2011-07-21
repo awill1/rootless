@@ -218,4 +218,32 @@ class MessagesTable extends Doctrine_Table
 
         return $messages;
     }
+
+    public function getMySentMessages()
+    {
+        // Create the return value
+        $messages = null;
+
+        if (sfContext::getInstance()->getUser()->isAuthenticated())
+        {
+            // Get the authenticated user's personId
+            $myId = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
+
+            // Build the query to get the user's sent messages
+            // The query should be similar to
+            // select * from messages m
+            // inner join profiles p
+            // on p.person_id = m.author_id
+            // where mr.person_id = 1;
+            $q = $this->createQuery('m')
+                ->innerJoin('m.People p')
+                ->innerJoin('p.Profiles pr')
+                ->where('m.author_id = ?', $myId)
+                ->orderBy('m.created_at DESC');
+
+            $messages = $q->execute();
+        }
+
+        return $messages;
+    }
 }

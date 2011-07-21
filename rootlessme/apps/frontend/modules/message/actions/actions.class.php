@@ -17,6 +17,33 @@ class messageActions extends sfActions
       $this->messages = Doctrine_Core::getTable('Messages')->getMyLastMessagesForConversationWithProfiles();
   }
 
+    public function executeList(sfWebRequest $request)
+    {
+        // Get the message list type
+        $this->listType = $request->getParameter('list_type');
+
+        // Get the messages based on the  the appropriate type of form
+        switch ($this->listType) {
+            case "inbox":
+                // Get the current user's messages
+                $this->messages = Doctrine_Core::getTable('Messages')->getMyLastMessagesForConversationWithProfiles();
+                break;
+            case "sent":
+                // Get the current user's sent messages
+                $this->messages = Doctrine_Core::getTable('Messages')->getMySentMessages();
+                break;
+            case "trash":
+                // This is
+                //$this->messages = null;
+                break;
+            default:
+               // Default case just in case the ride_type is invalid (should
+               // be prevented by routing.yml).
+               echo 'List Type '.$this->rideType.'is invalid.';
+        }
+      
+    }
+
   public function executeShow(sfWebRequest $request)
   {
       // Get the message

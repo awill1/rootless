@@ -135,6 +135,19 @@ messages:
   requirements:
     sf_method: [get]
 
+messages_list:
+  url: /messages/:list_type
+  class:   sfDoctrineRoute
+  param:
+    module: message
+    action: list
+  options:
+    model: Messages
+    type: list
+  requirements:
+    sf_method: [get]
+    list_type: (inbox|sent|trash)
+
 messages_new:
   url: /messages/new
   class:   sfDoctrineRoute

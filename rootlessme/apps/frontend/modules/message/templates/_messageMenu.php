@@ -4,7 +4,7 @@
         <?php if($newMessages->count() > 0): ?>
             (<?php echo $newMessages->count() ?>)
         <?php endif; ?>
-        <img src="/images/mailbox.png" alt="1 message" />
+        <img src="/images/mailbox.png" alt="Messages" />
     </a>
      <ul class="headerControlsListSublist">
      <?php foreach ($newMessages as $newMessage): ?>
