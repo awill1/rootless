@@ -171,8 +171,10 @@
     background-image: url('../images/ratingBar.png');
     background-repeat: repeat;
     height: 100%;
-    padding: 6px 0px 6px 0px;
+    width: 200px;
+    padding: 2px 0px 2px 0px;
     text-indent: 4px;
+    
     
 }
 
@@ -221,7 +223,80 @@
 }
 
 .imageCaption {
-    background-color: #E5E5E5;
+    padding: 7px 0px 3px 10px;
+    background-color: #404040;
+    width: 538px;
+    height: 35px;
     color: #FFFFFF;
+    font-weight: normal;
+}
+
+.imageCaptionName {
+    padding: 10px 0px 3px 0px;
+    width: 538px;
+    height: 35px;
+    color: #FFFFFF;
+    font-weight: lighter;
+    font-style: italic;
+    font-size: 90%;
+}
+
+.middleSearchTravelers {
+    background-color: #F5F5F5;
+    width: 538px;
+    margin-top: 30px;
+}
+
+.SearchTravelerTitle {
+    color: #A3A3A3;
+    font-size: 180%;
+    padding: 15px 0px 0px 20px;
+}
+
+.userInputForm {
+    background-color: #FFFFFF;
+    margin: 20px 0px 0px 0px;
+}
+
+.travelersList {
+    background-color: #F5F5F5;
+    width: 508px;
+    float: left;
+    padding: 30px 0px 30px 30px;
+    
+    
+}
+
+.travelerListName {
+    padding: 5px 0px 0px 0px;
+    color: #119F49;
     font-weight: bold;
+    font-style: italic;
+    float: left;
+
+}
+
+.travelersListItem {
+    color: #119F49;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0px 0px 10px 0px;
+    float: left;
+    clear: left;
+
+}
+
+.travelerHomeTown {
+    color: #404040;
+    font-size: 70%;
+    padding: 5px 0px 0px 0px;
+    float: left;
+    clear: left;
+}
+
+.travelerInformation {
+    margin: 0px 0px 0px 10px;
+    float: left;
+    
+
 }

@@ -34,6 +34,5 @@
         <li class="tabNotSelectedItem"><a href="<?php echo url_for('messages_list', array('list_type'=>'trash')) ?>">Trash</a></li>
         <li class="tabNotSelectedItem"><a href="<?php echo url_for('messages_new') ?>">Compose</a></li>
     </ul>
-
 </div>
 
