@@ -85,9 +85,7 @@
 .tabList a {
     display: block;
     text-align: center;
-    padding: 8px 5px 5px 5px;
-    font-weight: bold;
-    font-size: 120%;
+    font-size: 100%;
     text-decoration: none;
     color: inherit;
 }
@@ -298,5 +296,14 @@
     margin: 0px 0px 0px 10px;
     float: left;
     
+
+}
+
+
+#middleProfileDetails.ui-tabs .ui-tabs-nav li a {
+    padding-left: 0; 
+    padding-top: 2px;
+    width: 70px; 
+    padding-right: 20px;
 
 }
