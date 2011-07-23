@@ -3,25 +3,25 @@
 
 <?php slot(
   'title',
-  sprintf('Rootless Me - New ride offer'))
+  sprintf('Rootless Me - New ride '.$rideType))
 ?>
 
 <?php slot('gmapheader'); ?>
-    <script type="text/javascript">
-        $(function() {
-		$( "#carpools_start_date" ).datepicker();
-		$( "#carpools_start_time" ).timepicker({ampm: true});
-	});
-    </script>
     <script type="text/javascript">
         var map = null;
         var directionDisplay;
         var directionsService = new google.maps.DirectionsService();
         var geocoder;
-        var locations = new Array();
+        var locations = new Array
+        // The text boxes to match depend on the ride type
+        var originTextBox = "<?php echo $rideType == 'offer' ? '#carpools_route_origin' : '#passengers_route_origin'; ?>";
+        var destinationTextBox = "<?php echo $rideType == 'offer' ? '#carpools_route_destination' : '#passengers_route_destination'; ?>";
+        var originDataField = "<?php echo $rideType == 'offer' ? '#carpools_route_origin_data' : '#passengers_route_origin_data'; ?>";
+        var destinationDataField = "<?php echo $rideType == 'offer' ? '#carpools_route_destination_data' : '#passengers_route_destination_data'; ?>";
+        var routeDataField = "<?php echo $rideType == 'offer' ? '#carpools_route_route_data' : '#passengers_route_route_data'; ?>";
 
         // Function when the page is ready
-        $(document).ready(function(){
+        $(function(){
 
             // Google map loading
             var latlng = new google.maps.LatLng(<?php echo sfConfig::get('app_google_map_default_latitude') ?>, <?php echo sfConfig::get('app_google_map_default_longitude') ?>);
@@ -38,26 +38,30 @@
 
             // Route preview changes whenever the user finished editing the
             // origin or destination textboxes
-            $('#carpools_route_origin').change(previewRoute);
-            $('#carpools_route_destination').change(previewRoute);
+            $(originTextBox).change(previewRoute);
+            $(destinationTextBox).change(previewRoute);
+
+            // Change the start date and time to be pickers.
+            $( ".datePicker" ).datepicker();
+            $( ".timePicker" ).timepicker({ampm: true});
            
         });
 
         function previewRoute() {
-            if ($("#carpools_route_origin").val())
+            if ($(originTextBox).val())
             {
                 // Get the location of the origin, and place a marker on the map
-                var originValue = $("#carpools_route_origin").val();
+                var originValue = $(originTextBox).val();
                 var originGeocodeRequest = {
                     address: originValue
                 };
                 geocoder.geocode(originGeocodeRequest, geocodeOrigin);
             }
 
-            if ($("#carpools_route_destination").val())
+            if ($(destinationTextBox).val())
             {
                 // Get the location of the destination, and place a marker on the map
-                var destinationValue = $("#carpools_route_destination").val();
+                var destinationValue = $(destinationTextBox).val();
                 var destinationGeocodeRequest = {
                     address: destinationValue
                 };
@@ -72,14 +76,14 @@
             var locationNumber = 0;
             showResults(results, status, locationNumber);
             // Send the geocoded information to the server
-            $("#carpools_route_origin_data").val(JSON.stringify(locations[ locationNumber]));
+            $(originDataField).val(JSON.stringify(locations[ locationNumber]));
         }
 
         function geocodeDestination(results, status) {
             var locationNumber = 1;
             showResults(results, status, locationNumber);
             // Send the geocoded information to the server
-            $("#carpools_route_destination_data").val(JSON.stringify(locations[locationNumber]));
+            $(destinationDataField).val(JSON.stringify(locations[locationNumber]));
         }
 
         function showResults(results, status, locationNumber) {
@@ -110,8 +114,8 @@
         }
 
         function calcRoute() {
-          var start = $("#carpools_route_origin").val();
-          var end = $("#carpools_route_destination").val();
+          var start = $(originTextBox).val();
+          var end = $(destinationTextBox).val();
           var request = {
             origin:start,
             destination:end,
@@ -122,7 +126,7 @@
 
                 // Set the route field to the results object for posting to the
                 // server
-                $("#carpools_route_route_data").val(JSON.stringify(result));
+                $(routeDataField).val(JSON.stringify(result));
 
                 // Display the directions
                 directionsDisplay.setDirections(result);
@@ -134,8 +138,8 @@
 
 <?php end_slot();?>
 
-<h1>New Offer</h1>
+<h1>New ride <?php echo $rideType ?></h1>
 <div id="newRideFormArea" class="middleRidesFormArea">
-<?php include_partial('rideOfferForm', array('form' => $form)) ?>
+<?php include_partial($partial, array('form' => $form)) ?>
 </div>
 <div id="map"></div>

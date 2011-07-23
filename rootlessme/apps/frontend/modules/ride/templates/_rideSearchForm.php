@@ -7,7 +7,7 @@
       <?php echo $rideSearchForm->renderHiddenFields() ?>
       <?php echo $rideSearchForm['origin']->renderRow() ?>
       <?php echo $rideSearchForm['destination']->renderRow() ?>
-      <?php echo $rideSearchForm['date']->renderRow() ?>
+      <?php echo $rideSearchForm['date']->renderRow(array('class'=>'datePicker')) ?>
       <tr>
           <td colspan="2"><a id="advanceOptionsLink">Advance Options</a></td>
       </tr>

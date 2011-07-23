@@ -12,7 +12,8 @@
     
     <script type="text/javascript">
         $(function() {
-		$( "#rides_date" ).datepicker();
+		//$( "#rides_date" ).datepicker();
+                $( ".datePicker" ).datepicker();
 	});
     </script>
     <script type="text/javascript">
@@ -26,6 +27,39 @@
 
         // Function when the page is ready
         $(document).ready(function(){
+
+            // Handler for the find button
+            $('#rides_find').click(function()
+              {
+                 $('#loader').show();
+                 $('#results').toggle('blind');
+              });
+            $('#rideSearchForm').ajaxForm(
+            {
+                target: '#results',
+                success: function()
+                {
+                    // This handler function will run when the form is complete
+                    $('#loader').hide();
+                    $('#results').toggle('blind');
+                    $("#rideTable tbody tr")
+                    // Change the hover style
+                    .hover(
+                        function()
+                        {
+                            HighlightRow($(this))
+                        }
+                        ,function()
+                        {
+                            UnHighlightRow($(this))
+                        }
+                    )
+                    .find('td:not(:has(:checkbox, a))')
+                        .click(function () {
+                        window.location = $(this).parent().find("a").attr("href");
+                    });
+                }
+            });
 
             // Google map loading
             var latlng = new google.maps.LatLng(<?php echo sfConfig::get('app_google_map_default_latitude') ?>, <?php echo sfConfig::get('app_google_map_default_longitude') ?>);
@@ -59,38 +93,11 @@
             $('#rides_origin').change(previewRoute);
             $('#rides_destination').change(previewRoute);
 
-            // Handler for the find button
-              $('#rides_find').click(function()
-              {
-                 $('#loader').show();
-                 $('#results').toggle('blind');
-              });
-            $('#rideSearchForm').ajaxForm(
-            {
-                target: '#results',
-                success: function()
-                {
-                    // This handler function will run when the form is complete
-                    $('#loader').hide();
-                    $('#results').toggle('blind');
-                    $("#rideTable tbody tr")
-                    // Change the hover style
-                    .hover(
-                        function()
-                        {
-                            HighlightRow($(this))
-                        }
-                        ,function()
-                        {
-                            UnHighlightRow($(this))
-                        }
-                    )
-                    .find('td:not(:has(:checkbox, a))')
-                        .click(function () {
-                        window.location = $(this).parent().find("a").attr("href");
-                    });
-                }
-            });
+            // Testing the Google autocomplete
+            // Right now the text does not fit.
+            // Need to add places to the google library list (comma separated)
+            // in app.yml
+            //autocomplete = new google.maps.places.Autocomplete(document.getElementById("rides_origin"));
 
             
         });
@@ -236,5 +243,4 @@
 <div id="map"></div>
 <img id="loader" alt="Loading spinner" src="/images/ajax-loader.gif" style="vertical-align: middle; display: none" />
 <div id="results">
-    <?php //include_partial('ridesList', array('carpools' => $carpools)) ?>
 </div>

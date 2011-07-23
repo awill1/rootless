@@ -32,16 +32,6 @@ class rideActions extends sfActions
         $this->passengers = Doctrine_Core::getTable('Passengers')
              ->getWithProfiles();
 
-        // AJAX parts for rendering the results
-        if ($request->isXmlHttpRequest())
-        {
-            if (!$this->carpools)
-            {
-                return $this->renderText('No results.');
-            }
-
-            return $this->renderPartial('ride/ridesList', array('carpools' => $this->carpools));
-        }
     }
 
     /**
@@ -86,6 +76,99 @@ class rideActions extends sfActions
     }
 
     /**
+     * Executes new action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeNew(sfWebRequest $request)
+    {
+        // Get the ride type
+        $this->rideType = $request->getParameter('ride_type');
+
+        // Create the appropriate type of form
+        switch ($this->rideType) {
+            case "offer":
+                $this->form = new CarpoolsForm();
+                $this->partial = 'rideOfferForm';
+                break;
+            case "request":
+                $this->form = new PassengersForm();
+                $this->partial = 'rideRequestForm';
+                break;
+            default:
+               // Default case just in case the ride_type is invalid (should
+               // be prevented by routing.yml).
+               echo 'Ride Type '.$this->rideType.'is invalid.';
+        }
+    }
+
+    /**
+    * Executes the create action
+    *
+    * @param sfRequest $request A request object
+    */
+    public function executeCreate(sfWebRequest $request)
+    {
+        // Make sure this is a post request
+        $this->forward404Unless($request->isMethod(sfRequest::POST));
+        
+        // Get the ride type
+        $this->rideType = $request->getParameter('ride_type');
+        
+        // Create the appropriate type of form
+        switch ($this->rideType) {
+            case "offer":
+                $this->form = new CarpoolsForm();
+                break;
+            case "request":
+                $this->form = new PassengersForm();
+                break;
+            default:
+               // Default case just in case the ride_type is invalid (should
+               // be prevented by routing.yml).
+               echo 'Ride Type '.$this->rideType.'is invalid.';
+        }
+        
+        // Process the form
+        $ride = $this->processForm($request, $this->form);
+
+        switch ($this->rideType) {
+            case "offer":
+                $ride_id = $ride->getCarpoolId();
+                break;
+            case "request":
+                $ride_id = $ride->getPassengerId();
+                break;
+        }
+
+        // Redirect to the page that will show the newly created ride
+        $this->redirect('ride_show', array('ride_type'=>$this->rideType, 'ride_id'=>$ride_id));
+
+        //$this->setTemplate('newOffer');
+    }
+
+    /**
+    * Executes show action
+    *
+    * @param sfRequest $request A request object
+    */
+    public function executeShow(sfWebRequest $request)
+    {
+        // Get the ride type and ride id
+        $this->rideType = $request->getParameter('ride_type');
+        $this->rideId = $request->getParameter('ride_id');
+
+        
+        $this->carpool = Doctrine_Core::getTable('Carpools')->find(array($request->getParameter('ride_id')));
+        //$this->carpool = $this->getRoute()->getObject();
+        $this->carpoolRoute = $this->carpool->getRoutes();
+        $this->origin = $this->carpool->getOriginLocation();
+        $this->destination = $this->carpool->getDestinationLocation();
+        $this->driver = $this->carpool->getPeople()->getProfiles()->getFirst();
+        $this->forward404Unless($this->carpool);
+    }
+
+    /**
     * Executes show offer action
     *
     * @param sfRequest $request A request object
@@ -101,35 +184,14 @@ class rideActions extends sfActions
         $this->forward404Unless($this->carpool);
     }
 
-    /**
-    * Executes new offer action
-    *
-    * @param sfRequest $request A request object
-    */
-    public function executeNewOffer(sfWebRequest $request)
+    public function executeEditOffer(sfWebRequest $request)
     {
-        $this->form = new CarpoolsForm();
-    }
-
-      public function executeCreateOffer(sfWebRequest $request)
-      {
-        $this->forward404Unless($request->isMethod(sfRequest::POST));
-
-        $this->form = new CarpoolsForm();
-
-        $this->processFormOffer($request, $this->form);
-
-        $this->setTemplate('newOffer');
-      }
-      
-      public function executeEditOffer(sfWebRequest $request)
-      {
         $this->forward404Unless($carpool = Doctrine_Core::getTable('Carpools')->find(array($request->getParameter('carpool_id'))), sprintf('Object profile does not exist (%s).', $request->getParameter('carpool_id')));
         $this->form = new CarpoolsForm($carpool);
-      }
+    }
 
-      public function executeUpdateOffer(sfWebRequest $request)
-      {
+    public function executeUpdateOffer(sfWebRequest $request)
+    {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($carpool = Doctrine_Core::getTable('Carpools')->find(array($request->getParameter('carpool_id'))), sprintf('Object profile does not exist (%s).', $request->getParameter('carpool_id')));
         $this->form = new CarpoolsForm($carpool);
@@ -137,54 +199,26 @@ class rideActions extends sfActions
         $this->processForm($request, $this->form);
 
         $this->setTemplate('editOffer');
-      }
+    }
 
-      public function executeDeleteOffer(sfWebRequest $request)
-      {
+    public function executeDeleteOffer(sfWebRequest $request)
+    {
         $request->checkCSRFProtection();
 
         $this->forward404Unless($carpool = Doctrine_Core::getTable('Carpools')->find(array($request->getParameter('carpool_id'))), sprintf('Object profile does not exist (%s).', $request->getParameter('carpool_id')));
         $carpool->delete();
 
         $this->redirect('rides/offers');
-      }
+    }
 
-      protected function processFormOffer(sfWebRequest $request, sfForm $form)
-      {
+    protected function processForm(sfWebRequest $request, sfForm $form)
+    {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid())
         {
-            // Handle the route from the javascript
-//            $this->logMessage('The value of carpools_route follows:', 'debug');
-//            $this->logMessage($form->getValue('route'), 'debug');
-//            $jRoute = json_decode($form->getValue('route_route_data'), true);
-//            $this->logMessage("JSON last error: ".json_last_error(), 'debug');
-//            $this->logMessage("Object: ".$jRoute, 'debug');
-//            $this->logMessage("Status: ".$jRoute["status"], 'debug');
-//            $routeNumber = 0;
-//            $this->logMessage("Summary: ".$jRoute["routes"][$routeNumber]["summary"], 'debug');
-//            $this->logMessage("Copyright: ".$jRoute["routes"][$routeNumber]["copyrights"], 'debug');
-//            $copyright = $jRoute["routes"][$routeNumber]["copyrights"];
-//            $summary = $jRoute["routes"][$routeNumber]["summary"];
-//            //$warnings = $jRoute["routes"][$routeNumber]["warnings"];
-//            $polyline = $jRoute["routes"][$routeNumber]["overview_polyline"]["points"];
-//            $routeToSave = new Routes();
-//            $routeToSave->setCopyright($copyright);
-//            $routeToSave->setSummary($summary);
-//            //$routeToSave->setWarning($warnings);
-//            $routeToSave->setEncodedPolyline($polyline);
-//
-//            $savedRoute = $routeToSave->save();
-//
-//            //$this->routeID = $routeToSave->getRouteId();
-//            $form->routeId = $routeToSave->getRouteId();
-
-            // Save the form
-            $carpool = $form->save();
-          
-
-            $this->redirect('ride_offer',$carpool);
-         // $this->redirect('rides/offers/edit?carpool_id='.$carpool->getCarpoolId());
+            // Save the form and return the resulting object
+            $ride = $form->save();
+            return $ride;
         }
-      }
+    }
 }

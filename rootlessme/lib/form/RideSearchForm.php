@@ -24,6 +24,7 @@ class RideSearchForm extends BaseForm
           'destination_longitude' => new sfWidgetFormInputHidden()
         ));
 
+        // Setup the name format
         $this->widgetSchema->setNameFormat('rides[%s]');
     }
 

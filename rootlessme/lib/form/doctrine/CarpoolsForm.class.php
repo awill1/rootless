@@ -51,10 +51,7 @@ class CarpoolsForm extends BaseCarpoolsForm
     }
     
     public function doSave($con = null) {
-//        sfContext::getInstance()->getLogger()->info('Save values:');
-//        sfContext::getInstance()->getLogger()->info(var_dump($this->getValues()));
-
-        
+        // Get the route data from the embedded form
         $route_data = $this->values['route']['route_data'];
 
         // Update the route

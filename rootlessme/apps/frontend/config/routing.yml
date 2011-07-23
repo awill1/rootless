@@ -321,13 +321,9 @@ ride_search:
 ride_new:
   url: /rides/:ride_type/new
   class:   sfRoute
-#  class:   sfDoctrineRoute
   param:
     module: ride
     action: new
-#  options:
-#    model: Carpools
-#    type: object
   requirements:
     sf_method: [get]
     ride_type: (offer|request)
@@ -335,54 +331,22 @@ ride_new:
 ride_create:
   url: /rides/:ride_type/create
   class:   sfRoute
-#  class:   sfDoctrineRoute
   param:
     module: ride
     action: create
-#  options:
-#    model: Carpools
-#    type: object
   requirements:
     sf_method: [get]
     ride_type: (offer|request)
 
 ride_show:
   url: /rides/:ride_type/:ride_id
-#  class:   sfDoctrineRoute
   param:
     module: ride
     action: show
-#  options:
-#    model: Carpools
-#    type: object
   requirements:
     sf_method: [get]
     ride_type: (offer|request)
     
-ride_offer_new:
-  url: /rides/offers/new
-  class:   sfDoctrineRoute
-  param:
-    module: ride
-    action: newOffer
-  options:
-    model: Carpools
-    type: object
-  requirements:
-    sf_method: [get]
-
-ride_offer_create:
-  url: /rides/offers/create
-  class:   sfDoctrineRoute
-  param:
-    module: ride
-    action: createOffer
-  options:
-    model: Carpools
-    type: object
-  requirements:
-    sf_method: [post]
-
 ride_offer_update:
   url: /rides/offers/update
   class:   sfDoctrineRoute

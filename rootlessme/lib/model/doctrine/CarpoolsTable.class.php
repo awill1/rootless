@@ -53,6 +53,7 @@ class CarpoolsTable extends Doctrine_Table
                                    $destinationLongitude = null,
                                    $date = null)
     {
+        // TODO: Make the query detect order of locations
         // Use a query similar to the following
         // SELECT * FROM carpools c
         // INNER JOIN routes r
