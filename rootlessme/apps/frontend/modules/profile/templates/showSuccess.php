@@ -64,7 +64,9 @@
     </div>
     <div id="fragment-travel_log" class="middleProfileTabContent">
         <h3>Travel Log</h3>
-        <div id="travelMapArea" > <h2 class="travelmapCaption"474646373 Miles Traveled</h2> </div>
+        <div id="travelMapArea" > 
+            <span class="travelmapCaption"474646373 Miles Traveled</span>
+            </div>
         <div id="carInfoArea">
             <h3>Car Info</h3>
             <p>
@@ -122,8 +124,7 @@
         </div>
     </div>
     <div id="fragment-friends" class="middleProfileTabContent">
-        Friends
-        <h3>Rootless Me Friends</h3>
+        <h3>Rootless Friends</h3>
             <ul class="middleFriendsList">
             <?php foreach ($friends as $friend): ?>
                 <li class="middleFriendsListItem"><a href="<?php echo $friend->getProfileName() ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $friend->getPictureUrlSmall() ?>" alt="<?php echo $friend->getFullName() ?>" /></a></li>
@@ -132,7 +133,7 @@
             <div class="middleFriendsListMore"><a class="seeMoreLink" href="#">&gt;&gt;see more</a></div>
 
             <?php if ($sf_user->isAuthenticated() && ($sf_user->getGuardUser()->getPersonId() != $profile->getPersonId())): ?>
-            <h3>Mutual Friends</h3>
+        <h3>Mutual Friends</h3>
             <ul class="middleFriendsList">
             <?php foreach ($mutualFriends as $friend): ?>
                 <li class="middleFriendsListItem"><a href="<?php echo $friend->getProfileName() ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $friend->getPictureUrlSmall() ?>" alt="<?php echo $friend->getFullName() ?>" /></a></li>
