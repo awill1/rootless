@@ -6,6 +6,73 @@
         This stylesheet formats the profile pages of the rootlessme website.
 */
 
+/*I.D. Fragment Formatting & Styles*/
+#testimonialsArea{
+    float:left;
+    width:400px;
+    background-color: #EAEAEA;
+}
+#reviewsArea{
+    float:left;
+    width:200px;
+    background-color: #EAEAEA;
+    margin-left: 30px;
+}
+
+/*Travel Log (Should we call it Travels???) Fragment Formatting & Styles*/
+#travelMapArea{
+    float:left;
+    width:600px;
+    height:250px;
+    background-color: #EAEAEA;
+}
+
+.travelmapCaption{
+    color:#3d3d3d;
+    font-size: 350%;
+    font-weight: bold;
+    font-family: Arial;
+}
+
+#carInfoArea{
+   float:left;
+    width:250px;
+    height:250px;
+    background-color: #EAEAEA; 
+}
+#upcomingArea{
+    float:left;
+    width:250px;
+    height:250px;
+    background-color: #EAEAEA;
+    margin-left: 50px;
+}
+#pastEventsArea{
+    float:left;
+    width:600px;
+    height:200px;
+    background-color: #EAEAEA;
+}
+
+.AreaHeader{
+    font-size: 120%;
+    color:#404040;
+    font-weight: bold;
+    font-family: Arial;
+}
+.AreaBodyText{
+    font-size: 100%;
+    color:#404040;
+    font-weight:normal;
+    font-family: Arial;
+}
+.editLinkText{
+    font-size: 80%;
+    color:#D25A35;
+    font-style: italic;
+    font-family: Arial;
+}
+
 #mainProfileTitle {
     padding: 0px 0px 0px 0px;
     margin-bottom: 0px;

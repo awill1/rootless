@@ -47,37 +47,15 @@
     </ul>
     <div id="fragment-feedback" class="middleProfileTabContent">
 
-        <div class="middleProfileTabContentLeftColumn">
-            <h3>Vehicle</h3>
-            <p>
-                <img src="carPicture.JPG" alt="My car" />
-                <?php echo $profile->getFirstName() ?>
-                drives a <?php echo $vehicle ?>.
-            </p>
-
-            <h3>Rootless Me Friends</h3>
-            <ul class="middleFriendsList">
-            <?php foreach ($friends as $friend): ?>
-                <li class="middleFriendsListItem"><a href="<?php echo $friend->getProfileName() ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $friend->getPictureUrlSmall() ?>" alt="<?php echo $friend->getFullName() ?>" /></a></li>
-            <?php endforeach; ?>
-            </ul>
-            <div class="middleFriendsListMore"><a class="seeMoreLink" href="#">&gt;&gt;see more</a></div>
-
-            <?php if ($sf_user->isAuthenticated() && ($sf_user->getGuardUser()->getPersonId() != $profile->getPersonId())): ?>
-            <h3>Mutual Friends</h3>
-            <ul class="middleFriendsList">
-            <?php foreach ($mutualFriends as $friend): ?>
-                <li class="middleFriendsListItem"><a href="<?php echo $friend->getProfileName() ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $friend->getPictureUrlSmall() ?>" alt="<?php echo $friend->getFullName() ?>" /></a></li>
-            <?php endforeach; ?>
-            </ul>
-            <div class="middleFriendsListMore"><a class="seeMoreLink" href="#">&gt;&gt;see more</a></div>
-            <?php endif ?>
+        <div class="testimonialsArea">
+            Testimonials
+            
 
 
 
         </div>
-        <div class="middleProfileTabContentRightColumn">
-            
+        <div class="reviewsArea">
+                Reviews
                 
                 <?php include_component('review', 'reviews', array('profile_name' => $profile->getProfileName())) ?>
 
@@ -86,6 +64,31 @@
     </div>
     <div id="fragment-travel_log" class="middleProfileTabContent">
         <h3>Travel Log</h3>
+        <div id="travelMapArea" > <h2 class="travelmapCaption"474646373 Miles Traveled</h2> </div>
+        <div id="carInfoArea">
+            <h3>Car Info</h3>
+            <p>
+                <img src="carPicture.JPG" alt="My car" />
+                <?php echo $profile->getFirstName() ?>
+                drives a <?php echo $vehicle ?>.
+            </p>
+        </div>
+        <div id="upcomingArea">upcoming</div>
+        <h3>Upcoming</h3>
+        <ul>
+            <li>Cincinnati</li>
+            <li>Cleveland</li>
+            <li>Columbus</li>
+        </ul>
+        <div id="pastEventsArea">past events</div>
+         <h3>Past Events</h3>
+        <ul>
+            <li>Super Bowl</li>
+            <li>Sun Country</li>
+            <li>Burning Man</li>
+            <li>Bonnaroo</li>
+            <li>Taste of Chicago</li>
+        </ul>
         
     </div>
     <div id="fragment-interests" class="middleProfileTabContent">
@@ -120,5 +123,22 @@
     </div>
     <div id="fragment-friends" class="middleProfileTabContent">
         Friends
+        <h3>Rootless Me Friends</h3>
+            <ul class="middleFriendsList">
+            <?php foreach ($friends as $friend): ?>
+                <li class="middleFriendsListItem"><a href="<?php echo $friend->getProfileName() ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $friend->getPictureUrlSmall() ?>" alt="<?php echo $friend->getFullName() ?>" /></a></li>
+            <?php endforeach; ?>
+            </ul>
+            <div class="middleFriendsListMore"><a class="seeMoreLink" href="#">&gt;&gt;see more</a></div>
+
+            <?php if ($sf_user->isAuthenticated() && ($sf_user->getGuardUser()->getPersonId() != $profile->getPersonId())): ?>
+            <h3>Mutual Friends</h3>
+            <ul class="middleFriendsList">
+            <?php foreach ($mutualFriends as $friend): ?>
+                <li class="middleFriendsListItem"><a href="<?php echo $friend->getProfileName() ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $friend->getPictureUrlSmall() ?>" alt="<?php echo $friend->getFullName() ?>" /></a></li>
+            <?php endforeach; ?>
+            </ul>
+            <div class="middleFriendsListMore"><a class="seeMoreLink" href="#">&gt;&gt;see more</a></div>
+            <?php endif ?>
     </div>
 </div>
