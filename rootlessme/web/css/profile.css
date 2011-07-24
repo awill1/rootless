@@ -10,12 +10,12 @@
 #testimonialsArea{
     float:left;
     width:400px;
-    background-color: #EAEAEA;
+    background-color: #E5E5E5;
 }
 #reviewsArea{
     float:left;
     width:200px;
-    background-color: #EAEAEA;
+    background-color: #E5E5E5;
     margin-left: 30px;
 }
 
@@ -24,7 +24,7 @@
     float:left;
     width:600px;
     height:250px;
-    background-color: #EAEAEA;
+    background-color: #E5E5E5;
 }
 
 .travelmapCaption{
@@ -38,7 +38,7 @@
    float:left;
     width:250px;
     height:250px;
-    background-color: #EAEAEA; 
+    background-color: #E5E5E5;
 }
 #upcomingArea{
     float:left;
@@ -51,7 +51,7 @@
     float:left;
     width:600px;
     height:200px;
-    background-color: #EAEAEA;
+    background-color: #E5E5E5;
 }
 
 .AreaHeader{

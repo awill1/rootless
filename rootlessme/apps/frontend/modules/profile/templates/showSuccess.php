@@ -65,8 +65,8 @@
     <div id="fragment-travel_log" class="middleProfileTabContent">
         <h3>Travel Log</h3>
         <div id="travelMapArea" > 
-            <span class="travelmapCaption"474646373 Miles Traveled</span>
-            </div>
+            <span class="travelmapCaption">474646373 Miles Traveled</span>
+        </div>
         <div id="carInfoArea">
             <h3>Car Info</h3>
             <p>
