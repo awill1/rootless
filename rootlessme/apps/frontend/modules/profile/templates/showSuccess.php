@@ -75,23 +75,24 @@
                 drives a <?php echo $vehicle ?>.
             </p>
         </div>
-        <div id="upcomingArea">upcoming</div>
-        <h3>Upcoming</h3>
-        <ul>
-            <li>Cincinnati</li>
-            <li>Cleveland</li>
-            <li>Columbus</li>
-        </ul>
-        <div id="pastEventsArea">past events</div>
-         <h3>Past Events</h3>
-        <ul>
-            <li>Super Bowl</li>
-            <li>Sun Country</li>
-            <li>Burning Man</li>
-            <li>Bonnaroo</li>
-            <li>Taste of Chicago</li>
-        </ul>
-        
+        <div id="upcomingArea">
+            <h3>Upcoming</h3>
+            <ul>
+                <li>Cincinnati</li>
+                <li>Cleveland</li>
+                <li>Columbus</li>
+            </ul>
+        </div>
+        <div id="pastEventsArea">
+             <h3>Past Events</h3>
+            <ul>
+                <li>Super Bowl</li>
+                <li>Sun Country</li>
+                <li>Burning Man</li>
+                <li>Bonnaroo</li>
+                <li>Taste of Chicago</li>
+            </ul>
+        </div>
     </div>
     <div id="fragment-interests" class="middleProfileTabContent">
         <div class="middleProfileTabContentLeftColumn">
