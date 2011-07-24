@@ -158,30 +158,19 @@ class rideActions extends sfActions
         $this->rideType = $request->getParameter('ride_type');
         $this->rideId = $request->getParameter('ride_id');
 
-        
-        $this->carpool = Doctrine_Core::getTable('Carpools')->find(array($request->getParameter('ride_id')));
-        //$this->carpool = $this->getRoute()->getObject();
-        $this->carpoolRoute = $this->carpool->getRoutes();
-        $this->origin = $this->carpool->getOriginLocation();
-        $this->destination = $this->carpool->getDestinationLocation();
-        $this->driver = $this->carpool->getPeople()->getProfiles()->getFirst();
-        $this->forward404Unless($this->carpool);
-    }
-
-    /**
-    * Executes show offer action
-    *
-    * @param sfRequest $request A request object
-    */
-    public function executeShowOffer(sfWebRequest $request)
-    {
-        //$this->carpool = Doctrine_Core::getTable('Carpools')->find(array($request->getParameter('carpool_id')));
-        $this->carpool = $this->getRoute()->getObject();
-        $this->carpoolRoute = $this->carpool->getRoutes();
-        $this->origin = $this->carpool->getOriginLocation();
-        $this->destination = $this->carpool->getDestinationLocation();
-        $this->driver = $this->carpool->getPeople()->getProfiles()->getFirst();
-        $this->forward404Unless($this->carpool);
+        // Create the appropriate type of form
+        switch ($this->rideType) {
+            case "offer":
+                $this->partial = 'showOffer';
+                break;
+            case "request":
+                $this->partial = 'showRequest';
+                break;
+            default:
+               // Default case just in case the ride_type is invalid (should
+               // be prevented by routing.yml).
+               echo 'Ride Type '.$this->rideType.'is invalid.';
+        }
     }
 
     public function executeEditOffer(sfWebRequest $request)

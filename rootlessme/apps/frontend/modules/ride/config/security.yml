@@ -10,5 +10,5 @@ index:
 search:
   is_secure: false
 
-showOffer:
+show:
   is_secure: false

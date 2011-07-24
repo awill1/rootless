@@ -359,17 +359,6 @@ ride_offer_update:
   requirements:
     sf_method: [post]
 
-ride_offer:
-  url: /rides/offers/:carpool_id
-  class:   sfDoctrineRoute
-  param:
-    module: ride
-    action: showOffer
-  options:
-    model: Carpools
-    type: object
-  requirements:
-    sf_method: [get]
 
 # seat rules
 seats:
