@@ -33,8 +33,6 @@
                 </form>
             <div id="headerControls">
                 <ul id="headerControlsList">
-
-                    <li class="headerControlsListItem"><a href="#" class="headerControl">Donate</a></li>
                     <?php if ($sf_user->isAuthenticated()): ?>
                         <?php include_component('message', 'messageMenu') ?>
                     <li class="headerControlsListItem">
