@@ -6,23 +6,56 @@
 
 <?php slot('gmapheader'); ?>
     <script type="text/javascript" src="/js/tableRowNavigation.js"></script>
-    <!-- <!-<script type="text/javascript">
-       $(function() {
-             $( "#middleMessageDetails" ).tabs({
-                // Fuction for when the tab is selected
-                select: function(event, ui) {
-                    var tabID = "#ui-tabs-" + (ui.index + 1);
-                    // Include a spinner in the tab panel while the page is
-                    // loading
-                    $(tabID).html('<img src="/images/ajax-loader.gif" alt="Loading..." />');
-                },
-                load: function(event, ui) {
-                    PrepareTable();
-                }
-
+    <script type="text/javascript">
+        
+       $(document).ready(function(){
+           
+       var listLink = $('.selectedNav a').attr('href');
+           
+       $('#contentBox').load(listLink, function() {
+               
+               PrepareTable();
+           });
+           
+           
+       $('#middleMessageDetails li a').click(function(){
+           
+           $('.selectedNav').removeClass('selectedNav');
+           $(this).parent().addClass('selectedNav');
+           var listLink = $(this).attr('href');
+           
+           
+           
+           $('#contentBox').load(listLink, function() {
+               
+               PrepareTable();
+           });
+           
+           
+           
+           return false;
+           
+       });
+       
+       
+       $('.selectedRow').live('click', function(){
+           
+       
+           var listLink = $(this).find('.tableLink').attr('href');
+           
+           
+           $('#contentBox').load(listLink, function() {
+               
+               PrepareTable();
+           });
+           
+           return false;
+           
+           
             });
-	});
-    </script>-->
+       
+       });
+    </script>
 <?php end_slot();?>
 
 
@@ -35,4 +68,5 @@
         <li class=""><a href="<?php echo url_for('messages_list', array('list_type'=>'compose')) ?>" title="Compose">Compose</a></li>
     </ul>
 </div>
+<div id="contentBox"></div>
 

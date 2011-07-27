@@ -28,7 +28,7 @@ function PrepareTable()
         )
         .find('td:not(:has(:checkbox, a))')
             .click(function () {
-                window.location = $(this).parent().find("a").attr("href");
+                /*window.location = $(this).parent().find("a").attr("href");*/
         });
 }
 

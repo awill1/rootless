@@ -236,3 +236,9 @@ fieldset {
     background-position: bottom left;
  
 }
+
+#contentBox {
+    width: 100%;
+    float:left;
+    
+}
