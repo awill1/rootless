@@ -188,3 +188,51 @@ fieldset {
     float: right;
     color: #D25A36;
 }
+
+
+#middleMessageDetails ul {
+    
+    width: 100%;
+    padding: 0;
+    
+}
+
+#middleMessageDetails ul li {
+    
+    display: inline-block;
+    width: 90px;
+    height: 18px;
+    list-style: none;
+    margin-right: 3em;
+}
+
+#middleMessageDetails ul li a:link,#middleMessageDetails ul li a:visited {
+    
+    
+    display:block;
+    width: 90px;
+    height: 16px;
+    color: #555555; 
+    padding-top: 2px;
+    padding-left: 8px;
+    background: url(../images/messageTabSprite.png) no-repeat top left;
+    
+    
+    
+}
+
+#middleMessageDetails ul li a:hover {
+    
+    color: #212121; 
+    background: url(../images/messageTabSprite.png) no-repeat;
+    background-position: 0px -18px;
+    
+}
+
+#middleMessageDetails ul li.selectedNav a {
+    
+    color: #E0E0E0; 
+    background: url(../images/messageTabSprite.png) no-repeat;
+    background-position: bottom left;
+ 
+}

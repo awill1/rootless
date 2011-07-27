@@ -22,6 +22,8 @@
                 }
                 //  End -->
             </script>
+            
+            
             <a class="messageButton" href="<?php echo url_for('message/new') ?>">+ Message</a>
             <table class="messageTable" >
                 <thead>
