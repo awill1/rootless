@@ -1,11 +1,15 @@
+    
+
 <?php slot(
   'title',
   sprintf('Rootless Me - Share your ride.'))
 ?>
+    <div id="loginFormContainer">
+        <?php echo get_partial('sfGuardAuth/signin_form', array('form' => $signinForm)) ?>
+</div>
 
-<h1>Welcome to Rootless.Me</h1>
-<div>
-    <h2>Get out!</h2>
+<div class="frontPageContent">
+    <img src="/images/WhatisRootless.png" alt="RootlessMe" /> 
     <p>
         Rootless is a new kind of social network. One that exists only
         to help you get out from behind your computer and enjoy life.
@@ -14,12 +18,16 @@
         With rootless, you can easily find a ride anywhere you want,
         with people you like.
     </p>
-    <div id="loginFormContainer">
-        <h2>Log in</h2>
-        <?php echo get_partial('sfGuardAuth/signin_form', array('form' => $signinForm)) ?>
+    
+    <a href="<?php echo url_for('ride') ?>" ><img src="/images/TakeTour.png" alt="RootlessMe" /></a>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <img src="/images/NotaMember.png" alt="Rootless" /> 
     </div>
-    <div id="loginFormContainer">
-        <h2>Join now</h2>
-        <?php echo get_partial('sfGuardRegister/form', array('form' => $registerForm)) ?>
+    <div id="signUpFormContainer">
+        <span class="signUpText"><?php echo get_partial('sfGuardRegister/form', array('form' => $registerForm)) ?></span>
     </div>
-</div>

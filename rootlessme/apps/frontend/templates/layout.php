@@ -27,7 +27,7 @@
 
         <!-- Header -->
         <div id="header">
-            <a href="<?php echo url_for('home') ?>" ><img id="headerLogo" src="/images/Logo.png" alt="RootlessMe" /></a>
+            <a href="<?php echo url_for('dashboard') ?>" ><img id="headerLogo" src="/images/Logo.png" alt="RootlessMe" /></a>
                 <form id="headerSearchForm" action="search.php" >
                       <input id="searchInput" />
                 </form>

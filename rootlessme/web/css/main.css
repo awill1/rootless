@@ -47,12 +47,51 @@ textarea {
 
 }
 
+#bottomFeed {
+    position: absolute;
+    bottom: 0;
+    opacity: .73;
+    width: 100%;
+    height: 25px;
+    background-color: #1C191B;
+    color: #FFFFFF;
+}
+
+#copyRight {
+    color: #FFFFFF;
+    float: right;
+    padding: 5px 5px 0px 0px;
+}
+#containerFront {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #000000;
+
+}
+
+#backgroundImage {
+    width: 100%;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: -1;
+    overflow: hidden;
+}
+
 #header {
     /*background: #333333;*/
     color: #FFFFFF;
     vertical-align: middle;
     height: 62px;
     position: relative;
+    z-index: 1000;
+}
+
+#headerLogin {
+    /*background: #333333;*/
+    width: 960px;
     z-index: 1000;
 }
 
@@ -387,16 +426,66 @@ textarea {
     margin-top: 0px;
 }
 
-
+#middleContentFrontPage {
+/*    margin-left: 240px;*/
+ /*   margin-right: 210px;*/
+    margin-right: 10px;
+    margin-top: 0px;
+}
 #footer {
     clear: both;
     padding: 20px 0px 20px 0px;
+}
+#footerFront {
+    margin-top: 100px;
+    clear: both;
+    padding: 20px 0px 20px 0px;
+    color: #FFFFFF;
+}
+
+#footerFront:link {
+    margin-top: 100px;
+    clear: both;
+    padding: 20px 0px 20px 0px;
+    color: #FFFFFF;
 }
 
 #footerBar {
     color: #3D3D3D;
 }
 
+
+#loginFormContainer{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 240px;
+    z-index: 1001;
+}
+#signUpFormContainer{
+    background-color: #1F141A;
+    opacity:0.3;
+    padding: 10px 10px 10px 10px;
+    color: #FFFFFF;
+    width: 250px;
+    margin-top: 2px;
+    font-weight: lighter;
+}
+
+
+.frontPageContent{
+    padding: 0px 0px 0px 5px;
+    margin-top: 10px;
+    color: #404040;
+    width: 400px;
+}
+
+.signUpText {
+    color:#FFFFFF;
+}
+.flash_notice {
+    float: right;
+}
 .actionLink {
     color: #F55830;
     font-style: italic;

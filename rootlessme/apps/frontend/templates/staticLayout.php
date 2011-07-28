@@ -24,46 +24,19 @@
 
   </head>
   <body>
+      <div id="containerFront">
+      <img id="backgroundImage" src="/images/FrontPageBackground2.jpg" alt="RootlessMe" />   
+      </div>
+              <div id="bottomFeed">
+           <span id="copyRight"> &copy;2011 Star Banana, LLC. All rights reserved.</span>
+        </div>
       <div id="container">
 
         <!-- Header -->
         <div id="header">
-            <a href="<?php echo url_for('home') ?>" ><img id="headerLogo" src="/images/Logo.png" alt="RootlessMe" /></a>
-                <form id="headerSearchForm" action="search.php" >
-                      <input id="searchInput" />
-                </form>
+            
+            <a href="<?php echo url_for('home') ?>" ><img id="headerLogo" src="/images/LogoFront.png" alt="RootlessMe" /></a>
             <div id="headerControls">
-
-                <ul id="headerControlsList">
-                    <?php if ($sf_user->isAuthenticated()): ?>
-                        <?php include_component('message', 'messageMenu') ?>
-                    <li class="headerControlsListItem">
-                        <a href="<?php echo url_for('profile_show_user',$sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()) ?>" class="headerControl">
-                            <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlTiny(); ?>" alt="Tiny profile picture" />
-                            <?php echo $sf_user->getGuardUser()->getPeople(); ?>
-                            <img src="/images/downArrow.png" alt="Profile Menu" />
-                        </a>
-                        <ul class="headerControlsListSublist">
-                            <li class="headerControlsListSublistItem">
-                                <a class="headerSublistControl" href="<?php echo url_for('profile_edit_user') ?>">
-                                    Settings
-                                </a>
-                            </li>
-                            <li class="headerControlsListSublistItem">
-                                <a class="headerSublistControl" href="<?php echo url_for('sf_guard_signout') ?>">
-                                    Sign out
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <?php else: ?>
-                    <li class="headerControlsListItem">
-                        <a class="headerControl" href="<?php echo url_for('sf_guard_signin') ?>">
-                            Log in
-                        </a>
-                    </li>
-                    <?php endif ?>
-                </ul>
             </div>
         </div>
 
@@ -71,13 +44,11 @@
 
         <div id="content">
 
-            <div id="leftColumn">
-                Left column
-            </div>
+
 
             <!--<div id="rightColumn"><p>This is my rightColumn</p></div> -->
 
-            <div id="middleContent">
+            <div id="middleContentFront">
                 <?php if ($sf_user->hasFlash('notice')): ?>
                     <div class="flash_notice">
                         <?php echo $sf_user->getFlash('notice') ?>
@@ -94,23 +65,7 @@
             </div>
         </div>
         <!-- Footer -->
-        <div id="footer">
-            <hr class="footerBar"
-            <?php echo link_to('Terms of Service', 'terms') ?>
-            -
-            <?php echo link_to('Privacy Policy', 'privacy') ?>
-            -
-            <?php echo link_to('About Us', 'about') ?>
-            -
-            <?php echo link_to('Contact Us', 'contact') ?>
-            -
-            <?php echo link_to('Safety Tips', 'safety') ?>
-            -
-            <?php echo link_to('Help', 'help') ?>
-            <br />
-            &copy;2011 Star Banana, LLC. All rights reserved.
-        </div>
-        <!-- End of footer -->
+
 
     </div>
   </body>
