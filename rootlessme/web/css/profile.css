@@ -374,3 +374,35 @@
     padding-right: 20px;
 
 }
+
+
+.searchPeople {
+    outline: none;
+    border: 0;
+    padding: 0;
+    background: url('../images/traveler_searchbar.png') no-repeat;
+    width: 302px;
+    height: 38px;
+    font-weight: bold;
+    font-family: Arial;
+    font-size: 16px;
+    color: #ABABAB;
+    padding-left: 10px;
+}
+
+
+.searchSubmit {
+    text-indent:  -9999px;
+    background: url('../images/search_magni.png') no-repeat top left;
+    height: 26px;
+    width: 28px;
+    outline: none;
+    border: 0;
+    margin-left: -53px;
+    margin-top: -1px;
+}
+
+.searchSubmit:hover {
+   background-position: bottom left;
+   cursor: pointer;
+}

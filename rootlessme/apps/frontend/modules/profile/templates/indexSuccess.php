@@ -7,8 +7,8 @@
     <div class="imageCaption">Featured Traveler <br/> <span class ="imageCaptionName"> Aaron Williams</span></div>
 </div>
     <form class="userInputForm" action="profileSearch.php">
-        <input type="textbox" value="Who do you know?" />
-        <input type="submit" value="find" />
+        <input class="searchPeople" type="textbox" value="Search Travelers..." onblur="if (this.value == ''){this.value = 'Search Travelers...';}" onfocus="if(this.value == 'Search Travelers...'){this.value='';}"/>
+        <input class="searchSubmit" type="submit" value="find" />
     </form>
 <div class="middleSearchTravelers">
     <div class="SearchTravelerTitle"">People You May Know</div>
