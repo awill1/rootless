@@ -27,7 +27,8 @@
       <div id="containerFront">
       <img id="backgroundImage" src="/images/FrontPageBackground2.jpg" alt="RootlessMe" />   
       </div>
-              <div id="bottomFeed">
+      <div id="bottomFeed">
+          <img id="ridingNow" src="/images/RidingNow.png" alt="RootlessMe" />   
            <span id="copyRight"> &copy;2011 Star Banana, LLC. All rights reserved.</span>
         </div>
       <div id="container">
