@@ -6,8 +6,9 @@ class BasesfGuardRegisterActions extends sfActions
   {
     if ($this->getUser()->isAuthenticated())
     {
-      $this->getUser()->setFlash('notice', 'You are already registered and signed in!');
-      $this->redirect('@homepage');
+        $this->getUser()->setFlash('notice', 'You are already registered and signed in!');
+        //$this->redirect('@homepage');
+        $this->redirect(sfConfig::get('app_sf_guard_plugin_success_register_url'));
     }
 
     $this->form = new sfGuardRegisterForm();
@@ -17,10 +18,11 @@ class BasesfGuardRegisterActions extends sfActions
       $this->form->bind($request->getParameter($this->form->getName()));
       if ($this->form->isValid())
       {
-        $user = $this->form->save();
-        $this->getUser()->signIn($user);
+          $user = $this->form->save();
+          $this->getUser()->signIn($user);
 
-        $this->redirect('@homepage');
+          //$this->redirect('@homepage');
+          $this->redirect(sfConfig::get('app_sf_guard_plugin_success_register_url'));
       }
     }
   }

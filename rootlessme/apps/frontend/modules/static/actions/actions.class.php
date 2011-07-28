@@ -48,7 +48,12 @@ class staticActions extends sfActions
      */
     public function executeHome(sfWebRequest $request)
     {
-        //$this->forward('default', 'module');
+        // Get the signin form
+        $signinClass = sfConfig::get('app_sf_guard_plugin_signin_form', 'sfGuardFormSignin');
+        $this->signinForm = new $signinClass();
+
+        // Get the registration form
+        $this->registerForm = new sfGuardRegisterForm();
     }
 
     /**

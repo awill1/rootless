@@ -13,8 +13,13 @@
     <p>
         With rootless, you can easily find a ride anywhere you want,
         with people you like.
-        
-    <h2>Doooo ittt!!!!!!!!!!!!!!!!</h2>
-
     </p>
+    <div id="loginFormContainer">
+        <h2>Log in</h2>
+        <?php echo get_partial('sfGuardAuth/signin_form', array('form' => $signinForm)) ?>
+    </div>
+    <div id="loginFormContainer">
+        <h2>Join now</h2>
+        <?php echo get_partial('sfGuardRegister/form', array('form' => $registerForm)) ?>
+    </div>
 </div>
