@@ -44,7 +44,7 @@ textarea {
     margin-top: 0px;
     margin-left: auto ;
     margin-right: auto ;
-
+    position: relative;
 }
 
 #bottomFeed {
@@ -71,16 +71,20 @@ textarea {
     top: 0;
     left: 0;
     background-color: #000000;
+    overflow: hidden;
 
 }
 
+.home {
+    
+    background-image: none;
+}
+
 #backgroundImage {
-    width: 100%;
-    position: absolute;
     top:0;
     left:0;
-    z-index: -1;
-    overflow: hidden;
+   
+   
 }
 
 #header {

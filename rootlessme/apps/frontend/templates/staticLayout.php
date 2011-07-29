@@ -21,16 +21,32 @@
     <?php if (has_slot('gmapheader')): ?>
         <?php include_slot('gmapheader') ?>
     <?php endif; ?>
+    
+    <script type="text/javascript">
+    
+    
+    $(document).ready(function(){
+        
+       //get window height
+       var winH = $(window).height();
+       
+      $("#backgroundImage").css("height","100%");
+       
+       
+            
+            
+       
+    });
+    
+    
+    </script>
 
   </head>
-  <body>
+  <body class="home">
       <div id="containerFront">
       <img id="backgroundImage" src="/images/FrontPageBackground2.jpg" alt="RootlessMe" />   
       </div>
-      <div id="bottomFeed">
-          <img id="ridingNow" src="/images/RidingNow.png" alt="RootlessMe" />   
-           <span id="copyRight"> &copy;2011 Star Banana, LLC. All rights reserved.</span>
-        </div>
+      
       <div id="container">
 
         <!-- Header -->
@@ -65,9 +81,15 @@
                 <?php echo $sf_content ?>
             </div>
         </div>
+        
+       
         <!-- Footer -->
 
 
     </div>
+      <div id="bottomFeed">
+          <img id="ridingNow" src="/images/RidingNow.png" alt="RootlessMe" />   
+           <span id="copyRight"> &copy;2011 Star Banana, LLC. All rights reserved.</span>
+        </div>
   </body>
 </html>
