@@ -82,14 +82,42 @@ textarea {
 
 .home #container {
     
-    
-    min-width: 640px;
+    overflow: hidden;
+    width: auto;
+}
+
+.home #header {
+    margin: 0 auto;
+    min-width: 300px;
     max-width: 960px;
 }
 
+.home #middleContentFront {
+    
+    min-width: 300px;
+    max-width: 960px;
+    margin: 0 auto;
+    
+}
+
+
 .home #loginFormContainer {
     
-    margin-right: 0;
+    float: right;
+    margin-right: 10px;
+    position: fixed;
+    right: 0;
+    top: 0;
+}
+
+.home #loginFormContainer label {
+    
+    display:none;
+}
+
+.home #loginFormContainer label {
+    
+    display:none;
 }
 
 #backgroundImage {

@@ -32,10 +32,10 @@
        var winW = $(window).width();
        if((winW/winH) < 1.5)
            {
-      $("#backgroundImage").css({height: '100%', width: ''});
+      $("#backgroundImage").css({height: winH, width: ''});
            } else {
                
-               $("#backgroundImage").css({width: '100%', height: ''});
+               $("#backgroundImage").css({width: winW, height: ''});
            }
        
        $(window).resize(function(){
