@@ -24,15 +24,34 @@
     
     <script type="text/javascript">
     
-    
+    //make sure the background image fills the screen
     $(document).ready(function(){
         
        //get window height
        var winH = $(window).height();
+       var winW = $(window).width();
+       if((winW/winH) < 1.5)
+           {
+      $("#backgroundImage").css({height: '100%', width: ''});
+           } else {
+               
+               $("#backgroundImage").css({width: '100%', height: ''});
+           }
        
-      $("#backgroundImage").css("height","100%");
-       
-       
+       $(window).resize(function(){
+            var winH = $(window).height();
+       var winW = $(window).width();
+       if((winW/winH) < 1.5)
+           {
+      $("#backgroundImage").css({height: '100%', width: ''});
+           } else {
+               
+               $("#backgroundImage").css({width: '100%', height: ''});
+           }
+           
+           
+           
+       });
             
             
        
