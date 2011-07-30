@@ -76,8 +76,20 @@ textarea {
 }
 
 .home {
-    
+
     background-image: none;
+}
+
+.home #container {
+    
+    
+    min-width: 640px;
+    max-width: 960px;
+}
+
+.home #loginFormContainer {
+    
+    margin-right: 0;
 }
 
 #backgroundImage {
@@ -86,6 +98,7 @@ textarea {
    
    
 }
+
 
 #header {
     /*background: #333333;*/

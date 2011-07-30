@@ -40,7 +40,8 @@
        
        $(window).resize(function(){
             var winH = $(window).height();
-       var winW = $(window).width();
+            var winW = $(window).width();
+            
        if((winW/winH) < 1.5)
            {
       $("#backgroundImage").css({height: '100%', width: ''});
