@@ -127,7 +127,7 @@
 
     </p>
     <div id="dialogFormDiv" title="Request a ride">
-        <?php include_component('seat', 'seatForm') ?>
+        <?php include_component('seat', 'seatForm', array('ride_type'=>'offer', 'ride'=>$carpool)) ?>
     </div>
     <!-- TODO: Add smoking -->
     <p class="smokingPreference">Smoking: Yes</p>

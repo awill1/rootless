@@ -21,7 +21,7 @@
                 modal: true
             });
 
-            $( "#requestRideButton" ).button()
+            $( "#offerRideButton" ).button()
                 .click(function() {
                         $( "#dialogFormDiv" ).dialog( "open" );
             });
@@ -126,13 +126,13 @@
         needed
 
     </p>
-    <div id="dialogFormDiv" title="Request a ride">
-        <?php include_component('seat', 'seatForm') ?>
+    <div id="dialogFormDiv" title="Offer a ride">
+        <?php include_component('seat', 'seatForm', array('ride_type'=>'request', 'ride'=>$passenger)) ?>
     </div>
     <!-- TODO: Add smoking -->
     <p class="smokingPreference">Smoking: Yes</p>
     <p class="tripDistance">One Way Trip</p>
-    <p><button id="requestRideButton">Offer a Ride</button></p>
+    <p><button id="offerRideButton">Offer a Ride</button></p>
 
 </div>
 

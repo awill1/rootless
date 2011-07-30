@@ -1,7 +1,7 @@
 <?php use_stylesheets_for_form($seatForm) ?>
 <?php use_javascripts_for_form($seatForm) ?>
 
-<form class="userInputForm" action="<?php echo url_for('ride_search') ?>" method="post">
+<form class="userInputForm" action="<?php echo url_for('seats_create') ?>" method="post">
   <table>
     <tbody>
       <?php echo $seatForm->renderHiddenFields() ?>
