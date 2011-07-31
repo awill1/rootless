@@ -90,6 +90,13 @@
     font-style: italic;
     text-decoration: none;
 }
+.messagebuttonLink{
+        float:right;
+}
+
+h1{
+    
+}
 
 #middleProfileSummary {
     float: none;
@@ -97,6 +104,9 @@
 
 #middleProfileBadge {
     float: right;
+}
+#middleProfileBadge.img {
+
 }
 
 #middleProfileDetails {

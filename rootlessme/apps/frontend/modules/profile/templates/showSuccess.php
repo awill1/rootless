@@ -18,15 +18,19 @@
     <?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->getPersonId() == $profile->getPersonId()): ?>
         <a id="mainProfileTitleEditLink" href="<?php echo url_for('profile_edit_user') ?>">Edit&nbsp;Profile</a>
     <?php endif ?>     
-    <?php include_component('friendship', 'requestFriendshipButton', array('person_id' => $profile->getPersonId())) ?>
+    
 </h1>
 <a id="mainProfileSubtitle" href="<?php echo $profile->getWebsiteUrl() ?>"><?php echo $profile->getWebsiteUrl() ?></a>
+
+
 <div id="middleProfileBadge">
+    <?php include_component('friendship', 'requestFriendshipButton', array('person_id' => $profile->getPersonId())) ?>
+    <a href="#"><img class="messageButtonLink" src="/images/messageButton.JPG" alt="Message" /></a><br />
     <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $profile->getPictureUrlLarge() ?>" alt="<?php echo $profile->getFullName() ?> profile picture"/>
     <div class="middleProfileBadgeInfo">
         Rides Given <strong><?php echo $travelSummary['ridesGiven'] ?></strong>
         Rides Received <strong><?php echo $travelSummary['ridesReceived'] ?></strong>
-        <a href="#"><img src="/images/messageButton.JPG" alt="Message" /></a></div>
+        </div>
 </div>
      <h2><?php echo $profile->getAge() ?> year old <?php echo $profile->getGender() ?> from
          <a id="mainProfileLocationLink" href="#" class="locationLink">+<?php echo $profile->getCity() ?></a></h2>
@@ -35,7 +39,6 @@
 </p>
 <h3 id="middleTop5">Top 5</h3>
 <p><?php  echo $profile->getTop5() ?></p>
-
 <h3><?php echo $profile->getFirstName() ?> wants to go to <a href="#" class="locationLink">Bonneroo</a></h3>
 
 <div id="middleProfileDetails">
@@ -55,8 +58,8 @@
 
         </div>
         <div class="reviewsArea">
-                Reviews
-                
+          
+                hai
                 <?php include_component('review', 'reviews', array('profile_name' => $profile->getProfileName())) ?>
 
                
