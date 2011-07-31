@@ -54,7 +54,7 @@ textarea {
     height: 25px;
     background-color: #1E1E1E;
     color: #FFFFFF;
-    z-index: 1;
+    z-index: 1000;
 }
 #ridingNow {
     margin-left: 240px;
@@ -92,6 +92,11 @@ textarea {
     max-width: 960px;
 }
 
+.home #content {
+    
+    padding-left: 5px;
+}
+
 .home #middleContentFront {
     
     min-width: 300px;
@@ -100,6 +105,55 @@ textarea {
     
 }
 
+
+.home .signUpText tr {
+    width: 190px;
+    float: left;
+    font-family: Arial;
+    
+}
+.home .signUpText td,.home .signUpText th {
+    
+    width: 190px;
+    clear: both;
+    float: left;
+    text-align: left;
+}
+
+
+.home .signUpText label{
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.home .signUpText input{
+    width: 190px;
+    height: 16px;
+    font-family: Arial;
+    margin-bottom: 5px;
+    font-size: 14px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    color: #444;
+    
+}
+
+.opaqueBg {
+    background-color: #1F141A;
+    color: #FFFFFF;
+    font-weight: lighter;
+    margin-top: 2px;
+    opacity: 0.4;
+    padding: 10px;
+    margin-left: -5px;
+    width: 220px;
+    min-height: 350px;
+    max-height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    
+}
 
 .home #loginFormContainer {
     
@@ -517,10 +571,10 @@ textarea {
     z-index: 1001;
 }
 #signUpFormContainer{
-    background-color: #1F141A;
-    opacity:0.3;
+   
     padding: 10px 10px 10px 10px;
     color: #FFFFFF;
+    position: relative;
     width: 250px;
     margin-top: 2px;
     font-weight: lighter;
@@ -536,6 +590,10 @@ textarea {
 
 .signUpText {
     color:#FFFFFF;
+    position: relative;
+    z-index: 10;
+   display: block;
+   margin-left: -7px;
 }
 .flash_notice {
     float: right;

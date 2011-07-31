@@ -53,8 +53,10 @@
            
            
        });
+       
+        //make the opaque div to be placed under the form
             
-            
+            $('#signUpFormContainer').append('<div class="opaqueBg"></div>');
        
     });
     
