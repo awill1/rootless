@@ -89,18 +89,18 @@ textarea {
 .home #header {
     margin: 0 auto;
     min-width: 300px;
-    max-width: 960px;
+    max-width: 1050px;
 }
 
 .home #content {
-    
+    margin-bottom: 15px;
     padding-left: 5px;
 }
 
 .home #middleContentFront {
-    
+    position: relative;
     min-width: 300px;
-    max-width: 960px;
+    max-width: 1050px;
     margin: 0 auto;
     
 }
@@ -120,21 +120,42 @@ textarea {
     text-align: left;
 }
 
+.home .signUpText tfoot input {
+    width: 45px;
+    color: #E8E9E9;
+    height: 20px;
+    background-color: #009740;
+    border: 0;
+    float: right;
+    font-style: italic;
+}
+
+.home .signUpText tfoot input:hover {
+    cursor: pointer;
+    background-color: #ed5a30;
+   
+}
+
 
 .home .signUpText label{
     font-weight: normal;
+    color: #E8E9E9;
     font-size: 14px;
 }
 
+
+
 .home .signUpText input{
     width: 190px;
-    height: 16px;
+    height: 18px;
     font-family: Arial;
     margin-bottom: 5px;
     font-size: 14px;
     padding-top: 2px;
     padding-bottom: 2px;
     color: #444;
+    background-color: #E8E9E9;
+    border: 1px #3D3D3D solid;
     
 }
 
@@ -146,13 +167,22 @@ textarea {
     opacity: 0.4;
     padding: 10px;
     margin-left: -5px;
-    width: 220px;
-    min-height: 350px;
+    width: 200px;
+    min-height: 320px;
     max-height: 100%;
     left: 0;
     position: absolute;
     top: 0;
     
+}
+
+.home #loginFormContainer input[type="text"], .home #loginFormContainer input[type="password"]
+{
+    border: 1px #3D3D3D solid;
+    width: 130px;
+    height: 17px;
+    padding: 2px 0px 2px 4px;
+    color: #444;
 }
 
 .home #loginFormContainer {
@@ -162,21 +192,196 @@ textarea {
     position: fixed;
     right: 0;
     top: 0;
+    width: 345px;
+    position: absolute;
+    margin-top: -68px;
 }
 
 .home #loginFormContainer label {
-    
+ 
     display:none;
 }
 
-.home #loginFormContainer label {
+.home #loginFormContainer label[for='signin_remember']{
     
-    display:none;
+    display: block;
+    font-weight: normal;
+    left: 25px;
+    position: absolute;
+    top: 33px;
+    
 }
+
+.home #loginFormContainer input[type='checkbox'] {
+    
+    position: absolute;
+    left: 2px;
+    top: 30px;
+}
+
+.home #loginFormContainer tfoot input {
+    color: #fff;
+    font-family: Arial;
+    background-color: #444;
+    border: 0;
+    font-size: 14px;
+    font-style: italic;
+    padding: 2px 4px 3px;
+    cursor: pointer;
+}
+
+.home #loginFormContainer tfoot a:link, .home #loginFormContainer tfoot a:visited {
+    position: absolute;
+    top: 33px;
+    left: 150px;
+    color: #009740;
+}
+
+.home #loginFormContainer tfoot a:hover {
+    text-decoration: underline;
+    
+}
+
+
+.home #loginFormContainer form {
+  width: 345px;
+}
+
+.home #loginFormContainer form table {
+    width: 100%;
+    display: inline;
+}
+
+.home #loginFormContainer form table tbody, .home #loginFormContainer form table tfoot {
+    display: inline;
+}
+
+.home #loginFormContainer form table tr {
+    float: left;
+    margin-right: -5px;
+}
+
+.home #loginFormContainer tfoot input:hover {
+    background-color: #666;
+
+}  
+
+.home #loginFormContainer form span.signin_password {
+    left: 154px;
+    position: absolute;
+    top: 8px;
+    color: #ccc;
+    cursor:text;
+    
+}
+
+.home #loginFormContainer form span.signin_username {
+    left: 13px;
+    position: absolute;
+    top: 8px;
+    color: #ccc;
+    cursor:text;
+    
+}
+
+@media screen and (max-width: 640px) {
+    
+    
+.home #loginFormContainer {
+    float:left;
+    padding-bottom: 40px;
+    position: relative;
+    width: 345px;
+    margin-top: 0px;
+    padding-bottom: 35px;
+}
+
+
+.home #loginFormContainer form table tbody, .home #loginFormContainer form table tfoot {
+    display: block;
+
+}
+
+.home #loginFormContainer form table tr {
+    
+    float: none;
+}
+
+.home #loginFormContainer tfoot input {
+    margin-left: 6px;
+}
+
+.home #loginFormContainer label[for="signin_remember"] {
+    color: #E8E9E9; 
+    left: 82px;
+    top: 68px;
+}
+
+.home #loginFormContainer input[type="checkbox"] {
+    left: 62px;
+    top: 65px;
+}
+
+.home #loginFormContainer tfoot a:link, .home #loginFormContainer tfoot a:visited {
+    display: none;
+}
+
+.home #loginFormContainer form span.signin_password {
+   
+    left: 13px;
+    position: absolute;
+    top: 35px;
+}
+
+.home #loginFormContainer label[for='signin_remember']{
+    
+    color: #444;
+    
+}   
+
+#bottomFeed {
+    
+    height: 50px;
+}
+
+.home #content {
+    
+    margin-bottom: 50px;
+}
+
+#ridingNow {
+    
+    margin-left: 15px;
+    float: left;
+}
+
+#copyRight {
+    margin-left: 15px;
+    float: left;
+    clear: left;
+}
+
+}
+
+@media screen and (max-width: 400px) {
+ 
+    #backgroundImage {
+       display: none;
+    
+    }
+    
+    .frontPageContent p {
+    width: 200px;
+}
+     
+
+
+}
+
 
 #backgroundImage {
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
    
    
 }

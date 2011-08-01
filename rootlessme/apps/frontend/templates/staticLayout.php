@@ -27,6 +27,18 @@
     //make sure the background image fills the screen
     $(document).ready(function(){
         
+       //listen for screen width
+       var scW = screen.width;
+       if (scW < 400) {
+           
+           
+       } else {
+           
+           $('#containerFront').html('<img id="backgroundImage" src="/images/FrontPageBackground2.jpg" alt="RootlessMe" />');
+           
+  }
+        
+        
        //get window height
        var winH = $(window).height();
        var winW = $(window).width();
@@ -58,6 +70,47 @@
             
             $('#signUpFormContainer').append('<div class="opaqueBg"></div>');
        
+       //make the form value of the sign up = 'Join!'
+            $('.home .signUpText tfoot input').attr('value', 'Join!');
+            
+       //make Login form submit value = 'Login'
+       
+            $('.home #loginFormContainer tfoot input').attr('value', 'Login');
+       
+       
+       // sign in - hint value
+        $('.home #loginFormContainer #signin_username').after('<span class="signin_username">Email/Username</span>');
+       
+       // password - hint value
+       $('.home #loginFormContainer #signin_password').after('<span class="signin_password">Password</span>');
+       
+       // Function for login form on focus 
+       $('.home #loginFormContainer input[type="text"], .home #loginFormContainer input[type="password"]').focus(function(){
+            var id = $(this).attr('id');
+            $('.' + id).fadeOut();
+           
+           
+       });
+       
+       $('.home #loginFormContainer span.signin_password, .home #loginFormContainer span.signin_username').click(function(){
+            var cl = $(this).attr('class');
+            $(this).fadeOut();
+            $('#' + cl).focus();
+           
+           
+       });
+       
+       
+       $('.home #loginFormContainer input[type="text"], .home #loginFormContainer input[type="password"]').blur(function(){
+            if($(this).attr('value') == '')
+           {
+              
+               var id = $(this).attr('id');
+               $('.' + id).fadeIn();
+           }
+           
+       });
+       
     });
     
     
@@ -66,7 +119,7 @@
   </head>
   <body class="home">
       <div id="containerFront">
-      <img id="backgroundImage" src="/images/FrontPageBackground2.jpg" alt="RootlessMe" />   
+         
       </div>
       
       <div id="container">
