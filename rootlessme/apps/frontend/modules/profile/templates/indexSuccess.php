@@ -3,7 +3,7 @@
 <h1>Travelers</h1>
 
 <div id="middleFeaturedTraveler">
-    <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?>profile_aaron_large.jpg" alt="Aaron Williams" />
+    <img src="/images/featuredTraveler.jpg" alt="Aaron Williams" />
     <div class="imageCaption">Featured Traveler <br/> <span class ="imageCaptionName"> Aaron Williams</span></div>
 </div>
     <form class="userInputForm" action="profileSearch.php">

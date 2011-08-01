@@ -5,5 +5,9 @@
             <url>web/css/message.css</url>
             <line>151</line>
         </file>
+        <file>
+            <url>apps/frontend/templates/staticLayout.php</url>
+            <line>25</line>
+        </file>
     </editor-bookmarks>
 </project-private>
