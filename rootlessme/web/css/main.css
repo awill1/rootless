@@ -124,7 +124,7 @@ textarea {
     width: 45px;
     color: #E8E9E9;
     height: 20px;
-    background-color: #009740;
+    background-color: #119F49;
     border: 0;
     float: right;
     font-style: italic;
@@ -433,6 +433,11 @@ textarea {
     padding: 0px 0px 0px 15px;
     margin: 0px 0px 0px 0px;
     float: left;
+}
+
+#searchInput:focus, .searchPeople:focus {
+    
+    color: #212121;
 }
 
 #searchButton {
@@ -912,7 +917,7 @@ textarea {
         color: #E0E0E0; 
         text-decoration: none; 
 }
-#middleMessageDetails.ui-widget :active, #middleProfileDetails.ui-widget :active {color: #E0E0E0; outline: none; }
+#middleMessageDetails.ui-widget :active, #middleProfileDetails.ui-widget :active { outline: none; }
 
 
 /* end jquery ui styling */
@@ -932,4 +937,22 @@ textarea {
 .headerSubmit:hover {
    background-position: bottom left;
    cursor: pointer;
+}
+
+
+#footer a:link {
+    
+    color: #119F49;
+    
+}
+
+#footer a:visited {
+    
+    color: #777;
+}
+
+#footer a:hover {
+    
+    text-decoration: underline;
+    
 }

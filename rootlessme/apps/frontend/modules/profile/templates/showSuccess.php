@@ -58,7 +58,7 @@
         </div>
         <div class="reviewsArea">
           
-                hai
+                
                 <?php include_component('review', 'reviews', array('profile_name' => $profile->getProfileName())) ?>
 
                
