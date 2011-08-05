@@ -152,6 +152,18 @@ tbody {
     background-color: #119F49;
 }
 
+#middleMessageDetails ul li a.messageButton:link, #middleMessageDetails ul li a.messageButton:visited {
+     background-color: #F55830;
+     background-image: none;
+     color: #fff;
+     width: 78px;
+}
+
+#middleMessageDetails ul li a.messageButton:hover {
+     background-color:#119F49;
+     background-image: none;
+     width: 78px;
+}
 
 legend {
     background-color: #303030;
