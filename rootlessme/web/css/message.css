@@ -153,9 +153,9 @@ tbody {
 }
 
 #middleMessageDetails ul li a.messageButton:link, #middleMessageDetails ul li a.messageButton:visited {
-     background-color: #F55830;
+     background-color: #E0E0E0;
      background-image: none;
-     color: #fff;
+     color: #555;
      width: 78px;
 }
 
@@ -163,6 +163,7 @@ tbody {
      background-color:#119F49;
      background-image: none;
      width: 78px;
+     color: #fff;
 }
 
 legend {
