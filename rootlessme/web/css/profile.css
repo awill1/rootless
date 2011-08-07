@@ -96,7 +96,9 @@
         float:right;
 }
 
-h1{
+
+
+#mainProfileTitle {
     font-size: 160%;
     font-face: "Arial Regular";
     color: #404040;

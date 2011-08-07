@@ -156,13 +156,13 @@ tbody {
      background-color: #E0E0E0;
      background-image: none;
      color: #555;
-     width: 78px;
+     width: 85px;
 }
 
 #middleMessageDetails ul li a.messageButton:hover {
      background-color:#119F49;
      background-image: none;
-     width: 78px;
+     width: 85px;
      color: #fff;
 }
 

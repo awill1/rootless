@@ -541,6 +541,8 @@ textarea {
     padding: 0px 0px 0px 0px;
 }
 
+
+
 .navigationItem {
   list-style: none;
   color: #3D3D3D;
@@ -548,11 +550,26 @@ textarea {
   font-size: 175%;
   height: 35px;
   text-align: left;
-  margin: -2px 22px 0px 0px;
-  padding: 0px 14px 2px 0px;
+  margin: -2px 28px 2px 0px;
+  padding: 0px 14px 0px 0px;
   background-image: url("../images/navigationBackground.jpg");
   background-repeat: no-repeat;
 }
+
+.navigationItem:link, .navigationItem:visited  {
+  list-style: none;
+  color: #3D3D3D;
+  background-image: url("../images/navigationBackground.jpg");
+  background-repeat: no-repeat;
+}
+
+.navigationItem:hover {
+    color: #3D3D3D;
+    background-image: none;
+    background-color: #ccc;
+    background-image: url("../images/activeNav.png");
+}
+
 
 .navigationItemSelected {
   list-style: none;
@@ -562,8 +579,8 @@ textarea {
   font-size: 175%;
   height: 35px;
   text-align: left;
-  margin: -2px 0px 0px 0px;
-  padding: 0px 6px 2px 0px;
+  margin: -2px 0px 2px 0px;
+  padding: 0px 6px 0px 0px;
   background-image: url("../images/activeNav.png");
   background-repeat: no-repeat;
 }
