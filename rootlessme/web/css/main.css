@@ -608,7 +608,8 @@ textarea {
 }
 
 #leftProfileName {
-    font-weight: bold;
+    font-weight: normal;
+    font-size: 90%;
 }
 
 #leftProfileLocation {
@@ -630,7 +631,7 @@ textarea {
 }
 
 .leftWidgetTitle {
-    font-weight: bold;
+    font-weight: normal;
     font-size: 110%;
     margin: 0px 0px 0px 0px;
 }
@@ -647,23 +648,35 @@ textarea {
     padding: 4px 0px 4px 0px;
 }
 
+.travelingWith {
+    color: #119F49;
+}
+
 .leftActionButton {
-    background-image: url(../images/leftActionButtonBackground.JPG);
     width: 155px;
     height: 24px;
     font-weight: bold;
     color: #FFFFFF;
     border: 0px;
+    background-color: #119F49;
+}
+
+.leftActionFont {
+    font-weight: normal;
+}
+
+#leftActivity {
+    margin: 10px 0px 0px 0px;
 }
 
 #leftActivityList {
-    margin: 0;
+    margin: 10px 0px 0px 0px;
     padding: 0;
 }
 
 .leftActivityItem {
     list-style: none;
-    margin: 4px 0px 4px 0px;
+    margin: 10px 0px 4px 0px;
     padding: 4px 0px 4px 0px;
 }
 

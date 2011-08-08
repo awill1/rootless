@@ -103,52 +103,30 @@
                         <a href="<?php echo url_for("profile_show_user", $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst())  ?>">
                             <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>" alt="<?php echo $sf_user->getGuardUser()->getPeople(); ?>" />
                         </a>
-                        <h3 id="leftProfileName" class="leftWidgetTitle"><?php echo $sf_user->getGuardUser()->getPeople(); ?></h3>
+                        
+                       <h3 id="leftProfileName" class="leftWidgetTitle"><?php echo $sf_user->getGuardUser()->getPeople(); ?></h3>
                         
                         
                         <a href="#" id="leftProfileLocation" >+<?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getCity(); ?></a> <br />
+                        <br/>
                         <a href="<?php echo url_for("profile_show_user", $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst())  ?>" id="leftProfileViewLink" >View Profile</a>
+                   
                     </div>
                     <div id="leftActions" class="leftWidget">
+                        
                         <ul id="leftActionsList">
                             <li class="leftActionItem"><button class="leftActionButton" onClick="window.location='<?php echo url_for('ride_new', array('ride_type'=>'offer')) ?>'" >+ Offer a Ride</button></li>
                             <li class="leftActionItem"><button class="leftActionButton" onClick="window.location='<?php echo url_for('ride_new', array('ride_type'=>'request')) ?>'" >+ Request a Ride</button></li>
                         </ul>
+               
                     </div>
                     <div id="leftActivity" class="leftWidget">
-                        <h3 class="leftWidgetTitle">Recent Activity</h3>
+                        <h3 class="leftWidgetTitle">Traveling With</h3>
                         <ul id="leftActivityList">
-                            <li class="leftActivityItem">You and <a href="#" class="leftActivityLink">Colin Hoell</a> are attending <a href="#" class="leftActivityLink">Bonnaroo</a>.</li>
-                            <li class="leftActivityItem"><a href="#" class="leftActivityLink">Janet Dickenson</a> left a testimonial on your <a href="#" class="leftActivityLink">profile.</a></li>
-                            <li class="leftActivityItem">You and <a href="#" class="leftActivityLink">Colin Hoell</a> are attending <a href="#" class="leftActivityLink">Bonnaroo</a>.</li>
-                            <li class="leftActivityItem"><a href="#" class="leftActivityLink">Janet Dickenson</a> left a testimonial on your <a href="#" class="leftActivityLink">profile.</a></li>
-                            <li class="leftActivityItem">You and <a href="#" class="leftActivityLink">Colin Hoell</a> are attending <a href="#" class="leftActivityLink">Bonnaroo</a>.</li>
-                            <li class="leftActivityItem"><a href="#" class="leftActivityLink">Janet Dickenson</a> left a testimonial on your <a href="#" class="leftActivityLink">profile.</a></li>
-                        </ul>
-                    </div>
-                    <div id="leftRides" class="leftWidget">
-                        <h3 class="leftWidgetTitle">Upcoming Rides</h3>
-                        <ul id="leftRideList">
-                            <li class="leftRideItem">
-                                <img class="leftRideDateImage" src="dateImage.JPG" alt="April 02, 2011" />
-                                <div class="leftRideName">Bonnaroo</div>
-                                <div class="leftRideLocation">Chicago</div>
-                            </li>
-                            <li class="leftRideItem">
-                                <img class="leftRideDateImage" src="dateImage.JPG" alt="April 02, 2011" />
-                                <div class="leftRideName">Bonnaroo</div>
-                                <div class="leftRideLocation">Chicago</div>
-                            </li>
-                            <li class="leftRideItem">
-                                <img class="leftRideDateImage" src="dateImage.JPG" alt="April 02, 2011" />
-                                <div class="leftRideName">Bonnaroo</div>
-                                <div class="leftRideLocation">Chicago</div>
-                            </li>
-                            <li class="leftRideItem">
-                                <img class="leftRideDateImage" src="dateImage.JPG" alt="April 02, 2011" />
-                                <div class="leftRideName">Bonnaroo</div>
-                                <div class="leftRideLocation">Chicago</div>
-                            </li>
+                            <li class="leftActivityItem"><img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>" alt="<?php echo $sf_user->getGuardUser()->getPeople(); ?>" /><span class="travelingWith">Colin Hoell</span></a> <br/><br/><a href="<?php echo url_for("profile_show_user", $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst())  ?>" id="leftProfileViewLink" >View Ride</a></li>
+                            <li class="leftActivityItem"><img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>" alt="<?php echo $sf_user->getGuardUser()->getPeople(); ?>" /><span class="travelingWith">Colin Hoell</span></a> <br/><br/><a href="<?php echo url_for("profile_show_user", $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst())  ?>" id="leftProfileViewLink" >View Ride</a></li>
+                            <li class="leftActivityItem"><img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>" alt="<?php echo $sf_user->getGuardUser()->getPeople(); ?>" /><span class="travelingWith">Colin Hoell</span></a> <br/><br/><a href="<?php echo url_for("profile_show_user", $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst())  ?>" id="leftProfileViewLink" >View Ride</a></li>
+                            <li class="leftActivityItem"><img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>" alt="<?php echo $sf_user->getGuardUser()->getPeople(); ?>" /><span class="travelingWith">Colin Hoell</span></a> <br/><br/><a href="<?php echo url_for("profile_show_user", $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst())  ?>" id="leftProfileViewLink" >View Ride</a></li>
                         </ul>
                     </div>
                 </div>
