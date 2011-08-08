@@ -27,6 +27,7 @@ class profileActions extends sfActions
     $this->friends = Doctrine_Core::getTable('Profiles')->getFriendsProfiles($personID);
     $this->travelSummary = Doctrine_Core::getTable('Seats')->getTravelSummaryForPerson($personID);
     $this->vehicle = $this->profile->getPeople()->getVehicles()->getFirst();
+    $this->ratings = Doctrine_Core::getTable('Reviews')->getReviewsSummaryForPerson($personID);
 
     // Only allow reviews if the user is logged in
     if ($this->getUser()->isAuthenticated())

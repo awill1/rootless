@@ -77,10 +77,7 @@
 </script>
 <?php end_slot();?>
 
-<div id="driverRatingSummary">
-    
-    <?php include_partial('review/ratingGraphs', array('ratings' => $ratings)) ?>
-</div>
+
 <img id="graphLoader" alt="Loading spinner" src="/images/ajax-loader.gif" />
 
 <div id="driverReviews">

@@ -8,7 +8,6 @@ class reviewComponents extends sfComponents
 //        $this->forward404Unless($this->profile);
         $this->personID = $this->profile->getPersonID();
 
-        $this->ratings = Doctrine_Core::getTable('Reviews')->getReviewsSummaryForPerson($this->personID);
         $this->reviews = Doctrine_Core::getTable('Reviews')->getReviewsForPersonWithProfile($this->personID);
 
         // Create the review form using the details of the users

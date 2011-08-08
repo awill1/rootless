@@ -51,17 +51,10 @@
 
         <div class="testimonialsArea">
             Testimonials
-            
-
-
-
         </div>
         <div class="reviewsArea">
-          
-                
-                <?php include_component('review', 'reviews', array('profile_name' => $profile->getProfileName())) ?>
-
-               
+            <?php include_partial('review/ratingGraphs', array('ratings' => $ratings)) ?>
+            <?php include_component('review', 'reviews', array('profile_name' => $profile->getProfileName())) ?>  
         </div>
     </div>
     <div id="fragment-travel_log" class="middleProfileTabContent">
