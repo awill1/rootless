@@ -2,5 +2,5 @@
 # http://www.symfony-project.org/book/1_2/07-Inside-the-View-Layer
 
 # The static pages use the static layout file
-home:
+homeSuccess:
   layout: staticLayout
