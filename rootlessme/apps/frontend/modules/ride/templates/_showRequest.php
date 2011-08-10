@@ -5,7 +5,7 @@
   'title',
   sprintf('Rootless Me - %s to %s', $origin->getCityStateString(), $destination->getCityStateString()))
 ?>
-
+<h1> Ride Request</h1>
 <?php slot('gmapheader'); ?>
     <script type="text/javascript">
         var map = null;
@@ -95,7 +95,9 @@
     </script>
 <?php end_slot();?>
 
+
 <div id="mainRideSummary">
+        
     <div id="mainRideDate" class="dateBlockLarge">
         <div class="dateBlockMonth">
             <?php echo date("M",strtotime($passenger->getStartDate())) ?>

@@ -6,6 +6,10 @@
         This stylesheet formats the ride pages of the rootlessme website.
 */
 
+h1 {
+    
+}
+
 #findARideFieldset {
     float: left;
     background-color: #EAEAEA;
@@ -138,7 +142,7 @@ tbody {
 #mainRideSummary {
     float: left;
     width: 280px;
-    margin: 45px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
 }
 
 #mainRideInformation {
@@ -186,7 +190,6 @@ tbody {
     /* Need to lower the z-index so the javascript menus appear over the map. 
        Commented out because it disabled mouse control*/
 /*    z-index: -1;*/
-    margin-top: 50px;
     margin-bottom: 50px;
 }
 

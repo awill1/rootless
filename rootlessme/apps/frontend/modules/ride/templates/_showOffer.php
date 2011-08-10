@@ -5,6 +5,7 @@
   'title',
   sprintf('Rootless Me - %s to %s', $origin->getCityStateString(), $destination->getCityStateString()))
 ?>
+<h1> Ride Offer</h1>
 
 <?php slot('gmapheader'); ?>
     <script type="text/javascript">
