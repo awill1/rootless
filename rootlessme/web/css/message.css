@@ -8,11 +8,14 @@
 
 
 td {
+    clear: both;
+    width: 100px;
     margin: 0px 0px 0px 0px;
     padding: 6px 0px 6px 10px;
 }
 
 th {
+    width: 100px;
     margin: 0px 0px 0px 0px;
     padding: 10px 0px 10px 10px;
     text-align: left;
@@ -21,6 +24,37 @@ th {
 tr {
     margin: 10px 10px 10px 10px;
     padding: 10px 10px 10px 10px;
+}
+
+.checkBoxTable {
+    float: left;
+    width: 30px;
+    margin: 0px 0px 0px 0px;
+    padding: 13px 0px 6px 10px;
+}
+
+.interiorMessageTable {
+    clear: both;
+    width: 320px;
+    margin: 0px 0px 0px 0px;
+    padding: 6px 0px 6px 10px;
+    
+}
+
+.dateForTable {
+    clear: both;
+    width: 200px;
+    margin: 0px 0px 0px 0px;
+    padding: 6px 0px 6px 10px;
+    
+}
+
+.nameForTable {
+    clear: both;
+    width: 150px;
+    margin: 0px 0px 0px 0px;
+    padding: 6px 0px 6px 10px;
+    
 }
 
 thead {

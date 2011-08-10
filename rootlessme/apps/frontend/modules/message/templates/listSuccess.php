@@ -40,15 +40,15 @@
                         ?>
                         <tr class="<?php echo fmod($i, 2) ? 'tableAltRow' : 'tableRow' ?>
                                    <?php if (count($message['MessageRecipients']) > 0 && $message['MessageRecipients'][0]['unread'] ) echo 'messageUnread' ?>">
-                            <td><input id="entry_box_4" class="message_list_check_box" type='checkbox' name='messages_selected[]' value='5'></td>
-                            <td>
+                            <td class="checkBoxTable"><input id="entry_box_4" class="message_list_check_box" type='checkbox' name='messages_selected[]' value='5'></td>
+                            <td class="dateForTable">
                                 <?php echo date("F j\, Y",strtotime($message['created_at'])) ?>
                             </td>
-                            <td>
+                            <td class="nameForTable">
                                     <img class="messageListAuthorProfileImage" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $author['picture_url_tiny']; ?>" alt="<?php echo $author['first_name'].' '.$author['last_name'] ?>" />
                                     <?php echo $author['first_name'].' '.$author['last_name'] ?>
                             </td>
-                            <td>
+                            <td class="interiorMessageTable">
                                 <a class="tableLink" href="<?php echo url_for("messages_show", array('message_id' => $message['message_id'])) ?>">
                                 <div>
                                         <?php echo $message['subject'] ?>
