@@ -154,7 +154,7 @@ h3{
     font-weight: bold;
     font-size: 100%;
     color: #404040;
-    //margin: 0px;
+    /*margin: 0px;*/
 }
 p{
     margin: 0px;
@@ -467,9 +467,9 @@ p{
 .searchPeople {
     outline: none;
     border: 0;
-    padding: 0;
+    padding: 0 50px 0 5px;
     background: url('../images/traveler_searchbar.png') no-repeat;
-    width: 302px;
+    width: 250px;
     height: 38px;
     font-weight: bold;
     font-family: Arial;

@@ -440,8 +440,8 @@ textarea {
     border: none;
     outline: 0;
     height: 26px;
-    width: 261px;
-    padding: 0px 0px 0px 15px;
+    width: 227px;
+    padding: 0px 36px 0px 15px;
     margin: 0px 0px 0px 0px;
     float: left;
 }
@@ -578,7 +578,7 @@ textarea {
     color: #3D3D3D;
     background-image: none;
     background-color: #ccc;
-    background-image: url("../images/activeNav.png");
+    background-image: url("../images/navigationBackground_rollover.jpg");
 }
 
 
@@ -668,6 +668,7 @@ textarea {
     height: 24px;
     font-weight: bold;
     color: #FFFFFF;
+    cursor: pointer;
     border: 0px;
     background-color: #119F49;
 }
