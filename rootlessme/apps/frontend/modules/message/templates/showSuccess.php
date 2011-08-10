@@ -4,7 +4,7 @@
   'title',
   sprintf('Rootless Me - %s', $conversation->getSubject()))
 ?>
-<h1><?php echo $conversation->getSubject() ?></h1>
+<h1 class="messageTitle"><?php echo $conversation->getSubject() ?></h1>
 <div class="messageThread">
     <?php foreach ($messages as $i => $message):
         $author = $message->getPeople()->getProfiles()->getFirst(); ?>
@@ -22,7 +22,7 @@
             <span class ="dateText"><?php echo date("n\/j\/Y g\:ia",strtotime($message->getCreatedAt())) ?></span>
             <br />
         </div>
-            <p>
+            <p class="bodyGreyBackground">
                 <?php echo nl2br($message->getBody()) ?>
             </p>
         </div>
@@ -30,7 +30,7 @@
     <hr class="messageDividerBar" />
     <?php endforeach; ?>
     <div class="messageReply">
-        <h2>Reply</h2>
+        <h2 class="replyTitle">Reply</h2>
         <?php include_partial('reply', array('form' => $replyForm)) ?>
     </div>
 </div>

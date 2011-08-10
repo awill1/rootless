@@ -111,6 +111,7 @@ tbody {
 }
 
 .message {
+    background-color: #F4F4F4;
     margin: 20px 0px 0px 0px;
     width: 100%;
 }
@@ -127,16 +128,49 @@ tbody {
 }
 
 .messageAuthorPicture {
-    margin: 0px 0px 0px 40px;
+    margin: 0px 0px 0px 0px;
+    padding: 20px 0px 10px 40px;
+    background-color: #F4F4F4
+
+}
+
+/*.fromReply {
+    display: inline;
+    width: 100px;
+    padding: 0px 0px 0px 60px;
+}*/
+
+.messageAuthorPictureReply {
+    display: inline;
+    width: inherit;
+    float: left;
+    margin: 0px 0px 0px 0px;
+    padding: 20px 0px 0px 8px;
+
+}
+
+.messageFromReply {
+    font-weight: bold;
+    font-size: 85%;
+    display: inline;
+    width: inherit;
+    float: left;
+    margin: 15px 0px 0px 15px;
     padding: 0px 0px 0px 0px;
 
 }
 
-.messageAuthorPictureReply {
+.composeNew {
+    background-color: #F4F4F4;
+    width: 500px;
+}
+
+.messageInformationLinkReply {
+    display: inline;
+    width: inherit;
     float: left;
-    width: 33px;
-    margin: 20px 0px 0px 70px;
-    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    padding: 17px 0px 0px 8px;
 
 }
 
@@ -148,19 +182,36 @@ tbody {
 }
 
 .messageBody {
+    background-color: #F4F4F4;
     clear: both;
     float: left;
-    padding: 0px 0px 10px 0px;
-    margin: -58px 0px 0px 110px;
+    padding: 0px 0px 10px 110px;
+    margin: -58px 0px 0px 0px;
     display: inline;
 }
 
 .messageDividerBar {
     clear:left;
-    color: #F4F4F4;
+}
+
+.messageTitle {
+    font-weight: Normal;
+    font-size: 180%;
+}
+.replyTitle {
+    font-weight: Normal;
+    font-size: 150%;
+}
+.bodyGreyBackground {
+    background-color: #F4F4F4;
+    width: 450px;
+    margin: -40px 0px 0px -110px;
+    padding: 20px 10px 10px 40px;
+   
 }
 
 .messageReplyBox {
+    clear: both;
     margin: 0px 0px 0px 30px;
 }
 
