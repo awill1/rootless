@@ -359,6 +359,10 @@ ride_offer_update:
   requirements:
     sf_method: [post]
 
+# search rules
+search:
+  url:   /search
+  param: { module: search, action: search }
 
 # seat rules
 seats:

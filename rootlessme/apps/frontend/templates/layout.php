@@ -28,8 +28,8 @@
         <!-- Header -->
         <div id="header">
             <a href="<?php echo url_for('dashboard') ?>" ><img id="headerLogo" src="/images/Logo.png" alt="RootlessMe" /></a>
-                <form id="headerSearchForm" action="search.php" >
-                      <input id="searchInput" value="Search" onblur="if (this.value == ''){this.value = 'Search';}" onfocus="if(this.value == 'Search'){this.value='';}" />
+                <form id="headerSearchForm" action="<?php echo url_for('search') ?>" method="get" >
+                      <input id="searchInput" name="query" value="Search" onblur="if (this.value == ''){this.value = 'Search';}" onfocus="if(this.value == 'Search'){this.value='';}" />
                       <input class="headerSubmit" type="submit" value="find" />
                 </form>
             <div id="headerControls">

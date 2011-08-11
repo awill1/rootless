@@ -64,4 +64,46 @@ class ProfilesTable extends Doctrine_Table
 
         return $q->execute();
     }
+
+    static public function getLuceneIndex()
+    {
+        ProjectConfiguration::registerZend();
+
+        if (file_exists($index = self::getLuceneIndexFile()))
+        {
+            return Zend_Search_Lucene::open($index);
+        }
+
+        return Zend_Search_Lucene::create($index);
+    }
+
+    static public function getLuceneIndexFile()
+    {
+        // Get the Lucene search index file
+        return sfConfig::get('sf_data_dir').'/profile.'.sfConfig::get('sf_environment').'.index';
+    }
+    
+    public function getForLuceneQuery($query)
+    {
+        $hits = self::getLuceneIndex()->find($query);
+
+        $pks = array();
+        foreach ($hits as $hit)
+        {
+            $pks[] = $hit->profileName;
+        }
+
+        if (empty($pks))
+        {
+            return array();
+        }
+
+        $q = $this->createQuery('p')
+            ->whereIn('p.profile_name', $pks);
+//            ->limit(20)
+
+//        $q = $this->addActiveJobsQuery($q);
+
+        return $q->execute();
+    }
 }

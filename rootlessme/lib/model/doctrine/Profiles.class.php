@@ -66,4 +66,72 @@ class Profiles extends BaseProfiles
         // record found.
         return ($q->count() > 0) ;
     }
+
+    public function save(Doctrine_Connection $conn = null)
+    {
+        // Get the connection information
+        $conn = $conn ? $conn : $this->getTable()->getConnection();
+        // Begin a transaction so it can be rolled back if something goes
+        // wrong
+        $conn->beginTransaction();
+        try
+        {
+            // Save the profile
+            $ret = parent::save($conn);
+            // Update the Lucene search index
+            $this->updateLuceneIndex();
+            // Commit the transaction
+            $conn->commit();
+
+            return $ret;
+        }
+        catch (Exception $e)
+        {
+            $conn->rollBack();
+            throw $e;
+        }
+    }
+
+    public function delete(Doctrine_Connection $conn = null)
+    {
+        // Remove the profile from the Lucene search index
+        $index = ProfilesTable::getLuceneIndex();
+        foreach ($index->find('pk:'.$this->getId()) as $hit)
+        {
+            $index->delete($hit->id);
+        }
+
+        // Remove the profile from the database
+        return parent::delete($conn);
+    }
+
+    public function updateLuceneIndex()
+    {
+        $index = ProfilesTable::getLuceneIndex();
+
+        // remove existing entries
+        foreach ($index->find('profileName:'.$this->getProfileName()) as $hit)
+        {
+            $index->delete($hit->id);
+        }
+
+        // don't index expired and non-activated jobs
+//        if ($this->isExpired() || !$this->getIsActivated())
+//        {
+//            return;
+//        }
+
+        $doc = new Zend_Search_Lucene_Document();
+
+        // store profile primary key to identify it in the search results
+        $doc->addField(Zend_Search_Lucene_Field::Keyword('profileName', $this->getProfileName()));
+
+        // index profile fields
+        $doc->addField(Zend_Search_Lucene_Field::UnStored('firstName', $this->getFirstName(), 'utf-8'));
+        $doc->addField(Zend_Search_Lucene_Field::UnStored('lastName', $this->getLastName(), 'utf-8'));
+
+        // add profile to the index
+        $index->addDocument($doc);
+        $index->commit();
+    }
 }
