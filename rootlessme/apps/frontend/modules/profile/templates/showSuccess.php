@@ -1,3 +1,4 @@
+<?php use_javascript(sfConfig::get('app_google_map_script')) ?>
 <?php use_stylesheet('profile.css') ?>
 
 <?php slot(
@@ -7,9 +8,37 @@
 
 <?php slot('gmapheader'); ?>
     <script type="text/javascript">
-        $(function() {
+        var map = null;
+
+        // Function when the page is ready
+        $(document).ready(function(){
+            // Make the tabs
             $( "#middleProfileDetails" ).tabs();
-	});
+
+            // Google map loading
+            var latlng = new google.maps.LatLng(<?php echo sfConfig::get('app_google_map_default_latitude') ?>, <?php echo sfConfig::get('app_google_map_default_longitude') ?>);
+            var myOptions = {
+                zoom: <?php echo sfConfig::get('app_google_map_default_zoom') ?>,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById("travelMap"),
+                myOptions);
+
+            // Bind to the tabsshow event to resize the google map
+            // This necessary work around is a side effect of the jquery ui
+            // tabs. See
+            // http://stackoverflow.com/questions/1428178/problems-with-google-maps-api-v3-jquery-ui-tabs
+            $('#middleProfileDetails').bind('tabsshow', function(event, ui) {
+                if (ui.panel.id == "fragment-travel_log") {
+                    // Resize the map to fit the div size
+                    google.maps.event.trigger(map, 'resize');
+                    // Center the map
+                    var mapCenter = new google.maps.LatLng(<?php echo sfConfig::get('app_google_map_default_latitude') ?>, <?php echo sfConfig::get('app_google_map_default_longitude') ?>);
+                    map.setCenter(mapCenter);
+                }
+            });
+        });
     </script>
 <?php end_slot();?>
 <div id="ProfileTopInfo">
@@ -62,13 +91,11 @@
         </div>
     </div>
     <div id="fragment-travel_log" class="middleProfileTabContent">
-        <div id="travelMapArea" > 
-            
-            
+        <div id="travelMapArea" >
+            <div id="travelMap" ></div>
             <div id="travelMapAreaTextCont">
                  <span class="travelmapCaption">20,398 miles traveled</span>
-            
-        </div>
+            </div>
         </div>
         <div id="carInfoArea">
             <h3>Car Info</h3>

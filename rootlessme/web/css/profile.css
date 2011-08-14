@@ -33,6 +33,12 @@
     margin-bottom: 20px;
 }
 
+#travelMap
+{
+    width: 400px;
+    height: 230px;
+}
+
 #travelMapAreaTextCont{
     position: absolute;
     top: 330px;
