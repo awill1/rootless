@@ -44,5 +44,25 @@ class seatComponents extends sfComponents
 
         // Create the seat form
         $this->seatForm = new SeatsForm($this->seat);
+        
+        // Hide the input field for the posting
+        switch ($this->rideType) {
+            case "offer":
+                // The ride was an offer and we already set the value, so
+                // hide the control
+//                $this->seatForm->getWidget('carpool_id')->setHidden('true');
+//                $this->seatForm->getWidget('carpool_id')->setOption('type', 'hidden');
+                break;
+            case "request":
+                // The ride was a request and we already set the value, so
+                // hide the control
+//                $this->seatForm->getWidget('passenger_id')->setHidden('true');
+//                $this->seatForm->getWidget('carpool_id')->setOption('type', 'hidden');
+                break;
+            default:
+               // Default case just in case the ride_type is invalid (should
+               // be prevented by routing.yml).
+               echo 'Ride Type '.$this->rideType.'is invalid.';
+        }
     }
 }
