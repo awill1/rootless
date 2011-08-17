@@ -60,7 +60,7 @@
 </div>
 <div id="middleProfileBadge">
     <?php include_component('friendship', 'requestFriendshipButton', array('person_id' => $profile->getPersonId())) ?>
-    <a href id="messageButtonLink">Message</a><br />
+    <a href id="messageButtonLink">+ Message</a><br />
     <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $profile->getPictureUrlLarge() ?>" alt="<?php echo $profile->getFullName() ?> profile picture"/>
     <div class="middleProfileBadgeInfo">
         Rides Given <strong><?php echo $travelSummary['ridesGiven'] ?></strong>
@@ -81,7 +81,7 @@
     <div id="fragment-feedback" class="middleProfileTabContent">
 
         <div id="testimonialsArea">
-            <h3 id="testimonialsTitle">Testimonials</h3>
+            <h3>Testimonials</h3>
             <hr />
             <?php include_component('review', 'reviews', array('profile_name' => $profile->getProfileName())) ?>  
         </div>

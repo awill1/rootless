@@ -7,6 +7,7 @@
 */
 
 /*I.D. Fragment Formatting & Styles*/
+
 #testimonialsArea{
     float:left;
     width:400px;
@@ -19,7 +20,7 @@
     background-color: #f4f4f4;
     margin-left: 10px;
     text-align: left;
-    padding: 15px 17px 15px 17px;
+    padding: 15px 16px 15px 17px;
 }
 
 /*Travel Log (Should we call it Travels???) Fragment Formatting & Styles*/
@@ -74,7 +75,7 @@
 }
 #interestsArea{
     background-color: #f4f4f4;
-    width:666px;
+    width:663px;
     float:left;
     padding: 15px 15px 15px 15px;
 }
@@ -82,10 +83,11 @@
     font-weight: normal;
     font-size: 110%;
     margin-top: 0px;
+        padding: 0px 0px 0px 0px;
 }
 #friendsArea{
     background-color: #f4f4f4;
-    width:100%;
+    width:663px;
     float: left;
     padding: 15px 15px 15px 15px;
 }
@@ -140,10 +142,10 @@
     text-decoration: none;
 }
 #messageButtonLink{
-    color: black;
+    color: white;
     padding: 5px 5px 5px 5px;
     margin-bottom: 10px;
-    background-color: #EAEAEA;
+    background-color: #119F49;
     clear: left;
     float:right;
     font-style: italic;
@@ -277,7 +279,7 @@ p{
 }
 
 #fragment-interests .middleProfileTabContentLeftColumn {
-    padding: 0px 10px 0px 10px;
+    padding: 0px 10px 0px 0px;
     width: 300px;
     float: left;
 }
@@ -322,7 +324,7 @@ p{
 }
 
 .feedbackRatingBar {
-    width: 280px;
+    width: 220px;
     display: block;
     float: left;
     color: #D05A36;
@@ -334,7 +336,6 @@ p{
     background-image: url('../images/ratingBar.png');
     background-repeat: repeat;
     height: 100%;
-    width: 200px;
     padding: 2px 0px 2px 0px;
     text-indent: 4px;
     
@@ -366,7 +367,11 @@ p{
     padding: 0px;
     width: 100%;
 }
-#reviewNameColor:link{
+.reviewNameColor a:link{
+    color: #119F49;
+}
+
+.reviewNameColor a:visited{
     color: #119F49;
 }
 
@@ -378,12 +383,12 @@ p{
 
 .feedbackProfilePicture {
     float: left;
-    margin: 0px 6px 6px 0px;
+    margin: 10px 6px 20px 0px;
 }
 
 .feedbackProfileHeading {
     color: #119F49;
-    margin: 0px 0px 0px 0px;
+    margin: 10px 0px 0px 0px;
 }
 
 
