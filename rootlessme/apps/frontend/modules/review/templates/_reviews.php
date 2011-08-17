@@ -81,7 +81,6 @@
 <img id="graphLoader" alt="Loading spinner" src="/images/ajax-loader.gif" />
 
 <div id="driverReviews">
-    <div id="driverReviewsViewBox"><a class="actionLink" href="#" >View Testimonials</a></div>
 
       <?php if ($sf_user->isAuthenticated() && ($sf_user->getGuardUser()->getPersonId() != $profile->getPersonId())): ?>
         <button id="newReviewButton" >Add a review</button>
@@ -108,7 +107,7 @@
         <ul id="driverReviewsList">
         <?php foreach ($reviews as $review): ?>
          <li class="driverReviewsListItem">
-             <a href="<?php echo $review->getPeople()->getProfiles()->getFirst()->getProfileName() ?>">
+             <div id="reviewNameColor"><a class="reviewNameColor" href="<?php echo $review->getPeople()->getProfiles()->getFirst()->getProfileName() ?>"></div>
                  <img class="feedbackProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $review->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall() ?>" alt="<?php echo $review->getPeople()->getProfiles()->getFirst()->getFullName() ?>" />
              </a>
             <h3 class="feedbackProfileHeading">
@@ -119,9 +118,10 @@
             <p class="feedbackProfileComment">
                 <?php echo $review->getComments() ?>
             </p>
-            <div class="feedbackProfileReply"><a class="actionLink" href="#" >Reply</a></div>
         </li>
+        <div id="profileDivider"><hr /></div>
         <?php endforeach; ?>
       </ul>
+        
     <div class="middleFriendsListMore"><a class="seeMoreLink" href="#">&gt;&gt;see more</a></div>
 </div>

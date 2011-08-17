@@ -81,7 +81,7 @@
     <div id="fragment-feedback" class="middleProfileTabContent">
 
         <div id="testimonialsArea">
-            <h3>Testimonials</h3>
+            <h3 id="testimonialsTitle">Testimonials</h3>
             <hr />
             <?php include_component('review', 'reviews', array('profile_name' => $profile->getProfileName())) ?>  
         </div>
