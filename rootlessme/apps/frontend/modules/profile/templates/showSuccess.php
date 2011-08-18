@@ -144,7 +144,7 @@
             <h3>Rootless Friends</h3>
                 <ul class="middleFriendsList">
                 <?php foreach ($friends as $friend): ?>
-                    <li class="middleFriendsListItem"><a href="<?php echo $friend->getProfileName() ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $friend->getPictureUrlSmall() ?>" alt="<?php echo $friend->getFullName() ?>" /><br /><?php echo $friend->getFullName() ?></a></li>
+                    <li class="middleFriendsListItem"><span class="friendNameColor"> <a href="<?php echo $friend->getProfileName() ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $friend->getPictureUrlSmall() ?>" alt="<?php echo $friend->getFullName() ?>" /><br /><?php echo $friend->getFullName() ?></a></span></li>
                 <?php endforeach; ?>
                 </ul>
                 <div class="middleFriendsListMore"><a class="seeMoreLink" href="#">&gt;&gt;see more</a></div>

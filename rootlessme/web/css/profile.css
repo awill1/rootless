@@ -367,13 +367,28 @@ p{
     padding: 0px;
     width: 100%;
 }
-.reviewNameColor a:link{
+
+.friendNameColor a:link{
+    color: #404040;
+}
+
+.friendNameColor a:visited{
+    color: #404040;
+}
+
+.friendNameColor {
     color: #119F49;
+    font-size: 80%;
 }
 
 .reviewNameColor a:visited{
     color: #119F49;
 }
+
+.reviewNameColor a:link{
+    color: #119F49;
+}
+
 
 .driverReviewsListItem {
     margin: 20px 0px 20px 0px;
