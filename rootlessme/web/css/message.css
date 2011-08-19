@@ -234,7 +234,7 @@ tbody {
     float: right;
     font-size: 120%;
     color: #FFFFFF;
-    background-color: #119F49;
+    background-color: #119D49;
 }
 
 #middleMessageDetails ul li a.messageButton:link, #middleMessageDetails ul li a.messageButton:visited {
@@ -245,7 +245,7 @@ tbody {
 }
 
 #middleMessageDetails ul li a.messageButton:hover {
-     background-color:#119F49;
+     background-color:#119D49;
      background-image: none;
      width: 85px;
      color: #fff;
@@ -284,7 +284,7 @@ fieldset {
 
 .backtoListLink {
     float: right;
-    color: #D25A36;
+    color: #D05A36;
 }
 
 

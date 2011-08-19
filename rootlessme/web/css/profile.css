@@ -117,7 +117,7 @@
 }
 .editLinkText{
     font-size: 80%;
-    color:#D25A35;
+    color: #D05A36;
     font-style: italic;
     font-family: Arial;
 }
@@ -136,7 +136,7 @@
 }
 
 .locationLink{
-    color: #119F49;
+    color: #119D49;
     font-weight: bold;
     font-style: italic;
     text-decoration: none;
@@ -145,7 +145,7 @@
     color: white;
     padding: 5px 5px 5px 5px;
     margin-bottom: 10px;
-    background-color: #119F49;
+    background-color: #119D49;
     clear: left;
     float:right;
     font-style: italic;
@@ -216,7 +216,7 @@ p{
 #mainProfileTitleEditLink{
     font-size: 40%;
     font-weight: normal;
-    color: #F55830;
+    color: #D05A36;
     font-style: italic;
     text-decoration: none;
 }
@@ -377,16 +377,16 @@ p{
 }
 
 .friendNameColor {
-    color: #119F49;
+    color: #119D49;
     font-size: 80%;
 }
 
 .reviewNameColor a:visited{
-    color: #119F49;
+    color: #119D49;
 }
 
 .reviewNameColor a:link{
-    color: #119F49;
+    color: #119D49;
 }
 
 
@@ -402,7 +402,7 @@ p{
 }
 
 .feedbackProfileHeading {
-    color: #119F49;
+    color: #119D49;
     margin: 10px 0px 0px 0px;
 }
 
@@ -415,7 +415,7 @@ p{
 .feedbackProfileReply {
     font-weight: lighter;
     float: right;
-    background-color: #119F49;
+    background-color: #119D49;
     padding: 2px 5px 2px 5px;
     color: #FFFFFF;
     
@@ -475,7 +475,7 @@ p{
 
 .travelerListName {
     padding: 5px 0px 0px 0px;
-    color: #119F49;
+    color: #119D49;
     font-weight: bold;
     font-style: italic;
     float: left;
@@ -483,7 +483,7 @@ p{
 }
 
 .travelersListItem {
-    color: #119F49;
+    color: #119D49;
     font-weight: bold;
     font-style: italic;
     padding: 0px 0px 10px 0px;

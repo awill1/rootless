@@ -26,8 +26,9 @@
     <br/>
     <br/>
     <br/>
-    <img src="/images/NotaMember.png" alt="Rootless" /> 
     </div>
+    
     <div id="signUpFormContainer">
+        <span class="notMemberTransparency"><img src="/images/NotaMember.png" alt="Rootless" /></span>
         <span class="signUpText"><?php echo get_partial('sfGuardRegister/form', array('form' => $registerForm)) ?></span>
     </div>

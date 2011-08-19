@@ -95,6 +95,7 @@ textarea {
     color: #FFFFFF;
     float: right;
     padding: 2px 5px 0px 0px;
+    
 }
 #containerFront {
     width: 100%;
@@ -155,16 +156,16 @@ textarea {
     width: 45px;
     color: #E8E9E9;
     height: 20px;
-    background-color: #119F49;
+    background-color: #119D49;
     border: 0;
     float: right;
     font-style: italic;
+ 
 }
 
 .home .signUpText tfoot input:hover {
     cursor: pointer;
-    background-color: #ed5a30;
-   
+    background-color: #D05A36;
 }
 
 
@@ -199,7 +200,7 @@ textarea {
     padding: 10px;
     margin-left: -5px;
     width: 200px;
-    min-height: 320px;
+    min-height: 350px;
     max-height: 100%;
     left: 0;
     position: absolute;
@@ -265,12 +266,17 @@ textarea {
     position: absolute;
     top: 33px;
     left: 150px;
-    color: #009740;
+    color: #119D49;
 }
 
 .home #loginFormContainer tfoot a:hover {
     text-decoration: underline;
     
+}
+
+.notMemberTransparency {
+    opacity: 1.5;
+    padding-left: -3px;
 }
 
 
@@ -656,7 +662,7 @@ textarea {
 
 #leftProfileLocation {
     font-style: italic;
-    color: #119F49;
+    color: #119D49;
     font-weight: bold;
 }
 
@@ -691,7 +697,7 @@ textarea {
 }
 
 .travelingWith {
-    color: #119F49;
+    color: #119D49;
 }
 
 .leftActionButton {
@@ -701,7 +707,7 @@ textarea {
     color: #FFFFFF;
     cursor: pointer;
     border: 0px;
-    background-color: #119F49;
+    background-color: #119D49;
 }
 
 .leftActionFont {
@@ -725,7 +731,7 @@ textarea {
 
 .leftActivityLink {
     font-style: italic;
-    color: #F55830;
+    color: #D05A36;
     font-weight: bold;
     text-decoration: none;
 }
@@ -743,7 +749,7 @@ textarea {
 }
 
 .leftEventName {
-    color: #119F49;
+    color: #119D49;
     font-weight: bold;
     font-size: 110%;
     font-style: italic;
@@ -776,7 +782,7 @@ textarea {
 }
 
 .leftRideName {
-    color: #119F49;
+    color: #119D49;
     font-weight: bold;
     font-size: 110%;
     font-style: italic;
@@ -882,20 +888,20 @@ textarea {
     float: right;
 }
 .actionLink {
-    color: #F55830;
     font-style: italic;
     font-weight: bold;
     text-decoration: none;
+    color: #D05A36;
 }
 
 .seeMoreLink {
-    color: #119F49;
+    color: #119D49;
     font-style: italic;
     margin: 0px 0px 0px 0px;
 }
 
 .locationLink{
-    color: #119F49;
+    color: #119D49;
     font-weight: bold;
     font-style: italic;
     text-decoration: none;
@@ -949,7 +955,7 @@ textarea {
 }
 
 .personLink {
-    color: #119F49;
+    color: #119D49;
     font-style: italic;
 }
 
@@ -1015,7 +1021,7 @@ textarea {
 
 #footer a:link {
     
-    color: #119F49;
+    color: #119D49;
     
 }
 
