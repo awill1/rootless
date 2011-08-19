@@ -5,11 +5,11 @@
 
 <h1>Contact us</h1>
 <div>
-    <p>
+    <p id="footerPages">
         We would love to hear from you. Our email address is:
 
-    </p>
-    <p>
+    <br/>
+    <br/>
         contact@rootless.me
     </p>
 
