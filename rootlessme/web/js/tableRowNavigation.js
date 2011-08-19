@@ -26,10 +26,11 @@ function PrepareTable()
                 UnHighlightRow($(this));
             }
         )
-        .find('td:not(:has(:checkbox, a))')
+        .find('td:not(:has(:checkbox))')
             .click(function () {
-                
-                var listLink = $(this).parent().find("a").attr("href");
+
+
+                var listLink = $(this).parent().find('.tableLink').attr("href");
            $('#contentBox').html("<img src='../images/ajax-loader.gif' />");
           
  
