@@ -8,7 +8,7 @@
             <script type="text/javascript">
                 <!-- Begin
                 // <input type=button name="CheckAll"   value="Check All" onClick="checkAll(document.myform.list)">
-                // <input type=button name="UnCheckAll" value="Uncheck All" onClick="uncheckAll(document.myform.list)">
+                // <input type=button name="UnCheckAll" value="Uncheck All" onClick="uncheckAll(document.myform.list)">                
                 function checkAll(field)
                 {
                         for (i = 0; i < field.length; i++)

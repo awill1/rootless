@@ -19,16 +19,28 @@ function PrepareTable()
         .hover(
             function()
             {
-                HighlightRow($(this))
+                HighlightRow($(this));
             }
             ,function()
             {
-                UnHighlightRow($(this))
+                UnHighlightRow($(this));
             }
         )
         .find('td:not(:has(:checkbox, a))')
             .click(function () {
-                /*window.location = $(this).parent().find("a").attr("href");*/
+                
+                var listLink = $(this).parent().find("a").attr("href");
+           $('#contentBox').html("<img src='../images/ajax-loader.gif' />");
+          
+ 
+           
+           
+           $('#contentBox').load(listLink, function() {
+               
+               PrepareTable();
+           });
+           
+           return false;
         });
 }
 

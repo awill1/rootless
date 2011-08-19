@@ -238,14 +238,19 @@ tbody {
 }
 
 #middleMessageDetails ul li a.messageButton:link, #middleMessageDetails ul li a.messageButton:visited {
-     background-color: #E0E0E0;
+     background-color: #d05a36;
      background-image: none;
-     color: #555;
+     color: #fff;
      width: 85px;
+     position: absolute;
+     right: 9px;
+     font-weight: bold;
+     font-size: 14px;
+     padding-top: 4px;
 }
 
 #middleMessageDetails ul li a.messageButton:hover {
-     background-color:#119D49;
+     background-color:#D14D2F;
      background-image: none;
      width: 85px;
      color: #fff;

@@ -24,7 +24,7 @@
            $(this).parent().addClass('selectedNav');
            var listLink = $(this).attr('href');
            
-           
+           $('#contentBox').html("<img src='../images/ajax-loader.gif' />");
            
            $('#contentBox').load(listLink, function() {
                
@@ -40,8 +40,14 @@
        
        $('.selectedRow').live('click', function(){
            
-       
+           if(td.hasClass('checkBoxTable')){
+               
+           } else{
+           
            var listLink = $(this).find('.tableLink').attr('href');
+           $('#contentBox').html("<img src='../images/ajax-loader.gif' />");
+          
+ 
            
            
            $('#contentBox').load(listLink, function() {
@@ -50,7 +56,7 @@
            });
            
            return false;
-           
+           }
            
             });
        
@@ -59,7 +65,7 @@
 <?php end_slot();?>
 
 
-<h1>Welcome to your inbox, Aaron!</h1>
+<h1>Welcome to your inbox, <?php echo $sf_user->getGuardUser()->getPeople(); ?>!</h1>
 <div id="middleMessageDetails">
     <ul>
         <li class="selectedNav"><a href="<?php echo url_for('messages_list', array('list_type'=>'inbox')) ?>" title="Inbox">Inbox</a></li>
