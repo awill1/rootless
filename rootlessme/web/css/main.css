@@ -48,6 +48,7 @@ textarea {
 }
 
 #bottomFeed {
+    opacity: .8;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -57,13 +58,43 @@ textarea {
     z-index: 1000;
 }
 #ridingNow {
-    margin-left: 240px;
+    margin-left: 200px;
     padding-top: 4px;
 }
 #copyRight {
+    text-align: right;
+    font-weight: lighter;
+    font-size: 50%;
+    color: #B59F85;
+    float: right;
+    padding: 2px 5px 0px 0px;
+}
+
+#copyRight a:link{
+    text-align: right;
+    font-weight: lighter;
+    font-size: 50%;
+    color: #B59F85;
+    float: right;
+    padding: 2px 5px 0px 0px;
+}
+
+#copyRight a:visited{
+    text-align: right;
+    font-weight: lighter;
+    font-size: 50%;
+    color: #B59F85;
+    float: right;
+    padding: 2px 5px 0px 0px;
+}
+
+#copyRight a:hover{
+    text-align: right;
+    font-weight: lighter;
+    font-size: 50%;
     color: #FFFFFF;
     float: right;
-    padding: 5px 5px 0px 0px;
+    padding: 2px 5px 0px 0px;
 }
 #containerFront {
     width: 100%;

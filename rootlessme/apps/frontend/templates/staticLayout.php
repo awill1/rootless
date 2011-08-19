@@ -164,7 +164,17 @@
     </div>
       <div id="bottomFeed">
           <img id="ridingNow" src="/images/RidingNow.png" alt="RootlessMe" />   
-           <span id="copyRight"> &copy;2011 Star Banana, LLC. All rights reserved.</span>
+           <span id="copyRight">            <?php echo link_to('Terms of Service', 'terms') ?>
+            
+            <?php echo link_to('Privacy Policy', 'privacy') ?>
+            
+            <?php echo link_to('About Us', 'about') ?>
+            
+            <?php echo link_to('Contact Us', 'contact') ?>
+            
+            <?php echo link_to('Safety Tips', 'safety') ?>
+            
+            <?php echo link_to('Help', 'help') ?><br/> &copy;2011 Star Banana, LLC. All rights reserved.</span>
         </div>
   </body>
 </html>
