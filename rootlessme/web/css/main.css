@@ -70,21 +70,11 @@ textarea {
     padding: 2px 5px 0px 0px;
 }
 
-#copyRight a:link{
+#copyRight a:link, #copyRight a:visited{
     text-align: right;
     font-weight: lighter;
     font-size: 50%;
     color: #B59F85;
-    float: right;
-    padding: 2px 5px 0px 0px;
-}
-
-#copyRight a:visited{
-    text-align: right;
-    font-weight: lighter;
-    font-size: 50%;
-    color: #B59F85;
-    float: right;
     padding: 2px 5px 0px 0px;
 }
 
@@ -93,7 +83,6 @@ textarea {
     font-weight: lighter;
     font-size: 50%;
     color: #FFFFFF;
-    float: right;
     padding: 2px 5px 0px 0px;
     
 }
@@ -275,8 +264,8 @@ textarea {
 }
 
 .notMemberTransparency {
-    opacity: 1.5;
-    padding-left: -3px;
+    position: relative;
+    z-index: 100;
 }
 
 
