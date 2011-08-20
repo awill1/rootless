@@ -42,6 +42,9 @@ class sfGuardRegisterForm extends BasesfGuardRegisterForm
 //      'permissions_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission')),
 //
 //        unset($this['person_id']);
+
+        // Change the label for password again to be "Confirm password"
+        $this->widgetSchema->setLabel('password_again', 'Confirm password');
     }
 
     public function doSave($con = null)
