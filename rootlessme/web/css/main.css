@@ -531,6 +531,8 @@ textarea {
     padding: 0px 0px 0px 0px;
     position: absolute;
     visibility: hidden;
+    top: 40px;
+    border: 1px solid;
 }
 
 .headerControlsListSublistItem
@@ -540,7 +542,7 @@ textarea {
     background-color: #F4F4F4;
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
-    border: 1px solid;
+    border-bottom: .25pt solid #3D3D3D;
     line-height: normal;
 }
 
@@ -548,14 +550,15 @@ textarea {
 {
     display: block;
     color: #3D3D3D;
-    background: #F4F4F4;
+    background: #EDEDED;
     margin: 0px 0px 0px 0px;
     padding: 10px 10px 10px 10px;
+    height: 53px;
 }
 
 .headerSublistControl:hover
 {
-    background: #EDEDED;
+    background: #F5F5F5;
 }
 
 
@@ -1023,4 +1026,46 @@ textarea {
     
     text-decoration: underline;
     
+}
+
+.headerControlsListSublistItem {
+    
+    display: inline-block;
+    width: 275px;
+    right: 135px;
+    float: left;
+}
+
+.quickViewImage {
+    float:left;
+    
+}
+
+.quickViewInfo {
+    float: left;
+    margin-left: 10px;
+}
+
+.quickViewInfo h2 {
+    font-size: 12px;
+    font-family: Arial,Verdana, sans-serif;
+    color: #d25a36;
+    margin: 0;
+    padding: 0;
+}
+
+.quickViewInfo h3 {
+    font-size: 11px;
+    font-family: Arial,Verdana, sans-serif;
+    color: #3d3d3d;
+    margin: 0;
+    padding: 8px 0 0 0;
+}
+
+.quickViewInfo p {
+    font-size: 11px;
+    font-family: Arial,Verdana, sans-serif;
+    color: #3d3d3d;
+    margin: 0;
+    padding: 0;
 }

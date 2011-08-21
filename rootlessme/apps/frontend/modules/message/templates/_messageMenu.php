@@ -12,12 +12,27 @@
             <a class="headerSublistControl" href="<?php echo url_for('messages_show',$newMessage) ?>">
                 <?php 
                     $profile = $newMessage->getPeople()->getProfiles()->getFirst();
+                    echo "<span class='quickViewImage'>";
                     echo "<img src='/uploads/assets/profile_pictures/";
                     echo $profile->getPictureUrlSmall();
                     echo "' />";
+                    echo "</span>";
+                    echo "<span class='quickViewInfo'>";
+                    echo "<h2>";
                     echo $profile->getFullName();
+                    echo "</h2>";
+                    echo "<h3>";
                     echo $newMessage->getSubject();
-                    echo $newMessage->getBody();
+                    echo "</h3>";
+                    echo "<p>";
+                    echo substr($newMessage->getBody(),0,40);
+                    
+                    if(strlen($newMessage->getBody()) > 40) {
+                    echo "...";
+                    
+                    }
+                    echo "</p>";
+                    echo "</span>";
                 ?>
             </a>
         </li>
