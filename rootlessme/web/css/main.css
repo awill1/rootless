@@ -532,7 +532,7 @@ textarea {
     position: absolute;
     visibility: hidden;
     top: 40px;
-    border: 1px solid;
+    border: 1px solid #fff;
 }
 
 .headerControlsListSublistItem
@@ -542,7 +542,7 @@ textarea {
     background-color: #F4F4F4;
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
-    border-bottom: .25pt solid #3D3D3D;
+    border-bottom: .25pt solid #fff;
     line-height: normal;
 }
 
