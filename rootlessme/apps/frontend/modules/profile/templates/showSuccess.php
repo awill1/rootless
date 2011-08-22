@@ -41,6 +41,7 @@
         });
     </script>
 <?php end_slot();?>
+    
 <div id="ProfileTopInfo">
         <h1 id="mainProfileTitle">
             <?php echo $profile->getFullName() ?>
@@ -141,22 +142,21 @@
     </div>
     <div id="fragment-friends" class="middleProfileTabContent">
         <div id="friendsArea">
-            <h3>Rootless Friends</h3>
+            <h3>Rootless Favorites</h3>
                 <ul class="middleFriendsList">
                 <?php foreach ($friends as $friend): ?>
                     <li class="middleFriendsListItem"><span class="friendNameColor"> <a href="<?php echo $friend->getProfileName() ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $friend->getPictureUrlSmall() ?>" alt="<?php echo $friend->getFullName() ?>" /><br /><?php echo $friend->getFullName() ?></a></span></li>
                 <?php endforeach; ?>
                 </ul>
-                <div class="middleFriendsListMore"><a class="seeMoreLink" href="#">&gt;&gt;see more</a></div>
+                <div class="middleFriendsListMore"></div>
 
                 <?php if ($sf_user->isAuthenticated() && ($sf_user->getGuardUser()->getPersonId() != $profile->getPersonId())): ?>
-            <h3>Mutual Friends</h3>
+            <h3>Mutual Favorites</h3>
                 <ul class="middleFriendsList">
                 <?php foreach ($mutualFriends as $friend): ?>
                     <li class="middleFriendsListItem"><a href="<?php echo $friend->getProfileName() ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $friend->getPictureUrlSmall() ?>" alt="<?php echo $friend->getFullName() ?>" /></a></li>
                 <?php endforeach; ?>
                 </ul>
-                <div class="middleFriendsListMore"><a class="seeMoreLink" href="#">&gt;&gt;see more</a></div>
                 <?php endif ?>
         </div>
     </div>

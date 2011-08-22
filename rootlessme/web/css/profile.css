@@ -122,9 +122,15 @@
     font-family: Arial;
 }
 
-#mainProfileTitle {
-    padding: 0px 0px 0px 0px;
-    margin-bottom: 0px;
+#profileTopInfo {
+    position: relative;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
+#mainProfileName {
+    font-size: 80%;
+    
 }
 
 #mainProfileSubtitle {

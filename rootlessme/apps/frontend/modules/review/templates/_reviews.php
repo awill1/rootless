@@ -123,5 +123,5 @@
         <?php endforeach; ?>
       </ul>
         
-    <div class="middleFriendsListMore"><a class="seeMoreLink" href="#">&gt;&gt;see more</a></div>
+    <div class="middleFriendsListMore"></div>
 </div>

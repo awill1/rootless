@@ -148,7 +148,6 @@
 </div>
 <div id="mainRideDetails">
     <h3 class="postedByStyles">Posted By: <a class="personLink" href="<?php echo url_for("profile_show_user", $rider)  ?>"><?php echo $rider->getFullName() ?></a></h3>
-    <h3>Trip Value: $50</h3>
     <h3>Asking Price: $<?php echo $passenger->getAskingPrice() ?> per person</h3>
     <p id="mainRideInformation"><?php echo nl2br($passenger->getDescription()) ?>
     </p>
