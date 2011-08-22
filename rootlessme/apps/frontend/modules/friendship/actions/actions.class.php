@@ -128,4 +128,18 @@ class friendshipActions extends sfActions
         }
         return $friendshipRequest;
     }
+    
+    public function executeFriendList(sfWebRequest $request)
+    {
+        //$this->forward('ride', 'index');
+        // Only allow reviews if the user is logged in
+        if ($this->getUser()->isAuthenticated())
+        {
+            // Get the user id
+            $userId = $this->getUser()->getGuardUser()->getPersonId();
+
+            // Get the friend list for the user
+            $this->friends = Doctrine_Core::getTable('Profiles')->getFriendsProfiles($userId);
+        }
+    }
 }

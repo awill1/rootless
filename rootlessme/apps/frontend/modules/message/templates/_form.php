@@ -13,7 +13,7 @@
           <?php if (!$form->getObject()->isNew()): ?>
             &nbsp;<?php echo link_to('Delete', 'message/delete?message_id='.$form->getObject()->getMessageId().'&conversation_id='.$form->getObject()->getConversationId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
           <?php endif; ?>
-          <input type="submit" value="Save" />
+          <input type="submit" value="Send" />
         </td>
       </tr>
     </tfoot>

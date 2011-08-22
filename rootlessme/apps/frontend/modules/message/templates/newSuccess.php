@@ -1,3 +1,4 @@
+<?php use_stylesheet('fcbkComplete.css') ?>
 <?php slot(
   'title',
   sprintf('Rootless Me - New Message'))
@@ -8,3 +9,18 @@
     
 <?php include_partial('form', array('form' => $form)) ?>
 </div>
+
+<script type="text/javascript" src="/js/<?php echo sfConfig::get('app_jquery_fcbk_complete_script') ?>"></script>
+<script type="text/javascript">
+    // FCBK Complete javascript
+    $(document).ready(function()
+    {
+        // Make the to textbox act like facebook
+        $("#messages_to").fcbkcomplete({json_url: "<?php echo url_for('friendship_list', array('sf_format' => 'json')) ?>",
+                                        cache: true,
+                                        filter_case: false,
+                                        filter_hide: true,
+                                        newel: false,
+                                        width: 350});
+    });
+</script>

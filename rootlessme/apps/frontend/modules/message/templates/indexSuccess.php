@@ -1,4 +1,5 @@
 <?php use_stylesheet('message.css') ?>
+<?php use_stylesheet('fcbkComplete.css') ?>
 <?php slot(
   'title',
   sprintf('Rootless Me - Messages'))

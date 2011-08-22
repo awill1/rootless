@@ -139,23 +139,41 @@ class messageActions extends sfActions
     $this->redirect('message/index');
   }
 
-  protected function processForm(sfWebRequest $request, sfForm $form)
-  {
-    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if ($form->isValid())
+    protected function processForm(sfWebRequest $request, sfForm $form)
     {
-      $message = $form->save();
+        $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+        if ($form->isValid())
+        {
+            // Save the message and get the resulting message id
+            $message = $form->save();
+            $messageId = $message->getMessageId();
 
-      // Update the list of recipients
-      // Just one recipient for now
-      $recipient = new MessageRecipients();
-      $recipient->setMessageId($message->getMessageId());
-      $recipient->setPersonId($form->getValue('to'));
-      $recipient->save();
+            // Update the list of recipients
 
-      //$this->redirect('message/edit?message_id='.$message->getMessageId().'&conversation_id='.$message->getConversationId());
+            // Multiple recipients
+            $recipientIds = $form->getValue('to');
+            $addedRecipientIds = array();
+            foreach ($recipientIds as $recipientId)
+            {
+                // Skip the recipient if they have already been added as a
+                // recipient
+                if (!in_array( $recipientId , $addedRecipientIds ))
+                {
+                    // Create a recipient using the recipient id
+                    $recipient = new MessageRecipients();
+                    $recipient->setPersonId($recipientId);
+                    // Link the recipient to the message
+                    $recipient->setMessageId($messageId);
+                    // Save the recipient
+                    $recipient->save();
+
+                    // Add the recipient to the added recipient list to
+                    // prevent duplicate messages
+                    $addedRecipientIds[] = $recipientId;
+                }
+            }
+        }
+
+        return $message;
     }
-
-    return $message;
-  }
 }

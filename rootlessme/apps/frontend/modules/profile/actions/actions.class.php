@@ -104,4 +104,5 @@ class profileActions extends sfActions
       $this->redirect('profile/edit?profile_name='.$profile->getProfileName());
     }
   }
+
 }

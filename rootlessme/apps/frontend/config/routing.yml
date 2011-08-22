@@ -52,6 +52,14 @@ dashboard:
     action: index
 
 # friendship rules
+friendship_list:
+  url:     /friendships/list.:sf_format
+  param:   { module: friendship, action: friendList }
+  requirements:
+    sf_method: get
+    sf_format: (?:json)
+
+
 friendship:
   url:     /friendships
   class:   sfDoctrineRoute
