@@ -6,7 +6,7 @@
         <?php endif; ?>
         <img src="/images/mailbox.png" alt="Messages" />
     </a>
-     <ul class="headerControlsListSublist">
+     <ul class="headerControlsListSublist inboxView">
      <?php foreach ($newMessages as $newMessage): ?>
         <li class="headerControlsListSublistItem">
             <a class="headerSublistControl" href="<?php echo url_for('messages_show',$newMessage) ?>">
@@ -37,5 +37,6 @@
             </a>
         </li>
     <?php endforeach; ?>
+        <li class="headerControlsListSublistItem inLink"><a href="/frontend_dev.php/messages" title="view inbox" >Go To Inbox</a></li>
     </ul>
 </li>
