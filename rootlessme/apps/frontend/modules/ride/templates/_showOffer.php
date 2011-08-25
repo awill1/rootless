@@ -16,28 +16,6 @@
         var locations = new Array();
 
 
-        $(function() {
-            $( "#dialogFormDiv" ).dialog({
-                autoOpen: false,
-                modal: true
-            });
-
-            $( "#requestRideButton" ).button()
-                .click(function() {
-                        $( "#dialogFormDiv" ).dialog( "open" );
-            });
-
-//            $( "#requestRideButton" ).button()
-//                .click(function() {
-//                        $( "#dialogFormDiv" ).toggle('blind');
-//            });
-
-            // Hide the new review form initially
-//            $('#dialogFormDiv').hide();
-
-
-	});
-
         // Function when the page is ready
         $(document).ready(function(){
 
@@ -127,32 +105,32 @@
         available
 
     </p>
-    <div id="dialogFormDiv" title="Request a ride">
-        <?php include_component('seat', 'seatForm', array('ride_type'=>'offer', 'ride'=>$carpool)) ?>
-    </div>
     <!-- TODO: Add smoking -->
     <p class="smokingPreference">Smoking: Yes</p>
     <p class="tripDistance">One Way Trip</p>
-    <p><button id="requestRideButton">Request a Ride</button></p>
+    <h3>Asking Price: $<?php echo $carpool->getAskingPrice() ?> per person</h3>
+    <p id="mainRideInformation">
+        <?php echo nl2br($carpool->getDescription()) ?>
+    </p>
 
 </div>
 
-    <div id="rideProfileMap"></div>
+<div id="rideProfileMap"></div>
 
-    <div id="informationContainer">
-<div id="mainRidePeople">
-    <a href="<?php echo url_for("profile_show_user", $driver)  ?>">
-        <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driver->getPictureUrlLarge() ?>" alt="<?php echo $driver->getFullName() ?>" />
-    </a>
-    <h3>Riding</h3>
-        <p class="riderPicturesFirst"><a href="profile.html"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?>profile_lauren_small.JPG" alt="DJ" /></a></p>
-        <p class="riderPictures"><a href="profile.html"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?>profile_lauren_small.JPG" alt="Zach" /></a></p>
-        <p class="riderPictures"><a href="profile.html"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?>profile_lauren_small.JPG" alt="Peter" /></a></p>
+<div id="informationContainer">
+    <div id="mainRidePeople">
+        <h3 class="postedByStyles">Posted By: <a class="personLink" href="<?php echo url_for("profile_show_user", $driver)  ?>"><?php echo $driver->getFullName() ?></a></h3>
+        <a href="<?php echo url_for("profile_show_user", $driver)  ?>">
+            <img class="driverPicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driver->getPictureUrlLarge() ?>" alt="<?php echo $driver->getFullName() ?>" />
+        </a>
+        <h3>Riding</h3>
+            <p class="riderPicturesFirst"><a href="profile.html"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?>profile_lauren_small.JPG" alt="DJ" /></a></p>
+            <p class="riderPictures"><a href="profile.html"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?>profile_lauren_small.JPG" alt="Zach" /></a></p>
+            <p class="riderPictures"><a href="profile.html"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?>profile_lauren_small.JPG" alt="Peter" /></a></p>
+    </div>
 </div>
 <div id="mainRideDetails">
-    <h3 class="postedByStyles">Posted By: <a class="personLink" href="<?php echo url_for("profile_show_user", $driver)  ?>"><?php echo $driver->getFullName() ?></a></h3>
-    <h3>Asking Price: $<?php echo $carpool->getAskingPrice() ?> per person</h3>
-    <p id="mainRideInformation"><?php echo nl2br($carpool->getDescription()) ?>
-    </p>
-</div>
+    <div id="dialogFormDiv" title="Request a ride">
+        <?php include_component('seat', 'seatForm', array('ride_type'=>'offer', 'ride'=>$carpool)) ?>
+    </div>
 </div>

@@ -158,7 +158,7 @@ tbody {
 }
 
 #mainRideDetails {
-    float: left;
+    float: right;
     margin: 0px 0px 0px 50px;
     
 }
@@ -194,7 +194,7 @@ tbody {
 }
 
 #informationContainer {
-    clear: right;
+    clear: both;
 }
 
 .postedByStyles {
@@ -208,4 +208,8 @@ tbody {
 .riderPicturesFirst {
     float: left;
     margin: 0px 0px 0px 0px;
+}
+
+.driverPicture {
+    width: 270px;
 }
