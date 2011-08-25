@@ -15,28 +15,6 @@
         var locations = new Array();
 
 
-        $(function() {
-            $( "#dialogFormDiv" ).dialog({
-                autoOpen: false,
-                modal: true
-            });
-
-            $( "#offerRideButton" ).button()
-                .click(function() {
-                        $( "#dialogFormDiv" ).dialog( "open" );
-            });
-
-//            $( "#requestRideButton" ).button()
-//                .click(function() {
-//                        $( "#dialogFormDiv" ).toggle('blind');
-//            });
-
-            // Hide the new review form initially
-//            $('#dialogFormDiv').hide();
-
-
-	});
-
         // Function when the page is ready
         $(document).ready(function(){
 
@@ -128,28 +106,29 @@
         needed
 
     </p>
-    <div id="dialogFormDiv" title="Offer a ride">
-        <?php include_component('seat', 'seatForm', array('ride_type'=>'request', 'ride'=>$passenger)) ?>
-    </div>
     <!-- TODO: Add smoking -->
     <p class="smokingPreference">Smoking: Yes</p>
     <p class="tripDistance">One Way Trip</p>
-    <p><button id="offerRideButton">Offer a Ride</button></p>
-
-</div>
-
-    <div id="rideProfileMap"></div>
-
-    <div id="informationContainer">
-<div id="mainRidePeople">
-    <a href="<?php echo url_for("profile_show_user", $rider)  ?>">
-        <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $rider->getPictureUrlLarge() ?>" alt="<?php echo $rider->getFullName() ?>" />
-    </a>
-</div>
-<div id="mainRideDetails">
-    <h3 class="postedByStyles">Posted By: <a class="personLink" href="<?php echo url_for("profile_show_user", $rider)  ?>"><?php echo $rider->getFullName() ?></a></h3>
     <h3>Asking Price: $<?php echo $passenger->getAskingPrice() ?> per person</h3>
-    <p id="mainRideInformation"><?php echo nl2br($passenger->getDescription()) ?>
+    <p id="mainRideInformation">
+        <?php echo nl2br($passenger->getDescription()) ?>
     </p>
 </div>
+
+<div id="rideProfileMap"></div>
+
+<div id="informationContainer">
+    <div id="mainRidePeople">
+        <h3 class="postedByStyles">
+            Posted By: <a class="personLink" href="<?php echo url_for("profile_show_user", $rider)  ?>"><?php echo $rider->getFullName() ?></a>
+        </h3>
+        <a href="<?php echo url_for("profile_show_user", $rider)  ?>">
+            <img class="driverPicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $rider->getPictureUrlLarge() ?>" alt="<?php echo $rider->getFullName() ?>" />
+        </a>
+    </div>
+    <div id="mainRideDetails">
+        <div id="dialogFormDiv" title="Offer a ride">
+            <?php include_component('seat', 'seatForm', array('ride_type'=>'request', 'ride'=>$passenger)) ?>
+        </div>
+    </div>
 </div>
