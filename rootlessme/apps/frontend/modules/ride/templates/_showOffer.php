@@ -14,6 +14,12 @@
         var directionsService = new google.maps.DirectionsService();
         var geocoder;
         var locations = new Array();
+        // The text boxes to match depend on the ride type
+        var originTextBox = "#seats_route_origin";
+        var destinationTextBox = "#seats_route_destination";
+        var originDataField = "#seats_route_origin_data";
+        var destinationDataField = "#seats_route_destination_data";
+        var routeDataField = "#seats_route_route_data";
 
 
         // Function when the page is ready
@@ -55,22 +61,100 @@
             directionsDisplay.setMap(map);
 
             // Route preview changes whenever the user finished editing the
-            // origin or destination textboxes
-            $('#rides_origin').change(previewRoute);
-            $('#rides_destination').change(previewRoute);
+            // seat pickup and dropoff textboxes
+            $(originTextBox).change(previewRoute);
+            $(destinationTextBox).change(previewRoute);
 
-               // Handler for the find button
-              $('#rides_find').click(function()
-              {
-                 $('#loader').show();
-                  $('#results').load(
-                    $(this).parents('form').attr('action'),
-                    {  },
-                    function() { $('#loader').hide(); }
-                  );
-              });
-
+             
         });
+
+        function previewRoute() {
+            if ($(originTextBox).val())
+            {
+                // Get the location of the origin, and place a marker on the map
+                var originValue = $(originTextBox).val();
+                var originGeocodeRequest = {
+                    address: originValue
+                };
+                geocoder.geocode(originGeocodeRequest, geocodeOrigin);
+            }
+
+            if ($(destinationTextBox).val())
+            {
+                // Get the location of the destination, and place a marker on the map
+                var destinationValue = $(destinationTextBox).val();
+                var destinationGeocodeRequest = {
+                    address: destinationValue
+                };
+                geocoder.geocode(destinationGeocodeRequest, geocodeDestination);
+            }
+
+            // Get the directions
+            calcRoute();
+        }
+
+        function geocodeOrigin(results, status) {
+            var locationNumber = 0;
+            showResults(results, status, locationNumber);
+            // Send the geocoded information to the server
+            $(originDataField).val(JSON.stringify(locations[ locationNumber]));
+        }
+
+        function geocodeDestination(results, status) {
+            var locationNumber = 1;
+            showResults(results, status, locationNumber);
+            // Send the geocoded information to the server
+            $(destinationDataField).val(JSON.stringify(locations[locationNumber]));
+        }
+
+        function showResults(results, status, locationNumber) {
+          if (! results) {
+            alert("Geocoder did not return a valid response");
+          } else {
+            if (status == google.maps.GeocoderStatus.OK) {
+                // Check to see if the location has already been added to the
+                // map
+//                if (locations.length >=)
+//                {
+                    // Remove the location marker from the map
+                  //  locations[locationNumber].setMep(null);
+//                }
+                var myLatlng = results[0].geometry.location;
+                var marker = new google.maps.Marker({
+                   position: myLatlng,
+                   map: map,
+                   title:"Hello World!"
+                });
+                map.panTo(myLatlng);
+                // Add the new location information to the locations array
+                locations[locationNumber] = results[0];
+            } else {
+
+            }
+          }
+        }
+
+        function calcRoute() {
+          var start = $(originTextBox).val();
+          var end = $(destinationTextBox).val();
+          var request = {
+            origin:start,
+            destination:end,
+            travelMode: google.maps.TravelMode.DRIVING
+          };
+          directionsService.route(request, function(result, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+
+                // Set the route field to the results object for posting to the
+                // server
+                $(routeDataField).val(JSON.stringify(result));
+
+                // Display the directions
+                directionsDisplay.setDirections(result);
+            }
+          });
+        }
+
     </script>
 <?php end_slot();?>
 
@@ -124,9 +208,10 @@
             <img class="driverPicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driver->getPictureUrlLarge() ?>" alt="<?php echo $driver->getFullName() ?>" />
         </a>
         <h3>Riding</h3>
-            <p class="riderPicturesFirst"><a href="profile.html"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?>profile_lauren_small.JPG" alt="DJ" /></a></p>
-            <p class="riderPictures"><a href="profile.html"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?>profile_lauren_small.JPG" alt="Zach" /></a></p>
-            <p class="riderPictures"><a href="profile.html"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?>profile_lauren_small.JPG" alt="Peter" /></a></p>
+            <?php foreach ($seats as $seat):
+                $riderProfile = $seat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
+                <p class="riderPictures"><a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a></p>
+            <?php endforeach; ?>
     </div>
 </div>
 <div id="mainRideDetails">

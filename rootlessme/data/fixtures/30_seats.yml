@@ -1,0 +1,60 @@
+# data/fixtures/30_seats.yml
+
+SeatStatuses:
+  seat_status_pending:
+    seat_status_id: 1
+    display_text: Pending
+    slug: pending
+  seat_status_accepted:
+    seat_status_id: 2
+    display_text: Accepted
+    slug: accepted
+  seat_status_declined:
+    seat_status_id: 3
+    display_text: Declined
+    slug: declined
+
+SeatRequestTypes:
+  seat_request_type_offer:
+    seat_request_type_id: 1
+    display_text: Offer
+    slug: offer
+  seat_request_type_request:
+    seat_request_type_id: 2
+    display_text: Request
+    slug: request
+
+Seats:
+  seat_1:
+    seat_id: 1
+    carpool_id: 2
+    passenger_id: 2
+    seat_status_id: 2
+    seat_request_type_id: 1
+    price: 15
+    seat_count: 1
+    pickup_date: "2011-05-08"
+    pickup_time: "16:10:00"
+    description: "Will you please pick me up at the mall? I'll pay you $15."
+  seat_2:
+    seat_id: 2
+    carpool_id: 2
+    passenger_id: 3
+    seat_status_id: 1
+    seat_request_type_id: 1
+    price: 5
+    seat_count: 1
+    pickup_date: "2011-05-08"
+    pickup_time: "16:10:00"
+    description: "I need a ride to Delaware."
+  seat_3:
+    seat_id: 3
+    carpool_id: 2
+    passenger_id: 4
+    seat_status_id: 3
+    seat_request_type_id: 1
+    price: 0
+    seat_count: 1
+    pickup_date: "2011-05-08"
+    pickup_time: "20:00:00"
+    description: "Can I bum a ride?"

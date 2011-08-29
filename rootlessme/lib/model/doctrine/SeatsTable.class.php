@@ -52,4 +52,22 @@ class SeatsTable extends Doctrine_Table
             'ridesGiven' => $ridesGiven
         );
     }
+
+    /**
+     * Returns all Seats with driver and passenger profiles for a specific
+     * carpool id
+     *
+     * @return Doctrine_Collection Returns a seats collection with profiles
+     * and people included
+     */
+    public function getPassengersWithProfilesForCarpool($carpool_id)
+    {
+        $q = $this->createQuery('s')
+          ->innerJoin('s.Passengers pa')
+          ->innerJoin('pa.People p')
+          ->innerJoin('p.Profiles pr')
+          ->addWhere('s.carpool_id = ?',array($carpool_id));
+
+        return $q->execute();
+    }
 }

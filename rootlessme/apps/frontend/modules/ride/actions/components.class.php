@@ -18,6 +18,11 @@ class rideComponents extends sfComponents
         $this->origin = $this->carpool->getOriginLocation();
         $this->destination = $this->carpool->getDestinationLocation();
         $this->driver = $this->carpool->getPeople()->getProfiles()->getFirst();
+
+        // Get the confirmed seat information
+//        $this->riders = $this->carpool->getSeats();
+        $this->seats = Doctrine_Core::getTable('Seats')->getPassengersWithProfilesForCarpool($this->rideId);
+
     }
 
     public function executeShowRequest(sfWebRequest $request)

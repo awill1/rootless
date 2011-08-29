@@ -195,7 +195,7 @@ tbody {
 }
 
 #informationContainer {
-    clear: both;
+    clear: right;
 }
 
 .postedByStyles {
@@ -204,11 +204,7 @@ tbody {
 
 .riderPictures {
     float: left;
-    margin: 0px 0px 0px 20px;
-}
-.riderPicturesFirst {
-    float: left;
-    margin: 0px 0px 0px 0px;
+    margin: 0px 20px 0px 0px;
 }
 
 .driverPicture {

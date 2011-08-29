@@ -91,8 +91,8 @@ class Routes extends BaseRoutes
                     // seem to vary with the version of the google map API.
                     // TODO: A permanent soulution needs to be found for the
                     // changing coorinate array keys.
-                    $location->setLatitude($location_data['Ka']);
-                    $location->setLongitude($location_data['La']);
+                    $location->setLatitude($location_data['lat']);
+                    $location->setLongitude($location_data['lon']);
                     $location->setSequenceOrder($currentLocation);
                     $location->setSteps($step);
                     $location->save();

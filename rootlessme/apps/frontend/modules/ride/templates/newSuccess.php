@@ -19,6 +19,13 @@
         var originDataField = "<?php echo $rideType == 'offer' ? '#carpools_route_origin_data' : '#passengers_route_origin_data'; ?>";
         var destinationDataField = "<?php echo $rideType == 'offer' ? '#carpools_route_destination_data' : '#passengers_route_destination_data'; ?>";
         var routeDataField = "<?php echo $rideType == 'offer' ? '#carpools_route_route_data' : '#passengers_route_route_data'; ?>";
+        // Latitude and longitude key names change in google maps api.
+        // This testPoint helps us figure out which letters google is using 
+        // this time around.
+        var testPoint = new google.maps.LatLng(23,45);
+        var strangeLat;
+        var strangeLon;
+
 
         // Function when the page is ready
         $(function(){
@@ -40,11 +47,19 @@
             // origin or destination textboxes
             $(originTextBox).change(previewRoute);
             $(destinationTextBox).change(previewRoute);
+            
+            // Discover the strange keys used for longitude and latitude
+            // in the data returned from google maps api.
+            var googleTestString = JSON.stringify(testPoint);
+            // this is a random two character string which represents latitude
+            //  and longitude in the stringified data
+            strangeLat = new RegExp(googleTestString.substring(2,4),"g");
+            strangeLon = new RegExp(googleTestString.substring(10,12),"g");
 
             // Change the start date and time to be pickers.
             $( ".datePicker" ).datepicker();
             $( ".timePicker" ).timepicker({ampm: true});
-           
+            
         });
 
         function previewRoute() {
@@ -76,14 +91,14 @@
             var locationNumber = 0;
             showResults(results, status, locationNumber);
             // Send the geocoded information to the server
-            $(originDataField).val(JSON.stringify(locations[ locationNumber]));
+            $(originDataField).val(formatGoogleJSON(JSON.stringify(locations[ locationNumber])));
         }
 
         function geocodeDestination(results, status) {
             var locationNumber = 1;
             showResults(results, status, locationNumber);
             // Send the geocoded information to the server
-            $(destinationDataField).val(JSON.stringify(locations[locationNumber]));
+            $(destinationDataField).val(formatGoogleJSON(JSON.stringify(locations[locationNumber])));
         }
 
         function showResults(results, status, locationNumber) {
@@ -126,12 +141,18 @@
 
                 // Set the route field to the results object for posting to the
                 // server
-                $(routeDataField).val(JSON.stringify(result));
+                $(routeDataField).val(formatGoogleJSON(JSON.stringify(result)));
 
                 // Display the directions
                 directionsDisplay.setDirections(result);
             }
           });
+        }
+        
+        // formatGoogleJSON is used to change the strange keys used for 
+        // latitude and longitude into easier to use "lat" and "lon" keys.
+        function formatGoogleJSON(jsonString) {
+            return jsonString.replace(strangeLat,"lat").replace(strangeLon, "lon");
         }
 
     </script>

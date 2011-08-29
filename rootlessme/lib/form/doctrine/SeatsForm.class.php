@@ -41,6 +41,8 @@ class SeatsForm extends BaseSeatsForm
             'passenger_id',
             'seat_status_id',
             'seat_request_type_id',
+            'pickup_date',
+            'pickup_time',
             'price',
             'seat_count',
             'description'));

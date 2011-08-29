@@ -25,4 +25,14 @@ class Carpools extends BaseCarpools
 
         return $last_location;
     }
+
+    public function __toString()
+    {
+        $carpoolName = "";
+
+        $carpoolName = $this->getCarpoolId()." - ".$this->getStartDate();
+
+        return $carpoolName;
+
+    }
 }
