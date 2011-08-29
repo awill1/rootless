@@ -236,8 +236,9 @@
 
 <?php end_slot();?>
 
-<h1>Rides</h1>
+<h1>Rideboard</h1>
 <div id="searchForm" class="middleRidesFormArea">
+    <h2>Find a Ride</h2>
     <?php include_partial('rideSearchForm', array('rideSearchForm' => $searchForm)) ?>
 </div>
 <div id="map"></div>

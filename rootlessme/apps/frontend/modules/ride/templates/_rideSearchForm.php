@@ -17,7 +17,7 @@
     <tfoot>
       <tr>
         <td colspan="2">
-          <input id="rides_find" type="submit" value="Find" />
+          <input id="rides_find" type="submit" value="Find Ride" />
         </td>
       </tr>
     </tfoot>

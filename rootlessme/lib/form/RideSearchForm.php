@@ -17,7 +17,10 @@ class RideSearchForm extends BaseForm
           'origin'    => new sfWidgetFormInputText(),
           'destination'   => new sfWidgetFormInputText(),
           'date'   => new sfWidgetFormInputText(),
-          'gender_preference'   => new sfWidgetFormInputText(),
+          'gender_preference'   => new sfWidgetFormChoice(array(
+          'choices' => array(null => 'Doesn\'t matter', 'male' => 'male', 'female' => 'female')
+        )),
+          'trip_type'   => new sfWidgetFormInputCheckbox(),
           'origin_latitude' => new sfWidgetFormInputHidden(),
           'origin_longitude' => new sfWidgetFormInputHidden(),
           'destination_latitude' => new sfWidgetFormInputHidden(),

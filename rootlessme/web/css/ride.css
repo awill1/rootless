@@ -170,6 +170,7 @@ tbody {
 .middleRidesFormArea
 {
     display: inline-block;
+    padding-left: 15px;
 }
 
 #map {
@@ -212,4 +213,44 @@ tbody {
 
 .driverPicture {
     width: 270px;
+}
+
+#rideSearchForm input, #rideSearchForm select {
+    
+    width: 175px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    float: left;
+}
+
+#rideSearchForm th {
+    padding:5px 10px 0px 10px;
+
+}
+
+#rideSearchForm td {
+    padding:5px 10px 7px 10px;
+
+}
+
+#rideSearchForm th, #rideSearchForm td {
+    clear:both;
+    float:left;
+}
+
+#rideSearchForm input#rides_find {
+    
+    width: 100px;
+    height: 24px;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+    border: 0px;
+    background-color: #119D49;
+}
+
+#rideSearchForm input#rides_find:hover {
+    
+    
+    background-color: #D14D2F;
 }
