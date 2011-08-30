@@ -379,3 +379,7 @@ fieldset {
     background-color: #059B41;
     cursor: pointer
 }
+
+.messageReply textarea{
+    width: 380px;
+}
