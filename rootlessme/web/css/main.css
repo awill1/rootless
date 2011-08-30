@@ -1114,3 +1114,8 @@ textarea {
     margin: 0;
     padding: 0;
 }
+
+.help-text {
+    font-size: 10px;
+    color: #777;
+}

@@ -70,6 +70,10 @@
             
             $('#signUpFormContainer').append('<div class="opaqueBg"></div>');
        
+       //put help text in sign up form
+            $('label[for="sf_guard_user_email_address"]').html("Email <span class='help-text'>(student verification: use .edu)</span>");
+            $('label[for="sf_guard_user_password"]').html("Password <span class='help-text'>(at least 6 characters)</span>");
+       
        //make the form value of the sign up = 'Join!'
             $('.home .signUpText tfoot input').attr('value', 'Join!');
             
