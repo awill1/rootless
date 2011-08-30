@@ -162,7 +162,7 @@ tbody {
 
 .composeNew {
     background-color: #F4F4F4;
-    width: 500px;
+    width: 615px;
 }
 
 .messageInformationLinkReply {
@@ -344,4 +344,38 @@ fieldset {
     width: 100%;
     float:left;
     
+}
+
+.composeNew th{
+    
+    display: none;
+}
+
+.composeNew input[type="text"] {
+   border: 1px solid #999;
+   width: 350px;
+   padding-top: 13px;
+   padding-left: 9px;
+   outline: none;
+}
+
+.composeNew form table {
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+}
+
+.composeNew input[type="submit"] {
+    width: 65px;
+    height: 25px;
+    font-size: 12px;
+    background-color: #119D49;
+    color: #EAEAEA;
+    border: 0;
+    float: right;
+}
+
+.composeNew input[type="submit"]:hover {
+    background-color: #059B41;
+    cursor: pointer
 }

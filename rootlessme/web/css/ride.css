@@ -214,9 +214,11 @@ tbody {
 #rideSearchForm input, #rideSearchForm select {
     
     width: 175px;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     float: left;
+    border: 1px solid #999;
+    outline: none;
 }
 
 #rideSearchForm th {
