@@ -23,6 +23,29 @@ class rideComponents extends sfComponents
 //        $this->riders = $this->carpool->getSeats();
         $this->seats = Doctrine_Core::getTable('Seats')->getPassengersWithProfilesForCarpool($this->rideId);
 
+        // Sort the seats into statuses
+        $this->acceptedSeats = new Doctrine_Collection('Seats');
+        $this->pendingSeats = new Doctrine_Collection('Seats');
+        $this->declinedSeats = new Doctrine_Collection('Seats');
+        foreach ($this->seats as $seat)
+        {
+            $seatStatus = strtolower($seat->getSeatStatuses()->getDisplayText());
+            switch ($seatStatus) {
+                case 'pending':
+                    $this->pendingSeats[] = $seat;
+                    break;
+                case 'accepted':
+                    $this->acceptedSeats[] = $seat;
+                    break;
+                case 'declined':
+                    $this->declinedSeats[] = $seat;
+                    break;
+            }
+
+        }
+        
+        // Check to see if this is my post
+
     }
 
     public function executeShowRequest(sfWebRequest $request)

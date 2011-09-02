@@ -65,6 +65,10 @@
             $(originTextBox).change(previewRoute);
             $(destinationTextBox).change(previewRoute);
 
+            // Change all of the appropriate textboxes to date and time pickers
+            $( ".datePicker" ).datepicker();
+            $( ".timePicker" ).timepicker({ampm: true});
+
              
         });
 
@@ -208,10 +212,25 @@
             <img class="driverPicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driver->getPictureUrlLarge() ?>" alt="<?php echo $driver->getFullName() ?>" />
         </a>
         <h3>Riding</h3>
-            <?php foreach ($seats as $seat):
-                $riderProfile = $seat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
-                <p class="riderPictures"><a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a></p>
-            <?php endforeach; ?>
+        <?php foreach ($seats as $seat):
+            $riderProfile = $seat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
+            <p class="riderPictures"><a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a></p>
+        <?php endforeach; ?>
+        <h3>Accepted</h3>
+        <?php foreach ($acceptedSeats as $seat):
+            $riderProfile = $seat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
+            <p class="riderPictures"><a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a></p>
+        <?php endforeach; ?>
+        <h3>Pending</h3>
+        <?php foreach ($pendingSeats as $seat):
+            $riderProfile = $seat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
+            <p class="riderPictures"><a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a></p>
+        <?php endforeach; ?>
+        <h3>Declined</h3>
+        <?php foreach ($declinedSeats as $seat):
+            $riderProfile = $seat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
+            <p class="riderPictures"><a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a></p>
+        <?php endforeach; ?>
     </div>
 </div>
 <div id="mainRideDetails">

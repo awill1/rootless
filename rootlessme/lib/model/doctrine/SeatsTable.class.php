@@ -66,6 +66,7 @@ class SeatsTable extends Doctrine_Table
           ->innerJoin('s.Passengers pa')
           ->innerJoin('pa.People p')
           ->innerJoin('p.Profiles pr')
+          ->innerJoin('s.SeatStatuses ss')
           ->addWhere('s.carpool_id = ?',array($carpool_id));
 
         return $q->execute();
