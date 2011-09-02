@@ -221,20 +221,20 @@
             $riderProfile = $seat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
             <p class="riderPictures"><a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a></p>
         <?php endforeach; ?>
-        <h3>Pending</h3>
-        <?php foreach ($pendingSeats as $seat):
-            $riderProfile = $seat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
-            <p class="riderPictures"><a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a></p>
-        <?php endforeach; ?>
-        <h3>Declined</h3>
-        <?php foreach ($declinedSeats as $seat):
-            $riderProfile = $seat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
-            <p class="riderPictures"><a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a></p>
-        <?php endforeach; ?>
     </div>
 </div>
 <div id="mainRideDetails">
+    <h3>Pending</h3>
+    <?php foreach ($pendingSeats as $seat):
+        $riderProfile = $seat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
+        <p class="riderPictures"><a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a></p>
+    <?php endforeach; ?>
+    <h3>Declined</h3>
+    <?php foreach ($declinedSeats as $seat):
+        $riderProfile = $seat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
+        <p class="riderPictures"><a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a></p>
+    <?php endforeach; ?>
     <div id="dialogFormDiv" title="Request a ride">
-        <?php include_component('seat', 'seatForm', array('ride_type'=>'offer', 'ride'=>$carpool)) ?>
+        <?php include_component('seat', 'negotiation', array('ride_type'=>'offer', 'ride'=>$carpool)) ?>
     </div>
 </div>

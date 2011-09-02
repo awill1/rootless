@@ -2,6 +2,12 @@
 
 class seatComponents extends sfComponents
 {
+    public function executeNegotiation(sfWebRequest $request)
+    {
+        // Get the seat type and number
+        $this->rideType = $this->getVar('ride_type');
+        $this->ride = $this->getVar('ride');
+    }
     public function executeSeatForm(sfWebRequest $request)
     {
 
