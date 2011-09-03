@@ -35,7 +35,7 @@ sfGuardUser:
     password:       lauren
     is_super_admin: false
     Groups:         [Group_user]
-  User_lauren:
+  User_colin:
     person_id:      4
     first_name:     Colin
     last_name:      Hoell

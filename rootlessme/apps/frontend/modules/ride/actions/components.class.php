@@ -45,7 +45,14 @@ class rideComponents extends sfComponents
         }
         
         // Check to see if this is my post
-
+        $this->isMyPost = false;
+        if ($this->getUser()->isAuthenticated())
+        {
+            if ($this->getUser()->getGuardUser()->getPersonId() == $this->carpool->getDriverId())
+            {
+                $this->isMyPost = true;
+            }
+        }
     }
 
     public function executeShowRequest(sfWebRequest $request)
