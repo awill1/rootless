@@ -17,11 +17,97 @@ class seatActions extends sfActions
       ->execute();
   }
 
-  public function executeShow(sfWebRequest $request)
-  {
-    $this->seat = Doctrine_Core::getTable('Seats')->find(array($request->getParameter('seat_id')));
-    $this->forward404Unless($this->seat);
-  }
+    public function executeShow(sfWebRequest $request)
+    {
+        // Get the seat id from the request
+        $seatId = $request->getParameter('seat_id');
+
+        // Get the seat information
+        $this->seat = Doctrine_Core::getTable('Seats')->getSeatWithCarpoolAndPassenger($seatId);
+
+        // No seat was found so
+
+        // Seats should only be displayed if the user is one of the people
+        // involved in the ride
+        if ($this->getUser()->isAuthenticated())
+        {
+            if ($this->getUser()->getGuardUser()->getPersonId() == $this->carpool->getDriverId())
+            {
+                $this->isMyPost = true;
+            }
+        }
+
+        // If the request came from AJAX render the seat negotiation partial
+        if ($request->isXmlHttpRequest())
+        {
+            return $this->renderPartial('seat/negotiation',
+                                array('ride_type' => $this->jobs,
+                                      'ride' => $this->jobs,
+                                      'seat_id' => $this->seat->getSeatId()));
+        }
+    }
+
+    public function executeNegotiation(sfWebRequest $request)
+    {
+        // Get the seat id from the request
+        $seatId = $request->getParameter('seat_id');
+        $rideType = $request->getParameter('ride_type');
+
+        // Get the seat information
+        $this->seat = Doctrine_Core::getTable('Seats')->getSeatWithCarpoolAndPassenger($seatId);
+        $this->forward404Unless($this->seat);
+
+        // Seats should only be displayed if the user is one of the people
+        // involved in the ride
+        $this->isMySeat = false;
+        if ($this->getUser()->isAuthenticated())
+        {
+            $myUserId = $this->getUser()->getGuardUser()->getPersonId();
+            $this->myUserId = $myUserId;
+            // Check to see if the user is the driver
+            if ( $this->seat->getCarpools()->getDriverId() == $myUserId )
+            {
+                $this->isMySeat = true;
+            }
+
+            // Check to see if the user is the passenger
+            if ($this->seat->getPassengers()->getPersonId() == $myUserId)
+            {
+                $this->isMySeat = true;
+            }
+        }
+        // If the seat does not belong to the user they are unauthorized to
+        // view this page
+        $this->forward404If(!$this->isMySeat, 'Seat was not found.');
+
+        // Get the information for the ride to pass to the partial
+        switch ($rideType) {
+            case "offer":
+                // The ride was an offer so
+                // the ride is the carpool
+                $ride = $this->seat->getCarpools();
+                break;
+            case "request":
+                // The ride was a request so
+                // the ride is a passenger
+                $ride = $this->seat->getPassengers();
+                break;
+            default:
+               // Default case just in case the ride_type is invalid (should
+               // be prevented by routing.yml).
+               echo 'Ride Type '.$this->rideType.'is invalid.';
+        }
+
+
+        // If the request came from AJAX render the seat negotiation partial
+        if ($request->isXmlHttpRequest())
+        {
+            return $this->renderComponent('seat', 'negotiation', array(
+                                                     'ride_type' => $rideType,
+                                                     'ride' => $ride,
+                                                     'seat' => $this->seat));
+        }
+    }
 
   public function executeNew(sfWebRequest $request)
   {

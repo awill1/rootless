@@ -7,6 +7,13 @@ class rideComponents extends sfComponents
         // Get the ride id
         $this->rideId = $request->getParameter('ride_id');
 
+        // Get the users id
+        $myUserId = null;
+        if ($this->getUser()->isAuthenticated())
+        {
+            $myUserId = $this->getUser()->getGuardUser()->getPersonId();
+        }
+
         // Get the offer information based on the ride id
         $this->carpool = Doctrine_Core::getTable('Carpools')->find(array($this->rideId));
         // Forward to 404 if the carpool is not found
@@ -20,13 +27,13 @@ class rideComponents extends sfComponents
         $this->driver = $this->carpool->getPeople()->getProfiles()->getFirst();
 
         // Get the confirmed seat information
-//        $this->riders = $this->carpool->getSeats();
         $this->seats = Doctrine_Core::getTable('Seats')->getPassengersWithProfilesForCarpool($this->rideId);
 
-        // Sort the seats into statuses
+        // Sort the seats into statuses and see if any of the seats are mine
         $this->acceptedSeats = new Doctrine_Collection('Seats');
         $this->pendingSeats = new Doctrine_Collection('Seats');
         $this->declinedSeats = new Doctrine_Collection('Seats');
+        $this->mySeat = null;
         foreach ($this->seats as $seat)
         {
             $seatStatus = strtolower($seat->getSeatStatuses()->getDisplayText());
@@ -42,16 +49,20 @@ class rideComponents extends sfComponents
                     break;
             }
 
+            // See if the seat belongs to the logged in user
+            if ($seat->getPassengers()->getPersonId() == $myUserId)
+            {
+                // This is my seat so make note of it for the negotiation
+                // partial
+                $this->mySeat = $seat;
+            }
         }
         
         // Check to see if this is my post
         $this->isMyPost = false;
-        if ($this->getUser()->isAuthenticated())
+        if ($myUserId == $this->carpool->getDriverId())
         {
-            if ($this->getUser()->getGuardUser()->getPersonId() == $this->carpool->getDriverId())
-            {
-                $this->isMyPost = true;
-            }
+            $this->isMyPost = true;
         }
     }
 

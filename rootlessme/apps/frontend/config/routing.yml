@@ -409,13 +409,6 @@ seats_create:
   requirements:
     sf_method: [post]
 
-seats_show:
-  url:   /seats/:seat_id
-  class:   sfDoctrineRoute
-  options: { model: Seats, type: object }
-  param: { module: seat, action: show }
-  requirements:
-    sf_method: [get]
 
 seats_edit:
   url:   /seats/edit/:seat_id
@@ -425,6 +418,35 @@ seats_edit:
   requirements:
     sf_method: [get]
 
+seats_update:
+  url: /seats/update/:seat_id
+  class:   sfDoctrineRoute
+  param:
+    module: seat
+    action: update
+  options:
+    model: Seats
+    type: object
+  requirements:
+    sf_method: [post]
+
+seats_negotiation:
+  url:   /seats/negotiation/:seat_id/:ride_type
+  class:   sfDoctrineRoute
+  options: { model: Seats, type: object }
+  param: { module: seat, action: negotiation }
+  requirements:
+    sf_method: [get]
+    ride_type: (offer|request)
+
+seats_show:
+  url:   /seats/:seat_id
+  class:   sfDoctrineRoute
+  options: { model: Seats, type: object }
+  param: { module: seat, action: show }
+  requirements:
+    sf_method: [get]
+    
 # sfGuard routes
 sf_guard_signin:
   url:   /login

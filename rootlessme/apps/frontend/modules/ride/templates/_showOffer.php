@@ -164,7 +164,13 @@
         }
 
         function loadSeatDetails() {
-            $("#seatDetailsBlock").load("<?php echo url_for('seats_show',array('seat_id' => 1)) ?>");
+            $('#loader').show();
+            $("#seatDetailsBlock").toggle("blind");
+            $("#seatDetailsBlock").load("<?php echo url_for('seats_negotiation',array('seat_id' => 1, 'ride_type'=>'offer')) ?>",
+                function(){
+                    $('#loader').hide();
+                    $("#seatDetailsBlock").toggle("blind");
+                });
             // Return false to override default click behavior
             return false;
         }
@@ -259,7 +265,6 @@
         </ul>
     </div>
     <?php endif;?>
-    <div id="seatDetailsBlock" title="Request a ride">
-        <?php include_component('seat', 'negotiation', array('ride_type'=>'offer', 'ride'=>$carpool)) ?>
-    </div>
+    <img id="loader" alt="Loading spinner" src="/images/ajax-loader.gif" style="vertical-align: middle; display: none" />
+    <?php include_component('seat', 'negotiation', array('ride_type'=>'offer', 'ride'=>$carpool, 'ride_id'=>$rideId, 'seat'=>$mySeat)) ?>
 </div>

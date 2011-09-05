@@ -71,4 +71,20 @@ class SeatsTable extends Doctrine_Table
 
         return $q->execute();
     }
+
+    public function getSeatWithCarpoolAndPassenger($seat_id)
+    {
+        $q = $this->createQuery('s')
+          ->innerJoin('s.Passengers pa')
+          ->innerJoin('pa.People pap')
+          ->innerJoin('pap.Profiles papr')
+          ->innerJoin('s.Carpools c')
+          ->innerJoin('c.People cp')
+          ->innerJoin('cp.Profiles cpr')
+          ->innerJoin('s.SeatStatuses ss')
+          ->addWhere('s.seat_id = ?',array($seat_id));
+
+        $results = $q->execute();
+        return $results->getFirst();
+    }
 }
