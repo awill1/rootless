@@ -28,6 +28,8 @@ class seatComponents extends sfComponents
 
             // Build the seat negotiation form based on the existing seat
             $this->form = new SeatsForm($this->seat);
+            // Set the pickup and dropoff locations
+            
         }
         else
         {
