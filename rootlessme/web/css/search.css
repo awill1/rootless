@@ -1,0 +1,44 @@
+/* 
+    Document   : dashboard.css
+    Created on : Sept 2, 2011, 10:20:23 AM
+    Author     : awilliams
+    Description:
+        This stylesheet formats the dashboard of the rootlessme website.
+*/
+
+/*I.D. Fragment Formatting & Styles*/
+
+#travelersSection {
+    float: left;
+    background-color: #F4F4F4;
+    width: 465px;
+    height: 100%;
+    padding: 0px 0px 0px 15px;
+}
+
+#rideSection {
+    margin-top: 15px;
+    float: left;
+    background-color: #F4F4F4;
+    width: 465px;
+    height: 600px;
+    padding: 0px 0px 0px 15px;
+}
+
+#userName a:link{
+    margin: 0px 0px 0px 0px;
+    color: #119D49;
+    font-size: 90%;
+}
+
+#userName a:visited{
+    margin: 0px 0px 0px 0px;
+    color: #119D49;
+    font-size: 90%;
+}
+
+li {
+    list-style-type: none;
+    margin-left: 0px;
+}
+

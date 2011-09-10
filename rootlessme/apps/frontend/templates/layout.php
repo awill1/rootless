@@ -75,24 +75,24 @@
                     <?php if ($sf_user->isAuthenticated()): ?>
                     <li id="navigationDashboard" class="navigationItem">
                         <a class="navigationItemLink" href="<?php echo url_for("dashboard") ?>">
-                            Dashboard
+                            dashboard
                         </a>
                     </li>
                     <?php endif ?>
                     <li id="navigationRides" class="navigationItem">
                         <a class="navigationItemLink" href="<?php echo url_for("ride") ?>">
-                            Rides
+                            rides
                         </a>
                     </li>
                     <li id="navigationTravelers" class="navigationItem">
                         <a class="navigationItemLink" href="<?php echo url_for("profile") ?>">
-                            Travelers
+                            travelers
                         </a>
                     </li>
                     <?php if ($sf_user->isAuthenticated()): ?>
                     <li  id="navigationMessages" class="navigationItem">
                         <a class="navigationItemLink" href="<?php echo url_for("messages") ?>">
-                            Messages
+                            messages
                         </a>
                     </li>
                     <?php endif ?>
