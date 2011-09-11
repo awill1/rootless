@@ -24,49 +24,6 @@
     height: 100%;
     padding: 0px 0px 0px 15px;
 }
-.rideCont {
-    float: left;
-    width: 100%;
-    height: 60px;
-    color: #059B41;
-    font-size: 110%;
-    font-style: oblique;   
-}
-
-.dateCont {
-    float: left;
-    width: 40px;
-    height: 40px;
-    background-color:#E5E5E5;
-    margin: 2px 2px 2px 2px;
-}
-
-.monthCont {
-    width:100%;
-    height:10px;
-    background-color: #D3D3D3;
-    color: #000000;
-    font-size: 70%;
-    text-align: center;
-}
-
-.dayCont{
-    width:100%;
-    height:20px;
-    background-color: 8e8e8e;
-    color: #000000;
-    font-size: 100%;
-    text-align: center;
-}
-
-.timeCont{
-    width:100%;
-    height:10px;
-    background-color: #D3D3D3;
-    color: #000000;
-    font-size: 70%;
-    text-align: center;
-}
 
 #feedSection {
     margin-top: 15px;
@@ -79,6 +36,7 @@
 
 #rideInformationDashLeft {
     float:left;
+    background-color: #3d3d3d;
     margin-bottom: 15px;
     width: 200px;
     height: 210px;
@@ -89,6 +47,7 @@
 #rideInformationDashRight {
     float:left;
     margin-left: 15px;
+    background-color: #3d3d3d;
     width: 200px;
     height: 210px;
     display: inline;
@@ -100,8 +59,4 @@
     background-color: #E5E5E5;
     width: 185px;
     height: 100px;
-}
-.viewRideLink{
-    color: #8e8e8e;
-    font-size: 80%;
 }
