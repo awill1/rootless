@@ -22,6 +22,7 @@ Doctrine_Manager::getInstance()->bindComponent('Profiles', 'doctrine');
  * @property string $state
  * @property string $postal_code
  * @property string $country
+ * @property string $phone_number
  * @property date $birthday
  * @property string $gender
  * @property string $about_me
@@ -54,6 +55,7 @@ Doctrine_Manager::getInstance()->bindComponent('Profiles', 'doctrine');
  * @method string    getState()              Returns the current record's "state" value
  * @method string    getPostalCode()         Returns the current record's "postal_code" value
  * @method string    getCountry()            Returns the current record's "country" value
+ * @method string    getPhoneNumber()        Returns the current record's "phone_number" value
  * @method date      getBirthday()           Returns the current record's "birthday" value
  * @method string    getGender()             Returns the current record's "gender" value
  * @method string    getAboutMe()            Returns the current record's "about_me" value
@@ -85,6 +87,7 @@ Doctrine_Manager::getInstance()->bindComponent('Profiles', 'doctrine');
  * @method Profiles  setState()              Sets the current record's "state" value
  * @method Profiles  setPostalCode()         Sets the current record's "postal_code" value
  * @method Profiles  setCountry()            Sets the current record's "country" value
+ * @method Profiles  setPhoneNumber()        Sets the current record's "phone_number" value
  * @method Profiles  setBirthday()           Sets the current record's "birthday" value
  * @method Profiles  setGender()             Sets the current record's "gender" value
  * @method Profiles  setAboutMe()            Sets the current record's "about_me" value
@@ -245,6 +248,15 @@ abstract class BaseProfiles extends sfDoctrineRecord
              'notnull' => false,
              'autoincrement' => false,
              'length' => 45,
+             ));
+        $this->hasColumn('phone_number', 'string', 32, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 32,
              ));
         $this->hasColumn('birthday', 'date', 25, array(
              'type' => 'date',

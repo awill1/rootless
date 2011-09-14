@@ -49,7 +49,7 @@ class SeatsForm extends BaseSeatsForm
 
     }
 
-        public function doSave($con = null) {
+    public function doSave($con = null) {
         $seat = $this->getObject();
 
         // If this is a new seat request

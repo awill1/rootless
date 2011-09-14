@@ -1125,6 +1125,13 @@ Profiles:
       primary: false
       notnull: false
       autoincrement: false
+    phone_number:
+      type: string(32)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
     birthday:
       type: date(25)
       fixed: false

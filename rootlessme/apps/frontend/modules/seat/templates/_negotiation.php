@@ -7,10 +7,10 @@
       <table>
         <tbody>
           <?php echo $form->renderHiddenFields() ?>
-          <?php echo $form['route']['origin']->renderRow() ?>
-          <?php echo $form['route']['destination']->renderRow() ?>
           <?php echo $form['carpool_id']->renderRow() ?>
           <?php echo $form['passenger_id']->renderRow() ?>
+          <?php echo $form['route']['origin']->renderRow() ?>
+          <?php echo $form['route']['destination']->renderRow() ?>
           <?php echo $form['seat_status_id']->renderRow() ?>
           <?php echo $form['seat_request_type_id']->renderRow() ?>
           <?php echo $form['pickup_date']->renderRow(array('class'=>'datePicker')) ?>
