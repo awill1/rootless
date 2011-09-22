@@ -73,7 +73,7 @@
     float: left;
     background-color: #F4F4F4;
     width: 465px;
-    height: 600px;
+    height: 100%;
     padding: 0px 0px 0px 15px;
 }
 
@@ -104,4 +104,34 @@
 .viewRideLink{
     color: #8e8e8e;
     font-size: 80%;
+}
+
+#feedObject {
+    height: 80px;
+}
+
+#feedCopyObject {
+    width: 500px;
+    
+}
+#feedCopyObjects {
+    font-style: italic;
+    color: #D05A36;
+    display: inline;
+    
+}
+
+#feedRiders {
+    font-size: 80%;
+    font-style: italic;
+    margin: 5px 0px 5px 0px;
+}
+
+#feedTime {
+    font-size: 80%;
+    color: #D3D3D3;
+    font-weight: bold;
+    margin: 0px 10px 20px 0px;
+    display: block;
+    clear: right;
 }
