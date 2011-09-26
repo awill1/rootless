@@ -28,7 +28,7 @@
     float: left;
     width: 100%;
     height: 60px;
-    color: #059B41;
+    color: #119D49;
     font-size: 110%;
     font-style: oblique;   
 }
@@ -98,9 +98,72 @@
     margin-bottom: 15px;
     float: left;
     background-color: #E5E5E5;
-    width: 185px;
-    height: 100px;
+    width: 165px;
+    height: 90px;
+    padding: 10px 10px 10px 10px;
 }
+
+#quickBoxName {
+    color: #8e8e8e;
+    font-weight: lighter;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    font-size: 90%;
+}
+
+#quickBoxLocationStart {
+    color: #8e8e8e;
+    font-weight: lighter;
+    margin: 10px 0px 0px 0px;
+    font-size: 75%;
+}
+
+#quickBoxLocationFinish {
+    color: #8e8e8e;
+    font-weight: lighter;
+    margin: 3px 0px 0px 0px;
+    font-size: 75%;
+}
+
+#quickBoxConfirmButton {
+    margin: 10px 0px 0px 60px;
+    background-color: #119D49;
+    color: white;
+    font-weight: bold;
+    font-style: italic;
+    padding: 3px 5px 3px 5px;
+    width: 48px;
+    font-size: 85%;
+    display: inline;
+}
+
+#quickBoxDeclineButton {
+    margin: 0px 0px 0px 0px;
+    background-color: #8e8e8e;
+    color: white;
+    padding: 3px 5px 3px 5px;
+    width: 48px;
+    font-size: 85%;
+    clear: both;
+    display: inline;
+}
+
+#quickBoxViewRequestButton {
+    color: #D05A36;
+    font-size: 80%;
+    text-align: center;
+    margin: 2px 0px -2px 0px;
+    padding: 0px 0px -1px 0px;
+    font-style: italic;
+}
+hr {
+    width: 185px;
+    margin: 5px 0px 0px -10px;
+    color: white;
+    background-color: white;
+    
+}
+
 .viewRideLink{
     color: #8e8e8e;
     font-size: 80%;
@@ -135,3 +198,4 @@
     display: block;
     clear: right;
 }
+

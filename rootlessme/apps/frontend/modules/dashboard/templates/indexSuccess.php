@@ -17,16 +17,48 @@
 <div id="quickRidesBox">
     <h3>Requests/Offers</h3>
     <div id="quickBoxItem">
-        <p>yep</p>
+        <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>"></img>
+        <p id="quickBoxName">Aaron Williams </p>
+        <p id="quickBoxLocationStart">+Cincinnati</p>
+        <p id="quickBoxLocationFinish">+Columbus</p>
+        <p id="quickBoxConfirmButton">Confirm</p>
+        <p id="quickBoxDeclineButton">Decline</p>
+        <hr>
+        <p id="quickBoxViewRequestButton">view request</p>
+        <hr>
     </div>
     <div id="quickBoxItem">
-        <p>yep</p>
+        <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>"></img>
+        <p id="quickBoxName">Aaron Williams </p>
+        <p id="quickBoxLocationStart">+Cincinnati</p>
+        <p id="quickBoxLocationFinish">+Columbus</p>
+        <p id="quickBoxConfirmButton">Confirm</p>
+        <p id="quickBoxDeclineButton">Decline</p>
+        <hr>
+        <p id="quickBoxViewRequestButton">view request</p>
+        <hr>
     </div>
     <div id="quickBoxItem">
-        <p>yep</p>
+        <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>"></img>
+        <p id="quickBoxName">Aaron Williams </p>
+        <p id="quickBoxLocationStart">+Cincinnati</p>
+        <p id="quickBoxLocationFinish">+Columbus</p>
+        <p id="quickBoxConfirmButton">Confirm</p>
+        <p id="quickBoxDeclineButton">Decline</p>
+        <hr>
+        <p id="quickBoxViewRequestButton">view request</p>
+        <hr>
     </div>
     <div id="quickBoxItem">
-        <p>yep</p>
+        <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>"></img>
+        <p id="quickBoxName">Aaron Williams </p>
+        <p id="quickBoxLocationStart">+Cincinnati</p>
+        <p id="quickBoxLocationFinish">+Columbus</p>
+        <p id="quickBoxConfirmButton">Confirm</p>
+        <p id="quickBoxDeclineButton">Decline</p>
+        <hr>
+        <p id="quickBoxViewRequestButton">view request</p>
+        <hr>
     </div>
 </div>
 <div id="feedSection">
