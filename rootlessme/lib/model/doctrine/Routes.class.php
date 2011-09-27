@@ -14,21 +14,25 @@ class Routes extends BaseRoutes
 {
     public function getOriginLocation()
     {
-        $first_leg = $this->getLegs()->getFirst();
-        $first_step = $first_leg->getSteps()->getFirst();
-        $first_location = $first_step->getLocations()->getFirst();
+        $first_location = $this->getSortedLocationsQuery('ASC')
+                               ->limit(1)
+                               ->execute()
+                               ->getFirst();
 
         return $first_location;
     }
 
     public function getDestinationLocation()
     {
-        $last_leg = $this->getLegs()->getLast();
-        $last_step = $last_leg->getSteps()->getLast();
-        $last_location = $last_step->getLocations()->getLast();
+        $last_location = $this->getSortedLocationsQuery('DESC')
+                              ->limit(1)
+                              ->execute()
+                              ->getFirst();
 
         return $last_location;
     }
+
+
 
     public function createFromGoogleDirections($googleDirections = null)
     {
@@ -104,5 +108,44 @@ class Routes extends BaseRoutes
         $this->save();
 
         return;
+    }
+
+    /**
+     *
+     */
+    private function getSortedLocationsQuery($orderDirection)
+    {
+        // Query should look like
+        // select *
+        // from locations l
+        // inner join steps s
+        //   on l.step_id = s.step_id
+        // inner join legs le
+        //   on s.leg_id = le.leg_id
+        // inner join routes r
+        //   on le.route_id = r.route_id
+        // where r.route_id = 1
+        // order by le.sequence_order asc,
+        //          s.sequence_order asc,
+        //          l.sequence_order asc;
+        $q = Doctrine_Query::create()
+                ->from('Locations l')
+                ->innerJoin('l.Steps s')
+                ->innerJoin('s.Legs le')
+                ->innerJoin('le.Routes r')
+                ->where('r.route_id = ?', $this->getRouteId());
+
+        // Workaround because I cannot figure out how to pass in the order
+        // direction from the parameter
+        if ($orderDirection == 'ASC')
+        {
+            $q->orderBy('le.sequence_order ASC, s.sequence_order ASC, l.sequence_order ASC');
+        }
+        elseif ($orderDirection == 'DESC')
+        {
+            $q->orderBy('le.sequence_order DESC, s.sequence_order DESC, l.sequence_order DESC');
+        }
+
+        return $q;
     }
 }
