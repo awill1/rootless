@@ -9,7 +9,6 @@
     <tfoot>
       <tr>
         <td colspan="2">
-          &nbsp;<a href="<?php echo url_for('profile') ?>">Back to list</a>
           <input type="submit" value="Save" />
         </td>
       </tr>

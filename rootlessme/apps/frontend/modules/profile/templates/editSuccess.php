@@ -27,6 +27,7 @@
     </div>
     <div id="fragment-additional_info" class="middleProfileTabContent">
         <h3>Additional Information</h3>
+        <?php include_partial('form', array('form' => $additionalInfoForm)) ?>
     </div>
     <div id="fragment-notification" class="middleProfileTabContent">
         <h3>Notification</h3>

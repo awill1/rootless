@@ -35,10 +35,8 @@ class profileActions extends sfActions
         // Create the review form using the details of the users
         $newReview = new Reviews();
         // Set the reviewer
-//        $newReview->setPeople($this->getUser()->getGuardUser()->getPeople());
         $newReview->setReviewerId($personID);
         // Set the reviewee
-//        $newReview->setPeople($this->profile->getPeople());
         $newReview->setRevieweeId($this->getUser()->getGuardUser()->getPersonId());
         $this->reviewForm = new ReviewsForm($newReview);
 
@@ -69,7 +67,11 @@ class profileActions extends sfActions
     //$this->forward404Unless($profile = Doctrine_Core::getTable('Profiles')->find(array($request->getParameter('profile_name'))), sprintf('Object profile does not exist (%s).', $request->getParameter('profile_name')));
     $this->forward404Unless($profile = $this->getUser()->getGuardUser()->getPeople()->getProfiles()->getFirst(), sprintf('Object profile does not exist.'));
 
+    // The full profile form
     $this->form = new ProfilesForm($profile);
+
+    // Create an additional information form
+    $this->additionalInfoForm = new ProfilesAdditionalInfoForm($profile);
   }
 
   public function executeUpdate(sfWebRequest $request)
@@ -78,10 +80,28 @@ class profileActions extends sfActions
     //$this->forward404Unless($profile = Doctrine_Core::getTable('Profiles')->find(array($request->getParameter('profile_name'))), sprintf('Object profile does not exist (%s).', $request->getParameter('profile_name')));
     $this->forward404Unless($profile = $this->getUser()->getGuardUser()->getPeople()->getProfiles()->getFirst(), sprintf('Object profile does not exist.'));
     $this->form = new ProfilesForm($profile);
+    // Create an additional information form
+    $this->additionalInfoForm = new ProfilesAdditionalInfoForm($profile);   
 
     $this->processForm($request, $this->form);
 
     $this->setTemplate('edit');
+  }
+  
+  
+  public function executeUpdateAdditionalInfo(sfWebRequest $request)
+  {
+    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
+    //$this->forward404Unless($profile = Doctrine_Core::getTable('Profiles')->find(array($request->getParameter('profile_name'))), sprintf('Object profile does not exist (%s).', $request->getParameter('profile_name')));
+    $this->forward404Unless($profile = $this->getUser()->getGuardUser()->getPeople()->getProfiles()->getFirst(), sprintf('Object profile does not exist.'));
+    $this->form = new ProfilesForm($profile);
+    // Create an additional information form
+    $this->additionalInfoForm = new ProfilesAdditionalInfoForm($profile);   
+    // Reuse the edit template
+    $this->setTemplate('edit');
+    // Process the additional form
+    $this->processForm($request, $this->additionalInfoForm);
+
   }
 
   public function executeDelete(sfWebRequest $request)

@@ -12,11 +12,14 @@ class SeatsForm extends BaseSeatsForm
 {
     public function configure()
     {
-        // Embedded route subform
-        $route = new Routes();
+        $seat = $this->getObject();
+
+        // The database does not have a relationship between seat and route
+        // yet so use a blank route for now
         //$this->getObject()->Routes = $route;
+        $route = new Routes();
         $route_form = new RoutesForm($route);
-        // Override the labe for a few select fields
+        // Override the label for a few select fields
         $route_form->widgetSchema->setLabel('origin', 'Pickup Location');
         $route_form->widgetSchema->setLabel('destination', 'Dropoff Location');
         $this->embedForm('route', $route_form);
@@ -26,6 +29,9 @@ class SeatsForm extends BaseSeatsForm
         // still work
         $this->setWidget('pickup_date',new sfWidgetFormInputText());
         $this->setWidget('pickup_time',new sfWidgetFormInputText());
+
+        // Hide the seat type field
+        $this->setWidget('seat_request_type_id',new sfWidgetFormInputHidden());
 
         // Create the carpool and passenger choices, allowing the empty option
         $this->setWidget('carpool_id',new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Carpools'), 'add_empty' => true)));
@@ -59,23 +65,6 @@ class SeatsForm extends BaseSeatsForm
 //            $this->values['seat_status_id'] = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
         }
 
-
-
-//        if (!$this->values['conversation_id'])
-//        {
-//            // This is a new conversation so create the new conversation
-//            $newConversation = new Conversations();
-//            // Set the author
-//            $newConversation->setAuthorId($this->values['author_id']);
-//            // Set the subject
-//            $newConversation->setSubject($this->values['subject']);
-//            // Save the conversation
-//            $newConversation->save();
-//
-//            // Set the message to use the new conversation
-//            //$message->setConversationId($newConversation->getConversationId());
-//            $this->values['conversation_id'] = $newConversation->getConversationId();
-//        }
 
         // Call the parent function to save the message
          return parent::doSave($con);

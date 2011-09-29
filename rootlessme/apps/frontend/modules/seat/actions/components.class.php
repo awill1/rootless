@@ -8,6 +8,8 @@ class seatComponents extends sfComponents
         $this->rideType = $this->getVar('ride_type');
         $this->ride = $this->getVar('ride');
         $this->seat = $this->getVar('seat');
+
+        $this->seatTitle = 'Request a Seat';
         
         // Get my user id
         $myUserId = null;
@@ -23,12 +25,21 @@ class seatComponents extends sfComponents
         // Seat behavior depends on if the seat already exists
         if ( $this->seat )
         {
-            // The seat exists, so get it from the database
-//            $this->seat = Doctrine_Core::getTable('Seats')->getSeatWithCarpoolAndPassenger($this->seatId);
-
             // Build the seat negotiation form based on the existing seat
-            $this->form = new SeatsForm($this->seat);
-            // Set the pickup and dropoff locations
+            switch ($this->rideType) {
+                case "offer":
+                    // Create the seat form
+                    $this->form = new SeatsRequestForm($this->seat);
+                    break;
+                case "request":
+                    // Create the seat form
+                    $this->form = new SeatsForm($this->seat);
+                    break;
+                default:
+                   // Default case just in case the ride_type is invalid (should
+                   // be prevented by routing.yml).
+                   echo 'Ride Type '.$this->rideType.'is invalid.';
+            }
             
         }
         else
@@ -37,6 +48,8 @@ class seatComponents extends sfComponents
             // known properties
             // Create the seat
             $this->seat = new Seats();
+            // Set the default price to be the same as the ride price
+            $this->seat->setPrice($this->ride->getAskingPrice());
             // Set the seat type field in the seat form
             // Need to get the correct value from the database
             switch ($this->rideType) {
@@ -47,6 +60,8 @@ class seatComponents extends sfComponents
                     // The ride type was an offer, so the default is taking up just
                     // 1 passenger seat
                     $this->seat->setSeatCount(1);
+                    // Create the seat form
+                    $this->form = new SeatsRequestForm($this->seat);
                     break;
                 case "request":
                     // The ride was an request so set the passenger field
@@ -55,18 +70,14 @@ class seatComponents extends sfComponents
                     // The ride type was a request, so the default is as many seats
                     // as there were in the request
                     $this->seat->setSeatCount($this->ride->getPassengerCount());
+                    // Create the seat form
+                    $this->form = new SeatsForm($this->seat);
                     break;
                 default:
                    // Default case just in case the ride_type is invalid (should
                    // be prevented by routing.yml).
                    echo 'Ride Type '.$this->rideType.'is invalid.';
             }
-
-            // Set the default price to be the same as the ride price
-            $this->seat->setPrice($this->ride->getAskingPrice());
-
-            // Create the seat form
-            $this->form = new SeatsForm($this->seat);
 
             // Hide the input field for the posting
             switch ($this->rideType) {

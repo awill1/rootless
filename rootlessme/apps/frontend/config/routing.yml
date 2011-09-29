@@ -248,6 +248,22 @@ profile_update_user:
   requirements:
     sf_method: [post]
 
+
+profile_update_additional_info:
+  url:   /profiles/update-additional-info
+#  class:   sfDoctrineRoute
+  class:   sfRoute
+  options:
+    model: Profiles
+    type: object
+  param:
+#    module: static
+#    action: home
+    module: profile
+    action: updateAdditionalInfo
+  requirements:
+    sf_method: [post]
+
 profile_show_user:
   url:   /profiles/:profile_name
   class:   sfDoctrineRoute
