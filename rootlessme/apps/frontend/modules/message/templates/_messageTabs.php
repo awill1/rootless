@@ -1,3 +1,5 @@
+<h1>Welcome to your inbox, <?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getFirstName(); ?>!</h1>
+
 <div id="middleMessageDetails">
     <ul>
         <li class="selectedNav"><a href="<?php echo url_for('messages_list', array('list_type'=>'inbox')) ?>" title="Inbox">Inbox</a></li>

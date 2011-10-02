@@ -26,18 +26,16 @@ function PrepareTable()
                 UnHighlightRow($(this));
             }
         )
-        .find('td:not(:has(:checkbox))')
-            .click(function () {
+        .find('td:not(:has(:checkbox))').click(function () {
 
-
-                var listLink = $(this).parent().find('.tableLink').attr("href");
-           $('#contentBox').html("<img src='../images/ajax-loader.gif' />");
+           var listLink = $(this).parent().find('.tableLink').attr("href");
+           $('#contentBox').html("<img src='/images/ajax-loader.gif' />");
           
  
            
            
-           $('#contentBox').load(listLink, function() {
-               
+           $('#contentBox').load(listLink + " #messageHolder", function(data) {
+               console.log(data);
                PrepareTable();
            });
            

@@ -4,6 +4,34 @@
   'title',
   sprintf('Rootless Me - %s', $conversation->getSubject()))
 ?>
+<script type="text/javascript" src="/js/tableRowNavigation.js"></script>
+<script type="text/javascript">
+              
+           //<!-- Begin
+          
+            $('#middleMessageDetails li a').live('click', function(){
+           
+           $('.selectedNav').removeClass('selectedNav');
+           $(this).parent().addClass('selectedNav');
+           var listLink = $(this).attr('href');
+           
+           $('#contentBox').html("<img src='/images/ajax-loader.gif' />");
+           
+           $('#contentBox').load(listLink, function() {
+               
+               PrepareTable();
+           });
+           
+           
+           
+           return false;
+           
+       });
+                //  End -->
+            </script>
+<?php include_partial('messageTabs') ?>
+<div id='contentBox'>
+<div id='messageHolder'>
 <h1 class="messageTitle"><?php echo $conversation->getSubject() ?></h1>
 <div class="messageThread">
     <?php foreach ($messages as $i => $message):
@@ -33,4 +61,6 @@
         <h2 class="replyTitle">Reply</h2>
         <?php include_partial('reply', array('form' => $replyForm)) ?>
     </div>
+</div>
+</div>
 </div>

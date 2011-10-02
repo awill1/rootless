@@ -6,6 +6,7 @@
 
         <form name='messages_list_<?php echo $listType ?>_form' action="messages.html">
             <script type="text/javascript">
+              
                 <!-- Begin
                 // <input type=button name="CheckAll"   value="Check All" onClick="checkAll(document.myform.list)">
                 // <input type=button name="UnCheckAll" value="Uncheck All" onClick="uncheckAll(document.myform.list)">                
@@ -20,6 +21,7 @@
                         for (i = 0; i < field.length; i++)
                                 field[i].checked = false ;
                 }
+            
                 //  End -->
             </script>
             
@@ -56,9 +58,9 @@
                                 <div>
                                     <?php echo substr($message['body'],0,40) ?>...
                                 </div>
-                                </a>
-                            </td>
-                        </tr>
+                               
+                            </td></a>
+                        </tr> 
                     <?php endforeach; ?>
                 </tbody>
             </table>

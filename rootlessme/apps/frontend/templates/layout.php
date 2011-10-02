@@ -20,7 +20,6 @@
     <?php if (has_slot('gmapheader')): ?>
         <?php include_slot('gmapheader') ?>
     <?php endif; ?>
-
   </head>
   <body>
       <div id="container">
