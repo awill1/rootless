@@ -215,6 +215,15 @@ p{
     clear: both;
     float: left;
     width: 100%;
+    text-align: left;
+}
+
+
+#middleProfileDetails input[type='text'] {
+    border: 1px solid #999;
+    padding: 4px 5px 3px 0;
+    background: #fff;
+    width: 225px;
 }
 
 

@@ -43,6 +43,11 @@ a {
     border: 1px solid transparent;
 }
 
+:focus {
+    
+    outline-color: #119D49;
+}
+
 #container {
     width: 960px;
     margin-top: 0px;

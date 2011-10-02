@@ -215,7 +215,7 @@ tbody {
     padding-bottom: 5px;
     float: left;
     border: 1px solid #999;
-    outline: none;
+    outline-color: #119D49;
 }
 
 #rideSearchForm th {

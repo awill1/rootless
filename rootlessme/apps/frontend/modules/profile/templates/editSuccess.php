@@ -18,7 +18,7 @@
 <div id="middleProfileDetails">
     <ul class="tabList">
         <li class="tabSelectedItem"><a href="#fragment-account">Account</a></li>
-        <li class="tabNotSelectedItem"><a href="#fragment-additional_info">Additional Info</a></li>
+        <li class="tabNotSelectedItem"><a href="#fragment-additional_info">Bio</a></li>
         <li class="tabNotSelectedItem"><a href="#fragment-notification">Notification</a></li>
         <li class="tabNotSelectedItem"><a href="#fragment-linked_accounts">Linked Accounts</a></li>
     </ul>
@@ -26,7 +26,7 @@
         <?php include_partial('form', array('form' => $form)) ?>
     </div>
     <div id="fragment-additional_info" class="middleProfileTabContent">
-        <h3>Additional Information</h3>
+        <h3>More about you</h3>
         <?php include_partial('form', array('form' => $additionalInfoForm)) ?>
     </div>
     <div id="fragment-notification" class="middleProfileTabContent">

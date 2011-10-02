@@ -354,8 +354,7 @@ fieldset {
 .composeNew input[type="text"] {
    border: 1px solid #999;
    width: 350px;
-   padding-top: 13px;
-   padding-left: 9px;
+   padding: 7px 0px 7px 5px;
    outline: none;
 }
 
@@ -377,7 +376,7 @@ fieldset {
 
 .composeNew input[type="submit"]:hover {
     background-color: #059B41;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .messageReply textarea{
