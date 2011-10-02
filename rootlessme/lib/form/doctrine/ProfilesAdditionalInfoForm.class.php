@@ -15,16 +15,16 @@ class ProfilesAdditionalInfoForm extends BaseProfilesForm
         // Unset most fields because the additional info corm only contains:
         // - About Me
 
-//        unset($this['profile_name']);
+        unset($this['profile_name']);
         unset($this['first_name']);
-        unset($this['last_name']);
+       unset($this['last_name']);
         unset($this['picture_url']);
         unset($this['picture_url_large']);
         unset($this['picture_url_medium']);
         unset($this['picture_url_small']);
         unset($this['picture_url_tiny']);
         unset($this['address1']);
-        unset($this['address2']);
+       unset($this['address2']);
         unset($this['city']);
         unset($this['state']);
         unset($this['postal_code']);
@@ -32,11 +32,11 @@ class ProfilesAdditionalInfoForm extends BaseProfilesForm
         unset($this['phone_number']);
         unset($this['birthday']);
         unset($this['gender']);
-        unset($this['about_me']);
+//        unset($this['about_me']);
 //        unset($this['top5']);
 //        unset($this['wants_to_travel_to']);
 //        unset($this['music']);
-//        unset($this['movies']);
+//       unset($this['movies']);
 //        unset($this['books']);
 //        unset($this['interests']);
 //        unset($this['favorite_websites']);

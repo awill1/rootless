@@ -23,7 +23,7 @@
         <li class="tabNotSelectedItem"><a href="#fragment-linked_accounts">Linked Accounts</a></li>
     </ul>
     <div id="fragment-account" class="middleProfileTabContent">
-        <?php include_partial('form', array('form' => $form)) ?>
+        <?php include_partial('form', array('form' => $accountInfoForm)) ?>
     </div>
     <div id="fragment-additional_info" class="middleProfileTabContent">
         <h3>More about you</h3>

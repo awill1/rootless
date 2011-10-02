@@ -72,7 +72,8 @@ class profileActions extends sfActions
 
     // Create an additional information form
     $this->additionalInfoForm = new ProfilesAdditionalInfoForm($profile);
-  }
+    $this->accountInfoForm = new ProfilesAccountInfoForm($profile);
+  } 
 
   public function executeUpdate(sfWebRequest $request)
   {
@@ -82,7 +83,7 @@ class profileActions extends sfActions
     $this->form = new ProfilesForm($profile);
     // Create an additional information form
     $this->additionalInfoForm = new ProfilesAdditionalInfoForm($profile);   
-
+    $this->accountInfoForm = new ProfilesAccountInfoForm($profile); 
     $this->processForm($request, $this->form);
 
     $this->setTemplate('edit');
@@ -97,12 +98,14 @@ class profileActions extends sfActions
     $this->form = new ProfilesForm($profile);
     // Create an additional information form
     $this->additionalInfoForm = new ProfilesAdditionalInfoForm($profile);   
+    $this->accountInfoForm = new ProfilesAccountInfoForm($profile); 
     // Reuse the edit template
     $this->setTemplate('edit');
     // Process the additional form
     $this->processForm($request, $this->additionalInfoForm);
 
   }
+  
 
   public function executeDelete(sfWebRequest $request)
   {
