@@ -226,9 +226,16 @@ p{
 
 #middleProfileDetails input[type='text'] {
     border: 1px solid #999;
-    padding: 4px 5px 3px 0;
+    padding: 4px 0px 3px 5px;
     background: #fff;
     width: 225px;
+}
+
+#studentVer {
+    color:#D05A36;
+    float: left;
+    position: absolute;
+    margin-top: 8px;
 }
 
 
