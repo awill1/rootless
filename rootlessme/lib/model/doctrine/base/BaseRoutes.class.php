@@ -18,6 +18,7 @@ Doctrine_Manager::getInstance()->bindComponent('Routes', 'doctrine');
  * @property Doctrine_Collection $Carpools_3
  * @property Doctrine_Collection $Legs
  * @property Doctrine_Collection $Passengers
+ * @property Doctrine_Collection $Seats
  * 
  * @method integer             getRouteId()          Returns the current record's "route_id" value
  * @method string              getCopyright()        Returns the current record's "copyright" value
@@ -30,6 +31,7 @@ Doctrine_Manager::getInstance()->bindComponent('Routes', 'doctrine');
  * @method Doctrine_Collection getCarpools3()        Returns the current record's "Carpools_3" collection
  * @method Doctrine_Collection getLegs()             Returns the current record's "Legs" collection
  * @method Doctrine_Collection getPassengers()       Returns the current record's "Passengers" collection
+ * @method Doctrine_Collection getSeats()            Returns the current record's "Seats" collection
  * @method Routes              setRouteId()          Sets the current record's "route_id" value
  * @method Routes              setCopyright()        Sets the current record's "copyright" value
  * @method Routes              setSummary()          Sets the current record's "summary" value
@@ -41,6 +43,7 @@ Doctrine_Manager::getInstance()->bindComponent('Routes', 'doctrine');
  * @method Routes              setCarpools3()        Sets the current record's "Carpools_3" collection
  * @method Routes              setLegs()             Sets the current record's "Legs" collection
  * @method Routes              setPassengers()       Sets the current record's "Passengers" collection
+ * @method Routes              setSeats()            Sets the current record's "Seats" collection
  * 
  * @package    RootlessMe
  * @subpackage model
@@ -132,6 +135,10 @@ abstract class BaseRoutes extends sfDoctrineRecord
              'foreign' => 'route_id'));
 
         $this->hasMany('Passengers', array(
+             'local' => 'route_id',
+             'foreign' => 'solo_route_id'));
+
+        $this->hasMany('Seats', array(
              'local' => 'route_id',
              'foreign' => 'solo_route_id'));
 

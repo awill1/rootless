@@ -109,6 +109,14 @@ Carpools:
       primary: false
       notnull: false
       autoincrement: false
+    isPublic:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '1'
+      notnull: false
+      autoincrement: false
     created_at:
       type: timestamp(25)
       fixed: false
@@ -589,10 +597,6 @@ Legs:
       local: route_id
       foreign: route_id
       type: one
-    SeatsFilledLegs:
-      local: leg_id
-      foreign: leg_id
-      type: many
     Steps:
       local: leg_id
       foreign: leg_id
@@ -886,6 +890,14 @@ Passengers:
       fixed: false
       unsigned: false
       primary: false
+      notnull: false
+      autoincrement: false
+    isPublic:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '1'
       notnull: false
       autoincrement: false
     created_at:
@@ -1429,6 +1441,10 @@ Routes:
       local: route_id
       foreign: solo_route_id
       type: many
+    Seats:
+      local: route_id
+      foreign: solo_route_id
+      type: many
 SeatRequestTypes:
   connection: doctrine
   tableName: seat_request_types
@@ -1556,6 +1572,13 @@ Seats:
       primary: false
       notnull: true
       autoincrement: false
+    solo_route_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
     price:
       type: float()
       fixed: false
@@ -1622,54 +1645,14 @@ Seats:
       local: passenger_id
       foreign: passenger_id
       type: one
-    SeatsFilledLegs:
-      local: seat_id
-      foreign: seat_id
-      type: many
+    Routes:
+      local: solo_route_id
+      foreign: route_id
+      type: one
     Reviews:
       local: seat_id
       foreign: seat_id
       type: many
-SeatsFilledLegs:
-  connection: doctrine
-  tableName: seats_filled_legs
-  actAs: { Timestampable: ~ }
-  columns:
-    seat_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    leg_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    Seats:
-      local: seat_id
-      foreign: seat_id
-      type: one
-    Legs:
-      local: leg_id
-      foreign: leg_id
-      type: one
 SecuritySettings:
   connection: doctrine
   tableName: security_settings

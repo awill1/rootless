@@ -14,10 +14,15 @@ class SeatsForm extends BaseSeatsForm
     {
         $seat = $this->getObject();
 
-        // The database does not have a relationship between seat and route
-        // yet so use a blank route for now
-        //$this->getObject()->Routes = $route;
-        $route = new Routes();
+        // Get the seat's route or create a new one
+        if ($seat != null)
+        {
+            $route = $this->getObject()->getRoutes();
+        }
+        else
+        {
+            $route = new Routes();
+        }
         $route_form = new RoutesForm($route);
         // Override the label for a few select fields
         $route_form->widgetSchema->setLabel('origin', 'Pickup Location');

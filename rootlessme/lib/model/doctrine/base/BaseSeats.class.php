@@ -12,6 +12,7 @@ Doctrine_Manager::getInstance()->bindComponent('Seats', 'doctrine');
  * @property integer $passenger_id
  * @property integer $seat_status_id
  * @property integer $seat_request_type_id
+ * @property integer $solo_route_id
  * @property float $price
  * @property integer $seat_count
  * @property date $pickup_date
@@ -23,7 +24,7 @@ Doctrine_Manager::getInstance()->bindComponent('Seats', 'doctrine');
  * @property SeatStatuses $SeatStatuses
  * @property SeatRequestTypes $SeatRequestTypes
  * @property Passengers $Passengers
- * @property Doctrine_Collection $SeatsFilledLegs
+ * @property Routes $Routes
  * @property Doctrine_Collection $Reviews
  * 
  * @method integer             getSeatId()               Returns the current record's "seat_id" value
@@ -31,6 +32,7 @@ Doctrine_Manager::getInstance()->bindComponent('Seats', 'doctrine');
  * @method integer             getPassengerId()          Returns the current record's "passenger_id" value
  * @method integer             getSeatStatusId()         Returns the current record's "seat_status_id" value
  * @method integer             getSeatRequestTypeId()    Returns the current record's "seat_request_type_id" value
+ * @method integer             getSoloRouteId()          Returns the current record's "solo_route_id" value
  * @method float               getPrice()                Returns the current record's "price" value
  * @method integer             getSeatCount()            Returns the current record's "seat_count" value
  * @method date                getPickupDate()           Returns the current record's "pickup_date" value
@@ -42,13 +44,14 @@ Doctrine_Manager::getInstance()->bindComponent('Seats', 'doctrine');
  * @method SeatStatuses        getSeatStatuses()         Returns the current record's "SeatStatuses" value
  * @method SeatRequestTypes    getSeatRequestTypes()     Returns the current record's "SeatRequestTypes" value
  * @method Passengers          getPassengers()           Returns the current record's "Passengers" value
- * @method Doctrine_Collection getSeatsFilledLegs()      Returns the current record's "SeatsFilledLegs" collection
+ * @method Routes              getRoutes()               Returns the current record's "Routes" value
  * @method Doctrine_Collection getReviews()              Returns the current record's "Reviews" collection
  * @method Seats               setSeatId()               Sets the current record's "seat_id" value
  * @method Seats               setCarpoolId()            Sets the current record's "carpool_id" value
  * @method Seats               setPassengerId()          Sets the current record's "passenger_id" value
  * @method Seats               setSeatStatusId()         Sets the current record's "seat_status_id" value
  * @method Seats               setSeatRequestTypeId()    Sets the current record's "seat_request_type_id" value
+ * @method Seats               setSoloRouteId()          Sets the current record's "solo_route_id" value
  * @method Seats               setPrice()                Sets the current record's "price" value
  * @method Seats               setSeatCount()            Sets the current record's "seat_count" value
  * @method Seats               setPickupDate()           Sets the current record's "pickup_date" value
@@ -60,7 +63,7 @@ Doctrine_Manager::getInstance()->bindComponent('Seats', 'doctrine');
  * @method Seats               setSeatStatuses()         Sets the current record's "SeatStatuses" value
  * @method Seats               setSeatRequestTypes()     Sets the current record's "SeatRequestTypes" value
  * @method Seats               setPassengers()           Sets the current record's "Passengers" value
- * @method Seats               setSeatsFilledLegs()      Sets the current record's "SeatsFilledLegs" collection
+ * @method Seats               setRoutes()               Sets the current record's "Routes" value
  * @method Seats               setReviews()              Sets the current record's "Reviews" collection
  * 
  * @package    RootlessMe
@@ -114,6 +117,15 @@ abstract class BaseSeats extends sfDoctrineRecord
              'unsigned' => false,
              'primary' => false,
              'notnull' => true,
+             'autoincrement' => false,
+             'length' => 4,
+             ));
+        $this->hasColumn('solo_route_id', 'integer', 4, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
              'autoincrement' => false,
              'length' => 4,
              ));
@@ -201,9 +213,9 @@ abstract class BaseSeats extends sfDoctrineRecord
              'local' => 'passenger_id',
              'foreign' => 'passenger_id'));
 
-        $this->hasMany('SeatsFilledLegs', array(
-             'local' => 'seat_id',
-             'foreign' => 'seat_id'));
+        $this->hasOne('Routes', array(
+             'local' => 'solo_route_id',
+             'foreign' => 'route_id'));
 
         $this->hasMany('Reviews', array(
              'local' => 'seat_id',

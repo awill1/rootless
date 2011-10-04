@@ -13,25 +13,22 @@ Doctrine_Manager::getInstance()->bindComponent('Legs', 'doctrine');
  * @property timestamp $created_at
  * @property timestamp $updated_at
  * @property Routes $Routes
- * @property Doctrine_Collection $SeatsFilledLegs
  * @property Doctrine_Collection $Steps
  * 
- * @method integer             getLegId()           Returns the current record's "leg_id" value
- * @method integer             getRouteId()         Returns the current record's "route_id" value
- * @method integer             getSequenceOrder()   Returns the current record's "sequence_order" value
- * @method timestamp           getCreatedAt()       Returns the current record's "created_at" value
- * @method timestamp           getUpdatedAt()       Returns the current record's "updated_at" value
- * @method Routes              getRoutes()          Returns the current record's "Routes" value
- * @method Doctrine_Collection getSeatsFilledLegs() Returns the current record's "SeatsFilledLegs" collection
- * @method Doctrine_Collection getSteps()           Returns the current record's "Steps" collection
- * @method Legs                setLegId()           Sets the current record's "leg_id" value
- * @method Legs                setRouteId()         Sets the current record's "route_id" value
- * @method Legs                setSequenceOrder()   Sets the current record's "sequence_order" value
- * @method Legs                setCreatedAt()       Sets the current record's "created_at" value
- * @method Legs                setUpdatedAt()       Sets the current record's "updated_at" value
- * @method Legs                setRoutes()          Sets the current record's "Routes" value
- * @method Legs                setSeatsFilledLegs() Sets the current record's "SeatsFilledLegs" collection
- * @method Legs                setSteps()           Sets the current record's "Steps" collection
+ * @method integer             getLegId()          Returns the current record's "leg_id" value
+ * @method integer             getRouteId()        Returns the current record's "route_id" value
+ * @method integer             getSequenceOrder()  Returns the current record's "sequence_order" value
+ * @method timestamp           getCreatedAt()      Returns the current record's "created_at" value
+ * @method timestamp           getUpdatedAt()      Returns the current record's "updated_at" value
+ * @method Routes              getRoutes()         Returns the current record's "Routes" value
+ * @method Doctrine_Collection getSteps()          Returns the current record's "Steps" collection
+ * @method Legs                setLegId()          Sets the current record's "leg_id" value
+ * @method Legs                setRouteId()        Sets the current record's "route_id" value
+ * @method Legs                setSequenceOrder()  Sets the current record's "sequence_order" value
+ * @method Legs                setCreatedAt()      Sets the current record's "created_at" value
+ * @method Legs                setUpdatedAt()      Sets the current record's "updated_at" value
+ * @method Legs                setRoutes()         Sets the current record's "Routes" value
+ * @method Legs                setSteps()          Sets the current record's "Steps" collection
  * 
  * @package    RootlessMe
  * @subpackage model
@@ -95,10 +92,6 @@ abstract class BaseLegs extends sfDoctrineRecord
         $this->hasOne('Routes', array(
              'local' => 'route_id',
              'foreign' => 'route_id'));
-
-        $this->hasMany('SeatsFilledLegs', array(
-             'local' => 'leg_id',
-             'foreign' => 'leg_id'));
 
         $this->hasMany('Steps', array(
              'local' => 'leg_id',

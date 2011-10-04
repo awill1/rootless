@@ -23,6 +23,7 @@ abstract class BasePassengersForm extends BaseFormDoctrine
       'start_time'      => new sfWidgetFormTime(),
       'asking_price'    => new sfWidgetFormInputText(),
       'description'     => new sfWidgetFormTextarea(),
+      'isPublic'        => new sfWidgetFormInputText(),
       'created_at'      => new sfWidgetFormDateTime(),
       'updated_at'      => new sfWidgetFormDateTime(),
     ));
@@ -36,6 +37,7 @@ abstract class BasePassengersForm extends BaseFormDoctrine
       'start_time'      => new sfValidatorTime(array('required' => false)),
       'asking_price'    => new sfValidatorNumber(array('required' => false)),
       'description'     => new sfValidatorString(array('required' => false)),
+      'isPublic'        => new sfValidatorInteger(array('required' => false)),
       'created_at'      => new sfValidatorDateTime(),
       'updated_at'      => new sfValidatorDateTime(),
     ));

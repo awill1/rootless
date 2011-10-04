@@ -15,6 +15,7 @@ Doctrine_Manager::getInstance()->bindComponent('Passengers', 'doctrine');
  * @property time $start_time
  * @property float $asking_price
  * @property string $description
+ * @property integer $isPublic
  * @property timestamp $created_at
  * @property timestamp $updated_at
  * @property People $People
@@ -29,6 +30,7 @@ Doctrine_Manager::getInstance()->bindComponent('Passengers', 'doctrine');
  * @method time                getStartTime()       Returns the current record's "start_time" value
  * @method float               getAskingPrice()     Returns the current record's "asking_price" value
  * @method string              getDescription()     Returns the current record's "description" value
+ * @method integer             getIsPublic()        Returns the current record's "isPublic" value
  * @method timestamp           getCreatedAt()       Returns the current record's "created_at" value
  * @method timestamp           getUpdatedAt()       Returns the current record's "updated_at" value
  * @method People              getPeople()          Returns the current record's "People" value
@@ -42,6 +44,7 @@ Doctrine_Manager::getInstance()->bindComponent('Passengers', 'doctrine');
  * @method Passengers          setStartTime()       Sets the current record's "start_time" value
  * @method Passengers          setAskingPrice()     Sets the current record's "asking_price" value
  * @method Passengers          setDescription()     Sets the current record's "description" value
+ * @method Passengers          setIsPublic()        Sets the current record's "isPublic" value
  * @method Passengers          setCreatedAt()       Sets the current record's "created_at" value
  * @method Passengers          setUpdatedAt()       Sets the current record's "updated_at" value
  * @method Passengers          setPeople()          Sets the current record's "People" value
@@ -128,6 +131,16 @@ abstract class BasePassengers extends sfDoctrineRecord
              'notnull' => false,
              'autoincrement' => false,
              'length' => '',
+             ));
+        $this->hasColumn('isPublic', 'integer', 1, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'default' => '1',
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
              ));
         $this->hasColumn('created_at', 'timestamp', 25, array(
              'type' => 'timestamp',
