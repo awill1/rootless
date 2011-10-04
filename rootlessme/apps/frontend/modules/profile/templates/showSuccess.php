@@ -61,15 +61,12 @@
 </div>
 <div id="middleProfileBadge">
     <?php include_component('friendship', 'requestFriendshipButton', array('person_id' => $profile->getPersonId())) ?>
-    <?php 
-    
-    if($profile->getFirstName() == 'Lauren') {
-        echo '<div id="studentVer">';
-        echo '<img src="/images/check.png" />'; 
-        echo 'Verified Student</div>';
-        
-    }
-    ?>
+    <?php if(preg_match('/.*\.edu$/',$profile->getPeople()->getUsers()->getFirst()->getEmail())) : ?>
+        <div id="studentVer">
+            <img src="/images/check.png" alt="Verified Student" />
+            Verified Student
+        </div>
+    <?php endif ?>
     <a href id="messageButtonLink">+ Message</a><br />
     <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $profile->getPictureUrlLarge() ?>" alt="<?php echo $profile->getFullName() ?> profile picture"/>
     <div class="middleProfileBadgeInfo">

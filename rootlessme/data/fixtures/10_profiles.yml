@@ -25,12 +25,12 @@ Users:
   user_lauren:
     user_name:   user_lauren
     person_id:   3
-    email:       lauren@testuser.com
+    email:       lauren@testuniveristy.edu
     encrypted_password: kjrewlkjifdsoiufdsoiuwrjrewljfdsjjiofs
   user_colin:
     user_name:   user_colin
     person_id:   4
-    email:       colin@testuser.com
+    email:       colin@testuniveristy.edu
     encrypted_password: kjrewlkjifdsoiufdsoiuwrjrewljfdsjjiofz
 
 
