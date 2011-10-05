@@ -8,10 +8,13 @@
  * @author     awilliams
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class ProfilesAccountInfoForm extends BaseProfilesForm
+class ProfilesAccountInfoForm extends ProfilesForm
 {
     public function configure()
     {
+        // Use the parent configuration function
+        parent::configure();
+        
         // Unset most fields because the additional info corm only contains:
         // - About Me
 
@@ -41,8 +44,8 @@ class ProfilesAccountInfoForm extends BaseProfilesForm
         unset($this['interests']);
         unset($this['favorite_websites']);
 //        unset($this['website_url']);
-//        unset($this['facebook_user_name']);
-//        unset($this['twitter_user_name']);
+        unset($this['facebook_user_name']);
+        unset($this['twitter_user_name']);
         unset($this['person_id']);
         unset($this['created_at']);
         unset($this['updated_at']);

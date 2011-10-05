@@ -8,11 +8,14 @@
  * @author     awilliams
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class ProfilesAdditionalInfoForm extends BaseProfilesForm
+class ProfilesAdditionalInfoForm extends ProfilesForm
 {
     public function configure()
     {
-        // Unset most fields because the additional info corm only contains:
+        // Use the parent configuration function
+        parent::configure();
+
+        // Unset most fields because the additional info form only contains:
         // - About Me
 
         unset($this['profile_name']);

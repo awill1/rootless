@@ -23,11 +23,11 @@
         <li class="tabNotSelectedItem"><a href="#fragment-linked_accounts">Linked Accounts</a></li>
     </ul>
     <div id="fragment-account" class="middleProfileTabContent">
-        <?php include_partial('form', array('form' => $accountInfoForm)) ?>
+        <?php include_partial('form', array('form' => $accountInfoForm , 'section' => 'account')) ?>
     </div>
     <div id="fragment-additional_info" class="middleProfileTabContent">
         <h3>More about you</h3>
-        <?php include_partial('form', array('form' => $additionalInfoForm)) ?>
+        <?php include_partial('form', array('form' => $additionalInfoForm , 'section' => 'additional')) ?>
     </div>
     <div id="fragment-notification" class="middleProfileTabContent">
         <h3>Notification</h3>
