@@ -31,7 +31,10 @@
         <tfoot>
           <tr>
             <td colspan="2">
-              <input id="seat_negotiate" type="button" value="Submit" />
+              <input id="seat_negotiate" type="button" value="Submit Request" disabled="disabled"  />
+              <input id="seat_negotiate" type="button" value="Accept" disabled="disabled" />
+              <input id="seat_negotiate" type="button" value="Decline" disabled="disabled" />
+              <input id="seat_negotiate" type="button" value="Negotiate" />
             </td>
           </tr>
         </tfoot>
@@ -41,7 +44,7 @@
     <?php if (!$seat->isNew()): ?>
         <?php 
         // Temporary test, this will be replaced with negotiations
-        include_partial('seat/negotiations', array('negotiation' => $seat))
+        include_partial('seat/negotiations', array('negotiations' => $negotiations))
         ?>
     <?php endif; ?>
 

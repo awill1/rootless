@@ -1008,6 +1008,10 @@ People:
       local: person_id
       foreign: reviewee_id
       type: many
+    SeatsHistory:
+      local: person_id
+      foreign: changer_id
+      type: many
     SecuritySettings:
       local: person_id
       foreign: person_id
@@ -1645,6 +1649,10 @@ Seats:
       local: passenger_id
       foreign: passenger_id
       type: one
+    SeatsHistory:
+      local: seat_id
+      foreign: seat_id
+      type: many
     Routes:
       local: solo_route_id
       foreign: route_id
@@ -1653,6 +1661,130 @@ Seats:
       local: seat_id
       foreign: seat_id
       type: many
+SeatsHistory:
+  connection: doctrine
+  tableName: seats_history
+  actAs: { Timestampable: ~ }
+  columns:
+    seat_history_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    seat_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    carpool_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    passenger_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    seat_status_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    seat_request_type_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    solo_route_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    price:
+      type: float()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    seat_count:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    pickup_date:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    pickup_time:
+      type: time(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    description:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    changer_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    change_action:
+      type: string(16)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    People:
+      local: changer_id
+      foreign: person_id
+      type: one
+    Seats:
+      local: seat_id
+      foreign: seat_id
+      type: one
 SecuritySettings:
   connection: doctrine
   tableName: security_settings

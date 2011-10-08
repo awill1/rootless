@@ -23,6 +23,7 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @property Doctrine_Collection $Profiles
  * @property Doctrine_Collection $Reviews
  * @property Doctrine_Collection $Reviews_2
+ * @property Doctrine_Collection $SeatsHistory
  * @property Doctrine_Collection $SecuritySettings
  * @property Doctrine_Collection $sfGuardUser
  * @property Doctrine_Collection $TravelersAttendingEvent
@@ -46,6 +47,7 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @method Doctrine_Collection getProfiles()                 Returns the current record's "Profiles" collection
  * @method Doctrine_Collection getReviews()                  Returns the current record's "Reviews" collection
  * @method Doctrine_Collection getReviews2()                 Returns the current record's "Reviews_2" collection
+ * @method Doctrine_Collection getSeatsHistory()             Returns the current record's "SeatsHistory" collection
  * @method Doctrine_Collection getSecuritySettings()         Returns the current record's "SecuritySettings" collection
  * @method Doctrine_Collection getSfGuardUser()              Returns the current record's "sfGuardUser" collection
  * @method Doctrine_Collection getTravelersAttendingEvent()  Returns the current record's "TravelersAttendingEvent" collection
@@ -68,6 +70,7 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @method People              setProfiles()                 Sets the current record's "Profiles" collection
  * @method People              setReviews()                  Sets the current record's "Reviews" collection
  * @method People              setReviews2()                 Sets the current record's "Reviews_2" collection
+ * @method People              setSeatsHistory()             Sets the current record's "SeatsHistory" collection
  * @method People              setSecuritySettings()         Sets the current record's "SecuritySettings" collection
  * @method People              setSfGuardUser()              Sets the current record's "sfGuardUser" collection
  * @method People              setTravelersAttendingEvent()  Sets the current record's "TravelersAttendingEvent" collection
@@ -167,6 +170,10 @@ abstract class BasePeople extends sfDoctrineRecord
         $this->hasMany('Reviews as Reviews_2', array(
              'local' => 'person_id',
              'foreign' => 'reviewee_id'));
+
+        $this->hasMany('SeatsHistory', array(
+             'local' => 'person_id',
+             'foreign' => 'changer_id'));
 
         $this->hasMany('SecuritySettings', array(
              'local' => 'person_id',

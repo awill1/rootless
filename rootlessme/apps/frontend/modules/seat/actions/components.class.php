@@ -40,6 +40,9 @@ class seatComponents extends sfComponents
                    // be prevented by routing.yml).
                    echo 'Ride Type '.$this->rideType.'is invalid.';
             }
+            // Get the seat negotiations
+            $this->negotiations = Doctrine_Core::getTable('SeatsHistory')
+                                 ->getHistoryForSeat($this->seat->getSeatId());
             
         }
         else

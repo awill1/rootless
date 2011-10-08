@@ -24,6 +24,7 @@ Doctrine_Manager::getInstance()->bindComponent('Seats', 'doctrine');
  * @property SeatStatuses $SeatStatuses
  * @property SeatRequestTypes $SeatRequestTypes
  * @property Passengers $Passengers
+ * @property Doctrine_Collection $SeatsHistory
  * @property Routes $Routes
  * @property Doctrine_Collection $Reviews
  * 
@@ -44,6 +45,7 @@ Doctrine_Manager::getInstance()->bindComponent('Seats', 'doctrine');
  * @method SeatStatuses        getSeatStatuses()         Returns the current record's "SeatStatuses" value
  * @method SeatRequestTypes    getSeatRequestTypes()     Returns the current record's "SeatRequestTypes" value
  * @method Passengers          getPassengers()           Returns the current record's "Passengers" value
+ * @method Doctrine_Collection getSeatsHistory()         Returns the current record's "SeatsHistory" collection
  * @method Routes              getRoutes()               Returns the current record's "Routes" value
  * @method Doctrine_Collection getReviews()              Returns the current record's "Reviews" collection
  * @method Seats               setSeatId()               Sets the current record's "seat_id" value
@@ -63,6 +65,7 @@ Doctrine_Manager::getInstance()->bindComponent('Seats', 'doctrine');
  * @method Seats               setSeatStatuses()         Sets the current record's "SeatStatuses" value
  * @method Seats               setSeatRequestTypes()     Sets the current record's "SeatRequestTypes" value
  * @method Seats               setPassengers()           Sets the current record's "Passengers" value
+ * @method Seats               setSeatsHistory()         Sets the current record's "SeatsHistory" collection
  * @method Seats               setRoutes()               Sets the current record's "Routes" value
  * @method Seats               setReviews()              Sets the current record's "Reviews" collection
  * 
@@ -212,6 +215,10 @@ abstract class BaseSeats extends sfDoctrineRecord
         $this->hasOne('Passengers', array(
              'local' => 'passenger_id',
              'foreign' => 'passenger_id'));
+
+        $this->hasMany('SeatsHistory', array(
+             'local' => 'seat_id',
+             'foreign' => 'seat_id'));
 
         $this->hasOne('Routes', array(
              'local' => 'solo_route_id',
