@@ -60,7 +60,7 @@ class SeatsTable extends Doctrine_Table
      * @return Doctrine_Collection Returns a seats collection with profiles
      * and people included
      */
-    public function getPassengersWithProfilesForCarpool($carpool_id)
+    public function getSeatsWithProfilesForCarpool($carpool_id)
     {
         $q = $this->createQuery('s')
           ->innerJoin('s.Passengers pa')

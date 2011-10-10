@@ -416,13 +416,12 @@ seats_update:
     sf_method: [post]
 
 seats_negotiation:
-  url:   /seats/negotiation/:seat_id/:ride_type
+  url:   /seats/negotiation/:seat_id
   class:   sfDoctrineRoute
   options: { model: Seats, type: object }
   param: { module: seat, action: negotiation }
   requirements:
     sf_method: [get]
-    ride_type: (offer|request)
 
 seats_show:
   url:   /seats/:seat_id

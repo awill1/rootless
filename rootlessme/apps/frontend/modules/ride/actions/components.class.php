@@ -8,10 +8,10 @@ class rideComponents extends sfComponents
         $this->rideId = $request->getParameter('ride_id');
 
         // Get the users id
-        $myUserId = null;
+        $this->myUserId = null;
         if ($this->getUser()->isAuthenticated())
         {
-            $myUserId = $this->getUser()->getGuardUser()->getPersonId();
+            $this->myUserId = $this->getUser()->getGuardUser()->getPersonId();
         }
 
         // Get the offer information based on the ride id
@@ -26,8 +26,15 @@ class rideComponents extends sfComponents
         $this->destination = $this->carpool->getDestinationLocation();
         $this->driver = $this->carpool->getPeople()->getProfiles()->getFirst();
 
-        // Get the confirmed seat information
-        $this->seats = Doctrine_Core::getTable('Seats')->getPassengersWithProfilesForCarpool($this->rideId);
+        // Check to see if the post belongs to the user
+        $this->isMyPost = false;
+        if ($this->myUserId == $this->carpool->getDriverId())
+        {
+            $this->isMyPost = true;
+        }
+
+        // Get the seats for this carpool
+        $this->seats = Doctrine_Core::getTable('Seats')->getSeatsWithProfilesForCarpool($this->rideId);
 
         // Sort the seats into statuses and see if any of the seats are mine
         $this->acceptedSeats = new Doctrine_Collection('Seats');
@@ -50,7 +57,7 @@ class rideComponents extends sfComponents
             }
 
             // See if the seat belongs to the logged in user
-            if ($seat->getPassengers()->getPersonId() == $myUserId)
+            if ($seat->getPassengers()->getPersonId() == $this->myUserId)
             {
                 // This is my seat so make note of it for the negotiation
                 // partial
@@ -58,12 +65,6 @@ class rideComponents extends sfComponents
             }
         }
         
-        // Check to see if this is my post
-        $this->isMyPost = false;
-        if ($myUserId == $this->carpool->getDriverId())
-        {
-            $this->isMyPost = true;
-        }
     }
 
     public function executeShowRequest(sfWebRequest $request)

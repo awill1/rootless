@@ -3,20 +3,21 @@
 
 
 <form class="userInputForm" action="<?php echo url_for('seats_create') ?>" method="post">
+    <h3>Request a Seat</h3>
     <table>
         <tbody>
             <tr>
                 <td colspan="2" >
-                    Rootless Me saves your seat request information
-                    to help match you up with rides. Please choose a saved
-                    seat request to automatically fill in seat details, which
-                    you can override for this specific request,
-                    or enter in new seat information below.
+                    If you have already requested a ride please select it:
                 </td>
             </tr>
             <?php echo $seatForm->renderHiddenFields() ?>
-            <?php echo $seatForm['carpool_id']->renderRow() ?>
             <?php echo $seatForm['passenger_id']->renderRow() ?>
+            <tr>
+                <td colspan="2" >
+                    Fill in the details for this specific seat request:
+                </td>
+            </tr>
             <?php echo $seatForm['route']['origin']->renderRow() ?>
             <?php echo $seatForm['route']['destination']->renderRow() ?>
             <?php echo $seatForm['seat_status_id']->renderRow() ?>
@@ -25,7 +26,6 @@
             <?php echo $seatForm['price']->renderRow() ?>
             <?php echo $seatForm['seat_count']->renderRow() ?>
             <?php echo $seatForm['description']->renderRow() ?>
-            <?php //echo $seatForm ?>
         </tbody>
         <tfoot>
             <tr>

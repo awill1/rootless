@@ -13,7 +13,7 @@ class seatActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
     $this->seats = Doctrine_Core::getTable('Seats')
-      ->createQuery('a')
+      ->createQuery('q')
       ->execute();
   }
 
@@ -51,7 +51,6 @@ class seatActions extends sfActions
     {
         // Get the seat id from the request
         $seatId = $request->getParameter('seat_id');
-        $rideType = $request->getParameter('ride_type');
 
         // Get the seat information
         $this->seat = Doctrine_Core::getTable('Seats')->getSeatWithCarpoolAndPassenger($seatId);
@@ -80,31 +79,10 @@ class seatActions extends sfActions
         // view this page
         $this->forward404If(!$this->isMySeat, 'Seat was not found.');
 
-        // Get the information for the ride to pass to the partial
-        switch ($rideType) {
-            case "offer":
-                // The ride was an offer so
-                // the ride is the carpool
-                $ride = $this->seat->getCarpools();
-                break;
-            case "request":
-                // The ride was a request so
-                // the ride is a passenger
-                $ride = $this->seat->getPassengers();
-                break;
-            default:
-               // Default case just in case the ride_type is invalid (should
-               // be prevented by routing.yml).
-               echo 'Ride Type '.$this->rideType.'is invalid.';
-        }
-
-
         // If the request came from AJAX render the seat negotiation partial
         if ($request->isXmlHttpRequest())
         {
             return $this->renderComponent('seat', 'negotiation', array(
-                                                     'ride_type' => $rideType,
-                                                     'ride' => $ride,
                                                      'seat' => $this->seat));
         }
     }
