@@ -12,6 +12,10 @@
  */
 class Routes extends BaseRoutes
 {
+    /**
+     * Gets the origin location of the route
+     * @return Locations The origin location
+     */
     public function getOriginLocation()
     {
         $first_location = $this->getSortedLocationsQuery('ASC')
@@ -22,6 +26,10 @@ class Routes extends BaseRoutes
         return $first_location;
     }
 
+    /**
+     * Gets the destination location of the route
+     * @return Locations The destination location
+     */
     public function getDestinationLocation()
     {
         $last_location = $this->getSortedLocationsQuery('DESC')
@@ -111,7 +119,11 @@ class Routes extends BaseRoutes
     }
 
     /**
-     *
+     * Gets a query that returns all locations associated with the route, in
+     * a sorted order.
+     * @param string $orderDirection The sort order. 'ASC' and 'DESC' are
+     * supported. All others are ignored.
+     * @return Doctrine_Query The query that gets the sorted locations
      */
     private function getSortedLocationsQuery($orderDirection)
     {

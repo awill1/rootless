@@ -26,10 +26,20 @@ class RoutesForm extends BaseRoutesForm
         $this->setValidator('origin_data', new sfValidatorString(array('required' => false)));
         $this->setValidator('destination_data', new sfValidatorString(array('required' => false)));
 
+        // If this is not a new route, set the origin and destination
+        // textboxes
+        $route = $this->getObject();
+        if ($route != null && !$route->isNew())
+        {
+            $origin = $route->getOriginLocation();
+            $destination = $route->getDestinationLocation();
+            $this->setDefault('origin', urldecode($origin->getSearchString()));
+            $this->setDefault('destination', urldecode($destination->getSearchString()));
+        }
+        
+        // Choose the order of the fields in the form, all others are unset
         unset($this['created_at']);
         unset($this['updated_at']);
-
-        // Choose the order of the fields in the form, all others are unset
         $this->useFields(array(
             'route_data',
             'origin_data',

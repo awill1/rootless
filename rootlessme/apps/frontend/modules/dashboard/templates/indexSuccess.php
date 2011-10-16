@@ -1,5 +1,10 @@
 <?php use_stylesheet('dashboard.css') ?>
 
+<?php slot(
+  'title',
+  sprintf('Rootless Me - Dashboard'))
+?>
+
 <h1>Dashboard</h1>
 <div id="rideSection">
     <h3>Rides</h3>

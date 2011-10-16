@@ -87,4 +87,9 @@ class SeatsTable extends Doctrine_Table
         $results = $q->execute();
         return $results->getFirst();
     }
+
+    public function getSeatsForPerson($person_id)
+    {
+
+    }
 }
