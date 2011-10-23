@@ -69,6 +69,10 @@ class Routes extends BaseRoutes
         $polyline = $route_data["overview_polyline"]["points"];
         $this->setEncodedPolyline($polyline);
 
+        // TODO: Increment the sequence order for all detail levels at
+        // a route level, instead of nesting. This means the locations
+        // can be sorted without joining up to the route level
+
         // Create the legs
         $legsCount = count($jRoute["routes"][$routeNumber]["legs"]);
         for ($currentLeg = 0 ; $currentLeg < $legsCount ; $currentLeg++ )
@@ -99,10 +103,8 @@ class Routes extends BaseRoutes
                 {
                     $location_data = $step_data["path"][$currentLocation];
                     $location = new Locations();
-                    // The shortcut accessors for the latitude and longitude
-                    // seem to vary with the version of the google map API.
-                    // TODO: A permanent soulution needs to be found for the
-                    // changing coorinate array keys.
+                    // Use the lat and lon keys that were replaced by the 
+                    // javascript
                     $location->setLatitude($location_data['lat']);
                     $location->setLongitude($location_data['lon']);
                     $location->setSequenceOrder($currentLocation);

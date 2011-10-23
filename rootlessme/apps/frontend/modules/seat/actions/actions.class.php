@@ -87,21 +87,81 @@ class seatActions extends sfActions
         }
     }
 
-  public function executeNew(sfWebRequest $request)
-  {
-    $this->form = new SeatsForm();
-  }
+    public function executeNew(sfWebRequest $request)
+    {
+        $this->form = new SeatsForm();
+    }
 
-  public function executeCreate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod(sfRequest::POST));
+    public function executeCreate(sfWebRequest $request)
+    {
+        $this->forward404Unless($request->isMethod(sfRequest::POST));
 
-    $this->form = new SeatsForm();
+        $this->form = new SeatsForm();
 
-    $this->processForm($request, $this->form);
+        $seat = $this->processForm($request, $this->form);
 
-    $this->setTemplate('new');
-  }
+        // If the request came from AJAX render the seat negotiation partial
+        // with the new seat information
+        if ($request->isXmlHttpRequest())
+        {
+            return $this->renderComponent('seat','negotiation', array('seat' => $seat));
+        }
+        else
+        {
+            $this->setTemplate('new');
+
+            if ($seat != null)
+            {
+                // This is not an AJAX request so redirect to the show seat
+                // page
+
+                $this->redirect('seats_show', array('seat_id', $seat->getSeatId()));
+            }
+            // Temporary debugging stuff. DELETE THIS
+            $ride = Doctrine_Core::getTable('Carpools')->find('3');
+            return $this->renderComponent('seat','seatForm', array('rideType'=>'offer', 'ride'=>$ride));
+
+
+        }
+    }
+    
+    /**
+     * The action for creating a seat request
+     * @param sfWebRequest $request The web request
+     * @return <type> 
+     */
+    public function executeRequestCreate(sfWebRequest $request)
+    {
+        $this->forward404Unless($request->isMethod(sfRequest::POST));
+
+        $this->form = new SeatsRequestForm();
+
+        $seat = $this->processForm($request, $this->form);
+
+        // If the request came from AJAX render the seat negotiation partial
+        // with the new seat information
+        if ($request->isXmlHttpRequest())
+        {
+            return $this->renderComponent('seat','negotiation', array('seat' => $seat));
+        }
+        else
+        {
+            $this->setTemplate('new');
+
+            if ($seat != null)
+            {
+                // This is not an AJAX request so redirect to the show seat
+                // page
+
+                $this->redirect('seats_show', array('seat_id', $seat->getSeatId()));
+            }
+            // Temporary debugging stuff. DELETE THIS
+            $ride = Doctrine_Core::getTable('Carpools')->find('3');
+            return $this->renderComponent('seat','seatForm', array('rideType'=>'offer', 'ride'=>$ride));
+
+
+        }
+    }
 
   public function executeEdit(sfWebRequest $request)
   {
@@ -137,7 +197,20 @@ class seatActions extends sfActions
     {
       $seat = $form->save();
 
-      $this->redirect('seat/edit?seat_id='.$seat->getSeatId());
+      return $seat;
+    }
+    else
+    {
+        $this->logMessage('Form is not valid!', 'err');
+        $this->logMessage($form->renderGlobalErrors(), 'err');
+        $errors = $form->getErrorSchema()->getErrors();
+        if (count($errors) > 0)
+        {
+            foreach ($errors as $name => $error)
+            {
+                $this->logMessage($name . ': ' . $error, 'err');
+            }
+        }
     }
   }
 }

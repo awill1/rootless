@@ -128,7 +128,7 @@
     </div>
     <div id="mainRideDetails">
         <div id="dialogFormDiv" title="Offer a ride">
-            <?php include_component('seat', 'seatForm', array('ride_type'=>'request', 'ride'=>$passenger)) ?>
+            <?php include_component('seat', 'offerForm', array('ride'=>$passenger)) ?>
         </div>
     </div>
 </div>

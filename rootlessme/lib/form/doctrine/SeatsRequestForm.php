@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Seats form.
+ * Seats request form. This is a slightly simplified version of the
+ * seats form since some of the information cannot be changed by the user.
  *
  * @package    RootlessMe
  * @subpackage form
@@ -15,25 +16,7 @@ class SeatsRequestForm extends SeatsForm
         // Use the base configuration from the SeatsForm
         parent::configure();
 
-        // Change some of the fields
-        // Create the carpool and passenger choices, allowing the empty option
+        // Change the carpool id to hidden, since it is already set.
         $this->setWidget('carpool_id',new sfWidgetFormInputHidden());
-
-
-    }
-
-    public function doSave($con = null) {
-        $seat = $this->getObject();
-
-        // If this is a new seat request
-        if ($seat->isNew())
-        {
-            // Set the status to pending
-//            $this->values['seat_status_id'] = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
-        }
-
-
-        // Call the parent function to save the message
-         return parent::doSave($con);
     }
 }

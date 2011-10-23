@@ -3,24 +3,23 @@
 
 
 <form class="userInputForm" action="<?php echo url_for('seats_create') ?>" method="post">
-    <h3>Request a Seat</h3>
+    <h3>Offer a Seat</h3>
     <table>
         <tbody>
             <tr>
                 <td colspan="2" >
-                    If you have already requested a ride please select it:
+                    If you have already offered a ride please select it:
                 </td>
             </tr>
             <?php echo $seatForm->renderHiddenFields() ?>
-            <?php echo $seatForm['passenger_id']->renderRow() ?>
+            <?php echo $seatForm['carpool_id']->renderRow() ?>
             <tr>
                 <td colspan="2" >
-                    Fill in the details for this specific seat request:
+                    Fill in the details for this specific seat offer:
                 </td>
             </tr>
             <?php echo $seatForm['route']['origin']->renderRow() ?>
             <?php echo $seatForm['route']['destination']->renderRow() ?>
-            <?php echo $seatForm['seat_status_id']->renderRow() ?>
             <?php echo $seatForm['pickup_date']->renderRow(array('class'=>'datePicker')) ?>
             <?php echo $seatForm['pickup_time']->renderRow(array('class'=>'timePicker')) ?>
             <?php echo $seatForm['price']->renderRow() ?>
@@ -30,7 +29,7 @@
         <tfoot>
             <tr>
                 <td colspan="2">
-                    <input id="rides_find" type="button" value="Submit" />
+                    <input id="submit_seat" type="submit" value="Submit" />
                 </td>
             </tr>
         </tfoot>

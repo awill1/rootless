@@ -14,23 +14,12 @@ SeatStatuses:
     display_text: Declined
     slug: declined
 
-SeatRequestTypes:
-  seat_request_type_offer:
-    seat_request_type_id: 1
-    display_text: Offer
-    slug: offer
-  seat_request_type_request:
-    seat_request_type_id: 2
-    display_text: Request
-    slug: request
-
 Seats:
   seat_1:
     seat_id: 1
     carpool_id: 2
     passenger_id: 2
     seat_status_id: 2
-    seat_request_type_id: 1
     price: 15
     seat_count: 1
     pickup_date: "2011-05-08"
@@ -42,7 +31,6 @@ Seats:
     carpool_id: 2
     passenger_id: 3
     seat_status_id: 1
-    seat_request_type_id: 1
     price: 5
     seat_count: 1
     pickup_date: "2011-05-08"
@@ -54,7 +42,6 @@ Seats:
     carpool_id: 2
     passenger_id: 4
     seat_status_id: 3
-    seat_request_type_id: 1
     price: 0
     seat_count: 1
     pickup_date: "2011-05-08"
@@ -69,7 +56,6 @@ SeatsHistory:
     carpool_id: 2
     passenger_id: 2
     seat_status_id: 1
-    seat_request_type_id: 1
     solo_route_id: 1
     price: 15
     seat_count: 1
@@ -86,7 +72,6 @@ SeatsHistory:
     carpool_id: 2
     passenger_id: 2
     seat_status_id: 1
-    seat_request_type_id: 1
     solo_route_id: 1
     price: 15
     seat_count: 1
@@ -103,7 +88,6 @@ SeatsHistory:
     carpool_id: 2
     passenger_id: 2
     seat_status_id: 1
-    seat_request_type_id: 1
     solo_route_id: 1
     price: 15
     seat_count: 1
@@ -120,7 +104,6 @@ SeatsHistory:
     carpool_id: 2
     passenger_id: 2
     seat_status_id: 2
-    seat_request_type_id: 1
     solo_route_id: 1
     price: 15
     seat_count: 1
@@ -137,7 +120,6 @@ SeatsHistory:
     carpool_id: 2
     passenger_id: 3
     seat_status_id: 1
-    seat_request_type_id: 1
     solo_route_id: 1
     price: 5
     seat_count: 1
@@ -154,7 +136,6 @@ SeatsHistory:
     carpool_id: 2
     passenger_id: 4
     seat_status_id: 1
-    seat_request_type_id: 1
     solo_route_id: 1
     price: 0
     seat_count: 1
@@ -171,7 +152,6 @@ SeatsHistory:
     carpool_id: 2
     passenger_id: 4
     seat_status_id: 3
-    seat_request_type_id: 1
     solo_route_id: 1
     price: 0
     seat_count: 1

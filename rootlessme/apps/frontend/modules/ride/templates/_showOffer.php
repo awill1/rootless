@@ -20,6 +20,12 @@
         var originDataField = "#seats_route_origin_data";
         var destinationDataField = "#seats_route_destination_data";
         var routeDataField = "#seats_route_route_data";
+        // Latitude and longitude key names change in google maps api.
+        // This testPoint helps us figure out which letters google is using
+        // this time around.
+        var testPoint = new google.maps.LatLng(23,45);
+        var strangeLat;
+        var strangeLon;
 
 
         // Function when the page is ready
@@ -65,6 +71,14 @@
             bindTextBoxesToMap();
 //            $(originTextBox).change(previewRoute);
 //            $(destinationTextBox).change(previewRoute);
+
+            // Discover the strange keys used for longitude and latitude
+            // in the data returned from google maps api.
+            var googleTestString = JSON.stringify(testPoint);
+            // this is a random two character string which represents latitude
+            //  and longitude in the stringified data
+            strangeLat = new RegExp(googleTestString.substring(2,4),"g");
+            strangeLon = new RegExp(googleTestString.substring(10,12),"g");
 
             // When a user clicks on the riderListItem load details about
             // the seat request
@@ -113,14 +127,14 @@
             var locationNumber = 0;
             showResults(results, status, locationNumber);
             // Send the geocoded information to the server
-            $(originDataField).val(JSON.stringify(locations[ locationNumber]));
+            $(originDataField).val(formatGoogleJSON(JSON.stringify(locations[ locationNumber])));
         }
 
         function geocodeDestination(results, status) {
             var locationNumber = 1;
             showResults(results, status, locationNumber);
             // Send the geocoded information to the server
-            $(destinationDataField).val(JSON.stringify(locations[locationNumber]));
+            $(destinationDataField).val(formatGoogleJSON(JSON.stringify(locations[locationNumber])));
         }
 
         function showResults(results, status, locationNumber) {
@@ -163,7 +177,7 @@
 
                 // Set the route field to the results object for posting to the
                 // server
-                $(routeDataField).val(JSON.stringify(result));
+                $(routeDataField).val(formatGoogleJSON(JSON.stringify(result)));
 
                 // Display the directions
                 directionsDisplay.setDirections(result);
@@ -182,6 +196,12 @@
                 });
             // Return false to override default click behavior
             return false;
+        }
+
+        // formatGoogleJSON is used to change the strange keys used for
+        // latitude and longitude into easier to use "lat" and "lon" keys.
+        function formatGoogleJSON(jsonString) {
+            return jsonString.replace(strangeLat,"lat").replace(strangeLon, "lon");
         }
 
     </script>
@@ -304,14 +324,14 @@
         <ul class="riderList">
             <?php $myProfile = $mySeat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
             <li class="riderListItem">
-                <a class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>">
+                <a class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$mySeat->getSeatId()))  ?>">
                     <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $myProfile->getPictureUrlSmall() ?>" alt="<?php echo $myProfile->getFullName() ?>" />
                 </a>
             </li>
         </ul>
     </div>
     <?php elseif ($myUserId!=null): ?>
-        <?php include_component('seat', 'seatForm', array('ride_type'=>'offer', 'ride'=>$carpool, 'ride_id'=>$rideId)) ?>
+        <?php include_component('seat', 'requestForm', array('ride'=>$carpool)) ?>
     <?php else: ?>
         <div>
             You must login or register to request a seat.

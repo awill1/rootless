@@ -393,6 +393,18 @@ seats_create:
     type: object
   requirements:
     sf_method: [post]
+    
+seats_requests_create:
+  url: /seats/requests/create
+  class:   sfDoctrineRoute
+  param:
+    module: seat
+    action: requestCreate
+  options:
+    model: Seats
+    type: object
+  requirements:
+    sf_method: [post]
 
 
 seats_edit:
@@ -430,6 +442,17 @@ seats_show:
   param: { module: seat, action: show }
   requirements:
     sf_method: [get]
+seats_update:
+  url: /seats/update/:seat_id
+  class:   sfDoctrineRoute
+  param:
+    module: seat
+    action: update
+  options:
+    model: Seats
+    type: object
+  requirements:
+    sf_method: [post]
     
 # sfGuard routes
 sf_guard_signin:

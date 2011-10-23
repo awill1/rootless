@@ -11,7 +11,6 @@ Doctrine_Manager::getInstance()->bindComponent('Seats', 'doctrine');
  * @property integer $carpool_id
  * @property integer $passenger_id
  * @property integer $seat_status_id
- * @property integer $seat_request_type_id
  * @property integer $solo_route_id
  * @property float $price
  * @property integer $seat_count
@@ -22,52 +21,47 @@ Doctrine_Manager::getInstance()->bindComponent('Seats', 'doctrine');
  * @property timestamp $updated_at
  * @property Carpools $Carpools
  * @property SeatStatuses $SeatStatuses
- * @property SeatRequestTypes $SeatRequestTypes
  * @property Passengers $Passengers
  * @property Doctrine_Collection $SeatsHistory
  * @property Routes $Routes
  * @property Doctrine_Collection $Reviews
  * 
- * @method integer             getSeatId()               Returns the current record's "seat_id" value
- * @method integer             getCarpoolId()            Returns the current record's "carpool_id" value
- * @method integer             getPassengerId()          Returns the current record's "passenger_id" value
- * @method integer             getSeatStatusId()         Returns the current record's "seat_status_id" value
- * @method integer             getSeatRequestTypeId()    Returns the current record's "seat_request_type_id" value
- * @method integer             getSoloRouteId()          Returns the current record's "solo_route_id" value
- * @method float               getPrice()                Returns the current record's "price" value
- * @method integer             getSeatCount()            Returns the current record's "seat_count" value
- * @method date                getPickupDate()           Returns the current record's "pickup_date" value
- * @method time                getPickupTime()           Returns the current record's "pickup_time" value
- * @method string              getDescription()          Returns the current record's "description" value
- * @method timestamp           getCreatedAt()            Returns the current record's "created_at" value
- * @method timestamp           getUpdatedAt()            Returns the current record's "updated_at" value
- * @method Carpools            getCarpools()             Returns the current record's "Carpools" value
- * @method SeatStatuses        getSeatStatuses()         Returns the current record's "SeatStatuses" value
- * @method SeatRequestTypes    getSeatRequestTypes()     Returns the current record's "SeatRequestTypes" value
- * @method Passengers          getPassengers()           Returns the current record's "Passengers" value
- * @method Doctrine_Collection getSeatsHistory()         Returns the current record's "SeatsHistory" collection
- * @method Routes              getRoutes()               Returns the current record's "Routes" value
- * @method Doctrine_Collection getReviews()              Returns the current record's "Reviews" collection
- * @method Seats               setSeatId()               Sets the current record's "seat_id" value
- * @method Seats               setCarpoolId()            Sets the current record's "carpool_id" value
- * @method Seats               setPassengerId()          Sets the current record's "passenger_id" value
- * @method Seats               setSeatStatusId()         Sets the current record's "seat_status_id" value
- * @method Seats               setSeatRequestTypeId()    Sets the current record's "seat_request_type_id" value
- * @method Seats               setSoloRouteId()          Sets the current record's "solo_route_id" value
- * @method Seats               setPrice()                Sets the current record's "price" value
- * @method Seats               setSeatCount()            Sets the current record's "seat_count" value
- * @method Seats               setPickupDate()           Sets the current record's "pickup_date" value
- * @method Seats               setPickupTime()           Sets the current record's "pickup_time" value
- * @method Seats               setDescription()          Sets the current record's "description" value
- * @method Seats               setCreatedAt()            Sets the current record's "created_at" value
- * @method Seats               setUpdatedAt()            Sets the current record's "updated_at" value
- * @method Seats               setCarpools()             Sets the current record's "Carpools" value
- * @method Seats               setSeatStatuses()         Sets the current record's "SeatStatuses" value
- * @method Seats               setSeatRequestTypes()     Sets the current record's "SeatRequestTypes" value
- * @method Seats               setPassengers()           Sets the current record's "Passengers" value
- * @method Seats               setSeatsHistory()         Sets the current record's "SeatsHistory" collection
- * @method Seats               setRoutes()               Sets the current record's "Routes" value
- * @method Seats               setReviews()              Sets the current record's "Reviews" collection
+ * @method integer             getSeatId()         Returns the current record's "seat_id" value
+ * @method integer             getCarpoolId()      Returns the current record's "carpool_id" value
+ * @method integer             getPassengerId()    Returns the current record's "passenger_id" value
+ * @method integer             getSeatStatusId()   Returns the current record's "seat_status_id" value
+ * @method integer             getSoloRouteId()    Returns the current record's "solo_route_id" value
+ * @method float               getPrice()          Returns the current record's "price" value
+ * @method integer             getSeatCount()      Returns the current record's "seat_count" value
+ * @method date                getPickupDate()     Returns the current record's "pickup_date" value
+ * @method time                getPickupTime()     Returns the current record's "pickup_time" value
+ * @method string              getDescription()    Returns the current record's "description" value
+ * @method timestamp           getCreatedAt()      Returns the current record's "created_at" value
+ * @method timestamp           getUpdatedAt()      Returns the current record's "updated_at" value
+ * @method Carpools            getCarpools()       Returns the current record's "Carpools" value
+ * @method SeatStatuses        getSeatStatuses()   Returns the current record's "SeatStatuses" value
+ * @method Passengers          getPassengers()     Returns the current record's "Passengers" value
+ * @method Doctrine_Collection getSeatsHistory()   Returns the current record's "SeatsHistory" collection
+ * @method Routes              getRoutes()         Returns the current record's "Routes" value
+ * @method Doctrine_Collection getReviews()        Returns the current record's "Reviews" collection
+ * @method Seats               setSeatId()         Sets the current record's "seat_id" value
+ * @method Seats               setCarpoolId()      Sets the current record's "carpool_id" value
+ * @method Seats               setPassengerId()    Sets the current record's "passenger_id" value
+ * @method Seats               setSeatStatusId()   Sets the current record's "seat_status_id" value
+ * @method Seats               setSoloRouteId()    Sets the current record's "solo_route_id" value
+ * @method Seats               setPrice()          Sets the current record's "price" value
+ * @method Seats               setSeatCount()      Sets the current record's "seat_count" value
+ * @method Seats               setPickupDate()     Sets the current record's "pickup_date" value
+ * @method Seats               setPickupTime()     Sets the current record's "pickup_time" value
+ * @method Seats               setDescription()    Sets the current record's "description" value
+ * @method Seats               setCreatedAt()      Sets the current record's "created_at" value
+ * @method Seats               setUpdatedAt()      Sets the current record's "updated_at" value
+ * @method Seats               setCarpools()       Sets the current record's "Carpools" value
+ * @method Seats               setSeatStatuses()   Sets the current record's "SeatStatuses" value
+ * @method Seats               setPassengers()     Sets the current record's "Passengers" value
+ * @method Seats               setSeatsHistory()   Sets the current record's "SeatsHistory" collection
+ * @method Seats               setRoutes()         Sets the current record's "Routes" value
+ * @method Seats               setReviews()        Sets the current record's "Reviews" collection
  * 
  * @package    RootlessMe
  * @subpackage model
@@ -106,15 +100,6 @@ abstract class BaseSeats extends sfDoctrineRecord
              'length' => 4,
              ));
         $this->hasColumn('seat_status_id', 'integer', 4, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => true,
-             'autoincrement' => false,
-             'length' => 4,
-             ));
-        $this->hasColumn('seat_request_type_id', 'integer', 4, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
@@ -207,10 +192,6 @@ abstract class BaseSeats extends sfDoctrineRecord
         $this->hasOne('SeatStatuses', array(
              'local' => 'seat_status_id',
              'foreign' => 'seat_status_id'));
-
-        $this->hasOne('SeatRequestTypes', array(
-             'local' => 'seat_request_type_id',
-             'foreign' => 'seat_request_type_id'));
 
         $this->hasOne('Passengers', array(
              'local' => 'passenger_id',

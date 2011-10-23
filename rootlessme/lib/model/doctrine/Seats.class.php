@@ -12,5 +12,59 @@
  */
 class Seats extends BaseSeats
 {
+    /**
+     * Override for saving the seat
+     * @param Doctrine_Connection $conn THe doctrine connection
+     * @return Seats The saved seat
+     */
+    public function save(Doctrine_Connection $conn = null)
+    {
+        // Get the connection information
+        $conn = $conn ? $conn : $this->getTable()->getConnection();
+        // Begin a transaction so it can be rolled back if something goes
+        // wrong
+        $conn->beginTransaction();
+        try
+        {
+            // Get the is new value since it will change after saving
+            $isNew = $this->isNew();
+
+            // If the seat is new, set the status to be pending
+            if ($isNew)
+            {
+
+                //$c = sfContext::getInstance()->retrieveObjects('SeatStatuses', retrieveWidgetChoices );
+                //$pendingStatusId = Doctrine_Core::getTable('SeatStatusesTable')->findOneBy('slug', 'pending')->getSeatStatusId();
+                //$pendingStatusId = Doctrine_Core::getTable('SeatStatusesTable')->find(1)->getSeatStatusId();
+                $pendingStatusId = SeatStatusesTable::getInstance()->findOneBy('slug', 'pending')->getSeatStatusId();
+                $this->setSeatStatusId($pendingStatusId);
+            }
+
+            // Save the seat
+            $ret = parent::save($conn);
+
+            // Create the log in the history table based on the action
+            $action = 'update';
+            if ($isNew)
+            {
+                // The seat is new so the action is create
+                $action = 'create';
+            }
+            $seatHistoryEntry = SeatsHistory::createHistoryFromSeat($this, $action);
+
+            // Save the history record
+            $seatHistoryEntry = $seatHistoryEntry->save($conn);
+
+            // Commit the transaction
+            $conn->commit();
+
+            return $ret;
+        }
+        catch (Exception $e)
+        {
+            $conn->rollBack();
+            throw $e;
+        }
+    }
 
 }

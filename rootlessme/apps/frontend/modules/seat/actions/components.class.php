@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * The actions for the seat components.
+ */
 class seatComponents extends sfComponents
 {
+    /**
+     * Executes the action for the _negotiation component.
+     * @param sfWebRequest $request The web request
+     */
     public function executeNegotiation(sfWebRequest $request)
     {
         // Get the seat type and number from the request parameters
@@ -15,65 +22,55 @@ class seatComponents extends sfComponents
                               ->getHistoryForSeat($this->seat->getSeatId());
     }
     
-    public function executeSeatForm(sfWebRequest $request)
+    /**
+     * Executets the action for the _offerForm
+     * @param sfWebRequest $request The web request
+     */
+    public function executeOfferForm(sfWebRequest $request)
     {
-
-        // Get the seat type and set the value in the form
-        $this->rideType = $this->getVar('ride_type');
+        // Get ride from the request
         $this->ride = $this->getVar('ride');
 
         // Create the seat
         $this->seat = new Seats();
-        // Set the seat type field in the seat form
-        // Need to get the correct value from the database
-        switch ($this->rideType) {
-            case "offer":
-                // The ride was an offer so set the carpool field
-                $this->seat->setCarpools($this->ride);
-                // Set the default seat count
-                // The ride type was an offer, so the default is taking up just
-                // 1 passenger seat
-                $this->seat->setSeatCount(1);
-                break;
-            case "request":
-                // The ride was an request so set the passenger field
-                $this->seat->setPassengers($this->ride);
-                // Set the default seat count
-                // The ride type was a request, so the default is as many seats
-                // as there were in the request
-                $this->seat->setSeatCount($this->ride->getPassengerCount());
-                break;
-            default:
-               // Default case just in case the ride_type is invalid (should
-               // be prevented by routing.yml).
-               echo 'Ride Type '.$this->rideType.'is invalid.';
-        }
+
+        // The ride was an request so set the passenger field
+        $this->seat->setPassengers($this->ride);
+        // Set the default seat count
+        // The ride type was a request, so the default is as many seats
+        // as there were in the request
+        $this->seat->setSeatCount($this->ride->getPassengerCount());
 
         // Set the default price to be the same as the ride price
         $this->seat->setPrice($this->ride->getAskingPrice());
-        
 
         // Create the seat form
-        $this->seatForm = new SeatsForm($this->seat);
-        
-        // Hide the input field for the posting
-        switch ($this->rideType) {
-            case "offer":
-                // The ride was an offer and we already set the value, so
-                // hide the control
-//                $this->seatForm->getWidget('carpool_id')->setHidden('true');
-//                $this->seatForm->getWidget('carpool_id')->setOption('type', 'hidden');
-                break;
-            case "request":
-                // The ride was a request and we already set the value, so
-                // hide the control
-//                $this->seatForm->getWidget('passenger_id')->setHidden('true');
-//                $this->seatForm->getWidget('carpool_id')->setOption('type', 'hidden');
-                break;
-            default:
-               // Default case just in case the ride_type is invalid (should
-               // be prevented by routing.yml).
-               echo 'Ride Type '.$this->rideType.'is invalid.';
-        }
+        $this->seatForm = new SeatsOfferForm($this->seat);
+    }
+
+    /**
+     * Executets the action for the _requestForm
+     * @param sfWebRequest $request The web request
+     */
+    public function executeRequestForm(sfWebRequest $request)
+    {
+        // Get ride from the request
+        $this->ride = $this->getVar('ride');
+
+        // Create the seat
+        $this->seat = new Seats();
+
+        // The ride was an offer so set the carpool field
+        $this->seat->setCarpools($this->ride);
+        // Set the default seat count
+        // The ride type was an offer, so the default is taking up just
+        // 1 passenger seat
+        $this->seat->setSeatCount(1);
+
+        // Set the default price to be the same as the ride price
+        $this->seat->setPrice($this->ride->getAskingPrice());
+
+        // Create the seat form
+        $this->seatForm = new SeatsRequestForm($this->seat);
     }
 }

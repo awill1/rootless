@@ -1449,50 +1449,6 @@ Routes:
       local: route_id
       foreign: solo_route_id
       type: many
-SeatRequestTypes:
-  connection: doctrine
-  tableName: seat_request_types
-  actAs: { Timestampable: ~ }
-  columns:
-    seat_request_type_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    display_text:
-      type: string(45)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    slug:
-      type: string(45)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    Seats:
-      local: seat_request_type_id
-      foreign: seat_request_type_id
-      type: many
 SeatStatuses:
   connection: doctrine
   tableName: seat_statuses
@@ -1569,13 +1525,6 @@ Seats:
       primary: false
       notnull: true
       autoincrement: false
-    seat_request_type_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
     solo_route_id:
       type: integer(4)
       fixed: false
@@ -1641,10 +1590,6 @@ Seats:
       local: seat_status_id
       foreign: seat_status_id
       type: one
-    SeatRequestTypes:
-      local: seat_request_type_id
-      foreign: seat_request_type_id
-      type: one
     Passengers:
       local: passenger_id
       foreign: passenger_id
@@ -1693,13 +1638,6 @@ SeatsHistory:
       notnull: true
       autoincrement: false
     seat_status_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    seat_request_type_id:
       type: integer(4)
       fixed: false
       unsigned: false

@@ -12,4 +12,37 @@
  */
 class SeatsHistory extends BaseSeatsHistory
 {
+    /**
+     * Creates a seat history record based on a seat
+     * @param Seats $seat The seat to create a history record for
+     * @param string $action The action for the history. 'update' is the
+     * default.
+     * @return SeatsHistory The histroy created for the seat
+     */
+    public static function createHistoryFromSeat($seat, $action='update') {
+        // Creeate the new seat history entry
+        $seatHistoryEntry = new SeatsHistory();
+
+        // Get the logged in user
+        $userId = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
+        
+        // Set all of the properties in the seat history entry based on the 
+        // seat
+        $seatHistoryEntry->setSeatId($seat->getSeatId());
+        $seatHistoryEntry->setCarpoolId($seat->getCarpoolId());
+        $seatHistoryEntry->setPassengerId($seat->getPassengerId());
+        $seatHistoryEntry->setSeatStatusId($seat->getSeatStatusId());
+        $seatHistoryEntry->setSoloRouteId($seat->getSoloRouteId());
+        $seatHistoryEntry->setPrice($seat->getPrice());
+        $seatHistoryEntry->setSeatCount($seat->getSeatCount());
+        $seatHistoryEntry->setPickupDate($seat->getPickupDate());
+        $seatHistoryEntry->setPickupTime($seat->getPickupTime());
+        $seatHistoryEntry->setDescription($seat->getDescription());
+        $seatHistoryEntry->setChangerId($userId);
+        $seatHistoryEntry->setChangeAction($action);
+//        $seatHistoryEntry->setPeople($user);
+        $seatHistoryEntry->setSeats($seat);
+        
+        return $seatHistoryEntry;
+    }
 }

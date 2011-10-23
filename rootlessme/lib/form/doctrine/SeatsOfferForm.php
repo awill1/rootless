@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Seats negotiation form. This is a slightly simplified version of the
+ * Seats offer form. This is a slightly simplified version of the
  * seats form since some of the information cannot be changed by the user.
  *
  * @package    RootlessMe
@@ -16,10 +16,7 @@ class SeatsNegotiationForm extends SeatsForm
         // Use the parent configuration method first
         parent::configure();
 
-        // Unset all fields that do not apply to the negotiation process
-        // Carpool and passernger ids are not needed because they are already
-        // linked .
-        unset($this['carpool_id']);
-        unset($this['passenger_id']);
+        // Change the passenger id to hidden, since it is already set.
+        $this->setWidget('passenger_id',new sfWidgetFormInputHidden());
     }
 }
