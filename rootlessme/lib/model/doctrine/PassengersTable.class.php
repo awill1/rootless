@@ -26,6 +26,40 @@ class PassengersTable extends Doctrine_Table
         return $q->execute();
     }
 
+    /**
+     * Returns all passenger records for a person
+     *
+     * @param int $personId The person to get the passengers for
+     *
+     * @return Doctrine_Collection Returns a Passengers collection
+     */
+    public function getPassengersForPerson($personId)
+    {
+        $q = $this->createQuery('p')
+          ->where('p.person_id = ?', array($personId));
+
+        return $q->execute();
+    }
+
+    /**
+     * Returns all passenger record for the authenticated user
+     * @return Doctrine_Collection Returns a passengers collection for the user
+     */
+    public function getMyPassengers()
+    {
+        // Create the return value
+        $passengers = null;
+
+        if (sfContext::getInstance()->getUser()->isAuthenticated())
+        {
+            // Get the authenticated user's personId
+            $myId = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
+            $passengers = $this->getPassengersForPerson($myId);
+        }
+
+        return $passengers;
+    }
+
     public function getConfirmedPassengersForPerson($personId)
     {
         // Need the sql query to look like this

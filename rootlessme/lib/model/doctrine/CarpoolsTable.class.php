@@ -33,6 +33,40 @@ class CarpoolsTable extends Doctrine_Table
     }
 
     /**
+     * Returns all Carpools for a person
+     *
+     * @param int $personId The person to get the carpools for
+     *
+     * @return Doctrine_Collection Returns a Carpools collection
+     */
+    public function getCarpoolsForPerson($personId)
+    {
+        $q = $this->createQuery('c')
+          ->where('c.driver_id = ?', array($personId));
+
+        return $q->execute();
+    }
+
+    /**
+     * Returns all carpools for the authenticated user
+     * @return Doctrine_Collection Returns a carpools collection for the user
+     */
+    public function getMyCarpools()
+    {
+        // Create the return value
+        $carpools = null;
+
+        if (sfContext::getInstance()->getUser()->isAuthenticated())
+        {
+            // Get the authenticated user's personId
+            $myId = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
+            $carpools = $this->getCarpoolsForPerson($myId);
+        }
+
+        return $carpools;
+    }
+
+    /**
      * Returns carpools that are within $distance of the origin and destination
      * coordinates and optionally on a specified date.
      *

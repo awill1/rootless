@@ -36,8 +36,12 @@ class SeatsForm extends BaseSeatsForm
         $this->setWidget('pickup_time',new sfWidgetFormInputText());
 
         // Create the carpool and passenger choices, allowing the empty option
-        $this->setWidget('carpool_id',new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Carpools'), 'add_empty' => true)));
-        $this->setWidget('passenger_id',new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Passengers'), 'add_empty' => true)));
+        $this->setWidget('carpool_id',new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Carpools'), 
+                                                                           'add_empty' => true,
+                                                                           'table_method' => 'getMyCarpools')));
+        $this->setWidget('passenger_id',new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Passengers'),
+                                                                             'add_empty' => true,
+                                                                             'table_method' => 'getMyPassengers')));
 
         // Choose the fields that will be displayed
         unset($this['created_at']);
