@@ -104,7 +104,14 @@ class seatActions extends sfActions
         // with the new seat information
         if ($request->isXmlHttpRequest())
         {
-            return $this->renderComponent('seat','negotiation', array('seat' => $seat));
+            if ($seat != null)
+            {
+                return $this->renderComponent('seat','negotiation', array('seat' => $seat));
+            }
+            else
+            {
+                return $this->renderText('Seat was not created');
+            }
         }
         else
         {
@@ -142,7 +149,14 @@ class seatActions extends sfActions
         // with the new seat information
         if ($request->isXmlHttpRequest())
         {
-            return $this->renderComponent('seat','negotiation', array('seat' => $seat));
+            if ($seat != null)
+            {
+                return $this->renderComponent('seat','negotiation', array('seat' => $seat));
+            }
+            else
+            {
+                return $this->renderText('Seat was not created');
+            }
         }
         else
         {

@@ -42,6 +42,9 @@ class SeatsForm extends BaseSeatsForm
         $this->setWidget('passenger_id',new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Passengers'),
                                                                              'add_empty' => true,
                                                                              'table_method' => 'getMyPassengers')));
+        // The validators must be changed too
+        $this->setValidator('carpool_id',new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Carpools'), 'required' => false)));
+        $this->setValidator('passenger_id', new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Passengers'), 'required' => false)));
 
         // Choose the fields that will be displayed
         unset($this['created_at']);
@@ -62,6 +65,9 @@ class SeatsForm extends BaseSeatsForm
     }
 
     public function doSave($con = null) {
+        // Get the person id of the authenticated user
+        $person = sfContext::getInstance()->getUser()->getGuardUser();
+        
         // Get the route data from the embedded form
         $route_data = $this->values['route']['route_data'];
 
@@ -81,13 +87,52 @@ class SeatsForm extends BaseSeatsForm
         $destination = $route->getDestinationLocation();
         $destination->createFromGoogleGeocode($destination_data);
 
-        // Since this is a new seat, set the status to be pending
-        //$this->values['seat_status_id'] = Doctrine_Core::getTable('SeatStatusesTable')->findOneBy('slug', 'pending')->getSeatStatusId();
+        // Handle the link to the carpool and passengers. If either one is
+        // null, then create a new entry
+        if($this->values['carpool_id'] == null)
+        {
+            // Create a new carpool based on the seat information
+            $newCarpool = new Carpools();
+            $newCarpool->asking_price = $this->values['asking_price'];
+            // Do not set description because it may not be the same
+            $newCarpool->description = "";
+            $newCarpool->driver_id = $person->getPersonId();
+            // For now, all posts are public
+            $newCarpool->isPublic = true;
+            $newCarpool->route_id = $route->getRouteId();
+            $newCarpool->seats_available = $this->values['seat_count'];
+            $newCarpool->solo_route_id = $route->getRouteId();
+            $newCarpool->start_date = $this->values['pickup_date'];
+            $newCarpool->start_time = $this->values['pickup_time'];
+            $newCarpool->vehicle_id = $person->getVehicles()->getFirst();
+            
+            // Save the Carpool
+            $newCarpool->save();
+            
+            // Set the seat carpool_id to be the new carpool
+            $this->values['carpool_id'] = $newCarpool->getCarpoolId();
+        }
+        if($this->values['passenger_id'] == null)
+        {
+            // Create a new passenger based on the seat information
+            $newPassenger = new Passengers();
+            $newPassenger->asking_price = $this->values['price'];
+            // Do not set description because it may not be the same
+            $newPassenger->description = "";
+            $newPassenger->person_id = $person->getPersonId();
+            // For now, all posts are public
+            $newPassenger->isPublic = true;
+            $newPassenger->passenger_count = $this->values['seat_count'];
+            $newPassenger->solo_route_id = $route->getRouteId();
+            $newPassenger->start_date = $this->values['pickup_date'];
+            $newPassenger->start_time = $this->values['pickup_time'];
 
-        // 
-        //$userId = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
+            // Save the Passenger
+            $newPassenger->save();
 
-        // Handle the link to the carpool and passengers
+            // Set the seat carpool_id to be the new carpool
+            $this->values['passenger_id'] = $newPassenger->getPassengerId();
+        }
 
         // Call the parent function to save the seat
         return parent::doSave($con);

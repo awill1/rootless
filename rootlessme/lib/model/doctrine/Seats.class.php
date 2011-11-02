@@ -32,14 +32,10 @@ class Seats extends BaseSeats
             // If the seat is new, set the status to be pending
             if ($isNew)
             {
-
-                //$c = sfContext::getInstance()->retrieveObjects('SeatStatuses', retrieveWidgetChoices );
-                //$pendingStatusId = Doctrine_Core::getTable('SeatStatusesTable')->findOneBy('slug', 'pending')->getSeatStatusId();
-                //$pendingStatusId = Doctrine_Core::getTable('SeatStatusesTable')->find(1)->getSeatStatusId();
                 $pendingStatusId = SeatStatusesTable::getInstance()->findOneBy('slug', 'pending')->getSeatStatusId();
                 $this->setSeatStatusId($pendingStatusId);
             }
-
+            
             // Save the seat
             $ret = parent::save($conn);
 
