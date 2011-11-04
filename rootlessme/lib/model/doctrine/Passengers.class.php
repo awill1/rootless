@@ -12,5 +12,18 @@
  */
 class Passengers extends BasePassengers
 {
+    /**
+     * Returns a string that represents the passenger. Overrides the default
+     * __toString method.
+     * @return string The passenger represented as a string
+     */
+    public function __toString()
+    {
+        $passengerName = "";
 
+        $passengerName = $this->getPassengerId() . " - " . $this->getStartDate();
+
+        return $passengerName;
+
+    }
 }

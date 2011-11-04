@@ -12,6 +12,10 @@
  */
 class Carpools extends BaseCarpools
 {
+    /**
+     * Gets the origin location for a route
+     * @return Locations The origin
+     */
     public function getOriginLocation()
     {
         $first_location = $this->getRoutes()->getOriginLocation();
@@ -19,6 +23,10 @@ class Carpools extends BaseCarpools
         return $first_location;
     }
 
+    /**
+     * Gets the destination location for a route
+     * @return Locations The destination
+     */
     public function getDestinationLocation()
     {
         $last_location = $this->getRoutes()->getDestinationLocation();
@@ -26,6 +34,11 @@ class Carpools extends BaseCarpools
         return $last_location;
     }
 
+    /**
+     * Returns a string that represents the carpool. Overrides the default
+     * __toString method.
+     * @return string The passenger represented as a string
+     */
     public function __toString()
     {
         $carpoolName = "";

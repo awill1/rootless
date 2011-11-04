@@ -23,6 +23,9 @@ class SeatsForm extends BaseSeatsForm
         {
             $route = new Routes();
         }
+        // Bind the route object to the seat's route
+        $seat->Routes = $route;
+        // Create the embedded seat form
         $route_form = new RoutesForm($route);
         // Override the label for a few select fields
         $route_form->widgetSchema->setLabel('origin', 'Pickup Location');
