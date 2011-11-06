@@ -78,7 +78,7 @@
 <div id="profileDivider"><hr /></div>    
     
 
-<div id="middleProfileDetails">
+<div id="middleProfileDetails" class='profilePage'>
     <ul class="tabList">
         <li class="tabSelectedItem"><a href="#fragment-feedback">Feedback</a></li>
         <li class="tabNotSelectedItem"><a href="#fragment-travel_log">Travel Log</a></li>

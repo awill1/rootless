@@ -224,6 +224,12 @@ p{
     margin-top: 20px;
 }
 
+
+.profilePage .middleProfileTabContent.ui-tabs-panel {
+    width: 700px;
+}
+
+
 #middleProfileDetails input[type='text'] {
     border: 1px solid #999;
     padding: 4px 0px 3px 5px;
