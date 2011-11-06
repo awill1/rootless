@@ -13,11 +13,12 @@
 class Seats extends BaseSeats
 {
     /**
-     * Override for saving the seat
+     * Saves the seat and saves the schange into the history log
+     * @param int $personId
      * @param Doctrine_Connection $conn THe doctrine connection
      * @return Seats The saved seat
      */
-    public function save(Doctrine_Connection $conn = null)
+    public function saveWithHistory($personId, Doctrine_Connection $conn = null)
     {
         // Get the connection information
         $conn = $conn ? $conn : $this->getTable()->getConnection();
@@ -39,18 +40,6 @@ class Seats extends BaseSeats
             // Save the seat
             $ret = parent::save($conn);
 
-            // Create the log in the history table based on the action
-            $action = 'update';
-            if ($isNew)
-            {
-                // The seat is new so the action is create
-                $action = 'create';
-            }
-            $seatHistoryEntry = SeatsHistory::createHistoryFromSeat($this, $action);
-
-            // Save the history record
-            $seatHistoryEntry = $seatHistoryEntry->save($conn);
-
             // Commit the transaction
             $conn->commit();
 
@@ -62,5 +51,6 @@ class Seats extends BaseSeats
             throw $e;
         }
     }
+
 
 }

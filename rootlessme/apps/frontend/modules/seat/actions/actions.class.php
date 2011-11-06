@@ -204,27 +204,50 @@ class seatActions extends sfActions
     $this->redirect('seat/index');
   }
 
-  protected function processForm(sfWebRequest $request, sfForm $form)
-  {
-    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if ($form->isValid())
+    protected function processForm(sfWebRequest $request, sfForm $form)
     {
-      $seat = $form->save();
-
-      return $seat;
-    }
-    else
-    {
-        $this->logMessage('Form is not valid!', 'err');
-        $this->logMessage($form->renderGlobalErrors(), 'err');
-        $errors = $form->getErrorSchema()->getErrors();
-        if (count($errors) > 0)
+        
+        $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+        if ($form->isValid())
         {
-            foreach ($errors as $name => $error)
+            // Get the is new value since it will change after saving
+            $isNew = $form-> $this->getObject()->isNew();
+
+            // Only allow updates to seats if the user is logged in
+            if ($this->getUser()->isAuthenticated())
             {
-                $this->logMessage($name . ': ' . $error, 'err');
+                $personId = $this->getUser()->getGuardUser()->getPersonId();
+
+                // Save the seat
+                $seat = $form->save();
+
+                // Create the seat history entry
+                $action = 'update';
+                if ($isNew)
+                {
+                    // The seat is new so the action is create
+                    $action = 'create';
+                }
+                $seatHistoryEntry = SeatsHistory::createHistoryFromSeat($this, $personId, $action);
+
+                // Save the history record
+                $seatHistoryEntry = $seatHistoryEntry->save($conn);
+                }
+
+            return $seat;
+        }
+        else
+        {
+            $this->logMessage('Form is not valid!', 'err');
+            $this->logMessage($form->renderGlobalErrors(), 'err');
+            $errors = $form->getErrorSchema()->getErrors();
+            if (count($errors) > 0)
+            {
+                foreach ($errors as $name => $error)
+                {
+                    $this->logMessage($name . ': ' . $error, 'err');
+                }
             }
         }
     }
-  }
 }
