@@ -9,7 +9,7 @@
  * @author     awilliams
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class SeatsNegotiationForm extends SeatsForm
+class SeatsOfferForm extends SeatsForm
 {
     public function configure()
     {

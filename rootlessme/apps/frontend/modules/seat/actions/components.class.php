@@ -21,6 +21,19 @@ class seatComponents extends sfComponents
         $this->negotiations = Doctrine_Core::getTable('SeatsHistory')
                               ->getHistoryForSeat($this->seat->getSeatId());
     }
+
+    /**
+     * Executes the action for the _negotiationItem component.
+     * @param sfWebRequest $request The web request
+     */
+    public function executeNegotiationItem(sfWebRequest $request)
+    {
+        // Get the seat negotiation item from the request parameters
+        $this->negotiation = $this->getVar('negotiationItem');
+
+        // Get the changer
+        $this->changer = $this->negotiation->getPeople()->getProfiles()->getFirst();
+    }
     
     /**
      * Executets the action for the _offerForm

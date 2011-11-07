@@ -38,4 +38,26 @@ class SeatsHistoryTable extends Doctrine_Table
 
         return $q->execute();
     }
+
+    /**
+     * Returns the latest history item for a seat
+     * @param int $seat_id The seat id of the seat
+     * @return DoctrineCollection The history for
+     * the seat
+     */
+    public function getLatestHistoryForSeat($seat_id)
+    {
+        // Need this function to match this query
+        // select * from seats
+        // where seat_id = 1
+        // order by created_at DESC;
+
+        $q = $this->createQuery('s')
+                ->innerJoin('s.People p')
+                ->leftJoin('p.Profiles pr')
+                ->where('s.seat_id = ?', $seat_id)
+                ->orderBy('s.created_at DESC');
+
+        return $q->fetchOne();
+    }
 }

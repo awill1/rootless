@@ -47,6 +47,11 @@ class seatActions extends sfActions
         }
     }
 
+    /**
+     * The action for showing the seat negotiation form and history
+     * @param sfWebRequest $request The http request
+     * @return string A rendered output if the request was an AJAX request
+     */
     public function executeNegotiation(sfWebRequest $request)
     {
         // Get the seat id from the request
@@ -169,11 +174,6 @@ class seatActions extends sfActions
 
                 $this->redirect('seats_show', array('seat_id', $seat->getSeatId()));
             }
-            // Temporary debugging stuff. DELETE THIS
-            $ride = Doctrine_Core::getTable('Carpools')->find('3');
-            return $this->renderComponent('seat','seatForm', array('rideType'=>'offer', 'ride'=>$ride));
-
-
         }
     }
 
@@ -183,15 +183,41 @@ class seatActions extends sfActions
     $this->form = new SeatsForm($seat);
   }
 
-  public function executeUpdate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($seat = Doctrine_Core::getTable('Seats')->find(array($request->getParameter('seat_id'))), sprintf('Object seat does not exist (%s).', $request->getParameter('seat_id')));
-    $this->form = new SeatsForm($seat);
+    public function executeUpdate(sfWebRequest $request)
+    {
+        $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
+        $this->forward404Unless($seat = Doctrine_Core::getTable('Seats')->find(array($request->getParameter('seat_id'))), sprintf('Object seat does not exist (%s).', $request->getParameter('seat_id')));
 
-    $this->processForm($request, $this->form);
+        $this->form = new SeatsNegotiationForm($seat);
 
-    $this->setTemplate('edit');
+        $seat = $this->processForm($request, $this->form);
+
+        // If the request came from AJAX render the seat negotiation history
+        // partial with the updated seat information
+        if ($request->isXmlHttpRequest())
+        {
+            if ($seat != null)
+            {
+                $lastSeatNegotiation = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryForSeat($seat->getSeatId());
+                return $this->renderComponent('seat','negotiationItem', array('negotiationItem' => $lastSeatNegotiation));
+            }
+            else
+            {
+                return $this->renderText('Seat was not updated');
+            }
+        }
+        else
+        {
+            $this->setTemplate('edit');
+
+            if ($seat != null)
+            {
+                // This is not an AJAX request so redirect to the show seat
+                // page
+
+                $this->redirect('seats_show', array('seat_id', $seat->getSeatId()));
+            }
+        }
   }
 
   public function executeDelete(sfWebRequest $request)
@@ -211,7 +237,7 @@ class seatActions extends sfActions
         if ($form->isValid())
         {
             // Get the is new value since it will change after saving
-            $isNew = $form-> $this->getObject()->isNew();
+            $isNew = $form->getObject()->isNew();
 
             // Only allow updates to seats if the user is logged in
             if ($this->getUser()->isAuthenticated())
@@ -228,11 +254,11 @@ class seatActions extends sfActions
                     // The seat is new so the action is create
                     $action = 'create';
                 }
-                $seatHistoryEntry = SeatsHistory::createHistoryFromSeat($this, $personId, $action);
+                $seatHistoryEntry = SeatsHistory::createHistoryFromSeat($seat, $personId, $action);
 
                 // Save the history record
-                $seatHistoryEntry = $seatHistoryEntry->save($conn);
-                }
+                $seatHistoryEntry = $seatHistoryEntry->save();
+            }
 
             return $seat;
         }

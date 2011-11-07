@@ -52,5 +52,4 @@ class Seats extends BaseSeats
         }
     }
 
-
 }

@@ -64,35 +64,44 @@ class SeatsForm extends BaseSeatsForm
             'price',
             'seat_count',
             'description'));
-
     }
 
     public function doSave($con = null) {
         // Get the person id of the authenticated user
-        $person = sfContext::getInstance()->getUser()->getGuardUser();
-        
-        // Get the route data from the embedded form
-        $route_data = $this->values['route']['route_data'];
+        $person = sfContext::getInstance()->getUser()->getGuardUser()->getPeople();
 
-        // Update the route
-        $route = $this->getObject()->Routes;
-        $route->createFromGoogleDirections($route_data);
+        // Only handle the route data if the route_id is empty, because
+        // this means the route is new or has been changed
+        $routeId = $this->values['route']['route_id'];
+        if ($routeId == '')
+        {
+            // Get the route data from the embedded form
+            $route_data = $this->values['route']['route_data'];
 
-        // Update the route_id value so it does not get overwritten by the
-        // internal updateObject() call
-        $this->values['route']['route_id'] = $route->getRouteId();
+            // Update the route
+            $route = $this->getObject()->Routes;
+            $route->createFromGoogleDirections($route_data);
 
-        // Update the origin and destination to use the geocoded information
-        $origin_data = $this->values['route']['origin_data'];
-        $origin = $route->getOriginLocation();
-        $origin->createFromGoogleGeocode($origin_data);
-        $destination_data = $this->values['route']['destination_data'];
-        $destination = $route->getDestinationLocation();
-        $destination->createFromGoogleGeocode($destination_data);
+
+
+            // Update the route_id value so it does not get overwritten by the
+            // internal updateObject() call
+            $routeId = $route->getRouteId();
+            $this->values['route']['route_id'] = $routeId;
+
+            // Update the origin and destination to use the geocoded information
+            $origin_data = $this->values['route']['origin_data'];
+            $origin = $route->getOriginLocation();
+            $origin->createFromGoogleGeocode($origin_data);
+            $destination_data = $this->values['route']['destination_data'];
+            $destination = $route->getDestinationLocation();
+            $destination->createFromGoogleGeocode($destination_data);
+
+        }
 
         // Handle the link to the carpool and passengers. If either one is
-        // null, then create a new entry
-        if($this->values['carpool_id'] == null)
+        // empty, then create a new entry
+        if($this->values['carpool_id'] == '')
         {
             // Create a new carpool based on the seat information
             $newCarpool = new Carpools();
@@ -102,9 +111,9 @@ class SeatsForm extends BaseSeatsForm
             $newCarpool->driver_id = $person->getPersonId();
             // For now, all posts are public
             $newCarpool->isPublic = true;
-            $newCarpool->route_id = $route->getRouteId();
+            $newCarpool->route_id = $routeId;
             $newCarpool->seats_available = $this->values['seat_count'];
-            $newCarpool->solo_route_id = $route->getRouteId();
+            $newCarpool->solo_route_id = $routeId;
             $newCarpool->start_date = $this->values['pickup_date'];
             $newCarpool->start_time = $this->values['pickup_time'];
             $newCarpool->vehicle_id = $person->getVehicles()->getFirst();
@@ -115,7 +124,7 @@ class SeatsForm extends BaseSeatsForm
             // Set the seat carpool_id to be the new carpool
             $this->values['carpool_id'] = $newCarpool->getCarpoolId();
         }
-        if($this->values['passenger_id'] == null)
+        if($this->values['passenger_id'] == '')
         {
             // Create a new passenger based on the seat information
             $newPassenger = new Passengers();
@@ -126,7 +135,7 @@ class SeatsForm extends BaseSeatsForm
             // For now, all posts are public
             $newPassenger->isPublic = true;
             $newPassenger->passenger_count = $this->values['seat_count'];
-            $newPassenger->solo_route_id = $route->getRouteId();
+            $newPassenger->solo_route_id = $routeId;
             $newPassenger->start_date = $this->values['pickup_date'];
             $newPassenger->start_time = $this->values['pickup_time'];
 

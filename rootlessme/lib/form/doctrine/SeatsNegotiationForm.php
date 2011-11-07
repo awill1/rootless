@@ -16,10 +16,15 @@ class SeatsNegotiationForm extends SeatsForm
         // Use the parent configuration method first
         parent::configure();
 
-        // Unset all fields that do not apply to the negotiation process
+        // Hide all fields that do not apply to the negotiation process. Hiding
+        // seems to work better than unsetting because the carpool and passenger
+        // are created if either is blank.
         // Carpool and passernger ids are not needed because they are already
         // linked .
-        unset($this['carpool_id']);
-        unset($this['passenger_id']);
+        $this->setWidget('carpool_id',new sfWidgetFormInputHidden());
+        $this->setWidget('passenger_id',new sfWidgetFormInputHidden());
+
+        sfContext::getInstance()->getLogger()->info('Configuring the SeatsNegotiationForm form');
+
     }
 }
