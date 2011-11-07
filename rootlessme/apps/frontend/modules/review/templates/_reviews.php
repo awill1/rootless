@@ -15,7 +15,7 @@
         $('#newReviewForm').hide();
 
         // Show or hide the review form as needed
-        $('#newReviewButton').button().click(function(){
+        $('#newReviewButton').click(function(){
             $('#newReviewForm').toggle('blind');
             $('#newReviewButton').hide();
             return false;
@@ -83,7 +83,7 @@
 <div id="driverReviews">
 
       <?php if ($sf_user->isAuthenticated() && ($sf_user->getGuardUser()->getPersonId() != $profile->getPersonId())): ?>
-        <button id="newReviewButton" >Add a review</button>
+        <a href="#" id="newReviewButton" >Add a review</a>
         <form id="newReviewForm" class="userInputForm" action="<?php echo url_for(($reviewForm->getObject()->isNew() ? 'review_create' : 'review_update')) ?>" method="post" <?php $reviewForm->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
         <?php if (!$reviewForm->getObject()->isNew()): ?>
         <input type="hidden" name="sf_method" value="put" />

@@ -90,9 +90,8 @@
     float: left;
     padding: 15px 15px 15px 15px;
 }
-#newReviewButton{
-    
-}
+
+
 #profileDivider{
     color:#f4f4f4;
     width:100%;
@@ -398,6 +397,15 @@ p{
     margin: 0px;
     padding: 0px;
     width: 100%;
+}
+
+a#newReviewButton {
+  color: #119D49;
+  text-decoration: underline;
+}
+
+a#newReviewButton:hover {
+  text-decoration: none;
 }
 
 .friendNameColor a:link{
