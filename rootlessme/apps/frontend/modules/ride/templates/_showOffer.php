@@ -231,14 +231,17 @@
         </span>
 
     </h1>
-    <p class="seatsAvailable">
+    <span class="tripDistance">One Way Trip</span>
+    <br />
+    <br />
+    <span class="seatsAvailable">
         <?php echo $carpool->getSeatsAvailable() ?>
         <?php echo ($carpool->getSeatsAvailable() == 1 ? "seat" : "seats") ?>
         available
-    </p>
+    </span>
+    <br />
+    <span class="tripValue">Trip Value: $<?php echo $carpool->getAskingPrice() ?> per person</span>
     <!-- TODO: Add smoking -->
-    <p class="tripDistance">One Way Trip</p>
-    <h3>Asking Price: $<?php echo $carpool->getAskingPrice() ?> per person</h3>
     <p id="mainRideInformation">
         <?php echo nl2br($carpool->getDescription()) ?>
     </p>
