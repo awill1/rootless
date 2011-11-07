@@ -18,9 +18,8 @@
     float:left;
     width: 220px;
     background-color: #f4f4f4;
-    margin-left: 10px;
     text-align: left;
-    padding: 15px 16px 15px 17px;
+    padding: 15px 0px 15px 15px;
 }
 
 /*Travel Log (Should we call it Travels???) Fragment Formatting & Styles*/
@@ -226,7 +225,7 @@ p{
 
 
 .profilePage .middleProfileTabContent.ui-tabs-panel {
-    width: 700px;
+    width: 674px;
 }
 
 
