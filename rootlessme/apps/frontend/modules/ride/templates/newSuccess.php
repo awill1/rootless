@@ -5,7 +5,6 @@
   'title',
   sprintf('Rootless Me - New ride '.$rideType))
 ?>
-
 <?php slot('gmapheader'); ?>
     <script type="text/javascript">
         var map = null;
@@ -37,7 +36,7 @@
                 center: latlng,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
-            map = new google.maps.Map(document.getElementById("map"),
+            map = new google.maps.Map(document.getElementById("RequestMap"),
                 myOptions);
             geocoder = new google.maps.Geocoder();
             directionsDisplay = new google.maps.DirectionsRenderer();
@@ -159,8 +158,9 @@
 
 <?php end_slot();?>
 
+
 <h1>New ride <?php echo $rideType ?></h1>
 <div id="newRideFormArea" class="middleRidesFormArea">
 <?php include_partial($partial, array('form' => $form)) ?>
 </div>
-<div id="map"></div>
+<div id="RequestMap"></div>

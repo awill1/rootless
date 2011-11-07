@@ -185,6 +185,8 @@ tbody {
     margin-bottom: 50px;*/
 }
 
+
+
 #rideProfileMap {
     width: 400px;
     height: 230px;
@@ -271,4 +273,22 @@ tbody {
 
 #seatDetailsBlock {
     clear: left;
+}
+
+#RequestMap {
+    width: 400px;
+    height: 210px;
+    float: right;
+    /* Need to lower the z-index so the javascript menus appear over the map.
+       Commented out because it disabled mouse control*/
+/*    z-index: -1;*/
+/*    margin-top: 50px;
+    margin-bottom: 50px;*/
+}
+
+.backtoListLink {
+    margin-top: 15px;
+    clear: both;
+    float: left;
+    color: #D05A36;
 }
