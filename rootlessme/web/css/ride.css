@@ -292,3 +292,87 @@ tbody {
     float: left;
     color: #D05A36;
 }
+
+#rideRequestForm input, #rideRequestForm select {
+    
+    width: 175px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    float: left;
+    border: 1px solid #999;
+    outline-color: #119D49;
+}
+
+#rideRequestForm th {
+    padding:5px 10px 0px 10px;
+
+}
+
+#rideRequestForm td {
+    padding:5px 10px 7px 10px;
+
+}
+
+#rideRequestForm th, #rideRequestForm td {
+    clear:both;
+    float:left;
+}
+
+#rideRequestForm input#rides_find {
+    
+    width: 100px;
+    height: 24px;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+    border: 0px;
+    background-color: #119D49;
+}
+
+#rideRequestForm input#rides_find:hover {
+    
+    
+    background-color: #D14D2F;
+}
+
+#rideOfferForm input, #rideOfferForm select {
+    
+    width: 175px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    float: left;
+    border: 1px solid #999;
+    outline-color: #119D49;
+}
+
+#rideOfferForm th {
+    padding:5px 10px 0px 10px;
+
+}
+
+#rideOfferForm td {
+    padding:5px 10px 7px 10px;
+
+}
+
+#rideOfferForm th, #rideOfferForm td {
+    clear:both;
+    float:left;
+}
+
+#rideOfferForm input#rides_find {
+    
+    width: 100px;
+    height: 24px;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+    border: 0px;
+    background-color: #119D49;
+}
+
+#rideOfferForm input#rides_find:hover {
+    
+    
+    background-color: #D14D2F;
+}
