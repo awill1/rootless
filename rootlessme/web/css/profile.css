@@ -500,7 +500,6 @@ a#newReviewButton:hover {
 }
 
 .userInputForm {
-    background-color: #FFFFFF;
     margin: 20px 0px 0px 0px;
 }
 
@@ -585,4 +584,10 @@ a#newReviewButton:hover {
 .searchSubmit:hover {
    background-position: bottom left;
    cursor: pointer;
+}
+
+.radio_list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
 }

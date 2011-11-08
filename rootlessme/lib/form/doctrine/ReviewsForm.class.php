@@ -12,16 +12,16 @@ class ReviewsForm extends BaseReviewsForm
 {
     public function configure()
     {
-        $this->widgetSchema['was_safe'] = new sfWidgetFormChoice(array( 'expanded' => true,
+        $this->widgetSchema['safe_driver'] = new sfWidgetFormChoice(array( 'expanded' => true,
           'choices' => array(true => 'Yes', false => 'No')
         ));
-        $this->widgetSchema['was_punctual'] = new sfWidgetFormChoice(array( 'expanded' => true,
+        $this->widgetSchema['punctuality'] = new sfWidgetFormChoice(array( 'expanded' => true,
           'choices' => array(true => 'Yes', false => 'No')
         ));
-        $this->widgetSchema['was_friendly'] = new sfWidgetFormChoice(array( 'expanded' => true,
+        $this->widgetSchema['friendliness'] = new sfWidgetFormChoice(array( 'expanded' => true,
           'choices' => array(true => 'Yes', false => 'No')
         ));
-        $this->widgetSchema['was_courteous'] = new sfWidgetFormChoice(array( 'expanded' => true,
+        $this->widgetSchema['courteous'] = new sfWidgetFormChoice(array( 'expanded' => true,
           'choices' => array(true => 'Yes', false => 'No')
         ));
         $this->widgetSchema['review_type'] = new sfWidgetFormChoice(array(
@@ -46,10 +46,10 @@ class ReviewsForm extends BaseReviewsForm
             'review_type',
             'ride_date',
             //'seat_id',
-            'was_safe',
-            'was_friendly',
-            'was_punctual',
-            'was_courteous',
+            'safe_driver',
+            'friendliness',
+            'punctuality',
+            'courteous',
             'comments'));
     }
 }
