@@ -4,6 +4,15 @@
 
 $(document).ready(function()
 {
+    // Hide the spinner
+    $("#negotiationSpinner").hide();
+
+    // When the form is submitted
+    $('#seatNegotiationForm').submit(function() {
+        // Show the spinner
+        $('#negotiationSpinner').show();
+    });
+
     // Use an ajax form
     $('#seatNegotiationForm').ajaxForm(
     {
@@ -14,6 +23,9 @@ $(document).ready(function()
             // Move the resulting html from the temporaryNewSeatHolder
             // to the actual seat history list.
             $('#seatNegotiationHistoryList').prepend($('#temporaryNewSeatHolder').contents());
+
+            // Hide the spinner
+            $("#negotiationSpinner").hide();
         }
     });
 

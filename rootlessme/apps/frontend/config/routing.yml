@@ -59,7 +59,6 @@ friendship_list:
     sf_method: get
     sf_format: (?:json)
 
-
 friendship:
   url:     /friendships
   class:   sfDoctrineRoute
@@ -427,6 +426,30 @@ seats_update:
   requirements:
     sf_method: [post]
 
+seats_accept:
+  url: /seats/accept/:seat_id
+  class:   sfDoctrineRoute
+  param:
+    module: seat
+    action: accept
+  options:
+    model: Seats
+    type: object
+  requirements:
+    sf_method: [post]
+
+seats_decline:
+  url: /seats/decline/:seat_id
+  class:   sfDoctrineRoute
+  param:
+    module: seat
+    action: decline
+  options:
+    model: Seats
+    type: object
+  requirements:
+    sf_method: [post]
+
 seats_negotiation:
   url:   /seats/negotiation/:seat_id
   class:   sfDoctrineRoute
@@ -442,17 +465,6 @@ seats_show:
   param: { module: seat, action: show }
   requirements:
     sf_method: [get]
-seats_update:
-  url: /seats/update/:seat_id
-  class:   sfDoctrineRoute
-  param:
-    module: seat
-    action: update
-  options:
-    model: Seats
-    type: object
-  requirements:
-    sf_method: [post]
     
 # sfGuard routes
 sf_guard_signin:

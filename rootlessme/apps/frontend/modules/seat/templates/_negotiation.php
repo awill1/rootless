@@ -6,8 +6,7 @@
 
 <script type="text/javascript" src="/js/jquery.form.js"></script>
 <script type="text/javascript" src="/js/seatNegotiation.js"></script>
-<div id="seatDetailsBlock" title="Request a ride">
-    <h3>Form: <?php echo $form->getName() ?></h3>
+<div id="seatDetailsBlock" title="Seat details">
     <form id="seatNegotiationForm" class="userInputForm" action="<?php echo url_for('seats_update', array('seat_id'=>$seat->getSeatId())) ?>" method="post">
       <table>
         <tbody>
@@ -32,6 +31,9 @@
       </table>
     </form>
     <div id="temporaryNewSeatHolder">
+    </div>
+    <div id="negotiationSpinnerContainer">
+        <img id="negotiationSpinner" alt="Loading..." src="/images/ajax-loader.gif" />
     </div>
     <?php 
         include_partial('seat/negotiations', array('negotiations' => $negotiations))

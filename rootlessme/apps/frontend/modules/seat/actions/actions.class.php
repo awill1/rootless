@@ -218,7 +218,7 @@ class seatActions extends sfActions
                 $this->redirect('seats_show', array('seat_id', $seat->getSeatId()));
             }
         }
-  }
+    }
 
   public function executeDelete(sfWebRequest $request)
   {
@@ -229,6 +229,30 @@ class seatActions extends sfActions
 
     $this->redirect('seat/index');
   }
+
+    /**
+     * Executes the accept action in the seats module
+     * @param sfWebRequest $request The web request
+     */
+    public function executeAccept(sfWebRequest $request)
+    {
+        $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
+        $this->forward404Unless($seat = Doctrine_Core::getTable('Seats')->find(array($request->getParameter('seat_id'))), sprintf('Object seat does not exist (%s).', $request->getParameter('seat_id')));
+
+        // Accept the seat
+    }
+
+    /**
+     * Executes the decline action in the seats module
+     * @param sfWebRequest $request The web request
+     */
+    public function executeDecline(sfWebRequest $request)
+    {
+        $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
+        $this->forward404Unless($seat = Doctrine_Core::getTable('Seats')->find(array($request->getParameter('seat_id'))), sprintf('Object seat does not exist (%s).', $request->getParameter('seat_id')));
+
+        // Decline the seat
+    }
 
     protected function processForm(sfWebRequest $request, sfForm $form)
     {
