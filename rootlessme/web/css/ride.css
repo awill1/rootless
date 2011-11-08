@@ -113,15 +113,20 @@ tbody {
 }
 
 .rideLocations {
+    font-size: 70%;
     font-style: italic;
     color: #119D49;
 }
 
 .rideMiddleWord {
+    font-size: 70%;
     font-weight: lighter;
 }
 
 .seatsAvailable {
+    margin-top: 15px;
+    float: left;
+    clear: both;
     font-weight: bold;
     font-size: 100%;
     
@@ -132,10 +137,13 @@ tbody {
     font-style: italic;
 }
 .tripDistance {
+    margin-left: 15px;
+    float: left;
     font-weight: normal;
-    margin-left: 72px;
 }
 .tripValue {
+    float: left;
+    clear: both;
     font-weight: bold;
     font-size: 100%;
 }
@@ -152,6 +160,10 @@ tbody {
 }
 
 #mainRideInformation {
+    float: left;
+    clear: both;
+    margin-top: 15px;
+    padding-right: 15px;
     
 }
 
@@ -200,7 +212,7 @@ tbody {
     /* Need to lower the z-index so the javascript menus appear over the map. 
        Commented out because it disabled mouse control*/
 /*    z-index: -1;*/
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 #informationContainer {
@@ -209,7 +221,7 @@ tbody {
 }
 
 .postedByStyles {
-    margin: 0px 0px 0px 0px;
+    margin: 0px 0px 15px 0px;
 }
 
 .driverPicture {

@@ -221,18 +221,17 @@
     </div>
     <h1 id="mainEventTitle">
         <span class="rideLocations">
-            +<?php echo $origin->getCityStateString() ?>
+            <?php echo $origin->getCityStateString() ?>
         </span>
         <span class="rideMiddleWord">
         to
         </span>
         <span class="rideLocations">
-            +<?php echo $destination->getCityStateString() ?>
+            <?php echo $destination->getCityStateString() ?>
         </span>
 
     </h1>
     <span class="tripDistance">One Way Trip</span>
-    <br />
     <br />
     <span class="seatsAvailable">
         <?php echo $carpool->getSeatsAvailable() ?>

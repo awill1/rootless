@@ -89,13 +89,13 @@
     </div>
     <h1 id="mainEventTitle">
         <span class="rideLocations">
-            +<?php echo $origin->getCityStateString() ?>
+            <?php echo $origin->getCityStateString() ?>
         </span>
         <span class="rideMiddleWord">
         to
         </span>
         <span class="rideLocations">
-            +<?php echo $destination->getCityStateString() ?>
+            <?php echo $destination->getCityStateString() ?>
         </span>
 
     </h1>
@@ -109,7 +109,8 @@
     <!-- TODO: Add smoking -->
     <p class="smokingPreference">Smoking: Yes</p>
     <p class="tripDistance">One Way Trip</p>
-    <h3>Asking Price: $<?php echo $passenger->getAskingPrice() ?> per person</h3>
+    <br />
+    <span class="tripValue">Asking Price: $<?php echo $passenger->getAskingPrice() ?> per person</span>
     <p id="mainRideInformation">
         <?php echo nl2br($passenger->getDescription()) ?>
     </p>

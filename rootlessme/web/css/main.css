@@ -947,8 +947,8 @@ a {
 
 .dateBlockLarge {
     width: 55px;
-    color: #FFFFFF;
-    background-color: #606060;
+    color: black;
+    background-color: #D3D3D3;
     text-align: center;
 }
 
@@ -959,7 +959,7 @@ a {
     font-weight: bold;
     font-style: italic;
     font-size: 180%;
-    background-color: #303030;
+    background-color: #E5E5E5;
 }
 
 .dateBlockTime {
