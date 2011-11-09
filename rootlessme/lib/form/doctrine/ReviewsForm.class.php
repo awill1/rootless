@@ -12,20 +12,28 @@ class ReviewsForm extends BaseReviewsForm
 {
     public function configure()
     {
-        $this->widgetSchema['safe_driver'] = new sfWidgetFormChoice(array( 'expanded' => true,
+        $this->widgetSchema['was_safe'] = new sfWidgetFormChoice(array( 'expanded' => true,
           'choices' => array(true => 'Yes', false => 'No')
         ));
-        $this->widgetSchema['punctuality'] = new sfWidgetFormChoice(array( 'expanded' => true,
+        $this->widgetSchema['was_safe']->setLabel('was_safe', 'Safe Driver');
+     
+        $this->widgetSchema['was_punctual'] = new sfWidgetFormChoice(array( 'expanded' => true,
           'choices' => array(true => 'Yes', false => 'No')
         ));
-        $this->widgetSchema['friendliness'] = new sfWidgetFormChoice(array( 'expanded' => true,
+        $this->widgetSchema['was_punctual']->setLabel('was_puctual', 'Punctuality');
+        
+        $this->widgetSchema['was_friendly'] = new sfWidgetFormChoice(array( 'expanded' => true,
           'choices' => array(true => 'Yes', false => 'No')
         ));
-        $this->widgetSchema['courteous'] = new sfWidgetFormChoice(array( 'expanded' => true,
+        $this->widgetSchema['was_friendly']->setLabel('was_friendly', 'Friendly');
+        
+        $this->widgetSchema['was_courteous'] = new sfWidgetFormChoice(array( 'expanded' => true,
           'choices' => array(true => 'Yes', false => 'No')
         ));
+        $this->widgetSchema['was_courteous']->setLabel('was_courteous', 'Courteous');
+        
         $this->widgetSchema['review_type'] = new sfWidgetFormChoice(array(
-          'choices' => array('driver' => 'Driver Review', 'passenger' => 'Passenger Review')
+          'choices' => array(null => '','driver' => 'Driver Review', 'passenger' => 'Passenger Review')
         ));
         $this->validatorSchema['was_safe'] = new sfValidatorChoice(array(
           'choices' => array_keys(array(null => '', true => 'Yes', false => 'No'))
@@ -46,10 +54,10 @@ class ReviewsForm extends BaseReviewsForm
             'review_type',
             'ride_date',
             //'seat_id',
-            'safe_driver',
-            'friendliness',
-            'punctuality',
-            'courteous',
+            'was_safe',
+            'was_friendly',
+            'was_punctual',
+            'was_courteous',
             'comments'));
     }
 }
