@@ -241,54 +241,12 @@ profile_show_user:
     sf_method: [get]
 
 # review rules
-review:
-  url:     /reviews
-  class:   sfDoctrineRoute
-  options: { model: Reviews, type: list }
-  param:   { module: review, action: index}
-  requirements: { sf_method: get }
-
-review_new:
-  url:     /reviews/new
-  class:   sfDoctrineRoute
-  options: { model: Reviews, type: object }
-  param:   { module: review, action: new}
-  requirements: { sf_method: get }
-
 review_create:
   url:     /reviews/create
   class:   sfDoctrineRoute
   options: { model: Reviews, type: object }
   param:   { module: review, action: create}
   requirements: { sf_method: post }
-
-review_edit:
-  url:     /reviews/:id/edit
-  class:   sfDoctrineRoute
-  options: { model: Reviews, type: object }
-  param:   { module: review, action: edit}
-  requirements: { sf_method: get }
-
-review_update:
-  url:     /reviews/:id/update
-  class:   sfDoctrineRoute
-  options: { model: Reviews, type: object }
-  param:   { module: review, action: update}
-  requirements: { sf_method: put }
-
-review_delete:
-  url:     /reviews/:id/delete
-  class:   sfDoctrineRoute
-  options: { model: Reviews, type: object }
-  param:   { module: review, action: delete}
-  requirements: { sf_method: delete }
-
-review_show:
-  url:     /reviews/:id
-  class:   sfDoctrineRoute
-  options: { model: Reviews, type: object }
-  param:   { module: review, action: show}
-  requirements: { sf_method: get }
 
 review_ratings:
   url:     /reviews/:id/graph

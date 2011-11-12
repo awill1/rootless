@@ -84,7 +84,7 @@
 
       <?php if ($sf_user->isAuthenticated() && ($sf_user->getGuardUser()->getPersonId() != $profile->getPersonId())): ?>
         <a href="#" id="newReviewButton" >Add a review</a>
-        <form id="newReviewForm" class="userInputForm" action="<?php echo url_for(($reviewForm->getObject()->isNew() ? 'review_create' : 'review_update')) ?>" method="post" <?php $reviewForm->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
+        <form id="newReviewForm" class="userInputForm" action="<?php echo url_for('review_create') ?>" method="post" <?php $reviewForm->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
         <?php if (!$reviewForm->getObject()->isNew()): ?>
         <input type="hidden" name="sf_method" value="put" />
         <?php endif; ?>
@@ -111,9 +111,11 @@
                  <img class="feedbackProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $review->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall() ?>" alt="<?php echo $review->getPeople()->getProfiles()->getFirst()->getFullName() ?>" />
              
             <h3 class="feedbackProfileHeading">
-             <span class="reviewNameColor"> <a href="<?php echo $review->getPeople()->getProfiles()->getFirst()->getProfileName() ?>">
-                <?php echo $review->getPeople()->getProfiles()->getFirst()->getFullName() ?>
-              </a></span>
+              <span class="reviewNameColor">
+                <a href="<?php echo $review->getPeople()->getProfiles()->getFirst()->getProfileName() ?>">
+                  <?php echo $review->getPeople()->getProfiles()->getFirst()->getFullName() ?>
+                </a>
+              </span>
             </h3>
             <p class="feedbackProfileComment">
                 <?php echo $review->getComments() ?>
