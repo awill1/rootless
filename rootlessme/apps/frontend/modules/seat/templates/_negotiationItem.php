@@ -9,7 +9,7 @@
             Pickup location to <?php echo $route->getOriginLocation()->getSearchString() ?>
         </li>
         <li>
-            Dropoff location to xx <?php echo $route->getDestinationLocation()->getSearchString() ?>
+            Dropoff location to <?php echo $route->getDestinationLocation()->getSearchString() ?>
         </li>
         <li>
             Seat status to <?php echo $negotiation->getSeatStatusId() ?>
