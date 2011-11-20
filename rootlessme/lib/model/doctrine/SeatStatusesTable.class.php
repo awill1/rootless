@@ -8,6 +8,15 @@
 class SeatStatusesTable extends Doctrine_Table
 {
     /**
+     * The supported seat status types. This is a shortcut instead of
+     * querying the database.
+     * @var string The seat status type
+     */
+    public static $rideTypes = array('pending' => '1',
+                                     'accepted' => '2',
+                                     'declined' => '3');
+
+    /**
      * Returns an instance of this class.
      *
      * @return object SeatStatusesTable

@@ -2,7 +2,8 @@
 <h3>Negotiations</h3>
 <div id="seatNegotiationHistoryList">
     <?php foreach ($negotiations as $negotiation):
-              $changer = $negotiation->getPeople()->getProfiles()->getFirst(); ?>
+              $changer = $negotiation->getPeople()->getProfiles()->getFirst();
+              $route = $negotiation->getRoutes(); ?>
     <div class="seatNegotiationHistoryItem">
         <p>
             <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $changer->getPictureUrlSmall() ?>" alt="<?php echo $changer->getFullName() ?>" />
@@ -10,6 +11,12 @@
             changed
         </p>
         <ul>
+            <li>
+                Pickup location to <?php echo $route->getOriginLocation()->getSearchString() ?>
+            </li>
+            <li>
+                Dropoff location to xx <?php echo $route->getDestinationLocation()->getSearchString() ?>
+            </li>
             <li>
                 Seat status to <?php echo $negotiation->getSeatStatusId() ?>
             </li>

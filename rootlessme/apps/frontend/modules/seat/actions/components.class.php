@@ -33,6 +33,8 @@ class seatComponents extends sfComponents
 
         // Get the changer
         $this->changer = $this->negotiation->getPeople()->getProfiles()->getFirst();
+        // Get the route
+        $this->route = $this->negotiation->getRoutes();
     }
     
     /**

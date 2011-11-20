@@ -458,7 +458,7 @@ Locations:
     country: US
     latitude: 40.298490
     longitude: -83.06260
-    search_string: "Easton+Town+Center,+Columbus,+OH"
+    search_string: "Easton Town Center, Columbus, OH"
     sequence_order: 1
   location_6:
     location_id: 6
@@ -468,7 +468,7 @@ Locations:
     country: US
     latitude: 40.298720
     longitude: -83.06777000000001
-    search_string: "William+St.+at+Sandusky+St.,+Delaware,+OH"
+    search_string: "William St. at Sandusky St., Delaware, OH"
     sequence_order: 2
 
 

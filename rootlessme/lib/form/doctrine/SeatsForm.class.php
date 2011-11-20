@@ -10,6 +10,9 @@
  */
 class SeatsForm extends BaseSeatsForm
 {
+    /**
+     * Configures the form, overridding the base form.
+     */
     public function configure()
     {
         $seat = $this->getObject();
@@ -66,6 +69,11 @@ class SeatsForm extends BaseSeatsForm
             'description'));
     }
 
+    /**
+     * Saves the seat in the form
+     * @param Doctrine_Connection $con The connection to the database
+     * @return Seats The saved seat
+     */
     public function doSave($con = null) {
         // Get the person id of the authenticated user
         $person = sfContext::getInstance()->getUser()->getGuardUser()->getPeople();
@@ -81,8 +89,6 @@ class SeatsForm extends BaseSeatsForm
             // Update the route
             $route = $this->getObject()->Routes;
             $route->createFromGoogleDirections($route_data);
-
-
 
             // Update the route_id value so it does not get overwritten by the
             // internal updateObject() call

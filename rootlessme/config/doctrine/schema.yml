@@ -1449,6 +1449,10 @@ Routes:
       local: route_id
       foreign: solo_route_id
       type: many
+    SeatsHistory:
+      local: route_id
+      foreign: solo_route_id
+      type: many
 SeatStatuses:
   connection: doctrine
   tableName: seat_statuses
@@ -1718,6 +1722,10 @@ SeatsHistory:
     People:
       local: changer_id
       foreign: person_id
+      type: one
+    Routes:
+      local: solo_route_id
+      foreign: route_id
       type: one
     Seats:
       local: seat_id

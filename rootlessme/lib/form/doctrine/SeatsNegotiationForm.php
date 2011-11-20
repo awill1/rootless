@@ -11,6 +11,9 @@
  */
 class SeatsNegotiationForm extends SeatsForm
 {
+    /**
+     * Configures the form, overriding the base configuration.
+     */
     public function configure()
     {
         // Use the parent configuration method first
@@ -23,8 +26,5 @@ class SeatsNegotiationForm extends SeatsForm
         // linked .
         $this->setWidget('carpool_id',new sfWidgetFormInputHidden());
         $this->setWidget('passenger_id',new sfWidgetFormInputHidden());
-
-        sfContext::getInstance()->getLogger()->info('Configuring the SeatsNegotiationForm form');
-
     }
 }

@@ -23,6 +23,7 @@ Doctrine_Manager::getInstance()->bindComponent('SeatsHistory', 'doctrine');
  * @property integer $changer_id
  * @property string $change_action
  * @property People $People
+ * @property Routes $Routes
  * @property Seats $Seats
  * 
  * @method integer      getSeatHistoryId()   Returns the current record's "seat_history_id" value
@@ -41,6 +42,7 @@ Doctrine_Manager::getInstance()->bindComponent('SeatsHistory', 'doctrine');
  * @method integer      getChangerId()       Returns the current record's "changer_id" value
  * @method string       getChangeAction()    Returns the current record's "change_action" value
  * @method People       getPeople()          Returns the current record's "People" value
+ * @method Routes       getRoutes()          Returns the current record's "Routes" value
  * @method Seats        getSeats()           Returns the current record's "Seats" value
  * @method SeatsHistory setSeatHistoryId()   Sets the current record's "seat_history_id" value
  * @method SeatsHistory setSeatId()          Sets the current record's "seat_id" value
@@ -58,6 +60,7 @@ Doctrine_Manager::getInstance()->bindComponent('SeatsHistory', 'doctrine');
  * @method SeatsHistory setChangerId()       Sets the current record's "changer_id" value
  * @method SeatsHistory setChangeAction()    Sets the current record's "change_action" value
  * @method SeatsHistory setPeople()          Sets the current record's "People" value
+ * @method SeatsHistory setRoutes()          Sets the current record's "Routes" value
  * @method SeatsHistory setSeats()           Sets the current record's "Seats" value
  * 
  * @package    RootlessMe
@@ -211,6 +214,10 @@ abstract class BaseSeatsHistory extends sfDoctrineRecord
         $this->hasOne('People', array(
              'local' => 'changer_id',
              'foreign' => 'person_id'));
+
+        $this->hasOne('Routes', array(
+             'local' => 'solo_route_id',
+             'foreign' => 'route_id'));
 
         $this->hasOne('Seats', array(
              'local' => 'seat_id',

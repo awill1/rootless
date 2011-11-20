@@ -12,6 +12,10 @@
  */
 class SeatStatuses extends BaseSeatStatuses
 {
+    /**
+     * Converts the object to a string. Overrides the default implementation.
+     * @return string The seat status as a string
+     */
     public function __toString()
     {
         return $this->getDisplayText();

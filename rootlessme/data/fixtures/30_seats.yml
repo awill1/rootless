@@ -56,7 +56,7 @@ SeatsHistory:
     carpool_id: 2
     passenger_id: 2
     seat_status_id: 1
-    solo_route_id: 1
+    solo_route_id: 3
     price: 15
     seat_count: 1
     pickup_date: "2011-05-08"
@@ -72,7 +72,7 @@ SeatsHistory:
     carpool_id: 2
     passenger_id: 2
     seat_status_id: 1
-    solo_route_id: 1
+    solo_route_id: 3
     price: 15
     seat_count: 1
     pickup_date: "2011-05-08"
@@ -88,7 +88,7 @@ SeatsHistory:
     carpool_id: 2
     passenger_id: 2
     seat_status_id: 1
-    solo_route_id: 1
+    solo_route_id: 3
     price: 15
     seat_count: 1
     pickup_date: "2011-05-08"
@@ -104,7 +104,7 @@ SeatsHistory:
     carpool_id: 2
     passenger_id: 2
     seat_status_id: 2
-    solo_route_id: 1
+    solo_route_id: 3
     price: 15
     seat_count: 1
     pickup_date: "2011-05-08"
@@ -120,7 +120,7 @@ SeatsHistory:
     carpool_id: 2
     passenger_id: 3
     seat_status_id: 1
-    solo_route_id: 1
+    solo_route_id: 3
     price: 5
     seat_count: 1
     pickup_date: "2011-05-08"
@@ -136,7 +136,7 @@ SeatsHistory:
     carpool_id: 2
     passenger_id: 4
     seat_status_id: 1
-    solo_route_id: 1
+    solo_route_id: 3
     price: 0
     seat_count: 1
     pickup_date: "2011-05-08"
@@ -152,7 +152,7 @@ SeatsHistory:
     carpool_id: 2
     passenger_id: 4
     seat_status_id: 3
-    solo_route_id: 1
+    solo_route_id: 3
     price: 0
     seat_count: 1
     pickup_date: "2011-05-08"

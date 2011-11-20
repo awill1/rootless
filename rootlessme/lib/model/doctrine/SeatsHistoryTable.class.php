@@ -33,6 +33,7 @@ class SeatsHistoryTable extends Doctrine_Table
         $q = $this->createQuery('s')
                 ->innerJoin('s.People p')
                 ->leftJoin('p.Profiles pr')
+                ->innerJoin('s.Routes r')
                 ->where('s.seat_id = ?', $seat_id)
                 ->orderBy('s.created_at DESC');
 
@@ -55,6 +56,7 @@ class SeatsHistoryTable extends Doctrine_Table
         $q = $this->createQuery('s')
                 ->innerJoin('s.People p')
                 ->leftJoin('p.Profiles pr')
+                ->innerJoin('s.Routes r')
                 ->where('s.seat_id = ?', $seat_id)
                 ->orderBy('s.created_at DESC');
 

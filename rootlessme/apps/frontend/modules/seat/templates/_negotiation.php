@@ -35,7 +35,5 @@
     <div id="negotiationSpinnerContainer">
         <img id="negotiationSpinner" alt="Loading..." src="/images/ajax-loader.gif" />
     </div>
-    <?php 
-        include_partial('seat/negotiations', array('negotiations' => $negotiations))
-    ?>
+    <?php include_partial('seat/negotiations', array('negotiations' => $negotiations)) ?>
 </div>
