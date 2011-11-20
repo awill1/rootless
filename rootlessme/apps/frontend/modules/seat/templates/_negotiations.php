@@ -28,9 +28,10 @@
             </li>
             <li>
                 Pickup date to <?php echo $negotiation->getPickupDate() ?>
+                <?php echo date("j",strtotime($negotiation->getPickupDate())) ?>
             </li>
             <li>
-                Pickup time to <?php echo $negotiation->getPickupTime() ?>
+                Pickup time to <?php echo date("g:i A",strtotime($negotiation->getPickupTime())) ?>
             </li>
             <li>
                 Description to <?php echo $negotiation->getDescription() ?>

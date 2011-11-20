@@ -52,11 +52,13 @@ class SeatsForm extends BaseSeatsForm
         $this->setValidator('carpool_id',new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Carpools'), 'required' => false)));
         $this->setValidator('passenger_id', new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Passengers'), 'required' => false)));
 
+        // Seat status will be created by the action, not the user
+        //$this->setWidget('seat_status_id',new sfWidgetFormInputText());
+        unset($this['seat_status_id']);
+        
         // Choose the fields that will be displayed
         unset($this['created_at']);
         unset($this['updated_at']);
-        // Seat status will be created by the action, not the user
-        unset($this['seat_status_id']);
         $this->useFields(array(
             'seat_id',
             'route',

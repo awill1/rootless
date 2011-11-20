@@ -12,9 +12,9 @@ class SeatStatusesTable extends Doctrine_Table
      * querying the database.
      * @var string The seat status type
      */
-    public static $rideTypes = array('pending' => '1',
-                                     'accepted' => '2',
-                                     'declined' => '3');
+    public static $rideTypes = array('pending' => 1,
+                                     'accepted' => 2,
+                                     'declined' => 3);
 
     /**
      * Returns an instance of this class.

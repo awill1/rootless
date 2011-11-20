@@ -277,10 +277,17 @@ class seatActions extends sfActions
         // Decline the seat
     }
 
-    protected function processForm(sfWebRequest $request, sfForm $form)
+    protected function processForm(sfWebRequest $request, sfFormDoctrine $form, $seatStatusId = 1)
     {
-        
+        // Bind the request to the form
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+        
+        // Set the seat status
+        $seat = $form->getObject();
+        $seat->setSeatStatusId($seatStatusId);
+        //$form->values['seat_status_id'] = $seatStatusId;
+        
+        // Process the form
         if ($form->isValid())
         {
             // Get the is new value since it will change after saving
