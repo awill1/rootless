@@ -13,6 +13,28 @@
 class Seats extends BaseSeats
 {
     /**
+     * Gets the origin location for a route
+     * @return Locations The origin
+     */
+    public function getOriginLocation()
+    {
+        $first_location = $this->getRoutes()->getOriginLocation();
+
+        return $first_location;
+    }
+
+    /**
+     * Gets the destination location for a route
+     * @return Locations The destination
+     */
+    public function getDestinationLocation()
+    {
+        $last_location = $this->getRoutes()->getDestinationLocation();
+
+        return $last_location;
+    }
+    
+    /**
      * Saves the seat and saves the schange into the history log
      * @param int $personId
      * @param Doctrine_Connection $conn THe doctrine connection

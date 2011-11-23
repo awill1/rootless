@@ -26,6 +26,13 @@ class dashboardActions extends sfActions
             // Get the confirmed passenger in all carpools the user is
             // riding in or driving
             $this->relatedPassengers = Doctrine_Core::getTable('Passengers')->getConfirmedPassengersForPerson($userPersonId);
+            
+            // Get the user's rides, both carpools and passenger posts
+            $this->carpools = Doctrine_Core::getTable('Carpools')->getCarpoolsForPerson($userPersonId);
+            $this->passengers = Doctrine_Core::getTable('Passengers')->getPassengersForPerson($userPersonId);
+            
+            // Get all seats related to the user
+            $this->seats = Doctrine_Core::getTable('Seats')->getSeatsForPerson($userPersonId);
         }
     }
 }

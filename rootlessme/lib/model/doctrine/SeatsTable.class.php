@@ -88,8 +88,25 @@ class SeatsTable extends Doctrine_Table
         return $results->getFirst();
     }
 
+    /**
+     * Gets the seats related to the person. The person can be either the 
+     * driver or the passenger.
+     * @param type $person_id The user's people id
+     * @return Doctrine_Collection The seats related to the person 
+     */
     public function getSeatsForPerson($person_id)
     {
+        $q = $this->createQuery('s')
+          ->innerJoin('s.Passengers pa')
+          ->innerJoin('pa.People pap')
+          ->innerJoin('pap.Profiles papr')
+          ->innerJoin('s.Carpools c')
+          ->innerJoin('c.People cp')
+          ->innerJoin('cp.Profiles cpr')
+          ->innerJoin('s.SeatStatuses ss')
+          ->addWhere('pa.person_id = ?',array($person_id))
+          ->orWhere('c.driver_id = ?',array($person_id));
 
+        return $q->execute();
     }
 }

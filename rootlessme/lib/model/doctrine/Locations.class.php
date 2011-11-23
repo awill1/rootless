@@ -12,6 +12,10 @@
  */
 class Locations extends BaseLocations
 {
+    /**
+     * Gets a string containing the location's city and state
+     * @return string The city and state string
+     */
     public function getCityStateString()
     {
         // Return variables
@@ -37,6 +41,12 @@ class Locations extends BaseLocations
 
     }
 
+    /**
+     * Creates and saves a location based on a json string from the 
+     * Google geocode api.
+     * @param String $googleGeocode The json string from the Google geocode api
+     * @return void No return 
+     */
     public function createFromGoogleGeocode($googleGeocode = null)
     {
         sfContext::getInstance()->getLogger()->debug($googleGeocode);
@@ -107,5 +117,15 @@ class Locations extends BaseLocations
 
         return;
 
+    }
+    
+    /**
+     * Returns a string that represents the location. Overrides the default
+     * __toString method.
+     * @return string The location represented as a string
+     */
+    public function __toString()
+    {
+        return $this->getCityStateString();
     }
 }

@@ -28,6 +28,12 @@ $(document).ready(function()
             $("#negotiationSpinner").hide();
         }
     });
+    
+    // Handle the accept and decline buttons
+    $('#acceptButton').click(function () {
+       // Submit the ajax request
+       
+    });
 
     // When the origin or the destination change, clear the route id.
     $(originTextBox).change(clearRouteId);

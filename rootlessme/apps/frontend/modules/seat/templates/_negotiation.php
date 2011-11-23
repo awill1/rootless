@@ -22,7 +22,7 @@
         <tfoot>
           <tr>
             <td colspan="2">
-              <input id="acceptButton" type="button" value="Accept" disabled="disabled" />
+              <input id="acceptButton" type="button" value="Accept" />
               <input id="declineButton" type="button" value="Decline" disabled="disabled" />
               <input id="negotiateButton" type="submit" value="Negotiate" />
             </td>
