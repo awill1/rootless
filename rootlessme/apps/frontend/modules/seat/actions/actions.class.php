@@ -10,13 +10,18 @@
  */
 class seatActions extends sfActions
 {
-  public function executeIndex(sfWebRequest $request)
-  {
-    $this->seats = Doctrine_Core::getTable('Seats')
-      ->createQuery('q')
-      ->execute();
-  }
+    public function executeIndex(sfWebRequest $request)
+    {
+        $this->seats = Doctrine_Core::getTable('Seats')
+            ->createQuery('q')
+            ->execute();
+    }
 
+    /**
+     * Executes the show action for a seat
+     * @param sfWebRequest $request
+     * @return type 
+     */
     public function executeShow(sfWebRequest $request)
     {
         // Get the seat id from the request
@@ -31,7 +36,7 @@ class seatActions extends sfActions
         // involved in the ride
         if ($this->getUser()->isAuthenticated())
         {
-            if ($this->getUser()->getGuardUser()->getPersonId() == $this->carpool->getDriverId())
+            if ($this->getUser()->getGuardUser()->getPersonId() == $this->seat->getCarpools()->getDriverId())
             {
                 $this->isMyPost = true;
             }

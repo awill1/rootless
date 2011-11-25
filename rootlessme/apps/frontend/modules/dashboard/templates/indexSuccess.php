@@ -40,17 +40,33 @@
     </div>
 </div>
 <div id="quickRidesBox">
-    <h3>Requests/Offers</h3>
-    <?php foreach ($seats as $seat): ?>
+    <h3>Offers</h3>
+    <?php foreach ($driverSeats as $driverSeat): ?>
         <div id="quickBoxItem">
             <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>"></img>
             <p id="quickBoxName">Aaron Williams </p>
-            <p id="quickBoxLocationStart">+<?php echo $seat->getOriginLocation() ?></p>
-            <p id="quickBoxLocationFinish">+<?php echo $seat->getDestinationLocation() ?></p>
+            <p id="quickBoxLocationStart">+<?php echo $driverSeat->getOriginLocation() ?></p>
+            <p id="quickBoxLocationFinish">+<?php echo $driverSeat->getDestinationLocation() ?></p>
             <p id="quickBoxConfirmButton">Confirm</p>
             <p id="quickBoxDeclineButton">Decline</p>
             <hr>
             <p id="quickBoxViewRequestButton">view request</p>
+            <hr>
+        </div>
+    <?php endforeach; ?>
+    <h3>Requests</h3>
+    <?php foreach ($passengerSeats as $passengerSeat): ?>
+        <div id="quickBoxItem">
+            <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>"></img>
+            <p id="quickBoxName">Aaron Williams </p>
+            <p id="quickBoxLocationStart">+<?php echo $passengerSeat->getOriginLocation() ?></p>
+            <p id="quickBoxLocationFinish">+<?php echo $passengerSeat->getDestinationLocation() ?></p>
+            <p id="quickBoxConfirmButton"><a href="" >Confirm</a></p>
+            <p id="quickBoxDeclineButton"><a href="" >Decline</a></p>
+            <hr>
+            <a id="quickBoxViewRequestButton" href="<?php echo url_for('ride_show', array('ride_type'=>'offer','ride_id'=>$passengerSeat->getPassengerId())) ?>">
+                view request
+            </a>
             <hr>
         </div>
     <?php endforeach; ?>

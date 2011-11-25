@@ -33,6 +33,23 @@ class dashboardActions extends sfActions
             
             // Get all seats related to the user
             $this->seats = Doctrine_Core::getTable('Seats')->getSeatsForPerson($userPersonId);
+            
+            // Sort the seats
+            $this->passengerSeats = new Doctrine_Collection('Seats');
+            $this->driverSeats = new Doctrine_Collection('Seats');
+            foreach ($this->seats as $seat)
+            {
+                if ($seat->getCarpools()->getDriverId() == $userPersonId)
+                {
+                    // The user is the driver in the seat request
+                    $this->driverSeats[] = $seat;
+                }
+                else
+                {
+                    // The user is the passenger in the seat request
+                    $this->passengerSeats[] = $seat;
+                }
+            }
         }
     }
 }
