@@ -22,14 +22,21 @@
         <tfoot>
           <tr>
             <td colspan="2">
-              <input id="acceptButton" type="button" value="Accept" />
-              <input id="declineButton" type="button" value="Decline" disabled="disabled" />
+              <?php if ($canDecline) : ?>
+                <input id="declineButton" type="button" value="Decline" />
+              <?php endif ?>
               <input id="negotiateButton" type="submit" value="Negotiate" />
             </td>
           </tr>
         </tfoot>
       </table>
     </form>
+    <?php if ($canAccept) : ?>
+        <form id="seatAcceptForm" action="<?php echo url_for('seats_accept') ?>" method="post">
+            <input id="seat_id" name="seat_id" type="hidden" value="<?php echo $seat->getSeatId() ?>"  />
+            <input id="acceptButton" type="submit" value="Accept"  />
+        </form>    
+    <?php endif ?>
     <div id="temporaryNewSeatHolder">
     </div>
     <div id="negotiationSpinnerContainer">

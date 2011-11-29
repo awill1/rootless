@@ -6,10 +6,10 @@
     </p>
     <ul>
         <li>
-            Pickup location to <?php echo $route->getOriginLocation()->getSearchString() ?>
+            Pickup location to <?php echo $route->getOriginLocation()->getName() ?>
         </li>
         <li>
-            Dropoff location to <?php echo $route->getDestinationLocation()->getSearchString() ?>
+            Dropoff location to <?php echo $route->getDestinationLocation()->getName() ?>
         </li>
         <li>
             Seat status to <?php echo $negotiation->getSeatStatusId() ?>
@@ -21,10 +21,10 @@
             Seat count to <?php echo $negotiation->getSeatCount() ?>
         </li>
         <li>
-            Pickup date to <?php echo $negotiation->getPickupDate() ?>
+            Pickup date to <?php echo date("m/d/Y",strtotime($negotiation->getPickupDate())) ?>
         </li>
         <li>
-            Pickup time to <?php echo $negotiation->getPickupTime() ?>
+            Pickup time to <?php echo date("g:i A",strtotime($negotiation->getPickupTime())) ?>
         </li>
         <li>
             Description to <?php echo $negotiation->getDescription() ?>

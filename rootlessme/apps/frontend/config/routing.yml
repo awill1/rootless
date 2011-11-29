@@ -363,7 +363,6 @@ seats_requests_create:
   requirements:
     sf_method: [post]
 
-
 seats_edit:
   url:   /seats/edit/:seat_id
   class:   sfDoctrineRoute
@@ -385,26 +384,18 @@ seats_update:
     sf_method: [post]
 
 seats_accept:
-  url: /seats/accept/:seat_id
-  class:   sfDoctrineRoute
+  url: /seats/accept
   param:
     module: seat
     action: accept
-  options:
-    model: Seats
-    type: object
   requirements:
     sf_method: [post]
 
 seats_decline:
-  url: /seats/decline/:seat_id
-  class:   sfDoctrineRoute
+  url: /seats/decline
   param:
     module: seat
     action: decline
-  options:
-    model: Seats
-    type: object
   requirements:
     sf_method: [post]
 

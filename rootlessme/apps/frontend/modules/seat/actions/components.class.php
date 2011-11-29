@@ -11,6 +11,9 @@ class seatComponents extends sfComponents
      */
     public function executeNegotiation(sfWebRequest $request)
     {
+        // Get the user id. The user must be authenticated
+        $userId = $this->getUser()->getGuardUser()->getPersonId();
+        
         // Get the seat type and number from the request parameters
         $this->seat = $this->getVar('seat');
         
@@ -20,6 +23,10 @@ class seatComponents extends sfComponents
         // Get the seat negotiations
         $this->negotiations = Doctrine_Core::getTable('SeatsHistory')
                               ->getHistoryForSeat($this->seat->getSeatId());
+        
+        // Get the actions available to the user
+        $this->canAccept = $this->seat->canAccept($userId);
+        $this->canDecline = $this->seat->canDecline($userId);
     }
 
     /**

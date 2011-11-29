@@ -10,6 +10,9 @@
  */
 class RoutesForm extends BaseRoutesForm
 {
+    /**
+     * Configures the routes form
+     */
     public function configure()
     {
         // Create the custom inputs for the form
@@ -33,8 +36,8 @@ class RoutesForm extends BaseRoutesForm
         {
             $origin = $route->getOriginLocation();
             $destination = $route->getDestinationLocation();
-            $this->setDefault('origin', urldecode($origin->getSearchString()));
-            $this->setDefault('destination', urldecode($destination->getSearchString()));
+            $this->setDefault('origin', urldecode($origin->getName()));
+            $this->setDefault('destination', urldecode($destination->getName()));
         }
         
         // Choose the order of the fields in the form, all others are unset
@@ -46,7 +49,20 @@ class RoutesForm extends BaseRoutesForm
             'destination_data',
             'origin',
             'destination'));
-
+    }
+    
+    /**
+     * Saves the route in the form
+     * @param Doctrine_Connection $con The connection to the database
+     * @return Routes The saved route
+     */
+    public function doSave($con = null) {
+        // In the future, the call to the create from google directions
+        // should be called from here. That will simplify the actions and
+        // doSave funcitons of forms that embed a route form
+        
+        // Call the parent function to save the route
+        return parent::doSave($con);
     }
 
 }

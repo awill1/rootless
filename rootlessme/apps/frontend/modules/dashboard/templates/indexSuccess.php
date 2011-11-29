@@ -64,7 +64,7 @@
             <p id="quickBoxConfirmButton"><a href="" >Confirm</a></p>
             <p id="quickBoxDeclineButton"><a href="" >Decline</a></p>
             <hr>
-            <a id="quickBoxViewRequestButton" href="<?php echo url_for('ride_show', array('ride_type'=>'offer','ride_id'=>$passengerSeat->getPassengerId())) ?>">
+            <a id="quickBoxViewRequestButton" href="<?php echo url_for('ride_show', array('ride_type'=>'offer','ride_id'=>$passengerSeat->getCarpoolId())) ?>">
                 view request
             </a>
             <hr>

@@ -12,8 +12,12 @@ $(document).ready(function()
         // Show the spinner
         $('#negotiationSpinner').show();
     });
+    $('#seatAcceptForm').submit(function() {
+        // Show the spinner
+        $('#negotiationSpinner').show();
+    });
 
-    // Use an ajax form
+    // Use an ajax form for the action buttons
     $('#seatNegotiationForm').ajaxForm(
     {
         // The resulting html should be sent to the test div
@@ -28,11 +32,19 @@ $(document).ready(function()
             $("#negotiationSpinner").hide();
         }
     });
-    
-    // Handle the accept and decline buttons
-    $('#acceptButton').click(function () {
-       // Submit the ajax request
-       
+    $('#seatAcceptForm').ajaxForm(
+    {
+        // The resulting html should be sent to the test div
+        target: '#temporaryNewSeatHolder',
+        // The callback function when the form was successfully submitted
+        success: function() {
+            // Move the resulting html from the temporaryNewSeatHolder
+            // to the actual seat history list.
+            $('#seatNegotiationHistoryList').prepend($('#temporaryNewSeatHolder').contents());
+
+            // Hide the spinner
+            $("#negotiationSpinner").hide();
+        }
     });
 
     // When the origin or the destination change, clear the route id.

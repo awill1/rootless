@@ -53,25 +53,108 @@ class Seats extends BaseSeats
             $isNew = $this->isNew();
 
             // If the seat is new, set the status to be pending
+            $action = 'update';
             if ($isNew)
             {
                 $pendingStatusId = SeatStatusesTable::getInstance()->findOneBy('slug', 'pending')->getSeatStatusId();
                 $this->setSeatStatusId($pendingStatusId);
+                // The seat is new so the action is create
+                $action = 'create';
             }
             
             // Save the seat
-            $ret = parent::save($conn);
+            parent::save($conn);
+            
+            // Create the seat history record
+            $seatHistoryEntry = SeatsHistory::createHistoryFromSeat($this, $personId, $action);
+
+            // Save the history record
+            $seatHistoryEntry = $seatHistoryEntry->save();
 
             // Commit the transaction
             $conn->commit();
 
-            return $ret;
+            return $this;
         }
         catch (Exception $e)
         {
             $conn->rollBack();
             throw $e;
         }
+    }
+    
+    /**
+     * Checks to see if a person is the driver or passenger for a seat
+     * @param type $personId The user's person id
+     * @return boolean True if the user is the driver or passenger. False
+     * otherwise
+     */
+    public function isMySeat($personId)
+    {
+        $isMySeat = false;
+        
+        // Check to see if the user is the driver
+        if ($this->getCarpools()->getDriverId() == $personId)
+        {
+            $isMySeat = true;
+        }
+        else if ($this->getPassengers()->getPersonId() == $personId) 
+        {
+            $isMySeat = true;
+        }
+        return $isMySeat;
+    }
+    
+    /**
+     * Checks to see whether the user can put the seat into the accepted state.
+     * @param int $personId The user's person id
+     * @return boolean True if the user is able to accept the seat. False
+     * otherwise.
+     */
+    public function canAccept($personId)
+    {
+        $canAccept = false;
+        // Check to make sure the person is involved in the seat
+        if ($this->isMySeat($personId))
+        {
+            // This logic need to be expanded more
+            // If the user is not the last user to negotiate on the seat it can
+            // accept it
+            $lastHistory = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryForSeat($this->getSeatId());
+            
+            if ($lastHistory->getChangerId() != $personId)
+            {
+                $canAccept = true;
+            }
+        }
+
+        return $canAccept;
+    }
+    
+    /**
+     * Checks to see whether the user can put the seat into the declined state.
+     * @param int $personId The user's person id
+     * @return boolean True if the user is able to decline the seat. False
+     * otherwise.
+     */
+    public function canDecline($personId)
+    {
+        $canDecline = false;
+        
+        // Check to make sure the person is involved in the seat
+        if ($this->isMySeat($personId))
+        {
+            // This logic need to be expanded more
+            // If the user is not the last user to negotiate on the seat it can
+            // accept it
+            $lastHistory = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryForSeat($this->getSeatId());
+            if ($lastHistory->getChangerId() != $personId)
+            {
+                $canDecline = true;
+            }
+        }
+
+        return $canDecline;
     }
 
 }

@@ -43,7 +43,7 @@ class SeatsHistoryTable extends Doctrine_Table
     /**
      * Returns the latest history item for a seat
      * @param int $seat_id The seat id of the seat
-     * @return DoctrineCollection The history for
+     * @return SeatsHistory The history for
      * the seat
      */
     public function getLatestHistoryForSeat($seat_id)

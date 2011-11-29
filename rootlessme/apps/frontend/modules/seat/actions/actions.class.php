@@ -102,6 +102,11 @@ class seatActions extends sfActions
         $this->form = new SeatsForm();
     }
 
+    /**
+     * Executes the action to create a seat
+     * @param sfWebRequest $request The http request
+     * @return String rendered html for the created seat 
+     */
     public function executeCreate(sfWebRequest $request)
     {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
@@ -249,22 +254,26 @@ class seatActions extends sfActions
         {
             $userId = $this->getUser()->getGuardUser()->getPersonId();
 
-            // Change the seat status and save with history
-            $seat->setSeatStatusId(SeatStatusesTable::$rideTypes['accepted']);
-            $updatedSeat = $seat->saveWithHistory($userId);
-
-            // If the request came from AJAX render the seat negotiation history
-            // partial with the updated seat information
-            if ($request->isXmlHttpRequest())
+            // Make sure the user is allowed to accept the seat
+            if ($seat->canAccept($userId))
             {
-                if ($seat != null)
+                // Change the seat status and save with history
+                $seat->setSeatStatusId(SeatStatusesTable::$rideTypes['accepted']);
+                $updatedSeat = $seat->saveWithHistory($userId);
+
+                // If the request came from AJAX render the seat negotiation history
+                // partial with the updated seat information
+                if ($request->isXmlHttpRequest())
                 {
-                    $lastSeatNegotiation = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryForSeat($updatedSeat->getSeatId());
-                    return $this->renderComponent('seat','negotiationItem', array('negotiationItem' => $lastSeatNegotiation));
-                }
-                else
-                {
-                    return $this->renderText('Seat was not updated');
+                    if ($seat != null)
+                    {
+                        $lastSeatNegotiation = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryForSeat($updatedSeat->getSeatId());
+                        return $this->renderComponent('seat','negotiationItem', array('negotiationItem' => $lastSeatNegotiation));
+                    }
+                    else
+                    {
+                        return $this->renderText('Seat was not updated');
+                    }
                 }
             }
         }
