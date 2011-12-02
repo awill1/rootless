@@ -15,6 +15,16 @@ class SeatStatusesTable extends Doctrine_Table
     public static $rideTypes = array('pending' => 1,
                                      'accepted' => 2,
                                      'declined' => 3);
+    
+    /**
+     * Gets the displayable name string of the seat status
+     * @param int $seatStatusId The status id
+     * @return String The displayable name of the status 
+     */
+    public static function getStatusString($seatStatusId)
+    {
+        return array_search($seatStatusId, SeatStatusesTable::$rideTypes); 
+    }
 
     /**
      * Returns an instance of this class.

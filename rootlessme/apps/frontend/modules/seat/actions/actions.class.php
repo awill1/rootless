@@ -289,6 +289,33 @@ class seatActions extends sfActions
         $this->forward404Unless($seat = Doctrine_Core::getTable('Seats')->find(array($request->getParameter('seat_id'))), sprintf('Object seat does not exist (%s).', $request->getParameter('seat_id')));
 
         // Decline the seat
+        if ($this->getUser()->isAuthenticated())
+        {
+            $userId = $this->getUser()->getGuardUser()->getPersonId();
+
+            // Make sure the user is allowed to decline the seat
+            if ($seat->canDecline($userId))
+            {
+                // Change the seat status and save with history
+                $seat->setSeatStatusId(SeatStatusesTable::$rideTypes['declined']);
+                $updatedSeat = $seat->saveWithHistory($userId);
+
+                // If the request came from AJAX render the seat negotiation history
+                // partial with the updated seat information
+                if ($request->isXmlHttpRequest())
+                {
+                    if ($seat != null)
+                    {
+                        $lastSeatNegotiation = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryForSeat($updatedSeat->getSeatId());
+                        return $this->renderComponent('seat','negotiationItem', array('negotiationItem' => $lastSeatNegotiation));
+                    }
+                    else
+                    {
+                        return $this->renderText('Seat was not updated');
+                    }
+                }
+            }
+        }
     }
 
     protected function processForm(sfWebRequest $request, sfFormDoctrine $form, $seatStatusId = 1)

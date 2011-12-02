@@ -7,12 +7,16 @@ $(document).ready(function()
     // Hide the spinner
     $("#negotiationSpinner").hide();
 
-    // When the form is submitted
+    // AJAX form submit button handlers
     $('#seatNegotiationForm').submit(function() {
         // Show the spinner
         $('#negotiationSpinner').show();
     });
     $('#seatAcceptForm').submit(function() {
+        // Show the spinner
+        $('#negotiationSpinner').show();
+    });
+    $('#seatDeclineForm').submit(function() {
         // Show the spinner
         $('#negotiationSpinner').show();
     });
@@ -33,6 +37,20 @@ $(document).ready(function()
         }
     });
     $('#seatAcceptForm').ajaxForm(
+    {
+        // The resulting html should be sent to the test div
+        target: '#temporaryNewSeatHolder',
+        // The callback function when the form was successfully submitted
+        success: function() {
+            // Move the resulting html from the temporaryNewSeatHolder
+            // to the actual seat history list.
+            $('#seatNegotiationHistoryList').prepend($('#temporaryNewSeatHolder').contents());
+
+            // Hide the spinner
+            $("#negotiationSpinner").hide();
+        }
+    });
+    $('#seatDeclineForm').ajaxForm(
     {
         // The resulting html should be sent to the test div
         target: '#temporaryNewSeatHolder',

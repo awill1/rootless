@@ -22,9 +22,6 @@
         <tfoot>
           <tr>
             <td colspan="2">
-              <?php if ($canDecline) : ?>
-                <input id="declineButton" type="button" value="Decline" />
-              <?php endif ?>
               <input id="negotiateButton" type="submit" value="Negotiate" />
             </td>
           </tr>
@@ -35,6 +32,12 @@
         <form id="seatAcceptForm" action="<?php echo url_for('seats_accept') ?>" method="post">
             <input id="seat_id" name="seat_id" type="hidden" value="<?php echo $seat->getSeatId() ?>"  />
             <input id="acceptButton" type="submit" value="Accept"  />
+        </form>    
+    <?php endif ?>
+    <?php if ($canDecline) : ?>
+        <form id="seatDeclineForm" action="<?php echo url_for('seats_decline') ?>" method="post">
+            <input id="seat_id" name="seat_id" type="hidden" value="<?php echo $seat->getSeatId() ?>"  />
+            <input id="declineButton" type="submit" value="Decline"  />
         </form>    
     <?php endif ?>
     <div id="temporaryNewSeatHolder">

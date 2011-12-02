@@ -18,7 +18,7 @@
                 Dropoff location to <?php echo $route->getDestinationLocation()->getName() ?>
             </li>
             <li>
-                Seat status to <?php echo $negotiation->getSeatStatusId() ?>
+                Seat status to <?php echo SeatStatusesTable::getStatusString($negotiation->getSeatStatusId()) ?>
             </li>
             <li>
                 Price to $<?php echo $negotiation->getPrice() ?>
