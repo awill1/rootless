@@ -9,6 +9,10 @@ People:
     person_id: 3
   person_colin:
     person_id: 4
+  person_tony:
+    person_id: 5
+  person_russ:
+    person_id: 6
 
 
 Users:
@@ -31,6 +35,16 @@ Users:
     user_name:   user_colin
     person_id:   4
     email:       colin@testuniveristy.edu
+    encrypted_password: kjrewlkjifdsoiufdsoiuwrjrewljfdsjjiofz
+  user_tony:
+    user_name:   user_tony
+    person_id:   5
+    email:       tony@testuniveristy.edu
+    encrypted_password: kjrewlkjifdsoiufdsoiuwrjrewljfdsjjiofz
+  user_russ:
+    user_name:   user_russ
+    person_id:   6
+    email:       russ@testuniveristy.edu
     encrypted_password: kjrewlkjifdsoiufdsoiuwrjrewljfdsjjiofz
 
 
@@ -133,48 +147,51 @@ Profiles:
     about_me:      I am a real person who is super super cool.
     top5:         Myself, My dog, food, music, and sports
     wants_to_travel_to: Canada
-    music:        The Beastie Boys
+    music:        My band
     movies:       Pulp Fiction
     books:        Catch-22, Kurt Vonnegut
     interests:    Things
     favorite_websites: reddit.com, facebook.com, newsmap.jp
     website_url:   www.colinhoell.com
-
-
-
-#////////<?php for ($i = 10; $i <= 15; $i++):
-#////////
-#///////Users:
-#////////  user_<?php echo $i ?>:
-#    username:    user_////////<?php echo $i ?>
-#    email:       user////////<?php echo $i ?>@testuser.com
-#    encryptedpassword: ////////<?php echo $i ?><?php echo $i ?><?php echo $i ?><?php echo $i ?><?php echo $i ?><?php echo $i ?><?php echo $i ?>
-
-
-#Profiles:
-#  profile_////////<?php echo $i ?>:
-#    idprofile:    profile_////////<?php echo $i ?>
-#    firstname:    John////////<?php echo $i ?>
-#    lastname:     Doe////////<?php echo $i ?>
-#    pictureurl:   resources/users/////////<?php echo $i ?>_profile.jpg
-#    pictureurllarge:   resources/users/////////<?php echo $i ?>_profileLarge.jpg
-#    pictureurlmedium:   resources/users/////////<?php echo $i ?>_profileMedium.jpg
-#    pictureurlsmall:   resources/users/////////<?php echo $i ?>_profileSmall.jpg
-#    pictureurltiny:   resources/users/////////<?php echo $i ?>_profileTiny.jpg
-#    address1:      ////////<?php echo $i ?><?php echo $i ?> Main St.
-#    city:         Delaware
-#    state:        OH
-#    postalcode:   ////////<?php echo $i ?><?php echo $i ?>9
-#    country:      USA
-#    birthday:     2011-10-////////<?php echo $i ?>
-#    gender:       ////////<?php echo ($i % 2) ? 'Male' : 'Female'; ?>
-#    aboutme:      I am a fake person that has been added into the database to test the website
-#    top5:         Aaron, Family and Friends, Homer, Taveling, Movies
-#    wantstotravelto: Cincinnati
-#    music:        Katy Perry, Brittany Spears
-#    movies:       Changes all the time. Currently... Black Swan, Bad Santa, and How to Train Your Dragon
-#    books:        Harry Potter, The Life of Pi
-#    interests:    Movies, dogs, and cake
-#    favoritewebsites: failblog.org, lamebook.com, christyandaarontracker.com
-#   websiteurl:   http://www.christyandaarontracker.com
-#////////<?php endfor ?>
+  profile_tony:
+    profile_name:    profile_tony
+    person_id:   5
+    first_name:    Tony
+    last_name:     Guglielmi
+    picture_url:   profile_aaron.jpg
+    picture_url_large:   profile_aaron_large.jpg
+    picture_url_medium:   profile_aaron_medium.jpg
+    picture_url_small:   profile_aaron_small.jpg
+    picture_url_tiny:   profile_aaron_tiny.jpg
+    birthday:     '1988-03-21'
+    gender:       'Male'
+    about_me:      I am a person.
+    top5:         Myself, My dog, food, music, and sports
+    wants_to_travel_to: Canada
+    music:        Jesty Beatz, Garet Camella
+    movies:       Pulp Fiction
+    books:        Catch-22, Kurt Vonnegut
+    interests:    Things
+    favorite_websites: reddit.com, facebook.com, newsmap.jp
+    website_url:   www.clickingcreateschange.com
+  profile_russ:
+    profile_name:    profile_russ
+    person_id:   6
+    first_name:    Russ
+    last_name:     Wells
+    picture_url:   profile_aaron.jpg
+    picture_url_large:   profile_aaron_large.jpg
+    picture_url_medium:   profile_aaron_medium.jpg
+    picture_url_small:   profile_aaron_small.jpg
+    picture_url_tiny:   profile_aaron_tiny.jpg
+    birthday:     '1988-07-12'
+    gender:       'Male'
+    about_me:      I am a real person who is super super cool.
+    top5:         Myself, My dog, food, music, and sports
+    wants_to_travel_to: The moon
+    music:        Portugal, The Man
+    movies:       Pulp Fiction
+    books:        Catch-22, Kurt Vonnegut
+    interests:    Things
+    favorite_websites: reddit.com, facebook.com, newsmap.jp
+    website_url:  http://www.russjwells.com

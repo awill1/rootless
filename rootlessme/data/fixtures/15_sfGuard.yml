@@ -44,6 +44,24 @@ sfGuardUser:
     password:       colin
     is_super_admin: false
     Groups:         [Group_user]
+  User_tony:
+    person_id:      5
+    first_name:     Tony
+    last_name:      Guglielmi
+    email_address:  tony@rootless.me
+    username:       tony
+    password:       tony
+    is_super_admin: false
+    Groups:         [Group_user]
+  User_russ:
+    person_id:      6
+    first_name:     Russ
+    last_name:      Wells
+    email_address:  russ@rootless.me
+    username:       russ
+    password:       russ
+    is_super_admin: false
+    Groups:         [Group_user]
 
 sfGuardGroup:
   Group_admin:
