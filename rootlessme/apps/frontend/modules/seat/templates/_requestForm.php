@@ -6,7 +6,7 @@
     <script type="text/javascript" src="/js/newSeatForm.js"></script>
 <?php end_slot();?>
 
-<div>
+<div id="seatDetailsBlock">
     <form id="seatRequestForm" class="userInputForm" action="<?php echo url_for('seats_requests_create') ?>" method="post">
         <h3>Request a Seat</h3>
         <table>

@@ -69,8 +69,6 @@
             // Route preview changes whenever the user finished editing the
             // seat pickup and dropoff textboxes
             bindTextBoxesToMap();
-//            $(originTextBox).change(previewRoute);
-//            $(destinationTextBox).change(previewRoute);
 
             // Discover the strange keys used for longitude and latitude
             // in the data returned from google maps api.
@@ -186,12 +184,12 @@
         }
 
         function loadSeatDetails() {
-            $('#loader').show();
-            $("#seatNegotiationBlock").toggle("blind");
-            $("#seatNegotiationBlock").load($(this).attr("href"),
+            $('#seatSpinnerContainer').show();
+            $("#seatDetailsBlock").hide("blind");
+            $("#seatDetailsBlock").load($(this).attr("href"),
                 function(){
-                    $('#loader').hide();
-                    $("#seatNegotiationBlock").toggle("blind");
+                    $('#seatSpinnerContainer').hide();
+                    $("#seatDetailsBlock").show("blind");
                     bindTextBoxesToMap();
                 });
             // Return false to override default click behavior
@@ -282,63 +280,70 @@
 </div>
 <div id="mainRideDetails">
     <?php if ($isMyPost) :?>
-    <div class="riderListBlock">
-        <h3>Pending</h3>
-        <?php if ($pendingSeats->count() > 0) :?>
-        <ul class="riderList">
-            <?php foreach ($pendingSeats as $seat):
-                  $riderProfile = $seat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
-                <li class="riderListItem">
-                    <?php if ($isMyPost) :?>
-                        <a class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a>
-                    <?php else :?>
-                        <a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a>
-                    <?php endif; ?>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-        <?php else: ?>
-            <p>No pending seats</p>
-        <?php endif; ?>
-    </div>
-    <div class="riderListBlock">
-        <h3>Declined</h3>
-        <?php if ($declinedSeats->count() > 0) :?>
-        <ul class="riderList">
-            <?php foreach ($declinedSeats as $seat):
-                $riderProfile = $seat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
-                <li class="riderListItem">
-                    <?php if ($isMyPost) :?>
-                        <a class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a>
-                    <?php else :?>
-                        <a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a>
-                    <?php endif; ?>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-        <?php else: ?>
-            <p>No declined seats</p>
-        <?php endif; ?>
-    </div>
+        <div class="riderListBlock">
+            <h3>Pending</h3>
+            <?php if ($pendingSeats->count() > 0) :?>
+            <ul class="riderList">
+                <?php foreach ($pendingSeats as $seat):
+                      $riderProfile = $seat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
+                    <li class="riderListItem">
+                        <?php if ($isMyPost) :?>
+                            <a class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a>
+                        <?php else :?>
+                            <a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+            <?php else: ?>
+                <p>No pending seats</p>
+            <?php endif; ?>
+        </div>
+        <div class="riderListBlock">
+            <h3>Declined</h3>
+            <?php if ($declinedSeats->count() > 0) :?>
+            <ul class="riderList">
+                <?php foreach ($declinedSeats as $seat):
+                    $riderProfile = $seat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
+                    <li class="riderListItem">
+                        <?php if ($isMyPost) :?>
+                            <a class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a>
+                        <?php else :?>
+                            <a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+            <?php else: ?>
+                <p>No declined seats</p>
+            <?php endif; ?>
+        </div>
     <?php elseif ($mySeat != null): ?>
-    <div class="riderListBlock">
-        <h3>My Seat Request</h3>
-        <ul class="riderList">
-            <?php $myProfile = $mySeat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
-            <li class="riderListItem">
-                <a class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$mySeat->getSeatId()))  ?>">
-                    <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $myProfile->getPictureUrlSmall() ?>" alt="<?php echo $myProfile->getFullName() ?>" />
-                </a>
-            </li>
-        </ul>
-    </div>
+        <div class="riderListBlock">
+            <h3>My Seat Request</h3>
+            <ul class="riderList">
+                <?php $myProfile = $mySeat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
+                <li class="riderListItem">
+                    <a class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$mySeat->getSeatId()))  ?>">
+                        <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $myProfile->getPictureUrlSmall() ?>" alt="<?php echo $myProfile->getFullName() ?>" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <?php include_component('seat', 'negotiation', array('seat'=>$mySeat)) ?>
     <?php elseif ($myUserId!=null): ?>
         <?php include_component('seat', 'requestForm', array('ride'=>$carpool)) ?>
     <?php else: ?>
         <div>
-            You must login or register to request a seat.
+            You must 
+            <a href="<?php echo url_for('sf_guard_signin') ?>">login</a> 
+            or <a href="<?php echo url_for('sf_guard_register') ?>">register</a> 
+            to request a seat.
         </div>
     <?php endif; ?>
+    <div id="seatSpinnerContainer" style="display: none;">
+        <img id="negotiationSpinner" alt="Loading..." src="/images/ajax-loader.gif" />
+    </div>
     <img id="loader" alt="Loading spinner" src="/images/ajax-loader.gif" style="vertical-align: middle; display: none" />
     <div id ="seatNegotiationBlock">
 

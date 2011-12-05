@@ -421,6 +421,7 @@ Locations:
   location_2:
     location_id: 2
     step_id: 11
+    name: "313 Rutherford Ave., Delaware, OH"
     street1: 313 Rutherford Ave
     city: Delaware
     state: OH
@@ -428,11 +429,12 @@ Locations:
     country: US
     latitude: 40.3196700
     longitude: -83.0792900
-    search_string: CMH
+    search_string: "313 Rutherford Ave., Delaware, OH"
     sequence_order: 2
   location_3:
     location_id: 3
     step_id: 12
+    name: "Chicago, IL"
     city: Chicago
     state: IL
     country: US
@@ -443,6 +445,7 @@ Locations:
   location_4:
     location_id: 4
     step_id: 38
+    name: "Los Angeles, CA"
     city: Los Angeles
     state: CA
     country: US
@@ -453,6 +456,7 @@ Locations:
   location_5:
     location_id: 5
     step_id: 39
+    name: "Easton Town Center, Columbus, OH"
     city: Columus
     state: OH
     country: US
@@ -463,6 +467,7 @@ Locations:
   location_6:
     location_id: 6
     step_id: 45
+    name: "William St. at Sandusky St., Delaware, OH"
     city: Delaware
     state: OH
     country: US

@@ -318,6 +318,13 @@ class seatActions extends sfActions
         }
     }
 
+    /**
+     * Processes the seat form
+     * @param sfWebRequest $request The http request
+     * @param sfFormDoctrine $form The seat form
+     * @param int $seatStatusId The seat status id to set on the seat
+     * @return Seats The saved seat 
+     */
     protected function processForm(sfWebRequest $request, sfFormDoctrine $form, $seatStatusId = 1)
     {
         // Bind the request to the form
