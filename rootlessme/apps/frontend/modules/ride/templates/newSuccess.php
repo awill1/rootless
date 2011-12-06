@@ -6,6 +6,7 @@
   sprintf('Rootless Me - New ride '.$rideType))
 ?>
 <?php slot('gmapheader'); ?>
+    <script type="text/javascript" src="/js/googleMapHelpers.js"></script>
     <script type="text/javascript">
         var map = null;
         var directionDisplay;
@@ -52,8 +53,8 @@
             var googleTestString = JSON.stringify(testPoint);
             // this is a random two character string which represents latitude
             //  and longitude in the stringified data
-            strangeLat = new RegExp(googleTestString.substring(2,4),"g");
-            strangeLon = new RegExp(googleTestString.substring(10,12),"g");
+            strangeLat = googleTestString.substring(2,4);
+            strangeLon = googleTestString.substring(10,12);
 
             // Change the start date and time to be pickers.
             $( ".datePicker" ).datepicker();
@@ -90,14 +91,14 @@
             var locationNumber = 0;
             showResults(results, status, locationNumber);
             // Send the geocoded information to the server
-            $(originDataField).val(formatGoogleJSON(JSON.stringify(locations[ locationNumber])));
+            $(originDataField).val(formatGoogleJSON(strangeLat, strangeLon, JSON.stringify(locations[ locationNumber])));
         }
 
         function geocodeDestination(results, status) {
             var locationNumber = 1;
             showResults(results, status, locationNumber);
             // Send the geocoded information to the server
-            $(destinationDataField).val(formatGoogleJSON(JSON.stringify(locations[locationNumber])));
+            $(destinationDataField).val(formatGoogleJSON(strangeLat, strangeLon, JSON.stringify(locations[locationNumber])));
         }
 
         function showResults(results, status, locationNumber) {
@@ -140,20 +141,13 @@
 
                 // Set the route field to the results object for posting to the
                 // server
-                $(routeDataField).val(formatGoogleJSON(JSON.stringify(result)));
+                $(routeDataField).val(formatGoogleJSON(strangeLat, strangeLon, JSON.stringify(result)));
 
                 // Display the directions
                 directionsDisplay.setDirections(result);
             }
           });
         }
-        
-        // formatGoogleJSON is used to change the strange keys used for 
-        // latitude and longitude into easier to use "lat" and "lon" keys.
-        function formatGoogleJSON(jsonString) {
-            return jsonString.replace(strangeLat,"lat").replace(strangeLon, "lon");
-        }
-
     </script>
 
 <?php end_slot();?>
