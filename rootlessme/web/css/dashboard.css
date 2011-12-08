@@ -12,7 +12,6 @@
     float: left;
     background-color: #F4F4F4;
     width: 465px;
-    height: 100%;
     padding: 0px 0px 0px 15px;
 }
 
@@ -85,7 +84,6 @@
     float:left;
     margin-bottom: 15px;
     width: 200px;
-    height: 210px;
     display: inline;
     
 }
@@ -94,7 +92,6 @@
     float:left;
     margin-left: 15px;
     width: 200px;
-    height: 210px;
     display: inline;
 }
 
