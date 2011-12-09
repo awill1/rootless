@@ -166,7 +166,7 @@ class ProfilesTable extends Doctrine_Table
         }
         foreach ($drivers as $driver)
         {
-            $personIds[] = $drivers->getDriverId();
+            $personIds[] = $driver->getPersonId();
         }
         
         // Check to see if the traveler list is empty

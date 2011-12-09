@@ -186,11 +186,11 @@
 
         function loadSeatDetails() {
             $('#seatSpinnerContainer').show();
-            $("#seatDetailsBlock").hide("blind");
-            $("#seatDetailsBlock").load($(this).attr("href"),
+            $("#seatNegotiationBlock").hide("blind");
+            $("#seatNegotiationBlock").load($(this).attr("href"),
                 function(){
                     $('#seatSpinnerContainer').hide();
-                    $("#seatDetailsBlock").show("blind");
+                    $("#seatNegotiationBlock").show("blind");
                     bindTextBoxesToMap();
                 });
             // Return false to override default click behavior
