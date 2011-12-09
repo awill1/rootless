@@ -333,7 +333,6 @@ class seatActions extends sfActions
         // Set the seat status
         $seat = $form->getObject();
         $seat->setSeatStatusId($seatStatusId);
-        //$form->values['seat_status_id'] = $seatStatusId;
         
         // Process the form
         if ($form->isValid())

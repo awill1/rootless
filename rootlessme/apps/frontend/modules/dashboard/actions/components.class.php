@@ -11,9 +11,8 @@ class dashboardComponents extends sfComponents
             $userPersonId = $this->getUser()->getGuardUser()->getPersonId();
 
             // Get the confirmed passenger in all carpools the user is
-            // riding in or driving
-            $this->relatedPassengers = Doctrine_Core::getTable('Passengers')->getConfirmedPassengersForPerson($userPersonId);
-
+            // riding in or driving            
+            $this->travelingCompanions = Doctrine_Core::getTable('Profiles')->getTravelingWithProfiles($userPersonId);
             
         }
     }

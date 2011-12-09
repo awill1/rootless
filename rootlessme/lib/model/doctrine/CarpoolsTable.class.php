@@ -162,5 +162,5 @@ class CarpoolsTable extends Doctrine_Table
 
         // Run the query and return the results
         return $q->execute();
-    }
+    }  
 }

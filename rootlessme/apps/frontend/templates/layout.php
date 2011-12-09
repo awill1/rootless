@@ -133,15 +133,6 @@
                
                     </div>
                     <?php include_component('dashboard', 'travelingWith') ?>
-                    <div id="leftActivity" class="leftWidget">
-                        <h3 class="leftWidgetTitle">Traveling With</h3>
-                        <ul id="leftActivityList">
-                            <li class="leftActivityItem"><img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>" alt="<?php echo $sf_user->getGuardUser()->getPeople(); ?>" /><span class="travelingWith">Colin Hoell</span></a> <br/><a href="<?php echo url_for("profile_show_user", $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst())  ?>" id="leftProfileViewLink" >View Ride</a></li><br/>
-                            <li class="leftActivityItem"><img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>" alt="<?php echo $sf_user->getGuardUser()->getPeople(); ?>" /><span class="travelingWith">Colin Hoell</span></a> <br/><a href="<?php echo url_for("profile_show_user", $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst())  ?>" id="leftProfileViewLink" >View Ride</a></li><br/>
-                            <li class="leftActivityItem"><img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>" alt="<?php echo $sf_user->getGuardUser()->getPeople(); ?>" /><span class="travelingWith">Colin Hoell</span></a> <br/><a href="<?php echo url_for("profile_show_user", $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst())  ?>" id="leftProfileViewLink" >View Ride</a></li><br/>
-                            <li class="leftActivityItem"><img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>" alt="<?php echo $sf_user->getGuardUser()->getPeople(); ?>" /><span class="travelingWith">Colin Hoell</span></a> <br/><a href="<?php echo url_for("profile_show_user", $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst())  ?>" id="leftProfileViewLink" >View Ride</a></li><br/>
-                        </ul>
-                    </div>
                 </div>
                 <?php endif ?>
             </div>

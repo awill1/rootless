@@ -40,8 +40,14 @@ class Routes extends BaseRoutes
         return $last_location;
     }
 
-
-
+    /**
+     * Creates and saves a route from a Google directions javascript api result 
+     * string.
+     * @param String $googleDirections The Google directions javascript api 
+     * result string with the latitude and longitude keys replaced with "lat" 
+     * and "lon".
+     * @return void 
+     */
     public function createFromGoogleDirections($googleDirections = null)
     {
         // Make sure the directions are not null
