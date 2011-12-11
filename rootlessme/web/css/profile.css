@@ -400,12 +400,18 @@ p{
 }
 
 a#newReviewButton {
-  color: #119D49;
-  text-decoration: underline;
+  color: #FFFFFF;
+  text-decoration: none;
+  background-color: #119F41;
+  padding: 5px 5px 5px 5px;
+  float:right;
+
 }
 
 a#newReviewButton:hover {
   text-decoration: none;
+  background-color: #40AD64;
+  
 }
 
 #newReviewForm {

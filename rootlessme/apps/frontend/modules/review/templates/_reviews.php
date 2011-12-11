@@ -83,7 +83,7 @@
 <div id="driverReviews">
 
       <?php if ($sf_user->isAuthenticated() && ($sf_user->getGuardUser()->getPersonId() != $profile->getPersonId())): ?>
-        <a href="#" id="newReviewButton" >Add a review</a>
+        <a href="#" id="newReviewButton" >+ Add a review</a>
         <form id="newReviewForm" class="userInputForm" action="<?php echo url_for('review_create') ?>" method="post" <?php $reviewForm->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
         <?php if (!$reviewForm->getObject()->isNew()): ?>
         <input type="hidden" name="sf_method" value="put" />
