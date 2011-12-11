@@ -394,3 +394,66 @@ tbody {
     
     background-color: #D14D2F;
 }
+
+.seatNegotiationHistoryItem {
+    font-size: 90%;
+    padding-bottom: 17px;
+    margin-bottom: 15px;
+    background-color: #F4F4F4;
+}
+
+.seatNegotiationHistoryItemCategory {
+    font-weight: bold;
+    color: #3D3D3D;
+}
+
+.seatNegotiationHistoryItemCategorySays {
+    font-style: italic;
+    color: #3D3D3D;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.seatNegotiationHistoryUserImage {
+    height: 100%;
+    float: left;
+    padding-left: 15px;
+    padding-top: 15px;
+}
+
+.seatNegotiationHistoryUserName {
+    margin-left: 80px;
+    font-style: italic;
+    padding-top: 2px;
+}
+
+.seatNegotiationHistorySpecifics {
+    margin-left: 40px;
+    padding-right: 15px;
+    line-height: 18px;
+}
+
+.seatNegotiationUserNameText {
+    color:#119D49;
+}
+
+.seatNegotiationHistoryItemSpecificText {
+    color: #D05A36;
+    font-style: italic;
+}
+
+.seatNegotiationHistoryUpdateTime {
+    padding-top: 20px;
+    font-size: 80%;
+    color: #999;
+    float: right;
+    padding-right: 15px;
+}
+
+.seatNegotiationHistoryItemUserSays {
+    padding-left: 15px;
+    margin-left: 0px;
+    display: inline;
+}
