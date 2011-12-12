@@ -42,6 +42,8 @@ label {
     margin-left: 140px;
 }*/
 
+.home .signUpText td,
+ 
 td {
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 10px;
@@ -457,3 +459,29 @@ ul {
     margin-left: 0px;
     display: inline;
 }
+
+.negotationInstructions {
+    color: #D14D2F;
+    font-size: 80%;
+    padding: 5px 15px 0px 15px;
+}
+
+#seatNegotiationForm input{
+    width: 220px;
+    height: 18px;
+    font-family: Arial;
+    margin-bottom: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    color: #3D3D3D;
+    background-color: #FFFFFF;
+    border: 1px #3D3D3D solid;
+    
+}
+
+#seatNegotiationForm td, #seatNegotiationForm th{
+    clear: both;
+    float: left;
+}
+
+

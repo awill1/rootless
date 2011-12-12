@@ -8,6 +8,9 @@
 <script type="text/javascript" src="/js/seatNegotiation.js"></script>
 <div id="seatDetailsBlock" title="Seat details">
     <form id="seatNegotiationForm" class="userInputForm" action="<?php echo url_for('seats_update', array('seat_id'=>$seat->getSeatId())) ?>" method="post">
+        <p span class="negotationInstructions">You may negotiate with the driver by changing the ride details below.
+The driver can approve your request or negotiate back with you.
+        </p>
       <table>
         <tbody>
           <?php echo $form->renderHiddenFields() ?>
