@@ -19,10 +19,10 @@ class seatComponents extends sfComponents
         
         // Form and seat needed for seat negotiation
         $this->form = new SeatsNegotiationForm($this->seat);
-
-        // Get the seat negotiations
-        $this->negotiations = Doctrine_Core::getTable('SeatsHistory')
-                              ->getHistoryForSeat($this->seat->getSeatId());
+        
+        // Get the seat negotiation changes history
+        $this->negotiationChangesHistory = Doctrine_Core::getTable('SeatsHistory')
+                              ->getHistoryDifferencesForSeat($this->seat->getSeatId());
         
         // Get the actions available to the user
         $this->canAccept = $this->seat->canAccept($userId);

@@ -1,60 +1,88 @@
 <hr />
 <h3>Negotiations</h3>
 <div id="seatNegotiationHistoryList">
-    <?php foreach ($negotiations as $negotiation):
-              $changer = $negotiation->getPeople()->getProfiles()->getFirst();
-              $route = $negotiation->getRoutes(); ?>
-    <div class="seatNegotiationHistoryItem">
-        <div class="seatNegotiationHistoryUserImage">
-            <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $changer->getPictureUrlSmall() ?>" alt="<?php echo $changer->getFullName() ?>" />   
-           </div>
+    <?php foreach ($negotiationChanges as $negotiationChange):
+              $newHistoryItem = $negotiationChange->getNewSeatHistory();
+              $changer = $newHistoryItem->getPeople()->getProfiles()->getFirst();
+              $route = $newHistoryItem->getRoutes();?>
+        <div class="seatNegotiationHistoryItem">
+            <div class="seatNegotiationHistoryUserImage">
+                <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $changer->getPictureUrlSmall() ?>" alt="<?php echo $changer->getFullName() ?>" />   
+            </div>
             <div class="seatNegotiationHistoryUserName">
                 <p>
                     <span class="seatNegotiationUserNameText">  <?php echo $changer->getFullName() ?> </span>changed 
                 </p>
              </div>
-        <div class="seatNegotiationHistorySpecifics">
-        <ul>
-            <li>
-                <span class="seatNegotiationHistoryItemCategory">Pickup location </span>to <span class="seatNegotiationHistoryItemSpecificText"><?php echo $route->getOriginLocation()->getName() ?></span>
-            </li>
-            <li>
-               <span class="seatNegotiationHistoryItemCategory"> Dropoff location </span>to <span class="seatNegotiationHistoryItemSpecificText"><?php echo $route->getDestinationLocation()->getName() ?></span>
-            </li>
-            <li>
-               <span class="seatNegotiationHistoryItemCategory"> Seat status </span>to <span class="seatNegotiationHistoryItemSpecificText"><?php echo SeatStatusesTable::getStatusString($negotiation->getSeatStatusId()) ?></span>
-            </li>
-            <li>
-               <span class="seatNegotiationHistoryItemCategory"> Price </span>to <span class="seatNegotiationHistoryItemSpecificText">$<?php echo $negotiation->getPrice() ?></span>
-            </li>
-            <li>
-               <span class="seatNegotiationHistoryItemCategory"> Seat count </span>to <span class="seatNegotiationHistoryItemSpecificText"><?php echo $negotiation->getSeatCount() ?></span>
-            </li>
-            <li>
-               <span class="seatNegotiationHistoryItemCategory"> Pickup date </span>to <span class="seatNegotiationHistoryItemSpecificText"><?php echo date("m/d/Y",strtotime($negotiation->getPickupDate())) ?></span>
-            </li>
-            <li>
-               <span class="seatNegotiationHistoryItemCategory"> Pickup time </span>to <span class="seatNegotiationHistoryItemSpecificText"><?php echo date("g:i A",strtotime($negotiation->getPickupTime())) ?></span>
-            </li>
-            </ul>
-            </div>
-            <div class="seatNegotiationHistoryItemUserSays">
+            <div class="seatNegotiationHistorySpecifics">
                 <ul>
-                    
-            <hr />
-            <li>
-               <span class="seatNegotiationHistoryItemCategorySays"> <?php echo $changer->getFullName() ?> Says </span>
-                       <br />
-                       <br />
-                       <?php echo $negotiation->getDescription() ?>
-            </li>
-            <div class="seatNegotiationHistoryUpdateTime">
-            <li>
-                Updated <?php echo $negotiation->getCreatedAt() ?>
-            </li>
+                    <?php if ($negotiationChange->getIsSoloRouteIdDifferent()): ?>
+                        <li>
+                            <span class="seatNegotiationHistoryItemCategory">Pickup location</span>
+                            to 
+                            <span class="seatNegotiationHistoryItemSpecificText"><?php echo $route->getOriginLocation()->getName() ?></span>
+                        </li>
+                        <li>
+                            <span class="seatNegotiationHistoryItemCategory">Dropoff location</span>
+                            to
+                            <span class="seatNegotiationHistoryItemSpecificText"><?php echo $route->getDestinationLocation()->getName() ?></span>
+                        </li>
+                    <?php endif; ?>
+                    <?php if ($negotiationChange->getIsSeatStatusIdDifferent()): ?>
+                        <li>
+                           <span class="seatNegotiationHistoryItemCategory">Seat status</span>
+                           to 
+                           <span class="seatNegotiationHistoryItemSpecificText"><?php echo SeatStatusesTable::getStatusString($newHistoryItem->getSeatStatusId()) ?></span>
+                        </li>
+                    <?php endif; ?>
+                    <?php if ($negotiationChange->getIsPriceDifferent()): ?>
+                        <li>
+                           <span class="seatNegotiationHistoryItemCategory">Price</span>
+                           to
+                           <span class="seatNegotiationHistoryItemSpecificText">$<?php echo $newHistoryItem->getPrice() ?></span>
+                        </li>
+                    <?php endif; ?>
+                    <?php if ($negotiationChange->getIsSeatCountDifferent()): ?>
+                        <li>
+                           <span class="seatNegotiationHistoryItemCategory">Seat count</span>
+                           to
+                           <span class="seatNegotiationHistoryItemSpecificText"><?php echo $newHistoryItem->getSeatCount() ?></span>
+                        </li>
+                    <?php endif; ?>
+                    <?php if ($negotiationChange->getIsPickupDateDifferent()): ?>
+                        <li>
+                           <span class="seatNegotiationHistoryItemCategory">Pickup date</span>
+                           to
+                           <span class="seatNegotiationHistoryItemSpecificText"><?php echo date("m/d/Y",strtotime($newHistoryItem->getPickupDate())) ?></span>
+                        </li>
+                    <?php endif; ?>
+                    <?php if ($negotiationChange->getIsPickupTimeDifferent()): ?>
+                        <li>
+                           <span class="seatNegotiationHistoryItemCategory">Pickup time</span>
+                           to
+                           <span class="seatNegotiationHistoryItemSpecificText"><?php echo date("g:i A",strtotime($newHistoryItem->getPickupTime())) ?></span>
+                        </li>
+                    <?php endif; ?>
+                </ul>
             </div>
-        </ul>
-            </div>
-    </div>
+            <?php if ($negotiationChange->getIsDescriptionDifferent()): ?>
+                <div class="seatNegotiationHistoryItemUserSays">
+                    <ul>
+                        <hr />
+                        <li>
+                           <span class="seatNegotiationHistoryItemCategorySays"> <?php echo $changer->getFullName() ?> Says </span>
+                           <br />
+                           <br />
+                           <?php echo $newHistoryItem->getDescription() ?>
+                        </li>
+                        <div class="seatNegotiationHistoryUpdateTime">
+                            <li>
+                                Updated <?php echo $newHistoryItem->getCreatedAt() ?>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+            <?php endif; ?>
+        </div>
     <?php endforeach; ?>
 </div>

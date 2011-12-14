@@ -39,6 +39,46 @@ class SeatsHistoryTable extends Doctrine_Table
 
         return $q->execute();
     }
+    
+    /**
+     * Returns the history changes for a seat
+     * @param int $seat_id The seat id of the seat
+     * @return Array The history of changes for
+     * the seat
+     */
+    public function getHistoryDifferencesForSeat($seat_id)
+    {
+        // First get the seat history items for the seat. 
+        $seatHistoryItems = $this->getHistoryForSeat($seat_id);
+
+        // Convert the seat history collections into an array
+        //$seatHistoryArray = $seatHistoryItems->toArray();
+        
+        // Create the array that will contain differences
+        $seatHistoryDifferences = array();
+        
+        for ($i = 0 ; $i < $seatHistoryItems->count() ; $i++ )
+        {
+            // History items are sorted in descending date order so newer items
+            // appear before older items
+            $newItem = $seatHistoryItems[$i];
+            // The final case will be out of range so set allow the old item to 
+            // be null if the index would be out of range
+            $oldItem = null;
+            if ($i+1 != $seatHistoryItems->count())
+            {
+                $oldItem = $seatHistoryItems[$i+1];
+            }
+            
+            // Get the differences between the old and the new item
+            $seatDifference = new SeatsHistoryDifference($oldItem, $newItem);
+            
+            // Add the difference to the differences array
+            $seatHistoryDifferences[] = $seatDifference;
+        }
+        
+        return $seatHistoryDifferences;
+    }
 
     /**
      * Returns the latest history item for a seat

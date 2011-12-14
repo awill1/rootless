@@ -48,5 +48,5 @@ The driver can approve your request or negotiate back with you.
     <div id="negotiationSpinnerContainer">
         <img id="negotiationSpinner" alt="Loading..." src="/images/ajax-loader.gif" />
     </div>
-    <?php include_partial('seat/negotiations', array('negotiations' => $negotiations)) ?>
+    <?php include_partial('seat/negotiations', array('negotiationChanges' => $negotiationChangesHistory)) ?>
 </div>
