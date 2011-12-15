@@ -64,6 +64,9 @@ class Routes extends BaseRoutes
             sfContext::getInstance()->getLogger()->error("JSON last error: ".json_last_error());
             return;
         }
+        
+        // Do this setting below for BIG-ASS runtime Doctrine systems... FFS!
+        Doctrine_Manager::connection()->setAttribute(Doctrine_Core::ATTR_AUTO_FREE_QUERY_OBJECTS, true);
 
         // There can be multiple routes, for now just use the first
         $routeNumber = 0;
@@ -119,6 +122,11 @@ class Routes extends BaseRoutes
                     $location->setSequenceOrder($locationNumber);
                     $location->setSteps($step);
                     $location->save();
+                    
+                    // Free up the location for performance improvement
+                    $location->free();
+                    unset($location);
+
                     // Increment the sequence counter
                     $locationNumber++;
                 }
