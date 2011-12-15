@@ -75,9 +75,12 @@ class Routes extends BaseRoutes
         $polyline = $route_data["overview_polyline"]["points"];
         $this->setEncodedPolyline($polyline);
 
-        // TODO: Increment the sequence order for all detail levels at
+        // Increment the sequence order for all detail levels at
         // a route level, instead of nesting. This means the locations
         // can be sorted without joining up to the route level
+        $legNumber = 0;
+        $stepNumber = 0;
+        $locationNumber = 0;
 
         // Create the legs
         $legsCount = count($jRoute["routes"][$routeNumber]["legs"]);
@@ -85,7 +88,7 @@ class Routes extends BaseRoutes
         {
             $leg_data = $jRoute["routes"][$routeNumber]["legs"][$currentLeg];
             $leg = new Legs();
-            $leg->setSequenceOrder($currentLeg);
+            $leg->setSequenceOrder($legNumber);
             $leg->setRoutes($this);
             $leg->save();
 
@@ -99,7 +102,7 @@ class Routes extends BaseRoutes
                 $step->setDistance($step_data["distance"]["value"]);
                 $step->setDuration($step_data["duration"]["value"]);
                 $step->setEncodedPolyline($step_data["polyline"]["points"]);
-                $step->setSequenceOrder($currentStep);
+                $step->setSequenceOrder($stepNumber);
                 $step->setLegs($leg);
                 $step->save();
 
@@ -113,11 +116,17 @@ class Routes extends BaseRoutes
                     // javascript
                     $location->setLatitude($location_data['lat']);
                     $location->setLongitude($location_data['lon']);
-                    $location->setSequenceOrder($currentLocation);
+                    $location->setSequenceOrder($locationNumber);
                     $location->setSteps($step);
                     $location->save();
+                    // Increment the sequence counter
+                    $locationNumber++;
                 }
+                // Increment the sequence counter
+                $stepNumber++;
             }
+            // Increment the sequence counter
+            $legNumber++;
         }
 
         // Save the route
