@@ -72,6 +72,25 @@ class SeatsTable extends Doctrine_Table
         return $q->execute();
     }
 
+    /**
+     * Returns all Seats with driver and passenger profiles for a specific
+     * passenger id
+     *
+     * @return Doctrine_Collection Returns a seats collection with profiles
+     * and people included
+     */
+    public function getSeatsWithProfilesForPassenger($passenger_id)
+    {
+        $q = $this->createQuery('s')
+          ->innerJoin('s.Carpools c')
+          ->innerJoin('c.People p')
+          ->innerJoin('p.Profiles pr')
+          ->innerJoin('s.SeatStatuses ss')
+          ->addWhere('s.passenger_id = ?',array($passenger_id));
+
+        return $q->execute();
+    }
+
     public function getSeatWithCarpoolAndPassenger($seat_id)
     {
         $q = $this->createQuery('s')
