@@ -45,7 +45,7 @@ class CarpoolsTable extends Doctrine_Table
         {
             // Get the authenticated user's personId
             $myId = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
-            $carpools = $this->getPassengersForPerson($myId);
+            $carpools = $this->getCarpoolsForPerson($myId);
         }
 
         return $carpools;

@@ -80,11 +80,17 @@ class SeatsForm extends BaseSeatsForm
         // Get the person id of the authenticated user
         $person = sfContext::getInstance()->getUser()->getGuardUser()->getPeople();
 
+//        sfContext::getInstance()->getLogger()->debug( 'Saving the Seat.' );
+        
         // Only handle the route data if the route_id is empty, because
         // this means the route is new or has been changed
         $routeId = $this->values['route']['route_id'];
+        
+//        sfContext::getInstance()->getLogger()->debug( '$routeId='.$routeId );
         if ($routeId == '')
         {
+            
+//            sfContext::getInstance()->getLogger()->debug( '$routeId is empty' );
             // Get the route data from the embedded form
             $route_data = $this->values['route']['route_data'];
 

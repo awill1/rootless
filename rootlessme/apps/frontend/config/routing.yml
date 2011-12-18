@@ -315,42 +315,18 @@ search:
   param: { module: search, action: search }
 
 # seat rules
-seats:
-  url: /seats
+seats_offers_create:
+  url: /seats/offers/create
   class:   sfDoctrineRoute
   param:
     module: seat
-    action: index
-  options:
-    model: Seats
-    type: list
-  requirements:
-    sf_method: [get]
-
-seats_new:
-  url: /seats/new
-  class:   sfDoctrineRoute
-  param:
-    module: seat
-    action: new
-  options:
-    model: Seats
-    type: object
-  requirements:
-    sf_method: [get]
-
-seats_create:
-  url: /seats/create
-  class:   sfDoctrineRoute
-  param:
-    module: seat
-    action: create
+    action: offerCreate
   options:
     model: Seats
     type: object
   requirements:
     sf_method: [post]
-    
+
 seats_requests_create:
   url: /seats/requests/create
   class:   sfDoctrineRoute
@@ -362,14 +338,6 @@ seats_requests_create:
     type: object
   requirements:
     sf_method: [post]
-
-seats_edit:
-  url:   /seats/edit/:seat_id
-  class:   sfDoctrineRoute
-  options: { model: Seats, type: object }
-  param: { module: seat, action: edit }
-  requirements:
-    sf_method: [get]
 
 seats_update:
   url: /seats/update/:seat_id

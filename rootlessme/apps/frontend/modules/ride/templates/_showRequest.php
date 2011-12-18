@@ -279,7 +279,7 @@
             <?php if ($pendingSeats->count() > 0) :?>
             <ul class="riderList">
                 <?php foreach ($pendingSeats as $seat):
-                      $driverProfile = $seat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
+                      $driverProfile = $seat->getCarpools()->getPeople()->getProfiles()->getFirst(); ?>
                     <li class="riderListItem">
                         <?php if ($isMyPost) :?>
                             <a class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driverProfile->getPictureUrlSmall() ?>" alt="<?php echo $driverProfile->getFullName() ?>" /></a>
@@ -298,7 +298,7 @@
             <?php if ($declinedSeats->count() > 0) :?>
             <ul class="riderList">
                 <?php foreach ($declinedSeats as $seat):
-                    $driverProfile = $seat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
+                    $driverProfile = $seat->getCarpools()->getPeople()->getProfiles()->getFirst(); ?>
                     <li class="riderListItem">
                         <?php if ($isMyPost) :?>
                             <a class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driverProfile->getPictureUrlSmall() ?>" alt="<?php echo $driverProfile->getFullName() ?>" /></a>

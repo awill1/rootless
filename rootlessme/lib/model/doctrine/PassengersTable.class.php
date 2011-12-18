@@ -48,7 +48,6 @@ class PassengersTable extends Doctrine_Table
         return $passengers;
     }
 
-
     /**
      * Returns all passenger records for a person
      * @param int $personId The person to get the passengers for

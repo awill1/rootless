@@ -10,13 +10,6 @@
  */
 class seatActions extends sfActions
 {
-    public function executeIndex(sfWebRequest $request)
-    {
-        $this->seats = Doctrine_Core::getTable('Seats')
-            ->createQuery('q')
-            ->execute();
-    }
-
     /**
      * Executes the show action for a seat
      * @param sfWebRequest $request
@@ -96,51 +89,6 @@ class seatActions extends sfActions
                                                      'seat' => $this->seat));
         }
     }
-
-    public function executeNew(sfWebRequest $request)
-    {
-        $this->form = new SeatsForm();
-    }
-
-    /**
-     * Executes the action to create a seat
-     * @param sfWebRequest $request The http request
-     * @return String rendered html for the created seat 
-     */
-    public function executeCreate(sfWebRequest $request)
-    {
-        $this->forward404Unless($request->isMethod(sfRequest::POST));
-
-        $this->form = new SeatsForm();
-
-        $seat = $this->processForm($request, $this->form);
-
-        // If the request came from AJAX render the seat negotiation partial
-        // with the new seat information
-        if ($request->isXmlHttpRequest())
-        {
-            if ($seat != null)
-            {
-                return $this->renderComponent('seat','negotiation', array('seat' => $seat));
-            }
-            else
-            {
-                return $this->renderText('Seat was not created');
-            }
-        }
-        else
-        {
-            $this->setTemplate('new');
-
-            if ($seat != null)
-            {
-                // This is not an AJAX request so redirect to the show seat
-                // page
-
-                $this->redirect('seats_show', array('seat_id', $seat->getSeatId()));
-            }
-        }
-    }
     
     /**
      * The action for creating a seat request
@@ -181,12 +129,46 @@ class seatActions extends sfActions
             }
         }
     }
+    
+    /**
+     * The action for creating a seat offer
+     * @param sfWebRequest $request The web request
+     * @return string Rendered html of the created seat.
+     */
+    public function executeOfferCreate(sfWebRequest $request)
+    {
+        $this->forward404Unless($request->isMethod(sfRequest::POST));
 
-  public function executeEdit(sfWebRequest $request)
-  {
-    $this->forward404Unless($seat = Doctrine_Core::getTable('Seats')->find(array($request->getParameter('seat_id'))), sprintf('Object seat does not exist (%s).', $request->getParameter('seat_id')));
-    $this->form = new SeatsForm($seat);
-  }
+        $this->form = new SeatsOfferForm();
+
+        $seat = $this->processForm($request, $this->form);
+
+        // If the request came from AJAX render the seat negotiation partial
+        // with the new seat information
+        if ($request->isXmlHttpRequest())
+        {
+            if ($seat != null)
+            {
+                return $this->renderComponent('seat','negotiation', array('seat' => $seat));
+            }
+            else
+            {
+                return $this->renderText('Seat was not created');
+            }
+        }
+        else
+        {
+            $this->setTemplate('new');
+
+            if ($seat != null)
+            {
+                // This is not an AJAX request so redirect to the show seat
+                // page
+
+                $this->redirect('seats_show', array('seat_id', $seat->getSeatId()));
+            }
+        }
+    }
 
     /**
      * Executes the update action
@@ -230,15 +212,6 @@ class seatActions extends sfActions
         }
     }
 
-  public function executeDelete(sfWebRequest $request)
-  {
-    $request->checkCSRFProtection();
-
-    $this->forward404Unless($seat = Doctrine_Core::getTable('Seats')->find(array($request->getParameter('seat_id'))), sprintf('Object seat does not exist (%s).', $request->getParameter('seat_id')));
-    $seat->delete();
-
-    $this->redirect('seat/index');
-  }
 
     /**
      * Executes the accept action in the seats module

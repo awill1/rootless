@@ -7,8 +7,8 @@
 <?php end_slot();?>
 
 <div id="seatDetailsBlock">
-    <form id="seatRequestForm" class="userInputForm" action="<?php echo url_for('seats_requests_create') ?>" method="post">
-        <h3>Request a Seat</h3>
+    <form id="seatRequestForm" class="userInputForm" action="<?php echo url_for('seats_offers_create') ?>" method="post">
+        <h3>Offer a Seat</h3>
         <table>
             <tbody>
                 <tr>
@@ -20,7 +20,7 @@
                 <?php echo $seatForm['carpool_id']->renderRow() ?>
                 <tr>
                     <td colspan="2" >
-                        Fill in the details for this specific seat request:
+                        Fill in the details for this specific seat offer:
                     </td>
                 </tr>
                 <?php echo $seatForm['route']['origin']->renderRow() ?>
