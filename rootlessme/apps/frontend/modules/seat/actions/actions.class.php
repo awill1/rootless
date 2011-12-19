@@ -171,7 +171,7 @@ class seatActions extends sfActions
     }
 
     /**
-     * Executes the update action
+     * Executes the update action used in negotiation
      * @param sfWebRequest $request The http request
      * @return string Rendered html of the updated seat.
      */
@@ -190,8 +190,8 @@ class seatActions extends sfActions
         {
             if ($seat != null)
             {
-                $lastSeatNegotiation = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryForSeat($seat->getSeatId());
-                return $this->renderComponent('seat','negotiationItem', array('negotiationItem' => $lastSeatNegotiation));
+                $lastSeatNegotiationDifference = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryDifferencesForSeat($seat->getSeatId());
+                return $this->renderComponent('seat','negotiationItem', array('negotiationChange' => $lastSeatNegotiationDifference));
             }
             else
             {
@@ -240,8 +240,8 @@ class seatActions extends sfActions
                 {
                     if ($seat != null)
                     {
-                        $lastSeatNegotiation = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryForSeat($updatedSeat->getSeatId());
-                        return $this->renderComponent('seat','negotiationItem', array('negotiationItem' => $lastSeatNegotiation));
+                        $lastSeatNegotiationDifference = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryDifferencesForSeat($seat->getSeatId());
+                        return $this->renderComponent('seat','negotiationItem', array('negotiationChange' => $lastSeatNegotiationDifference));
                     }
                     else
                     {
@@ -279,8 +279,8 @@ class seatActions extends sfActions
                 {
                     if ($seat != null)
                     {
-                        $lastSeatNegotiation = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryForSeat($updatedSeat->getSeatId());
-                        return $this->renderComponent('seat','negotiationItem', array('negotiationItem' => $lastSeatNegotiation));
+                        $lastSeatNegotiationDifference = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryDifferencesForSeat($seat->getSeatId());
+                        return $this->renderComponent('seat','negotiationItem', array('negotiationChange' => $lastSeatNegotiationDifference));
                     }
                     else
                     {

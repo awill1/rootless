@@ -79,6 +79,42 @@ class SeatsHistoryTable extends Doctrine_Table
         
         return $seatHistoryDifferences;
     }
+    
+    /**
+     * Returns the history changes for a seat between the last two history
+     * items
+     * @param int $seatId The seat id of the seat
+     * @return SeatHistoryDifference The history difference of changes for
+     * the seat between the latest two history items. Null if no history items
+     * were found
+     */
+    public function getLatestHistoryDifferencesForSeat($seatId)
+    {
+        // First get the last two seat history items for the seat. 
+        $seatHistoryItems = $this->getLatestHistoriesForSeat($seatId, 2);
+        
+        // Create the array that will contain differences
+        $seatDifference;
+        
+        if ($seatHistoryItems->count() > 0)
+        {
+            // Get the newest history item
+            $newestItem = $seatHistoryItems[0];
+            
+            // Get the second newest history item
+            $olderItem;
+            if ($seatHistoryItems->count() > 1)
+            {
+                $olderItem = $seatHistoryItems[1];
+            }
+            
+            // Get the differences between the old and the new item
+            $seatDifference = new SeatsHistoryDifference($olderItem, $newestItem);
+            
+        }
+        
+        return $seatDifference;
+    }
 
     /**
      * Returns the latest history item for a seat
@@ -101,5 +137,30 @@ class SeatsHistoryTable extends Doctrine_Table
                 ->orderBy('s.created_at DESC');
 
         return $q->fetchOne();
+    }
+    
+    /**
+     * Returns the latest history items for a seat
+     * @param int $seat_id The seat id of the seat
+     * @param int $count The number of histories to return
+     * @return Doctrine_Collection The history items for
+     * the seat
+     */
+    public function getLatestHistoriesForSeat($seat_id, $count = 1)
+    {
+        // Need this function to match this query
+        // select * from seats
+        // where seat_id = 1
+        // order by created_at DESC;
+
+        $q = $this->createQuery('s')
+                ->innerJoin('s.People p')
+                ->leftJoin('p.Profiles pr')
+                ->innerJoin('s.Routes r')
+                ->where('s.seat_id = ?', $seat_id)
+                ->orderBy('s.created_at DESC')
+                ->limit($count);
+
+        return $q->execute();
     }
 }

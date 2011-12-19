@@ -35,13 +35,15 @@ class seatComponents extends sfComponents
      */
     public function executeNegotiationItem(sfWebRequest $request)
     {
-        // Get the seat negotiation item from the request parameters
-        $this->negotiation = $this->getVar('negotiationItem');
+        // Get the seat negotiation change item from the request parameters
+        $this->negotiationChange = $this->getVar('negotiationChange');
 
+        // Get the new history item from the difference
+        $this->newHistoryItem = $this->negotiationChange->getNewSeatHistory();
         // Get the changer
-        $this->changer = $this->negotiation->getPeople()->getProfiles()->getFirst();
+        $this->changer = $this->newHistoryItem->getPeople()->getProfiles()->getFirst();
         // Get the route
-        $this->route = $this->negotiation->getRoutes();
+        $this->route = $this->newHistoryItem->getRoutes();
     }
     
     /**
