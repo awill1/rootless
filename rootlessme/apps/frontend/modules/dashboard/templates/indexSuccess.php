@@ -71,23 +71,3 @@
         </div>
     <?php endforeach; ?>
 </div>
-<div id="feedSection">
-    <h3>Feed</h3>
-    <div id="feedObject">
-    <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>"></img>
-    <p id="feedCopyObjects"> Aaron Williams </p> is riding with <p id="feedCopyObjects"> Christy Williams </p> to +Denver Colorado. blah blah blah blah blah blah<p id="feedRiders"> 2 Seats Available </p>
-    <p id="feedTime"> 30 minutes ago </p>
-    </div>
-        <div id="feedObject">
-    <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>"></img>
-    <p id="feedCopyObjects"> Aaron Williams </p> is riding with <p id="feedCopyObjects"> Christy Williams </p> to +Denver Colorado blah blah blah blah balh blah blah blah blah blah blah blah blah blah blah blah blah. <p id="feedTime"> 30 minutes ago </p>
-    </div>
-        <div id="feedObject">
-    <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>"></img>
-    <p id="feedCopyObjects"> Aaron Williams </p> is riding with <p id="feedCopyObjects"> Christy Williams </p> to +Denver Colorado. <p id="feedRiders"> 2 Seats Available </p>
-    </div>
-        <div id="feedObject">
-    <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>"></img>
-    <p id="feedCopyObjects"> Aaron Williams </p> is riding with <p id="feedCopyObjects"> Christy Williams </p> to +Denver Colorado. <p id="feedRiders"> 2 Seats Available </p>
-    </div>
-</div>
