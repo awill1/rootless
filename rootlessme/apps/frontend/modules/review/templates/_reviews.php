@@ -4,10 +4,11 @@
 <?php append_to_slot('gmapheader'); ?>
 
 <script type="text/javascript" src="/js/jquery.form.js"></script>
-
+<script type="text/javascript" src="/js/radioFormStyle.js"></script>
 <script type="text/javascript">
     $(document).ready(function()
     {
+        radioFormStyle($('#newReviewForm'));
         // The ride date should be a date box
         $('#reviews_ride_date').datepicker();
 

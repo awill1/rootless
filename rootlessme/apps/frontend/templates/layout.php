@@ -127,8 +127,8 @@
                     <div id="leftActions" class="leftWidget">
                         
                         <ul id="leftActionsList">
-                            <li class="leftActionItem"><button class="leftActionButton" onClick="window.location='<?php echo url_for('ride_new', array('ride_type'=>'offer')) ?>'" >+ Offer a Ride</button></li>
-                            <li class="leftActionItem"><button class="leftActionButton" onClick="window.location='<?php echo url_for('ride_new', array('ride_type'=>'request')) ?>'" >+ Request a Ride</button></li>
+                            <li class="leftActionItem"><button class="leftActionButton cta" onClick="window.location='<?php echo url_for('ride_new', array('ride_type'=>'offer')) ?>'" >+ Offer a Ride</button></li>
+                            <li class="leftActionItem"><button class="leftActionButton cta" onClick="window.location='<?php echo url_for('ride_new', array('ride_type'=>'request')) ?>'" >+ Request a Ride</button></li>
                         </ul>
                
                     </div>

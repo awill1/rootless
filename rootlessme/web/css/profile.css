@@ -603,3 +603,20 @@ a#newReviewButton:hover {
     margin: 0;
     list-style-type: none;
 }
+
+ul.radio_list li label  {
+    background-color: #999;
+    padding: 5px 0px;
+    width: 50px;
+    text-align: center;
+    color: #fff;
+}
+
+
+ul.radio_list li.selectedLabel label, ul.radio_list li.selectedLabel label:hover {
+    background-color: #119D49;
+}
+
+ul.radio_list li label:hover {
+    background-color: #555;
+}

@@ -36,6 +36,10 @@ a {
     resize: none;
 }
 
+textarea {
+    resize: none;
+}
+
 
 .userInputForm {
     background-color: #F4F4F4;
@@ -1127,4 +1131,20 @@ a {
 .help-text {
     font-size: 10px;
     color: #999;
+}
+
+.cta, input[type='submit'], input[type='button'] {
+    background-color: #119D49;
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: 5px 10px;
+}
+
+.cta:hover, input[type='submit']:hover, input[type='button']:hover {
+    background-color: #D05A36;
+}
+
+input[type='submit'].searchSubmit, input[type='submit'].headerSubmit, input[type='submit'].searchSubmit:hover, input[type='submit'].headerSubmit:hover {
+    background-color: #ffffff;
 }
