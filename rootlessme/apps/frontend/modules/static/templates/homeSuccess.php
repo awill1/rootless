@@ -1,10 +1,8 @@
-    
-
 <?php slot(
   'title',
   sprintf('Rootless Me - Share your ride.'))
 ?>
-    <div id="loginFormContainer">
+<div id="loginFormContainer">
         <?php echo get_partial('sfGuardAuth/signin_form', array('form' => $signinForm)) ?>
 </div>
 
@@ -26,9 +24,9 @@
     <br/>
     <br/>
     <br/>
-    </div>
+</div>
     
-    <div id="signUpFormContainer">
-        <span class="notMemberTransparency"><img src="/images/NotaMember.png" alt="Rootless" /></span>
-        <span class="signUpText"><?php echo get_partial('sfGuardRegister/form', array('form' => $registerForm)) ?></span>
-    </div>
+<div id="signUpFormContainer">
+    <span class="notMemberTransparency"><img src="/images/NotaMember.png" alt="Rootless" /></span>
+    <span class="signUpText"><?php echo get_partial('sfGuardRegister/form', array('form' => $registerForm)) ?></span>
+</div>

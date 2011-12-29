@@ -15,5 +15,7 @@ class sfGuardFormSignin extends BasesfGuardFormSignin
    */
   public function configure()
   {
+        // Change the label for the username field to be email
+        $this->widgetSchema->setLabel('username', 'Email');
   }
 }

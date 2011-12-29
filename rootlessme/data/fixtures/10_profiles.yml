@@ -19,12 +19,12 @@ Users:
   user_aaron:
     user_name:   user_aaron
     person_id:   1
-    email:       aaron@testuser.com
+    email:       aaron@rootless.me
     encrypted_password: bldslfdslkjdsflkjfdsalkjfdslkjfdslkj
   user_christy:
     user_name:   user_christy
     person_id:   2
-    email:       christy@testuser.com
+    email:       christy@rootless.me
     encrypted_password: kjrewlkjifdsoiufdsoiuwrjrewljfdsjjiofs
   user_lauren:
     user_name:   user_lauren
@@ -50,7 +50,7 @@ Users:
 
 Profiles:
   profile_aaron:
-    profile_name:    profile_aaron
+    profile_name:    281c298b2f4e4e758b53c66bae7b03ff
     person_id:   1
     first_name:    Aaron
     last_name:     Williams
@@ -76,7 +76,7 @@ Profiles:
     favorite_websites: failblog.org, lamebook.com, christyandaarontracker.com, espn.com
     website_url:   http://www.christyandaarontracker.com
   profile_christy:
-    profile_name:    profile_christy
+    profile_name:    84227aa907af4520839acf6330923fe6
     person_id:   2
     first_name:    Christy
     last_name:     Williams
@@ -102,7 +102,7 @@ Profiles:
     favorite_websites: failblog.org, lamebook.com, christyandaarontracker.com
     website_url:   http://www.christyandaarontracker.com
   profile_lauren:
-    profile_name:    profile_lauren
+    profile_name:    9243862a3ea044138e8d53fb06cca20f
     person_id:   3
     first_name:    Lauren
     last_name:     Prestifillipo
@@ -128,7 +128,7 @@ Profiles:
     favorite_websites: failblog.org, lamebook.com,
     website_url:   http://www.laurenprestifillipo.com
   profile_colin:
-    profile_name:    profile_colin
+    profile_name:    b93c762f4cbe4a3b9923f4c56561c66a
     person_id:   4
     first_name:    Colin
     last_name:     Hoell
@@ -154,7 +154,7 @@ Profiles:
     favorite_websites: reddit.com, facebook.com, newsmap.jp
     website_url:   www.colinhoell.com
   profile_tony:
-    profile_name:    profile_tony
+    profile_name:    61e009db836a444d8d6dfd14710a46fb
     person_id:   5
     first_name:    Tony
     last_name:     Guglielmi
@@ -175,7 +175,7 @@ Profiles:
     favorite_websites: reddit.com, facebook.com, newsmap.jp
     website_url:   www.clickingcreateschange.com
   profile_russ:
-    profile_name:    profile_russ
+    profile_name:    721c63d3992c4207a83ca55143b52988
     person_id:   6
     first_name:    Russ
     last_name:     Wells

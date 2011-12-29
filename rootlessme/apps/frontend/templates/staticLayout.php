@@ -83,7 +83,7 @@
        
        
        // sign in - hint value
-        $('.home #loginFormContainer #signin_username').after('<span class="signin_username">Email/Username</span>');
+       $('.home #loginFormContainer #signin_username').after('<span class="signin_username">Email</span>');
        
        // password - hint value
        $('.home #loginFormContainer #signin_password').after('<span class="signin_password">Password</span>');

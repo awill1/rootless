@@ -15,6 +15,13 @@ class sfGuardRegisterForm extends BasesfGuardRegisterForm
      */
     public function configure()
     {
+        // Hide the username field since it will be set to the email address
+        $this->setWidget('username',new sfWidgetFormInputHidden());
+        
+        // Username is not required because it will be set to a UUID during
+        // saving. Override the default validator.
+        $this->setValidator('username',new sfValidatorString(array('max_length' => 128, 'required' => false)));
+        
         $this->useFields(array(
             'first_name',
             'last_name',
@@ -22,26 +29,6 @@ class sfGuardRegisterForm extends BasesfGuardRegisterForm
             'username',
             'password',
             'password_again'));
-//
-//        $this->setWidgets(array(
-//      'id'               => new sfWidgetFormInputHidden(),
-//      'person_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('People'), 'add_empty' => false)),
-//      'first_name'       => new sfWidgetFormInputText(),
-//      'last_name'        => new sfWidgetFormInputText(),
-//      'email_address'    => new sfWidgetFormInputText(),
-//      'username'         => new sfWidgetFormInputText(),
-//      'algorithm'        => new sfWidgetFormInputText(),
-//      'salt'             => new sfWidgetFormInputText(),
-//      'password'         => new sfWidgetFormInputText(),
-//      'is_active'        => new sfWidgetFormInputCheckbox(),
-//      'is_super_admin'   => new sfWidgetFormInputCheckbox(),
-//      'last_login'       => new sfWidgetFormDateTime(),
-//      'created_at'       => new sfWidgetFormDateTime(),
-//      'updated_at'       => new sfWidgetFormDateTime(),
-//      'groups_list'      => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup')),
-//      'permissions_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission')),
-//
-//        unset($this['person_id']);
 
         // Change the label for password again to be "Confirm password"
         $this->widgetSchema->setLabel('password_again', 'Confirm password');
@@ -52,8 +39,12 @@ class sfGuardRegisterForm extends BasesfGuardRegisterForm
         // Update the route
         $sfGuardUser = $this->getObject();
         
+        // If the person id is not set it is a new user
         if ( !$sfGuardUser->getPersonId())
         {
+            // Change the username to be the same as the email address
+            $this->values['username'] = $this->values['email_address'];
+            
             // Create a new person
             $person = new People();
             $person->save();
@@ -65,21 +56,22 @@ class sfGuardRegisterForm extends BasesfGuardRegisterForm
             // Create a profile
             $profile = new Profiles();
             $profile->setPersonId($personId);
-            $profile->setProfileName($this->values['username']);
+            // The profile id should be a UUID
+            $profile->setProfileName(CommonHelpers::CreateSimpleUuid());
             $profile->setFirstName($this->values['first_name']);
             $profile->setLastName($this->values['last_name']);
 
             // Create a users object in the database
             $user = new Users();
             $user->setPersonId($personId);
-            $user->setUserName($this->values['username']);
-            $user->setEmail($this->values['email']);
+            $user->setUserName($this->values['email_address']);
+            //$user->setUserName($this->values['username']);
+            $user->setEmail($this->values['email_address']);
             $user->setEncryptedPassword('JUNK');
 
-
-            
-            // Save the new profile
+            // Save the new profile and user
             $profile->save();
+            $user->save();
         }
 
         // Save the new sfGuardUser

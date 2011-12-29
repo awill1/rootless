@@ -30,7 +30,7 @@ sfGuardUser:
     person_id:      3
     first_name:     Lauren
     last_name:      Prestifillipo
-    email_address:  lauren@rootless.me
+    email_address:  lauren@testuniveristy.edu
     username:       lauren
     password:       lauren
     is_super_admin: false
@@ -39,7 +39,7 @@ sfGuardUser:
     person_id:      4
     first_name:     Colin
     last_name:      Hoell
-    email_address:  colin@rootless.me
+    email_address:  colin@testuniveristy.edu
     username:       colin
     password:       colin
     is_super_admin: false
@@ -48,7 +48,7 @@ sfGuardUser:
     person_id:      5
     first_name:     Tony
     last_name:      Guglielmi
-    email_address:  tony@rootless.me
+    email_address:  tony@testuniveristy.edu
     username:       tony
     password:       tony
     is_super_admin: false
@@ -57,7 +57,7 @@ sfGuardUser:
     person_id:      6
     first_name:     Russ
     last_name:      Wells
-    email_address:  russ@rootless.me
+    email_address:  russ@testuniveristy.edu
     username:       russ
     password:       russ
     is_super_admin: false
