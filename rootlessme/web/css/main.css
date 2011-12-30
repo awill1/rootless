@@ -1146,5 +1146,5 @@ textarea {
 }
 
 input[type='submit'].searchSubmit, input[type='submit'].headerSubmit, input[type='submit'].searchSubmit:hover, input[type='submit'].headerSubmit:hover {
-    background-color: #ffffff;
+    background-color: transparent;
 }
