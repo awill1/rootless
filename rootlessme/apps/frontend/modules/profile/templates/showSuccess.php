@@ -60,7 +60,6 @@
     <span id="whereYouWannaGo"><?php echo $profile->getFirstName() ?> wants to go to <a href="#" class="locationLink">Bonneroo</a></span>
 </div>
 <div id="middleProfileBadge">
-    <?php include_component('friendship', 'requestFriendshipButton', array('person_id' => $profile->getPersonId())) ?>
     <?php if(preg_match('/.*\.edu$/',$profile->getPeople()->getUsers()->getFirst()->getEmail())) : ?>
         <div id="studentVer">
             <img src="/images/check.png" alt="Verified Student" />
