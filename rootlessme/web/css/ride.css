@@ -275,6 +275,7 @@ tbody {
 .riderListBlock
 {
     clear: left;
+    float: left;
 }
 
 .riderList
@@ -286,9 +287,14 @@ tbody {
 }
 
 .riderListItem {
-    margin: 4px 8px 4px 0px;
-    padding: 4px 8px 4px 0px;
+    padding: 4px 8px 4px 8px;
     float: left;
+    cursor: pointer;
+    position: relative;
+}
+
+.riderListItem.selectedUser {
+    background-color: #F4F4F4;
 }
 
 #seatDetailsBlock {
@@ -468,15 +474,12 @@ ul {
 
 #seatNegotiationForm input{
     width: 220px;
-    height: 18px;
-    font-family: Arial;
-    margin-bottom: 10px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    color: #3D3D3D;
-    background-color: #FFFFFF;
-    border: 1px #3D3D3D solid;
+    font-size: 12px;
     
+}
+
+#seatNegotiationBlock {
+    float: left;
 }
 
 #seatNegotiationForm td, #seatNegotiationForm th{
@@ -484,4 +487,9 @@ ul {
     float: left;
 }
 
+#seatSpinnerContainer {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+}
 

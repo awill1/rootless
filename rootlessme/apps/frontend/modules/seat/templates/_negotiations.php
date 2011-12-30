@@ -1,5 +1,5 @@
 <hr />
-<h3>Negotiations</h3>
+<h3>Negotiation History</h3>
 <div id="seatNegotiationHistoryList">
     <?php foreach ($negotiationChanges as $negotiationChange):
               $newHistoryItem = $negotiationChange->getNewSeatHistory();

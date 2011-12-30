@@ -1102,6 +1102,7 @@ textarea {
 .quickViewInfo {
     float: left;
     margin-left: 10px;
+    width: 180px;
 }
 
 .quickViewInfo h2 {
