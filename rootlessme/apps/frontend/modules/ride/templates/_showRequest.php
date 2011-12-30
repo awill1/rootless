@@ -186,7 +186,7 @@
 
         function loadSeatDetails() {
             if($('.selectedUser').length > 0) {
-              $('.rideListItem').removeClass('selectedUser');
+              $('.selectedUser').removeClass('selectedUser');
             }
             $(this).parent().append($('#seatSpinnerContainer'));
             $('#seatSpinnerContainer').show();
