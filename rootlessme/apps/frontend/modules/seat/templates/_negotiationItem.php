@@ -68,12 +68,10 @@
                    <br />
                    <?php echo $newHistoryItem->getDescription() ?>
                 </li>
-                <div class="seatNegotiationHistoryUpdateTime">
-                    <li>
-                        Updated <?php echo $newHistoryItem->getCreatedAt() ?>
-                    </li>
-                </div>
             </ul>
         </div>
     <?php endif; ?>
+    <div class="seatNegotiationHistoryUpdateTime">
+      Updated <?php echo $newHistoryItem->getCreatedAt() ?>             
+    </div>
 </div>

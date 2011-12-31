@@ -51,7 +51,6 @@ $(document).ready(function()
             // to the actual seat history list.
             $('#seatNegotiationHistoryList').prepend($('#temporaryNewSeatHolder').contents());
           
-            $('#seatNegotiationBlock').slideUp();
             // Hide the spinner
             $("#negotiationSpinner").hide();
         }
