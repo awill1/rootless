@@ -257,10 +257,10 @@
         <h3>Accepted</h3>
             <?php if ($acceptedSeats->count() > 0) :?>
             <ul class="riderList accepted">
+                <li class='none' style="display:none;">No Accepted seats</li>
                 <?php foreach ($acceptedSeats as $seat):
                     $driverProfile = $seat->getCarpools()->getPeople()->getProfiles()->getFirst(); ?>
                 <li class="riderListItem">
-                    <li class='none' style="display:none;">No Accepted seats</li>
                     <?php if ($isMyPost || $seat == $mySeat) :?>
                         <a class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>">
                             <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driverProfile->getPictureUrlSmall() ?>" alt="<?php echo $driverProfile->getFullName() ?>" />
