@@ -38,22 +38,7 @@ $(document).ready(function()
             
         });
     });
-   /* $('#seatAcceptForm').submit(function() {
-        // Show the spinner
-        $('#negotiationSpinner').show();
-        $('.selectedUser').slideUp(function(){
-            $('.accepted').append($('.selectedUser'));
-            $('.selectedUser').slideDown().removeClass('.selectedUser');
-        });
-    });
-    $('#seatDeclineForm').submit(function() {
-        // Show the spinner
-        $('#negotiationSpinner').show();
-        $('.selectedUser').slideUp(function(){
-            $('.declined').append($('.selectedUser'));
-            $('.selectedUser').slideDown().removeClass('.selectedUser');
-        });
-    }); */
+   
 
     // Use an ajax form for the action buttons
     $('#seatNegotiationForm, #seatAcceptForm, #seatDeclineForm').ajaxForm(
