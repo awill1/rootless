@@ -119,7 +119,7 @@ class SeatsForm extends BaseSeatsForm
         {
             // Create a new carpool based on the seat information
             $newCarpool = new Carpools();
-            $newCarpool->asking_price = $this->values['asking_price'];
+            $newCarpool->asking_price = $this->values['price'];
             // Do not set description because it may not be the same
             $newCarpool->description = "";
             $newCarpool->driver_id = $person->getPersonId();
