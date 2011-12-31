@@ -8,21 +8,55 @@ $(document).ready(function()
     $("#negotiationSpinner").hide();
 
     // AJAX form submit button handlers
-    $('#seatNegotiationForm').submit(function() {
+    $('#seatNegotiationForm, #seatAcceptForm, #seatDeclineForm').submit(function(e) {
+        var curId = $(e.target).attr('id');
+        
+        if (curId == 'seatNegotiationForm') {
+          var picLoc = 'pending';
+        } else if (curId == 'seatAcceptForm') {
+          var picLoc = 'accepted';
+        } else {
+          var picLoc = 'declined';
+        }
+        
+        
         // Show the spinner
         $('#negotiationSpinner').show();
+        $('.selectedUser').slideUp(function(){
+            var parentCheck = $(this).parent();
+            
+            if (parentCheck.children.length == 2) {
+              $(parentCheck).find('.none').show();
+            } else {
+              $(parentCheck).find('.none').hide();
+            }
+            
+            $(this).slideDown().removeClass('selectedUser');
+            $('.' + picLoc).find('.none').hide();
+            $('.' + picLoc).append($(this));
+   
+            
+        });
     });
-    $('#seatAcceptForm').submit(function() {
+   /* $('#seatAcceptForm').submit(function() {
         // Show the spinner
         $('#negotiationSpinner').show();
+        $('.selectedUser').slideUp(function(){
+            $('.accepted').append($('.selectedUser'));
+            $('.selectedUser').slideDown().removeClass('.selectedUser');
+        });
     });
     $('#seatDeclineForm').submit(function() {
         // Show the spinner
         $('#negotiationSpinner').show();
-    });
+        $('.selectedUser').slideUp(function(){
+            $('.declined').append($('.selectedUser'));
+            $('.selectedUser').slideDown().removeClass('.selectedUser');
+        });
+    }); */
 
     // Use an ajax form for the action buttons
-    $('#seatNegotiationForm').ajaxForm(
+    $('#seatNegotiationForm, #seatAcceptForm, #seatDeclineForm').ajaxForm(
     {
         // The resulting html should be sent to the test div
         target: '#temporaryNewSeatHolder',
@@ -31,40 +65,14 @@ $(document).ready(function()
             // Move the resulting html from the temporaryNewSeatHolder
             // to the actual seat history list.
             $('#seatNegotiationHistoryList').prepend($('#temporaryNewSeatHolder').contents());
-
+          
+            $('#seatNegotiationBlock').slideUp();
             // Hide the spinner
             $("#negotiationSpinner").hide();
         }
     });
-    $('#seatAcceptForm').ajaxForm(
-    {
-        // The resulting html should be sent to the test div
-        target: '#temporaryNewSeatHolder',
-        // The callback function when the form was successfully submitted
-        success: function() {
-            // Move the resulting html from the temporaryNewSeatHolder
-            // to the actual seat history list.
-            $('#seatNegotiationHistoryList').prepend($('#temporaryNewSeatHolder').contents());
-
-            // Hide the spinner
-            $("#negotiationSpinner").hide();
-        }
-    });
-    $('#seatDeclineForm').ajaxForm(
-    {
-        // The resulting html should be sent to the test div
-        target: '#temporaryNewSeatHolder',
-        // The callback function when the form was successfully submitted
-        success: function() {
-            // Move the resulting html from the temporaryNewSeatHolder
-            // to the actual seat history list.
-            $('#seatNegotiationHistoryList').prepend($('#temporaryNewSeatHolder').contents());
-
-            // Hide the spinner
-            $("#negotiationSpinner").hide();
-        }
-    });
-
+    
+    
     // When the origin or the destination change, clear the route id.
     $(originTextBox).change(clearRouteId);
     $(destinationTextBox).change(clearRouteId);

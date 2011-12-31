@@ -257,7 +257,8 @@
         <div class="riderListBlock">
         <h3>Accepted</h3>
             <?php if ($acceptedSeats->count() > 0) :?>
-            <ul class="riderList">
+            <ul class="riderList accepted">
+                <li class='none' style="display:none;">No Accepted seats</li>
                 <?php foreach ($acceptedSeats as $seat):
                     $riderProfile = $seat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
                 <li class="riderListItem">
@@ -274,13 +275,16 @@
                 <?php endforeach; ?>
             </ul>
             <?php else: ?>
-                <p>No accepted seats</p>
+              <ul class="riderList accepted">
+                <li class='none'>No Accepted seats</li>
+              </ul>
             <?php endif; ?>
         </div>
         <div class="riderListBlock">
             <h3>Declined</h3>
             <?php if ($declinedSeats->count() > 0) :?>
-            <ul class="riderList">
+            <ul class="riderList declined">
+                <li class='none' style="display:none;">No Declined seats</li>
                 <?php foreach ($declinedSeats as $seat):
                     $riderProfile = $seat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
                     <li class="riderListItem">
@@ -293,7 +297,9 @@
                 <?php endforeach; ?>
             </ul>
             <?php else: ?>
-                <p>No declined seats</p>
+              <ul class="riderList declined">
+                <li class='none'>No Declined seats</li>
+              </ul>
             <?php endif; ?>
         </div>
     </div>
@@ -303,7 +309,8 @@
         <div class="riderListBlock">
             <h3>Pending</h3>
             <?php if ($pendingSeats->count() > 0) :?>
-            <ul class="riderList">
+            <ul class="riderList pending">
+                <li class='none' style="display:none;">No Pending seats</li>
                 <?php foreach ($pendingSeats as $seat):
                       $riderProfile = $seat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
                     <li class="riderListItem">
@@ -316,7 +323,9 @@
                 <?php endforeach; ?>
             </ul>
             <?php else: ?>
-                <p>No pending seats</p>
+              <ul class="riderList pending">
+                <li class='none'>No Pending seats</li>
+              </ul>
             <?php endif; ?>
         </div>
         
