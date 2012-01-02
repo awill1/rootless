@@ -513,6 +513,7 @@ a#newReviewButton:hover {
 
 .userInputForm {
     margin: 20px 0px 0px 0px;
+    background: none;
 }
 
 .travelersList {
