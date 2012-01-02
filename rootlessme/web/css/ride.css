@@ -453,7 +453,6 @@ ul {
 }
 
 .seatNegotiationHistoryUpdateTime {
-    padding-top: 20px;
     font-size: 80%;
     color: #999;
     float: right;
@@ -493,3 +492,16 @@ ul {
     left: 20px;
 }
 
+#seatNegotiationContainer {
+    background-color: #F4F4F4;
+    padding-bottom: 10px;
+}
+
+#seatAcceptForm {
+    display: inline;
+    margin-left: 60px;
+}
+
+#seatDeclineForm {
+    display: inline;
+}

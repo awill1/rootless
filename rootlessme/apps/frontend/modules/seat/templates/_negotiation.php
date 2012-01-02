@@ -7,6 +7,7 @@
 <script type="text/javascript" src="/js/jquery.form.js"></script>
 <script type="text/javascript" src="/js/seatNegotiation.js"></script>
 <div id="seatDetailsBlock" title="Seat details">
+    <div id='seatNegotiationContainer'>
     <form id="seatNegotiationForm" class="userInputForm" action="<?php echo url_for('seats_update', array('seat_id'=>$seat->getSeatId())) ?>" method="post">
         <p span class="negotationInstructions">You may negotiate with the driver by changing the ride details below.
 The driver can approve your request or negotiate back with you.
@@ -43,6 +44,7 @@ The driver can approve your request or negotiate back with you.
             <input id="declineButton" type="submit" value="Decline"  />
         </form>    
     <?php endif ?>
+    </div>
     <div id="temporaryNewSeatHolder">
     </div>
     <div id="negotiationSpinnerContainer">
