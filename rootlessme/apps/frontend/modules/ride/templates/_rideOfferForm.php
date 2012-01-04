@@ -15,7 +15,6 @@
             &nbsp;<?php echo link_to('Delete', '/rides/offer/delete?carpool_id='.$form->getObject()->getCarpoolId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
           <?php endif; ?>
           <input type="submit" value="Save" />
-          &nbsp;<a class="backtoListLink" href="<?php echo url_for('ride') ?>">Back to list</a>
         </td>
       </tr>
     </tfoot>
