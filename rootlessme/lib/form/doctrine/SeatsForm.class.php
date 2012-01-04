@@ -130,7 +130,12 @@ class SeatsForm extends BaseSeatsForm
             $newCarpool->solo_route_id = $routeId;
             $newCarpool->start_date = $this->values['pickup_date'];
             $newCarpool->start_time = $this->values['pickup_time'];
-            $newCarpool->vehicle_id = $person->getVehicles()->getFirst();
+            // Set the default vehicle. For now just set this to be the user's
+            // first vehicle if they have one.
+            if ($person->getVehicles()->count() > 0)
+            {
+                $newCarpool->setVehicles($person->getVehicles()->getFirst());
+            }
             
             // Save the Carpool
             $newCarpool->save();

@@ -126,7 +126,7 @@ class rideActions extends sfActions
             default:
                // Default case just in case the ride_type is invalid (should
                // be prevented by routing.yml).
-               echo 'Ride Type '.$this->rideType.'is invalid.';
+               echo 'Ride Type '.$this->rideType.' is invalid.';
         }
         
         // Process the form
@@ -143,8 +143,6 @@ class rideActions extends sfActions
 
         // Redirect to the page that will show the newly created ride
         $this->redirect('ride_show', array('ride_type'=>$this->rideType, 'ride_id'=>$ride_id));
-
-        //$this->setTemplate('newOffer');
     }
 
     /**
