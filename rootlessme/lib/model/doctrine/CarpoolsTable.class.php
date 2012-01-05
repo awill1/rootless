@@ -55,13 +55,20 @@ class CarpoolsTable extends Doctrine_Table
      * Returns all Carpools for a person
      *
      * @param int $personId The person to get the carpools for
-     *
+     * @param bool $includePastItems Whether to include carpools with a 
+     * start_date before today in the results
      * @return Doctrine_Collection Returns a Carpools collection
      */
-    public function getCarpoolsForPerson($personId)
+    public function getCarpoolsForPerson($personId, $includePastItems = false)
     {
         $q = $this->createQuery('c')
           ->where('c.driver_id = ?', array($personId));
+        if (!$includePastItems)
+        {
+            // Add the current carpool where clause to the query to prevent old 
+            // carpools from being returned
+            $q = $this->addCurrentRidesFilter($q);
+        }
 
         return $q->execute();
     }
@@ -182,4 +189,17 @@ class CarpoolsTable extends Doctrine_Table
         // Run the query and return the results
         return $q->execute();
     }  
+    
+    /**
+     * Adds a where clause to a query to only return rides occuring today or in
+     * the future
+     * @param Doctrine_Query $query The query
+     * @return Doctrine_Query The query with a current rides where clause 
+     */
+    public function addCurrentRidesFilter($query)
+    {
+        // Add a where clause to the query to only return carpools today or in
+        // the future
+        return $query->andWhere('c.start_date >= ?', date('Y-m-d'));
+    }
 }
