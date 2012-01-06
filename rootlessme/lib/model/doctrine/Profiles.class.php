@@ -12,6 +12,10 @@
  */
 class Profiles extends BaseProfiles
 {
+    /**
+     * Gets the full name of the user
+     * @return string The full name
+     */
     public function getFullName()
     {
         $fullName = $this->getFirstName();
@@ -23,9 +27,12 @@ class Profiles extends BaseProfiles
         return $fullName;
     }
 
+    /**
+     * Gets the age of the user in years
+     * @return int The age in years 
+     */
     public function getAge()
     {
-
         $birth_date = $this->getBirthday();
         //Make sure the birth date is specified
         if(!$birth_date)
@@ -43,9 +50,13 @@ class Profiles extends BaseProfiles
         }
 
         return $year_diff;
-
     }
 
+    /**
+     * Tests to see whether a person is the user's friend
+     * @return bool True, if the person is the authenticated user's friend.
+     * False, if the person is not the authenticated user's friend. 
+     */
     public function isMyFriend()
     {
         $myId = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
@@ -55,7 +66,6 @@ class Profiles extends BaseProfiles
         // select * from friendships f
         // where f.friend1_id = 1 and f.friend2_id = 2
         //    or f.friend2_id = 1 and f.friend1_id = 2;
-//        $q = $this->createQuery('f')
         $q = Doctrine_Query::create()
                 ->select('profile_name')
                 ->from('friendships f')
@@ -67,6 +77,11 @@ class Profiles extends BaseProfiles
         return ($q->count() > 0) ;
     }
 
+    /**
+     * Saves the profile
+     * @param Doctrine_Connection $conn The database connection
+     * @return Profiles The saved profile 
+     */
     public function save(Doctrine_Connection $conn = null)
     {
         // Get the connection information
@@ -92,6 +107,11 @@ class Profiles extends BaseProfiles
         }
     }
 
+    /**
+     * Deletes the profile
+     * @param Doctrine_Connection $conn The database connection
+     * @return bool True, if the delete was sucessful. False, otherwise. 
+     */
     public function delete(Doctrine_Connection $conn = null)
     {
         // Remove the profile from the Lucene search index
@@ -105,6 +125,9 @@ class Profiles extends BaseProfiles
         return parent::delete($conn);
     }
 
+    /**
+     * Updates the lucene search index
+     */
     public function updateLuceneIndex()
     {
         $index = ProfilesTable::getLuceneIndex();
@@ -134,4 +157,117 @@ class Profiles extends BaseProfiles
         $index->addDocument($doc);
         $index->commit();
     }
+
+    /**
+     * Gets the url of the tiny profile picture
+     * @return string The tiny profile picture url  
+     */
+    public function getPictureUrlTiny()
+    {
+        // Get the picture url from the doctrine_record
+        $pictureUrl = $this->_get('picture_url_tiny');
+        
+        // If the picture url is null use the default image
+        if ($pictureUrl == null)
+        {
+            $pictureUrl = Profiles::getDefaultPictureUrl('tiny', $this->isFemale());
+        }
+        
+        return $pictureUrl;
+    }
+    
+    /**
+     * Gets the url of the small profile picture
+     * @return string The small profile picture url  
+     */
+    public function getPictureUrlSmall()
+    {
+        // Get the picture url from the doctrine_record
+        $pictureUrl = $this->_get('picture_url_small');
+        
+        // If the picture url is null use the default image
+        if ($pictureUrl == null)
+        {
+            $pictureUrl = Profiles::getDefaultPictureUrl('small', $this->isFemale());
+        }
+        
+        return $pictureUrl;
+    }
+    
+    /**
+     * Gets the url of the medium profile picture
+     * @return string The medium profile picture url  
+     */
+    public function getPictureUrlMedium()
+    {
+        // Get the picture url from the doctrine_record
+        $pictureUrl = $this->_get('picture_url_medium');
+        
+        // If the picture url is null use the default image
+        if ($pictureUrl == null)
+        {
+            $pictureUrl = Profiles::getDefaultPictureUrl('medium', $this->isFemale());
+        }
+        
+        return $pictureUrl;
+    }
+    
+    /**
+     * Gets the url of the large profile picture
+     * @return string The large profile picture url  
+     */
+    public function getPictureUrlLarge()
+    {
+        // Get the picture url from the doctrine_record
+        $pictureUrl = $this->_get('picture_url_large');
+        
+        // If the picture url is null use the default image
+        if ($pictureUrl == null)
+        {
+            $pictureUrl = Profiles::getDefaultPictureUrl('large', $this->isFemale());
+        }
+        
+        return $pictureUrl;
+    }
+    
+    /**
+     * Determines whether the profile is female
+     * @return boolean True, if the profile is female. False, otherwise.
+     */
+    public function isFemale()
+    {
+        $isFemale = false;
+        
+        // Get the profile gender information
+        $gender = $this->getGender();
+        if ($gender != null)
+        {
+            if (strtolower($gender) == 'female')
+            {
+                $isFemale = true;
+            }
+        }
+        
+        return $isFemale;
+    }
+    
+    /**
+     * Gets the default picture url for a specific size
+     * @param string $size 'tiny', 'small', 'medium', or 'large'
+     * @param type $isFemale Indicate whether to use the female default image
+     * @return string The default image url 
+     */
+    protected static function getDefaultPictureUrl($size, $isFemale = false)
+    {
+        if ($isFemale)
+        {
+            return sfConfig::get('app_profile_picture_default_female_'.$size);            
+        }
+        else
+        {
+            return sfConfig::get('app_profile_picture_default_'.$size);
+        }
+    }
+    
+    
 }
