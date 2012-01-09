@@ -50,6 +50,10 @@ class Routes extends BaseRoutes
      */
     public function createFromGoogleDirections($googleDirections = null)
     {
+        // Need to increase the maximum memory limit to allow really long 
+        // routes.
+        ini_set('memory_limit', '256M');
+        
         // Make sure the directions are not null
         if ($googleDirections == null)
         {
