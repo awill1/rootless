@@ -33,20 +33,27 @@
 
         $('#newReviewForm').submit(function() {
             
-            if (($('#reviews_ride_date').val() != '') && ($('#reviews_comments').val() != '')) {
             // Hide the review graphs and show the loader
             $('#driverRatingSummary').hide();
             $('#graphLoader').show();
            // Hide the form
            $('#newReviewForm').toggle('blind');
-           
-           $('#newReviewForm').ajaxForm( 
+            
+        });
+
+        // Hide the new review temporary holder
+        $('temporaryNewReviewHolder').hide();
+
+        // New review submitting button
+        if ($('#newReviewForm').length)
+        {
+            $('#newReviewForm').ajaxForm( 
             {
                 // The resulting html should be sent to the test div
                 target: '#temporaryNewReviewHolder',
                 // The callback function when the form was successfully submitted
                 success: function() {
-
+                   
                     // Move the resulting html from the temporaryNewReviewHolder
                     // to the actual review list.
                     $('#driverReviewsList').prepend($('#temporaryNewReviewHolder').contents());
@@ -67,26 +74,7 @@
                    
                 }
             });
-           
-           
-           
-           
-            } else {
-              $('#reviews_ride_date, #reviews_comments').css({
-                'border' : '1px solid #f00',
-                '-webkit-box-shadow': 'rgb(255, 0, 0) 0px 0px 6px',
-                'box-shadow': 'rgb(255, 0, 0) 0px 0px 5px',
-                '-moz-box-shadow': 'rgb(255, 0, 0) 0px 0px 5px',
-                '-o-box-shadow': 'rgb(255, 0, 0) 0px 0px 5px'
-              });
-              return false;
-            }
-        });
-
-        // Hide the new review temporary holder
-        $('#temporaryNewReviewHolder').hide();
-
-        
+        }
     });
     
 
