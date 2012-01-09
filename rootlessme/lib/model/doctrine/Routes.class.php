@@ -99,6 +99,11 @@ class Routes extends BaseRoutes
             $stepsCount = count($leg_data["steps"]);
             for ($currentStep = 0 ; $currentStep < $stepsCount ; $currentStep++ )
             {
+                // Leave in this debug statement while I am debugging
+                // performance issues
+                sfContext::getInstance()->getLogger()->debug( 'Saving step '.$currentStep.'of'.$stepsCount );
+                  
+                  
                 $step_data = $leg_data["steps"][$currentStep];
                 $step = new Steps();
                 $step->setInstructions($step_data["instructions"]);
@@ -108,28 +113,49 @@ class Routes extends BaseRoutes
                 $step->setSequenceOrder($stepNumber);
                 $step->setLegs($leg);
                 $step->save();
+                
+                // Get the step_id
+                $stepId = $step->getStepId();
 
-                // Create the locations
                 $locationsCount = count($step_data["path"]);
+                
+                // Use a bulk insert class to insert the locations to improve
+                // performance. Before bulk insert, only trips of <4 hours 
+                // could be saved.
+                $bulkInsertQueryGenerator = new LocationsBulkQuery();
+                
+                // Create the locations
                 for ($currentLocation = 0 ; $currentLocation < $locationsCount ; $currentLocation++)
                 {
                     $location_data = $step_data["path"][$currentLocation];
                     $location = new Locations();
-                    // Use the lat and lon keys that were replaced by the 
-                    // javascript
-                    $location->setLatitude($location_data['lat']);
-                    $location->setLongitude($location_data['lon']);
-                    $location->setSequenceOrder($locationNumber);
-                    $location->setSteps($step);
-                    $location->save();
                     
-                    // Free up the location for performance improvement
-                    $location->free();
-                    unset($location);
+                    // Use the lat and lon keys that were replaced by the 
+                    // javascript                    
+                    // Using Arrays instead of the Locations object
+                    // for performance reasons
+                    $location = Array('latitude' => $location_data['lat'],
+                                      'longitude' => $location_data['lon'], 
+                                      'sequence_order' => $locationNumber,
+                                      'step_id' => $stepId);
+                    
+                    // Add the location to the bulk query generator
+                    $bulkInsertQueryGenerator->Add($location);
 
                     // Increment the sequence counter
                     $locationNumber++;
                 }
+                
+                // Generate the bulk query and execute it
+                $bulkQuery = $bulkInsertQueryGenerator->ToInsertQueryString();
+                $q = Doctrine_Manager::getInstance()->getCurrentConnection();
+                $result = $q->execute($bulkQuery);
+                
+                // Free the query resources
+                $q->clear();
+                unset($bulkQuery);
+                unset($bulkInsertQueryGenerator);
+
                 // Increment the sequence counter
                 $stepNumber++;
             }
