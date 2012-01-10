@@ -123,9 +123,24 @@ class SeatsTable extends Doctrine_Table
           ->innerJoin('c.People cp')
           ->innerJoin('cp.Profiles cpr')
           ->innerJoin('s.SeatStatuses ss')
-          ->addWhere('pa.person_id = ?',array($person_id))
-          ->orWhere('c.driver_id = ?',array($person_id));
+          ->addWhere('pa.person_id = ? OR c.driver_id = ?',array($person_id, $person_id));
+        
+        // Add the filter to only get seats on or after today
+        $q = $this->addCurrentSeatsFilter($q);
 
         return $q->execute();
+    }
+    
+    /**
+     * Adds a where clause to a query to only return seats occuring today or in
+     * the future
+     * @param Doctrine_Query $query The query
+     * @return Doctrine_Query The query with a current rides where clause 
+     */
+    public function addCurrentSeatsFilter($query)
+    {
+        // Add a where clause to the query to only return seats today or in
+        // the future
+        return $query->andWhere('s.pickup_date >= ?', date('Y-m-d'));
     }
 }

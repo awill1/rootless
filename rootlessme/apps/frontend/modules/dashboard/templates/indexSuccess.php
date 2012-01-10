@@ -41,10 +41,11 @@
 </div>
 <div id="quickRidesBox">
     <h3>Offers</h3>
-    <?php foreach ($driverSeats as $driverSeat): ?>
+    <?php foreach ($driverSeats as $driverSeat): 
+          $passenger = $driverSeat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
         <div id="quickBoxItem">
-            <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>"></img>
-            <p id="quickBoxName">Aaron Williams </p>
+            <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $passenger->getPictureUrlSmall(); ?>"></img>
+            <p id="quickBoxName"><?php echo $passenger->getFullName() ?></p>
             <p id="quickBoxLocationStart">+<?php echo $driverSeat->getOriginLocation() ?></p>
             <p id="quickBoxLocationFinish">+<?php echo $driverSeat->getDestinationLocation() ?></p>
             <p id="quickBoxConfirmButton">Confirm</p>
@@ -55,10 +56,11 @@
         </div>
     <?php endforeach; ?>
     <h3>Requests</h3>
-    <?php foreach ($passengerSeats as $passengerSeat): ?>
+    <?php foreach ($passengerSeats as $passengerSeat): 
+          $driver = $passengerSeat->getCarpools()->getPeople()->getProfiles()->getFirst(); ?>
         <div id="quickBoxItem">
-            <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>"></img>
-            <p id="quickBoxName">Aaron Williams </p>
+            <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driver->getPictureUrlSmall(); ?>"></img>
+            <p id="quickBoxName"><?php echo $driver->getFullName() ?></p>
             <p id="quickBoxLocationStart">+<?php echo $passengerSeat->getOriginLocation() ?></p>
             <p id="quickBoxLocationFinish">+<?php echo $passengerSeat->getDestinationLocation() ?></p>
             <p id="quickBoxConfirmButton"><a href="" >Confirm</a></p>
