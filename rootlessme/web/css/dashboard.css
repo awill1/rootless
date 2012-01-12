@@ -13,6 +13,7 @@
     background-color: #F4F4F4;
     width: 465px;
     padding: 0px 0px 0px 15px;
+    height: 100%;
 }
 
 #quickRidesBox {
@@ -93,15 +94,17 @@
     margin-left: 15px;
     width: 200px;
     display: inline;
+    height: 100%;
 }
 
 #quickBoxItem {
-    margin-bottom: 15px;
+    margin-bottom: 40px;
     float: left;
     background-color: #E5E5E5;
-    width: 165px;
-    height: 90px;
+    width: 195px;
+    height: 55px;
     padding: 10px 10px 10px 10px;
+    margin-top: 20px;
 }
 
 #quickBoxName {
@@ -137,7 +140,8 @@
 }
 
 #quickBoxConfirmButton {
-    margin: 10px 0px 0px 60px;
+    
+    margin: 5px 0px 0px 60px;
     background-color: #119D49;
     color: white;
     font-weight: bold;
@@ -145,7 +149,6 @@
     padding: 3px 5px 3px 5px;
     width: 48px;
     font-size: 85%;
-    display: inline;
 }
 
 #quickBoxDeclineButton a:link {
@@ -159,26 +162,28 @@
 }
 
 #quickBoxDeclineButton {
-    margin: 0px 0px 0px 0px;
+    display: inline;
+    float: right;
+    margin: -20px 0px 0px 0px;
     background-color: #8e8e8e;
     color: white;
     padding: 3px 5px 3px 5px;
     width: 48px;
     font-size: 85%;
-    clear: both;
-    display: inline;
+    clear: right;
+
 }
 
 #quickBoxViewRequestButton {
     color: #D05A36;
     font-size: 80%;
     text-align: center;
-    margin: 2px 0px -2px 0px;
+    margin: 4px 0px -2px 0px;
     padding: 0px 0px -1px 0px;
     font-style: italic;
 }
-hr {
-    width: 185px;
+hr1 {
+    width: 205px;
     margin: 5px 0px 0px -10px;
     color: white;
     background-color: white;
