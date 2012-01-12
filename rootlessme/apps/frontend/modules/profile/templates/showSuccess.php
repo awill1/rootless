@@ -57,7 +57,7 @@
     </p>
     <h3 id="middleTop5">Top 5</h3>
     <p><?php  echo $profile->getTop5() ?></p>
-    <span id="whereYouWannaGo"><?php echo $profile->getFirstName() ?> wants to go to <a href="#" class="locationLink">Bonneroo</a></span>
+    <span id="whereYouWannaGo"><?php echo $profile->getFirstName() ?> wants to go to <a href="#" class="locationLink"><?php echo $profile->getWantsToTravelTo()?></a></span>
 </div>
 <div id="middleProfileBadge">
     <?php if(preg_match('/.*\.edu$/',$profile->getPeople()->getUsers()->getFirst()->getEmail())) : ?>
