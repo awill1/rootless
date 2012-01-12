@@ -17,5 +17,6 @@ class sfGuardFormSignin extends BasesfGuardFormSignin
   {
         // Change the label for the username field to be email
         $this->widgetSchema->setLabel('username', 'Email');
+        $this->widgetSchema->setLabel('remember', 'Keep me logged in');
   }
 }
