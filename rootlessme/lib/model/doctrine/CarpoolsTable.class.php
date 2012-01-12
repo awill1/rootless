@@ -69,6 +69,9 @@ class CarpoolsTable extends Doctrine_Table
             // carpools from being returned
             $q = $this->addCurrentRidesFilter($q);
         }
+        
+        // Order the rides by start date
+        $q = $this->addOrderByStartDate($q);
 
         return $q->execute();
     }
@@ -201,5 +204,16 @@ class CarpoolsTable extends Doctrine_Table
         // Add a where clause to the query to only return carpools today or in
         // the future
         return $query->andWhere('c.start_date >= ?', date('Y-m-d'));
+    }
+    
+    /**
+     * Adds an order by clause to a query to sort the rides by date
+     * @param Doctrine_Query $query The query
+     * @return Doctrine_Query The query with the order by start_date clause 
+     */
+    public function addOrderByStartDate($query)
+    {
+        // Add the order by clause
+        return $query->orderBy('c.start_date');
     }
 }
