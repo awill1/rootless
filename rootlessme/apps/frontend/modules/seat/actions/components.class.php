@@ -67,6 +67,10 @@ class seatComponents extends sfComponents
 
         // Set the default price to be the same as the ride price
         $this->seat->setPrice($this->ride->getAskingPrice());
+        
+        // Set the default pickup date and time.
+        $this->seat->setPickupDate(date("m/d/Y",strtotime($this->ride->getStartDate())));
+        $this->seat->setPickupTime(date("g:i a",strtotime($this->ride->getStartTime())));
 
         // Create the seat form
         $this->seatForm = new SeatsOfferForm($this->seat);
@@ -93,6 +97,10 @@ class seatComponents extends sfComponents
 
         // Set the default price to be the same as the ride price
         $this->seat->setPrice($this->ride->getAskingPrice());
+        
+        // Set the default pickup date. Maybe set default time.
+        $this->seat->setPickupDate(date("m/d/Y",strtotime($this->ride->getStartDate())));
+        $this->seat->setPickupTime(date("g:i a",strtotime($this->ride->getStartTime())));
 
         // Create the seat form
         $this->seatForm = new SeatsRequestForm($this->seat);
