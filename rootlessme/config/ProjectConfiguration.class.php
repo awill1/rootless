@@ -1,6 +1,7 @@
 <?php
 
-require_once '/Library/WebServer/Documents/symfony-1.4.11/lib/autoload/sfCoreAutoload.class.php';
+require_once dirname(__FILE__).'/../lib/vendor/symfony/symfony_1_4_16/lib/autoload/sfCoreAutoload.class.php';
+
 sfCoreAutoload::register();
 
 class ProjectConfiguration extends sfProjectConfiguration
@@ -18,11 +19,12 @@ class ProjectConfiguration extends sfProjectConfiguration
         Zend_Loader_Autoloader::getInstance();
         self::$zendLoaded = true;
     }
-  public function setup()
-  {
-    $this->enablePlugins(array(
+    
+    public function setup()
+    {
+        $this->enablePlugins(array(
               'sfDoctrinePlugin',
               'sfDoctrineGuardPlugin'));
-    $this->enablePlugins('sfImageTransformPlugin');
-  }
+        $this->enablePlugins('sfImageTransformPlugin');
+    }
 }
