@@ -26,7 +26,7 @@ class profileActions extends sfActions
     // Get additional information needed for the profile show page
     $this->friends = Doctrine_Core::getTable('Profiles')->getFriendsProfiles($personID);
     $this->travelSummary = Doctrine_Core::getTable('Seats')->getTravelSummaryForPerson($personID);
-    $this->vehicle = $this->profile->getPeople()->getVehicles()->getFirst();
+    $this->vehicle = $this->profile->getPeople()->getVehicles();
     $this->ratings = Doctrine_Core::getTable('Reviews')->getReviewsSummaryForPerson($personID);
 
     // Only allow reviews if the user is logged in
@@ -48,7 +48,7 @@ class profileActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($profile = $this->getUser()->getGuardUser()->getPeople()->getProfiles()->getFirst(), sprintf('Object profile does not exist.'));
+    $this->forward404Unless($profile = $this->getUser()->getGuardUser()->getPeople()->getProfiles(), sprintf('Object profile does not exist.'));
 
     // Create partial profile update forms
     $this->accountInfoForm = new ProfilesAccountInfoForm($profile);
@@ -58,7 +58,7 @@ class profileActions extends sfActions
   public function executeUpdate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($profile = $this->getUser()->getGuardUser()->getPeople()->getProfiles()->getFirst(), sprintf('Object profile does not exist.'));
+    $this->forward404Unless($profile = $this->getUser()->getGuardUser()->getPeople()->getProfiles(), sprintf('Object profile does not exist.'));
 
     // Create partial profile update forms   
     $this->accountInfoForm = new ProfilesAccountInfoForm($profile);

@@ -40,10 +40,10 @@ abstract class BaseReviewsForm extends BaseFormDoctrine
       'was_friendly'     => new sfValidatorInteger(array('required' => false)),
       'was_punctual'     => new sfValidatorInteger(array('required' => false)),
       'was_courteous'    => new sfValidatorInteger(array('required' => false)),
-      'comments'         => new sfValidatorString(array('required' => true)),
+      'comments'         => new sfValidatorString(array('required' => false)),
       'driver_review'    => new sfValidatorInteger(array('required' => false)),
       'passenger_review' => new sfValidatorInteger(array('required' => false)),
-      'ride_date'        => new sfValidatorDate(array('required' => true)),
+      'ride_date'        => new sfValidatorDate(array('required' => false)),
       'created_at'       => new sfValidatorDateTime(),
       'updated_at'       => new sfValidatorDateTime(),
     ));

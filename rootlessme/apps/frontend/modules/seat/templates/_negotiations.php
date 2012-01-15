@@ -3,7 +3,7 @@
 <div id="seatNegotiationHistoryList">
     <?php foreach ($negotiationChanges as $negotiationChange):
               $newHistoryItem = $negotiationChange->getNewSeatHistory();
-              $changer = $newHistoryItem->getPeople()->getProfiles()->getFirst();
+              $changer = $newHistoryItem->getPeople()->getProfiles();
               $route = $newHistoryItem->getRoutes();?>
         <div class="seatNegotiationHistoryItem">
             <div class="seatNegotiationHistoryUserImage">

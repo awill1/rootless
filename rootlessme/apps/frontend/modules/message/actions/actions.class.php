@@ -48,7 +48,7 @@ class messageActions extends sfActions
   {
       // Get the message
       $message = $this->getRoute()->getObject();
-      $this->author = $message->getPeople()->getProfiles()->getFirst();
+      $this->author = $message->getPeople()->getProfiles();
 
       // Get all messages in the conversation
       $this->conversation = $message->getConversations();

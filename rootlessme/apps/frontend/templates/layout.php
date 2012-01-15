@@ -49,8 +49,8 @@
                     <?php if ($sf_user->isAuthenticated()): ?>
                         <?php include_component('message', 'messageMenu') ?>
                     <li class="headerControlsListItem">
-                        <a href="<?php echo url_for('profile_show_user',$sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()) ?>" class="headerControl">
-                            <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlTiny(); ?>" alt="Tiny profile picture" />
+                        <a href="<?php echo url_for('profile_show_user',$sf_user->getGuardUser()->getPeople()->getProfiles()) ?>" class="headerControl">
+                            <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getPictureUrlTiny(); ?>" alt="Tiny profile picture" />
                             <?php echo $sf_user->getGuardUser()->getPeople(); ?>
                             <img src="/images/downArrow.png" alt="Profile Menu" />
                         </a>
@@ -112,16 +112,16 @@
                 <?php if ($sf_user->isAuthenticated()): ?>
                 <div id="leftContent" >
                     <div id="leftProfile" class="leftWidget" >
-                        <a href="<?php echo url_for("profile_show_user", $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst())  ?>">
-                            <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall(); ?>" alt="<?php echo $sf_user->getGuardUser()->getPeople(); ?>" />
+                        <a href="<?php echo url_for("profile_show_user", $sf_user->getGuardUser()->getPeople()->getProfiles())  ?>">
+                            <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getPictureUrlSmall(); ?>" alt="<?php echo $sf_user->getGuardUser()->getPeople(); ?>" />
                         </a>
                         
                        <h3 id="leftProfileName" class="leftWidgetTitle"><?php echo $sf_user->getGuardUser()->getPeople(); ?></h3>
                         
                         
-                        <a href="#" id="leftProfileLocation" >+<?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getCity(); ?></a> <br />
+                        <a href="#" id="leftProfileLocation" >+<?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getCity(); ?></a> <br />
                         <br/>
-                        <a href="<?php echo url_for("profile_show_user", $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst())  ?>" id="leftProfileViewLink" >View Profile</a>
+                        <a href="<?php echo url_for("profile_show_user", $sf_user->getGuardUser()->getPeople()->getProfiles())  ?>" id="leftProfileViewLink" >View Profile</a>
                    
                     </div>
                     <div id="leftActions" class="leftWidget">

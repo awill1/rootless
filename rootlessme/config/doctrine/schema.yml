@@ -998,7 +998,7 @@ People:
     Profiles:
       local: person_id
       foreign: person_id
-      type: many
+      type: one
     Reviews:
       local: person_id
       foreign: reviewer_id

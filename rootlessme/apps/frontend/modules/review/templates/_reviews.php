@@ -111,13 +111,13 @@
         <ul id="driverReviewsList">
         <?php foreach ($reviews as $review): ?>
          <li class="driverReviewsListItem">
-             <a href="<?php echo $review->getPeople()->getProfiles()->getFirst()->getProfileName() ?>"></a>
-                 <img class="feedbackProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $review->getPeople()->getProfiles()->getFirst()->getPictureUrlSmall() ?>" alt="<?php echo $review->getPeople()->getProfiles()->getFirst()->getFullName() ?>" />
+             <a href="<?php echo $review->getPeople()->getProfiles()->getProfileName() ?>"></a>
+                 <img class="feedbackProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $review->getPeople()->getProfiles()->getPictureUrlSmall() ?>" alt="<?php echo $review->getPeople()->getProfiles()->getFullName() ?>" />
              
             <h3 class="feedbackProfileHeading">
               <span class="reviewNameColor">
-                <a href="<?php echo $review->getPeople()->getProfiles()->getFirst()->getProfileName() ?>">
-                  <?php echo $review->getPeople()->getProfiles()->getFirst()->getFullName() ?>
+                <a href="<?php echo $review->getPeople()->getProfiles()->getProfileName() ?>">
+                  <?php echo $review->getPeople()->getProfiles()->getFullName() ?>
                 </a>
               </span>
             </h3>

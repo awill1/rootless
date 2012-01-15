@@ -11,7 +11,7 @@
         <li class="headerControlsListSublistItem">
             <a class="headerSublistControl" href="<?php echo url_for('messages_show',$newMessage) ?>">
                 <?php 
-                    $profile = $newMessage->getPeople()->getProfiles()->getFirst();
+                    $profile = $newMessage->getPeople()->getProfiles();
                     echo "<span class='quickViewImage'>";
                     echo "<img src='/uploads/assets/profile_pictures/";
                     echo $profile->getPictureUrlSmall();

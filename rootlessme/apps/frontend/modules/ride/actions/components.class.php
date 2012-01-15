@@ -24,7 +24,7 @@ class rideComponents extends sfComponents
         $this->carpoolRoute = $this->carpool->getRoutes();
         $this->origin = $this->carpool->getOriginLocation();
         $this->destination = $this->carpool->getDestinationLocation();
-        $this->driver = $this->carpool->getPeople()->getProfiles()->getFirst();
+        $this->driver = $this->carpool->getPeople()->getProfiles();
 
         // Check to see if the post belongs to the user
         $this->isMyPost = false;
@@ -88,7 +88,7 @@ class rideComponents extends sfComponents
         $this->passengerRoute = $this->passenger->getRoutes();
         $this->origin = $this->passengerRoute->getOriginLocation();
         $this->destination = $this->passengerRoute->getDestinationLocation();
-        $this->rider = $this->passenger->getPeople()->getProfiles()->getFirst();
+        $this->rider = $this->passenger->getPeople()->getProfiles();
 
         // Check to see if the post belongs to the user
         $this->isMyPost = false;

@@ -41,7 +41,7 @@ class seatComponents extends sfComponents
         // Get the new history item from the difference
         $this->newHistoryItem = $this->negotiationChange->getNewSeatHistory();
         // Get the changer
-        $this->changer = $this->newHistoryItem->getPeople()->getProfiles()->getFirst();
+        $this->changer = $this->newHistoryItem->getPeople()->getProfiles();
         // Get the route
         $this->route = $this->newHistoryItem->getRoutes();
     }

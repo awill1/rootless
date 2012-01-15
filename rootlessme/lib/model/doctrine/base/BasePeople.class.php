@@ -20,7 +20,7 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @property Doctrine_Collection $Friendships_2
  * @property Doctrine_Collection $Messages
  * @property Doctrine_Collection $Passengers
- * @property Doctrine_Collection $Profiles
+ * @property Profiles $Profiles
  * @property Doctrine_Collection $Reviews
  * @property Doctrine_Collection $Reviews_2
  * @property Doctrine_Collection $SeatsHistory
@@ -44,7 +44,7 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @method Doctrine_Collection getFriendships2()             Returns the current record's "Friendships_2" collection
  * @method Doctrine_Collection getMessages()                 Returns the current record's "Messages" collection
  * @method Doctrine_Collection getPassengers()               Returns the current record's "Passengers" collection
- * @method Doctrine_Collection getProfiles()                 Returns the current record's "Profiles" collection
+ * @method Profiles            getProfiles()                 Returns the current record's "Profiles" value
  * @method Doctrine_Collection getReviews()                  Returns the current record's "Reviews" collection
  * @method Doctrine_Collection getReviews2()                 Returns the current record's "Reviews_2" collection
  * @method Doctrine_Collection getSeatsHistory()             Returns the current record's "SeatsHistory" collection
@@ -67,7 +67,7 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @method People              setFriendships2()             Sets the current record's "Friendships_2" collection
  * @method People              setMessages()                 Sets the current record's "Messages" collection
  * @method People              setPassengers()               Sets the current record's "Passengers" collection
- * @method People              setProfiles()                 Sets the current record's "Profiles" collection
+ * @method People              setProfiles()                 Sets the current record's "Profiles" value
  * @method People              setReviews()                  Sets the current record's "Reviews" collection
  * @method People              setReviews2()                 Sets the current record's "Reviews_2" collection
  * @method People              setSeatsHistory()             Sets the current record's "SeatsHistory" collection
@@ -159,7 +159,7 @@ abstract class BasePeople extends sfDoctrineRecord
              'local' => 'person_id',
              'foreign' => 'person_id'));
 
-        $this->hasMany('Profiles', array(
+        $this->hasOne('Profiles', array(
              'local' => 'person_id',
              'foreign' => 'person_id'));
 

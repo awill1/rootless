@@ -37,8 +37,7 @@
                 </thead>
                 <tbody>
                     <?php foreach ($messages as $i => $message):
-                        //$author = $message->getPeople()->getProfiles()->getFirst();
-                        $author = $message['People']['Profiles'][0];
+                        $author = $message['People']['Profiles'];
                         ?>
                         <tr class="<?php echo fmod($i, 2) ? 'tableAltRow' : 'tableRow' ?>
                                    <?php if (count($message['MessageRecipients']) > 0 && $message['MessageRecipients'][0]['unread'] ) echo 'messageUnread' ?>">

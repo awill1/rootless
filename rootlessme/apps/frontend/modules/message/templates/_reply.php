@@ -5,7 +5,7 @@
     <?php if (!$form->getObject()->isNew()): ?>
     <input type="hidden" name="sf_method" value="put" />
     <?php endif; ?>
-    <?php $myProfile = $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst(); ?>
+    <?php $myProfile = $sf_user->getGuardUser()->getPeople()->getProfiles(); ?>
     <div class="messageFromReply">
      <p>From:</p>
              </div>

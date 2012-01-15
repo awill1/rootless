@@ -1,4 +1,4 @@
-<h1>Welcome to your inbox, <?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirst()->getFirstName(); ?>!</h1>
+<h1>Welcome to your inbox, <?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getFirstName(); ?>!</h1>
 
 <div id="middleMessageDetails">
     <ul>

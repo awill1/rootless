@@ -20,9 +20,9 @@
                 +<?php echo $carpool->getDestinationLocation() ?><br /> 
                 <a class="viewRideLink" href="<?php echo url_for('ride_show', array('ride_type' => 'offer', 'ride_id' => $carpool->getCarpoolId())) ?>" >View Ride</a>
                 <?php foreach ($driverSeats as $driverSeat): 
-          $passenger = $driverSeat->getPassengers()->getPeople()->getProfiles()->getFirst(); ?>
+          $passenger = $driverSeat->getPassengers()->getPeople()->getProfiles(); ?>
         <div id="quickBoxItem">
-            <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $passenger->getPictureUrlSmall(); ?>"></img>
+            <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $passenger->getPictureUrlSmall(); ?>" />
             <p id="quickBoxName"><?php echo $passenger->getFullName() ?></p>
             <p id="quickBoxLocationStart">+<?php echo $driverSeat->getOriginLocation() ?></p>
             <p id="quickBoxLocationFinish">+<?php echo $driverSeat->getDestinationLocation() ?></p>
@@ -49,9 +49,9 @@
                 +<?php echo $passenger->getDestinationLocation() ?><br /> 
                 <a class="viewRideLink" href="<?php echo url_for('ride_show', array('ride_type' => 'request', 'ride_id' => $passenger->getPassengerId())) ?>" >View Ride</a>
                 <?php foreach ($passengerSeats as $passengerSeat): 
-          $driver = $passengerSeat->getCarpools()->getPeople()->getProfiles()->getFirst(); ?>
+          $driver = $passengerSeat->getCarpools()->getPeople()->getProfiles(); ?>
         <div id="quickBoxItem">
-            <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driver->getPictureUrlSmall(); ?>"></img>
+            <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driver->getPictureUrlSmall(); ?>" />
             <p id="quickBoxName"><?php echo $driver->getFullName() ?></p>
             
             <p id="quickBoxConfirmButton"><a href="" >Confirm</a></p>

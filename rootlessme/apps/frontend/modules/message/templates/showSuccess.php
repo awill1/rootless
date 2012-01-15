@@ -37,7 +37,7 @@
 <h1 class="messageTitle"><?php echo $conversation->getSubject() ?></h1>
 <div class="messageThread">
     <?php foreach ($messages as $i => $message):
-        $author = $message->getPeople()->getProfiles()->getFirst(); ?>
+        $author = $message->getPeople()->getProfiles(); ?>
     <div class="message">
         <div class="messageAuthorPicture">
             <a href="<?php echo url_for("profile_show_user", $author)  ?>">

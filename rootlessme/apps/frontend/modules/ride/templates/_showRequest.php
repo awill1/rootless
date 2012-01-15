@@ -259,7 +259,7 @@
             <ul class="riderList accepted">
                 <li class='none' style="display:none;">No Accepted seats</li>
                 <?php foreach ($acceptedSeats as $seat):
-                    $driverProfile = $seat->getCarpools()->getPeople()->getProfiles()->getFirst(); ?>
+                    $driverProfile = $seat->getCarpools()->getPeople()->getProfiles(); ?>
                 <li class="riderListItem">
                     <?php if ($isMyPost || $seat == $mySeat) :?>
                         <a class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>">
@@ -285,7 +285,7 @@
             <ul class="riderList declined">
                 <li class='none' style="display:none;">No Declined seats</li>
                 <?php foreach ($declinedSeats as $seat):
-                    $driverProfile = $seat->getCarpools()->getPeople()->getProfiles()->getFirst(); ?>
+                    $driverProfile = $seat->getCarpools()->getPeople()->getProfiles(); ?>
                     <li class="riderListItem">
                         <?php if ($isMyPost) :?>
                             <a class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driverProfile->getPictureUrlSmall() ?>" alt="<?php echo $driverProfile->getFullName() ?>" /></a>
@@ -311,7 +311,7 @@
             <ul class="riderList pending">
                 <li class='none' style="display:none;">No Pending seats</li>
                 <?php foreach ($pendingSeats as $seat):
-                      $driverProfile = $seat->getCarpools()->getPeople()->getProfiles()->getFirst(); ?>
+                      $driverProfile = $seat->getCarpools()->getPeople()->getProfiles(); ?>
                     <li class="riderListItem">
                         <?php if ($isMyPost) :?>
                             <a class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driverProfile->getPictureUrlSmall() ?>" alt="<?php echo $driverProfile->getFullName() ?>" /></a>
@@ -331,7 +331,7 @@
         <div class="riderListBlock">
             <h3>My Seat Request</h3>
             <ul class="riderList">
-                <?php $myProfile = $mySeat->getCarpools()->getPeople()->getProfiles()->getFirst(); ?>
+                <?php $myProfile = $mySeat->getCarpools()->getPeople()->getProfiles(); ?>
                 <li class="riderListItem">
                     <a class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$mySeat->getSeatId()))  ?>">
                         <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $myProfile->getPictureUrlSmall() ?>" alt="<?php echo $myProfile->getFullName() ?>" />
