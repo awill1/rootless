@@ -140,6 +140,7 @@ class ProfilesTable extends Doctrine_Table
                 ->innerJoin('s.Carpools c')
                 ->where('s.seat_status_id = ?', 2)
                 ->andWhere('c.driver_id = ?', $personId);
+        $pq = SeatsTable::addCurrentSeatsFilter($pq);
         $passengers = $pq->execute();
         
         // Get a list of people ids for confirmed drivers in carpools
@@ -152,6 +153,7 @@ class ProfilesTable extends Doctrine_Table
                 ->innerJoin('s.Passengers pa')
                 ->where('s.seat_status_id = ?', 2)
                 ->andWhere('pa.person_id = ?', $personId);
+        $dq = SeatsTable::addCurrentSeatsFilter($dq);
         $drivers = $dq->execute();
         
         // Get a list of people ids for confirmed passenger in carpools

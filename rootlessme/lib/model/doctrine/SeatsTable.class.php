@@ -126,7 +126,7 @@ class SeatsTable extends Doctrine_Table
           ->addWhere('pa.person_id = ? OR c.driver_id = ?',array($person_id, $person_id));
         
         // Add the filter to only get seats on or after today
-        $q = $this->addCurrentSeatsFilter($q);
+        $q = SeatsTable::addCurrentSeatsFilter($q);
 
         return $q->execute();
     }
@@ -137,7 +137,7 @@ class SeatsTable extends Doctrine_Table
      * @param Doctrine_Query $query The query
      * @return Doctrine_Query The query with a current rides where clause 
      */
-    public function addCurrentSeatsFilter($query)
+    public static function addCurrentSeatsFilter($query)
     {
         // Add a where clause to the query to only return seats today or in
         // the future
