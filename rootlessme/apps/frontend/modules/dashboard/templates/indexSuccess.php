@@ -6,9 +6,14 @@
 ?>
 
 <h1>Dashboard</h1>
+
 <div id="rideSection">
+    <ul>
     <div id="rideInformationDashLeft">
         <h3>Offers Posted</h3>
+        
+        
+            <li>
         <?php foreach ($carpools as $carpool): ?>
             <div class="rideCont">
                 <div class="dateCont">
@@ -21,6 +26,8 @@
                 <a class="viewRideLink" href="<?php echo url_for('ride_show', array('ride_type' => 'offer', 'ride_id' => $carpool->getCarpoolId())) ?>" >View Ride</a>
                 <?php foreach ($driverSeats as $driverSeat): 
           $passenger = $driverSeat->getPassengers()->getPeople()->getProfiles(); ?>
+            </li>
+            <li>
         <div id="quickBoxItem">
             <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $passenger->getPictureUrlSmall(); ?>" />
             <p id="quickBoxName"><?php echo $passenger->getFullName() ?></p>
@@ -32,12 +39,18 @@
             <p id="quickBoxViewRequestButton">view negotiation</p>
             <hr>
         </div>
+            </li>
+        </ul>
         <?php endforeach; ?>  
-            </div>
+            </div>       
         <?php endforeach; ?>
+               
     </div>
+    <ul>
     <div id="rideInformationDashRight">
         <h3>Requests Posted</h3>
+        
+            <li>
         <?php foreach ($passengers as $passenger): ?>
             <div class="rideCont">
                 <div class="dateCont">
@@ -50,10 +63,13 @@
                 <a class="viewRideLink" href="<?php echo url_for('ride_show', array('ride_type' => 'request', 'ride_id' => $passenger->getPassengerId())) ?>" >View Ride</a>
                 <?php foreach ($passengerSeats as $passengerSeat): 
           $driver = $passengerSeat->getCarpools()->getPeople()->getProfiles(); ?>
+            </li>
+            <li>
         <div id="quickBoxItem">
             <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driver->getPictureUrlSmall(); ?>" />
             <p id="quickBoxName"><?php echo $driver->getFullName() ?></p>
-            
+            <p id="quickBoxLocationStart">+<?php echo $passengerSeat->getOriginLocation() ?></p>
+            <p id="quickBoxLocationFinish">+<?php echo $passengerSeat->getDestinationLocation() ?></p>
             <p id="quickBoxConfirmButton"><a href="" >Confirm</a></p>
             <p id="quickBoxDeclineButton"><a href="" >Decline</a></p>
             
@@ -62,8 +78,11 @@
             </a>
             
         </div>
+            </li>
+        
     <?php endforeach; ?>
             </div>
+                </ul>
         <?php endforeach; ?>
     </div>
 </div>

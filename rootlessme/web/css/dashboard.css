@@ -8,6 +8,19 @@
 
 /*I.D. Fragment Formatting & Styles*/
 
+li {
+    margin: 0px;
+    list-style-type:none; 
+    padding: 0px;
+    
+}
+
+/*ul {
+    margin: 0px, 0px, 0px, 0px;
+    padding: 0px, 0px, 0px, 0px;
+    list-style-type:none;
+}*/
+
 #rideSection {
     float: left;
     background-color: #F4F4F4;
@@ -97,12 +110,14 @@
     height: 100%;
 }
 
+
+
 #quickBoxItem {
     margin-bottom: 40px;
     float: left;
     background-color: #E5E5E5;
     width: 195px;
-    height: 55px;
+    height: 97px;
     padding: 10px 10px 10px 10px;
     margin-top: 20px;
 }
@@ -141,7 +156,7 @@
 
 #quickBoxConfirmButton {
     
-    margin: 5px 0px 0px 60px;
+    margin: 10px 0px 5px 0px;
     background-color: #119D49;
     color: white;
     font-weight: bold;
@@ -163,12 +178,12 @@
 
 #quickBoxDeclineButton {
     display: inline;
-    float: right;
-    margin: -20px 0px 0px 0px;
+    float: left;
+    margin: -25px 0px 0px 68px;
     background-color: #8e8e8e;
     color: white;
     padding: 3px 5px 3px 5px;
-    width: 48px;
+    width: 44px;
     font-size: 85%;
     clear: right;
 
@@ -178,9 +193,11 @@
     color: #D05A36;
     font-size: 80%;
     text-align: center;
-    margin: 4px 0px -2px 0px;
+    margin: 0px 0px 0px 0px;
     padding: 0px 0px -1px 0px;
     font-style: italic;
+    
+    
 }
 hr1 {
     width: 205px;
