@@ -37,5 +37,33 @@
             <td><?php echo $carpool->getSeatsAvailable() ?></td>
         </tr>
         <?php endforeach; ?>
+        <?php foreach ($passengers as $i => $passenger): 
+            // The line striping should continue from the carpools list
+            $lineNumber = $i + count($carpools)?>
+        <tr class="<?php echo fmod($lineNumber, 2) ? 'rideListNotSelectedAltRow' : 'rideListNotSelectedRow' ?>">
+            <td>
+                <div class="dateBlockLarge">
+                    <div class="dateBlockMonth">
+                        <?php echo date("M",strtotime($passenger->getStartDate())) ?>
+                    </div>
+                    <div class="dateBlockDate">
+                        <?php echo date("j",strtotime($passenger->getStartDate())) ?>
+                    </div>
+                    <div class="dateBlockTime">
+                        <?php echo date("g:i A",strtotime($passenger->getStartTime())) ?>
+                    </div>
+                </div>
+            </td>
+            <td><?php echo $passenger->getOriginLocation()->getCityStateString() ?></td>
+            <td>to</td>
+            <td><?php echo $passenger->getDestinationLocation()->getCityStateString() ?></td>
+            <td>
+                    <img class="rideListDriverCreatorProfileImage" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $passenger->getPeople()->getProfiles()->getPictureUrlSmall(); ?>" alt="<?php echo $passenger->getPeople() ?>" />
+                    <?php echo $passenger->getPeople() ?>
+            </td>
+            <td><a class="tableLink" href="<?php echo url_for("ride_show",array('ride_id'=>$passenger->getPassengerId(), 'ride_type'=>'request')) ?>">Request</a></td>
+            <td><?php echo $passenger->getPassengerCount() ?></td>
+        </tr>
+        <?php endforeach; ?>
     </tbody>
 </table>

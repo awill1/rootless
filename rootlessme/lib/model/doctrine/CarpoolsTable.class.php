@@ -129,18 +129,46 @@ class CarpoolsTable extends Doctrine_Table
         //         HAVING end_distance < $distance
         //           AND r.route_id = dro.route_id
         // );
+        
         // Use a raw sql query because the relationship enforcement is less
         $q = new Doctrine_RawSql();
         // Curly braces are needed for component hydration
-        $q->select('{c.*}, {r.*}');
+        $q->select('{c.*}, {r.*}, {p.*}, {pr.*}');
         $q->from('carpools c');
         $q->innerJoin('routes r ON c.route_id = r.route_id');
+        $q->innerJoin('people p ON c.driver_id = p.person_id');
+        $q->innerJoin('profiles pr ON pr.person_id = p.person_id');
         // See if we need to add a where clause for the origin location
         if ($originLatitude != null && $originLongitude != null){
             // Add the where clause that searchs for routes near the start
             // location
+//            $q->andWhere('EXISTS (
+//                 SELECT *,  MIN(DISTANCE(?, ?, o.latitude, o.longitude)) as start_distance
+//                 FROM locations o
+//                 INNER JOIN  steps os
+//                 ON os.step_id = o.step_id
+//                 INNER JOIN  legs ole
+//                 ON ole.leg_id = os.leg_id
+//                 INNER JOIN routes oro
+//                 ON oro.route_id = ole.route_id
+//                 GROUP BY oro.route_id
+//                 HAVING start_distance < ?
+//                   AND r.route_id = oro.route_id
+//                 )', array($originLatitude,
+//                            $originLongitude,
+//                            $distance));
+            // Use bounding box search for now for performancelp speed up the queries
+            // Get the bounding boxes to help speed up the queries
+            $originBoundingBox = Locations::getBoundingBox($originLatitude, 
+                                                           $originLongitude, 
+                                                           $distance);
+            $originBoxMinLatitude = $originBoundingBox['minLatitude'];
+            $originBoxMaxLatitude = $originBoundingBox['maxLatitude'];
+            $originBoxMinLongitude = $originBoundingBox['minLongitude'];
+            $originBoxMaxLongitude = $originBoundingBox['maxLongitude'];
+            
             $q->andWhere('EXISTS (
-                 SELECT *,  MIN(DISTANCE(?, ?, o.latitude, o.longitude)) as start_distance
+                 SELECT *
                  FROM locations o
                  INNER JOIN  steps os
                  ON os.step_id = o.step_id
@@ -148,20 +176,46 @@ class CarpoolsTable extends Doctrine_Table
                  ON ole.leg_id = os.leg_id
                  INNER JOIN routes oro
                  ON oro.route_id = ole.route_id
-                 GROUP BY oro.route_id
-                 HAVING start_distance < ?
-                   AND r.route_id = oro.route_id
-                 )', array($originLatitude,
-                            $originLongitude,
-                            $distance));
+                 WHERE r.route_id = oro.route_id
+                 AND o.latitude BETWEEN ? AND ?
+                 AND o.longitude BETWEEN ? AND ?
+                 )', array($originBoxMinLatitude,
+                           $originBoxMaxLatitude,
+                           $originBoxMinLongitude,
+                           $originBoxMaxLongitude));
+            
         }
         // See if we need to add a where clause for the destination location
         if ($destinationLatitude != null && $destinationLongitude != null)
         {
             // Add the where clause that searchs for routes near the end
             // location
+//            $q->andWhere('EXISTS (
+//                 SELECT *,  MIN(DISTANCE(?, ?, d.latitude, d.longitude)) as end_distance
+//                 FROM locations d
+//                 INNER JOIN  steps ds
+//                 ON ds.step_id = d.step_id
+//                 INNER JOIN  legs dle
+//                 ON dle.leg_id = ds.leg_id
+//                 INNER JOIN routes dro
+//                 ON dro.route_id = dle.route_id
+//                 GROUP BY dro.route_id
+//                 HAVING end_distance < ?
+//                   AND r.route_id = dro.route_id
+//                  )', array($destinationLatitude,
+//                            $destinationLongitude,
+//                            $distance));
+            // Use bounding box search for now for performance
+            $destinationBoundingBox = Locations::getBoundingBox($destinationLatitude, 
+                                                                $destinationLongitude, 
+                                                                $distance);
+            $destinationBoxMinLatitude = $destinationBoundingBox['minLatitude'];
+            $destinationBoxMaxLatitude = $destinationBoundingBox['maxLatitude'];
+            $destinationBoxMinLongitude = $destinationBoundingBox['minLongitude'];
+            $destinationBoxMaxLongitude = $destinationBoundingBox['maxLongitude'];
+            
             $q->andWhere('EXISTS (
-                 SELECT *,  MIN(DISTANCE(?, ?, d.latitude, d.longitude)) as end_distance
+                 SELECT *
                  FROM locations d
                  INNER JOIN  steps ds
                  ON ds.step_id = d.step_id
@@ -169,12 +223,13 @@ class CarpoolsTable extends Doctrine_Table
                  ON dle.leg_id = ds.leg_id
                  INNER JOIN routes dro
                  ON dro.route_id = dle.route_id
-                 GROUP BY dro.route_id
-                 HAVING end_distance < ?
-                   AND r.route_id = dro.route_id
-                  )', array($destinationLatitude,
-                            $destinationLongitude,
-                            $distance));
+                 WHERE r.route_id = dro.route_id
+                 AND d.latitude BETWEEN ? AND ?
+                 AND d.longitude BETWEEN ? AND ?
+                 )', array($destinationBoxMinLatitude,
+                           $destinationBoxMaxLatitude,
+                           $destinationBoxMinLongitude,
+                           $destinationBoxMaxLongitude));
         }
         // See if we need to add a where clause for the date
         if ($date != null)
@@ -183,11 +238,18 @@ class CarpoolsTable extends Doctrine_Table
             $date = date('Y-m-d', strtotime($date));
             $q = $q->andWhere('c.start_date = ?', $date);
         }
+        else
+        {
+            // Add the current rides filter to filter our rides from before today
+            $q = $this->addCurrentRidesFilter($q);
+        }
         // ON c.route_id = r.route_id
         // Add the components to the query so the results get hydrated into
         // their proper objects
         $q->addComponent('c', 'Carpools c');
         $q->addComponent('r', 'c.Routes r');
+        $q->addComponent('p', 'c.People p');
+        $q->addComponent('pr', 'p.Profiles pr');
 
         // Run the query and return the results
         return $q->execute();

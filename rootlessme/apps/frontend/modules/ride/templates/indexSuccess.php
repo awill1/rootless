@@ -27,6 +27,8 @@
 
         // Function when the page is ready
         $(document).ready(function(){
+            
+            $('#loader').hide();
 
             // Handler for the find button
             $('#rides_find').click(function()
@@ -241,6 +243,6 @@
     <?php include_partial('rideSearchForm', array('rideSearchForm' => $searchForm)) ?>
 </div>
 <div id="map"></div>
-<img id="loader" alt="Loading spinner" src="/images/ajax-loader.gif" style="vertical-align: middle; display: none" />
+<img id="loader" alt="Loading spinner" src="/images/ajax-loader.gif" style="vertical-align: middle;" />
 <div id="results">
 </div>

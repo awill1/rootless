@@ -55,6 +55,8 @@ class rideActions extends sfActions
 
         $this->carpools = Doctrine_Core::getTable('Carpools')
              ->getNearPoints($myDistance, $myStartLatitude, $myStartLongitude, $myEndLatitude, $myEndLongitude, $searchDate);
+        $this->passengers = Doctrine_Core::getTable('Passengers')
+             ->getNearPoints($myDistance, $myStartLatitude, $myStartLongitude, $myEndLatitude, $myEndLongitude, $searchDate);
         
         if ($request->isXmlHttpRequest())
         {
@@ -65,12 +67,12 @@ class rideActions extends sfActions
               return $this->renderText('No results.');
             }
 
-            return $this->renderPartial('ride/ridesList', array('carpools' => $this->carpools));
+            return $this->renderPartial('ride/ridesList', array('carpools' => $this->carpools, 'passengers' => $this->passengers));
         }
         else
         {
             // This is not an ajax request
-            return $this->renderPartial('ride/ridesList', array('carpools' => $this->carpools));
+            //return $this->renderPartial('ride/ridesList', array('carpools' => $this->carpools, 'passengers' => $this->passengers));
         }
 
     }

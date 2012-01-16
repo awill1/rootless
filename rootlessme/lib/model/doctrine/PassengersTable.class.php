@@ -95,4 +95,183 @@ class PassengersTable extends Doctrine_Table
         // Add the order by clause
         return $query->orderBy('pa.start_date');
     }
+    
+    /**
+     * Returns passengers that are within $distance of the origin and destination
+     * coordinates and optionally on a specified date.
+     *
+     * @param        float $distance The distance to search within
+     * @param        float $originLatitude The latitude of the origin
+     * @param        float $originLongitude The longitude of the origin
+     * @param        float $destinationLatitude The latitude of the destination
+     * @param        float $destinationLongitude The longitude of the destination
+     * @param        string $date The date to search on
+     *
+     * @return Doctrine_Collection Returns a Passengers collection with profiles
+     * and people included
+     */
+    public function getNearPoints ($distance,
+                                   $originLatitude = null,
+                                   $originLongitude =null,
+                                   $destinationLatitude = null,
+                                   $destinationLongitude = null,
+                                   $date = null)
+    {
+        // TODO: Make the query detect order of locations
+        // Use a query similar to the following
+        // SELECT * FROM carpools c
+        // INNER JOIN routes r
+        // ON c.route_id = r.route_id
+        // WHERE EXISTS
+        // (
+        //         SELECT *,  MIN(DISTANCE($origin->getLatitude(), $origin->getLongitude(), o.latitude, o.longitude)) as start_distance
+        //         FROM locations o
+        //         INNER JOIN  steps os
+        //         ON os.step_id = o.step_id
+        //         INNER JOIN  legs ole
+        //         ON ole.leg_id = os.leg_id
+        //         INNER JOIN routes oro
+        //         ON oro.route_id = ole.route_id
+        //         GROUP BY oro.route_id
+        //         HAVING start_distance < $distance
+        //           AND r.route_id = oro.route_id
+        // )
+        // AND EXISTS (
+        //         SELECT *,  MIN(DISTANCE($destination->getLatitude(), $destination->getLongitude, d.latitude, d.longitude)) as end_distance
+        //         FROM locations d
+        //         INNER JOIN  steps ds
+        //         ON ds.step_id = d.step_id
+        //         INNER JOIN  legs dle
+        //         ON dle.leg_id = ds.leg_id
+        //         INNER JOIN routes dro
+        //         ON dro.route_id = dle.route_id
+        //         GROUP BY dro.route_id
+        //         HAVING end_distance < $distance
+        //           AND r.route_id = dro.route_id
+        // );
+        // Use a raw sql query because the relationship enforcement is less
+        $q = new Doctrine_RawSql();
+        // Curly braces are needed for component hydration
+        $q->select('{pa.*}, {r.*}, {pe.*}, {pr.*}');
+        $q->from('passengers pa');
+        $q->innerJoin('routes r ON pa.solo_route_id = r.route_id');
+        $q->innerJoin('people pe ON pa.person_id = pe.person_id');
+        $q->innerJoin('profiles pr ON pr.person_id = pe.person_id');
+        // See if we need to add a where clause for the origin location
+        if ($originLatitude != null && $originLongitude != null){
+            // Add the where clause that searchs for routes near the start
+            // location. Need to add a bounding box where clause to sub clause
+            // to improve performance
+//            $q->andWhere('EXISTS (
+//                 SELECT *,  MIN(DISTANCE(?, ?, o.latitude, o.longitude)) as start_distance
+//                 FROM locations o
+//                 INNER JOIN  steps os
+//                 ON os.step_id = o.step_id
+//                 INNER JOIN  legs ole
+//                 ON ole.leg_id = os.leg_id
+//                 INNER JOIN routes oro
+//                 ON oro.route_id = ole.route_id
+//                 GROUP BY oro.route_id
+//                 HAVING start_distance < ?
+//                   AND r.route_id = oro.route_id
+//                 )', array($originLatitude,
+//                            $originLongitude,
+//                            $distance));
+            // Use bounding box search for now for performancelp speed up the queries
+            // Get the bounding boxes to help speed up the queries
+            $originBoundingBox = Locations::getBoundingBox($originLatitude, 
+                                                           $originLongitude, 
+                                                           $distance);
+            $originBoxMinLatitude = $originBoundingBox['minLatitude'];
+            $originBoxMaxLatitude = $originBoundingBox['maxLatitude'];
+            $originBoxMinLongitude = $originBoundingBox['minLongitude'];
+            $originBoxMaxLongitude = $originBoundingBox['maxLongitude'];
+            
+            $q->andWhere('EXISTS (
+                 SELECT *
+                 FROM locations o
+                 INNER JOIN  steps os
+                 ON os.step_id = o.step_id
+                 INNER JOIN  legs ole
+                 ON ole.leg_id = os.leg_id
+                 INNER JOIN routes oro
+                 ON oro.route_id = ole.route_id
+                 WHERE r.route_id = oro.route_id
+                 AND o.latitude BETWEEN ? AND ?
+                 AND o.longitude BETWEEN ? AND ?
+                 )', array($originBoxMinLatitude,
+                           $originBoxMaxLatitude,
+                           $originBoxMinLongitude,
+                           $originBoxMaxLongitude));
+        }
+        // See if we need to add a where clause for the destination location
+        if ($destinationLatitude != null && $destinationLongitude != null)
+        {
+            // Add the where clause that searchs for routes near the end
+            // location. Need to add a bounding box where clause to sub clause
+            // to improve performance
+//            $q->andWhere('EXISTS (
+//                 SELECT *,  MIN(DISTANCE(?, ?, d.latitude, d.longitude)) as end_distance
+//                 FROM locations d
+//                 INNER JOIN  steps ds
+//                 ON ds.step_id = d.step_id
+//                 INNER JOIN  legs dle
+//                 ON dle.leg_id = ds.leg_id
+//                 INNER JOIN routes dro
+//                 ON dro.route_id = dle.route_id
+//                 GROUP BY dro.route_id
+//                 HAVING end_distance < ?
+//                   AND r.route_id = dro.route_id
+//                  )', array($destinationLatitude,
+//                            $destinationLongitude,
+//                            $distance));
+            // Use bounding box search for now for performance
+            $destinationBoundingBox = Locations::getBoundingBox($destinationLatitude, 
+                                                                $destinationLongitude, 
+                                                                $distance);
+            $destinationBoxMinLatitude = $destinationBoundingBox['minLatitude'];
+            $destinationBoxMaxLatitude = $destinationBoundingBox['maxLatitude'];
+            $destinationBoxMinLongitude = $destinationBoundingBox['minLongitude'];
+            $destinationBoxMaxLongitude = $destinationBoundingBox['maxLongitude'];
+            
+            $q->andWhere('EXISTS (
+                 SELECT *
+                 FROM locations d
+                 INNER JOIN  steps ds
+                 ON ds.step_id = d.step_id
+                 INNER JOIN  legs dle
+                 ON dle.leg_id = ds.leg_id
+                 INNER JOIN routes dro
+                 ON dro.route_id = dle.route_id
+                 WHERE r.route_id = dro.route_id
+                 AND d.latitude BETWEEN ? AND ?
+                 AND d.longitude BETWEEN ? AND ?
+                 )', array($destinationBoxMinLatitude,
+                           $destinationBoxMaxLatitude,
+                           $destinationBoxMinLongitude,
+                           $destinationBoxMaxLongitude));
+        }
+        // See if we need to add a where clause for the date
+        if ($date != null)
+        {
+            // Reformat the date to work with the database
+            $date = date('Y-m-d', strtotime($date));
+            $q = $q->andWhere('pa.start_date = ?', $date);
+        }
+        else
+        {
+            // Add the current rides filter to filter our rides from before today
+            $q = $this->addCurrentRidesFilter($q);
+        }
+        // ON p.route_id = r.route_id
+        // Add the components to the query so the results get hydrated into
+        // their proper objects
+        $q->addComponent('pa', 'Passengers pa');
+        $q->addComponent('r', 'pa.Routes r');
+        $q->addComponent('pe', 'pa.People pe');
+        $q->addComponent('pr', 'pe.Profiles pr');
+
+        // Run the query and return the results
+        return $q->execute();
+    }  
 }
