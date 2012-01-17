@@ -48,6 +48,17 @@ Seats:
     pickup_time: "20:00:00"
     description: "Can I bum a ride?"
     solo_route_id: 3
+  seat_4:
+    seat_id: 4
+    carpool_id: 4
+    passenger_id: 5
+    seat_status_id: 1
+    price: 11.10
+    seat_count: 1
+    pickup_date: "2012-06-11"
+    pickup_time: "11:11:00"
+    description: "Will you please pick me up at the mall? I'll pay you $15."
+    solo_route_id: 3
 
 SeatsHistory:
   seat_history_1:

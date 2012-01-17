@@ -500,6 +500,28 @@ Carpools:
     description: "Driving back from the airport."
     seats_available: 1
     asking_price: 26.50
+  carpool_3:
+    carpool_id: 3
+    driver_id: 1
+    solo_route_id: 2
+    route_id: 2
+    vehicle_id: 1
+    start_date: "2012-05-11"
+    start_time: "17:00:00"
+    description: "Driving across the country, again."
+    seats_available: 4
+    asking_price: 300.50
+  carpool_4:
+    carpool_id: 4
+    driver_id: 3
+    solo_route_id: 1
+    route_id: 1
+    vehicle_id: 1
+    start_date: "2012-06-11"
+    start_time: "11:00:00"
+    description: "Driving back from the airport."
+    seats_available: 3
+    asking_price: 11.11
 
 
 Passengers:
@@ -539,4 +561,13 @@ Passengers:
     start_time: "23:00:00"
     asking_price: 0
     description: "Going home from the mall"
+  passenger_5:
+    passenger_id: 5
+    person_id: 1
+    solo_route_id: 3
+    passenger_count: 1
+    start_date: "2012-06-11"
+    start_time: "11:00:00"
+    asking_price: 11
+    description: "Lots of 11s"
 
