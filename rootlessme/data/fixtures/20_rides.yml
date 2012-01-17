@@ -570,4 +570,22 @@ Passengers:
     start_time: "11:00:00"
     asking_price: 11
     description: "Lots of 11s"
+  passenger_6:
+    passenger_id: 6
+    person_id: 2
+    solo_route_id: 2
+    passenger_count: 1
+    start_date: "2012-04-13"
+    start_time: "11:00:00"
+    asking_price: 11
+    description: "Hollywood! Something something something Hollywood!"
+  passenger_7:
+    passenger_id: 7
+    person_id: 3
+    solo_route_id: 2
+    passenger_count: 1
+    start_date: "2012-04-13"
+    start_time: "11:00:00"
+    asking_price: 11
+    description: "Hollywood! Something something something Hollywood!"
 
