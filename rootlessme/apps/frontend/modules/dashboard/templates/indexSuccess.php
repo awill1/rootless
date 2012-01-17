@@ -8,23 +8,33 @@
 <h1>Dashboard</h1>
 
 <div id="rideSection">
-    
+    <ul>
+        
     <div id="rideInformationDashLeft">
+        
         <h3>Offers Posted</h3>
         
+        
         <?php foreach ($carpools as $carpool): ?>
+        <li>
             <div class="rideCont">
                 <div class="dateCont">
                     <div class="monthCont"><?php echo date("M",strtotime($carpool->getStartDate())) ?></div>
                     <div class="dayCont"><?php echo date("j",strtotime($carpool->getStartDate())) ?></div>
                     <div class="timeCont"><?php echo date("g:i A",strtotime($carpool->getStartTime())) ?></div>
                 </div>
+                <div class="locationCont">
                 +<?php echo $carpool->getOriginLocation() ?><br /> 
-                +<?php echo $carpool->getDestinationLocation() ?><br /> 
+                +<?php echo $carpool->getDestinationLocation() ?><br />
+                
+                
                 <a class="viewRideLink" href="<?php echo url_for('ride_show', array('ride_type' => 'offer', 'ride_id' => $carpool->getCarpoolId())) ?>" >View Ride</a>
+                </div>
+                </div>
+        </li>
                 <?php foreach ($driverSeats as $driverSeat): 
           $passenger = $driverSeat->getPassengers()->getPeople()->getProfiles(); ?>
-            
+                <li>
         <div id="quickBoxItem">
             <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $passenger->getPictureUrlSmall(); ?>" />
             <p id="quickBoxName"><?php echo $passenger->getFullName() ?></p>
@@ -32,19 +42,28 @@
             <p id="quickBoxLocationFinish">+<?php echo $driverSeat->getDestinationLocation() ?></p>
             <p id="quickBoxConfirmButton">Confirm</p>
             <p id="quickBoxDeclineButton">Decline</p>
-            <hr>
-            <p id="quickBoxViewRequestButton">view negotiation</p>
-            <hr>
-        </div>
             
+            <a id="quickBoxViewRequestButton">view negotiation</a>
+            
+        </div>
+                    
+                </li>
+           
         <?php endforeach; ?>  
-            </div>       
+    
+        
+                   
         <?php endforeach; ?>
+                
+                
+                
+                
                
     </div>
+    </ul>
     <ul>
     <div id="rideInformationDashRight">
-        <div class="negotiationAndPostInfoCont">
+        <div class="negotiationAndPostInfoContRight">
         <h3>Requests Posted</h3>
         
         <?php foreach ($passengers as $passenger): ?>
