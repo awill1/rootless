@@ -8,12 +8,10 @@
 <h1>Dashboard</h1>
 
 <div id="rideSection">
-    <ul>
+    
     <div id="rideInformationDashLeft">
         <h3>Offers Posted</h3>
         
-        
-            <li>
         <?php foreach ($carpools as $carpool): ?>
             <div class="rideCont">
                 <div class="dateCont">
@@ -26,8 +24,7 @@
                 <a class="viewRideLink" href="<?php echo url_for('ride_show', array('ride_type' => 'offer', 'ride_id' => $carpool->getCarpoolId())) ?>" >View Ride</a>
                 <?php foreach ($driverSeats as $driverSeat): 
           $passenger = $driverSeat->getPassengers()->getPeople()->getProfiles(); ?>
-            </li>
-            <li>
+            
         <div id="quickBoxItem">
             <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $passenger->getPictureUrlSmall(); ?>" />
             <p id="quickBoxName"><?php echo $passenger->getFullName() ?></p>
@@ -39,8 +36,7 @@
             <p id="quickBoxViewRequestButton">view negotiation</p>
             <hr>
         </div>
-            </li>
-        </ul>
+            
         <?php endforeach; ?>  
             </div>       
         <?php endforeach; ?>
@@ -48,23 +44,30 @@
     </div>
     <ul>
     <div id="rideInformationDashRight">
+        <div class="negotiationAndPostInfoCont">
         <h3>Requests Posted</h3>
         
-            <li>
         <?php foreach ($passengers as $passenger): ?>
-            <div class="rideCont">
+        <li>
+            <div class="rideCont"> 
                 <div class="dateCont">
                     <div class="monthCont"><?php echo date("M",strtotime($passenger->getStartDate())) ?></div>
                     <div class="dayCont"><?php echo date("j",strtotime($passenger->getStartDate())) ?></div>
                     <div class="timeCont"><?php echo date("g:i A",strtotime($passenger->getStartTime())) ?></div>
                 </div>
+                
+                
+                <div class="locationCont">
                 +<?php echo $passenger->getOriginLocation() ?><br /> 
                 +<?php echo $passenger->getDestinationLocation() ?><br /> 
                 <a class="viewRideLink" href="<?php echo url_for('ride_show', array('ride_type' => 'request', 'ride_id' => $passenger->getPassengerId())) ?>" >View Ride</a>
+                </div>
+                </div>
+            </li>
                 <?php foreach ($passengerSeats as $passengerSeat): 
           $driver = $passengerSeat->getCarpools()->getPeople()->getProfiles(); ?>
-            </li>
-            <li>
+                
+                <li>
         <div id="quickBoxItem">
             <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driver->getPictureUrlSmall(); ?>" />
             <p id="quickBoxName"><?php echo $driver->getFullName() ?></p>
@@ -78,14 +81,18 @@
             </a>
             
         </div>
-            </li>
+                </li>
+                
         
-    <?php endforeach; ?>
-            </div>
-                </ul>
+        <?php endforeach; ?> 
+                </div> 
         <?php endforeach; ?>
+        
     </div>
+    </ul>
 </div>
+
+
 <div id="quickRidesBox">
     <h3>Confirmed Rides</h3>
     

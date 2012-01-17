@@ -9,17 +9,17 @@
 /*I.D. Fragment Formatting & Styles*/
 
 li {
-    margin: 0px;
+    margin: 0px, 0px, 40px, 0px;
     list-style-type:none; 
-    padding: 0px;
+    padding: 0px, 0px, 0px, 0px;
     
 }
 
-/*ul {
-    margin: 0px, 0px, 0px, 0px;
+ul {
+    margin: 0px, 0px, 20px, 0px;
     padding: 0px, 0px, 0px, 0px;
     list-style-type:none;
-}*/
+}
 
 #rideSection {
     float: left;
@@ -47,6 +47,7 @@ li {
 }
 
 .dateCont {
+    
     float: left;
     width: 46px;
     height: 46px;
@@ -62,6 +63,16 @@ li {
     font-size: 70%;
     text-align: center;
     padding-top: 2px;
+}
+
+.locationCont {
+    
+    width: 100%;
+    height: 60px;
+    color: #119D49;
+    font-size: 110%;
+    font-style: oblique;   
+    
 }
 
 .dayCont{
@@ -105,21 +116,24 @@ li {
 #rideInformationDashRight {
     float:left;
     margin-left: 15px;
+    margin-bottom: 50px;
     width: 200px;
-    display: inline;
     height: 100%;
 }
 
-
+.negotiationAndPostInfoCont {
+    margin-bottom: 50px;
+    float: left;
+}
 
 #quickBoxItem {
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     float: left;
     background-color: #E5E5E5;
     width: 195px;
     height: 97px;
     padding: 10px 10px 10px 10px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 #quickBoxName {
@@ -179,7 +193,7 @@ li {
 #quickBoxDeclineButton {
     display: inline;
     float: left;
-    margin: -25px 0px 0px 68px;
+    margin: -23px 0px 0px 68px;
     background-color: #8e8e8e;
     color: white;
     padding: 3px 5px 3px 5px;
