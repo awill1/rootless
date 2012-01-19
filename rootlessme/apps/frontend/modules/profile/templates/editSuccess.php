@@ -19,20 +19,15 @@
     <ul class="tabList">
         <li class="tabSelectedItem"><a href="#fragment-account">Account</a></li>
         <li class="tabNotSelectedItem"><a href="#fragment-additional_info">Bio</a></li>
-        <li class="tabNotSelectedItem"><a href="#fragment-notification">Notification</a></li>
-        <li class="tabNotSelectedItem"><a href="#fragment-linked_accounts">Linked Accounts</a></li>
+        <li class="tabNotSelectedItem"><a href="#fragment-vehicles">Vehicle</a></li>
     </ul>
     <div id="fragment-account" class="middleProfileTabContent">
         <?php include_partial('form', array('form' => $accountInfoForm , 'section' => 'account')) ?>
     </div>
     <div id="fragment-additional_info" class="middleProfileTabContent">
-        <h3>More about you</h3>
         <?php include_partial('form', array('form' => $additionalInfoForm , 'section' => 'additional')) ?>
     </div>
-    <div id="fragment-notification" class="middleProfileTabContent">
-        <h3>Notification</h3>
-    </div>
-    <div id="fragment-linked_accounts" class="middleProfileTabContent">
-        <h3>Notification</h3>
+    <div id="fragment-vehicles" class="middleProfileTabContent">
+        <?php include_partial('vehicle/form', array('form' => $vehicleInfoForm )) ?>
     </div>
 </div>

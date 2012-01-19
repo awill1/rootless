@@ -267,7 +267,7 @@ ride_search:
   requirements:
     sf_format: (?:html)
 
-# New generic ride creation
+# Ride creation
 ride_new:
   url: /rides/:ride_type/new
   class:   sfRoute
@@ -399,7 +399,43 @@ sf_guard_password:
 sf_guard_register:
   url:   /register
   param: { module: sfGuardRegister, action: index }
+  
+# vehicle rules
 
+vehicle_new:
+  url:     /vehicles/new
+  class:   sfDoctrineRoute
+  options: { model: Vehicles, type: object }
+  param:   { module: vehicle, action: new}
+  requirements: { sf_method: get }
+
+vehicle_create:
+  url:     /vehicles/create
+  class:   sfDoctrineRoute
+  options: { model: Vehicles, type: object }
+  param:   { module: vehicle, action: create}
+  requirements: { sf_method: post }
+
+vehicle_edit:
+  url:     /vehicles/:vehicle_id/edit
+  class:   sfDoctrineRoute
+  options: { model: Vehicles, type: object }
+  param:   { module: vehicle, action: edit}
+  requirements: { sf_method: get }
+
+vehicle_update:
+  url:     /vehicles/:vehicle_id/update
+  class:   sfDoctrineRoute
+  options: { model: Vehicles, type: object }
+  param:   { module: vehicle, action: update}
+  requirements: { sf_method: put }
+
+vehicle_show:
+  url:     /vehicles/:vehicle_id
+  class:   sfDoctrineRoute
+  options: { model: Vehicles, type: object }
+  param:   { module: vehicle, action: show}
+  requirements: { sf_method: get }
 
 # default rules
 homepage:

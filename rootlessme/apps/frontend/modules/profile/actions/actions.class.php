@@ -46,14 +46,19 @@ class profileActions extends sfActions
     }
   }
 
-  public function executeEdit(sfWebRequest $request)
-  {
-    $this->forward404Unless($profile = $this->getUser()->getGuardUser()->getPeople()->getProfiles(), sprintf('Object profile does not exist.'));
+    /**
+     * Executes the edit action
+     * @param sfWebRequest $request The http request
+     */
+    public function executeEdit(sfWebRequest $request)
+    {
+        $this->forward404Unless($profile = $this->getUser()->getGuardUser()->getPeople()->getProfiles(), sprintf('Object profile does not exist.'));
 
-    // Create partial profile update forms
-    $this->accountInfoForm = new ProfilesAccountInfoForm($profile);
-    $this->additionalInfoForm = new ProfilesAdditionalInfoForm($profile);
-  } 
+        // Create partial profile update forms
+        $this->accountInfoForm = new ProfilesAccountInfoForm($profile);
+        $this->additionalInfoForm = new ProfilesAdditionalInfoForm($profile);
+        $this->vehicleInfoForm = new VehiclesForm($profile->getPeople()->getVehicles()->getFirst());
+    } 
 
   public function executeUpdate(sfWebRequest $request)
   {
@@ -65,11 +70,11 @@ class profileActions extends sfActions
     $this->additionalInfoForm = new ProfilesAdditionalInfoForm($profile);
 
     // Which form to precess depends on the section submitted
-    if ($section = 'account')
+    if ($section == 'account')
     {
         $this->processForm($request, $this->accountInfoForm);
     }
-    if ($section = 'additional')
+    if ($section == 'additional')
     {
         $this->processForm($request, $this->additionalInfoForm);
     }

@@ -10,6 +10,9 @@
  */
 class ProfilesForm extends BaseProfilesForm
 {
+    /**
+     * Configures the profiles form
+     */
     public function configure()
     {
         // Set up the extra widgets
