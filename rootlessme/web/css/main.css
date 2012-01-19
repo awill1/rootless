@@ -38,6 +38,8 @@ a {
 
 textarea {
     resize: none;
+    font-family: Arial, Geneva, sans-serif;
+    font-size: 100%;
 }
 
 

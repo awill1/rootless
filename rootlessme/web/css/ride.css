@@ -329,6 +329,16 @@ tbody {
     outline-color: #119D49;
 }
 
+#rideRequestForm textarea {
+    
+    width: 215px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    float: left;
+    border: 1px solid #999;
+    outline-color: #119D49;
+}
+
 #rideRequestForm th {
     padding:5px 10px 0px 10px;
 
@@ -364,6 +374,16 @@ tbody {
 #rideOfferForm input, #rideOfferForm select {
     
     width: 175px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    float: left;
+    border: 1px solid #999;
+    outline-color: #119D49;
+}
+
+#rideOfferForm textarea {
+    
+    width: 215px;
     padding-top: 5px;
     padding-bottom: 5px;
     float: left;
