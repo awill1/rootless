@@ -21,6 +21,9 @@
         var originDataField = "#seats_route_origin_data";
         var destinationDataField = "#seats_route_destination_data";
         var routeDataField = "#seats_route_route_data";
+        var originMarker;
+        var destinationMarker;
+        var routePolyline;
         // Latitude and longitude key names change in google maps api.
         // This testPoint helps us figure out which letters google is using
         // this time around.
@@ -31,45 +34,34 @@
 
         // Function when the page is ready
         $(document).ready(function(){
-
-            // Google map loading
-            var latlng = new google.maps.LatLng(<?php echo sfConfig::get('app_google_map_default_latitude') ?>, <?php echo sfConfig::get('app_google_map_default_longitude') ?>);
-            var myOptions = {
-                zoom: <?php echo sfConfig::get('app_google_map_default_zoom') ?>,
-                center: latlng,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            map = new google.maps.Map(document.getElementById("rideProfileMap"),
-                myOptions);
+                
+            // Create the Google Map
+            map = initializeGoogleMap("rideProfileMap");
+                
             geocoder = new google.maps.Geocoder();
 
             // Decode the polyline for the route
             // Workaround for javascript strings, needs backslashes escaped
             var encodedPolyline = "<?php echo str_replace('\\','\\\\',$passengerRoute->getEncodedPolyline()); ?>";
-            var routeCoordinates  = google.maps.geometry.encoding.decodePath(encodedPolyline);
-            var routePath = new google.maps.Polyline({
-                path: routeCoordinates,
-                strokeColor: "#119F49",
-                strokeOpacity: .5,
-                strokeWeight: 5
-            });
-
-            routePath.setMap(map);
+            routePolyline = displayEncodedPolyline(map, encodedPolyline);
 
             // Set the bounds of the map to center and zoom on the route
-            var bounds = new google.maps.LatLngBounds();
-            for (var i = 0; i < routeCoordinates.length; i++) {
-                bounds.extend(routeCoordinates[i]);
-            }
-            map.fitBounds(bounds);
-
+            setMapBoundsToPolyline(map, routePolyline);
 
             directionsDisplay = new google.maps.DirectionsRenderer();
             directionsDisplay.setMap(map);
+            
+            // Setup the origin and destination marker, the maps are null
+            // because the markers are hidden
+            originMarker = initializeMarker("Origin");
+            destinationMarker = initializeMarker("Destination");
+            
+            // Setup the path, the maps are null because the path is hidden
+            routePolyline = initializePath();
 
             // Route preview changes whenever the user finished editing the
             // seat pickup and dropoff textboxes
-            bindTextBoxesToMap();
+            bindTextBoxesToMap(originTextBox, destinationTextBox);
 
             // Discover the strange keys used for longitude and latitude
             // in the data returned from google maps api.
@@ -86,103 +78,7 @@
             // Change all of the appropriate textboxes to date and time pickers
             $( ".datePicker" ).datepicker();
             $( ".timePicker" ).timepicker({ampm: true});
-
-
         });
-
-        function bindTextBoxesToMap() {
-            // Route preview changes whenever the user finished editing the
-            // seat pickup and dropoff textboxes
-            $(originTextBox).change(previewRoute);
-            $(destinationTextBox).change(previewRoute);
-        };
-
-        function previewRoute() {
-            if ($(originTextBox).val())
-            {
-                // Get the location of the origin, and place a marker on the map
-                var originValue = $(originTextBox).val();
-                var originGeocodeRequest = {
-                    address: originValue
-                };
-                geocoder.geocode(originGeocodeRequest, geocodeOrigin);
-            }
-
-            if ($(destinationTextBox).val())
-            {
-                // Get the location of the destination, and place a marker on the map
-                var destinationValue = $(destinationTextBox).val();
-                var destinationGeocodeRequest = {
-                    address: destinationValue
-                };
-                geocoder.geocode(destinationGeocodeRequest, geocodeDestination);
-            }
-
-            // Get the directions
-            calcRoute();
-        }
-
-        function geocodeOrigin(results, status) {
-            var locationNumber = 0;
-            showResults(results, status, locationNumber);
-            // Send the geocoded information to the server
-            $(originDataField).val(formatGoogleJSON(strangeLat, strangeLon, JSON.stringify(locations[ locationNumber])));
-        }
-
-        function geocodeDestination(results, status) {
-            var locationNumber = 1;
-            showResults(results, status, locationNumber);
-            // Send the geocoded information to the server
-            $(destinationDataField).val(formatGoogleJSON(strangeLat, strangeLon, JSON.stringify(locations[locationNumber])));
-        }
-
-        function showResults(results, status, locationNumber) {
-          if (! results) {
-            alert("Geocoder did not return a valid response");
-          } else {
-            if (status == google.maps.GeocoderStatus.OK) {
-                // Check to see if the location has already been added to the
-                // map
-//                if (locations.length >=)
-//                {
-                    // Remove the location marker from the map
-                  //  locations[locationNumber].setMep(null);
-//                }
-                var myLatlng = results[0].geometry.location;
-                var marker = new google.maps.Marker({
-                   position: myLatlng,
-                   map: map,
-                   title:"Hello World!"
-                });
-                map.panTo(myLatlng);
-                // Add the new location information to the locations array
-                locations[locationNumber] = results[0];
-            } else {
-
-            }
-          }
-        }
-
-        function calcRoute() {
-          var start = $(originTextBox).val();
-          var end = $(destinationTextBox).val();
-          var request = {
-            origin:start,
-            destination:end,
-            travelMode: google.maps.TravelMode.DRIVING
-          };
-          directionsService.route(request, function(result, status) {
-            if (status == google.maps.DirectionsStatus.OK) {
-
-                // Set the route field to the results object for posting to the
-                // server
-                $(routeDataField).val(formatGoogleJSON(strangeLat, strangeLon, JSON.stringify(result)));
-
-                // Display the directions
-                directionsDisplay.setDirections(result);
-            }
-          });
-        }
 
         function loadSeatDetails() {
             if($('.selectedUser').length > 0) {
