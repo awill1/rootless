@@ -31,6 +31,7 @@
         var originLongitude = "#rides_origin_longitude";
         var destinationLatitude = "#rides_destination_latitude";
         var destinationLongitude = "#rides_destination_longitude";
+        var polylines = new Object;
 
         // Function when the page is ready
         $(document).ready(function(){
@@ -42,6 +43,7 @@
               {
                  $('#loader').show();
                  $('#results').toggle('blind');
+                 ClearPolylinesFromMap();
               });
             $('#rideSearchForm').ajaxForm(
             {
@@ -51,8 +53,12 @@
                     // This handler function will run when the form is complete
                     $('#loader').hide();
                     $('#results').toggle('blind');
-                    $("#rideTable tbody tr")
+                    
+                    // Add the results to the google map
+                    LoadItemsIntoGoogleMap();
+                    
                     // Change the hover style
+                    $("#rideTable tbody tr")
                     .hover(
                         function()
                         {
@@ -100,19 +106,62 @@
 
         function HighlightRow(tableRow)
         {
-            //tableRow.addClass("selectedRow");
             tableRow.addClass("rideListSelectedRow");
-
+            // Get the polyline from the row
+            tableRow.find(".routePolyline").each(function(index) {
+                var key = $(this).attr('id');
+                polyline = polylines[key];
+                HighlightPolyline(polyline);
+            });
         }
+        
+        function HighlightPolyline(polyline)
+        {
+            polyline.setOptions({strokeColor: SECONDARY_ROUTE_COLOR, zIndex: 100});
+        }
+        
         function UnHighlightRow(tableRow)
         {
-            //tableRow.removeClass("selectedRow");
             tableRow.removeClass("rideListSelectedRow");
+            // Get the polyline from the row
+            tableRow.find(".routePolyline").each(function(index) {
+                var key = $(this).attr('id');
+                polyline = polylines[key];
+                UnHighlightPolyline(polyline);
+            });
+        }
+        
+        function UnHighlightPolyline(polyline)
+        {
+            polyline.setOptions({strokeColor: PRIMARY_ROUTE_COLOR, zIndex: 1});
         }
 
         function DoNav(theUrl)
         {
             document.location.href = theUrl;
+        }
+        
+        function LoadItemsIntoGoogleMap()
+        {
+            $(".routePolyline").each(function(index) {
+                var key = $(this).attr('id');
+                var encodedPolyline = $(this).text();
+                // Load the polylines into the google map
+                var polyline = displayEncodedPolyline(map, encodedPolyline)
+                polylines[key] = polyline;
+            });
+            
+        }
+        
+        function ClearPolylinesFromMap()
+        {
+            for (var polyline in polylines)
+            {
+                // Clear the polyline from the google map
+                polylines[polyline].setMap(null);
+                // Remove the polyline from the list of lines
+                delete polylines[polyline];
+            }
         }
 
     </script>

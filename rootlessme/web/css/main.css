@@ -49,6 +49,10 @@ textarea {
     border: 1px solid transparent;
 }
 
+.hidden {
+    display: none;
+}
+
 :focus {
     
     outline-color: #119D49;
