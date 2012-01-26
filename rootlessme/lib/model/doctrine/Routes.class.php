@@ -46,7 +46,7 @@ class Routes extends BaseRoutes
      * @param String $googleDirections The Google directions javascript api 
      * result string with the latitude and longitude keys replaced with "lat" 
      * and "lon".
-     * @return void 
+     * @return Routes The created route 
      */
     public function createFromGoogleDirections($googleDirections = null)
     {

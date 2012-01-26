@@ -78,13 +78,11 @@
             // Change all of the appropriate textboxes to date and time pickers
             $( ".datePicker" ).datepicker();
             $( ".timePicker" ).timepicker({ampm: true});
-
-             
         });
 
         function loadSeatDetails() {
-            if($('.selectedUser').length > 0) {
-                
+            if($('.selectedUser').length > 0) 
+            {
               $('.selectedUser').removeClass('selectedUser');
             }
             $(this).parent().append($('#seatSpinnerContainer'));
@@ -96,7 +94,7 @@
                 function(){
                     $('#negotiationSpinnerContainer').hide();
                     $("#seatNegotiationBlock").slideDown("blind");
-                    bindTextBoxesToMap();
+                    bindTextBoxesToMap(originTextBox, destinationTextBox);
                 });
             // Return false to override default click behavior
             return false;

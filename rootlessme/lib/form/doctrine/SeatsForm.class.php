@@ -79,29 +79,23 @@ class SeatsForm extends BaseSeatsForm
     public function doSave($con = null) {
         // Get the person id of the authenticated user
         $person = sfContext::getInstance()->getUser()->getGuardUser()->getPeople();
-
-//        sfContext::getInstance()->getLogger()->debug( 'Saving the Seat.' );
         
-        // Only handle the route data if the route_id is empty, because
-        // this means the route is new or has been changed
+        // Get the original route id
         $routeId = $this->values['route']['route_id'];
         
-//        sfContext::getInstance()->getLogger()->debug( '$routeId='.$routeId );
-        if ($routeId == '')
+        // Only create a route if there is route data, because
+        // this means the route is new or has been changed
+        if ($this->values['route']['route_data'] != '')
         {
-            
-//            sfContext::getInstance()->getLogger()->debug( '$routeId is empty' );
             // Get the route data from the embedded form
             $route_data = $this->values['route']['route_data'];
 
-            // Update the route
-            $route = $this->getObject()->Routes;
+            // Create a new route
+            $route = new Routes();
             $route->createFromGoogleDirections($route_data);
-
-            // Update the route_id value so it does not get overwritten by the
-            // internal updateObject() call
+            
+            // Update the route id
             $routeId = $route->getRouteId();
-            $this->values['route']['route_id'] = $routeId;
 
             // Update the origin and destination to use the geocoded information
             $origin_data = $this->values['route']['origin_data'];
@@ -164,8 +158,21 @@ class SeatsForm extends BaseSeatsForm
             // Set the seat carpool_id to be the new carpool
             $this->values['passenger_id'] = $newPassenger->getPassengerId();
         }
-
+        
+        
         // Call the parent function to save the seat
-        return parent::doSave($con);
+        parent::doSave($con);
+        $updatedSeat = $this->getObject();
+        
+        // Update the route id in the seat if necessary
+        if ($routeId != $updatedSeat->getSoloRouteId())
+        {            
+            // Update the seat with the new route id
+            $updatedSeat->setSoloRouteId($routeId);
+            $updatedSeat = $updatedSeat->save();
+        }
+        
+        // Return the updated seat
+        return $updatedSeat;
     }
 }
