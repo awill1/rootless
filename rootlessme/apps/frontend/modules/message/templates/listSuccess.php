@@ -5,11 +5,7 @@
 ?>
 
         <form name='messages_list_<?php echo $listType ?>_form' action="messages.html">
-            <script type="text/javascript">
-              
-                <!-- Begin
-                // <input type=button name="CheckAll"   value="Check All" onClick="checkAll(document.myform.list)">
-                // <input type=button name="UnCheckAll" value="Uncheck All" onClick="uncheckAll(document.myform.list)">                
+            <script type="text/javascript">             
                 function checkAll(field)
                 {
                         for (i = 0; i < field.length; i++)
@@ -21,8 +17,6 @@
                         for (i = 0; i < field.length; i++)
                                 field[i].checked = false ;
                 }
-            
-                //  End -->
             </script>
             
             
