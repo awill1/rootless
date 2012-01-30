@@ -17,34 +17,38 @@ class profileActions extends sfActions
       ->execute();
   }
 
-  public function executeShow(sfWebRequest $request)
-  {
-    $this->profile = Doctrine_Core::getTable('Profiles')->find(array($request->getParameter('profile_name')));
-    $this->forward404Unless($this->profile);
-    $personID = $this->profile->getPersonID();
-
-    // Get additional information needed for the profile show page
-    $this->friends = Doctrine_Core::getTable('Profiles')->getFriendsProfiles($personID);
-    $this->travelSummary = Doctrine_Core::getTable('Seats')->getTravelSummaryForPerson($personID);
-    $this->vehicle = $this->profile->getPeople()->getVehicles();
-    $this->ratings = Doctrine_Core::getTable('Reviews')->getReviewsSummaryForPerson($personID);
-
-    // Only allow reviews if the user is logged in
-    if ($this->getUser()->isAuthenticated())
+    /**
+     * Executes the show action for a profile
+     * @param sfWebRequest $request The http request
+     */
+    public function executeShow(sfWebRequest $request)
     {
-        // Create the review form using the details of the users
-        $newReview = new Reviews();
-        // Set the reviewer
-        $newReview->setReviewerId($personID);
-        // Set the reviewee
-        $newReview->setRevieweeId($this->getUser()->getGuardUser()->getPersonId());
-        $this->reviewForm = new ReviewsForm($newReview);
+        $this->profile = Doctrine_Core::getTable('Profiles')->find(array($request->getParameter('profile_name')));
+        $this->forward404Unless($this->profile);
+        $personID = $this->profile->getPersonID();
 
-        // Only get mutual friends if the user is logged in
-        $this->mutualFriends = Doctrine_Core::getTable('Profiles')->getMutualFriendsProfiles($personID, $this->getUser()->getGuardUser()->getPersonId());
+        // Get additional information needed for the profile show page
+        $this->friends = Doctrine_Core::getTable('Profiles')->getFriendsProfiles($personID);
+        $this->travelSummary = Doctrine_Core::getTable('Seats')->getTravelSummaryForPerson($personID);
+        $this->vehicle = $this->profile->getPeople()->getVehicles();
+        $this->ratings = Doctrine_Core::getTable('Reviews')->getReviewsSummaryForPerson($personID);
 
+        // Only allow reviews if the user is logged in
+        if ($this->getUser()->isAuthenticated())
+        {
+            // Create the review form using the details of the users
+            $newReview = new Reviews();
+            // Set the reviewer
+            $newReview->setReviewerId($personID);
+            // Set the reviewee
+            $newReview->setRevieweeId($this->getUser()->getGuardUser()->getPersonId());
+            $this->reviewForm = new ReviewsForm($newReview);
+
+            // Only get mutual friends if the user is logged in
+            $this->mutualFriends = Doctrine_Core::getTable('Profiles')->getMutualFriendsProfiles($personID, $this->getUser()->getGuardUser()->getPersonId());
+
+        }
     }
-  }
 
     /**
      * Executes the edit action

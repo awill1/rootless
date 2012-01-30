@@ -93,7 +93,6 @@
         </div>
         <div id="reviewsArea">
             <?php include_partial('review/ratingGraphs', array('ratings' => $ratings)) ?>
-            <span id="howmanyReviews">Based on 21 responses.</span>
         </div>
     </div>
     <div id="fragment-travel_log" class="middleProfileTabContent">

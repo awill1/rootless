@@ -39,7 +39,8 @@ class ReviewsTable extends Doctrine_Table
         $query = 'SELECT AVG(was_safe)*100 AS safety_average, 
                          AVG(was_friendly)*100 AS friendliness_average ,
                          AVG(was_punctual)*100 AS punctuality_average ,
-                         AVG(was_courteous)*100 AS rider_average
+                         AVG(was_courteous)*100 AS rider_average ,
+                         COUNT(*) AS review_count
                   FROM reviews
                   WHERE reviewee_id = '.$person_id;
         $statement = $connection->execute($query);
@@ -49,12 +50,14 @@ class ReviewsTable extends Doctrine_Table
         $friendlinessAverage = $resultset->friendliness_average;
         $punctualityAverage = $resultset->punctuality_average;
         $riderAverage = $resultset->rider_average;
+        $reviewCount = $resultset->review_count;
 
         return array(
             'safetyAverage' => $safetyAverage,
             'friendlinessAverage' => $friendlinessAverage,
             'punctualityAverage' => $punctualityAverage,
-            'riderAverage' => $riderAverage
+            'riderAverage' => $riderAverage,
+            'reviewCount' => $reviewCount
         );
     }
 }

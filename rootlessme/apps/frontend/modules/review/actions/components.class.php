@@ -5,7 +5,6 @@ class reviewComponents extends sfComponents
     public function executeReviews(sfWebRequest $request)
     {
         $this->profile = Doctrine_Core::getTable('Profiles')->find(array($request->getParameter('profile_name')));
-//        $this->forward404Unless($this->profile);
         $this->personID = $this->profile->getPersonID();
 
         $this->reviews = Doctrine_Core::getTable('Reviews')->getReviewsForPersonWithProfile($this->personID);

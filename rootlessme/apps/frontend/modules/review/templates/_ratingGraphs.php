@@ -6,3 +6,8 @@
         <li class="feedbackSummaryListItem"><div id="goodRiderRating" class="feedbackRatingBar"><div class="feedbackRatingBarValue" style="width: <?php echo round($ratings['riderAverage']) ?>%;"><?php echo round($ratings['riderAverage']) ?>%</div></div><div class="feedbackRatingBarLabel">Good Rider</div></li>
     </ul>
 </div>
+<span id="howmanyReviews">
+    Based on 
+    <?php echo $ratings['reviewCount'] ?> 
+    response<?php if ($ratings['reviewCount'] != 1){ echo 's'; } ?>.
+</span>
