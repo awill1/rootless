@@ -6,11 +6,9 @@
 ?>
 
 <?php slot('gmapheader'); ?>
-    <script type="text/javascript">
-        $(function() {
-            $( "#middleProfileDetails" ).tabs();
-	});
-    </script>
+    <script type="text/javascript" src="/js/jquery.form.js"></script>
+    <script type="text/javascript" src="/js/jquery.blockUI.js"></script>
+    <script type="text/javascript" src="/js/profileEdit.js"></script>
 <?php end_slot();?>
 
 <h1>Edit Profile</h1>

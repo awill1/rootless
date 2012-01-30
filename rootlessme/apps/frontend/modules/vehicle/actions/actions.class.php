@@ -37,8 +37,34 @@ class vehicleActions extends sfActions
     {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
         $this->form = new VehiclesForm();
-        $this->processForm($request, $this->form);
-        $this->setTemplate('new');
+        
+        $vehicle = $this->processForm($request, $this->form);
+        
+        // If the request came from AJAX render the edit vehicle partial
+        // with the new vehicle information
+        if ($request->isXmlHttpRequest())
+        {
+            if ($vehicle != null)
+            {
+                $vehicleForm = new VehiclesForm($vehicle);
+                return $this->renderPartial('vehicle/form', array('form' => $vehicleForm));
+            }
+            else
+            {
+                return $this->renderText('Vehicle was not created');
+            }
+        }
+        else
+        {
+            $this->setTemplate('edit');
+
+            if ($vehicle != null)
+            {
+                // This is not an AJAX request so redirect to the show seat
+                // page
+                $this->redirect('vehicle_edit', array('vehicle_id', $vehicle->getVehicleId()));
+            }
+        }
     }
 
     /**
@@ -61,9 +87,34 @@ class vehicleActions extends sfActions
         $this->forward404Unless($vehicle = Doctrine_Core::getTable('Vehicles')->find(array($request->getParameter('vehicle_id'))), sprintf('Object vehicle does not exist (%s).', $request->getParameter('vehicle_id')));
         $this->form = new VehiclesForm($vehicle);
 
-        $this->processForm($request, $this->form);
+        $vehicle = $this->processForm($request, $this->form);
+        
+        // If the request came from AJAX render the edit vehicle partial
+        // with the new vehicle information
+        if ($request->isXmlHttpRequest())
+        {
+            if ($vehicle != null)
+            {
+                $vehicleForm = new VehiclesForm($vehicle);
+                return $this->renderPartial('vehicle/form', array('form' => $vehicleForm));
+            }
+            else
+            {
+                return $this->renderText('Vehicle was not updated');
+            }
+        }
+        else
+        {
+            $this->setTemplate('edit');
 
-        $this->setTemplate('edit');
+            if ($vehicle != null)
+            {
+                // This is not an AJAX request so redirect to the show seat
+                // page
+
+                $this->redirect('vehicle_edit', array('vehicle_id', $vehicle->getVehicleId()));
+            }
+        }
     }
 
     /**
@@ -77,8 +128,8 @@ class vehicleActions extends sfActions
         if ($form->isValid())
         {
             $vehicle = $form->save();
-
-            $this->redirect('vehicle/edit?vehicle_id='.$vehicle->getVehicleId());
         }
+        
+        return $vehicle;
     }
 }

@@ -60,47 +60,81 @@ class profileActions extends sfActions
         $this->vehicleInfoForm = new VehiclesForm($profile->getPeople()->getVehicles()->getFirst());
     } 
 
-  public function executeUpdate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($profile = $this->getUser()->getGuardUser()->getPeople()->getProfiles(), sprintf('Object profile does not exist.'));
-
-    // Create partial profile update forms   
-    $this->accountInfoForm = new ProfilesAccountInfoForm($profile);
-    $this->additionalInfoForm = new ProfilesAdditionalInfoForm($profile);
-
-    // Which form to precess depends on the section submitted
-    if ($section == 'account')
+    /**
+     * Executes the update action
+     * @param sfWebRequest $request The http request
+     */
+    public function executeUpdate(sfWebRequest $request)
     {
-        $this->processForm($request, $this->accountInfoForm);
+        $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
+        $this->forward404Unless($profile = $this->getUser()->getGuardUser()->getPeople()->getProfiles(), sprintf('Object profile does not exist.'));
+
+        // Get the section parameter
+        $section = $request->getParameter('section');
+        
+        $profileForm = null;
+
+        // Which form to precess depends on the section submitted
+        if ($section == 'account')
+        {
+            $profileForm = new ProfilesAccountInfoForm($profile);
+        }
+        if ($section == 'additional')
+        {
+            $profileForm = new ProfilesAdditionalInfoForm($profile);
+        }
+        
+        $profile = $this->processForm($request, $profileForm);
+        
+        // If the request came from AJAX render the edit profile partial
+        // with the new profile information
+        if ($request->isXmlHttpRequest())
+        {
+            if ($profile != null)
+            {
+                $profileForm = null;
+                if ($section == 'account')
+                {
+                    $profileForm = new ProfilesAccountInfoForm($profile);
+                }
+                if ($section == 'additional')
+                {
+                    $profileForm = new ProfilesAdditionalInfoForm($profile);
+                }
+                return $this->renderPartial('profile/form', array('form' => $profileForm, 'section' => $section));
+            }
+            else
+            {
+                return $this->renderText('Profile was not updated');
+            }
+        }
+        else
+        {
+            $this->setTemplate('edit');
+
+            if ($profile != null)
+            {
+                // This is not an AJAX request so redirect to the show seat
+                // page
+
+                $this->redirect('profile_edit', array('profile_name', $profile->getProfileName(), 'section' => $section));
+            }
+        }
     }
-    if ($section == 'additional')
+
+    /**
+     * Processes a profile form to create or update a profile
+     * @param sfWebRequest $request The http request
+     * @param sfForm $form The form
+     * @return Profiles The profile that was saved
+     */
+    protected function processForm(sfWebRequest $request, sfForm $form)
     {
-        $this->processForm($request, $this->additionalInfoForm);
+        $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+        if ($form->isValid())
+        {
+            $profile = $form->save();
+        }
+        return $profile;
     }
-
-    $this->setTemplate('edit');
-  }
-  
-  public function executeDelete(sfWebRequest $request)
-  {
-    $request->checkCSRFProtection();
-
-    $this->forward404Unless($profile = Doctrine_Core::getTable('Profiles')->find(array($request->getParameter('profile_name'))), sprintf('Object profile does not exist (%s).', $request->getParameter('profile_name')));
-    $profile->delete();
-
-    $this->redirect('profile/index');
-  }
-
-  protected function processForm(sfWebRequest $request, sfForm $form)
-  {
-    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if ($form->isValid())
-    {
-      $profile = $form->save();
-
-      $this->redirect('profile/edit?profile_name='.$profile->getProfileName());
-    }
-  }
-
 }
