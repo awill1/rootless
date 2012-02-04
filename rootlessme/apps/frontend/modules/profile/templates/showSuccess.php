@@ -60,7 +60,7 @@
     <span id="whereYouWannaGo"><?php echo $profile->getFirstName() ?> wants to go to <a href="#" class="locationLink"><?php echo $profile->getWantsToTravelTo()?></a></span>
 </div>
 <div id="middleProfileBadge">
-    <?php if(preg_match('/.*\.edu$/',$profile->getPeople()->getUsers()->getFirst()->getEmail())) : ?>
+    <?php if(preg_match('/.*\.edu$/',$profile->getPeople()->getSfGuardUser()->getEmailAddress())) : ?>
         <div id="studentVer">
             <img src="/images/check.png" alt="Verified Student" />
             Verified Student

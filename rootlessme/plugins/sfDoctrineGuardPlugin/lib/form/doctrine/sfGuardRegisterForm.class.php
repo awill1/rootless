@@ -61,17 +61,8 @@ class sfGuardRegisterForm extends BasesfGuardRegisterForm
             $profile->setFirstName($this->values['first_name']);
             $profile->setLastName($this->values['last_name']);
 
-            // Create a users object in the database
-            $user = new Users();
-            $user->setPersonId($personId);
-            $user->setUserName($this->values['email_address']);
-            //$user->setUserName($this->values['username']);
-            $user->setEmail($this->values['email_address']);
-            $user->setEncryptedPassword('JUNK');
-
-            // Save the new profile and user
+            // Save the new profile
             $profile->save();
-            $user->save();
         }
 
         // Save the new sfGuardUser

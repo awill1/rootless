@@ -1,40 +1,3 @@
-AttendingStatusType:
-  connection: doctrine
-  tableName: attending_status_type
-  actAs: { Timestampable: ~ }
-  columns:
-    attending_status_type_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    display_text:
-      type: string(45)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    TravelersAttendingEvent:
-      local: attending_status_type_id
-      foreign: status
-      type: many
 Carpools:
   connection: doctrine
   tableName: carpools
@@ -153,61 +116,6 @@ Carpools:
       local: carpool_id
       foreign: carpool_id
       type: many
-Comments:
-  connection: doctrine
-  tableName: comments
-  actAs: { Timestampable: ~ }
-  columns:
-    comment_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    event_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    person_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    comment:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    Events:
-      local: event_id
-      foreign: event_id
-      type: one
-    People:
-      local: person_id
-      foreign: person_id
-      type: one
 ConversationParticipants:
   connection: doctrine
   tableName: conversation_participants
@@ -308,251 +216,6 @@ Conversations:
       local: conversation_id
       foreign: conversation_id
       type: many
-Events:
-  connection: doctrine
-  tableName: events
-  actAs: { Timestampable: ~ }
-  columns:
-    event_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    location_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    name:
-      type: string(45)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    date:
-      type: date(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    time:
-      type: time(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    picture_url_large:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    picture_url_small:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    description:
-      type: string(1024)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    website_url:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    certification:
-      type: string(45)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    Locations:
-      local: location_id
-      foreign: location_id
-      type: one
-    Comments:
-      local: event_id
-      foreign: event_id
-      type: many
-    TravelersAttendingEvent:
-      local: event_id
-      foreign: event_id
-      type: many
-FriendshipRequests:
-  connection: doctrine
-  tableName: friendship_requests
-  actAs: { Timestampable: ~ }
-  columns:
-    requestor_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    requestee_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    friendship_status_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    abuse:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    abuse_comment:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    People:
-      local: requestor_id
-      foreign: person_id
-      type: one
-    People_2:
-      class: People
-      local: requestee_id
-      foreign: person_id
-      type: one
-    FriendshipStatuses:
-      local: friendship_status_id
-      foreign: friendship_status_id
-      type: one
-FriendshipStatuses:
-  connection: doctrine
-  tableName: friendship_statuses
-  actAs: { Timestampable: ~ }
-  columns:
-    friendship_status_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    display_text:
-      type: string(45)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    FriendshipRequests:
-      local: friendship_status_id
-      foreign: friendship_status_id
-      type: many
-Friendships:
-  connection: doctrine
-  tableName: friendships
-  actAs: { Timestampable: ~ }
-  columns:
-    friend1_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    friend2_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    People:
-      local: friend1_id
-      foreign: person_id
-      type: one
-    People_2:
-      class: People
-      local: friend2_id
-      foreign: person_id
-      type: one
 Legs:
   connection: doctrine
   tableName: legs
@@ -715,10 +378,6 @@ Locations:
       local: step_id
       foreign: step_id
       type: one
-    Events:
-      local: location_id
-      foreign: location_id
-      type: many
 MessageRecipients:
   connection: doctrine
   tableName: message_recipients
@@ -957,10 +616,6 @@ People:
       local: person_id
       foreign: driver_id
       type: many
-    Comments:
-      local: person_id
-      foreign: person_id
-      type: many
     ConversationParticipants:
       local: person_id
       foreign: person_id
@@ -968,24 +623,6 @@ People:
     Conversations:
       local: person_id
       foreign: author_id
-      type: many
-    FriendshipRequests:
-      local: person_id
-      foreign: requestor_id
-      type: many
-    FriendshipRequests_2:
-      class: FriendshipRequests
-      local: person_id
-      foreign: requestee_id
-      type: many
-    Friendships:
-      local: person_id
-      foreign: friend1_id
-      type: many
-    Friendships_2:
-      class: Friendships
-      local: person_id
-      foreign: friend2_id
       type: many
     Messages:
       local: person_id
@@ -1012,22 +649,10 @@ People:
       local: person_id
       foreign: changer_id
       type: many
-    SecuritySettings:
-      local: person_id
-      foreign: person_id
-      type: many
     sfGuardUser:
       local: person_id
       foreign: person_id
-      type: many
-    TravelersAttendingEvent:
-      local: person_id
-      foreign: person_id
-      type: many
-    Users:
-      local: person_id
-      foreign: person_id
-      type: many
+      type: one
     Vehicles:
       local: person_id
       foreign: person_id
@@ -1731,57 +1356,6 @@ SeatsHistory:
       local: seat_id
       foreign: seat_id
       type: one
-SecuritySettings:
-  connection: doctrine
-  tableName: security_settings
-  actAs: { Timestampable: ~ }
-  columns:
-    security_settings_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    person_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    can_email_promotions:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    can_email_partners:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    People:
-      local: person_id
-      foreign: person_id
-      type: one
 Steps:
   connection: doctrine
   tableName: steps
@@ -1858,108 +1432,6 @@ Steps:
       local: step_id
       foreign: step_id
       type: many
-TravelersAttendingEvent:
-  connection: doctrine
-  tableName: travelers_attending_event
-  actAs: { Timestampable: ~ }
-  columns:
-    event_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    person_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    status:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    Events:
-      local: event_id
-      foreign: event_id
-      type: one
-    AttendingStatusType:
-      local: status
-      foreign: attending_status_type_id
-      type: one
-    People:
-      local: person_id
-      foreign: person_id
-      type: one
-Users:
-  connection: doctrine
-  tableName: users
-  actAs: { Timestampable: ~ }
-  columns:
-    user_name:
-      type: string(45)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    person_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    email:
-      type: string(45)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    encrypted_password:
-      type: string(128)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    People:
-      local: person_id
-      foreign: person_id
-      type: one
 Vehicles:
   connection: doctrine
   tableName: vehicles

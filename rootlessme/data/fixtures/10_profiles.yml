@@ -14,40 +14,6 @@ People:
   person_russ:
     person_id: 6
 
-
-Users:
-  user_aaron:
-    user_name:   user_aaron
-    person_id:   1
-    email:       aaron@rootless.me
-    encrypted_password: bldslfdslkjdsflkjfdsalkjfdslkjfdslkj
-  user_christy:
-    user_name:   user_christy
-    person_id:   2
-    email:       christy@rootless.me
-    encrypted_password: kjrewlkjifdsoiufdsoiuwrjrewljfdsjjiofs
-  user_lauren:
-    user_name:   user_lauren
-    person_id:   3
-    email:       lauren@testuniveristy.edu
-    encrypted_password: kjrewlkjifdsoiufdsoiuwrjrewljfdsjjiofs
-  user_colin:
-    user_name:   user_colin
-    person_id:   4
-    email:       colin@testuniveristy.edu
-    encrypted_password: kjrewlkjifdsoiufdsoiuwrjrewljfdsjjiofz
-  user_tony:
-    user_name:   user_tony
-    person_id:   5
-    email:       tony@testuniveristy.edu
-    encrypted_password: kjrewlkjifdsoiufdsoiuwrjrewljfdsjjiofz
-  user_russ:
-    user_name:   user_russ
-    person_id:   6
-    email:       russ@testuniveristy.edu
-    encrypted_password: kjrewlkjifdsoiufdsoiuwrjrewljfdsjjiofz
-
-
 Profiles:
   profile_aaron:
     profile_name:    281c298b2f4e4e758b53c66bae7b03ff
