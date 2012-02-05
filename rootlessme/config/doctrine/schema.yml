@@ -270,7 +270,7 @@ Locations:
   actAs: { Timestampable: ~ }
   columns:
     location_id:
-      type: integer(4)
+      type: integer(5)
       fixed: false
       unsigned: false
       primary: true

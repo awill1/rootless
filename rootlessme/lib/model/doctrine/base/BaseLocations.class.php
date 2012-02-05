@@ -67,13 +67,13 @@ abstract class BaseLocations extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('locations');
-        $this->hasColumn('location_id', 'integer', 4, array(
+        $this->hasColumn('location_id', 'integer', 5, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => true,
              'autoincrement' => true,
-             'length' => 4,
+             'length' => 5,
              ));
         $this->hasColumn('step_id', 'integer', 4, array(
              'type' => 'integer',
