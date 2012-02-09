@@ -21,7 +21,7 @@
         <div class="travelerInformation">
             <a href="<?php echo url_for('profile_show_user', array('profile_name'=>$profile->getProfileName())) ?>">
                 <span class="travelerListName"><?php echo $profile->getFullName() ?></span>
-                <span class="travelerHomeTown"><?php echo $profile->getCity() ?>, <?php echo $profile->getState() ?></span>
+                <span class="travelerHomeTown"><?php echo $profile->getCityStateString() ?></span>
             </a>
         </div>
         <?php endforeach; ?>
