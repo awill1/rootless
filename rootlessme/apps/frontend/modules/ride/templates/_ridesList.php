@@ -11,7 +11,8 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($carpools as $i => $carpool): ?>
+        <?php foreach ($carpools as $i => $carpool):
+                  $route = $carpool->getRoutes(); ?>
         <tr class="<?php echo fmod($i, 2) ? 'rideListNotSelectedAltRow' : 'rideListNotSelectedRow' ?>">
             <td>
                 <div class="dateBlockLarge">
@@ -26,9 +27,9 @@
                     </div>
                 </div>
             </td>
-            <td><?php echo $carpool->getOriginLocation()->getCityStateString() ?></td>
+            <td><?php echo $route->getOriginString() ?></td>
             <td>to</td>
-            <td><?php echo $carpool->getDestinationLocation()->getCityStateString() ?></td>
+            <td><?php echo $route->getDestinationString() ?></td>
             <td>
                 <img class="rideListDriverCreatorProfileImage" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $carpool->getPeople()->getProfiles()->getPictureUrlSmall(); ?>" alt="<?php echo $carpool->getPeople() ?>" />
                 <?php echo $carpool->getPeople() ?>
@@ -41,8 +42,9 @@
         </tr>
         <?php endforeach; ?>
         <?php foreach ($passengers as $i => $passenger): 
+            $route = $passenger->getRoutes();
             // The line striping should continue from the carpools list
-            $lineNumber = $i + count($carpools)?>
+            $lineNumber = $i + count($carpools);?>
         <tr class="<?php echo fmod($lineNumber, 2) ? 'rideListNotSelectedAltRow' : 'rideListNotSelectedRow' ?>">
             <td>
                 <div class="dateBlockLarge">
@@ -57,9 +59,9 @@
                     </div>
                 </div>
             </td>
-            <td><?php echo $passenger->getOriginLocation()->getCityStateString() ?></td>
+            <td><?php echo $route->getOriginString() ?></td>
             <td>to</td>
-            <td><?php echo $passenger->getDestinationLocation()->getCityStateString() ?></td>
+            <td><?php echo $route->getDestinationString() ?></td>
             <td>
                 <img class="rideListDriverCreatorProfileImage" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $passenger->getPeople()->getProfiles()->getPictureUrlSmall(); ?>" alt="<?php echo $passenger->getPeople() ?>" />
                 <?php echo $passenger->getPeople() ?>

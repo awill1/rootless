@@ -52,16 +52,52 @@ Routes:
     summary: "I-270 N and US-23 N"
     warning: "Roads may be closed."
     encoded_polyline: "{bcsF~k{xN}CAw@dAOn@KtEDvCnBrHj@fFk@zS_@r@i@PyGGm@x@M`Ag@x[h@dGv@nF`@zFBlCc@zM@lGlA|QTdJcAzh@YdBaAxB_BtAoAb@kBF}Bg@y@a@_BoBmCmFs@{@_V{h@cGgK}DiIiAmDkDgN_CyFoAaBiBeBiEoAgAMkC?_Dl@oRjIyEdA_CXeZSahCcI{JMoNXoM~@sMjBsnAhYgFv@uE^qDJ_EC_y@sCo[w@aC@sHr@cHxAiEzA_F~B}FxDkDxCgDvDeDnE_DpF}DzJoCtJkBbKwSrfBsMdkAaJxt@qPzyAuA`S{@dUaDprBwAvgAo@jOGrGm@tFgAlDyEvJkAdAgAXeCFiSm@o@PeMWsO@_aBxE}lBlG_UlBm~@hJiFt@eNrAwG`A}|B~b@_@E}P`DefDbo@iEhA}BfAyDnCgf@bd@uk@nk@q\p]qHtGsT`PsKzGsJfFcl@t`@_KhFwFtB{F`BqGrAsKlAkHT}HIyHe@oH_AyA[}BoAyIuHwBkAoCy@eZwFeCu@gFaCic@uUsE}AyBYcFBuFxAuVxM}B~@_Cd@gC?wCg@}B_AwHaEaDeAiAKiCHcDx@gl@rVeClAQ\uErCoO~HaKbEiJnCAbFk@`AsAt@Gh@]ZSh@IdAKtKLlAv@`DiCvAXtBLzCw@jNP|Az@t@pHVr@StAgCt@]lJ\RuL"
+    origin_address: "Port Columbus International Airport, 4600 International Gtwy, Columbus, OH 43219-1779, USA"
+    origin_city: Columbus
+    origin_state: OH
+    origin_latitude: 39.9980462
+    origin_longitude: -82.8840960
+    destination_address: "313 Rutherford Ave, Delaware, OH 43015, USA"
+    destination_city: Delaware
+    destination_state: OH
+    destination_latitude: 40.3196700
+    destination_longitude: -83.0792900
+    distance: 25463
+    duration: 1155
   route_2_city_to_city:
     route_id: 2
     copyright: "Map data Â©2011 Europa Technologies, Google"
     summary: "I-40 W"
     encoded_polyline: "eir~FdezuOren@|rfBtc~@tsE`vnApw{A`dw@~w\buN|pf@f{Y|_Fblh@rxo@b}@xxS~xtAllk@`yaBoJxlcBb~t@zbh@jc|Bx}C`rv@rw|@rlhA~dVzeo@vrSnc}Axf]fjz@xfFbw~@dz{A~d{A|zOxbrBbdUvpo@`cFp~xBc`Hk@nurDznmFfwMbwz@bbl@lq~@loPpxq@bw_@v|{CbtY~jGqeMb{iF|n\~mbDzeVh_Wr|Efc\x`Ij{kE}mAb~uF{cNd}xBjp]fulBiwJpgg@|kHntyArpb@bijCk_Kv~eGyqTj_|@`uV`k|DcsNdwxAknt@zpq@mmc@lbaCxvHdak@dse@x{p@zpiAp|gEicy@`omFbaEnko@ufQ|ilApqGze~AsyRzrjAb__@ftyBooIhr_BxjmAbwQftNboWzoAlzp@mz`@|}_@fda@jakEitAn{fB_a]lexClshBtmqAdmY_hLxiZd~XtaBndgC"
+    origin_address: "Chicago, IL, USA"
+    origin_city: Chicago
+    origin_state: IL
+    origin_latitude: 41.87811000000001
+    origin_longitude: -87.62979000000001
+    destination_address: "Los Angeles, CA, USA"
+    destination_city: "Los Angeles"
+    destination_state: CA
+    destination_latitude: 34.052360
+    destination_longitude: -118.243560
+    distance: 3429364
+    duration: 123368
   route_3_landmark_to_intersection:
     route_id: 3
     copyright: "Map data Â©2011 Google"
     summary: "I-270 N and US-23 N"
     encoded_polyline: "mplsF`_ayNeIQc@eRRwP?aWKaKoDC{NReRr@cP~CiGvA_KbDcNvDgd@pKcEr@yHd@uFNuHI{Rs@s@JiA@iLc@iHMk@OcKOsALyOc@aC@sHr@cHxAiEzA_F~B}FxDkDxCgDvDcExFaCfE}DzJoCtJkBbKmKb~@iGng@sMdkAaJxt@gBbQ{Hbp@mCrVuA`S{@dUaDprBwAvgAo@jOGrGm@tFgAlDyEvJkAdAgAXeCFiSm@o@PeMWuGE}FF_aBxE}lBlG_UlBkGt@av@rHiFt@eNrAwG`Ak`@vHol@rKan@rL_@E}P`DihBn]ib@zHaBb@oVrEiEhA}BfAyDnCeb@d`@wo@lo@gY|YyGhGmLzIuVfQwGzDaCdA_I`GgO|J_IzE_BrAqDbCoEdCeElBkFlB{F`BwH|AuGx@cK^oECiFQgJw@gDk@w@Q}BoAyIuHwBkAoCy@eZwFeCu@gFaCic@uUsE}A_D]}DFoAEeC\sAn@_IzEk@Fm@h_@"
+    origin_address: "Easton, Columbus, OH, USA"
+    origin_city: Columbus
+    origin_state: OH
+    origin_latitude: 40.046630
+    origin_longitude: -82.91246000000001
+    destination_address: "E William St & S Sandusky St, Delaware, OH 43015, USA"
+    destination_city: Delaware
+    destination_state: OH
+    destination_latitude: 40.298720
+    destination_longitude: -83.06777000000001
+    distance: 38003
+    duration: 1854
 
 
 Legs:

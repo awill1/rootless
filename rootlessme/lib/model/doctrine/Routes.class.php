@@ -46,23 +46,51 @@ class Routes extends BaseRoutes
      * @param String $googleDirections The Google directions javascript api 
      * result string with the latitude and longitude keys replaced with "lat" 
      * and "lon".
+     * @param String $originGeocode The Google geocode javascript api result
+     * string for the origin with the latitude and longitude keys replaced
+     * with "lat" and "lon"
+     * @param String $destinationGeocode The Google geocode javascript api result
+     * string for the destination with the latitude and longitude keys replaced
+     * with "lat" and "lon"
      * @return Routes The created route 
      */
-    public function createFromGoogleDirections($googleDirections = null)
+    public function createFromGoogleDirections($googleDirections = null, $originGeocode = null, $destinationGeocode = null)
     {
         // Need to increase the maximum memory limit to allow really long 
         // routes.
         ini_set('memory_limit', '256M');
         
-        // Make sure the directions are not null
+        // Make sure the parameters are not null
         if ($googleDirections == null)
         {
             sfContext::getInstance()->getLogger()->err("googleDirections is null.");
             return;
         }
+        if ($originGeocode == null)
+        {
+            sfContext::getInstance()->getLogger()->err("originGeocode is null.");
+            return;
+        }
+        if ($destinationGeocode == null)
+        {
+            sfContext::getInstance()->getLogger()->err("destinationGeocode is null.");
+            return;
+        }
 
         // The directions should be in JSON format, so decode them
         $jRoute = json_decode($googleDirections, true);
+        if (json_last_error() != JSON_ERROR_NONE)
+        {
+            sfContext::getInstance()->getLogger()->error("JSON last error: ".json_last_error());
+            return;
+        }
+        $jOrigin = json_decode($originGeocode, true);
+        if (json_last_error() != JSON_ERROR_NONE)
+        {
+            sfContext::getInstance()->getLogger()->error("JSON last error: ".json_last_error());
+            return;
+        }
+        $jDestination = json_decode($destinationGeocode, true);
         if (json_last_error() != JSON_ERROR_NONE)
         {
             sfContext::getInstance()->getLogger()->error("JSON last error: ".json_last_error());
@@ -89,8 +117,50 @@ class Routes extends BaseRoutes
         $stepNumber = 0;
         $locationNumber = 0;
 
-        // Create the legs
+        // Get the leg count
         $legsCount = count($jRoute["routes"][$routeNumber]["legs"]);
+
+        // Get the origin and destination data from the data parameters
+        foreach ($jOrigin['address_components'] as $addressComponent)
+        {
+            // City
+            if (in_array("locality",$addressComponent["types"]))
+            {
+                $this->setOriginCity($addressComponent["long_name"]);
+            }
+            // State
+            if (in_array("administrative_area_level_1",$addressComponent["types"]))
+            {
+                $this->setOriginState($addressComponent["short_name"]);
+            }
+        }
+        foreach ($jDestination['address_components'] as $addressComponent)
+        {
+            // City
+            if (in_array("locality",$addressComponent["types"]))
+            {
+                $this->setDestinationCity($addressComponent["long_name"]);
+            }
+            // State
+            if (in_array("administrative_area_level_1",$addressComponent["types"]))
+            {
+                $this->setDestinationState($addressComponent["short_name"]);
+            }
+        }
+
+        // Get the origin and destination data from the legs
+        $origin_leg_data = $jRoute["routes"][$routeNumber]["legs"][0];
+        $this->setOriginAddress($origin_leg_data["start_address"]);
+        $this->setOriginLatitude($origin_leg_data["start_location"]['lat']);
+        $this->setOriginLongitude($origin_leg_data["start_location"]['lon']);
+        $destination_leg_data = $jRoute["routes"][$routeNumber]["legs"][$legsCount-1];
+        $this->setDestinationAddress($destination_leg_data["end_address"]);
+        $this->setDestinationLatitude($destination_leg_data["end_location"]['lat']);
+        $this->setDestinationLongitude($destination_leg_data["end_location"]['lon']);
+        $route_distance = 0;
+        $route_duration = 0;
+
+        // Create the legs
         for ($currentLeg = 0 ; $currentLeg < $legsCount ; $currentLeg++ )
         {
             $leg_data = $jRoute["routes"][$routeNumber]["legs"][$currentLeg];
@@ -98,6 +168,10 @@ class Routes extends BaseRoutes
             $leg->setSequenceOrder($legNumber);
             $leg->setRoutes($this);
             $leg->save();
+
+            // Update the route distance and duration using the leg data
+            $route_distance += $leg_data["distance"]["value"];
+            $route_duration += $leg_data["duration"]["value"];
 
             // Create the steps
             $stepsCount = count($leg_data["steps"]);
@@ -167,8 +241,19 @@ class Routes extends BaseRoutes
             $legNumber++;
         }
 
+        // Set the distance and duration
+        $this->setDistance($route_distance);
+        $this->setDuration($route_duration);
+
         // Save the route
         $this->save();
+
+        // Update the origin and destination locations to use the
+        // geocoded information
+        $origin = $this->getOriginLocation();
+        $origin->createFromGoogleGeocode($originGeocode);
+        $destination = $this->getDestinationLocation();
+        $destination->createFromGoogleGeocode($destinationGeocode);
 
         return;
     }
@@ -214,5 +299,51 @@ class Routes extends BaseRoutes
         }
 
         return $q;
+    }
+
+    /**
+     * Gets the origin of the route as a string
+     * @param Boolean $getFullAddress Whether to get the full address or just
+     * the city state string
+     * @return String The origin as a string
+     */
+    public function getOriginString($getFullAddress = false)
+    {
+        $locationString = '';
+
+        if ($getFullAddress)
+        {
+            $locationString = $this->getOriginAddress();
+        }
+        else
+        {
+            // Use the abreviated form of the string
+            $locationString = Locations::createCityStateString($this->getOriginCity(), $this->getOriginState());
+        }
+
+        return $locationString;
+    }
+
+    /**
+     * Gets the destination of the route as a string
+     * @param Boolean $getFullAddress Whether to get the full address or just
+     * the city state string
+     * @return String The destination as a string
+     */
+    public function getDestinationString($getFullAddress = false)
+    {
+        $locationString = '';
+
+        if ($getFullAddress)
+        {
+            $locationString = $this->getDestinationAddress();
+        }
+        else
+        {
+            // Use the abreviated form of the string
+            $locationString = Locations::createCityStateString($this->getDestinationCity(), $this->getDestinationState());
+        }
+
+        return $locationString;
     }
 }

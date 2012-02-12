@@ -11,7 +11,8 @@
     <ul>
         <div id="rideInformationDashLeft">
             <h3>Offers Posted</h3>
-            <?php foreach ($carpools as $carpool): ?>
+            <?php foreach ($carpools as $carpool):
+                      $route = $carpool->getRoutes(); ?>
                 <li>
                     <div class="rideCont">
                         <div class="dateCont">
@@ -20,21 +21,22 @@
                             <div class="timeCont"><?php echo date("g:i A",strtotime($carpool->getStartTime())) ?></div>
                         </div>
                         <div class="locationCont">
-                            +<?php echo $carpool->getOriginLocation() ?><br /> 
-                            +<?php echo $carpool->getDestinationLocation() ?><br />
+                            +<?php echo $route->getOriginString() ?><br />
+                            +<?php echo $route->getDestinationString() ?><br />
                             <a class="viewRideLink" href="<?php echo url_for('ride_show', array('ride_type' => 'offer', 'ride_id' => $carpool->getCarpoolId())) ?>" >View Ride</a>
                         </div>
                     </div>
                 </li>
                 <?php foreach ($driverSeats as $driverSeat): ?>
                     <?php if ($driverSeat->getCarpoolId() == $carpool->getCarpoolId()) : ?>
-                        <?php $passenger = $driverSeat->getPassengers()->getPeople()->getProfiles(); ?>
+                        <?php $passenger = $driverSeat->getPassengers()->getPeople()->getProfiles();
+                              $seatRoute = $driverSeat->getPassengers()->getRoutes(); ?>
                         <li>
                             <div id="quickBoxItem">
                                 <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $passenger->getPictureUrlSmall(); ?>" />
                                 <p id="quickBoxName"><?php echo $passenger->getFullName() ?></p>
-                                <p id="quickBoxLocationStart">+<?php echo $driverSeat->getOriginLocation() ?></p>
-                                <p id="quickBoxLocationFinish">+<?php echo $driverSeat->getDestinationLocation() ?></p>
+                                <p id="quickBoxLocationStart">+<?php echo $seatRoute->getOriginString() ?></p>
+                                <p id="quickBoxLocationFinish">+<?php echo $seatRoute->getDestinationString() ?></p>
                                 <p id="quickBoxConfirmButton">Confirm</p>
                                 <p id="quickBoxDeclineButton">Decline</p>
 
@@ -50,7 +52,8 @@
         <div id="rideInformationDashRight">
             <div class="negotiationAndPostInfoContRight">
                 <h3>Requests Posted</h3>
-                <?php foreach ($passengers as $passenger): ?>
+                <?php foreach ($passengers as $passenger):
+                      $route = $passenger->getRoutes(); ?>
                     <li>
                         <div class="rideCont"> 
                             <div class="dateCont">
@@ -59,21 +62,22 @@
                                 <div class="timeCont"><?php echo date("g:i A",strtotime($passenger->getStartTime())) ?></div>
                             </div>
                             <div class="locationCont">
-                                +<?php echo $passenger->getOriginLocation() ?><br /> 
-                                +<?php echo $passenger->getDestinationLocation() ?><br /> 
+                                +<?php echo $route->getOriginString() ?><br />
+                                +<?php echo $route->getDestinationString() ?><br />
                                 <a class="viewRideLink" href="<?php echo url_for('ride_show', array('ride_type' => 'request', 'ride_id' => $passenger->getPassengerId())) ?>" >View Ride</a>
                             </div>
                         </div>
                     </li>
                     <?php foreach ($passengerSeats as $passengerSeat): ?>
                         <?php if ($passengerSeat->getPassengerId() == $passenger->getPassengerId()): ?>
-                            <?php $driver = $passengerSeat->getCarpools()->getPeople()->getProfiles(); ?>
+                            <?php $driver = $passengerSeat->getCarpools()->getPeople()->getProfiles();
+                                  $seatRoute = $driverSeat->getPassengers()->getRoutes(); ?>
                             <li>
                                 <div id="quickBoxItem">
                                     <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driver->getPictureUrlSmall(); ?>" />
                                     <p id="quickBoxName"><?php echo $driver->getFullName() ?></p>
-                                    <p id="quickBoxLocationStart">+<?php echo $passengerSeat->getOriginLocation() ?></p>
-                                    <p id="quickBoxLocationFinish">+<?php echo $passengerSeat->getDestinationLocation() ?></p>
+                                    <p id="quickBoxLocationStart">+<?php echo $seatRoute->getOriginString() ?></p>
+                                    <p id="quickBoxLocationFinish">+<?php echo $seatRoute->getDestinationString() ?></p>
                                     <p id="quickBoxConfirmButton"><a href="" >Confirm</a></p>
                                     <p id="quickBoxDeclineButton"><a href="" >Decline</a></p>
 

@@ -13,12 +13,12 @@
                 <li>
                     <span class="seatNegotiationHistoryItemCategory">Pickup location</span>
                     to 
-                    <span class="seatNegotiationHistoryItemSpecificText"><?php echo $route->getOriginLocation()->getName() ?></span>
+                    <span class="seatNegotiationHistoryItemSpecificText"><?php echo $route->getOriginString() ?></span>
                 </li>
                 <li>
                     <span class="seatNegotiationHistoryItemCategory">Dropoff location</span>
                     to
-                    <span class="seatNegotiationHistoryItemSpecificText"><?php echo $route->getDestinationLocation()->getName() ?></span>
+                    <span class="seatNegotiationHistoryItemSpecificText"><?php echo $route->getDestinationString() ?></span>
                 </li>
             <?php endif; ?>
             <?php if ($negotiationChange->getIsSeatStatusIdDifferent()): ?>

@@ -89,22 +89,15 @@ class SeatsForm extends BaseSeatsForm
         {
             // Get the route data from the embedded form
             $route_data = $this->values['route']['route_data'];
+            $origin_data = $this->values['route']['origin_data'];
+            $destination_data = $this->values['route']['destination_data'];
 
             // Create a new route
             $route = new Routes();
-            $route->createFromGoogleDirections($route_data);
+            $route->createFromGoogleDirections($route_data, $origin_data, $destination_data);
             
             // Update the route id
             $routeId = $route->getRouteId();
-
-            // Update the origin and destination to use the geocoded information
-            $origin_data = $this->values['route']['origin_data'];
-            $origin = $route->getOriginLocation();
-            $origin->createFromGoogleGeocode($origin_data);
-            $destination_data = $this->values['route']['destination_data'];
-            $destination = $route->getDestinationLocation();
-            $destination->createFromGoogleGeocode($destination_data);
-
         }
 
         // Handle the link to the carpool and passengers. If either one is

@@ -12,6 +12,18 @@ Doctrine_Manager::getInstance()->bindComponent('Routes', 'doctrine');
  * @property string $summary
  * @property string $warning
  * @property string $encoded_polyline
+ * @property string $origin_address
+ * @property string $origin_city
+ * @property string $origin_state
+ * @property float $origin_latitude
+ * @property float $origin_longitude
+ * @property string $destination_address
+ * @property string $destination_city
+ * @property string $destination_state
+ * @property float $destination_latitude
+ * @property float $destination_longitude
+ * @property integer $distance
+ * @property integer $duration
  * @property timestamp $created_at
  * @property timestamp $updated_at
  * @property Doctrine_Collection $Carpools
@@ -21,32 +33,56 @@ Doctrine_Manager::getInstance()->bindComponent('Routes', 'doctrine');
  * @property Doctrine_Collection $Seats
  * @property Doctrine_Collection $SeatsHistory
  * 
- * @method integer             getRouteId()          Returns the current record's "route_id" value
- * @method string              getCopyright()        Returns the current record's "copyright" value
- * @method string              getSummary()          Returns the current record's "summary" value
- * @method string              getWarning()          Returns the current record's "warning" value
- * @method string              getEncodedPolyline()  Returns the current record's "encoded_polyline" value
- * @method timestamp           getCreatedAt()        Returns the current record's "created_at" value
- * @method timestamp           getUpdatedAt()        Returns the current record's "updated_at" value
- * @method Doctrine_Collection getCarpools()         Returns the current record's "Carpools" collection
- * @method Doctrine_Collection getCarpools3()        Returns the current record's "Carpools_3" collection
- * @method Doctrine_Collection getLegs()             Returns the current record's "Legs" collection
- * @method Doctrine_Collection getPassengers()       Returns the current record's "Passengers" collection
- * @method Doctrine_Collection getSeats()            Returns the current record's "Seats" collection
- * @method Doctrine_Collection getSeatsHistory()     Returns the current record's "SeatsHistory" collection
- * @method Routes              setRouteId()          Sets the current record's "route_id" value
- * @method Routes              setCopyright()        Sets the current record's "copyright" value
- * @method Routes              setSummary()          Sets the current record's "summary" value
- * @method Routes              setWarning()          Sets the current record's "warning" value
- * @method Routes              setEncodedPolyline()  Sets the current record's "encoded_polyline" value
- * @method Routes              setCreatedAt()        Sets the current record's "created_at" value
- * @method Routes              setUpdatedAt()        Sets the current record's "updated_at" value
- * @method Routes              setCarpools()         Sets the current record's "Carpools" collection
- * @method Routes              setCarpools3()        Sets the current record's "Carpools_3" collection
- * @method Routes              setLegs()             Sets the current record's "Legs" collection
- * @method Routes              setPassengers()       Sets the current record's "Passengers" collection
- * @method Routes              setSeats()            Sets the current record's "Seats" collection
- * @method Routes              setSeatsHistory()     Sets the current record's "SeatsHistory" collection
+ * @method integer             getRouteId()               Returns the current record's "route_id" value
+ * @method string              getCopyright()             Returns the current record's "copyright" value
+ * @method string              getSummary()               Returns the current record's "summary" value
+ * @method string              getWarning()               Returns the current record's "warning" value
+ * @method string              getEncodedPolyline()       Returns the current record's "encoded_polyline" value
+ * @method string              getOriginAddress()         Returns the current record's "origin_address" value
+ * @method string              getOriginCity()            Returns the current record's "origin_city" value
+ * @method string              getOriginState()           Returns the current record's "origin_state" value
+ * @method float               getOriginLatitude()        Returns the current record's "origin_latitude" value
+ * @method float               getOriginLongitude()       Returns the current record's "origin_longitude" value
+ * @method string              getDestinationAddress()    Returns the current record's "destination_address" value
+ * @method string              getDestinationCity()       Returns the current record's "destination_city" value
+ * @method string              getDestinationState()      Returns the current record's "destination_state" value
+ * @method float               getDestinationLatitude()   Returns the current record's "destination_latitude" value
+ * @method float               getDestinationLongitude()  Returns the current record's "destination_longitude" value
+ * @method integer             getDistance()              Returns the current record's "distance" value
+ * @method integer             getDuration()              Returns the current record's "duration" value
+ * @method timestamp           getCreatedAt()             Returns the current record's "created_at" value
+ * @method timestamp           getUpdatedAt()             Returns the current record's "updated_at" value
+ * @method Doctrine_Collection getCarpools()              Returns the current record's "Carpools" collection
+ * @method Doctrine_Collection getCarpools3()             Returns the current record's "Carpools_3" collection
+ * @method Doctrine_Collection getLegs()                  Returns the current record's "Legs" collection
+ * @method Doctrine_Collection getPassengers()            Returns the current record's "Passengers" collection
+ * @method Doctrine_Collection getSeats()                 Returns the current record's "Seats" collection
+ * @method Doctrine_Collection getSeatsHistory()          Returns the current record's "SeatsHistory" collection
+ * @method Routes              setRouteId()               Sets the current record's "route_id" value
+ * @method Routes              setCopyright()             Sets the current record's "copyright" value
+ * @method Routes              setSummary()               Sets the current record's "summary" value
+ * @method Routes              setWarning()               Sets the current record's "warning" value
+ * @method Routes              setEncodedPolyline()       Sets the current record's "encoded_polyline" value
+ * @method Routes              setOriginAddress()         Sets the current record's "origin_address" value
+ * @method Routes              setOriginCity()            Sets the current record's "origin_city" value
+ * @method Routes              setOriginState()           Sets the current record's "origin_state" value
+ * @method Routes              setOriginLatitude()        Sets the current record's "origin_latitude" value
+ * @method Routes              setOriginLongitude()       Sets the current record's "origin_longitude" value
+ * @method Routes              setDestinationAddress()    Sets the current record's "destination_address" value
+ * @method Routes              setDestinationCity()       Sets the current record's "destination_city" value
+ * @method Routes              setDestinationState()      Sets the current record's "destination_state" value
+ * @method Routes              setDestinationLatitude()   Sets the current record's "destination_latitude" value
+ * @method Routes              setDestinationLongitude()  Sets the current record's "destination_longitude" value
+ * @method Routes              setDistance()              Sets the current record's "distance" value
+ * @method Routes              setDuration()              Sets the current record's "duration" value
+ * @method Routes              setCreatedAt()             Sets the current record's "created_at" value
+ * @method Routes              setUpdatedAt()             Sets the current record's "updated_at" value
+ * @method Routes              setCarpools()              Sets the current record's "Carpools" collection
+ * @method Routes              setCarpools3()             Sets the current record's "Carpools_3" collection
+ * @method Routes              setLegs()                  Sets the current record's "Legs" collection
+ * @method Routes              setPassengers()            Sets the current record's "Passengers" collection
+ * @method Routes              setSeats()                 Sets the current record's "Seats" collection
+ * @method Routes              setSeatsHistory()          Sets the current record's "SeatsHistory" collection
  * 
  * @package    RootlessMe
  * @subpackage model
@@ -101,6 +137,114 @@ abstract class BaseRoutes extends sfDoctrineRecord
              'notnull' => false,
              'autoincrement' => false,
              'length' => '',
+             ));
+        $this->hasColumn('origin_address', 'string', 255, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 255,
+             ));
+        $this->hasColumn('origin_city', 'string', 45, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 45,
+             ));
+        $this->hasColumn('origin_state', 'string', 2, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 2,
+             ));
+        $this->hasColumn('origin_latitude', 'float', null, array(
+             'type' => 'float',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => '',
+             ));
+        $this->hasColumn('origin_longitude', 'float', null, array(
+             'type' => 'float',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => '',
+             ));
+        $this->hasColumn('destination_address', 'string', 255, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 255,
+             ));
+        $this->hasColumn('destination_city', 'string', 45, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 45,
+             ));
+        $this->hasColumn('destination_state', 'string', 2, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 2,
+             ));
+        $this->hasColumn('destination_latitude', 'float', null, array(
+             'type' => 'float',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => '',
+             ));
+        $this->hasColumn('destination_longitude', 'float', null, array(
+             'type' => 'float',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => '',
+             ));
+        $this->hasColumn('distance', 'integer', 4, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 4,
+             ));
+        $this->hasColumn('duration', 'integer', 4, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 4,
              ));
         $this->hasColumn('created_at', 'timestamp', 25, array(
              'type' => 'timestamp',

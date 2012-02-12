@@ -3,7 +3,7 @@
 
 <?php slot(
   'title',
-  sprintf('Rootless Me - %s to %s', $origin->getCityStateString(), $destination->getCityStateString()))
+  sprintf('Rootless Me - %s to %s', $route->getOriginString(), $route->getDestinationString()))
 ?>
 <h1> Ride Request</h1>
 
@@ -42,7 +42,7 @@
 
             // Decode the polyline for the route
             // Workaround for javascript strings, needs backslashes escaped
-            var encodedPolyline = "<?php echo str_replace('\\','\\\\',$passengerRoute->getEncodedPolyline()); ?>";
+            var encodedPolyline = "<?php echo str_replace('\\','\\\\',$route->getEncodedPolyline()); ?>";
             routePolyline = displayEncodedPolyline(map, encodedPolyline);
 
             // Set the bounds of the map to center and zoom on the route
@@ -116,13 +116,13 @@
     </div>
     <h1 id="mainEventTitle">
         <span class="rideLocations">
-            <?php echo $origin->getCityStateString() ?>
+            <?php echo $route->getOriginString() ?>
         </span>
         <span class="rideMiddleWord">
         to
         </span>
         <span class="rideLocations">
-            <?php echo $destination->getCityStateString() ?>
+            <?php echo $route->getDestinationString() ?>
         </span>
 
     </h1>

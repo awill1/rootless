@@ -21,9 +21,7 @@ class rideComponents extends sfComponents
         {
             throw new sfError404Exception('Carpool '.$this->rideId.' was not found.');
         }
-        $this->carpoolRoute = $this->carpool->getRoutes();
-        $this->origin = $this->carpool->getOriginLocation();
-        $this->destination = $this->carpool->getDestinationLocation();
+        $this->route = $this->carpool->getRoutes();
         $this->driver = $this->carpool->getPeople()->getProfiles();
 
         // Check to see if the post belongs to the user
@@ -85,9 +83,7 @@ class rideComponents extends sfComponents
         {
             throw new sfError404Exception('Passenger '.$this->rideId.' was not found.');
         }
-        $this->passengerRoute = $this->passenger->getRoutes();
-        $this->origin = $this->passengerRoute->getOriginLocation();
-        $this->destination = $this->passengerRoute->getDestinationLocation();
+        $this->route = $this->passenger->getRoutes();
         $this->rider = $this->passenger->getPeople()->getProfiles();
 
         // Check to see if the post belongs to the user

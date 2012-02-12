@@ -18,27 +18,11 @@ class Locations extends BaseLocations
      */
     public function getCityStateString()
     {
-        // Return variables
-        $returnString = "";
+        // Get the variables
         $city = $this->getCity();
         $state = $this->getState();
 
-        // Depending on what information is known, build the return string
-        if ($city != null )
-        {
-            $returnString = $city;
-        }
-        if ($city != null && $state != null )
-        {
-            $returnString = $returnString.", ";
-        }
-        if ($state != null)
-        {
-            $returnString = $returnString.$state;
-        }
-
-        return $returnString;
-
+        return Locations::createCityStateString($city, $state);
     }
 
     /**
@@ -196,5 +180,28 @@ class Locations extends BaseLocations
     public function __toString()
     {
         return $this->getCityStateString();
+    }
+
+
+    public static function createCityStateString($city = null, $state = null)
+    {
+        // Return variable
+        $returnString = "";
+
+        // Depending on what information is known, build the return string
+        if ($city != null )
+        {
+            $returnString = $city;
+        }
+        if ($city != null && $state != null )
+        {
+            $returnString = $returnString.", ";
+        }
+        if ($state != null)
+        {
+            $returnString = $returnString.$state;
+        }
+
+        return $returnString;
     }
 }
