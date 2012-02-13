@@ -58,6 +58,7 @@ class PassengersTable extends Doctrine_Table
     public function getPassengersForPerson($personId, $includePastItems = false)
     {
         $q = $this->createQuery('pa')
+          ->innerJoin('pa.Routes r')
           ->where('pa.person_id = ?', array($personId));
         if (!$includePastItems)
         {

@@ -42,8 +42,8 @@ class Passengers extends BasePassengers
     public function __toString()
     {
         $passengerName = "";
-
-        $passengerName = $this->getPassengerId() . " - " . $this->getStartDate();
+        $route = $this->getRoutes();
+        $passengerName = date("m/d/Y",strtotime($this->getStartDate()))." - ".$route->getOriginString()." to ".$route->getDestinationString();
 
         return $passengerName;
 

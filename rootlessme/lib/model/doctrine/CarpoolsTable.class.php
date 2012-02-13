@@ -9,7 +9,6 @@ class CarpoolsTable extends Doctrine_Table
 {
     /**
      * Returns an instance of this class.
-     *
      * @return object CarpoolsTable
      */
     public static function getInstance()
@@ -19,7 +18,6 @@ class CarpoolsTable extends Doctrine_Table
 
     /**
      * Returns all Carpools with people and profiles
-     *
      * @return Doctrine_Collection Returns a Carpools collection with profiles
      * and people included
      */
@@ -53,7 +51,6 @@ class CarpoolsTable extends Doctrine_Table
 
     /**
      * Returns all Carpools for a person
-     *
      * @param int $personId The person to get the carpools for
      * @param bool $includePastItems Whether to include carpools with a 
      * start_date before today in the results
@@ -62,6 +59,7 @@ class CarpoolsTable extends Doctrine_Table
     public function getCarpoolsForPerson($personId, $includePastItems = false)
     {
         $q = $this->createQuery('c')
+          ->innerJoin('c.Routes r')
           ->where('c.driver_id = ?', array($personId));
         if (!$includePastItems)
         {

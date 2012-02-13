@@ -42,8 +42,8 @@ class Carpools extends BaseCarpools
     public function __toString()
     {
         $carpoolName = "";
-
-        $carpoolName = $this->getCarpoolId()." - ".$this->getStartDate();
+        $route = $this->getRoutes();
+        $carpoolName = date("m/d/Y",strtotime($this->getStartDate()))." - ".$route->getOriginString()." to ".$route->getDestinationString();
 
         return $carpoolName;
 

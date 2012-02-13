@@ -30,7 +30,7 @@
                 <?php foreach ($driverSeats as $driverSeat): ?>
                     <?php if ($driverSeat->getCarpoolId() == $carpool->getCarpoolId()) : ?>
                         <?php $passenger = $driverSeat->getPassengers()->getPeople()->getProfiles();
-                              $seatRoute = $driverSeat->getPassengers()->getRoutes(); ?>
+                              $seatRoute = $driverSeat->getRoutes(); ?>
                         <li>
                             <div id="quickBoxItem">
                                 <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $passenger->getPictureUrlSmall(); ?>" />
@@ -71,7 +71,7 @@
                     <?php foreach ($passengerSeats as $passengerSeat): ?>
                         <?php if ($passengerSeat->getPassengerId() == $passenger->getPassengerId()): ?>
                             <?php $driver = $passengerSeat->getCarpools()->getPeople()->getProfiles();
-                                  $seatRoute = $driverSeat->getPassengers()->getRoutes(); ?>
+                                  $seatRoute = $passengerSeat->getRoutes(); ?>
                             <li>
                                 <div id="quickBoxItem">
                                     <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driver->getPictureUrlSmall(); ?>" />

@@ -333,6 +333,10 @@ class seatActions extends sfActions
                 // Save the history record
                 $seatHistoryEntry = $seatHistoryEntry->save();
             }
+            
+            // Get the seat again since the route is not getting updated in the 
+            // object
+            $seat = Doctrine_Core::getTable('Seats')->find($seat->getSeatId());
 
             return $seat;
         }

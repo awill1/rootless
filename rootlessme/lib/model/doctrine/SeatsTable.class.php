@@ -123,6 +123,7 @@ class SeatsTable extends Doctrine_Table
           ->innerJoin('c.People cp')
           ->innerJoin('cp.Profiles cpr')
           ->innerJoin('s.SeatStatuses ss')
+          ->innerJoin('s.Routes r')
           ->addWhere('pa.person_id = ? OR c.driver_id = ?',array($person_id, $person_id));
         
         // Add the filter to only get seats on or after today
