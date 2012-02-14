@@ -86,14 +86,20 @@ function initializePath()
  * Displays an encoded polyline on a map
  * @param map google.maps.Map The map
  * @param encodedPolyline string The encoded polyline to display
+ * @param type boolean decides if the route is primary or not  
  * @returns google.maps.Polyline The decoded polyline that is displayed on the
  * map
  */
-function displayEncodedPolyline(map, encodedPolyline)
+function displayEncodedPolyline(map, encodedPolyline, type)
 {
     // Decode the polyline for the route
     var routeCoordinates  = google.maps.geometry.encoding.decodePath(encodedPolyline);
-    var routePath = createPrimaryPolyline(routeCoordinates);
+    
+    if (type == true) {
+      var routePath = createPrimaryPolyline(routeCoordinates);
+    } else {
+      var routePath = createNonPrimaryPolyline(routeCoordinates);
+    }
 
     // Bind the polyline to the map
     routePath.setMap(map);
@@ -146,6 +152,26 @@ function createPrimaryPolyline(polylineCoordinates)
         strokeColor: PRIMARY_ROUTE_COLOR,
         strokeOpacity: PRIMARY_ROUTE_OPACITY,
         strokeWeight: PRIMARY_ROUTE_WEIGHT
+    });
+    
+    // Return the created polyline
+    return routePath;
+}
+
+
+/**
+ * Creates a polyline with the secondary line style
+ * @param polylineCoordinates Array.<LatLng> The coordinates on the line
+ * @returns google.maps.Polyline The polyline
+ */
+function createNonPrimaryPolyline(polylineCoordinates)
+{ 
+    
+    var routePath = new google.maps.Polyline({
+        path: polylineCoordinates,
+        strokeColor: SECONDARY_ROUTE_COLOR,
+        strokeOpacity: SECONDARY_ROUTE_OPACITY,
+        strokeWeight: SECONDARY_ROUTE_WEIGHT
     });
     
     // Return the created polyline

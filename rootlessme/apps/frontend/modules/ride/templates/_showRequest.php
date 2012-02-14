@@ -43,7 +43,7 @@
             // Decode the polyline for the route
             // Workaround for javascript strings, needs backslashes escaped
             var encodedPolyline = "<?php echo str_replace('\\','\\\\',$route->getEncodedPolyline()); ?>";
-            routePolyline = displayEncodedPolyline(map, encodedPolyline);
+            routePolyline = displayEncodedPolyline(map, encodedPolyline, true);
 
             // Set the bounds of the map to center and zoom on the route
             setMapBoundsToPolyline(map, routePolyline);

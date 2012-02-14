@@ -4,7 +4,8 @@
     <?php foreach ($negotiationChanges as $negotiationChange):
               $newHistoryItem = $negotiationChange->getNewSeatHistory();
               $changer = $newHistoryItem->getPeople()->getProfiles();
-              $route = $newHistoryItem->getRoutes();?>
+              $route = $newHistoryItem->getRoutes();
+              ?>
         <div class="seatNegotiationHistoryItem">
             <div class="seatNegotiationHistoryUserImage">
                 <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $changer->getPictureUrlSmall() ?>" alt="<?php echo $changer->getFullName() ?>" />   
@@ -25,7 +26,7 @@
                         <li>
                             <span class="seatNegotiationHistoryItemCategory">Dropoff location</span>
                             to
-                            <span class="seatNegotiationHistoryItemSpecificText"><?php echo $route->getDestinationString() ?></span>
+                            <span class="seatNegotiationHistoryItemSpecificText"><?php echo $route->getDestinationString(); ?></span>
                         </li>
                     <?php endif; ?>
                     <?php if ($negotiationChange->getIsSeatStatusIdDifferent()): ?>

@@ -43,7 +43,15 @@
             // Decode the polyline for the route
             // Workaround for javascript strings, needs backslashes escaped
             var encodedPolyline = "<?php echo str_replace('\\','\\\\',$route->getEncodedPolyline()); ?>";
-            routePolyline = displayEncodedPolyline(map, encodedPolyline);
+            routePolyline = displayEncodedPolyline(map, encodedPolyline, true);
+            
+            <?php if ($acceptedSeats->count() > 0): ?>
+              <?php foreach ($acceptedSeats as $seat): ?>
+            
+               var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
+               var acceptedSeatPolyline = displayEncodedPolyline(map, seatPolyline , false);
+             <?php endforeach; ?>
+            <?php endif; ?>
 
             // Set the bounds of the map to center and zoom on the route
             setMapBoundsToPolyline(map, routePolyline);

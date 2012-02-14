@@ -147,7 +147,7 @@
                 var key = $(this).attr('id');
                 var encodedPolyline = $(this).text();
                 // Load the polylines into the google map
-                var polyline = displayEncodedPolyline(map, encodedPolyline)
+                var polyline = displayEncodedPolyline(map, encodedPolyline, true)
                 polylines[key] = polyline;
             });
             
