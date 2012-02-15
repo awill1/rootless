@@ -9,7 +9,6 @@ class SeatsTable extends Doctrine_Table
 {
     /**
      * Returns an instance of this class.
-     *
      * @return object SeatsTable
      */
     public static function getInstance()
@@ -17,6 +16,11 @@ class SeatsTable extends Doctrine_Table
         return Doctrine_Core::getTable('Seats');
     }
 
+    /**
+     * Gets the travel summary for a person
+     * @param integer $person_id The person id
+     * @return array The summary with ridesReceived and ridesGiven as keys
+     */
     public function getTravelSummaryForPerson($person_id)
     {
         $connection = Doctrine_Manager::connection();
@@ -52,11 +56,33 @@ class SeatsTable extends Doctrine_Table
             'ridesGiven' => $ridesGiven
         );
     }
+    
+    /**
+     * Gets the confirmed seats from the past which represent the travel
+     * history for the person
+     * @param integer $person_id The person id
+     * @return Doctrine_Collection  The past confirmed seats
+     */
+    public function getTravelHistoryForPerson($person_id)
+    {
+        $q = $this->createQuery('s')
+            ->innerJoin('s.Passengers pa')
+            ->innerJoin('s.Carpools c')
+            ->innerJoin('s.SeatStatuses ss')
+            ->innerJoin('s.Routes r')
+            ->addWhere('s.seat_status_id = ? ', array(2))
+            ->addWhere('(pa.person_id = ? OR c.driver_id = ?)',array($person_id, $person_id));
+        
+        // Add the filter to only get seats from before today
+        $q = SeatsTable::addPastSeatsFilter($q);
+
+        return $q->execute();
+    }
 
     /**
      * Returns all Seats with driver and passenger profiles for a specific
      * carpool id
-     *
+     * @param integer $carpool_id The carpool id
      * @return Doctrine_Collection Returns a seats collection with profiles
      * and people included
      */
@@ -75,7 +101,7 @@ class SeatsTable extends Doctrine_Table
     /**
      * Returns all Seats with driver and passenger profiles for a specific
      * passenger id
-     *
+     * @param integer $passenger_id The passenger id
      * @return Doctrine_Collection Returns a seats collection with profiles
      * and people included
      */
@@ -91,6 +117,11 @@ class SeatsTable extends Doctrine_Table
         return $q->execute();
     }
 
+    /**
+     * Gets a seat with the carpool and passenger joined
+     * @param integer $seat_id The seat id
+     * @return Seats The seat 
+     */
     public function getSeatWithCarpoolAndPassenger($seat_id)
     {
         $q = $this->createQuery('s')
@@ -110,7 +141,7 @@ class SeatsTable extends Doctrine_Table
     /**
      * Gets the seats related to the person. The person can be either the 
      * driver or the passenger.
-     * @param type $person_id The user's people id
+     * @param integer $person_id The user's people id
      * @return Doctrine_Collection The seats related to the person 
      */
     public function getSeatsForPerson($person_id)
@@ -143,5 +174,17 @@ class SeatsTable extends Doctrine_Table
         // Add a where clause to the query to only return seats today or in
         // the future
         return $query->andWhere('s.pickup_date >= ?', date('Y-m-d'));
+    }
+    
+    /**
+     * Adds a where clause to a query to only return seats occuring before today
+     * @param Doctrine_Query $query The query
+     * @return Doctrine_Query The query with a past rides where clause 
+     */
+    public static function addPastSeatsFilter($query)
+    {
+        // Add a where clause to the query to only return seats today or in
+        // the future
+        return $query->andWhere('s.pickup_date < ?', date('Y-m-d'));
     }
 }

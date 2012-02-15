@@ -29,8 +29,18 @@ class profileActions extends sfActions
 
         // Get additional information needed for the profile show page
         $this->travelSummary = Doctrine_Core::getTable('Seats')->getTravelSummaryForPerson($personID);
-        $this->vehicle = $this->profile->getPeople()->getVehicles();
+        $this->vehicle = $this->profile->getPeople()->getVehicles()->getFirst();
         $this->ratings = Doctrine_Core::getTable('Reviews')->getReviewsSummaryForPerson($personID);
+        $this->travelHistories = Doctrine_Core::getTable('Seats')->getTravelHistoryForPerson($personID);
+        
+        // Calculate the distance traveled
+        $distanceTraveled = 0;
+        foreach ($this->travelHistories as $travelHistory)
+        {
+            $distanceTraveled += $travelHistory->getRoutes()->getDistance();
+        }
+        $this->milesTraveled = $distanceTraveled * 0.000621371192;
+        $this->kilometersTraveled = $distanceTraveled * .001;
 
         // Only allow reviews if the user is logged in
         if ($this->getUser()->isAuthenticated())
@@ -57,6 +67,7 @@ class profileActions extends sfActions
         $this->accountInfoForm = new ProfilesAccountInfoForm($profile);
         $this->additionalInfoForm = new ProfilesAdditionalInfoForm($profile);
         $this->vehicleInfoForm = new VehiclesForm($profile->getPeople()->getVehicles()->getFirst());
+        $this->sfGuardUserForm = new sfGuardUserAdminForm($profile->getPeople()->getSfGuardUser()->getFirst());
     } 
 
     /**

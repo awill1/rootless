@@ -86,16 +86,16 @@ function initializePath()
  * Displays an encoded polyline on a map
  * @param map google.maps.Map The map
  * @param encodedPolyline string The encoded polyline to display
- * @param type boolean decides if the route is primary or not  
+ * @param isPrimary boolean Decides if the route is primary or not  
  * @returns google.maps.Polyline The decoded polyline that is displayed on the
  * map
  */
-function displayEncodedPolyline(map, encodedPolyline, type)
+function displayEncodedPolyline(map, encodedPolyline, isPrimary)
 {
     // Decode the polyline for the route
     var routeCoordinates  = google.maps.geometry.encoding.decodePath(encodedPolyline);
     
-    if (type == true) {
+    if (isPrimary == true) {
       var routePath = createPrimaryPolyline(routeCoordinates);
     } else {
       var routePath = createNonPrimaryPolyline(routeCoordinates);

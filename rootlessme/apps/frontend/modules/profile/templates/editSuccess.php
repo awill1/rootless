@@ -18,6 +18,7 @@
         <li class="tabSelectedItem"><a href="#fragment-account">Account</a></li>
         <li class="tabNotSelectedItem"><a href="#fragment-additional_info">Bio</a></li>
         <li class="tabNotSelectedItem"><a href="#fragment-vehicles">Vehicle</a></li>
+        <li class="tabNotSelectedItem"><a href="#fragment-sfguardaccount">sfGuardAccount</a></li>
     </ul>
     <div id="fragment-account" class="middleProfileTabContent">
         <?php include_partial('form', array('form' => $accountInfoForm , 'section' => 'account')) ?>
@@ -27,5 +28,8 @@
     </div>
     <div id="fragment-vehicles" class="middleProfileTabContent">
         <?php include_partial('vehicle/form', array('form' => $vehicleInfoForm )) ?>
+    </div>
+    <div id="fragment-sfguardaccount" class="middleProfileTabContent">
+        <?php include_partial('form', array('form' => $sfGuardUserForm, 'section' => 'sfguardaccount' )) ?>
     </div>
 </div>

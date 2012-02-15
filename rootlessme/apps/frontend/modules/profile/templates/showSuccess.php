@@ -7,6 +7,7 @@
 ?>
 
 <?php slot('gmapheader'); ?>
+    <script type="text/javascript" src="/js/googleMapHelpers.js"></script>
     <script type="text/javascript">
         var map = null;
 
@@ -14,16 +15,16 @@
         $(document).ready(function(){
             // Make the tabs
             $( "#middleProfileDetails" ).tabs();
-
-            // Google map loading
-            var latlng = new google.maps.LatLng(<?php echo sfConfig::get('app_google_map_default_latitude') ?>, <?php echo sfConfig::get('app_google_map_default_longitude') ?>);
-            var myOptions = {
-                zoom: <?php echo sfConfig::get('app_google_map_default_zoom') ?>,
-                center: latlng,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            map = new google.maps.Map(document.getElementById("travelMap"),
-                myOptions);
+            
+            // Create the Google Map
+            map = initializeGoogleMap("travelMap");
+            
+            // Add the past ride polylines
+            $('.pastRidePolyline').each(function(index) {
+                var encodedPolyline = $(this).text();
+                // Load the polylines into the google map
+                displayEncodedPolyline(map, encodedPolyline, true);
+            });
 
             // Bind to the tabsshow event to resize the google map
             // This necessary work around is a side effect of the jquery ui
@@ -34,7 +35,7 @@
                     // Resize the map to fit the div size
                     google.maps.event.trigger(map, 'resize');
                     // Center the map
-                    var mapCenter = new google.maps.LatLng(<?php echo sfConfig::get('app_google_map_default_latitude') ?>, <?php echo sfConfig::get('app_google_map_default_longitude') ?>);
+                    var mapCenter = new google.maps.LatLng(MAP_DEFAULT_LATITUDE, MAP_DEFAULT_LONGITUDE);
                     map.setCenter(mapCenter);
                 }
             });
@@ -99,8 +100,15 @@
         <div id="travelMapArea" >
             <div id="travelMap" ></div>
             <div id="travelMapAreaTextCont">
-                 <span class="travelmapCaption">20,398 miles traveled</span>
+                 <span class="travelmapCaption">
+                     <?php echo number_format($milesTraveled) ?> miles traveled
+                 </span>
             </div>
+            <ul class="hidden">
+                <?php foreach ($travelHistories as $pastRide) : ?>
+                <li class="pastRidePolyline"><?php echo $pastRide->getRoutes()->getEncodedPolyline(); ?></li>
+                <?php endforeach ; ?>
+            </ul>
         </div>
         <div id="carInfoArea">
             <h3>Car Info</h3>
@@ -128,19 +136,18 @@
                 </p>
             </div>
             <div class="middleProfileTabContentRightColumn">
-
-                    <h3>Books</h3>
-                    <p>
-                        <?php echo $profile->getBooks() ?>
-                    </p>
-                    <h3>Interests</h3>
-                    <p>
-                        <?php echo $profile->getInterests() ?>
-                    </p>
-                    <h3>Favorite Websites</h3>
-                    <p>
-                        <?php echo $profile->getFavoriteWebsites() ?>
-                    </p>
+                <h3>Books</h3>
+                <p>
+                    <?php echo $profile->getBooks() ?>
+                </p>
+                <h3>Interests</h3>
+                <p>
+                    <?php echo $profile->getInterests() ?>
+                </p>
+                <h3>Favorite Websites</h3>
+                <p>
+                    <?php echo $profile->getFavoriteWebsites() ?>
+                </p>
             </div>
         </div>
     </div>
