@@ -8,43 +8,22 @@
 
 /*I.D. Fragment Formatting & Styles*/
 
-li {
-    margin: 0px, 0px, 0px, 0px;
-    list-style-type:none; 
-    padding: 0px, 0px, 0px, 0px;
-    
-}
-
-ul {
-    margin: 0px, 0px, 0px, 0px;
-    padding: 0px, 0px, 0px, 0px;
-    list-style-type:none;
-}
 
 #rideSection {
     float: left;
     background-color: #F4F4F4;
-    width: 485px;
-    padding: 0px 0px 0px 15px;
+    width: 520px;
+    padding: 0px 0px 0px 0px;
     height: 100%;
 }
 
-#quickRidesBox {
-    float: right;
-    background-color: #F4F4F4;
-    margin-left: 15px;
-    width: 190px;
-    height: 100%;
-    padding: 0px 0px 0px 15px;
-}
 .rideCont {
-    float: left;
-    width: 100%;
     height: 60px;
     color: #119D49;
     font-size: 110%;
     font-style: oblique;   
-    
+    background-color: #E5E5E5;
+    padding: 10px 10px 10px 10px;
 }
 
 .dateCont {
@@ -67,7 +46,6 @@ ul {
 }
 
 .locationCont {
-    
     width: 100%;
     height: 60px;
     color: #119D49;
@@ -79,7 +57,7 @@ ul {
 .dayCont{
     width:100%;
     height:20px;
-    background-color: 8e8e8e;
+    background-color: #8E8E8E;
     color: #000000;
     font-size: 100%;
     text-align: center;
@@ -97,52 +75,53 @@ ul {
    
 }
 
-#feedSection {
-    margin-top: 15px;
-    float: left;
-    background-color: #F4F4F4;
-    width: 465px;
-    height: 100%;
-    padding: 0px 0px 0px 15px;
-}
-
 #rideInformationDashLeft {
     float:left;
-    margin-bottom: 15px;
-    margin-left: -30px;
-    width: 200px;
+    margin-left: 15px;
+    margin-bottom: 50px;
+    width: 230px;
     display: inline;
     
 }
 
 #rideInformationDashRight {
-    float:left;
-    margin-left: 30px;
+    float: left;
+    margin-left: 15px;
     margin-bottom: 50px;
-    width: 200px;
-    height: 100%;
+    width: 230px;
 }
 
-.negotiationAndPostInfoCont {
-    margin-bottom: 50px;
-    float: left;
-    clear: both;
+.ridesList {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    list-style-type: none;
 }
 
-.negotiationAndPostInfoContRight {
-    margin-bottom: 50px;
-    float: left;
-    
+.ridesListItem {
+    margin: 0px 0px 15px 0px;
+    padding: 0px 0px 0px 0px;
+    list-style-type: none;
+    background-color: #E5E5E5;
+}
+
+.seatsList {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    list-style-type: none;
+}
+
+.seatsListItem {
+    margin: 0px 0px 0px 15px;
+    padding: 0px 0px 0px 0px;
+    list-style-type: none;
+    border-top: 1px solid #8E8E8E;
 }
 
 #quickBoxItem {
-    margin-bottom: 10px;
-    float: left;
     background-color: #E5E5E5;
     width: 195px;
     height: 97px;
     padding: 10px 10px 10px 10px;
-    margin-top: 10px;
 }
 
 #quickBoxName {
@@ -222,46 +201,8 @@ ul {
     
     
 }
-hr1 {
-    width: 205px;
-    margin: 5px 0px 0px -10px;
-    color: white;
-    background-color: white;
-    
-}
 
 .viewRideLink{
     color: #8e8e8e;
     font-size: 60%;
 }
-
-#feedObject {
-    height: 80px;
-}
-
-#feedCopyObject {
-    width: 500px;
-    
-}
-#feedCopyObjects {
-    font-style: italic;
-    color: #D05A36;
-    display: inline;
-    
-}
-
-#feedRiders {
-    font-size: 80%;
-    font-style: italic;
-    margin: 2px 0px 2px 0px;
-}
-
-#feedTime {
-    font-size: 80%;
-    color: #D3D3D3;
-    font-weight: bold;
-    margin: 0px 10px 20px 0px;
-    display: block;
-    clear: right;
-}
-
