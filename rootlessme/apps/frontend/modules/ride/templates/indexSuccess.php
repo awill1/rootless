@@ -115,6 +115,7 @@
             });
         }
         
+        //need to move this
         function HighlightPolyline(polyline)
         {
             polyline.setOptions({strokeColor: SECONDARY_ROUTE_COLOR, zIndex: 100});

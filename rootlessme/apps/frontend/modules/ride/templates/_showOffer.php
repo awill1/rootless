@@ -40,10 +40,7 @@
             
             geocoder = new google.maps.Geocoder();
 
-            // Decode the polyline for the route
-            // Workaround for javascript strings, needs backslashes escaped
-            var encodedPolyline = "<?php echo str_replace('\\','\\\\',$route->getEncodedPolyline()); ?>";
-            routePolyline = displayEncodedPolyline(map, encodedPolyline, true);
+            
             
             <?php if ($acceptedSeats->count() > 0): ?>
               <?php foreach ($acceptedSeats as $seat): ?>
@@ -53,6 +50,11 @@
              <?php endforeach; ?>
             <?php endif; ?>
 
+            // Decode the polyline for the route
+            // Workaround for javascript strings, needs backslashes escaped
+            var encodedPolyline = "<?php echo str_replace('\\','\\\\',$route->getEncodedPolyline()); ?>";
+            routePolyline = displayEncodedPolyline(map, encodedPolyline, true);
+            
             // Set the bounds of the map to center and zoom on the route
             setMapBoundsToPolyline(map, routePolyline);
 
