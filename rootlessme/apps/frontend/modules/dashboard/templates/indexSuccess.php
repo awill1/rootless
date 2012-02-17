@@ -32,15 +32,26 @@
                                 <?php $passenger = $driverSeat->getPassengers()->getPeople()->getProfiles();
                                       $seatRoute = $driverSeat->getRoutes(); ?>
                                 <li class="seatsListItem">
-                                    <div id="quickBoxItem">
-                                        <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $passenger->getPictureUrlSmall(); ?>" />
-                                        <p id="quickBoxName"><?php echo $passenger->getFullName() ?></p>
-                                        <p id="quickBoxLocationStart">+<?php echo $seatRoute->getOriginString() ?></p>
-                                        <p id="quickBoxLocationFinish">+<?php echo $seatRoute->getDestinationString() ?></p>
-                                        <p id="quickBoxConfirmButton">Confirm</p>
-                                        <p id="quickBoxDeclineButton">Decline</p>
-
-                                        <a id="quickBoxViewRequestButton">view negotiation</a>
+                                    <div class="quickBoxItem">
+                                        <img class="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $passenger->getPictureUrlSmall(); ?>" />
+                                        <p class="quickBoxName"><?php echo $passenger->getFullName() ?></p>
+                                        <p class="quickBoxLocationStart">+<?php echo $seatRoute->getOriginString() ?></p>
+                                        <p class="quickBoxLocationFinish">+<?php echo $seatRoute->getDestinationString() ?></p>
+                                        <ul class="quickBoxButtonsList">
+                                            <li class="quickBoxButtonsListItem">
+                                                <a class="quickBoxConfirmButton" href="/seats/confirm">
+                                                    Confirm
+                                                </a>
+                                            </li>
+                                            <li class="quickBoxButtonsListItem">
+                                                <a class="quickBoxDeclineButton" href="/seats/decline">
+                                                    Decline
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <div class="quickBoxRequest">
+                                            <a class="quickBoxViewRequestButton" href="/rides">view negotiation</a>
+                                        </div>
                                     </div>
                                 </li>
                            <?php endif; ?>
@@ -74,18 +85,26 @@
                                 <?php $driver = $passengerSeat->getCarpools()->getPeople()->getProfiles();
                                       $seatRoute = $passengerSeat->getRoutes(); ?>
                                 <li class="seatsListItem">
-                                    <div id="quickBoxItem">
-                                        <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driver->getPictureUrlSmall(); ?>" />
-                                        <p id="quickBoxName"><?php echo $driver->getFullName() ?></p>
-                                        <p id="quickBoxLocationStart">+<?php echo $seatRoute->getOriginString() ?></p>
-                                        <p id="quickBoxLocationFinish">+<?php echo $seatRoute->getDestinationString() ?></p>
-                                        <p id="quickBoxConfirmButton"><a href="" >Confirm</a></p>
-                                        <p id="quickBoxDeclineButton"><a href="" >Decline</a></p>
-
-                                        <a id="quickBoxViewRequestButton" href="<?php echo url_for('ride_show', array('ride_type'=>'offer','ride_id'=>$passengerSeat->getCarpoolId())) ?>">
-                                            view negotiation
-                                        </a>
-
+                                    <div class="quickBoxItem">
+                                        <img class="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driver->getPictureUrlSmall(); ?>" />
+                                        <p class="quickBoxName"><?php echo $driver->getFullName() ?></p>
+                                        <p class="quickBoxLocationStart">+<?php echo $seatRoute->getOriginString() ?></p>
+                                        <p class="quickBoxLocationFinish">+<?php echo $seatRoute->getDestinationString() ?></p>
+                                        <ul class="quickBoxButtonsList">
+                                            <li class="quickBoxButtonsListItem">
+                                                <a class="quickBoxConfirmButton" href="/seats/confirm">
+                                                    Confirm
+                                                </a>
+                                            </li>
+                                            <li class="quickBoxButtonsListItem">
+                                                <a class="quickBoxDeclineButton" href="/seats/decline">
+                                                    Decline
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <div class="quickBoxRequest">
+                                            <a class="quickBoxViewRequestButton" href="/rides">view negotiation</a>
+                                        </div>
                                     </div>
                                 </li>
                             <?php endif; ?>

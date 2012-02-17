@@ -712,7 +712,7 @@ textarea {
     padding: 12px 12px 12px 12px;
 }
 
-#leftProfilePicture {
+.leftProfilePicture {
     font-weight: bold;
     float: left;
     margin: 0px 6px 6px 0px;

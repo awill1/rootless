@@ -6,7 +6,7 @@
         <?php foreach($travelingCompanions as $travelingCompanion) : ?>
             <li class="leftActivityItem">
                 <a href="<?php echo url_for("profile_show_user", array('profile_name'=>$travelingCompanion->getProfileName()))  ?>">
-                <img id="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $travelingCompanion->getPictureUrlSmall(); ?>" alt="<?php echo $travelingCompanion->getFullName() ?>" />
+                <img class="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $travelingCompanion->getPictureUrlSmall(); ?>" alt="<?php echo $travelingCompanion->getFullName() ?>" />
                 <span class="travelingWith"><?php echo $travelingCompanion->getFullName() ?></span>
                 <br/>
                 </a>
