@@ -288,7 +288,13 @@ class seatActions extends sfActions
                         switch ($returnFormat) 
                         {
                             case 'dashboard':
-                                return $this->renderPartial('dashboard/seatListItem', array('seat' => $seat));
+                                // Show the person related to the seat that is not the user
+                                $show = 'passenger';
+                                if ($seat->getPassengers()->getPersonId() == $userId)
+                                {
+                                    $show = 'driver';
+                                }
+                                return $this->renderComponent('dashboard', 'seatListItem', array('seat' => $seat , 'show' => $show));
                                 break;
                             case 'negotiation':
                             default:
