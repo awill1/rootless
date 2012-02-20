@@ -16,6 +16,11 @@
             // Make the tabs
             $( "#middleProfileDetails" ).tabs();
             
+            // Update the url when the tab changes
+            $("#middleProfileDetails").bind('tabsselect', function(event, ui) {
+                window.location.href = ui.tab;
+            });
+            
             // Create the Google Map
             map = initializeGoogleMap("travelMap");
             

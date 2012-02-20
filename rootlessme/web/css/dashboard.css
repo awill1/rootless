@@ -120,13 +120,11 @@
 .quickBoxItem {
     background-color: #E5E5E5;
     width: 180px;
-    height: 97px;
     padding: 10px 10px 10px 10px;
 }
 
 .quickBoxName {
     color: #8e8e8e;
-    font-weight: lighter;
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 0px;
     font-size: 90%;
@@ -134,16 +132,21 @@
 
 .quickBoxLocationStart {
     color: #8e8e8e;
-    font-weight: lighter;
     margin: 10px 0px 0px 0px;
     font-size: 75%;
 }
 
 .quickBoxLocationFinish {
     color: #8e8e8e;
-    font-weight: lighter;
     margin: 3px 0px 0px 0px;
     font-size: 75%;
+}
+
+.quickBoxStatus {
+    color: #8e8e8e;
+    margin: 3px 0px 3px 0px;
+    font-size: 90%;
+    clear: left;
 }
 
 .quickBoxButtonsList {
@@ -159,15 +162,15 @@
     display: inline-block;
 }
 
-.quickBoxConfirmButton a:link {
+.quickBoxAcceptButton a:link {
     color: white;
 }
 
-.quickBoxConfirmButton a:visited {
+.quickBoxAcceptButton a:visited {
     color: white;    
 }
 
-.quickBoxConfirmButton {
+.quickBoxAcceptButton {
     background-color: #119D49;
     color: white;
     font-weight: bold;

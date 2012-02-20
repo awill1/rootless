@@ -145,13 +145,8 @@ class Seats extends BaseSeats
         if ($this->isMySeat($personId))
         {
             // This logic need to be expanded more
-            // If the user is not the last user to negotiate on the seat it can
-            // accept it
-            $lastHistory = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryForSeat($this->getSeatId());
-            if ($lastHistory->getChangerId() != $personId)
-            {
-                $canDecline = true;
-            }
+            // An user involved in the seat can decline
+            $canDecline = true;
         }
 
         return $canDecline;

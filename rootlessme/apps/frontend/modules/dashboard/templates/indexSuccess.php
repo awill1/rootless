@@ -5,6 +5,11 @@
   sprintf('Rootless Me - Dashboard'))
 ?>
 
+<?php slot('gmapheader'); ?>
+    <script type="text/javascript" src="/js/jquery.blockUI.js"></script>
+    <script type="text/javascript" src="/js/dashboard.js"></script>
+<?php end_slot();?>
+
 <h1>Dashboard</h1>
 
 <div id="rideSection">
@@ -37,14 +42,17 @@
                                         <p class="quickBoxName"><?php echo $passenger->getFullName() ?></p>
                                         <p class="quickBoxLocationStart">+<?php echo $seatRoute->getOriginString() ?></p>
                                         <p class="quickBoxLocationFinish">+<?php echo $seatRoute->getDestinationString() ?></p>
+                                        <p class="quickBoxStatus">Status: <?php echo ucfirst(Doctrine_Core::getTable('SeatStatuses')->getStatusString($driverSeat->getSeatStatusId())) ?></p>
                                         <ul class="quickBoxButtonsList">
                                             <li class="quickBoxButtonsListItem">
-                                                <a class="quickBoxConfirmButton" href="/seats/confirm">
-                                                    Confirm
+                                                <a class="quickBoxAcceptButton" href="<?php echo url_for('seats_accept') ?>">
+                                                    <div class="hidden seatIdContainer" ><?php echo $driverSeat->getSeatId() ?></div>
+                                                    Accept
                                                 </a>
                                             </li>
                                             <li class="quickBoxButtonsListItem">
-                                                <a class="quickBoxDeclineButton" href="/seats/decline">
+                                                <a class="quickBoxDeclineButton" href="<?php echo url_for('seats_decline') ?>">
+                                                    <div class="hidden seatIdContainer" ><?php echo $driverSeat->getSeatId() ?></div>
                                                     Decline
                                                 </a>
                                             </li>
@@ -90,14 +98,17 @@
                                         <p class="quickBoxName"><?php echo $driver->getFullName() ?></p>
                                         <p class="quickBoxLocationStart">+<?php echo $seatRoute->getOriginString() ?></p>
                                         <p class="quickBoxLocationFinish">+<?php echo $seatRoute->getDestinationString() ?></p>
+                                        <p class="quickBoxStatus">Status: <?php echo ucfirst(Doctrine_Core::getTable('SeatStatuses')->getStatusString($passengerSeat->getSeatStatusId())) ?></p>
                                         <ul class="quickBoxButtonsList">
                                             <li class="quickBoxButtonsListItem">
-                                                <a class="quickBoxConfirmButton" href="/seats/confirm">
-                                                    Confirm
+                                                <a class="quickBoxAcceptButton" href="<?php echo url_for('seats_accept') ?>">
+                                                    <div class="hidden seatIdContainer" ><?php echo $passengerSeat->getSeatId() ?></div>
+                                                    Accept
                                                 </a>
                                             </li>
                                             <li class="quickBoxButtonsListItem">
-                                                <a class="quickBoxDeclineButton" href="/seats/decline">
+                                                <a class="quickBoxDeclineButton" href="<?php echo url_for('seats_decline') ?>">
+                                                    <div class="hidden seatIdContainer" ><?php echo $passengerSeat->getSeatId() ?></div>
                                                     Decline
                                                 </a>
                                             </li>

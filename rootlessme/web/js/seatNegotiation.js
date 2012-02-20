@@ -11,12 +11,13 @@ $(document).ready(function()
     $('#seatNegotiationForm, #seatAcceptForm, #seatDeclineForm').submit(function(e) {
         var curId = $(e.target).attr('id');
         
+        var picLoc ='';
         if (curId == 'seatNegotiationForm') {
-          var picLoc = 'pending';
+            picLoc = 'pending';
         } else if (curId == 'seatAcceptForm') {
-          var picLoc = 'accepted';
+            picLoc = 'accepted';
         } else {
-          var picLoc = 'declined';
+            picLoc = 'declined';
         }
         
         
