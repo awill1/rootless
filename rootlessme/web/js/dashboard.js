@@ -12,9 +12,9 @@ $(document).ready(function()
  * Performs an action on a seat using ajax
  */
 function prepareSeatActionButtons() {
-    // Wire up the action buttons
-    $(".quickBoxAcceptButton").click(performSeatAction);
-    $(".quickBoxDeclineButton").click(performSeatAction);
+    // Clear existing click handlers and add new ones on the action buttons
+    $(".quickBoxAcceptButton").unbind('click').click(performSeatAction);
+    $(".quickBoxDeclineButton").unbind('click').click(performSeatAction);
 }
 
 
@@ -37,6 +37,8 @@ function performSeatAction() {
         $(this).html(data);
         // Unblock the seat div
         $(this).unblock();
+        // Rebind the action buttons
+        prepareSeatActionButtons();
     });
     
 

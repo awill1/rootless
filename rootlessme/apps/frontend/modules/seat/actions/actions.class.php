@@ -221,6 +221,9 @@ class seatActions extends sfActions
     {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($seat = Doctrine_Core::getTable('Seats')->find(array($request->getParameter('seat_id'))), sprintf('Object seat does not exist (%s).', $request->getParameter('seat_id')));
+        
+        // Get the format of the html to return after updating the seat
+        $returnFormat = $request->getParameter('format', 'negotiation');
 
         // Accept the seat
         if ($this->getUser()->isAuthenticated())
@@ -241,7 +244,23 @@ class seatActions extends sfActions
                     if ($seat != null)
                     {
                         $lastSeatNegotiationDifference = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryDifferencesForSeat($seat->getSeatId());
-                        return $this->renderComponent('seat','negotiationItem', array('negotiationChange' => $lastSeatNegotiationDifference));
+                        // Output the resulting seat in the desired format
+                        switch ($returnFormat) 
+                        {
+                            case 'dashboard':
+                                // Show the person related to the seat that is not the user
+                                $show = 'passenger';
+                                if ($seat->getPassengers()->getPersonId() == $userId)
+                                {
+                                    $show = 'driver';
+                                }
+                                return $this->renderComponent('dashboard', 'seatListItem', array('seat' => $seat , 'show' => $show));
+                                break;
+                            case 'negotiation':
+                            default:
+                                return $this->renderComponent('seat','negotiationItem', array('negotiationChange' => $lastSeatNegotiationDifference));
+                                break;
+                        }
                     }
                     else
                     {
