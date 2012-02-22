@@ -17,11 +17,19 @@ class dashboardComponents extends sfComponents
         {
             // Show the driver
             $this->traveler = $seat->getCarpools()->getPeople()->getProfiles();
+            // The ride posted by the driver is the passenger post
+            $this->ridePost = $seat->getPassengers();
+            $this->ridePostId = $this->ridePost->getPassengerId();
+            $this->ridePostType = 'request';
         }
         else
         {
             // Show the passenger
             $this->traveler = $seat->getPassengers()->getPeople()->getProfiles();
+            // The ride posted by the driver is the carpool post
+            $this->ridePost = $seat->getCarpools();
+            $this->ridePostId = $this->ridePost->getCarpoolId();
+            $this->ridePostType = 'offer';
         }
 
         $this->seatRoute = $seat->getRoutes(); 

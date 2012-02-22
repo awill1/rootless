@@ -1,5 +1,5 @@
 <div class="quickBoxItem">
-    <img class="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $traveler->getPictureUrlSmall(); ?>" />
+    <img class="leftProfilePicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $traveler->getPictureUrlSmall(); ?>" alt="<?php echo $traveler->getFullName(); ?>" />
     <p class="quickBoxName"><?php echo $traveler->getFullName() ?></p>
     <p class="quickBoxLocationStart">+<?php echo $seatRoute->getOriginString() ?></p>
     <p class="quickBoxLocationFinish">+<?php echo $seatRoute->getDestinationString() ?></p>
@@ -23,6 +23,6 @@
         <?php endif; ?>
     </ul>
     <div class="quickBoxRequest">
-        <a class="quickBoxViewRequestButton" href="/rides">view negotiation</a>
+        <a class="quickBoxViewRequestButton" href="<?php echo url_for('ride_show', array('ride_type' => $ridePostType, 'ride_id' => $ridePostId )); ?>">view negotiation</a>
     </div>
 </div>
