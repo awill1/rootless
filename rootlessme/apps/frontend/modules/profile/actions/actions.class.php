@@ -67,7 +67,7 @@ class profileActions extends sfActions
         $this->accountInfoForm = new ProfilesAccountInfoForm($profile);
         $this->additionalInfoForm = new ProfilesAdditionalInfoForm($profile);
         $this->vehicleInfoForm = new VehiclesForm($profile->getPeople()->getVehicles()->getFirst());
-        $this->sfGuardUserForm = new sfGuardUserAdminForm($profile->getPeople()->getSfGuardUser()->getFirst());
+        $this->sfGuardUserForm = new sfGuardUserAdminForm($profile->getPeople()->getSfGuardUser());
     } 
 
     /**
