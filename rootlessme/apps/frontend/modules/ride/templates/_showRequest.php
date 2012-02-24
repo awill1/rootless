@@ -78,6 +78,13 @@
             // Change all of the appropriate textboxes to date and time pickers
             $( ".datePicker" ).datepicker();
             $( ".timePicker" ).timepicker({ampm: true});
+            
+            // If the window url hash is set load that seat's details
+            if (window.location.hash != "")
+            {
+                var hash = window.location.hash;
+                $(hash).trigger('click');
+            }
         });
 
         function loadSeatDetails() {
@@ -96,6 +103,10 @@
                     $("#seatNegotiationBlock").slideDown("blind");
                     bindTextBoxesToMap(originTextBox, destinationTextBox);
                 });
+
+            // Set the # in the url to keep track of which seat was clicked
+            window.location.hash = $(this).attr('id');
+            
             // Return false to override default click behavior
             return false;
         }
@@ -159,7 +170,7 @@
                     $driverProfile = $seat->getCarpools()->getPeople()->getProfiles(); ?>
                 <li class="riderListItem">
                     <?php if ($isMyPost || $seat == $mySeat) :?>
-                        <a class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>">
+                        <a id="seat-<?php echo $seat->getSeatId(); ?>" class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>">
                             <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driverProfile->getPictureUrlSmall() ?>" alt="<?php echo $driverProfile->getFullName() ?>" />
                         </a>
                     <?php else :?>
@@ -185,7 +196,7 @@
                     $driverProfile = $seat->getCarpools()->getPeople()->getProfiles(); ?>
                     <li class="riderListItem">
                         <?php if ($isMyPost) :?>
-                            <a class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driverProfile->getPictureUrlSmall() ?>" alt="<?php echo $driverProfile->getFullName() ?>" /></a>
+                            <a id="seat-<?php echo $seat->getSeatId(); ?>" class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driverProfile->getPictureUrlSmall() ?>" alt="<?php echo $driverProfile->getFullName() ?>" /></a>
                         <?php else :?>
                             <a href="<?php echo url_for("profile_show_user", $driverProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driverProfile->getPictureUrlSmall() ?>" alt="<?php echo $driverProfile->getFullName() ?>" /></a>
                         <?php endif; ?>
@@ -211,7 +222,7 @@
                       $driverProfile = $seat->getCarpools()->getPeople()->getProfiles(); ?>
                     <li class="riderListItem">
                         <?php if ($isMyPost) :?>
-                            <a class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driverProfile->getPictureUrlSmall() ?>" alt="<?php echo $driverProfile->getFullName() ?>" /></a>
+                            <a id="seat-<?php echo $seat->getSeatId(); ?>" class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driverProfile->getPictureUrlSmall() ?>" alt="<?php echo $driverProfile->getFullName() ?>" /></a>
                         <?php else :?>
                             <a href="<?php echo url_for("profile_show_user", $driverProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driverProfile->getPictureUrlSmall() ?>" alt="<?php echo $driverProfile->getFullName() ?>" /></a>
                         <?php endif; ?>

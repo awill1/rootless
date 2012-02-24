@@ -23,6 +23,6 @@
         <?php endif; ?>
     </ul>
     <div class="quickBoxRequest">
-        <a class="quickBoxViewRequestButton" href="<?php echo url_for('ride_show', array('ride_type' => $ridePostType, 'ride_id' => $ridePostId )); ?>">view negotiation</a>
+        <a class="quickBoxViewRequestButton" href="<?php echo url_for('ride_show', array('ride_type' => $ridePostType, 'ride_id' => $ridePostId )); ?>#seat-<?php echo $seat->getSeatId() ?>">view negotiation</a>
     </div>
 </div>
