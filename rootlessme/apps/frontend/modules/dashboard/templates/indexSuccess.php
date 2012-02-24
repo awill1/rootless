@@ -15,6 +15,9 @@
 <div id="rideSection">
     <div id="rideInformationDashLeft">
         <h3>Offers Posted</h3>
+        <?php if ($carpools->count() == 0) : ?>
+            <p>No upcoming ride offers</p>
+        <?php endif; ?>
         <ul class="ridesList">
             <?php foreach ($carpools as $carpool):
                       $route = $carpool->getRoutes(); ?>
@@ -48,6 +51,9 @@
     </div>
     <div id="rideInformationDashRight">
         <h3>Requests Posted</h3> 
+        <?php if ($passengers->count() == 0) : ?>
+            <p>No upcoming ride requests</p>
+        <?php endif; ?>
         <ul class="ridesList">
             <?php foreach ($passengers as $passenger):
                   $route = $passenger->getRoutes(); ?>
