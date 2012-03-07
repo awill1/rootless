@@ -15,24 +15,27 @@ class SeatsForm extends BaseSeatsForm
      */
     public function configure()
     {
+        // Get the seat object associated with this form
         $seat = $this->getObject();
-
-        // Get the seat's route or create a new one
-        if ($seat != null)
-        {
-            $route = $this->getObject()->getRoutes();
-        }
-        else
-        {
-            $route = new Routes();
-        }
-        // Bind the route object to the seat's route
-        $seat->Routes = $route;
+        
+        // Routes are always created new. It is too difficult to update them for
+        // now
+        $newRoute = new Routes();
+        
         // Create the embedded seat form
-        $route_form = new RoutesForm($route);
-        // Override the label for a few select fields
+        $route_form = new RoutesForm($newRoute);
+        
+        // Override the label for a few select fields in the route form
         $route_form->widgetSchema->setLabel('origin', 'Pickup Location');
         $route_form->widgetSchema->setLabel('destination', 'Dropoff Location');
+        
+        // Update the default locations to match the existing route if it 
+        // exists (this is not a new seat)
+        if(!$this->isNew())
+        {
+            $route_form->setDefault('origin', $seat->getRoutes()->getOriginAddress());
+            $route_form->setDefault('destination', $seat->getRoutes()->getDestinationAddress());
+        }
         $this->embedForm('route', $route_form);
 
         // Change the pickup date and time widgets to be textboxs for the
@@ -53,7 +56,6 @@ class SeatsForm extends BaseSeatsForm
         $this->setValidator('passenger_id', new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Passengers'), 'required' => false)));
 
         // Seat status will be created by the action, not the user
-        //$this->setWidget('seat_status_id',new sfWidgetFormInputText());
         unset($this['seat_status_id']);
         
         // Choose the fields that will be displayed
@@ -74,34 +76,45 @@ class SeatsForm extends BaseSeatsForm
     /**
      * Saves the seat in the form
      * @param Doctrine_Connection $con The connection to the database
-     * @return Seats The saved seat
      */
-    public function doSave($con = null) {
+    public function doSave($con = null)
+    {
         // Get the person id of the authenticated user
         $person = sfContext::getInstance()->getUser()->getGuardUser()->getPeople();
         
         // Get the original route id
         $routeId = $this->values['route']['route_id'];
+        $routeChanged = false;
         
         // Only create a route if there is route data, because
         // this means the route is new or has been changed
         if ($this->values['route']['route_data'] != '')
         {
-            // Get the route data from the embedded form
-            $route_data = $this->values['route']['route_data'];
-            $origin_data = $this->values['route']['origin_data'];
-            $destination_data = $this->values['route']['destination_data'];
-
-            // Create a new route
-            $route = new Routes();
-            $route->createFromGoogleDirections($route_data, $origin_data, $destination_data);
+            // Saving the embedded forms is now first
+            $embeddedRouteForm = $this->getEmbeddedForm('route'); 
+            unset($embeddedRouteForm[RoutesForm::$CSRFFieldName]);
+            $taintedValues = null;
+            if(array_key_exists('route', $this->taintedValues))
+            {
+                $taintedValues = $this->taintedValues['route'];
+            }
+            $taintedFiles = null;
+            if(array_key_exists('route', $this->taintedFiles))
+            {
+                $taintedFiles = $this->taintedFiles['route'];
+            }
+            $embeddedRouteForm->bind($taintedValues,$taintedFiles);
+            $updatedRoute = $embeddedRouteForm->save();
             
-            // Update the route id
-            $routeId = $route->getRouteId();
+            // Update the route in this seat's object
+            $this->getObject()->setRoutes($updatedRoute);
+            $routeId = $updatedRoute->getRouteId();
+            
+            $routeChanged = true;
         }
-
-        // Handle the link to the carpool and passengers. If either one is
-        // empty, then create a new entry
+        
+        // Handle the link to the carpool. If it is
+        // empty, then create a new entry.
         if($this->values['carpool_id'] == '')
         {
             // Create a new carpool based on the seat information
@@ -130,6 +143,9 @@ class SeatsForm extends BaseSeatsForm
             // Set the seat carpool_id to be the new carpool
             $this->values['carpool_id'] = $newCarpool->getCarpoolId();
         }
+        
+        // Handle the link to the passenger. If it is
+        // empty, then create a new entry.
         if($this->values['passenger_id'] == '')
         {
             // Create a new passenger based on the seat information
@@ -148,24 +164,27 @@ class SeatsForm extends BaseSeatsForm
             // Save the Passenger
             $newPassenger->save();
 
-            // Set the seat carpool_id to be the new carpool
+            // Set the seat passenger_id to be the new passenger
             $this->values['passenger_id'] = $newPassenger->getPassengerId();
         }
         
-        
-        // Call the parent function to save the seat
-        parent::doSave($con);
-        $updatedSeat = $this->getObject();
-        
-        // Update the route id in the seat if necessary
-        if ($routeId != $updatedSeat->getSoloRouteId())
-        {            
-            // Update the seat with the new route id
-            $updatedSeat->setSoloRouteId($routeId);
-            $updatedSeat = $updatedSeat->save();
+        // Change the behavior of the parent doSave. The difference is the 
+        // embedded route should be saved first
+        if (null === $con)
+        {
+            $con = $this->getConnection();
         }
         
-        // Return the updated seat
-        return $updatedSeat;
+        // Update the route id of the seat if the route has changed to make 
+        // sure it does not get overwritten
+        if ($routeChanged)
+        {
+            $this->values['solo_route_id'] = $routeId;
+            $this->values['route']['route_id'] = $routeId;
+        }
+
+        $this->updateObject();
+        $this->getObject()->save($con);
     }
+
 }

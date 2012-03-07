@@ -52,7 +52,6 @@ class Routes extends BaseRoutes
      * @param String $destinationGeocode The Google geocode javascript api result
      * string for the destination with the latitude and longitude keys replaced
      * with "lat" and "lon"
-     * @return Routes The created route 
      */
     public function createFromGoogleDirections($googleDirections = null, $originGeocode = null, $destinationGeocode = null)
     {
@@ -254,8 +253,6 @@ class Routes extends BaseRoutes
         $origin->createFromGoogleGeocode($originGeocode);
         $destination = $this->getDestinationLocation();
         $destination->createFromGoogleGeocode($destinationGeocode);
-
-        return;
     }
 
     /**

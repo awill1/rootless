@@ -10,6 +10,9 @@
  */
 class CarpoolsForm extends BaseCarpoolsForm
 {
+    /**
+     * Configures the form
+     */
     public function configure()
     {
 
@@ -50,6 +53,10 @@ class CarpoolsForm extends BaseCarpoolsForm
 
     }
     
+    /**
+     * Override for the doSave
+     * @param Doctrine_Connection $con The connection to the database
+     */
     public function doSave($con = null) {
         // Get the route data from the embedded form
         $route_data = $this->values['route']['route_data'];
@@ -67,7 +74,7 @@ class CarpoolsForm extends BaseCarpoolsForm
         // The driver should be the user who is logged in
         $this->values['driver_id'] = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
 
-        return parent::doSave($con);
+        parent::doSave($con);
     }
 
 }

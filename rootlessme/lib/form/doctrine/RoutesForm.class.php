@@ -40,6 +40,9 @@ class RoutesForm extends BaseRoutesForm
             $this->setDefault('destination', urldecode($destination->getName()));
         }
         
+//        // Disable CSRF protection for this form
+//        $this->disableLocalCSRFProtection();   
+            
         // Choose the order of the fields in the form, all others are unset
         unset($this['created_at']);
         unset($this['updated_at']);
@@ -60,9 +63,18 @@ class RoutesForm extends BaseRoutesForm
         // In the future, the call to the create from google directions
         // should be called from here. That will simplify the actions and
         // doSave funcitons of forms that embed a route form
+        $routeData = $this->values['route_data'];
+        $originData = $this->values['origin_data'];
+        $destinationData = $this->values['destination_data'];
+        $this->getObject()->createFromGoogleDirections($routeData, $originData, $destinationData);
         
-        // Call the parent function to save the route
-        return parent::doSave($con);
-    }
+        // From sfFormObject doSave
+        if (null === $con)
+        {
+          $con = $this->getConnection();
+        }
 
+        // embedded forms
+        $this->saveEmbeddedForms($con);
+    }
 }

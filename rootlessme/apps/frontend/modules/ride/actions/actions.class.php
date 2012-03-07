@@ -17,21 +17,7 @@ class rideActions extends sfActions
     */
     public function executeIndex(sfWebRequest $request)
     {
-        // NOTE FOR LATER...
-        // Need to query both the Carpools and Passengers table together
-        // With a query that looks a little like this
-        // SELECT p.passenger_id AS pk, 'request' AS rideType, p.person_id AS person_id, p.start_date AS start_date, p.start_time AS start_time, p.asking_price AS asking_price FROM passengers p
-        // UNION ALL
-        // SELECT c.carpool_id AS pk, 'offer' AS rideType, c.driver_id AS person_id, c.start_date AS start_date, c.start_time AS start_time, c.asking_price AS asking_price FROM carpools c
-        // ORDER BY start_date, start_time;
-        // Need to add the query at the appropriate place in the model.
-
         $this->searchForm = new RideSearchForm();
-        $this->carpools = Doctrine_Core::getTable('Carpools')
-             ->getWithProfiles();
-        $this->passengers = Doctrine_Core::getTable('Passengers')
-             ->getWithProfiles();
-
     }
 
     /**

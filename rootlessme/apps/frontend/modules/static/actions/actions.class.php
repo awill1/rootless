@@ -30,6 +30,15 @@ class staticActions extends sfActions
         //$this->forward('default', 'module');
     }
 
+    /**
+     * Executes demo action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeDemo(sfWebRequest $request)
+    {
+        //$this->forward('default', 'module');
+    }
 
     /**
      * Executes help action

@@ -50,8 +50,7 @@ class PassengersForm extends BasePassengersForm
 
     /**
      * Override for the doSave
-     * @param Doctrine_Collection $con The database connection
-     * @return <type> 
+     * @param Doctrine_Connection $con The database connection
      */
     public function doSave($con = null) {
         // Get the route data from the embedded form
@@ -70,6 +69,6 @@ class PassengersForm extends BasePassengersForm
         // The driver should be the user who is logged in
         $this->values['person_id'] = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
 
-        return parent::doSave($con);
+        parent::doSave($con);
     }
 }
