@@ -182,4 +182,15 @@ class ProfilesTable extends Doctrine_Table
             ->whereIn('p.person_id', $personIds);
         return $q->execute();
     }
+    
+    /**
+     * Gets all profiles. This function probably already exists in 
+     * Doctine_Table. If so, delete this.
+     * @return Doctrine_Collection All profiles 
+     */
+    public function getAll()
+    {
+        $q = $this->createQuery('p');
+        return $q->execute();
+    }
 }

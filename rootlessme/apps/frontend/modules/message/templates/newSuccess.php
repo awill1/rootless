@@ -16,7 +16,7 @@
     $(document).ready(function()
     {
         // Make the to textbox act like facebook
-        $("#messages_to").fcbkcomplete({json_url: "<?php echo url_for('friendship_list', array('sf_format' => 'json')) ?>",
+        $("#messages_to").fcbkcomplete({json_url: "<?php echo url_for('messages_possible_recipient_list', array('sf_format' => 'json')) ?>",
                                         cache: true,
                                         filter_case: false,
                                         filter_hide: true,

@@ -70,6 +70,26 @@ messages:
   requirements:
     sf_method: [get]
 
+messages_create:
+  url: /messages/create
+  class:   sfDoctrineRoute
+  param:
+    module: message
+    action: create
+  options:
+    model: Messages
+    type: object
+  requirements:
+    sf_method: [post]
+
+messages_edit:
+  url:   /messages/edit/:message_id
+  class:   sfDoctrineRoute
+  options: { model: Messages, type: object }
+  param: { module: message, action: edit }
+  requirements:
+    sf_method: [get]
+
 messages_list:
   url: /messages/:list_type
   class:   sfDoctrineRoute
@@ -94,32 +114,25 @@ messages_new:
     type: object
   requirements:
     sf_method: [get]
-
-messages_create:
-  url: /messages/create
+    
+messages_possible_recipient_list:
+  url: /messages/possibleRecipients.:sf_format
   class:   sfDoctrineRoute
   param:
     module: message
-    action: create
+    action: possibleRecipientList
   options:
     model: Messages
-    type: object
+    type: list
   requirements:
-    sf_method: [post]
+    sf_method: [get]
+    sf_format: (?:json)
 
 messages_show:
   url:   /messages/:message_id
   class:   sfDoctrineRoute
   options: { model: Messages, type: object }
   param: { module: message, action: show }
-  requirements:
-    sf_method: [get]
-
-messages_edit:
-  url:   /messages/edit/:message_id
-  class:   sfDoctrineRoute
-  options: { model: Messages, type: object }
-  param: { module: message, action: edit }
   requirements:
     sf_method: [get]
 

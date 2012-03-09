@@ -72,7 +72,7 @@
             Verified Student
         </div>
     <?php endif ?>
-    <a href id="messageButtonLink">+ Message</a><br />
+    <a href="<?php echo url_for('messages_new'); ?>" id="messageButtonLink">+ Message</a><br />
     <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $profile->getPictureUrlLarge() ?>" alt="<?php echo $profile->getFullName() ?> profile picture"/>
     <div class="middleProfileBadgeInfo">
         Rides Given <strong><?php echo $travelSummary['ridesGiven'] ?></strong>

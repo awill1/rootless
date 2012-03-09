@@ -138,6 +138,12 @@ class messageActions extends sfActions
 
     $this->redirect('message/index');
   }
+  
+    public function executePossibleRecipientList(sfWebRequest $request)
+    {
+        // Get all of the users for now
+        $this->profiles = Doctrine_Core::getTable('Profiles')->getAll();
+    }
 
     protected function processForm(sfWebRequest $request, sfForm $form)
     {
