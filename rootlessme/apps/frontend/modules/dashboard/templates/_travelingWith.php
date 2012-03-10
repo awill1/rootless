@@ -11,7 +11,6 @@
                 <br/>
                 </a>
             </li>
-            <br/>
         <?php endforeach; ?>
     </ul>
 <?php endif; ?>
