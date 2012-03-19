@@ -22,7 +22,7 @@
     <h2>Scripted Demo</h2>
     <p>
         To see the best of what we have been working on, (and avoiding some 
-        of the in progress areas) checkout this basic script.
+        of the in progress areas) check out this basic script.
         <ol>
             <li>Register for an account on our 
                 <a href="<?php echo url_for('home');?>">home page</a>. It's 
