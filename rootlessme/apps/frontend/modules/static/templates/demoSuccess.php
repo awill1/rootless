@@ -25,7 +25,7 @@
         of the in progress areas) follow these basic steps.
         <ol>
             <li>Register for an account on our 
-                <a href="<?php echo url_for('home');?>">home page</a>. It's 
+                <a href="<?php echo url_for('home');?>" target="_blank">home page</a>. It's 
                 quick, we promise.
             </li>
             <li>Pretend you are a student at the University of Toledo and you 
@@ -57,14 +57,16 @@
                 at the house boat they have rented on Lake Cumberland in 
                 Kentucky. No public transportation serves this area. Search for
                 a ride from your Chicago hotel <strong>172 West Adams Street, 
-                Chicago, IL</strong>to the dock where you are going to meet your 
-                friends <strong>3677 Kentucky 92, Jamestown, KY</strong>.
+                Chicago, IL</strong> to the dock where you are going to meet your 
+                friends <strong>3677 Kentucky 92, Jamestown, KY</strong> on
+                <strong>06/08/2012</strong>.
             </li>
             <li>Unfortunately, there are no rides that match your needs. 
                 Create a ride request post by clicking <strong>+ Request a 
                 ride</strong>. Create a ride using <strong>172 West Adams Street, 
                 Chicago, IL</strong> as the origin and <strong>3677 Kentucky 92,
-                Jamestown, KY</strong> as the destination. Hopefully a compatible
+                Jamestown, KY</strong> as the destination on
+                <strong>06/08/2012</strong>. Hopefully a compatible
                 driver will find your ride request post and will help you get to the
                 boat house.
             </li>
@@ -87,8 +89,8 @@
     <h2>Free form demo</h2>
     <p>
         To just play around on our site, register on our
-        <a href="<?php echo url_for('home');?>">home page</a>. Or, browse around
-        the <a href="<?php echo url_for('ride');?>">rides</a> and 
-        <a href="<?php echo url_for('profile');?>">travelers</a> pages.
+        <a href="<?php echo url_for('home');?>" target="_blank">home page</a>. Or, browse around
+        the <a href="<?php echo url_for('ride');?>" target="_blank">rides</a> and 
+        <a href="<?php echo url_for('profile');?>" target="_blank">travelers</a> pages.
     </p>
 </div>
