@@ -24,7 +24,7 @@ $(document).ready(function()
         // returned
         success: function(result, status, xhr, form) {
             // Unblock the fragment-vehicles div
-            form.closest(".middleProfileTabContent").unblock();
+            form.closest(".middleProfileTabContent").unblock();  
         }
     });
 });

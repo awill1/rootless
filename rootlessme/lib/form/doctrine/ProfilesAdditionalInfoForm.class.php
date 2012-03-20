@@ -14,7 +14,7 @@ class ProfilesAdditionalInfoForm extends ProfilesForm
     {
         // Use the parent configuration function
         parent::configure();
-
+        
         // Unset most fields because the additional info form only contains:
         // - About Me
 
@@ -51,4 +51,12 @@ class ProfilesAdditionalInfoForm extends ProfilesForm
         unset($this['updated_at']);
     }
 
+    /**
+     * Overrides the default is multipart function. 
+     * @return bool Always returns false. 
+     */
+    public function isMultipart()
+    {
+        return false;
+    }
 }

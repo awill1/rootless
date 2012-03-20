@@ -127,7 +127,7 @@ class profileActions extends sfActions
                 // This is not an AJAX request so redirect to the show seat
                 // page
 
-                $this->redirect('profile_edit', array('profile_name', $profile->getProfileName(), 'section' => $section));
+                $this->redirect('profile_edit_user', array('section' => $section));
             }
         }
     }
