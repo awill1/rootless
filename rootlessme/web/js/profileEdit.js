@@ -18,7 +18,7 @@ $(document).ready(function()
             message: '<img src="/images/ajax-loader.gif" alt="Saving..." />'
         }); 
     });
-    $(".middleProfileTabContent form").ajaxForm(
+    $(".middleProfileTabContent form").not('[enctype="multipart/form-data"]').ajaxForm(
     {
         // The callback function when the form was successfully submitted and 
         // returned

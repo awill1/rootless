@@ -10,12 +10,16 @@
  */
 class profileActions extends sfActions
 {
-  public function executeIndex(sfWebRequest $request)
-  {
-    $this->profiles = Doctrine_Core::getTable('Profiles')
-      ->createQuery('a')
-      ->execute();
-  }
+    /**
+     * Executes the index action
+     * @param sfWebRequest $request The http request
+     */
+    public function executeIndex(sfWebRequest $request)
+    {
+        $this->profiles = Doctrine_Core::getTable('Profiles')
+          ->createQuery('a')
+          ->execute();
+    }
 
     /**
      * Executes the show action for a profile
@@ -120,15 +124,8 @@ class profileActions extends sfActions
         }
         else
         {
-            $this->setTemplate('edit');
-
-            if ($profile != null)
-            {
-                // This is not an AJAX request so redirect to the show seat
-                // page
-
-                $this->redirect('profile_edit_user', array('section' => $section));
-            }
+            // This is not an AJAX post so redirect back to the edit page
+            $this->redirect('profile_edit_user', array('section' => $section));
         }
     }
 
