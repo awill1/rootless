@@ -33,6 +33,10 @@ class ProfilesForm extends BaseProfilesForm
             'required' => false,
             'mime_types' => 'web_images',
             'path' => sfConfig::get('sf_upload_dir').'/assets/profile_pictures')));
+        
+        // Change some of the widgets to be dropdowns
+        $this->setWidget('country', new sfWidgetFormI18nChoiceCountry());
+        $this->setWidget('gender', new sfWidgetFormChoice(array('choices' => array(null => '' , 'male' => 'Male', 'female' => 'Female'))));
 
         unset($this['person_id']);
         unset($this['created_at']);
