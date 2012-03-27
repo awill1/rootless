@@ -37,6 +37,6 @@
             </a>
         </li>
     <?php endforeach; ?>
-        <li class="headerControlsListSublistItem inLink"><a href="/frontend_dev.php/messages" title="view inbox" >Go To Inbox</a></li>
+        <li class="headerControlsListSublistItem inLink"><a href="<?php echo url_for('messages'); ?>" title="Go To Inbox" >Go To Inbox</a></li>
     </ul>
 </li>
