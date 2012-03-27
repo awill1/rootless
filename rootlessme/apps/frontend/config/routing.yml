@@ -171,7 +171,7 @@ profile_update_user:
     action: update
   requirements:
     sf_method: [post]
-    section: (account|additional)
+    section: (account|additional|password)
 
 profile_show_user:
   url:   /profiles/:profile_name

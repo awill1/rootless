@@ -71,7 +71,7 @@ class profileActions extends sfActions
         $this->accountInfoForm = new ProfilesAccountInfoForm($profile);
         $this->additionalInfoForm = new ProfilesAdditionalInfoForm($profile);
         $this->vehicleInfoForm = new VehiclesForm($profile->getPeople()->getVehicles()->getFirst());
-        $this->sfGuardUserForm = new sfGuardUserAdminForm($profile->getPeople()->getSfGuardUser());
+        $this->sfGuardUserForm = new sfGuardUserAccountForm($profile->getPeople()->getSfGuardUser());
     } 
 
     /**
@@ -97,7 +97,12 @@ class profileActions extends sfActions
         {
             $profileForm = new ProfilesAdditionalInfoForm($profile);
         }
+        if ($section == 'password')
+        {
+            $profileForm = new sfGuardUserAccountForm($profile->getPeople()->getSfGuardUser());
+        }
         
+        // Save the changes to the profile
         $profile = $this->processForm($request, $profileForm);
         
         // If the request came from AJAX render the edit profile partial
@@ -106,6 +111,7 @@ class profileActions extends sfActions
         {
             if ($profile != null)
             {
+                // Create the form to be returned to the web page
                 $profileForm = null;
                 if ($section == 'account')
                 {
@@ -114,6 +120,10 @@ class profileActions extends sfActions
                 if ($section == 'additional')
                 {
                     $profileForm = new ProfilesAdditionalInfoForm($profile);
+                }
+                if ($section == 'password')
+                {
+                    $profileForm = new sfGuardUserAccountForm($profile);
                 }
                 return $this->renderPartial('profile/form', array('form' => $profileForm, 'section' => $section));
             }
