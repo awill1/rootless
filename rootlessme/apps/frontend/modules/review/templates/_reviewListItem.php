@@ -12,6 +12,5 @@
             <p class="feedbackProfileComment">
                 <?php echo $review->getComments() ?>
             </p>
-            <div class="feedbackProfileReply"><a class="actionLink" href="#" >Reply</a></div>
         </li>
         <div id="profileDivider"><hr /></div>
