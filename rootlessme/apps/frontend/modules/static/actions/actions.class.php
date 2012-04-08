@@ -63,6 +63,9 @@ class staticActions extends sfActions
 
         // Get the registration form
         $this->registerForm = new sfGuardRegisterForm();
+        
+        // Get the ride search form
+        $this->rideSearchForm = new RideSearchForm();
     }
 
     /**
