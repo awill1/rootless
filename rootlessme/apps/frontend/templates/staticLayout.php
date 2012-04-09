@@ -73,22 +73,25 @@
          $('.home #rideSearchForm label[for="rides_origin"]').html('from');
          $('.home #rideSearchForm label[for="rides_destination"]').html('to');
          
-         $('.home #rideSearchForm tbody tr input').after('<span class="plusSign">+</span><div class="opaqueBg"></div>');
-       
-            
+         
+       $('.home #rideSearchForm input[type="text"]').after('<span class="locExamp">City, State</span>');  
+         
+       $('.home #rideSearchForm tbody tr input').after('<span class="plusSign">+</span><div class="opaqueBg"></div>');
+       $('.home #loginFormContainerB tbody tr input[type="text"], .home #loginFormContainerB tbody tr input[type="password"]').after('<div class="opaqueBg"></div>');
+     
        //make Login form submit value = 'Login'
        
             $('.home #loginFormContainer tfoot input').attr('value', 'Login');
        
        
        // sign in - hint value
-       $('.home #loginFormContainer #signin_username, .home #loginFormContainerB #signin_username').after('<span class="signin_username">Email</span>').parent().css({'position': 'relative'});
-       
+       $('.home #loginFormContainer #signin_username').after('<span class="signin_username">Email</span>').parent().css({'position': 'relative'});
+        $('.home #loginFormContainerB #signin_username').after('<span class="signin_username_b">Email</span>').parent().css({'position': 'relative'});
        // password - hint value
-       $('.home #loginFormContainer #signin_password, .home #loginFormContainerB #signin_password').after('<span class="signin_password">Password</span>').parent().css({'position': 'relative'});
-       
+       $('.home #loginFormContainer #signin_password').after('<span class="signin_password">Password</span>').parent().css({'position': 'relative'});
+       $('.home #loginFormContainerB #signin_password').after('<span class="signin_password_b">Password</span>').parent().css({'position': 'relative'});
        // Function for login form on focus 
-       $('.home #loginFormContainer input[type="text"], .home #loginFormContainer input[type="password"]').focus(function(){
+       $('.home #loginFormContainer input[type="text"], .home #loginFormContainer input[type="password"]').keydown(function(){
             var id = $(this).attr('id');
             $('.' + id).fadeOut();
            
