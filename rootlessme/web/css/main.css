@@ -218,11 +218,24 @@ textarea {
   font-size: 17px;
   font-family: Arial, Helvetica, sans-serif;
   padding: 5px;
-  color: #444;
+  color: #ccc;
   margin-top: 10px;
   margin-left: 55px;
   width: 155px;
   margin-right: 10px;
+}
+
+.home #rideSearchForm input[type='text']:focus{
+  color: #444;
+ 
+}
+
+.home #loginFormContainerB input[type='text'], .home #loginFormContainerB input[type='password'] {
+ color: #ccc;
+}
+
+.home #loginFormContainerB input[type='text']:focus, .home #loginFormContainerB input[type='password']:focus {
+ color: #444;
 }
 
 .plusSign {
@@ -396,7 +409,7 @@ z-index: 100;
 
 .home #loginFormContainerB input[type='submit'] {
     float: right;
-    margin-left: 30px;
+    margin-left: 35px;
 } 
 
 .home #loginFormContainerB input[type='text'], .home #loginFormContainerB input[type='password'] {

@@ -74,8 +74,48 @@
          $('.home #rideSearchForm label[for="rides_destination"]').html('to');
          
          
-       $('.home #rideSearchForm input[type="text"]').after('<span class="locExamp">City, State</span>');  
-         
+       $('.home #rideSearchForm input[type="text"]').val('City, State');
+       $('.home #loginFormContainerB input[type="text"]').val('Email');
+       $('.home #loginFormContainerB input[type="password"]').val('Password');
+       
+       $('.home #loginFormContainerB input[type="text"], .home #loginFormContainerB input[type="password"]').focus(function(){
+           if ($(this).val() == 'Email') {
+             $(this).val('');
+           }
+       });
+       
+       $('.home #loginFormContainerB input[type="password"]').focus(function(){
+           if ($(this).val() == 'Password') {
+             $(this).val('');
+           }
+       });
+       
+       $('.home #loginFormContainerB input[type="text"], .home #loginFormContainerB input[type="password"]').blur(function(){
+           if ($(this).val() == '') {
+             $(this).val('Email');
+           }
+       });
+       
+       $('.home #loginFormContainerB input[type="password"]').blur(function(){
+           if ($(this).val() == '') {
+             $(this).val('Password');
+           }
+       });
+       
+       
+       
+       $('.home #rideSearchForm input[type="text"]').focus(function(){
+           if ($(this).val() == 'City, State') {
+             $(this).val('');
+           }
+       });
+       
+       $('.home #rideSearchForm input[type="text"]').blur(function(){
+           if ($(this).val() == '') {
+             $(this).val('City, State');
+           }
+       });
+       
        $('.home #rideSearchForm tbody tr input').after('<span class="plusSign">+</span><div class="opaqueBg"></div>');
        $('.home #loginFormContainerB tbody tr input[type="text"], .home #loginFormContainerB tbody tr input[type="password"]').after('<div class="opaqueBg"></div>');
      
@@ -86,12 +126,12 @@
        
        // sign in - hint value
        $('.home #loginFormContainer #signin_username').after('<span class="signin_username">Email</span>').parent().css({'position': 'relative'});
-        $('.home #loginFormContainerB #signin_username').after('<span class="signin_username_b">Email</span>').parent().css({'position': 'relative'});
+       $('.home #loginFormContainerB #signin_username').parent().css({'position': 'relative'});
        // password - hint value
        $('.home #loginFormContainer #signin_password').after('<span class="signin_password">Password</span>').parent().css({'position': 'relative'});
-       $('.home #loginFormContainerB #signin_password').after('<span class="signin_password_b">Password</span>').parent().css({'position': 'relative'});
+       $('.home #loginFormContainerB #signin_password').parent().css({'position': 'relative'});
        // Function for login form on focus 
-       $('.home #loginFormContainer input[type="text"], .home #loginFormContainer input[type="password"]').keydown(function(){
+       $('.home #loginFormContainer input[type="text"], .home #loginFormContainer input[type="password"]').click(function(){
             var id = $(this).attr('id');
             $('.' + id).fadeOut();
            
