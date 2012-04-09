@@ -237,15 +237,11 @@ textarea {
 }
 
 .home #loginFormContainer {
-    
-    float: right;
     margin-right: 10px;
-    position: fixed;
-    right: 0;
-    top: 0;
-    width: 345px;
     position: absolute;
-    margin-top: -68px;
+    right: 0;
+    margin-top: -83px;
+    width: 345px;
 }
 
 .home #loginFormContainer label {
@@ -417,6 +413,12 @@ textarea {
     clear: left;
 }
 
+.frontPageContent p {
+    float: left;
+    color: #999;
+}
+    
+
 }
 
 @media screen and (max-width: 400px) {
@@ -428,6 +430,7 @@ textarea {
     
     .frontPageContent p {
     width: 200px;
+    float: left;
 }
      
 
@@ -934,11 +937,19 @@ textarea {
 }
 
 
-.frontPageContent{
-    padding: 0px 0px 0px 5px;
-    margin-top: 10px;
+.frontPageContent {
+    padding: 0px;
     color: #404040;
-    width: 400px;
+}
+
+.frontPageContent p {
+    font-size: 36px;
+    border-top: 1px solid #ccbda6;
+    border-bottom: 1px solid #ccbda6;
+    min-width: 400px;
+    max-width: 715px;
+    padding: 12px 5px;
+    margin: 25px 0px;
 }
 
 .signUpText {

@@ -7,23 +7,9 @@
 </div>
 
 <div class="frontPageContent">
-    <img src="/images/WhatisRootless.png" alt="RootlessMe" /> 
     <p>
-        Rootless is a new kind of social network. One that exists only
-        to help you get out from behind your computer and enjoy life.
+       A ridesharing network that helps get you out from behind your computer to enjoy life.
     </p>
-    <p>
-        With rootless, you can easily find a ride anywhere you want,
-        with people you like.
-    </p>
-    
-    <a href="<?php echo url_for('ride') ?>" ><img src="/images/TakeTour.png" alt="RootlessMe" /></a>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
 </div>
     
 <form target
