@@ -207,24 +207,49 @@ textarea {
     color: #444;
     background-color: #E8E9E9;
     border: 1px #3D3D3D solid;
+    position: relative;
     
+}
+
+
+.home #rideSearchForm input[type='text']{
+  z-index: 1000;
+  position: relative;
+  font-size: 17px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 5px;
+  color: #444;
+  margin-top: 10px;
+  margin-left: 55px;
+  width: 155px;
+  margin-right: 10px;
+}
+
+.plusSign {
+  font-size: 36px;
+color: #119D49;
+top: 18px;
+left: 18px;
+position: absolute;
+z-index: 100;
 }
 
 .opaqueBg {
     background-color: #1F141A;
     color: #FFFFFF;
     font-weight: lighter;
-    margin-top: 2px;
-    opacity: 0.4;
-    padding: 10px;
-    margin-left: -5px;
-    width: 200px;
-    min-height: 295px;
-    max-height: 100%;
+    opacity: 0.3;
+    width: 100%;
+    height: 80%;
     left: 0;
     position: absolute;
-    top: 0;
+    top: 11px;
+    border: 1px solid #575656;
     
+}
+
+.home #rideSearchForm tbody td {
+    position: relative;
 }
 
 .home #loginFormContainer input[type="text"], .home #loginFormContainer input[type="password"]
@@ -244,18 +269,25 @@ textarea {
     width: 345px;
 }
 
-.home #loginFormContainer label {
+.home #loginFormContainer label, .home #loginFormContainerB label {
  
     display:none;
 }
 
-.home #loginFormContainer label[for='signin_remember']{
+.home #loginFormContainer label[for='signin_remember'] {
     
     display: block;
     font-weight: normal;
     left: 25px;
     position: absolute;
     top: 33px;
+    
+}
+
+.home #loginFormContainerB label[for='signin_remember'] {
+    
+    display: block;
+    font-weight: normal;
     
 }
 
@@ -318,8 +350,17 @@ textarea {
 
 }  
 
-.home #loginFormContainer form span.signin_password {
-    left: 154px;
+.home #loginFormContainer form span.signin_username, .home #loginFormContainer form span.signin_password {
+    left: 7px;
+    position: absolute;
+    top: 6px;
+    color: #ccc;
+    cursor:text;
+    
+}
+
+.home #loginFormContainerB span.signin_username, .home #loginFormContainerB span.signin_password {
+    left: 13px;
     position: absolute;
     top: 8px;
     color: #ccc;
@@ -327,13 +368,11 @@ textarea {
     
 }
 
-.home #loginFormContainer form span.signin_username {
-    left: 13px;
-    position: absolute;
-    top: 8px;
-    color: #ccc;
-    cursor:text;
-    
+.home #rideSearchForm {
+    border-left: 1px solid #cebea9;
+    padding-left: 15px;
+    margin-left: 25px;
+    float: left;
 }
 
 @media screen and (max-width: 640px) {
@@ -348,6 +387,9 @@ textarea {
     padding-bottom: 35px;
 }
 
+.home #middleContentFront {
+    float: left;
+}
 
 .home #loginFormContainer form table tbody, .home #loginFormContainer form table tfoot {
     display: block;
@@ -413,10 +455,6 @@ textarea {
     clear: left;
 }
 
-.frontPageContent p {
-    float: left;
-    color: #999;
-}
     
 
 }
@@ -926,7 +964,38 @@ textarea {
     margin-right: 240px;
     z-index: 1001;
 }
-#signUpFormContainer{
+
+.home .sideImages {
+    position: absolute;
+    left: -1px;
+}
+
+.home .sideImagesL {
+    position: absolute;
+    left: -28px;
+    top: 0px;
+}
+
+.home #loginFormContainerB{
+    margin-left: 70px;
+    padding: 10px 10px 10px 10px;
+    color: #FFFFFF;
+    position: relative;
+    width: 250px;
+    margin-top: 2px;
+    font-weight: lighter;
+    border-left: 1px solid #cebea9;
+    padding-left: 25px;
+    float: left;
+}
+
+.home #rides_find {
+    float: right;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.home #signUpFormContainer{
    
     padding: 10px 10px 10px 10px;
     color: #FFFFFF;
@@ -934,12 +1003,37 @@ textarea {
     width: 250px;
     margin-top: 2px;
     font-weight: lighter;
+    border-left: 1px solid #cebea9;
+    padding-left: 25px;
+    float: left;
 }
 
+.frontLabelText {
+    color: #d56f3e;
+    font-size: 36px;
+    font-weight: normal;
+    text-align: left;
+    width: 400px;
+}
+
+.home #rideSearchForm th {
+    text-align: left;
+    width: 90px;
+    padding-top: 25px;
+}
+
+.home #rideSearchForm label[for="rides_origin"], .home #rideSearchForm label[for="rides_destination"] {
+    color: #d56f3e;
+    font-size: 36px;
+    font-weight: normal;
+    font-family: Arial, Helvetica, san-serif;
+    text-transform: lowercase;
+}
 
 .frontPageContent {
     padding: 0px;
     color: #404040;
+    margin-bottom: 90px;
 }
 
 .frontPageContent p {
@@ -953,9 +1047,9 @@ textarea {
 }
 
 .signUpText {
-    color:#FFFFFF;
-    position: relative;
-    z-index: 10;
+   color:#FFFFFF;
+   position: relative;
+   z-index: 10;
    display: block;
    margin-left: -7px;
 }
@@ -1173,6 +1267,7 @@ textarea {
     outline: none;
     color: #fff;
     padding: 5px 10px;
+    cursor: pointer;
 }
 
 .cta:hover, input[type='submit']:hover, input[type='button']:hover {

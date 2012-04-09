@@ -67,16 +67,14 @@
            
        });
        
-        //make the opaque div to be placed under the form
             
-            $('#signUpFormContainer').append('<div class="opaqueBg"></div>');
+
+       // change orgin and destination text 
+         $('.home #rideSearchForm label[for="rides_origin"]').html('from');
+         $('.home #rideSearchForm label[for="rides_destination"]').html('to');
+         
+         $('.home #rideSearchForm tbody tr input').after('<span class="plusSign">+</span><div class="opaqueBg"></div>');
        
-       //put help text in sign up form
-            $('label[for="sf_guard_user_email_address"]').html("Email <span class='help-text'>(student verification: use .edu)</span>");
-            $('label[for="sf_guard_user_password"]').html("Password <span class='help-text'>(at least 6 characters)</span>");
-       
-       //make the form value of the sign up = 'Join!'
-            $('.home .signUpText tfoot input').attr('value', 'Join!');
             
        //make Login form submit value = 'Login'
        
@@ -84,10 +82,10 @@
        
        
        // sign in - hint value
-       $('.home #loginFormContainer #signin_username').after('<span class="signin_username">Email</span>');
+       $('.home #loginFormContainer #signin_username, .home #loginFormContainerB #signin_username').after('<span class="signin_username">Email</span>').parent().css({'position': 'relative'});
        
        // password - hint value
-       $('.home #loginFormContainer #signin_password').after('<span class="signin_password">Password</span>');
+       $('.home #loginFormContainer #signin_password, .home #loginFormContainerB #signin_password').after('<span class="signin_password">Password</span>').parent().css({'position': 'relative'});
        
        // Function for login form on focus 
        $('.home #loginFormContainer input[type="text"], .home #loginFormContainer input[type="password"]').focus(function(){
