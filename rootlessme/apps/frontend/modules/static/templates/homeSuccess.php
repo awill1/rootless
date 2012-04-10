@@ -11,7 +11,7 @@
        A ridesharing network that helps get you out from behind your computer to enjoy life.
     </p>
 </div>
-<form id="rideSearchForm"  action="<?php echo url_for('ride_search') ?>" method="get">
+<form id="rideSearchForm"  action="<?php echo url_for('ride') ?>" method="get">
   <img class="sideImages" src="/images/explore.png" />
   <table>
     <tbody>

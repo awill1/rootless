@@ -74,7 +74,7 @@
          $('.home #rideSearchForm label[for="rides_destination"]').html('to');
          
          
-       $('.home #rideSearchForm input[type="text"]').val('City, State');
+       $('.home #rideSearchForm input[type="text"]').val('Address, City, State');
        $('.home #loginFormContainerB input[type="text"]').val('Email');
        $('.home #loginFormContainerB input[type="password"]').val('Password');
        
@@ -105,19 +105,24 @@
        
        
        $('.home #rideSearchForm input[type="text"]').focus(function(){
-           if ($(this).val() == 'City, State') {
+           if ($(this).val() == 'Address, City, State') {
              $(this).val('');
            }
        });
        
        $('.home #rideSearchForm input[type="text"]').blur(function(){
            if ($(this).val() == '') {
-             $(this).val('City, State');
+             $(this).val('Address, City, State');
            }
        });
        
-       $('.home #rideSearchForm tbody tr input').after('<span class="plusSign">+</span><div class="opaqueBg"></div>');
-       $('.home #loginFormContainerB tbody tr input[type="text"], .home #loginFormContainerB tbody tr input[type="password"]').after('<div class="opaqueBg"></div>');
+       $('.home #rideSearchForm tbody tr input')
+            .wrap('<div class="homeControl" />')
+            .before('<div class="opaqueBg" /><span class="plusSign">+</span>');
+       //$('.home #rideSearchForm tbody tr input').after('<span class="plusSign">+</span><div class="opaqueBg"></div>');
+       $('.home #loginFormContainerB tbody tr input[type="text"], .home #loginFormContainerB tbody tr input[type="password"]')
+           .wrap('<div class="homeControl" />')
+           .before('<div class="opaqueBg" />');
      
        //make Login form submit value = 'Login'
        

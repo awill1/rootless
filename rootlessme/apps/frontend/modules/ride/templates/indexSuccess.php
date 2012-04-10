@@ -100,9 +100,36 @@
             // Need to add places to the google library list (comma separated)
             // in app.yml
             //autocomplete = new google.maps.places.Autocomplete(document.getElementById("rides_origin"));
+            
+            // Set textboxes to match the query string variables
+            var origin = getParameterByName('rides\\[origin]');
+            var destination = getParameterByName('rides\\[destination]');
+            
+            if (origin != null)
+            {
+                $(originTextBox).val(origin);
+            }
+            if (destination != null)
+            {
+                $(destinationTextBox).val(destination);
+            }
+            if (origin != null || destination != null)
+            {
+                previewRoute();
+                $('#rides_find').click();
+            }
 
             
         });
+        
+        function getParameterByName(name) {
+            var queryString = window.location.search;
+            queryString = decodeURIComponent(queryString);
+            var match = RegExp('[?&]' + name + '=([^&]*)')
+                            .exec(queryString);
+            return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+        }
+
 
         function HighlightRow(tableRow)
         {
