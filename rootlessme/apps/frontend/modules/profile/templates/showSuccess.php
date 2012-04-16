@@ -56,8 +56,14 @@
             <?php endif ?>     
         </h1>
         <a id="mainProfileSubtitle" href="<?php echo $profile->getWebsiteUrl() ?>"><?php echo $profile->getWebsiteUrl() ?></a>
-    <h2><?php echo $profile->getAge() ?> year old <?php echo $profile->getGender() ?> from
-             <a id="mainProfileLocationLink" href="#" class="locationLink">+<?php echo $profile->getCity() ?></a></h2>
+    <h2>
+        <?php echo $profile->getAge() ?> year old 
+        <?php echo $profile->getGender() ?> 
+        from
+        <span id="mainProfileLocationLink" class="locationLink">
+            +<?php echo $profile->getCityStateString() ?>
+        </span>
+    </h2>
     <p>
         <?php echo $profile->getAboutMe() ?>
     </p>

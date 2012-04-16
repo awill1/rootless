@@ -51,7 +51,7 @@ class Profiles extends BaseProfiles
 
         return $year_diff;
     }
-
+    
     /**
      * Tests to see whether a person is the user's friend
      * @return bool True, if the person is the authenticated user's friend.
@@ -275,27 +275,11 @@ class Profiles extends BaseProfiles
      */
     public function getCityStateString()
     {
-        // Return variables
-        $returnString = "";
+        // Get the variables
         $city = $this->getCity();
         $state = $this->getState();
 
-        // Depending on what information is known, build the return string
-        if ($city != null )
-        {
-            $returnString = $city;
-        }
-        if ($city != null && $state != null )
-        {
-            $returnString = $returnString.", ";
-        }
-        if ($state != null)
-        {
-            $returnString = $returnString.$state;
-        }
-
-        return $returnString;
-
+        return Locations::createCityStateString($city, $state);
     }
     
 }

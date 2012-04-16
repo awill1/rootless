@@ -119,8 +119,7 @@
                         
                        <h3 id="leftProfileName" class="leftWidgetTitle"><?php echo $sf_user->getGuardUser()->getPeople(); ?></h3>
                         
-                        
-                        <a href="#" id="leftProfileLocation" >+<?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getCity(); ?></a> <br />
+                       <span id="leftProfileLocation" >+<?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getCityStateString(); ?></span><br />
                         <br/>
                         <a href="<?php echo url_for("profile_show_user", $sf_user->getGuardUser()->getPeople()->getProfiles())  ?>" id="leftProfileViewLink" >View Profile</a>
                    
