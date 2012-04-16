@@ -303,10 +303,12 @@ textarea {
 }
 
 .home #loginFormContainerB tfoot a:link, .home #loginFormContainerB tfoot a:visited  {
-    float:left;
+    float: left;
     position: relative;
     top: -4px;
-    color: #ccc;
+    color: #CCC;
+    top: 10px;
+
 }
 
 .home #loginFormContainerB tbody tr:last-child th {
@@ -425,7 +427,7 @@ textarea {
     z-index: 100;
     font-size: 17px;
     padding: 5px;
-    margin: 15px 8px 20px 15px;
+    margin: 11px 8px 20px 15px;
     width: 195px;
 }
 
@@ -441,7 +443,7 @@ textarea {
 }
 
 .home #loginFormContainerB form {
-    margin-top: -15px;
+    margin-top: -5px;
 }
 
 .home #rideSearchForm {
@@ -1068,7 +1070,7 @@ textarea {
 }
 
 .home #loginFormContainerB {
-    margin-left: 70px;
+    margin-left: 57px;
     color: #FFFFFF;
     position: relative;
     width: 250px;
@@ -1109,6 +1111,16 @@ textarea {
     text-align: left;
     width: 90px;
     padding-top: 25px;
+}
+
+.home #rideSearchForm tfoot th {
+    text-align: left;
+    width: 335px;
+    padding-top: 25px;
+}
+
+.loginText table tfoot tr td {
+   width: 335px;
 }
 
 .home #rideSearchForm label[for="rides_origin"], .home #rideSearchForm label[for="rides_destination"] {
