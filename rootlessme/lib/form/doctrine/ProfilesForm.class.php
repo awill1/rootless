@@ -25,8 +25,13 @@ class ProfilesForm extends BaseProfilesForm
         $this->setWidget('picture_url_small', new sfWidgetFormInputHidden());
         $this->setWidget('picture_url_tiny', new sfWidgetFormInputHidden());
 
-        // Change the birthday widget to be a textbox
-        $this->setWidget('birthday', new sfWidgetFormInputText());
+        // Change the birthday widget to be a textbox formatted as m/d/y
+        $dateFormatArray = array();
+        if ($this->getObject()->getBirthday() != null)
+        {
+            $dateFormatArray['value'] = date('m/d/Y', strtotime($this->getObject()->getBirthday()));
+        }
+        $this->setWidget('birthday', new sfWidgetFormInputText( array(),$dateFormatArray));
 
         // Setup the extra validators
         $this->setValidator('picture_url', new sfValidatorFile(array(
@@ -35,7 +40,7 @@ class ProfilesForm extends BaseProfilesForm
             'path' => sfConfig::get('sf_upload_dir').'/assets/profile_pictures')));
         
         // Change some of the widgets to be dropdowns
-        $this->setWidget('country', new sfWidgetFormI18nChoiceCountry());
+        $this->setWidget('country', new sfWidgetFormI18nChoiceCountry(array('add_empty' => true)));
         $this->setWidget('gender', new sfWidgetFormChoice(array('choices' => array(null => '' , 'male' => 'Male', 'female' => 'Female'))));
         $this->setWidget('state', new sfWidgetFormChoice(array('choices' => array
            (null => '',
