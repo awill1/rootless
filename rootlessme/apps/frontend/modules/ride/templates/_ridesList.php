@@ -75,3 +75,12 @@
         <?php endforeach; ?>
     </tbody>
 </table>
+<?php if ($carpools->count() == 0 && $passengers->count() == 0) : ?>
+    <div>
+        No rides matched your search, but all is not lost. 
+        <a href="<?php echo url_for('ride_new', array('ride_type'=>'offer')) ?>">Offer a ride</a> 
+        or 
+        <a href="<?php echo url_for('ride_new', array('ride_type'=>'request')) ?>">Request a ride</a>. 
+        Then other people will be able to find you!
+    </div>
+<?php endif; ?>
