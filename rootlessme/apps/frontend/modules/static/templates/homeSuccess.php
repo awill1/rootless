@@ -16,7 +16,7 @@
   <table>
     <tbody>
       
-      <span class="frontLabelText">I want to take a trip</span>
+      <span class="frontLabelText">I want to go...</span>
       <?php echo $rideSearchForm->renderHiddenFields() ?>
       <?php echo $rideSearchForm['origin']->renderRow() ?>
       <?php echo $rideSearchForm['destination']->renderRow() ?>
