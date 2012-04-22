@@ -2,6 +2,21 @@
  * This is the javascript for the seat negotiation partial
  */
 
+var formAjaxOptions = 
+{
+    // The resulting html should be sent to the test div
+    target: '#temporaryNewSeatHolder',
+    // The callback function when the form was successfully submitted
+    success: function() {
+        // Move the resulting html from the temporaryNewSeatHolder
+        // to the actual seat history list.
+        $('#seatNegotiationHistoryList').prepend($('#temporaryNewSeatHolder').contents());
+
+        // Hide the spinner
+        $("#negotiationSpinner").hide();
+    }
+};
+
 $(document).ready(function()
 {
     // Hide the spinner
@@ -20,7 +35,6 @@ $(document).ready(function()
             picLoc = 'declined';
         }
         
-        
         // Show the spinner
         $('#negotiationSpinner').show();
         $('.selectedUser').slideUp(function(){
@@ -35,28 +49,15 @@ $(document).ready(function()
             $(this).slideDown().removeClass('selectedUser');
             $('.' + picLoc).find('.none').hide();
             $('.' + picLoc).append($(this));
-   
-            
         });
-    });
-   
+        
+        // Set the form submit flag
+        isFormSubmitPending = true;
 
-    // Use an ajax form for the action buttons
-    $('#seatNegotiationForm, #seatAcceptForm, #seatDeclineForm').ajaxForm(
-    {
-        // The resulting html should be sent to the test div
-        target: '#temporaryNewSeatHolder',
-        // The callback function when the form was successfully submitted
-        success: function() {
-            // Move the resulting html from the temporaryNewSeatHolder
-            // to the actual seat history list.
-            $('#seatNegotiationHistoryList').prepend($('#temporaryNewSeatHolder').contents());
-          
-            // Hide the spinner
-            $("#negotiationSpinner").hide();
-        }
+        // Disable the default submission. We will let AJAX do it
+        MaybeSubmitForm();
+        return false;
     });
-    
     
     // When the origin or the destination change, clear the route id.
     $(originTextBox).change(clearRouteId);
@@ -71,4 +72,17 @@ function clearRouteId()
 {
     // Clear the route id
     $('#seats_route_route_id').val('');;
+}
+
+/**
+ * Tries to submit the form. It will only be submitted if none of the
+ * blocking flags are set.
+ */
+function MaybeSubmitForm()
+{            
+    // Check to make sure nothing is blocking submitting the form
+    if (canSubmitForm() && isFormSubmitPending)
+    {
+        $('#seatNegotiationForm, #seatAcceptForm, #seatDeclineForm').ajaxSubmit(formAjaxOptions);
+    }
 }

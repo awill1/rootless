@@ -64,7 +64,32 @@
             $( ".datePicker" ).datepicker();
             $( ".timePicker" ).timepicker({ampm: true});
             
+            // Use the safe form submit function incase the google map api has
+            // not returned yet
+            $('.submitButton').click(function(){
+                // Set the form submit flag
+                isFormSubmitPending = true;
+
+                // Disable the default submission. We will let the helper 
+                // function do it
+                MaybeSubmitForm();
+                return false;
+            });
+            
         });
+        
+        /**
+         * Tries to submit the form. It will only be submitted if none of the
+         * blocking flags are set.
+         */
+        function MaybeSubmitForm()
+        {            
+            // Check to make sure nothing is blocking submitting the form
+            if (canSubmitForm() && isFormSubmitPending)
+            {
+                $('.newRideForm').submit();
+            }
+        }
     </script>
 
 <?php end_slot();?>
