@@ -69,7 +69,6 @@
 
 <?php end_slot();?>
 
-
 <h1>New ride <?php echo $rideType ?></h1>
 <div id="newRideFormArea" class="middleRidesFormArea">
 <?php include_partial($partial, array('form' => $form)) ?>
