@@ -32,6 +32,41 @@
         var destinationLatitude = "#rides_destination_latitude";
         var destinationLongitude = "#rides_destination_longitude";
         var polylines = new Object;
+        
+        // Form submit options used for the ajax form
+        var formAjaxOptions = 
+        {
+            target: '#results',
+            success: function()
+            {
+                // Clear the form submit pending flag
+                isFormSubmitPending = false;
+
+                // This handler function will run when the form is complete
+                $('#loader').hide();
+                $('#results').show('blind');
+
+                // Add the results to the google map
+                LoadItemsIntoGoogleMap();
+
+                // Change the hover style
+                $("#rideTable tbody tr")
+                .hover(
+                    function()
+                    {
+                        HighlightRow($(this))
+                    }
+                    ,function()
+                    {
+                        UnHighlightRow($(this))
+                    }
+                )
+                .find('td:not(:has(:checkbox, a))')
+                    .click(function () {
+                    window.location = $(this).parent().find("a").attr("href");
+                });
+            }
+        };
 
         // Function when the page is ready
         $(document).ready(function(){
@@ -45,36 +80,14 @@
                  $('#results').toggle('blind');
                  ClearPolylinesFromMap();
               });
-            $('#rideSearchForm').ajaxForm(
-            {
-                target: '#results',
-                success: function()
-                {
-                    // This handler function will run when the form is complete
-                    $('#loader').hide();
-                    $('#results').toggle('blind');
-                    
-                    // Add the results to the google map
-                    LoadItemsIntoGoogleMap();
-                    
-                    // Change the hover style
-                    $("#rideTable tbody tr")
-                    .hover(
-                        function()
-                        {
-                            HighlightRow($(this))
-                        }
-                        ,function()
-                        {
-                            UnHighlightRow($(this))
-                        }
-                    )
-                    .find('td:not(:has(:checkbox, a))')
-                        .click(function () {
-                        window.location = $(this).parent().find("a").attr("href");
-                    });
-                }
-            });
+              $('#rideSearchForm').submit(function(){
+                  // Set the form submit flag
+                  isFormSubmitPending = true;
+                
+                  // Disable the default submission. We will let AJAX do it
+                  MaybeSubmitForm();
+                  return false;
+              });
 
             // Create the Google Map
             map = initializeGoogleMap("map");
@@ -117,9 +130,7 @@
             {
                 previewRoute();
                 $('#rides_find').click();
-            }
-
-            
+            }    
         });
         
         function getParameterByName(name) {
@@ -189,6 +200,19 @@
                 polylines[polyline].setMap(null);
                 // Remove the polyline from the list of lines
                 delete polylines[polyline];
+            }
+        }
+        
+        /**
+         * Tries to submit the form. It will only be submitted if none of the
+         * blocking flags are set.
+         */
+        function MaybeSubmitForm()
+        {            
+            // Check to make sure nothing is blocking submitting the form
+            if (canSubmitForm() && isFormSubmitPending)
+            {
+                $('#rideSearchForm').ajaxSubmit(formAjaxOptions);
             }
         }
 

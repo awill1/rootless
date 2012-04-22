@@ -119,18 +119,36 @@ class rideActions extends sfActions
         
         // Process the form
         $ride = $this->processForm($request, $this->form);
-
-        switch ($this->rideType) {
-            case "offer":
-                $ride_id = $ride->getCarpoolId();
-                break;
-            case "request":
-                $ride_id = $ride->getPassengerId();
-                break;
+        
+        // If the ride failed return to the new page
+        if ($ride == null)
+        {
+            // Create the appropriate type of form
+            switch ($this->rideType) 
+            {
+                case "offer":
+                    $this->partial = 'rideOfferForm';
+                    break;
+                case "request":
+                    $this->partial = 'rideRequestForm';
+                    break;
+            }
+            $this->setTemplate('new');
         }
+        else
+        {
+            switch ($this->rideType) {
+                case "offer":
+                    $ride_id = $ride->getCarpoolId();
+                    break;
+                case "request":
+                    $ride_id = $ride->getPassengerId();
+                    break;
+            }
 
-        // Redirect to the page that will show the newly created ride
-        $this->redirect('ride_show', array('ride_type'=>$this->rideType, 'ride_id'=>$ride_id));
+            // Redirect to the page that will show the newly created ride
+            $this->redirect('ride_show', array('ride_type'=>$this->rideType, 'ride_id'=>$ride_id));
+        }
     }
 
     /**

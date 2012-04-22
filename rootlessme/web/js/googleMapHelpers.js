@@ -21,6 +21,13 @@ var MAP_DEFAULT_LATITUDE = 37.0625;
 var MAP_DEFAULT_LONGITUDE = -95.677068;
 var MAP_DEFAULT_ZOOM = 3;
 
+/**
+ * Variables used to block form submitting before map spi results are returned
+ */
+var isOriginDecodePending = false;
+var isDestinationDecodePending = false;
+var isDirectionsPending = false;
+var isFormSubmitPending = false;
 
 /**
  * formatGoogleJSON is used to change the strange keys used for 
@@ -191,6 +198,61 @@ function bindTextBoxesToMap(originTextBox, destinationTextBox)
     $(destinationTextBox).change(previewRoute);
 }
 
+/**
+ * Clears the origin decode flag used to block form submission before
+ * the map api returns
+ */
+function clearOriginDecodePendingFlag()
+{
+    // Clear the flag
+    isOriginDecodePending = false;
+    // Submit the form if necessary and if the function is defined
+    if (typeof(MaybeSubmitForm) == typeof(Function))
+    {
+        MaybeSubmitForm();
+    }
+}
+
+/**
+ * Clears the destination decode flag used to block form submission before
+ * the map api returns
+ */
+function clearDestinationDecodePendingFlag()
+{
+    // Clear the flag
+    isDestinationDecodePending = false;
+    // Submit the form if necessary and if the function is defined
+    if (typeof(MaybeSubmitForm) == typeof(Function))
+    {
+        MaybeSubmitForm();
+    }
+}
+
+/**
+ * Clears the directions pending flag used to block form submission before
+ * the map api returns
+ */
+function clearDirectionsPendingFlag()
+{
+    // Clear the flag
+    isDirectionsPending = false;
+    // Submit the form if necessary and if the function is defined
+    if (typeof(MaybeSubmitForm) == typeof(Function))
+    {
+        MaybeSubmitForm();
+    }
+}
+
+
+/**
+ * Verifies a form can be submitted and is not blocked
+ * @returns bool True, if the form can be submitted. False, if the form is blocked.
+ */
+function canSubmitForm()
+{
+    return !isOriginDecodePending && !isDestinationDecodePending && !isDirectionsPending;
+}
+
 // -----------------------------------------
 // All functions below this line have dependancies on items existing.
 // This needs to be rewritten in the future for better reusability.
@@ -201,6 +263,11 @@ function bindTextBoxesToMap(originTextBox, destinationTextBox)
  */
 function previewRoute()
 {
+    // Set the pending google map api flags to prevent form submitting
+    isOriginDecodePending = true;
+    isDestinationDecodePending = true;
+    isDirectionsPending = true;
+
     var originValue = $(originTextBox).val();
     if (originValue)
     {
@@ -212,6 +279,9 @@ function previewRoute()
     }
     else
     {
+        // Clear the origin pending flag
+        clearOriginDecodePendingFlag();
+        
         // There is no origin so clear the marker from the map
         originMarker.setMap(null);
         // Clear the search parameters too
@@ -243,6 +313,9 @@ function previewRoute()
     }
     else
     {
+        // Clear the destination pending flag
+        clearDestinationDecodePendingFlag();
+        
         // There is no destination so clear the marker from the map
         destinationMarker.setMap(null);
         // Clear the search parameters too
@@ -270,6 +343,9 @@ function previewRoute()
     }
     else
     {
+        // Clear the directions pending flag
+        clearDirectionsPendingFlag();
+        
         // Clear the directions from the map
         routePolyline.setMap(null);
         
@@ -298,6 +374,9 @@ function geocodeOrigin(results, status) {
     {
         $(originLongitude).val(originMarker.getPosition().lng());
     }
+    
+    // Finally, clear the origin pending flag to allow form submission
+    clearOriginDecodePendingFlag();
 }
 
 function geocodeDestination(results, status) {
@@ -317,6 +396,9 @@ function geocodeDestination(results, status) {
     {
         $(destinationLongitude).val(destinationMarker.getPosition().lng());
     }
+    
+    // Finally, clear the destination pending flag to allow form submission
+    clearDestinationDecodePendingFlag();
 }
 
 function showResults(results, status, marker) {
@@ -357,6 +439,8 @@ function calcRoute() {
         routePolyline.setMap(map);
         map.fitBounds(result.routes[0].bounds);
     }
+    // Finally, clear the directions pending flag to allow form submission
+    clearDirectionsPendingFlag();
   });
 }
 
