@@ -240,7 +240,18 @@
             
             <?php echo link_to('Help', 'help') ?>
             </div>
-            <span id="copyRight">&copy; 2011 Star Banana, LLC. All rights reserved.</span>
+            <span id="copyRight">
+            <?php 
+             $time = time () ; 
+             //This line gets the current time off the server
+
+             $year= date("Y",$time); 
+             //This line formats it to display just the year
+
+             echo "&copy; 2011-" . $year;
+             //this line prints out the copyright date range, you need to edit 2002 to be your opening year
+             ?>
+             Star Banana, LLC. All rights reserved.</span>
         </div>
   </body>
 </html>
