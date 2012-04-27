@@ -136,7 +136,7 @@
        $('.home #loginFormContainer #signin_password').after('<span class="signin_password">Password</span>').parent().parent().css({'position': 'relative'});
        $('.home #loginFormContainerB #signin_password').parent().css({'position': 'relative'});
        // Function for login form on focus 
-       $('.home #loginFormContainer input[type="text"], .home #loginFormContainer input[type="password"]').click(function(){
+       $('.home #loginFormContainer input[type="text"], .home #loginFormContainer input[type="password"]').focus(function(){
             var id = $(this).attr('id');
             $('.' + id).fadeOut();
            
@@ -161,6 +161,16 @@
            }
            
        });
+       
+       /*$('.home #loginFormContainer input[type="text"], .home #loginFormContainer input[type="password"]').focus(function(){
+            if($(this).attr('value') == '')
+           {
+              
+               var id = $(this).attr('id');
+               $('.' + id).fadeIn();
+           }
+           
+       });*/
        
     });
     
