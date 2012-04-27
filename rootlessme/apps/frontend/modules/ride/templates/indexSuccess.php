@@ -225,6 +225,6 @@
     <?php include_partial('rideSearchForm', array('rideSearchForm' => $searchForm)) ?>
 </div>
 <div id="map"></div>
-<img id="loader" alt="Loading spinner" src="/images/ajax-loader.gif" style="vertical-align: middle;" />
+<img id="loader" alt="Loading spinner" src="/images/ajax-loader.gif" style="left: 10%; position: relative; top: 75px;" />
 <div id="results">
 </div>
