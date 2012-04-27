@@ -173,6 +173,7 @@
         {
             $(".routePolyline").each(function(index) {
                 var key = $(this).attr('id');
+                console.log(key);
                 var encodedPolyline = $(this).text();
                 // Load the polylines into the google map
                 var polyline = displayEncodedPolyline(map, encodedPolyline, true);

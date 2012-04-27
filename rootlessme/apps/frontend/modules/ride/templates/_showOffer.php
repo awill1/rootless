@@ -30,8 +30,7 @@
         var testPoint = new google.maps.LatLng(23,45);
         var strangeLat;
         var strangeLon;
-        var polyline;
-        var CurrentPolyColor;
+        var polyLineObj = new Object();
 
 
         // Function when the page is ready
@@ -46,9 +45,32 @@
             
             <?php if ($acceptedSeats->count() > 0): ?>
               <?php foreach ($acceptedSeats as $seat): ?>
-            
+               var key = "ride-passenger-<?php echo $seat->getSeatId(); ?>";
                var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
                var acceptedSeatPolyline = displayEncodedPolyline(map, seatPolyline , false);
+               polyLineObj[key] = acceptedSeatPolyline;
+             <?php endforeach; ?>
+            <?php endif; ?>
+                
+            <?php if ($pendingSeats->count() > 0): ?>
+              <?php foreach ($pendingSeats as $seat): ?>
+               var key = "ride-passenger-<?php echo $seat->getSeatId(); ?>";
+              
+               var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
+               var pendingSeatPolyline = displayEncodedPolyline(map, seatPolyline , false);
+               pendingSeatPolyline.setOptions({strokeOpacity: 0})
+               polyLineObj[key] = pendingSeatPolyline;
+             <?php endforeach; ?>
+            <?php endif; ?>
+                
+                <?php if ($declinedSeats->count() > 0): ?>
+              <?php foreach ($declinedSeats as $seat): ?>
+               var key = "ride-passenger-<?php echo $seat->getSeatId(); ?>";
+              
+               var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
+               var pendingSeatPolyline = displayEncodedPolyline(map, seatPolyline , false);
+               pendingSeatPolyline.setOptions({strokeOpacity: 0})
+               polyLineObj[key] = pendingSeatPolyline;
              <?php endforeach; ?>
             <?php endif; ?>
 
@@ -110,16 +132,27 @@
         function HoverOverPassenger(passengerItem)
         {
             // Get the polyline from the row
-            var encodedPolyline = passengerItem.find(".routePolyline").contents().text();
-            polyline = displayEncodedPolyline(map, encodedPolyline, true);
-                HighlightPolyline(polyline);
+            var item = passengerItem.find(".routePolyline");
+            var key = item.attr('id');
+            var polyline = polyLineObj[key];
+            
+              HighlightPolyline(polyline);
+           
     
         }
         
         function HoverOutPassenger(passengerItem)
         {
-          
-             UnHighlightPolyline(polyline);
+            // Get the polyline from the row
+            var item = passengerItem.find(".routePolyline");
+            var key = item.attr('id');
+            var polyline = polyLineObj[key];
+            
+            if (!(item.hasClass('pendingLine'))) {
+              PassengerUnHighlightPolyline(polyline);
+            } else {
+              PendingUnHighlightPolyline(polyline)
+            }
         }
         });
 
@@ -242,7 +275,7 @@
                         <?php else :?>
                             <a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a>
                         <?php endif; ?>
-                         <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
+                         <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden pendingLine routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -269,7 +302,7 @@
                         <?php else :?>
                             <a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a>
                         <?php endif; ?>
-                         <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
+                         <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden pendingLine routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
                     </li>
                 <?php endforeach; ?>
             </ul>

@@ -447,7 +447,7 @@ function calcRoute() {
 
 function HighlightPolyline(polyline)
 {
-  polyline.setOptions({strokeColor: SECONDARY_ROUTE_COLOR, zIndex: 100});
+  polyline.setOptions({strokeColor: SECONDARY_ROUTE_COLOR, zIndex: 100, strokeOpacity: SECONDARY_ROUTE_OPACITY});
 }
         
         
@@ -458,6 +458,11 @@ function UnHighlightPolyline(polyline)
 
 function PassengerUnHighlightPolyline(polyline)
 {
-  polyline.setOptions({strokeColor: SECONDARY_ROUTE_COLOR, zIndex: 1});
+  polyline.setOptions({strokeColor: SECONDARY_ROUTE_COLOR, zIndex: -1});
+}
+
+function PendingUnHighlightPolyline(polyline)
+{
+  polyline.setOptions({strokeColor: SECONDARY_ROUTE_COLOR, zIndex: -1, strokeOpacity: 0 });
 }
 

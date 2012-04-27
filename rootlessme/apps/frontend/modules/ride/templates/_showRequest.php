@@ -34,7 +34,7 @@
 
         // Function when the page is ready
         $(document).ready(function(){
-                
+            
             // Create the Google Map
             map = initializeGoogleMap("rideProfileMap");
                 
