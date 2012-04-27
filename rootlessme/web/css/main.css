@@ -401,9 +401,9 @@ textarea {
 }  
 
 .home #loginFormContainer form span.signin_username, .home #loginFormContainer form span.signin_password {
-    left: 7px;
+    left: 13px;
     position: absolute;
-    top: 6px;
+    top: 7px;
     color: #ccc;
     cursor:text;
     

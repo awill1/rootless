@@ -130,10 +130,10 @@
        
        
        // sign in - hint value
-       $('.home #loginFormContainer #signin_username').after('<span class="signin_username">Email</span>').parent().css({'position': 'relative'});
+       $('.home #loginFormContainer #signin_username').after('<span class="signin_username">Email</span>').parent().parent().css({'position': 'relative'});
        $('.home #loginFormContainerB #signin_username').parent().css({'position': 'relative'});
        // password - hint value
-       $('.home #loginFormContainer #signin_password').after('<span class="signin_password">Password</span>').parent().css({'position': 'relative'});
+       $('.home #loginFormContainer #signin_password').after('<span class="signin_password">Password</span>').parent().parent().css({'position': 'relative'});
        $('.home #loginFormContainerB #signin_password').parent().css({'position': 'relative'});
        // Function for login form on focus 
        $('.home #loginFormContainer input[type="text"], .home #loginFormContainer input[type="password"]').click(function(){
