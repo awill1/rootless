@@ -444,3 +444,20 @@ function calcRoute() {
   });
 }
 
+
+function HighlightPolyline(polyline)
+{
+  polyline.setOptions({strokeColor: SECONDARY_ROUTE_COLOR, zIndex: 100});
+}
+        
+        
+function UnHighlightPolyline(polyline)
+{
+  polyline.setOptions({strokeColor: PRIMARY_ROUTE_COLOR, zIndex: 1});
+}
+
+function PassengerUnHighlightPolyline(polyline)
+{
+  polyline.setOptions({strokeColor: SECONDARY_ROUTE_COLOR, zIndex: 1});
+}
+

@@ -30,6 +30,8 @@
         var testPoint = new google.maps.LatLng(23,45);
         var strangeLat;
         var strangeLon;
+        var polyline;
+        var CurrentPolyColor;
 
 
         // Function when the page is ready
@@ -95,6 +97,30 @@
                 var hash = window.location.hash;
                 $(hash).trigger('click');
             }
+            
+            $('.riderListItem').hover(function(){
+           
+            HoverOverPassenger($(this));
+         
+        }, function() {
+            HoverOutPassenger($(this));
+            
+        });
+        
+        function HoverOverPassenger(passengerItem)
+        {
+            // Get the polyline from the row
+            var encodedPolyline = passengerItem.find(".routePolyline").contents().text();
+            polyline = displayEncodedPolyline(map, encodedPolyline, true);
+                HighlightPolyline(polyline);
+    
+        }
+        
+        function HoverOutPassenger(passengerItem)
+        {
+          
+             UnHighlightPolyline(polyline);
+        }
         });
 
         function loadSeatDetails() {
@@ -120,6 +146,11 @@
             // Return false to override default click behavior
             return false;
         }
+        
+        
+        
+        
+        
     </script>
 <?php end_slot();?>
 
@@ -188,6 +219,7 @@
                             <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" />
                         </a>
                     <?php endif; ?>
+                    <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
                 </li>
                 <?php endforeach; ?>
             </ul>
@@ -210,6 +242,7 @@
                         <?php else :?>
                             <a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a>
                         <?php endif; ?>
+                         <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -236,6 +269,7 @@
                         <?php else :?>
                             <a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a>
                         <?php endif; ?>
+                         <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
                     </li>
                 <?php endforeach; ?>
             </ul>

@@ -153,28 +153,17 @@
             });
         }
         
-        //need to move this
-        function HighlightPolyline(polyline)
-        {
-            polyline.setOptions({strokeColor: SECONDARY_ROUTE_COLOR, zIndex: 100});
-        }
-        
         function UnHighlightRow(tableRow)
         {
-            tableRow.removeClass("rideListSelectedRow");
-            // Get the polyline from the row
-            tableRow.find(".routePolyline").each(function(index) {
-                var key = $(this).attr('id');
-                polyline = polylines[key];
-                UnHighlightPolyline(polyline);
-            });
+          tableRow.removeClass("rideListSelectedRow");
+          // Get the polyline from the row
+          tableRow.find(".routePolyline").each(function(index) {
+              var key = $(this).attr('id');
+              polyline = polylines[key];
+              UnHighlightPolyline(polyline);
+           });
         }
-        
-        function UnHighlightPolyline(polyline)
-        {
-            polyline.setOptions({strokeColor: PRIMARY_ROUTE_COLOR, zIndex: 1});
-        }
-
+      
         function DoNav(theUrl)
         {
             document.location.href = theUrl;
