@@ -2,6 +2,7 @@
 /cache/*
 /log/*
 /web/*_dev.php
+/web/mockup/*
 /web/uploads/*
 
 # SCM files
