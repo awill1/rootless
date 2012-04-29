@@ -74,6 +74,9 @@
             // When a user clicks on the riderListItem load details about
             // the seat request
             $(".dynamicDetailsLink").click(loadSeatDetails);
+            
+            // Load the seat negotiation if it belongs to the user
+            $("#mySeat").each(loadSeatDetails);
 
             // Change all of the appropriate textboxes to date and time pickers
             $( ".datePicker" ).datepicker();
@@ -241,13 +244,12 @@
             <ul class="riderList">
                 <?php $myProfile = $mySeat->getCarpools()->getPeople()->getProfiles(); ?>
                 <li class="riderListItem">
-                    <a class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$mySeat->getSeatId()))  ?>">
+                    <a id="mySeat" class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$mySeat->getSeatId()))  ?>">
                         <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $myProfile->getPictureUrlSmall() ?>" alt="<?php echo $myProfile->getFullName() ?>" />
                     </a>
                 </li>
             </ul>
         </div>
-        <?php include_component('seat', 'negotiation', array('seat'=>$mySeat)) ?>
     <?php elseif ($myUserId!=null): ?>
         <?php include_component('seat', 'offerForm', array('ride'=>$passenger)) ?>
     <?php else: ?>
