@@ -4,7 +4,7 @@
 prod:
   .settings:
     no_script_name:         true
-    logging_enabled:        false
+    logging_enabled:        true
 
 dev:
   .settings:
@@ -25,7 +25,7 @@ test:
 all:
   .settings:
     # Form security secret (CSRF protection)
-    csrf_secret:            UniqueSecret
+    csrf_secret:            whoWillDrive
 
     # Output escaping settings
     escaping_strategy:      true

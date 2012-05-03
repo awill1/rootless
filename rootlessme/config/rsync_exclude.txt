@@ -5,6 +5,10 @@
 /web/mockup/*
 /web/uploads/*
 
+# Database files
+/config/databases.yml
+/data/sql/schema.sql
+
 # SCM files
 .arch-params
 .bzr
