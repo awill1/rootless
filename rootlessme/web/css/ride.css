@@ -517,11 +517,11 @@ ul {
     padding-bottom: 10px;
 }
 
-#seatAcceptForm {
-    display: inline;
-    margin-left: 60px;
+#seatAcceptForm, #seatDeclineForm {
+    display: inline-block;
+    margin-left: 12px;
 }
 
-#seatDeclineForm {
-    display: inline;
+#seatAcceptForm input[type="submit"], #seatDeclineForm input[type="submit"] {
+    width: 102px;
 }
