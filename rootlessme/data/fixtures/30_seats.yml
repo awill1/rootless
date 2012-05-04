@@ -1,19 +1,5 @@
 # data/fixtures/30_seats.yml
 
-SeatStatuses:
-  seat_status_pending:
-    seat_status_id: 1
-    display_text: Pending
-    slug: pending
-  seat_status_accepted:
-    seat_status_id: 2
-    display_text: Accepted
-    slug: accepted
-  seat_status_declined:
-    seat_status_id: 3
-    display_text: Declined
-    slug: declined
-
 Seats:
   seat_1:
     seat_id: 1
