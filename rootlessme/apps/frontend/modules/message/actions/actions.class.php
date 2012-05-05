@@ -10,13 +10,20 @@
  */
 class messageActions extends sfActions
 {
-  public function executeIndex(sfWebRequest $request)
-  {
-      // Get the current user's messages
-      //$this->messages = Doctrine_Core::getTable('Messages')->getMyMessages();
-      $this->messages = Doctrine_Core::getTable('Messages')->getMyLastMessagesForConversationWithProfiles();
-  }
+    /**
+     * Executes the index action
+     * @param sfWebRequest $request The http request
+     */
+    public function executeIndex(sfWebRequest $request)
+    {
+        // Get the current user's messages
+        $this->messages = Doctrine_Core::getTable('Messages')->getMyLastMessagesForConversationWithProfiles();
+    }
 
+    /**
+     * Executes the list action
+     * @param sfWebRequest $request The http request
+     */
     public function executeList(sfWebRequest $request)
     {
         // Get the message list type
@@ -44,107 +51,121 @@ class messageActions extends sfActions
       
     }
 
-  public function executeShow(sfWebRequest $request)
-  {
-      // Get the message
-      $message = $this->getRoute()->getObject();
-      $this->author = $message->getPeople()->getProfiles();
-
-      // Get all messages in the conversation
-      $this->conversation = $message->getConversations();
-      $this->messages = Doctrine_Core::getTable('Messages')->getMyConversationMessagesWithProfiles($this->conversation->getConversationId());
-
-      // Create the reply form
-      $replyMessage = new Messages();
-      // Set the known reply features
-      //$replyMessage->setPeople($this->getUser()->getGuardUser()->getPeople());
-      $replyMessage->setSubject($this->conversation->getSubject());
-      $replyMessage->setConversationId($this->conversation->getConversationId());
-      // Set the recipient to be the original author
-      //$replyRecipient = new MessageRecipients();
-      //$replyRecipient->setPeople($this->message->getPeople());
-      // Link the message and the recipient together
-      //$replyRecipient->setMessages($replyMessage);
-      // Add the reply message to the reply form
-      $this->replyForm = new MessagesForm($replyMessage);
-      // Set the recipient to be the old author
-
-      $this->forward404Unless($message);
-  }
-
-  public function executeNew(sfWebRequest $request)
-  {
-    $this->form = new MessagesForm();
-  }
-
-  public function executeCreate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod(sfRequest::POST));
-
-    $this->form = new MessagesForm();
-
-    $message = $this->processForm($request, $this->form);
-
-    $this->setTemplate('new');
-    
-    // Different behaviors depending on whether it is an AJAX request
-    if ($request->isXmlHttpRequest())
+    /**
+     * Executes the show action
+     * @param sfWebRequest $request The http request
+     */
+    public function executeShow(sfWebRequest $request)
     {
-        // This is an ajax request so return the new object
-        if (!$message)
+        // Get the message
+        $message = $this->getRoute()->getObject();
+        $this->author = $message->getPeople()->getProfiles();
+
+        // Get all messages in the conversation
+        $this->conversation = $message->getConversations();
+        $this->messages = Doctrine_Core::getTable('Messages')->getMyConversationMessagesWithProfiles($this->conversation->getConversationId());
+
+        // Create the reply form
+        $replyMessage = new Messages();
+        // Set the known reply features
+        //$replyMessage->setPeople($this->getUser()->getGuardUser()->getPeople());
+        $replyMessage->setSubject($this->conversation->getSubject());
+        $replyMessage->setConversationId($this->conversation->getConversationId());
+        // Set the recipient to be the original author
+        //$replyRecipient = new MessageRecipients();
+        //$replyRecipient->setPeople($this->message->getPeople());
+        // Link the message and the recipient together
+        //$replyRecipient->setMessages($replyMessage);
+        // Add the reply message to the reply form
+        $this->replyForm = new MessagesForm($replyMessage);
+        // Set the recipient to be the old author
+
+        $this->forward404Unless($message);
+    }
+
+    /**
+     * Executes the new action.
+     * @param sfWebRequest $request The http request
+     */
+    public function executeNew(sfWebRequest $request)
+    {
+        $this->form = new MessagesForm();
+    }
+
+    /**
+     * Executes the create action
+     * @param sfWebRequest $request The http request
+     * @return String If the request was an ajax request, html is returned 
+     */
+    public function executeCreate(sfWebRequest $request)
+    {
+        $this->forward404Unless($request->isMethod(sfRequest::POST));
+
+        $this->form = new MessagesForm();
+
+        $message = $this->processForm($request, $this->form);
+
+        $this->setTemplate('new');
+
+        // Different behaviors depending on whether it is an AJAX request
+        if ($request->isXmlHttpRequest())
         {
-            return $this->renderText('Message was not sent.');
+            // This is an ajax request so return the new object
+            if (!$message)
+            {
+                return $this->renderText('Message was not sent.');
+            }
+
+            return $this->renderText('Message sucessfully sent.');
         }
-
-        //return $this->renderPartial('review/reviewListItem', array('review' => $review));
-        return $this->renderText('Message sucessfully sent.');
+        else
+        {
+            if (!$message)
+            {
+                // There was an error and so set the template to new and let the
+                // form validators show.
+                $this->setTemplate('new');
+            }
+            else
+            {
+                // Not an AJAX call so redirect to the show message page
+                $this->redirect('messages_show',$message);
+            }
+        }
     }
-    else
+
+    /**
+     * Executes the delete action
+     * @param sfWebRequest $request The http request
+     */
+    public function executeDelete(sfWebRequest $request)
     {
-        // Not an AJAX call so redirect to the show message page
-        $this->redirect('messages_show',$message);
+        $request->checkCSRFProtection();
+
+        $this->forward404Unless($message = Doctrine_Core::getTable('Messages')->find(array($request->getParameter('message_id'),
+                                $request->getParameter('conversation_id'))), sprintf('Object message does not exist (%s).', $request->getParameter('message_id'),
+                                $request->getParameter('conversation_id')));
+        $message->delete();
+
+        $this->redirect('message/index');
     }
-  }
 
-  public function executeEdit(sfWebRequest $request)
-  {
-    $this->forward404Unless($message = Doctrine_Core::getTable('Messages')->find(array($request->getParameter('message_id'),
-                            $request->getParameter('conversation_id'))), sprintf('Object message does not exist (%s).', $request->getParameter('message_id'),
-                            $request->getParameter('conversation_id')));
-    $this->form = new MessagesForm($message);
-  }
-
-  public function executeUpdate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($message = Doctrine_Core::getTable('Messages')->find(array($request->getParameter('message_id'),
-                            $request->getParameter('conversation_id'))), sprintf('Object message does not exist (%s).', $request->getParameter('message_id'),
-                            $request->getParameter('conversation_id')));
-    $this->form = new MessagesForm($message);
-
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('edit');
-  }
-
-  public function executeDelete(sfWebRequest $request)
-  {
-    $request->checkCSRFProtection();
-
-    $this->forward404Unless($message = Doctrine_Core::getTable('Messages')->find(array($request->getParameter('message_id'),
-                            $request->getParameter('conversation_id'))), sprintf('Object message does not exist (%s).', $request->getParameter('message_id'),
-                            $request->getParameter('conversation_id')));
-    $message->delete();
-
-    $this->redirect('message/index');
-  }
-  
+    /**
+     * Gets a list of possible recipients.
+     * @param sfWebRequest $request The http request
+     */
     public function executePossibleRecipientList(sfWebRequest $request)
     {
         // Get all of the users for now
         $this->profiles = Doctrine_Core::getTable('Profiles')->getAll();
     }
 
+    /**
+     * Processes a message form.
+     * @param sfWebRequest $request The http request
+     * @param sfForm $form The form to save
+     * @return Messages The message if it was created. Null if it was not created
+     */
     protected function processForm(sfWebRequest $request, sfForm $form)
     {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
@@ -178,8 +199,7 @@ class messageActions extends sfActions
                     $addedRecipientIds[] = $recipientId;
                 }
             }
+            return $message;
         }
-
-        return $message;
     }
 }

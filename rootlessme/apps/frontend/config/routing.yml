@@ -82,14 +82,6 @@ messages_create:
   requirements:
     sf_method: [post]
 
-messages_edit:
-  url:   /messages/edit/:message_id
-  class:   sfDoctrineRoute
-  options: { model: Messages, type: object }
-  param: { module: message, action: edit }
-  requirements:
-    sf_method: [get]
-
 messages_list:
   url: /messages/:list_type
   class:   sfDoctrineRoute
