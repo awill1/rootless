@@ -15,7 +15,7 @@ class sfGuardUserAccountForm extends BasesfGuardUserAdminForm
     */
     public function configure()
     {
-
+        // Unset the unused fields
         unset(
             $this['email_address'],
             $this['person_id'],
@@ -27,5 +27,8 @@ class sfGuardUserAccountForm extends BasesfGuardUserAdminForm
             $this['groups_list'],
             $this['permissions_list']
         );
+        
+        // Make the password required
+        $this->validatorSchema['password']->setOption('required', true);
     }
 }

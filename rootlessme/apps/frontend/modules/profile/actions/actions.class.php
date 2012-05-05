@@ -129,7 +129,7 @@ class profileActions extends sfActions
             }
             else
             {
-                return $this->renderText('Profile was not updated');
+                return $this->renderPartial('profile/form', array('form' => $profileForm, 'section' => $section));
             }
         }
         else
@@ -151,7 +151,7 @@ class profileActions extends sfActions
         if ($form->isValid())
         {
             $profile = $form->save();
+            return $profile;
         }
-        return $profile;
     }
 }
