@@ -11,8 +11,16 @@ $(document).ready(function()
         // The resulting html should be sent to the test div and replace it
         target: '#seatDetailsBlock',
         replaceTarget: true,
+        beforeSubmit: function() {
+            console.log('hi');
+            $('#seatDetailsBlock').block({ 
+            message: '<img src="/images/ajax-loader.gif" alt="Submitting..." />'
+        });
+        },
+        
         // The callback function when the form was successfully submitted
         success: function() {
+            $('#seatDetailsBlock').unblock();
         }
     });
 

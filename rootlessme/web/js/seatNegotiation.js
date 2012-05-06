@@ -12,6 +12,8 @@ var formAjaxOptions =
         // to the actual seat history list.
         $('#seatNegotiationHistoryList').prepend($('#temporaryNewSeatHolder').contents());
 
+        $('#seatDetailsBlock').unblock();
+
         // Hide the spinner
         $("#negotiationSpinner").hide();
     }
@@ -24,15 +26,22 @@ $(document).ready(function()
 
     // AJAX form submit button handlers
     $('#seatNegotiationForm, #seatAcceptForm, #seatDeclineForm').submit(function(e) {
+        
+        $(this).closest('#seatDetailsBlock').block({ 
+            message: '<img src="/images/ajax-loader.gif" alt="Submitting..." />'
+        }); 
         var curId = $(e.target).attr('id');
+
         
         var picLoc ='';
         if (curId == 'seatNegotiationForm') {
             picLoc = 'pending';
-        } else if (curId == 'seatAcceptForm') {
+        } else if ((curId == 'seatAcceptForm') && ($('.selectedUser').parent().hasClass('pending'))) {
             picLoc = 'accepted';
-        } else {
+        } else if ((curId == 'seatDeclineForm') && ($('.selectedUser').parent().hasClass('pending'))){
             picLoc = 'declined';
+        } else {
+            picLoc = 'pending';
         }
         
         // Show the spinner
@@ -40,13 +49,13 @@ $(document).ready(function()
         $('.selectedUser').slideUp(function(){
             var parentCheck = $(this).parent();
             
-            if (parentCheck.children.length == 2) {
+            if (parentCheck.children.length == 1) {
               $(parentCheck).find('.none').show();
             } else {
               $(parentCheck).find('.none').hide();
             }
             
-            $(this).slideDown().removeClass('selectedUser');
+            $(this).slideDown();
             $('.' + picLoc).find('.none').hide();
             $('.' + picLoc).append($(this));
         });

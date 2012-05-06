@@ -3,6 +3,7 @@
 <?php use_helper('PartialPlus') ?>
 <?php append_to_slot('gmapheader'); ?>
     <script type="text/javascript" src="/js/jquery.form.js"></script>
+    <script type="text/javascript" src="/js/jquery.blockUI.js"></script>
     <script type="text/javascript" src="/js/newSeatForm.js"></script>
 <?php end_slot();?>
 
