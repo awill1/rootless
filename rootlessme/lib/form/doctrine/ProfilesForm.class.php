@@ -104,60 +104,73 @@ class ProfilesForm extends BaseProfilesForm
     public function doSave($con = null) {
         if ($this->getValue('picture_url') )
         {
-            $shortFilename = $this->getObject()->getPictureUrl();
-            $filename = sfConfig::get('sf_upload_dir').'/assets/profile_pictures/'.$shortFilename;
-            
-            if (!is_dir($filename)  && file_exists($filename))
-            {
-                unlink($filename);
-            }
-
             // Save the form data to the database
             $response = parent::doSave($con);
 
             // Get the filename information for the uploaded file
             // For example:
-            //$this->getObject()->getPictureUrl() returns picture1.jpg
+            // $this->getObject()->getPictureUrl() returns picture1.jpg
             // basename => picture1.jpg, filename => picture1, extension => jpg
             $pathParts = pathinfo($this->getObject()->getPictureUrl());
             $basename = $pathParts['basename'];
-            // short file name look
             $shortFilename = $pathParts['filename'];
-            $fileLocation = sfConfig::get('sf_upload_dir').'/assets/profile_pictures/';
-            $originalFilePath = $fileLocation.$basename;
             $extention = $pathParts['extension'];
-
-
-            if ($this->getValue('picture_url')) {
+            
+            // Get the final ouput directory for the image
+            $outputDirectory = sfConfig::get('sf_upload_write_dir').'/assets/profile_pictures/';
                 
-                // Resize the picture for each desired times
-                $sizes = array('tiny', 'small', 'medium', 'large');
+            // Get the path of the full size source file to thumbnail
+            $uploadDirectory = sfConfig::get('sf_upload_dir').'/assets/profile_pictures/';
+            $temporaryImage = $uploadDirectory.$basename;
+            
+            $fullSizeDestinationImage = $outputDirectory.$basename;
+            
+            $filesToCopy = Array();
+            $filesToCopy[] = $basename;
+            
+            // Create the resized picture sizes
+            $sizes = array('tiny', 'small', 'medium', 'large');
+
+            // Resize the picture for each desired size
+            foreach ($sizes as $size)
+            {
+                // New file name looks like picture1_small.jpg
+                $newFileExtention = '_'.$size.'.'.$extention;
+                $newShortFilename = $shortFilename.$newFileExtention;
+                $newFilename = $uploadDirectory.$newShortFilename;
                 
-                // Create the resized picture filenames
-                foreach ($sizes as $size)
-                {
-                    // New file name looks like picture1_small.jpg
-                    $newFileExtention = '_'.$size.'.'.$extention;
-                    $newFilename = $fileLocation.$shortFilename.$newFileExtention;
-                    $newShortFilename = $shortFilename.$newFileExtention;
-                    // Update the file name to be saved in the database
-                    $this->values['picture_url_'.$size] = $newShortFilename;
+                // Update the file name to be saved in the database
+                $this->values['picture_url_'.$size] = $newShortFilename;
 
-                    // Now resize the original picture to make the smaller versions
-                    $img = new sfImage($originalFilePath);
-                    $pictureSizeInfo = sfConfig::get('app_picture_sizes_'.$size);
-                    $maxWidth = $pictureSizeInfo['width'];
-                    $maxHeight = $pictureSizeInfo['height'];
-                    $transformMethod = $pictureSizeInfo['method'];
+                // Now resize the original picture to make the smaller versions
+                $img = new sfImage($temporaryImage);
+                $pictureSizeInfo = sfConfig::get('app_picture_sizes_'.$size);
+                $maxWidth = $pictureSizeInfo['width'];
+                $maxHeight = $pictureSizeInfo['height'];
+                $transformMethod = $pictureSizeInfo['method'];
 
-                    // Resize the image
-                    $img->thumbnail($maxWidth, $maxHeight, $transformMethod);
-                    $img->saveAs($newFilename);
-                }
-
-                // Save the resized files to the database
-                $response = parent::doSave($con);
+                // Resize the image
+                $img->thumbnail($maxWidth, $maxHeight, $transformMethod);
+                $img->saveAs($newFilename);
+                $filesToCopy[] = $newShortFilename;
             }
+            
+            // Copy all files to the destination directory and delete the old one.
+            // This is needed if the environment is saving images to Amazon S3. 
+            foreach($filesToCopy as $fileToCopy)
+            {
+                $tempFile = $uploadDirectory.$fileToCopy;
+                // Make sure the file exists and the outpu directory is 
+                // different than the upload directory
+                if ($uploadDirectory != $outputDirectory && is_file($tempFile) && file_exists($tempFile))
+                {
+                    copy($tempFile, $outputDirectory.$fileToCopy);
+                    unlink($tempFile);
+                }
+            }
+
+            // Save the resized files to the database
+            $response = parent::doSave($con);
             
             return $response;
         }

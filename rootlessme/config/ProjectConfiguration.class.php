@@ -24,7 +24,9 @@ class ProjectConfiguration extends sfProjectConfiguration
     {
         $this->enablePlugins(array(
               'sfDoctrinePlugin',
-              'sfDoctrineGuardPlugin'));
-        $this->enablePlugins('sfImageTransformPlugin');
+              'sfDoctrineGuardPlugin',
+              'sfImageTransformPlugin',
+              'sfAmazonS3Plugin'
+            ));
     }
 }
