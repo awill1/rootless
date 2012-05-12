@@ -95,7 +95,7 @@ class ProfilesTable extends Doctrine_Table
     static public function getLuceneIndexFile()
     {
         // Get the Lucene search index file
-        return sfConfig::get('sf_data_dir').'/profile.'.sfConfig::get('sf_environment').'.index';
+        return sfConfig::get('app_lucene_directory').'profile.'.sfConfig::get('sf_environment').'.index';
     }
     
     public function getForLuceneQuery($query)
