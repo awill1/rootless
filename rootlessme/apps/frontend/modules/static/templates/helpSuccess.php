@@ -44,8 +44,7 @@
     </p><br/><br/>
             <span id="footerSignature">6.) I have suggestions for the site. Where should I send them?</span><br/>
     <p>
-        You will find a place to leave your suggestions in your Settings, 
-        under the More Info section. You may also send us an email at 
+        Send us an email at 
         feedback@rootless.me . You will find all of our contact information 
         on our Contact Us page. We love to hear from you!
     </p><br/><br/>
