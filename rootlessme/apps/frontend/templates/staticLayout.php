@@ -237,17 +237,19 @@
 
     </div>
       <div id="bottomFeed">   
-            <div id="footerLink">       
-            <?php echo link_to('Terms of Service', 'terms') ?>-
-            
-            <?php echo link_to('Privacy Policy', 'privacy') ?>-
-            
-            <?php echo link_to('About Us', 'about') ?>-
-            
-            <?php echo link_to('Contact Us', 'contact') ?>-
-            
-            <?php echo link_to('Safety Tips', 'safety') ?>-
-            
+            <div id="footerLink">
+            <?php echo link_to('About', 'about') ?>
+            -
+            <a href="http://blog.rootless.me">Blog</a>
+            -
+            <?php echo link_to('Terms', 'terms') ?>
+            -
+            <?php echo link_to('Privacy', 'privacy') ?>
+            -
+            <?php echo link_to('Contact', 'contact') ?>
+            -
+            <?php echo link_to('Safety', 'safety') ?>
+            -
             <?php echo link_to('Help', 'help') ?>
             </div>
             <span id="copyRight">
