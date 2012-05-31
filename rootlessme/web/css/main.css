@@ -1154,9 +1154,20 @@ textarea {
    display: block;
    margin-left: -7px;
 }
+
 .flash_notice {
-    float: right;
+    padding: 10px;
+    background-color: #FFFFCC;
+    font-weight: bold;
 }
+
+.flash_error {
+    padding: 10px;
+    background-color: #CC0033;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
 .actionLink {
     font-style: italic;
     font-weight: bold;
