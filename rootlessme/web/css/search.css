@@ -1,9 +1,9 @@
 /* 
-    Document   : dashboard.css
+    Document   : search.css
     Created on : Sept 2, 2011, 10:20:23 AM
     Author     : awilliams
     Description:
-        This stylesheet formats the dashboard of the rootlessme website.
+        This stylesheet formats the search results of the rootlessme website.
 */
 
 /*I.D. Fragment Formatting & Styles*/
@@ -12,7 +12,6 @@
     float: left;
     background-color: #F4F4F4;
     width: 465px;
-    height: 100%;
     padding: 0px 0px 0px 15px;
 }
 
@@ -21,17 +20,25 @@
     float: left;
     background-color: #F4F4F4;
     width: 465px;
-    height: 600px;
     padding: 0px 0px 0px 15px;
 }
 
-#userName a:link{
+.searchResults {
+    margin: 10px 0px 10px 0px;
+}
+
+.searchResultsList {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+.userName a:link{
     margin: 0px 0px 0px 0px;
     color: #119D49;
     font-size: 90%;
 }
 
-#userName a:visited{
+.userName a:visited{
     margin: 0px 0px 0px 0px;
     color: #119D49;
     font-size: 90%;
