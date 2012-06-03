@@ -3,7 +3,7 @@
   sprintf('Rootless Me - Share your ride.'))
 ?>
 <div id="loginFormContainer">
-       <?php echo get_partial('sfGuardAuth/signin_form', array('form' => $signinForm)) ?>
+       <?php echo get_partial('sfGuardAuth/signin_form', array('form' => $signinForm, 'showForgotPassword' => false)); ?>
 </div>
 
 <div class="frontPageContent">
@@ -15,7 +15,6 @@
   <img class="sideImages" src="/images/explore.png" />
   <table>
     <tbody>
-      
       <span class="frontLabelText">I want to go...</span>
       <?php echo $rideSearchForm->renderHiddenFields() ?>
       <?php echo $rideSearchForm['origin']->renderRow() ?>
@@ -34,5 +33,5 @@
     
 <div id="loginFormContainerB">
     <img class="sideImagesL" src="/images/login.png" />
-    <span class="loginText"><?php echo get_partial('sfGuardAuth/signin_form', array('form' => $signinForm)) ?></span>
+    <span class="loginText"><?php echo get_partial('sfGuardAuth/signin_form', array('form' => $signinForm, 'showForgotPassword' => false)) ?></span>
 </div>

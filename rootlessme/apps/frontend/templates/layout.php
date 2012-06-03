@@ -51,7 +51,7 @@
                         <?php include_component('message', 'messageMenu') ?>
                     <li class="headerControlsListItem">
                         <a href="<?php echo url_for('profile_show_user',$sf_user->getGuardUser()->getPeople()->getProfiles()) ?>" class="headerControl">
-                            <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getPictureUrlTiny(); ?>" alt="Tiny profile picture" />
+                            <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $sf_user->getGuardUser()->getPeople()->getProfiles()->getPictureUrlTiny(); ?>" alt="<?php echo $sf_user->getGuardUser()->getPeople(); ?>" />
                             <?php echo $sf_user->getGuardUser()->getPeople(); ?>
                             <img src="/images/downArrow.png" alt="Profile Menu" />
                         </a>

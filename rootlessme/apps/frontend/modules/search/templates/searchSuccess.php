@@ -23,5 +23,8 @@
 
 <div id="rideSection">
     <h3>Rides</h3>
-    <div class="searchResults">No rides found.</div>  
+    <div class="searchResults">No rides found. <a href="<?php echo url_for('ride_new', array('ride_type'=>'offer')) ?>">Offer a ride</a> 
+        or 
+        <a href="<?php echo url_for('ride_new', array('ride_type'=>'request')) ?>">Request a ride</a>. 
+        Then other people will be able to find you!</div>  
 </div>
