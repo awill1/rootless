@@ -70,6 +70,11 @@
             $('.submitButton').click(function(){
                 // Set the form submit flag
                 isFormSubmitPending = true;
+                
+                // Block the fragment-vehicles div
+                $("#newRideFormArea").block({ 
+                    message: '<img src="/images/ajax-loader.gif" alt="Saving..." />'
+                }); 
 
                 // Disable the default submission. We will let the helper 
                 // function do it
