@@ -10,30 +10,25 @@
      <?php foreach ($newMessages as $newMessage): ?>
         <li class="headerControlsListSublistItem">
             <a class="headerSublistControl" href="<?php echo url_for('messages_show',$newMessage) ?>">
-                <?php 
-                    $profile = $newMessage->getPeople()->getProfiles();
-                    echo "<span class='quickViewImage'>";
-                    echo "<img src='/uploads/assets/profile_pictures/";
-                    echo $profile->getPictureUrlSmall();
-                    echo "' />";
-                    echo "</span>";
-                    echo "<span class='quickViewInfo'>";
-                    echo "<h2>";
-                    echo $profile->getFullName();
-                    echo "</h2>";
-                    echo "<h3>";
-                    echo $newMessage->getSubject();
-                    echo "</h3>";
-                    echo "<p>";
-                    echo substr($newMessage->getBody(),0,40);
-                    
-                    if(strlen($newMessage->getBody()) > 40) {
-                    echo "...";
-                    
-                    }
-                    echo "</p>";
-                    echo "</span>";
-                ?>
+                <span class="quickViewImage">
+                    <?php $profile = $newMessage->getPeople()->getProfiles(); ?>
+                    <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $profile->getPictureUrlSmall(); ?>" alt="<?php echo $profile->getFullName(); ?>" />
+                </span>
+                <span class="quickViewInfo">
+                    <h2>
+                        <?php echo $profile->getFullName(); ?>
+                    </h2>
+                    <h3>
+                        <?php echo $newMessage->getSubject(); ?>
+                    </h3>
+                    <p>
+                    <?php echo substr($newMessage->getBody(),0,40);
+                        if(strlen($newMessage->getBody()) > 40) {
+                            echo "...";
+                        }
+                    ?>
+                    </p>
+                </span>
             </a>
         </li>
     <?php endforeach; ?>
