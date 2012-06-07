@@ -525,3 +525,8 @@ ul {
 #seatAcceptForm input[type="submit"], #seatDeclineForm input[type="submit"] {
     width: 102px;
 }
+
+.addThisToolBar {
+    clear: left;
+    margin: 0px 0px 10px 0px;
+}
