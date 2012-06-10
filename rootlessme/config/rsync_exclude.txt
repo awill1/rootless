@@ -9,6 +9,9 @@
 /config/databases.yml
 /data/sql/schema.sql
 
+# Lucene files
+/data/*.index/*
+
 # SCM files
 .arch-params
 .bzr
