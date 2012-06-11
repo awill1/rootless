@@ -35,6 +35,8 @@ class CarpoolsForm extends BaseCarpoolsForm
         // date and time picker. The default date validator will still work
         $this->setWidget('start_date',new sfWidgetFormInputText());
         $this->setWidget('start_time',new sfWidgetFormInputText());
+        
+        $this->widgetSchema->setLabel('asking_price', 'Asking Price (per person)');
 
         // Choose the fields that will be displayed
         unset($this['created_at']);

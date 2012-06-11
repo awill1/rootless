@@ -34,6 +34,7 @@ class PassengersForm extends BasePassengersForm
         $this->widgetSchema->setLabel('passenger_count', 'Seats Needed');
         $this->widgetSchema->setLabel('start_date', 'Pickup Date');
         $this->widgetSchema->setLabel('start_time', 'Pickup Time');
+        $this->widgetSchema->setLabel('asking_price', 'Asking Price (per person)');
 
         // Choose the fields that will be displayed
         unset($this['created_at']);
