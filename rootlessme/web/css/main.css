@@ -1394,7 +1394,7 @@ input[type='submit'].searchSubmit, input[type='submit'].headerSubmit, input[type
     color: red;
 }
 
-#newRideFormArea input[name = "carpools[asking_price]"]:before, #newRideFormArea input[name = "passengers[asking_price]"]:before, #seatRequestForm input[name = "seats[price]"]:before  {
+#newRideFormArea input[name = "carpools[asking_price]"]:before, #newRideFormArea input[name = "passengers[asking_price]"]:before, #seatRequestForm input[name = "seats[price]"]:before, #seatNegotiationForm #seats_price {
     content: '$';
     float: left;
     padding-left: 3px;

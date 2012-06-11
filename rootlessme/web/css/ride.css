@@ -494,7 +494,6 @@ ul {
 #seatNegotiationForm input{
     width: 220px;
     font-size: 12px;
-    
 }
 
 #seatNegotiationBlock {
@@ -503,7 +502,11 @@ ul {
 
 #seatNegotiationForm td, #seatNegotiationForm th{
     clear: both;
-    float: left;
+}
+
+#seatNegotiationForm th {
+    text-align: right;
+    padding-right: 5px;
 }
 
 #seatSpinnerContainer {
