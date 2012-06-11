@@ -522,7 +522,7 @@ ul {
 
 #seatAcceptForm, #seatDeclineForm {
     display: inline-block;
-    margin-left: 12px;
+    margin-left: 139px;
 }
 
 #seatAcceptForm input[type="submit"], #seatDeclineForm input[type="submit"] {
@@ -532,4 +532,8 @@ ul {
 .addThisToolBar {
     clear: left;
     margin: 0px 0px 10px 0px;
+}
+
+#seatNegotiationForm input#negotiateButton {
+    margin-left: 126px;
 }
