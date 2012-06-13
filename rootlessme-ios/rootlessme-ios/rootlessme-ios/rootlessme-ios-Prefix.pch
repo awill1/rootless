@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'rootlessme-ios' target in the 'rootlessme-ios' project
+//
+
+#ifdef __OBJC__
+  #import <UIKit/UIKit.h>
+#endif
