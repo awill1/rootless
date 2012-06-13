@@ -372,7 +372,6 @@ tbody {
 }
 
 #rideOfferForm input, #rideOfferForm select {
-    
     width: 175px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -536,4 +535,20 @@ ul {
 
 #seatNegotiationForm input#negotiateButton {
     margin-left: 126px;
+}
+
+#newRideFormArea label {
+    position: relative;
+}
+
+#newRideFormArea input[name="carpools[asking_price]"], #newRideFormArea input[name="passengers[asking_price]"] {
+    padding-left: 12px;
+    width: 163px;
+}
+
+label span.dollar-sign {
+  position: absolute;
+  top: 26px;
+  left: 5px;
+  font-weight: normal;
 }
