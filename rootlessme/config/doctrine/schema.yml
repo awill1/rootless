@@ -80,6 +80,13 @@ Carpools:
       default: '1'
       notnull: false
       autoincrement: false
+    status_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
     created_at:
       type: timestamp(25)
       fixed: false
@@ -558,6 +565,13 @@ Passengers:
       primary: false
       default: '1'
       notnull: false
+      autoincrement: false
+    status_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
       autoincrement: false
     created_at:
       type: timestamp(25)

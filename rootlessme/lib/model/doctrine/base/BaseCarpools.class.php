@@ -18,6 +18,7 @@ Doctrine_Manager::getInstance()->bindComponent('Carpools', 'doctrine');
  * @property float $asking_price
  * @property string $description
  * @property integer $isPublic
+ * @property integer $status_id
  * @property timestamp $created_at
  * @property timestamp $updated_at
  * @property Routes $Routes
@@ -37,6 +38,7 @@ Doctrine_Manager::getInstance()->bindComponent('Carpools', 'doctrine');
  * @method float               getAskingPrice()     Returns the current record's "asking_price" value
  * @method string              getDescription()     Returns the current record's "description" value
  * @method integer             getIsPublic()        Returns the current record's "isPublic" value
+ * @method integer             getStatusId()        Returns the current record's "status_id" value
  * @method timestamp           getCreatedAt()       Returns the current record's "created_at" value
  * @method timestamp           getUpdatedAt()       Returns the current record's "updated_at" value
  * @method Routes              getRoutes()          Returns the current record's "Routes" value
@@ -55,6 +57,7 @@ Doctrine_Manager::getInstance()->bindComponent('Carpools', 'doctrine');
  * @method Carpools            setAskingPrice()     Sets the current record's "asking_price" value
  * @method Carpools            setDescription()     Sets the current record's "description" value
  * @method Carpools            setIsPublic()        Sets the current record's "isPublic" value
+ * @method Carpools            setStatusId()        Sets the current record's "status_id" value
  * @method Carpools            setCreatedAt()       Sets the current record's "created_at" value
  * @method Carpools            setUpdatedAt()       Sets the current record's "updated_at" value
  * @method Carpools            setRoutes()          Sets the current record's "Routes" value
@@ -171,6 +174,15 @@ abstract class BaseCarpools extends sfDoctrineRecord
              'notnull' => false,
              'autoincrement' => false,
              'length' => 1,
+             ));
+        $this->hasColumn('status_id', 'integer', 4, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 4,
              ));
         $this->hasColumn('created_at', 'timestamp', 25, array(
              'type' => 'timestamp',
