@@ -4,7 +4,7 @@
 <?php append_to_slot('gmapheader'); ?>
 <?php end_slot();?>
 
-<script type="text/javascript" src="/js/jquery.form.js"></script>
+<script type="text/javascript" src="/js/<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
 <script type="text/javascript" src="/js/seatNegotiation.js"></script>
 <div id="seatDetailsBlock" title="Seat details">
     <div id='seatNegotiationContainer'>

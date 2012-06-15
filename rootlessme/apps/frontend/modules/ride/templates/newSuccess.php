@@ -6,7 +6,7 @@
   sprintf('Rootless Me - New ride '.$rideType))
 ?>
 <?php slot('gmapheader'); ?>
-    <script type="text/javascript" src="/js/jquery.blockUI.js"></script>
+    <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_jquery_block_ui_script') ?>"></script>
     <script type="text/javascript" src="/js/googleMapHelpers.js"></script>
     <script type="text/javascript">
         var map = null;
