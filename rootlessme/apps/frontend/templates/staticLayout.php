@@ -5,7 +5,7 @@
     <?php include_metas() ?>
       <title>
           <?php if (!include_slot('title')): ?>
-            Rootless Me - Share your ride.
+            Rootless Me - Share your ride or find a carpool.
           <?php endif; ?>
       </title>
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -37,7 +37,7 @@
            
            $('#containerFront').html('<img id="backgroundImage" src="/images/FrontPageBackground2.jpg" alt="RootlessMe" />');
            
-  }
+       }
         
         
        //get window height
