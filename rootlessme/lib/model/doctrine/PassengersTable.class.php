@@ -83,7 +83,8 @@ class PassengersTable extends Doctrine_Table
     {
         // Add a where clause to the query to only return carpools today or in
         // the future
-        return $query->andWhere('pa.start_date >= ?', date('Y-m-d'));
+        return $query->andWhere('pa.start_date >= ?', date('Y-m-d'))
+                     ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED]);
     }
     
     /**

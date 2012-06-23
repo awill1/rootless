@@ -48,4 +48,40 @@ class Carpools extends BaseCarpools
         return $carpoolName;
 
     }
+    
+    /**
+     * Checks to see if a person is the owner of the ride post
+     * @param type $personId The user's person id
+     * @return boolean True if the user is the poster. False
+     * otherwise
+     */
+    public function isMyRide($personId)
+    {
+        $isMyRide = false;
+        
+        // Check to see if the user is the driver
+        if ($this->getDriverId() == $personId)
+        {
+            $isMyRide = true;
+        }
+        
+        return $isMyRide;
+    }
+    
+    /**
+     * Checks to see if the ride is deleted
+     * @return boolean True if the ride is deleted. False, otherwise.
+     */
+    public function isDeleted()
+    {
+        $isDeleted = false;
+        
+        // Check to see if the ride status is deleted
+        if ($this->getStatusId() == RideStatuses::$statuses[RideStatuses::RIDE_DELETED])
+        {
+            $isDeleted = true;
+        }
+        
+        return $isDeleted;
+    }
 }

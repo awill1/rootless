@@ -220,6 +220,17 @@ ride_create:
   requirements:
     sf_method: [get]
     ride_type: (offer|request)
+    
+    
+ride_delete:
+  url: /rides/:ride_type/delete/:ride_id
+  class:   sfRoute
+  param:
+    module: ride
+    action: delete
+  requirements:
+    sf_method: [post]
+    ride_type: (offer|request)
 
 ride_show:
   url: /rides/:ride_type/:ride_id
@@ -229,18 +240,6 @@ ride_show:
   requirements:
     sf_method: [get]
     ride_type: (offer|request)
-    
-ride_offer_update:
-  url: /rides/offers/update
-  class:   sfDoctrineRoute
-  param:
-    module: ride
-    action: updateOffer
-  options:
-    model: Carpools
-    type: object
-  requirements:
-    sf_method: [post]
 
 # search rules
 search:

@@ -29,8 +29,13 @@
                             <div class="timeCont"><?php echo date("g:i A",strtotime($carpool->getStartTime())) ?></div>
                         </div>
                         <div class="locationCont">
-                            +<?php echo $route->getOriginString() ?><br />
-                            +<?php echo $route->getDestinationString() ?><br />
+                            <div class="deleteRideCont" >
+                                <a class="quickBoxDeleteRideButton" title="Delete" href="<?php echo url_for('ride_delete', array('ride_type' => 'offer', 'ride_id' => $carpool->getCarpoolId())) ?>">
+                                    X
+                                </a>
+                            </div>
+                            <div class="originCont">+<?php echo $route->getOriginString() ?></div>
+                            <div class="destinationCont">+<?php echo $route->getDestinationString() ?></div>
                             <a class="viewRideLink" href="<?php echo url_for('ride_show', array('ride_type' => 'offer', 'ride_id' => $carpool->getCarpoolId())) ?>" >View Ride</a>
                         </div>
                     </div>
@@ -65,6 +70,11 @@
                             <div class="timeCont"><?php echo date("g:i A",strtotime($passenger->getStartTime())) ?></div>
                         </div>
                         <div class="locationCont">
+                            <div class="deleteRideCont" >
+                                <a class="quickBoxDeleteRideButton" title="Delete" href="<?php echo url_for('ride_delete', array('ride_type' => 'request', 'ride_id' => $passenger->getPassengerId())) ?>">
+                                    X
+                                </a>
+                            </div>
                             +<?php echo $route->getOriginString() ?><br />
                             +<?php echo $route->getDestinationString() ?><br />
                             <a class="viewRideLink" href="<?php echo url_for('ride_show', array('ride_type' => 'request', 'ride_id' => $passenger->getPassengerId())) ?>" >View Ride</a>

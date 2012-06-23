@@ -552,3 +552,13 @@ label span.dollar-sign {
   left: 5px;
   font-weight: normal;
 }
+
+.rideActionButtonsList {
+    margin: 0px;
+    padding: 0px;
+}
+
+.rideActionButtonsListItem {
+    margin: 0px;
+    padding: 0px;
+}

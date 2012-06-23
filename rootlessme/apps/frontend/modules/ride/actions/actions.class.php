@@ -194,14 +194,64 @@ class rideActions extends sfActions
         $this->setTemplate('editOffer');
     }
 
-    public function executeDeleteOffer(sfWebRequest $request)
+    /**
+     * Executes the delete action
+     * @param sfWebRequest $request The web request.
+     * @return type Html to display afterwards.
+     */
+    public function executeDelete(sfWebRequest $request)
     {
-        $request->checkCSRFProtection();
+        // Make sure this is a post request
+        $this->forward404Unless($request->isMethod(sfRequest::POST));
+        
+        // Get the ride type and ride id
+        $this->rideType = $request->getParameter('ride_type');
+        $this->rideId = $request->getParameter('ride_id');
 
-        $this->forward404Unless($carpool = Doctrine_Core::getTable('Carpools')->find(array($request->getParameter('carpool_id'))), sprintf('Object profile does not exist (%s).', $request->getParameter('carpool_id')));
-        $carpool->delete();
+        // Only authenticated users can use this action
+        if ($this->getUser()->isAuthenticated())
+        {
+            $userId = $this->getUser()->getGuardUser()->getPersonId();
+        
+            // Get the correct ride
+            $ride = null;
+            switch ($this->rideType) {
+                case "offer":
+                    $ride = Doctrine_Core::getTable('Carpools')->find($this->rideId);
+                    break;
+                case "request":
+                    $ride = Doctrine_Core::getTable('Passengers')->find($this->rideId);
+                    break;
+                default:
+                   // Default case just in case the ride_type is invalid (should
+                   // be prevented by routing.yml).
+                   $errorMessage =  'Ride Type '.$this->rideType.'is invalid.';
+                   $this->logMessage($errorMessage, 'err');
+            }
 
-        $this->redirect('rides/offers');
+            // Set the status to deleted
+            if (!is_null($ride))
+            {
+                if ($ride->isMyRide($userId))
+                {
+                    $ride->setStatusId(RideStatuses::$statuses[RideStatuses::RIDE_DELETED]);
+                    $ride->save();
+                    
+                    // If the request came from AJAX render the seat negotiation history
+                    // partial with the updated seat information
+                    if ($request->isXmlHttpRequest())
+                    {
+                        return $this->renderText('Ride was deleted.');
+                    }
+                    else
+                    {
+                        // This was not an ajax request redirect to the dashboard
+                        $this->getUser()->setFlash('notice', 'Ride was deleted.');
+                        $this->forward('dashboard', 'index');
+                    }
+                }
+            }
+        }
     }
 
     protected function processForm(sfWebRequest $request, sfForm $form)
