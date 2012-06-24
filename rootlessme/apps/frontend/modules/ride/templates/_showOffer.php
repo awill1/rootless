@@ -239,7 +239,7 @@
             available
         </span>
         <br />
-        <span class="tripValue">Trip Value: $<?php echo $carpool->getAskingPrice() ?> per person</span>
+        <span class="tripValue">Asking price: $<?php echo $carpool->getAskingPrice() ?> per person</span>
         <!-- TODO: Add smoking -->
         <p id="mainRideInformation">
             <?php echo nl2br($carpool->getDescription()) ?>
