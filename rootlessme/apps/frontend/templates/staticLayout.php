@@ -9,12 +9,13 @@
           <?php endif; ?>
       </title>
     <link rel="shortcut icon" href="/favicon.ico" />
+    <?php use_stylesheet(sfConfig::get('app_css_main')) ?>
     <?php use_javascript(sfConfig::get('app_jquery_script')) ?>
     <?php use_javascript(sfConfig::get('app_jquery_ui_script')) ?>
     <?php use_javascript(sfConfig::get('app_jquery_ui_timepicker_script')) ?>
     <?php use_stylesheet(sfConfig::get('app_jquery_ui_stylesheet')) ?>
     <?php use_javascript(sfConfig::get('app_jquery_validation_script')) ?>
-    <?php use_stylesheet('static.css') ?>
+    <?php use_stylesheet(sfConfig::get('app_css_static')) ?>
     <?php use_javascript('headerMenu') ?>
     <?php use_javascript('navigation') ?>
     <?php include_stylesheets() ?>

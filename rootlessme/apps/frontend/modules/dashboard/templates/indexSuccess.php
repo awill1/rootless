@@ -1,4 +1,4 @@
-<?php use_stylesheet('dashboard.css') ?>
+<?php use_stylesheet(sfConfig::get('app_css_dashboard')) ?>
 
 <?php slot(
   'title',

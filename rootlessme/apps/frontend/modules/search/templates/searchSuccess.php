@@ -1,4 +1,4 @@
-<?php use_stylesheet('search.css') ?>
+<?php use_stylesheet(sfConfig::get('app_css_search')) ?>
 
 <h1>Search Results</h1>
 

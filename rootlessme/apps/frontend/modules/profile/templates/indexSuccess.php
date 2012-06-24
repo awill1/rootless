@@ -1,4 +1,4 @@
-<?php use_stylesheet('profile.css') ?>
+<?php use_stylesheet(sfConfig::get('app_css_profile')) ?>
 
 <h1>Travelers</h1>
 

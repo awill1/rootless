@@ -1,5 +1,5 @@
 <?php use_javascript(sfConfig::get('app_google_map_script')) ?>
-<?php use_stylesheet('profile.css') ?>
+<?php use_stylesheet(sfConfig::get('app_css_profile')) ?>
 
 <?php slot(
   'title',

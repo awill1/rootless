@@ -5,7 +5,7 @@
             Rootless Me - Error
       </title>
     <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/<?php echo sfConfig::get('app_css_static'); ?>" />
     <!-- Google Analytics Javascript -->
     <script type="text/javascript">
       var _gaq = _gaq || [];

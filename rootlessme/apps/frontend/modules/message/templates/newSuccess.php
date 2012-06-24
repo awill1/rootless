@@ -1,4 +1,4 @@
-<?php use_stylesheet('/css/fcbkComplete.css') ?>
+<?php use_stylesheet('fcbkComplete.css') ?>
 <?php slot(
   'title',
   sprintf('Rootless Me - New Message'))
