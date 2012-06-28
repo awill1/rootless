@@ -2,6 +2,7 @@
 /cache/*
 /log/*
 /web/*_dev.php
+/web/dev/*
 /web/mockup/*
 /web/uploads/*
 
