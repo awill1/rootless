@@ -12,14 +12,13 @@
     </p>
 </div>
 <form id="rideSearchForm"  action="<?php echo url_for('ride') ?>" method="get">
-  <img class="sideImages" src="/images/explore.png" />
+  <img class="sideImages" src="/images/explore.png" alt="Explore" />
+  <span class="frontLabelText">I want to go...</span>
   <table>
     <tbody>
-      <span class="frontLabelText">I want to go...</span>
       <?php echo $rideSearchForm->renderHiddenFields() ?>
       <?php echo $rideSearchForm['origin']->renderRow() ?>
       <?php echo $rideSearchForm['destination']->renderRow() ?>
-      <?php //echo $rideSearchForm['date']->renderRow(array('class'=>'datePicker')) ?>
     </tbody>
     <tfoot>
       <tr>
@@ -32,6 +31,6 @@
 </form>
     
 <div id="loginFormContainerB">
-    <img class="sideImagesL" src="/images/login.png" />
-    <span class="loginText"><?php echo get_partial('sfGuardAuth/signin_form', array('form' => $signinForm, 'showForgotPassword' => false)) ?></span>
+    <img class="sideImagesL" src="/images/login.png" alt="Login" />
+    <div class="registerText"><?php echo get_partial('sfGuardRegister/form', array('form' => $registerForm)) ?></div>
 </div>

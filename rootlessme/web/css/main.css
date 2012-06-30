@@ -277,7 +277,6 @@ textarea {
     width: 130px;
     height: 17px;
     padding: 2px 0px 2px 4px;
-    color: #444;
 }
 
 .home #loginFormContainer {
@@ -420,6 +419,8 @@ textarea {
 .home #loginFormContainerB input[type='submit'] {
     float: right;
     margin-left: 35px;
+    padding: 10px 10px 10px 10px;
+    font-size: 20px;
 } 
 
 .home #loginFormContainerB input[type='text'], .home #loginFormContainerB input[type='password'] {
@@ -1394,3 +1395,6 @@ input[type='submit'].searchSubmit, input[type='submit'].headerSubmit, input[type
     color: red;
 }
 
+.hasPlaceholder{
+    color: #CCCCCC;
+}

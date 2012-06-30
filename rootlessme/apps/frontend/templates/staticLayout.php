@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <?php include_http_metas() ?>
@@ -25,153 +25,94 @@
     <?php endif; ?>
     
     <script type="text/javascript">
+        // This adds 'placeholder' to the items listed in the jQuery .support object.
+        // Used to detect if a browser supports placeholders (IE does not ).
+        jQuery(function() {
+            jQuery.support.placeholder = false;
+            test = document.createElement('input');
+            if('placeholder' in test) jQuery.support.placeholder = true;
+        });
     
     //make sure the background image fills the screen
     $(document).ready(function(){
         
-       //listen for screen width
-       var scW = screen.width;
-       if (scW < 400) {
-           
-           
-       } else {
-           
-           $('#containerFront').html('<img id="backgroundImage" src="/images/FrontPageBackground2.jpg" alt="RootlessMe" />');
-           
-       }
-        
-        
-       //get window height
-       var winH = $(window).height();
-       var winW = $(window).width();
-       if((winW/winH) < 1.5)
-           {
-      $("#backgroundImage").css({height: winH, width: ''});
-           } else {
-               
-               $("#backgroundImage").css({width: winW, height: ''});
-           }
+        //listen for screen width
+        var scW = screen.width;
+        if (scW < 400) {
+        } else {
+            $('#containerFront').html('<img id="backgroundImage" src="/images/FrontPageBackground2.jpg" alt="RootlessMe" />');
+        }
+
+        //get window height
+        var winH = $(window).height();
+        var winW = $(window).width();
+        if((winW/winH) < 1.5)
+        {
+            $("#backgroundImage").css({height: winH, width: ''});
+        } else {
+
+            $("#backgroundImage").css({width: winW, height: ''});
+        }
        
-       $(window).resize(function(){
+        $(window).resize(function(){
             var winH = $(window).height();
             var winW = $(window).width();
-            
-       if((winW/winH) < 1.5)
-           {
-      $("#backgroundImage").css({height: winH, width: ''});
-           } else {
-               
-               $("#backgroundImage").css({width: winW, height: ''});
-           }
-           
-           
-           
-       });
-       
-            
 
-       // change orgin and destination text 
-         $('.home #rideSearchForm label[for="rides_origin"]').html('from');
-         $('.home #rideSearchForm label[for="rides_destination"]').html('to');
-         
-         
-       $('.home #rideSearchForm input[type="text"]').val('Address, City, State');
-       $('.home #loginFormContainerB input[type="text"]').val('Email');
-       $('.home #loginFormContainerB input[type="password"]').val('Password');
+            if((winW/winH) < 1.5) {
+                $("#backgroundImage").css({height: winH, width: ''});
+            } else {
+                $("#backgroundImage").css({width: winW, height: ''});
+            }
+        });
+
+        // change orgin and destination text 
+        $('.home #rideSearchForm label[for="rides_origin"]').html('from');
+        $('.home #rideSearchForm label[for="rides_destination"]').html('to');
        
-       $('.home #loginFormContainerB input[type="text"], .home #loginFormContainerB input[type="password"]').focus(function(){
-           if ($(this).val() == 'Email') {
-             $(this).val('');
-           }
-       });
-       
-       $('.home #loginFormContainerB input[type="password"]').focus(function(){
-           if ($(this).val() == 'Password') {
-             $(this).val('');
-           }
-       });
-       
-       $('.home #loginFormContainerB input[type="text"], .home #loginFormContainerB input[type="password"]').blur(function(){
-           if ($(this).val() == '') {
-             $(this).val('Email');
-           }
-       });
-       
-       $('.home #loginFormContainerB input[type="password"]').blur(function(){
-           if ($(this).val() == '') {
-             $(this).val('Password');
-           }
-       });
-       
-       
-       
-       $('.home #rideSearchForm input[type="text"]').focus(function(){
-           if ($(this).val() == 'Address, City, State') {
-             $(this).val('');
-           }
-       });
-       
-       $('.home #rideSearchForm input[type="text"]').blur(function(){
-           if ($(this).val() == '') {
-             $(this).val('Address, City, State');
-           }
-       });
-       
-       $('.home #rideSearchForm tbody tr input')
+        // Add the background outlines to the text boxes
+        $('.home #rideSearchForm tbody tr input')
             .wrap('<div class="homeControl" />')
             .before('<div class="opaqueBg" /><span class="plusSign">+</span>');
-       //$('.home #rideSearchForm tbody tr input').after('<span class="plusSign">+</span><div class="opaqueBg"></div>');
-       $('.home #loginFormContainerB tbody tr input[type="text"], .home #loginFormContainerB tbody tr input[type="password"]')
+        $('.home #loginFormContainerB tbody tr input[type="text"], .home #loginFormContainerB tbody tr input[type="password"]')
            .wrap('<div class="homeControl" />')
            .before('<div class="opaqueBg" />');
      
-       //make Login form submit value = 'Login'
+        // Make Login form submit value = 'Login'
+        $('.home #loginFormContainer tfoot input').attr('value', 'Login');
+        
+        // Login textbox watermarks
+        $('#signin_username').attr('placeholder','Email');
+        $('#signin_password').attr('placeholder','Password');
+        
+        // Find ride textbox watermarks
+        $('#rides_origin').attr('placeholder','Address, City, State');
+        $('#rides_destination').attr('placeholder','Address, City, State');
+    
+        // Register textbox watermarks
+        $('#sf_guard_user_first_name').attr('placeholder','First Name');
+        $('#sf_guard_user_last_name').attr('placeholder','Last Name');
+        $('#sf_guard_user_email_address').attr('placeholder','Email');
+        $('#sf_guard_user_password').attr('placeholder','Password');
+        $('#sf_guard_user_password_again').attr('placeholder','Password Again');
        
-            $('.home #loginFormContainer tfoot input').attr('value', 'Login');
-       
-       
-       // sign in - hint value
-       $('.home #loginFormContainer #signin_username').after('<span class="signin_username">Email</span>').parent().parent().css({'position': 'relative'});
-       $('.home #loginFormContainerB #signin_username').parent().css({'position': 'relative'});
-       // password - hint value
-       $('.home #loginFormContainer #signin_password').after('<span class="signin_password">Password</span>').parent().parent().css({'position': 'relative'});
-       $('.home #loginFormContainerB #signin_password').parent().css({'position': 'relative'});
-       // Function for login form on focus 
-       $('.home #loginFormContainer input[type="text"], .home #loginFormContainer input[type="password"]').focus(function(){
-            var id = $(this).attr('id');
-            $('.' + id).fadeOut();
-           
-           
-       });
-       
-       $('.home #loginFormContainer span.signin_password, .home #loginFormContainer span.signin_username').click(function(){
-            var cl = $(this).attr('class');
-            $(this).fadeOut();
-            $('#' + cl).focus();
-           
-           
-       });
-       
-       
-       $('.home #loginFormContainer input[type="text"], .home #loginFormContainer input[type="password"]').blur(function(){
-            if($(this).attr('value') == '')
-           {
-              
-               var id = $(this).attr('id');
-               $('.' + id).fadeIn();
-           }
-           
-       });
-       
-       /*$('.home #loginFormContainer input[type="text"], .home #loginFormContainer input[type="password"]').focus(function(){
-            if($(this).attr('value') == '')
-           {
-              
-               var id = $(this).attr('id');
-               $('.' + id).fadeIn();
-           }
-           
-       });*/
+        // Correct the placeholders on unsupported browsers
+        if(!$.support.placeholder) {
+            var active = document.activeElement;
+            $('input:text,input:password').focus(function () {
+                if ($(this).attr('placeholder') != '' && $(this).val() == $(this).attr('placeholder')) {
+                    $(this).val('').removeClass('hasPlaceholder');
+                }
+            }).blur(function () {
+                if ($(this).attr('placeholder') != '' && ($(this).val() == '' || $(this).val() == $(this).attr('placeholder'))) {
+                    $(this).val($(this).attr('placeholder')).addClass('hasPlaceholder');
+                }
+            });
+            $('input:text,input:password').blur();
+            $(active).focus();
+            $('form').submit(function () {
+                $(this).find('input:text.hasPlaceholder,input:password.hasPlaceholder').val('');
+            });
+        }
        
     });
     
