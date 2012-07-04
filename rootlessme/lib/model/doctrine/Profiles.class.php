@@ -282,4 +282,31 @@ class Profiles extends BaseProfiles
         return Locations::createCityStateString($city, $state);
     }
     
+    /**
+     * Sts the user profile data from facebook
+     * @param type $facebook_user_profile 
+     * @param Boolean True if the values should be overwritten, false if only
+     * unset values should be set.
+     */
+    public function setUserDataFromFacebook($facebook_user_profile, $shouldOverwrite = false)
+    {
+        if ($shouldOverwrite || is_null($this->getFirstName()))
+        {
+            $this->setFirstName($facebook_user_profile->first_name);
+        }
+        if ($shouldOverwrite || is_null($this->getLastName()))
+        {
+            $this->setLastName($facebook_user_profile->last_name);
+        }
+        if ($shouldOverwrite || is_null($this->getFacebookUserName()))
+        {
+            $this->setFacebookUserName($facebook_user_profile->id);
+        }
+        if ($shouldOverwrite || is_null($this->getGender()))
+        {
+            $this->setGender($facebook_user_profile->gender);
+        }
+        //$this->setProfilePicture($facebook_user_profile->picture);
+    }
+    
 }

@@ -16,4 +16,24 @@ class sfGuardUserTable extends PluginsfGuardUserTable
     {
         return Doctrine_Core::getTable('sfGuardUser');
     }
+    
+    /**
+     * Gets a user based on Facebook id
+     * 
+     * @param String facebook_userid The facebook id to search for
+     * @return sfGuardUser The sfGuardUser with the facebook id, or null 
+     * if not found
+     */
+    public static function getUserByFacebookId($facebook_userid)
+    {
+        $user = null;
+        
+        // The facebook username is in the profile table
+        $profiles = Doctrine_Core::getTable('Profiles')->findBy('facebook_user_name', $facebook_userid);
+        if ($profiles->count() == 1)
+        {
+            $user = $profiles->getFirst()->getPeople()->getSfGuardUser();
+        }
+        return $user;
+    }
 }

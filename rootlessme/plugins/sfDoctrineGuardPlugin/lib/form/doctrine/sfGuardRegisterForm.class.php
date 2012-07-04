@@ -36,36 +36,17 @@ class sfGuardRegisterForm extends BasesfGuardRegisterForm
 
     public function doSave($con = null)
     {
-        // Update the route
+        // Save the new sfGuardUser
+        parent::doSave($con);
+        
         $sfGuardUser = $this->getObject();
         
-        // If the person id is not set it is a new user
-        if ( !$sfGuardUser->getPersonId())
-        {
-            // Change the username to be the same as the email address
-            $this->values['username'] = $this->values['email_address'];
-            
-            // Create a new person
-            $person = new People();
-            $person->save();
-            $personId = $person->getPersonId();
-            
-            // Set the sfGuard people id to be the person created
-            $sfGuardUser->setPersonId($personId);
-            
-            // Create a profile
-            $profile = new Profiles();
-            $profile->setPersonId($personId);
-            // The profile id should be a UUID
-            $profile->setProfileName(CommonHelpers::CreateSimpleUuid());
-            $profile->setFirstName($this->values['first_name']);
-            $profile->setLastName($this->values['last_name']);
-
-            // Save the new profile
-            $profile->save();
-        }
-
-        // Save the new sfGuardUser
-        return parent::doSave($con);
+        // Update the first and last name in the profile
+        $profile =  $sfGuardUser->getPeople()->getProfiles();
+        $profile->setFirstName($this->values['first_name']);
+        $profile->setLastName($this->values['last_name']);
+        $profile->save();
+        
+        return $sfGuardUser;
     }
 }
