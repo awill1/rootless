@@ -78,6 +78,24 @@ class userActions extends sfActions
                             // Update the profile information too
                             $profile = $user->getPeople()->getProfiles();
                             $profile->setUserDataFromFacebook($facebook_user_profile);
+                            // If there is location information get it too
+                            if (property_exists($facebook_user_profile, 'location'))
+                            {
+                                $location = $facebook_user_profile->location;
+                                if (property_exists($location, 'id'))
+                                {
+                                    $locationId = $location->id;
+                                    $locationRequestUrl = 'https://graph.facebook.com/'.$locationId; 
+                                    $locationResponse = @file_get_contents($locationRequestUrl);
+                                    if($locationResponse)
+                                    {
+                                        $facebook_location = json_decode($locationResponse);
+                                        $profile->setLocationDataFromFacebook($facebook_location);
+                                    }
+                                }
+                            }
+                            
+                            // Save the updated profile
                             $profile->save();
 
                         }else
@@ -87,6 +105,23 @@ class userActions extends sfActions
                             // Is this desired?
                             $profile = $user->getPeople()->getProfiles();
                             $profile->setUserDataFromFacebook($facebook_user_profile);
+                            // If there is location information get it too
+                            if (property_exists($facebook_user_profile, 'location'))
+                            {
+                                $location = $facebook_user_profile->location;
+                                if (property_exists($location, 'id'))
+                                {
+                                    $locationId = $location->id;
+                                    $locationRequestUrl = 'https://graph.facebook.com/'.$locationId; 
+                                    $locationResponse = @file_get_contents($locationRequestUrl);
+                                    if($locationResponse)
+                                    {
+                                        $facebook_location = json_decode($locationResponse);
+                                        $profile->setLocationDataFromFacebook($facebook_location);
+                                    }
+                                }
+                            }
+                            // Save the updated profile
                             $profile->save();
 //
 //                            $user->setProfilePicture($facebook_user_profile->picture);

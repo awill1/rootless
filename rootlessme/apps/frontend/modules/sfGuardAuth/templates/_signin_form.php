@@ -56,7 +56,7 @@ function onClickloginfb() {
             }
          });
       }
-   }, {scope:'email'});  //we just ask for the email permission
+   }, {scope:'<?php echo sfConfig::get('app_facebook_scope'); ?>'});  // Ask for the needed permissions
    
    // Make sure the link does not cause navigation
    return false;

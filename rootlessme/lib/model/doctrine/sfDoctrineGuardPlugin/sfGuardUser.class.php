@@ -46,14 +46,31 @@ class sfGuardUser extends PluginsfGuardUser
      */
     public function setUserDataFromFacebook($facebook_user_profile, $shouldOverwrite = false)
     {
-        if ($shouldOverwrite || is_null($this->getEmailAddress()))
+        if ($shouldOverwrite || CommonHelpers::IsNullOrEmptyString($this->getEmailAddress()))
         {
-            $this->setEmailAddress($facebook_user_profile->email);
+            if (property_exists($facebook_user_profile, 'email')) 
+            {
+                $this->setEmailAddress($facebook_user_profile->email);
+            }
         }
-        if ($shouldOverwrite || is_null($this->getPassword()))
+        if ($shouldOverwrite || CommonHelpers::IsNullOrEmptyString($this->getPassword()))
         {
             // Set a temp password
             $this->setPassword(CommonHelpers::CreateSimpleUuid());
+        }
+        if ($shouldOverwrite || CommonHelpers::IsNullOrEmptyString($this->getFirstName()))
+        {
+            if (property_exists($facebook_user_profile, 'first_name')) 
+            {
+                $this->setFirstName($facebook_user_profile->first_name);
+            }
+        }
+        if ($shouldOverwrite || CommonHelpers::IsNullOrEmptyString($this->getLastName()))
+        {
+            if (property_exists($facebook_user_profile, 'last_name')) 
+            {
+                $this->setLastName($facebook_user_profile->last_name);
+            }
         }
     }
     

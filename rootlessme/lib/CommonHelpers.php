@@ -59,6 +59,17 @@ class CommonHelpers {
         );
     }
 
+    /**
+     * Tests whether a string is null or empty (present and neither empty 
+     * nor only white space)
+     * @param String $question The string to test
+     * @return Boolean True, if the string is null or empty. False, otherwise. 
+     */
+    public static function IsNullOrEmptyString($question)
+    {
+        return (!isset($question) || trim($question)==='');
+    }
+
 }
 
 ?>

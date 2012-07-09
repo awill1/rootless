@@ -284,29 +284,90 @@ class Profiles extends BaseProfiles
     
     /**
      * Sts the user profile data from facebook
-     * @param type $facebook_user_profile 
+     * @param Json $facebook_user_profile 
      * @param Boolean True if the values should be overwritten, false if only
      * unset values should be set.
      */
     public function setUserDataFromFacebook($facebook_user_profile, $shouldOverwrite = false)
     {
-        if ($shouldOverwrite || is_null($this->getFirstName()))
+        if ($shouldOverwrite || CommonHelpers::IsNullOrEmptyString($this->getFirstName()))
         {
-            $this->setFirstName($facebook_user_profile->first_name);
+            if (property_exists($facebook_user_profile, 'first_name')) 
+            {
+                $this->setFirstName($facebook_user_profile->first_name);
+            }
         }
-        if ($shouldOverwrite || is_null($this->getLastName()))
+        if ($shouldOverwrite || CommonHelpers::IsNullOrEmptyString($this->getLastName()))
         {
-            $this->setLastName($facebook_user_profile->last_name);
+            if (property_exists($facebook_user_profile, 'last_name')) 
+            {
+                $this->setLastName($facebook_user_profile->last_name);
+            }
         }
-        if ($shouldOverwrite || is_null($this->getFacebookUserName()))
+        if ($shouldOverwrite || CommonHelpers::IsNullOrEmptyString($this->getFacebookUserName()))
         {
-            $this->setFacebookUserName($facebook_user_profile->id);
+            if (property_exists($facebook_user_profile, 'id')) 
+            {
+                $this->setFacebookUserName($facebook_user_profile->id);
+            }
         }
-        if ($shouldOverwrite || is_null($this->getGender()))
+        if ($shouldOverwrite || CommonHelpers::IsNullOrEmptyString($this->getGender()))
         {
-            $this->setGender($facebook_user_profile->gender);
+            if (property_exists($facebook_user_profile, 'gender')) 
+            {
+                $this->setGender($facebook_user_profile->gender);
+            }
         }
+        if ($shouldOverwrite || CommonHelpers::IsNullOrEmptyString($this->getBirthday()))
+        {
+            if (property_exists($facebook_user_profile, 'birthday')) 
+            {
+                // Need to reformat the date string in order to save to the
+                // database
+                $birthdayString = date('Y-m-d',strtotime($facebook_user_profile->birthday));
+                
+                $this->setBirthday($birthdayString);
+            }
+        }
+        
         //$this->setProfilePicture($facebook_user_profile->picture);
+    }
+    
+    /**
+     * Set the location data from facebook graph api
+     * @param Json $facebook_location_profile The facebook json for the location
+     * @param Boolean $shouldOverwrite True, if the info should be 
+     * overwritten. False, otherwise.
+     */
+    public function setLocationDataFromFacebook($facebook_location_profile, $shouldOverwrite = false)
+    {
+        // Get location information from facebook
+        if (property_exists($facebook_location_profile, 'location')) 
+        {
+            $location = $facebook_location_profile->location;
+            
+            if ($shouldOverwrite || CommonHelpers::IsNullOrEmptyString($this->getCity()))
+            {
+                if (property_exists($location, 'city'))
+                {
+                    $this->setCity($location->city);
+                }
+            }
+            if ($shouldOverwrite || CommonHelpers::IsNullOrEmptyString($this->getState()))
+            {
+                if (property_exists($location, 'state'))
+                {
+                    $this->setState($location->state);
+                }
+            }
+//            if ($shouldOverwrite || CommonHelpers::IsNullOrEmptyString($this->getCounty()))
+//            {
+//                if (property_exists($location, 'country'))
+//                {
+//                    $this->setCountry($location->country);
+//                }
+//            }
+        }
     }
     
 }
