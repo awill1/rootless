@@ -69,6 +69,15 @@ class CommonHelpers {
     {
         return (!isset($question) || trim($question)==='');
     }
+    
+    public static function urlParser($url) {
+        if (preg_match('/^http:\/\//', $url)) {
+            return $url;
+        } else {
+            return "http://" . $url;
+        }
+        
+    }
 
 }
 

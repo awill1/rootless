@@ -55,7 +55,7 @@
                 <a id="mainProfileTitleEditLink" href="<?php echo url_for('profile_edit_user') ?>">Edit&nbsp;Profile</a>
             <?php endif ?>     
         </h1>
-        <a id="mainProfileSubtitle" href="<?php echo $profile->getWebsiteUrl() ?>"><?php echo $profile->getWebsiteUrl() ?></a>
+    <a id="mainProfileSubtitle" href="<?php echo CommonHelpers::urlParser($profile->getWebsiteUrl()) ?>"><?php echo $profile->getWebsiteUrl(); ?></a>
     <h2>
         <?php if (!is_null($profile->getAge())): ?>
             <?php echo $profile->getAge(); ?> year old 
