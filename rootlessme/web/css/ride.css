@@ -427,6 +427,7 @@ tbody {
     padding-bottom: 17px;
     margin-bottom: 15px;
     background-color: #F4F4F4;
+    position: relative;
 }
 
 .seatNegotiationHistoryItemCategory {
@@ -476,13 +477,22 @@ ul {
     color: #999;
     float: right;
     padding-right: 15px;
+    right: 0px;
+    bottom: 10px;
+    position: absolute;
 }
 
 .seatNegotiationHistoryItemUserSays {
     padding-left: 15px;
     margin-left: 0px;
     display: inline;
+    float: left;
 }
+
+.seatNegotiationHistoryItemUserSays span {
+    font-weight: bold;
+}
+
 
 .negotationInstructions {
     color: #D14D2F;
@@ -517,15 +527,27 @@ ul {
 #seatNegotiationContainer {
     background-color: #F4F4F4;
     padding-bottom: 10px;
+    position: relative;
 }
 
 #seatAcceptForm, #seatDeclineForm {
     display: inline-block;
-    margin-left: 139px;
+    position: absolute;
+    bottom: 15px;
+    right: 43px;
+    height: 25px;
+}
+
+#seatAcceptForm {
+    display: inline-block;
+    position: absolute;
+    left: 137px;
+
 }
 
 #seatAcceptForm input[type="submit"], #seatDeclineForm input[type="submit"] {
-    width: 102px;
+    width: 95px;
+    height: 25px;
 }
 
 .addThisToolBar {
@@ -534,7 +556,7 @@ ul {
 }
 
 #seatNegotiationForm input#negotiateButton {
-    margin-left: 126px;
+    width: 95px;
 }
 
 #newRideFormArea label {

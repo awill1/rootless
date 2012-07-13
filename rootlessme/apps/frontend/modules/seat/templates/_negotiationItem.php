@@ -58,12 +58,12 @@
             <?php endif; ?>
         </ul>
     </div>
-    <?php if ($negotiationChange->getIsDescriptionDifferent()): ?>
+    <?php if ($negotiationChange->getIsDescriptionDifferent() && $newHistoryItem->getDescription() != ''): ?>
         <div class="seatNegotiationHistoryItemUserSays">
             <ul>
                 <hr />
                 <li>
-                   <span class="seatNegotiationHistoryItemCategorySays"> <?php echo $changer->getFullName() ?> Says </span>
+                    <?php echo $changer->getFullName() ?> <span class="seatNegotiationHistoryItemCategorySays"> says </span>
                    <br />
                    <br />
                    <?php echo $newHistoryItem->getDescription() ?>
@@ -72,6 +72,8 @@
         </div>
     <?php endif; ?>
     <div class="seatNegotiationHistoryUpdateTime">
-      Updated <?php echo $newHistoryItem->getCreatedAt() ?>             
+      Updated at 
+    <?php echo date('g:i A  l, F j, Y', strtotime($newHistoryItem->getCreatedAt())) ?>             
     </div>
+    <div class="clearfix"></div>
 </div>

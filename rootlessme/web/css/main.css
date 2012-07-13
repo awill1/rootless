@@ -26,6 +26,10 @@ a {
     text-decoration: none;
 }
 
+.clearfix {
+    clear:both;
+}
+
 .composeNew textarea {
     font-family: Arial, Geneva, sans-serif;
     font-size: 100%;
