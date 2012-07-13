@@ -160,6 +160,7 @@
                
                     </div>
                     <?php include_component('dashboard', 'travelingWith') ?>
+                     <div class='clearfix'></div>
                 </div>
                 <?php endif ?>
             </div>
