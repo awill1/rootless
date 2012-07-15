@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:fb="http://ogp.me/ns/fb#">
   <head>
     <?php include_http_metas() ?>
     <?php include_metas() ?>
@@ -15,6 +15,7 @@
     <?php use_javascript(sfConfig::get('app_jquery_ui_timepicker_script')) ?>
     <?php use_stylesheet(sfConfig::get('app_jquery_ui_stylesheet')) ?>
     <?php use_javascript(sfConfig::get('app_jquery_validation_script')) ?>
+    <?php use_javascript(sfConfig::get('app_jquery_facebook_script')) ?>
     <?php use_stylesheet(sfConfig::get('app_css_static')) ?>
     <?php use_javascript('headerMenu') ?>
     <?php use_javascript('navigation') ?>
@@ -147,6 +148,7 @@
             });
 
             // Additional initialization code here
+            initClientFacebook();
         };
 
         // Load the SDK Asynchronously
