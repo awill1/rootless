@@ -6,7 +6,7 @@
     <img src="/images/featuredTraveler.jpg" alt="Aaron Williams" />
     <div class="imageCaption">Featured Traveler <br/> <span class ="imageCaptionName"> Colin Hoell</span></div>
 </div>
-<form class="userInputForm" action="<?php echo url_for('search') ?>" method="get">
+<form id="travelerListSearch" class="userInputForm" action="<?php echo url_for('search') ?>" method="get">
     <input class="searchPeople" name="query" type="textbox" value="Search Travelers..." onblur="if (this.value == ''){this.value = 'Search Travelers...';}" onfocus="if(this.value == 'Search Travelers...'){this.value='';}"/>
     <input class="searchSubmit" type="submit" value="find" />
 </form>

@@ -1402,3 +1402,8 @@ input[type='submit'].searchSubmit, input[type='submit'].headerSubmit, input[type
 .hasPlaceholder{
     color: #CCCCCC;
 }
+
+#travelerListSearch {
+    width: 528px;
+    background: transparent;
+}
