@@ -57,6 +57,13 @@ class staticActions extends sfActions
      */
     public function executeHome(sfWebRequest $request)
     {
+        // If the user is already logged in, redirect to the dashboard
+        if ($this->getUser()->isAuthenticated())
+        {
+            $defaultSecurePage = sfConfig::get('app_sf_guard_plugin_success_signin_url');
+            return $this->redirect($defaultSecurePage);
+        }
+        
         // Get the signin form
         $signinClass = sfConfig::get('app_sf_guard_plugin_signin_form', 'sfGuardFormSignin');
         $this->signinForm = new $signinClass();
