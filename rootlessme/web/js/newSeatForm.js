@@ -12,7 +12,7 @@ $(document).ready(function()
         target: '#seatDetailsBlock',
         replaceTarget: true,
         beforeSubmit: function() {
-            console.log('hi');
+
             $('#seatDetailsBlock').block({ 
             message: '<img src="/images/ajax-loader.gif" alt="Submitting..." />'
         });

@@ -39,6 +39,7 @@ function performRideAction() {
     // Post the action
     var buttonHref = $(this).attr("href");
     var parameters = {};
+    console.log(buttonHref);
     //var parameters = { seat_id : seatId , format : "dashboard" };
     $(this).closest(".rideCont").load(buttonHref, parameters, function(data) {
         $(this).html(data);
@@ -67,6 +68,7 @@ function performSeatAction() {
     
     // Post the action
     var buttonHref = $(this).attr("href");
+     console.log(buttonHref);
     var parameters = { seat_id : seatId , format : "dashboard" };
     $(this).closest(".seatsListItem").load(buttonHref, parameters, function(data) {
         $(this).html(data);

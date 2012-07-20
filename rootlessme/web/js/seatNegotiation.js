@@ -26,24 +26,29 @@ $(document).ready(function()
 
     // AJAX form submit button handlers
     $('#seatNegotiationForm, #seatAcceptForm, #seatDeclineForm').submit(function(e) {
+        e.preventDefault();
         
         $(this).closest('#seatDetailsBlock').block({ 
             message: '<img src="/images/ajax-loader.gif" alt="Submitting..." />'
         }); 
         var curId = $(e.target).attr('id');
 
-        
+       
         var picLoc ='';
         if (curId == 'seatNegotiationForm') {
             picLoc = 'pending';
-        } else if ((curId == 'seatAcceptForm') && ($('.selectedUser').parent().hasClass('pending'))) {
+        } else if (curId == 'seatAcceptForm' && ($('.selectedUser').parent().hasClass('pending') || $('.selectedUser').parent().hasClass('declined'))) {
             picLoc = 'accepted';
-        } else if ((curId == 'seatDeclineForm') && ($('.selectedUser').parent().hasClass('pending'))){
+            $(e.target).fadeOut();
+            
+        } else if (curId == 'seatDeclineForm' && ($('.selectedUser').parent().hasClass('pending') || $('.selectedUser').parent().hasClass('accepted'))){
             picLoc = 'declined';
+            $(e.target).fadeOut();
         } else {
             picLoc = 'pending';
         }
         
+       
         // Show the spinner
         $('#negotiationSpinner').show();
         $('.selectedUser').slideUp(function(){
@@ -59,13 +64,14 @@ $(document).ready(function()
             $('.' + picLoc).find('.none').hide();
             $('.' + picLoc).append($(this));
         });
-        
+     
         // Set the form submit flag
+        
         isFormSubmitPending = true;
 
         // Disable the default submission. We will let AJAX do it
-        MaybeSubmitForm();
-        return false;
+        MaybeSubmitForm($(e.currentTarget));
+
     });
     
     // When the origin or the destination change, clear the route id.
@@ -87,11 +93,14 @@ function clearRouteId()
  * Tries to submit the form. It will only be submitted if none of the
  * blocking flags are set.
  */
-function MaybeSubmitForm()
+function MaybeSubmitForm(tar)
 {            
     // Check to make sure nothing is blocking submitting the form
-    if (canSubmitForm() && isFormSubmitPending)
+    if (canSubmitForm() && isFormSubmitPending && tar.attr('id') == 'seatNegotiationForm')
     {
-        $('#seatNegotiationForm, #seatAcceptForm, #seatDeclineForm').ajaxSubmit(formAjaxOptions);
+        $('#seatNegotiationForm').ajaxSubmit(formAjaxOptions);
+    } else if (canSubmitForm() && isFormSubmitPending && (tar.attr('id') == 'seatDeclineForm' || tar.attr('id') == 'seatAcceptForm')) {
+        tar.ajaxSubmit(formAjaxOptions);
     }
+
 }
