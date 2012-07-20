@@ -17,6 +17,11 @@
  */
 class BasesfGuardAuthActions extends sfActions
 {
+  /**
+   *Executes the signin action
+   * @param sfWebRequest $request the web request
+   * @return String Result html
+   */  
   public function executeSignin($request)
   {
     $user = $this->getUser();
@@ -35,11 +40,15 @@ class BasesfGuardAuthActions extends sfActions
       {
         $values = $this->form->getValues(); 
         $this->getUser()->signin($values['user'], array_key_exists('remember', $values) ? $values['remember'] : false);
-
-        // always redirect to a URL set in app.yml
-        // or to the referer
-        // or to the homepage
-        $signinUrl = sfConfig::get('app_sf_guard_plugin_success_signin_url', $user->getReferer($request->getReferer()));
+        
+        // always redirect to the referer
+        // or to a URL set in app.yml
+        // or to the homepage  
+        $signinUrl = $user->getReferer($request->getReferer());      
+        if (CommonHelpers::IsNullOrEmptyString($signinUrl))
+        {
+            $signinUrl = sfConfig::get('app_sf_guard_plugin_success_signin_url');
+        }
 
         return $this->redirect('' != $signinUrl ? $signinUrl : '@homepage');
       }
@@ -53,7 +62,7 @@ class BasesfGuardAuthActions extends sfActions
 
         return sfView::NONE;
       }
-
+      
       // if we have been forwarded, then the referer is the current URL
       // if not, this is the referer of the current request
       $user->setReferer($this->getContext()->getActionStack()->getSize() > 1 ? $request->getUri() : $request->getReferer());

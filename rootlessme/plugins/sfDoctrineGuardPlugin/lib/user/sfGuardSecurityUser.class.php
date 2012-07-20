@@ -52,18 +52,15 @@ class sfGuardSecurityUser extends sfBasicSecurityUser
     return $referer;
   }
 
-  /**
-   * Sets the referer.
-   *
-   * @param string $referer
-   */
-  public function setReferer($referer)
-  {
-    if (!$this->hasAttribute('referer'))
+    /**
+    * Sets the referer.
+    *
+    * @param string $referer
+    */
+    public function setReferer($referer)
     {
-      $this->setAttribute('referer', $referer);
+        $this->setAttribute('referer', $referer);
     }
-  }
 
   /**
    * Returns whether or not the user has the given credential.
