@@ -58,7 +58,7 @@
     <a id="mainProfileSubtitle" href="<?php echo CommonHelpers::urlParser($profile->getWebsiteUrl()) ?>"><?php echo $profile->getWebsiteUrl(); ?></a>
     <h2>
         <?php if (!is_null($profile->getAge())): ?>
-            <?php echo $profile->getAge(); ?> year old 
+            <?php echo $profile->getAge(); ?>-year-old 
         <?php endif; ?>
         <?php echo $profile->getGender() ?>
         <?php 
