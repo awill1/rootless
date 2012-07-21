@@ -26,5 +26,7 @@ class SeatsNegotiationForm extends SeatsForm
         // linked .
         $this->setWidget('carpool_id',new sfWidgetFormInputHidden());
         $this->setWidget('passenger_id',new sfWidgetFormInputHidden());
+        
+        $this->widgetSchema->setLabel('price', 'Price <span class="negotiate-dollar-sign">$</span>');
     }
 }

@@ -27,6 +27,7 @@ legend {
 }
 
 label {
+    position: relative;
 }
 
 /*#findARideForm label {
@@ -583,4 +584,15 @@ label span.dollar-sign {
 .rideActionButtonsListItem {
     margin: 0px;
     padding: 0px;
+}
+
+.negotiate-dollar-sign {
+    left: 54px;
+    position: absolute;
+    font-weight: normal;
+}
+
+#seatNegotiationContainer input[name="seats[price]"] {
+    width: 210px;
+    padding-left: 11px;
 }
