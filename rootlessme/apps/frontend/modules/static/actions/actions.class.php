@@ -62,7 +62,7 @@ class staticActions extends sfActions
         {
             $defaultSecurePage = sfConfig::get('app_sf_guard_plugin_success_signin_url');
             return $this->redirect($defaultSecurePage);
-        }
+        } else {
         
         // Get the signin form
         $signinClass = sfConfig::get('app_sf_guard_plugin_signin_form', 'sfGuardFormSignin');
@@ -73,6 +73,8 @@ class staticActions extends sfActions
         
         // Get the ride search form
         $this->rideSearchForm = new RideSearchForm();
+        
+        }
     }
 
     /**
