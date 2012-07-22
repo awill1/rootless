@@ -46,6 +46,8 @@ class dashboardActions extends sfActions
                     $this->passengerSeats[] = $seat;
                 }
             }
+        } else {
+            $this->redirect("/home");
         }
     }
 }
