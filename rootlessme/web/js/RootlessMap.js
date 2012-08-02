@@ -49,23 +49,42 @@ function RootlessMap(mapId) {
      */
     this._initialize = function() {
         // Google map loading
+        
         var latlng = new google.maps.LatLng(self.MAP_DEFAULT_LATITUDE, self.MAP_DEFAULT_LONGITUDE);
         var myOptions = {
             zoom: self.MAP_DEFAULT_ZOOM,
             center: latlng,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-        var map = new google.maps.Map(document.getElementById(self.mapId),
+        
+        var mapObj = new google.maps.Map(document.getElementById(self.mapId),
             myOptions);
-            
-        return map;
+      
+        self.map = mapObj;
     };
     
     
   
   
     
-    this.map = this._initialize();
-    console.log(this.map);
+    this._initialize();
+}
+
+/**
+ * formatGoogleJSON - Public function
+ * formatGoogleJSON is used to change the strange keys used for 
+ * latitude and longitude into easier to use "lat" and "lon" keys.
+ * The quotes must be included or else we could replace unexpected 
+ * pieces of the string such as street name or encoded polyline
+ * 
+ * This can be accessed within templates
+ */
+
+RootlessMap.prototype.formatGoogleJSON = function(strangeLat, strangeLon, jsonString) {
+    // Build the regular expressions, and return the replacement
+    var strangeLatRegExp = new RegExp("\""+strangeLat+"\"","g");
+    var strangeLonRegExp = new RegExp("\""+strangeLon+"\"","g");
+    return jsonString.replace(strangeLatRegExp,"\"lat\"")
+                     .replace(strangeLonRegExp, "\"lon\"");
 }
 
