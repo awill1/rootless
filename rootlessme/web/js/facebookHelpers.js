@@ -4,10 +4,26 @@
  * in the browser.
  */
 
+var facebook_scope = "email,user_birthday,user_location";
+
 function initClientFacebook()
 {
-    // Attach event handlers
-    FB.Event.subscribe('auth.login',onFbLogin);
+}
+    
+$(document).ready(function(){
+    // Attach to the facebook click button
+    $('.facebookButton').click(onClickloginfb);
+});
+    
+//Function gets executed when the login button in the header is clicked
+function onClickloginfb() {
+   //Use the FB object's login method from the Facebook Javascript SDK to authenticate the user
+   //If the user has already approved your app, she is simply logged in
+   //If not, the app authentication dialog box is shown
+   FB.login(onFbLogin, {scope: facebook_scope}); 
+   
+   // Make sure the link does not cause navigation
+   return false;
 }
     
 function onFbLogin(response)

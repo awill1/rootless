@@ -32,5 +32,11 @@
     
 <div id="loginFormContainerB">
     <img class="sideImagesL" src="/images/login.png" alt="Login" />
-    <div class="registerText"><?php echo get_partial('sfGuardRegister/form', array('form' => $registerForm)) ?></div>
+    <div class="facebookButton">
+        <div class="facebookButtonText">Register th Facebook</div>
+    </div>
+    <span class="frontLabelText">or, use your email address</span>
+    <div class="registerText">
+        <?php echo get_partial('sfGuardRegister/form', array('form' => $registerForm)) ?>
+    </div>
 </div>

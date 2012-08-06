@@ -1407,3 +1407,26 @@ input[type='submit'].searchSubmit, input[type='submit'].headerSubmit, input[type
     width: 528px;
     background: transparent;
 }
+
+.facebookButton {
+    background-image: url("../images/facebookLoginButton.png");
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    width: 305px;
+    height: 39px;
+    color: #FFFFFF;
+    font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.facebookButtonText {
+   margin: 0px 4px 0px 42px;
+   padding: 4px 0px 4px 0px;
+}
+
+
+.facebookButton:active {
+    background-position: 0px -39px;
+}

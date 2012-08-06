@@ -149,6 +149,6 @@ class userActions extends sfActions
         }
 
         //This is all done via AJAX, so no html is rendered
-        return sfView::NONE;
+        $this->redirect($this->getController()->genUrl('dashboard', true));
     }
 }
