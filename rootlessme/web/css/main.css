@@ -1409,24 +1409,54 @@ input[type='submit'].searchSubmit, input[type='submit'].headerSubmit, input[type
 }
 
 .facebookButton {
-    background-image: url("../images/facebookLoginButton.png");
+    background-color: #5F78AB;
     background-position: 0px 0px;
     background-repeat: no-repeat;
-    width: 305px;
     height: 39px;
     color: #FFFFFF;
     font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
     font-size: 24px;
     font-weight: bold;
     cursor: pointer;
+    display: inline-block;
+}
+
+.facebookButtonTable {
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+.facebookButtonLogo {
+    background-image: url("../images/facebookLogos.png");
+    width: 39px;
+    height: 39px;
+    display: inline-block;
+}
+
+
+.facebookButtonBorder {
+    border-bottom: 1px solid #1A356E;
+    border-right: 1px solid #29447E;
+    border-top: 1px solid #29447E;
+    display: inline-block;
 }
 
 .facebookButtonText {
-   margin: 0px 4px 0px 42px;
-   padding: 4px 0px 4px 0px;
+    margin: 0px 0px 0px 0px;
+    padding: 3px 8px 3px 8px;
+    border-top: 1px solid #879AC0;
+    display: inline-block;
+    white-space: nowrap;
 }
 
-
 .facebookButton:active {
-    background-position: 0px -39px;
+    background-color: #4F6AA3;
+}
+
+.facebookButton:active .facebookButtonText {
+    border-top: 1px solid #50609C;
+}
+
+.facebookButton:active .facebookButtonLogo {
+    background-position: 0px -40px;
 }

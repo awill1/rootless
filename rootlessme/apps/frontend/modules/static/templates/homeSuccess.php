@@ -32,8 +32,21 @@
     
 <div id="loginFormContainerB">
     <img class="sideImagesL" src="/images/login.png" alt="Login" />
-    <div class="facebookButton">
-        <div class="facebookButtonText">Register th Facebook</div>
+    <div>
+        <div class="facebookButton">
+            <table class="facebookButtonTable" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        <i class="facebookButtonLogo"> </i>
+                    </td>
+                    <td>
+                        <span class="facebookButtonBorder">
+                            <span class="facebookButtonText">Register with Facebook</span>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
     <span class="frontLabelText">or, use your email address</span>
     <div class="registerText">
