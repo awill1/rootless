@@ -1451,6 +1451,16 @@ input[type='submit'].searchSubmit, input[type='submit'].headerSubmit, input[type
     white-space: nowrap;
 }
 
+ @-moz-document url-prefix() {
+    .facebookButtonText {
+        margin: 0px 0px 0px 0px;
+        padding: 2px 8px;
+        border-top: 1px solid #879AC0;
+        display: inline-block;
+        white-space: nowrap;
+    }
+}
+
 .facebookButton:active {
     background-color: #4F6AA3;
 }
