@@ -1431,6 +1431,7 @@ input[type='submit'].searchSubmit, input[type='submit'].headerSubmit, input[type
     width: 39px;
     height: 39px;
     display: inline-block;
+    float: left;
 }
 
 
@@ -1439,6 +1440,7 @@ input[type='submit'].searchSubmit, input[type='submit'].headerSubmit, input[type
     border-right: 1px solid #29447E;
     border-top: 1px solid #29447E;
     display: inline-block;
+    padding-bottom: 2px;
 }
 
 .facebookButtonText {
@@ -1460,3 +1462,8 @@ input[type='submit'].searchSubmit, input[type='submit'].headerSubmit, input[type
 .facebookButton:active .facebookButtonLogo {
     background-position: 0px -40px;
 }
+
+.facebookButtonTable tbody tr td:last-child {
+   float: left;
+}    
+ 
