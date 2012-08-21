@@ -232,7 +232,7 @@
              echo "&copy; 2011-" . $year;
              //this line prints out the copyright date range, you need to edit 2002 to be your opening year
              ?>
-             Star Banana, LLC. All rights reserved.</span>
+             Rootless, Inc. All rights reserved.</span>
         </div>
   </body>
 </html>
