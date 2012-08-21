@@ -344,10 +344,16 @@ sf_guard_register:
   url:   /register
   param: { module: sfGuardRegister, action: index }
   
+# Symfony routes javascript helper
+sf_routes_js:
+  url: /js/sf.routes.js
+  param: { module: sfRoutesJs, action: index }
+  
 # user rules
 user_facebook_login:
   url: /facebook-connect-login
   param: { module: user, action: facebookConnectLogin }
+  requirements: { sf_method: post }
 
 # vehicle rules
 
