@@ -6,10 +6,10 @@
 <h1>Terms of service</h1>
 <div>
     <p id="footerPages">
-        THE FOLLOWING DESCRIBES THE TERMS ON WHICH STAR BANANA LLC OFFERS YOU ACCESS TO OUR SITE AND SERVICES.
+        THE FOLLOWING DESCRIBES THE TERMS ON WHICH ROOTLESS INC OFFERS YOU ACCESS TO OUR SITE AND SERVICES.
         <br/>
         <br/>
-        Welcome to the Web site operated by Star Banana LLC ("we," "us"), an Ohio for-profit corporation. We maintain this Web site, Rootless.me (our "Site"), as a service to our visitors (our Site and such services, collectively, our "Services"). By using this Site, you agree to comply with and be legally bound by the following terms of use ("Terms"), whether or not you become a registered user of the Services.
+        Welcome to the Web site operated by Rootless Inc. ("we," "us"), a Delaware for-profit corporation. We maintain this Web site, Rootless.me (our "Site"), as a service to our visitors (our Site and such services, collectively, our "Services"). By using this Site, you agree to comply with and be legally bound by the following terms of use ("Terms"), whether or not you become a registered user of the Services.
         <br/>
         <br/>
         Please review the following terms carefully. If you do not agree to these terms, you have no right to obtain information from or otherwise continue using this Site. Failure to use this Site in accordance with the following terms of use may subject you to severe civil and criminal penalties. We reserve the right to make changes to these terms at any time. Your continued use of our Services constitutes your acceptance of such changes. Accordingly, you should review these terms from time to time for such changes.
@@ -198,10 +198,10 @@
         (a) Binding Arbitration. For any Claim (excluding Claims for injunctive or other equitable relief) where the total amount of the award sought is less than Ten Thousand US Dollars (US$10,000), you or we may elect to resolve the dispute through binding arbitration conducted by telephone, on-line and/or based solely upon written submissions where no in-person appearance is required. In such cases, the arbitration shall be administered by the American Arbitration Association in accordance with its applicable rules, or any other established ADR provider agreed upon by the parties. Any judgment on the award rendered by the arbitrator may be entered in any court having jurisdiction thereof.
         <br/>
         <br/>
-        (b) Court. Alternatively, any Claim may be adjudicated by a court of competent jurisdiction located in Ohio, USA or where the defendant is located (in our case Hamilton County, Ohio, USA, and in your case your home address). You and we agree to submit to the personal jurisdiction of a state court located in Hamilton County, Ohio or a US federal court located in Columbus, Ohio.
+        (b) Court. Alternatively, any Claim may be adjudicated by a court of competent jurisdiction located in Delaware, USA or where the defendant is located (in our case Delaware, USA, and in your case your home address). You and we agree to submit to the personal jurisdiction of a state court located in Delaware or a US federal court located in Delaware.
         <br/>
         <br/>
-        (c) Alternative Dispute Resolution. Alternatively, we will consider use of other forms of ADR, such as binding arbitration to be held in Ohio, USA or another location agreed upon by the parties.
+        (c) Alternative Dispute Resolution. Alternatively, we will consider use of other forms of ADR, such as binding arbitration to be held in Delaware, USA or another location agreed upon by the parties.
         <br/>
         <br/>
         (d) Attorney’s Fees. All Claims (excluding requests for injunctive or equitable relief) between the parties must be resolved using the dispute-resolution mechanism that is selected in accordance with this Section 19 by the first party to file a Claim. Should either party file an action contrary to this Section 19, the other party may recover attorneys’ fees and costs up to US$5,000, provided that the party seeking the award has notified the other party in writing of the improperly filed Claim, and the other party has failed to withdraw the Claim.
@@ -213,13 +213,13 @@
         (a) to us at
         <br/>
         <br/>
-        Star Banana LLC,
+        Rootless, Inc.
         <br/>
         Attention: Legal Notices
         <br/>
-        362 Bryant Avenue, Apartment 1
+        95 Chestnut St.
         <br/>
-        Cincinnati, Ohio 45220
+        Providence, Rhode Island 02903
         <br/>
         United States
         <br/>
@@ -227,7 +227,7 @@
         and (b) to you, if you are a registered user, at the latest address you have provided in connection with your registration to use our Services.
         <br/>
         <br/>
-        21. MISCELLANEOUS. These Terms shall be interpreted in accordance with the laws of the State of Ohio, USA, without regard to conflict-of-law principles. These Terms contain the entire agreement, and supersede all prior and contemporaneous understandings, between the parties regarding their subject matter. Our failure or delay in exercising any right, power or privilege under these Terms shall not operate as a waiver thereof. The invalidity or unenforceability of any of these Terms shall not affect the validity or enforceability of any other of these Terms, all of which shall remain in full force and effect. We may assign our agreement with you. Headings of sections are for convenience only and shall not be used to limit or construe such sections. Sections 1.5 (Release), 4 (Privacy), 5.1 (License), 6 (Third-Party Content), 7 (Proprietary Rights), 14 (Limits on Liability), 15 (Indemnity), 18 (Languages), 19 (Disputes), 20 (Notices) and this Section 21 (Miscellaneous) shall survive any termination or expiration of these Terms.
+        21. MISCELLANEOUS. These Terms shall be interpreted in accordance with the laws of the State of Delaware, USA, without regard to conflict-of-law principles. These Terms contain the entire agreement, and supersede all prior and contemporaneous understandings, between the parties regarding their subject matter. Our failure or delay in exercising any right, power or privilege under these Terms shall not operate as a waiver thereof. The invalidity or unenforceability of any of these Terms shall not affect the validity or enforceability of any other of these Terms, all of which shall remain in full force and effect. We may assign our agreement with you. Headings of sections are for convenience only and shall not be used to limit or construe such sections. Sections 1.5 (Release), 4 (Privacy), 5.1 (License), 6 (Third-Party Content), 7 (Proprietary Rights), 14 (Limits on Liability), 15 (Indemnity), 18 (Languages), 19 (Disputes), 20 (Notices) and this Section 21 (Miscellaneous) shall survive any termination or expiration of these Terms.
         <br/>
         <br/>
         <br/>
