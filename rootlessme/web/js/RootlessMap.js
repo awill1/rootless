@@ -6,7 +6,7 @@ Function.method('inherits', function(Parent){
 /*
  * Initializes a Google Map into a div
  * @constructor rootlessmap
- * @param mapId <String> The id of the div which will contain the map
+ * @param spec <Object> Object that holds all the variables for the maps
  * This script requires the Google Map and JQuery scripts to already be loaded
  * in the browser.
  */
