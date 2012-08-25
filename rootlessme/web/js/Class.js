@@ -6,7 +6,7 @@
  * retyped by Tony Guglielmi tony@rootless.me to learn the pattern
  * 
  * 
- * Add Singleton pattern and Namespace function added for extendability and durability
+ * I added Singleton pattern and Namespace function for extendability and durability
  */
 
 (function(){
