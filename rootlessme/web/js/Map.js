@@ -1,17 +1,31 @@
-Function.method('inherits', function(Parent){
-    this.prototype = new Parent();
-    return this;
-});
-
 /*
- * Initializes a Google Map into a div
- * @constructor rootlessmap
- * @param spec <Object> Object that holds all the variables for the maps
+ * Google Map Object
+ * @constructor Rootless.Map
+ * @params spec <Object> Object that holds all the variables for the maps
  * This script requires the Google Map and JQuery scripts to already be loaded
  * in the browser.
  */
 
+Namespace('Rootless.Map');
 
+Rootless.Map = Class.extend({
+   /**
+    *  Initializes the Google Maps API
+    */
+   init : function(params) {
+       this._ = $.extend(true, {
+           
+           
+       }, params);
+   }
+   
+   
+    
+});
+
+Class.addSingleton(Rootless.Map);
+
+/*
 var RootlessMap = function(spec) {
     var self = this;
     this.mapInfo = spec;
@@ -23,9 +37,7 @@ var RootlessMap = function(spec) {
         }
     }
     
-    /**
-     * Constants used for google maps
-     */
+
     this.mapInfo.PRIMARY_ROUTE_COLOR = "#119F49";
     this.mapInfo.PRIMARY_ROUTE_OPACITY = .5;
     this.mapInfo.PRIMARY_ROUTE_WEIGHT = 5;
@@ -45,17 +57,12 @@ var RootlessMap = function(spec) {
     
     /**
      * Variables used to block form submitting before map spi results are returned
-     */
+     
     this.mapInfo.isOriginDecodePending = false;
     this.mapInfo.isDestinationDecodePending = false;
     this.mapInfo.isDirectionsPending = false;
     this.mapInfo.isFormSubmitPending = false;
     
-    
-    /**
-     *  Initializes the Google Maps API
-     *  @returns google.maps.Map The created map
-     */
     this._initialize = function() {
         // Google map loading
         
@@ -79,4 +86,4 @@ var RootlessMap = function(spec) {
     
     return self;
 }
-
+    */
