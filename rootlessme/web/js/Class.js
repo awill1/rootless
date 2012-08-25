@@ -71,7 +71,7 @@
 	
 	Class.addSingleton = function(singleton) {
 		singleton.getInstance = function(params) {
-			return singleton._instance || (singleton._instance == new singleton(params));
+			return singleton._instance || (singleton._instance = new singleton(params));
 		}
 	};
 })();
