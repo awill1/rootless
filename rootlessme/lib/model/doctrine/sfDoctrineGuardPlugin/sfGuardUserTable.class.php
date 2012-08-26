@@ -36,4 +36,23 @@ class sfGuardUserTable extends PluginsfGuardUserTable
         }
         return $user;
     }
+    
+    /**
+     * Gets a user based on their email address
+     * 
+     * @param String email The email address to search for
+     * @return sfGuardUser The sfGuardUser with the email address, or null 
+     * if not found
+     */
+    public static function getUserByEmail($email)
+    {
+        $user = null;
+        // The email is in the user table
+        $users = Doctrine_Core::getTable('sfGuardUser')->findBy('email_address', $email);
+        if ($users->count() == 1)
+        {
+            $user = $users->getFirst();
+        }
+        return $user;
+    }
 }

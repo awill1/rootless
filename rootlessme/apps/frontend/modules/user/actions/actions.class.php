@@ -17,9 +17,7 @@ class userActions extends sfActions
      * @return String nothing 
      */
     public function executeFacebookConnectLogin(sfWebRequest $request)
-    {
-        $this->logMessage('Entered executeFacebookConnectLogin', 'info');
-        
+    {        
         //Creating a new Facebook object from the Facebook PHP SDK
         require_once sfConfig::get('app_facebook_sdk_file');
 
@@ -58,7 +56,8 @@ class userActions extends sfActions
                     if(!is_null($facebook_user_profile->email)) //just to make sure we have the right data
                     {
                         //Check to see if user is already in our database
-                        $user = Doctrine::getTable('sfGuardUser')->getUserByFacebookId($facebook_user_profile->id);
+//                        $user = Doctrine::getTable('sfGuardUser')->getUserByFacebookId($facebook_user_profile->id);
+                        $user = Doctrine::getTable('sfGuardUser')->getUserByEmail($facebook_user_profile->email);
 
                         //If no, create a new user instance and populate with data from facebook
                         if(!$user)
@@ -98,7 +97,7 @@ class userActions extends sfActions
                             // Save the updated profile
                             $profile->save();
 
-                        }else
+                        } else
                         {
                             // User is already in the system.
                             // Update the profile information based on facebook settings.
