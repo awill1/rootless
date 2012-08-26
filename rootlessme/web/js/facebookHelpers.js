@@ -18,9 +18,7 @@ $(document).ready(function(){
 //Function gets executed when the login button in the header is clicked
 function onClickloginfb() {
     // Block all login forms while the facebook login works
-    $(this).closest('.blockableLoginContainer').block({ 
-        message: '<img src="/images/ajax-loader.gif" alt="Saving..." />'
-    }); 
+    blockLoginContainers();
     
    //Use the FB object's login method from the Facebook Javascript SDK to authenticate the user
    //If the user has already approved your app, she is simply logged in
@@ -48,7 +46,28 @@ function onFbLogin(response)
         });
     }
     else {
-        // Unblock all login forms while the facebook login works
-        $(this).closest('.blockableLoginContainer').unblock(); 
+        // Unblock the login containers
+        unblockLoginContainers();
     }
+}
+
+function onFbCancel()
+{
+    // Unblock the login containers
+    unblockLoginContainers(); 
+}
+
+function blockLoginContainers()
+{
+    // Block all login forms while the facebook login works
+    $('.blockableLoginContainer').block({ 
+        message: '<img src="/images/ajax-loader.gif" alt="Saving..." />'
+    }); 
+}
+
+
+function unblockLoginContainers()
+{
+    // Unblock all login forms while the facebook login works
+    $('.blockableLoginContainer').unblock(); 
 }

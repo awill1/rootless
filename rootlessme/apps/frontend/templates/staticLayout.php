@@ -143,7 +143,7 @@
         window.fbAsyncInit = function() {
             FB.init({
             appId      : <?php echo sfConfig::get('app_facebook_app_id') ?>, // App ID
-            //channelUrl : '<?php echo sfConfig::get('app_facebook_channel_url') ?>', // Channel File
+            channelUrl : '<?php echo public_path(sfConfig::get('app_facebook_channel_path'), true); ?>', // Channel File
             status     : true, // check login status
             cookie     : true, // enable cookies to allow the server to access the session
             xfbml      : true  // parse XFBML
