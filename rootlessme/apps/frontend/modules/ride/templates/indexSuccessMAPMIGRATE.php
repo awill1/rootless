@@ -9,7 +9,9 @@
 <?php slot('gmapheader'); ?>
     <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
     <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_jquery_block_ui_script') ?>"></script>
-    <script type="text/javascript" src="/js/RootlessMap.js"></script>
+    <script type="text/javascript" src="/js/Class.js"></script>
+    <script type="text/javascript" src="/js/Rootless.js"></script>
+    <script type="text/javascript" src="/js/Map.js"></script>
 
     <script type="text/javascript">   
       $(document).ready(function(){
@@ -17,9 +19,13 @@
           
         $( ".datePicker" ).datepicker();  
         
-        var Map = new RootlessMap({mapId : 'map' }); 
-        console.log(Map);
-
+        //rootless namespace that should be added to our global template
+        var rootless = Rootless.getInstance({sessionId : 'hello'});
+       
+       
+       //the map object
+        var map = Rootless.Map.getInstance({mapId : 'map'});
+        map.mapInit();
       });
     </script>
     
