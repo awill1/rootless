@@ -31,17 +31,15 @@ Rootless.Map = Class.extend({
                MAP_DEFAULT_LONGITUDE   : -95.677068,
                MAP_DEFAULT_ZOOM        : 3
            },
-           // Variables used to block form submitting before map api results are returned
-           formBlock : {
-               isOriginDecodePending : false,
-               isDestinationDecodePending : false,
-               isDirectionsPending : false,
-               isFormSubmitPending : false
-           },
            
            //all html elements referred in the code should go here (including jquery)
            el : {
-               
+               $originTextBox        : $("#rides_origin"),
+               $destinationTextBox   : $("#rides_destination"),
+               $originLatitude       : $("#rides_origin_latitude"),
+               $originLongitude      : $("#rides_origin_longitude"),
+               $destinationLatitude  : $("#rides_destination_latitude"),
+               $destinationLongitude : $("#rides_destination_longitude")
            },
            
            //map markers and polylines should be here
@@ -131,7 +129,77 @@ Rootless.Map = Class.extend({
     
         // Return the created polyline
         return routePath;
-    }
+    },
+    
+    /**
+     * Creates a polyline with the secondary line style
+     * @param polylineCoordinates Array.<LatLng> The coordinates on the line
+     * @returns google.maps.Polyline The polyline
+     */
+    createNonPrimaryPolyline : function(polylineCoordinates) { 
+        var routePath = new google.maps.Polyline({
+            path: polylineCoordinates,
+            strokeColor: self._.CONST.SECONDARY_ROUTE_COLOR,
+            strokeOpacity: self._.CONST.SECONDARY_ROUTE_OPACITY,
+            strokeWeight: self._.CONST.SECONDARY_ROUTE_WEIGHT
+        });
+
+        // Return the created polyline
+        return routePath;
+    },
+    
+    /**
+     * Binds origin and destination textboxes to the map
+     * @param originTextBox The textbox used for origin input
+     * @param destinationTextBox The textbox used for destination input
+     */
+    bindTextBoxesToMap : function() {
+        // Route preview changes whenever the user finished editing the
+        // seat pickup and dropoff textboxes
+        this._.el.$originTextBox.change(previewRoute);
+        this._.el.$destinationTextBox.change(previewRoute);
+    },
+    
+    /**
+     * Clears the origin decode flag used to block form submission before
+     * the map api returns
+     */
+     clearOriginDecodePendingFlag : function() {
+        // Clear the flag
+        Rootless.StaticUtils._.formBlock.isOriginDecodePending = false;
+        // Submit the form if necessary and if the function is defined
+        if (typeof(MaybeSubmitForm) == typeof(Function)) {
+            MaybeSubmitForm();
+        }
+    },
+    
+    /**
+     * Clears the destination decode flag used to block form submission before
+     * the map api returns
+     */
+     clearDestinationDecodePendingFlag : function() {
+        // Clear the flag
+        Rootless.StaticUtils._.formBlock.isDestinationDecodePending = false;
+        // Submit the form if necessary and if the function is defined
+        if (typeof(MaybeSubmitForm) == typeof(Function)) {
+            MaybeSubmitForm();
+        }
+    },
+    
+    /**
+     * Clears the directions pending flag used to block form submission before
+     * the map api returns
+     */
+     clearDirectionsPendingFlag : function() {
+        // Clear the flag
+        Rootless.StaticUtils._.formBlock.isDirectionsPending = false;
+        // Submit the form if necessary and if the function is defined
+        if (typeof(MaybeSubmitForm) == typeof(Function)) {
+            MaybeSubmitForm();
+        }
+     }
+    
+    
    
    
     
