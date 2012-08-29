@@ -471,6 +471,14 @@ textarea {
 }
 
 @media screen and (max-width: 640px) {
+    body {
+        background-color: #eee;
+    }
+    
+    .frontPageContent p {
+        color: #fff;
+    }
+    
     .frontPageContent {
         float: left;
     }
@@ -486,6 +494,10 @@ textarea {
 
 .home #middleContentFront {
     float: left;
+}
+
+.sideImages, .sideImagesL {
+    display: none;
 }
 
 .home #loginFormContainer form table tbody, .home #loginFormContainer form table tfoot {
@@ -525,7 +537,7 @@ textarea {
 }
 
 .home #loginFormContainer label[for='signin_remember']{
-    
+    position: absolute;
     color: #444;
     
 }   
@@ -553,21 +565,62 @@ textarea {
     clear: left;
 }
 
+.home #loginFormContainerB {
+    margin-left: 25px !important;
+    margin-top: 45px;
+    color: white;
+    position: relative;
+    width: 350px;
+    font-weight: lighter;
+    border-left: 1px solid #CEBEA9;
+    padding-left: 25px;
+    float: left;
+}
+
+#bottomFeed {
+    position: relative;
+}
+
+#copyRight {
+    margin-left: 15px;
+    padding-right: 9px;
+    float: right;
+}
     
+#backgroundImage {
+    position: relative !important;
+    float: right
+}
+
+.home #rideSearchForm {
+    border-left: 0 none;
+    padding-left: 0px;
+    margin-left: 5px;
+    float: left;
+    margin-top: 40px;
+}
+
+.home #loginFormContainerB {
+    margin-left: 5px !important;
+    color: white;
+    position: relative;
+    width: 350px;
+    font-weight: lighter;
+    border-left: 0 none !important;
+    padding-left: 0px !important;
+    float: left;
+}
 
 }
 
-@media screen and (max-width: 400px) {
- 
-    #backgroundImage {
-       display: none;
-    
-    }
+@media screen and (max-width: 500px) {
+   
     
     .frontPageContent p {
     width: 200px;
     float: left;
-}
+    }
+    
      
 
 
@@ -587,13 +640,10 @@ textarea {
 
 #backgroundImage {
     top: 0;
-    left: 0;
+    right: 0;
     position:fixed;
     min-width:100%;
-    min-height:100%;
-
-   
-   
+    min-height:100%;   
 }
 
 

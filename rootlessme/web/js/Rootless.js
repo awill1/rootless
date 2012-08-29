@@ -11,7 +11,7 @@ Rootless = Class.extend({
             
         }, params);
         
-        var utils = Rootless.StaticUtils.getInstance();
+        var utils = Rootless.Static.Utils.getInstance();
     }
     
     

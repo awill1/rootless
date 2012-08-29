@@ -2,9 +2,9 @@
  * Rootless.StaticUtils Class
  */
 
-Namespace('Rootless.StaticUtils');
+Namespace('Rootless.Static.Utils');
 
-Rootless.StaticUtils = Class.extend({
+Rootless.Static.Utils = Class.extend({
     init : function(params) {
         this._ = $.extend(true, {
             // Variables used to block form submitting before map api results are returned

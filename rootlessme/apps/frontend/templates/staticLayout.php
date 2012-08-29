@@ -8,6 +8,7 @@
             Rootless Me - Share your ride or find a carpool.
           <?php endif; ?>
       </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php use_stylesheet(sfConfig::get('app_css_main')) ?>
     <?php use_javascript(sfConfig::get('app_jquery_script')) ?>
@@ -38,14 +39,8 @@
     
     //make sure the background image fills the screen
     $(document).ready(function(){
-        
-        //listen for screen width
-        var scW = screen.width;
-        if (scW < 400) {
-        } else {
-            $('#containerFront').html('<img id="backgroundImage" src="/images/FrontPageBackground2.jpg" alt="RootlessMe" />');
-        }
 
+        if (screen.width > 640) {
         //get window height
         var winH = $(window).height();
         var winW = $(window).width();
@@ -67,6 +62,7 @@
                 $("#backgroundImage").css({width: winW, height: ''});
             }
         });
+        }
 
         // change orgin and destination text 
         $('.home #rideSearchForm label[for="rides_origin"]').html('from');
@@ -165,6 +161,7 @@
         <!-- End Facebook javascript sdk -->
         
         <div id="containerFront">
+            <img id="backgroundImage" src="/images/FrontPageBackground2.jpg" alt="RootlessMe" />
         </div>
       
       <div id="container">
