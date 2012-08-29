@@ -55,6 +55,7 @@ class SeatsForm extends BaseSeatsForm
         $this->setValidator('carpool_id',new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Carpools'), 'required' => false)));
         $this->setValidator('passenger_id', new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Passengers'), 'required' => false)));
 
+        $this->widgetSchema->setLabel('price', 'Price <span class="negotiate-dollar-sign">$</span>');
         // Seat status will be created by the action, not the user
         unset($this['seat_status_id']);
         

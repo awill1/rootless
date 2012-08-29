@@ -514,7 +514,7 @@ ul {
     clear: both;
 }
 
-#seatNegotiationForm th {
+#seatNegotiationForm th, #seatRequestForm th {
     text-align: right;
     padding-right: 5px;
 }
@@ -592,7 +592,16 @@ label span.dollar-sign {
     font-weight: normal;
 }
 
-#seatNegotiationContainer input[name="seats[price]"] {
+#seatDetailsBlock input {
+    width: 220px;
+}
+
+#seatNegotiationContainer input[name="seats[price]"], #seatDetailsBlock #seats_price {
     width: 210px;
     padding-left: 11px;
+}
+
+#submit_seat {
+    width: auto !important;
+    float: right;
 }
