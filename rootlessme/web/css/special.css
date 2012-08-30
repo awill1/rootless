@@ -1,0 +1,43 @@
+/* 
+    Document   : special.css
+    Created on : July 6, 2011, 7:44:43 PM
+    Author     : rwells
+    Description:
+        This stylesheet formats the special pages of the rootlessme website.
+*/
+
+#main{
+    margin-left: 20%;    
+    margin-right: 20%;
+}
+#socialLinks{
+    float: left;
+    margin-left: 70%; 
+}
+#headline{
+    font-family: Arial;
+    font-size: 400%;
+    color: white;
+}
+#formBox{
+    background-color: #000;
+    padding: 20px 20px 20px 20px;
+    margin-top: 10px;
+    opacity:0.73;
+    width:600px;
+    filter:alpha(opacity=73);
+}
+#formButtons{
+
+}
+#formFields{
+    
+}
+#formConfirmation{
+    
+}
+.boxCopy{
+    font-family: Arial;
+    font-size: 100%;
+    color: #fff;
+}

@@ -1,0 +1,6 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/book/1_2/07-Inside-the-View-Layer
+
+# The special pages use the special layout file
+patriotsSuccess:
+  layout: staticLayout

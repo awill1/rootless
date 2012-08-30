@@ -349,6 +349,11 @@ sf_routes_js:
   url: /js/sf.routes.js
   param: { module: sfRoutesJs, action: index }
   
+#special routes
+patriots:
+  url: /patriots
+  param: { module: special, action: patriots }
+  
 # user rules
 user_facebook_login:
   url: /facebook-connect-login
