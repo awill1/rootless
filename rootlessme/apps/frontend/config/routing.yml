@@ -354,6 +354,11 @@ patriots:
   url: /patriots
   param: { module: special, action: patriots }
   
+special_event_register:
+  url: /specialEvent/register
+  param: { module: special, action: register }
+  requirements: { sf_method: post }
+  
 # user rules
 user_facebook_login:
   url: /facebook-connect-login
