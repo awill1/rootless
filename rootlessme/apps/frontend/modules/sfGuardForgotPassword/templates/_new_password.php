@@ -6,4 +6,4 @@
         'sf_guard') ?> 
 
 <?php echo __('Thanks,') ?> 
-<?php echo __('Rootless Me') ?> 
+<?php echo __('Rootless') ?> 

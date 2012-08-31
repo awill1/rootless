@@ -1,6 +1,6 @@
 <?php slot(
   'title',
-  sprintf('Rootless Me - Share your ride or find a carpool.'))
+  sprintf('Rootless - Share your ride or find a carpool.'))
 ?>
 <div id="loginFormContainer">
        <?php echo get_partial('sfGuardAuth/signin_form', array('form' => $signinForm, 'showForgotPassword' => false)); ?>

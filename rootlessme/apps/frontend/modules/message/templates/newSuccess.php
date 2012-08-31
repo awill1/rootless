@@ -1,7 +1,7 @@
 <?php use_stylesheet('fcbkComplete.css') ?>
 <?php slot(
   'title',
-  sprintf('Rootless Me - New Message'))
+  sprintf('Rootless - New Message'))
 ?>
 
 <h1>New Message</h1>

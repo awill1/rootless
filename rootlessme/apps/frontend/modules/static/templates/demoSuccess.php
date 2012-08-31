@@ -1,6 +1,6 @@
 <?php slot(
   'title',
-  sprintf('Rootless Me - Demo'))
+  sprintf('Rootless - Demo'))
 ?>
 
 <div>

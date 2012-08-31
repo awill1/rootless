@@ -2,7 +2,7 @@
 <?php use_stylesheet('fcbkComplete.css') ?>
 <?php slot(
   'title',
-  sprintf('Rootless Me - Messages'))
+  sprintf('Rootless - Messages'))
 ?>
 
 <?php slot('gmapheader'); ?>

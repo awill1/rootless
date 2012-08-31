@@ -4,7 +4,7 @@
 
 <?php slot(
   'title',
-  sprintf('Rootless Me - %s', $conversation->getSubject()))
+  sprintf('Rootless - %s', $conversation->getSubject()))
 ?>
 <script type="text/javascript" src="/js/tableRowNavigation.js"></script>
 <script type="text/javascript">

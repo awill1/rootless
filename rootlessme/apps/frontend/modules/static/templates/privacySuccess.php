@@ -1,6 +1,6 @@
 <?php slot(
   'title',
-  sprintf('Rootless Me - Privacy agreement'))
+  sprintf('Rootless - Privacy agreement'))
 ?>
 
 <h1>Privacy agreement</h1>

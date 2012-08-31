@@ -2,7 +2,7 @@
 
 <?php slot(
   'title',
-  sprintf('Rootless Me - Dashboard'))
+  sprintf('Rootless - Dashboard'))
 ?>
 
 <?php slot('gmapheader'); ?>

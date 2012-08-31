@@ -1,7 +1,7 @@
 <?php use_stylesheet(sfConfig::get('app_css_message')) ?>
 <?php slot(
   'title',
-  sprintf('Rootless Me - Sent Messages'))
+  sprintf('Rootless - Sent Messages'))
 ?>
 
         <form name='messages_list_<?php echo $listType ?>_form' action="messages.html">

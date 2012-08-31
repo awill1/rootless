@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
       <title>
-            Rootless Me - Error
+            Rootless - Error
       </title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="stylesheet" type="text/css" media="screen" href="/css/<?php echo sfConfig::get('app_css_static'); ?>" />

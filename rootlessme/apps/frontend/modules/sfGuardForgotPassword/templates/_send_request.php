@@ -8,4 +8,4 @@
 <?php echo link_to(__('Click to change password', null, 'sf_guard'), '@sf_guard_forgot_password_change?unique_key='.$forgot_password->unique_key, 'absolute=true') ?><br /><br />
 
 <?php echo __('Thanks,') ?> <br />
-<?php echo __('Rootless Me') ?> 
+<?php echo __('Rootless') ?> 

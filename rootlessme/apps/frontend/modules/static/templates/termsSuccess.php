@@ -1,6 +1,6 @@
 <?php slot(
   'title',
-  sprintf('Rootless Me - Terms of service'))
+  sprintf('Rootless - Terms of service'))
 ?>
 
 <h1>Terms of service</h1>

@@ -1,6 +1,6 @@
 <?php slot(
   'title',
-  sprintf('Rootless Me - Help'))
+  sprintf('Rootless - Help'))
 ?>
 
 <h1>Help</h1>

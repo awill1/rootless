@@ -5,7 +5,7 @@
     <?php include_metas() ?>
       <title>
           <?php if (!include_slot('title')): ?>
-            Rootless Me - Share your ride or find a carpool.
+            Rootless - Share your ride or find a carpool.
           <?php endif; ?>
       </title>
     <meta name="viewport" content="width=device-width, initial-scale=1"> 

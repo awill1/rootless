@@ -3,7 +3,7 @@
 
 <?php slot(
   'title',
-  sprintf('Rootless Me - Rideboard'))
+  sprintf('Rootless - Rideboard'))
 ?>
 
 <?php slot('gmapheader'); ?>

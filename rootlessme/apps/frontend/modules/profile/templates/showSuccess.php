@@ -3,7 +3,7 @@
 
 <?php slot(
   'title',
-  sprintf('Rootless Me - %s', $profile->getFullName()))
+  sprintf('Rootless - %s', $profile->getFullName()))
 ?>
 
 <?php slot('gmapheader'); ?>

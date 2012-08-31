@@ -3,7 +3,7 @@
 
 <?php slot(
   'title',
-  sprintf('Rootless Me - %s to %s', $route->getOriginString(), $route->getDestinationString()))
+  sprintf('Rootless - %s to %s', $route->getOriginString(), $route->getDestinationString()))
 ?>
 
 <h1> Ride Request</h1>
