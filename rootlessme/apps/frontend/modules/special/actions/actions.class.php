@@ -31,5 +31,10 @@ class specialActions extends sfActions
         
         
         // Send the email to contact at rootless.me
+        
+        
+        // Return nothing to the page 
+        $this->setLayout(sfView::NONE);
+        return "";
     }
 }
