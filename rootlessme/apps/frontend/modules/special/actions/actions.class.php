@@ -35,6 +35,6 @@ class specialActions extends sfActions
         
         // Return nothing to the page 
         $this->setLayout(sfView::NONE);
-        return "";
+        return $this->renderText("");
     }
 }
