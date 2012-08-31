@@ -12,32 +12,101 @@
 }
 #socialLinks{
     float: left;
-    margin-left: 70%; 
+    margin-left: 45%;
+    margin-top: 30px;
 }
 #headline{
     font-family: Arial;
     font-size: 400%;
     color: white;
+    margin-top: 100px;
+    font-weight: bold;
+    text-rendering: optimizelegibility;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.6), 0 -1px 1px rgba(0, 0, 0, 0.6);
 }
 #formBox{
-    background-color: #000;
+    background-color: rgba(0,0,0,0.73);
     padding: 20px 20px 20px 20px;
     margin-top: 10px;
-    opacity:0.73;
+    /*opacity:0.73;*/
     width:600px;
     filter:alpha(opacity=73);
 }
 #formButtons{
-
+    margin-bottom: 20px;
 }
+.formFields{
+    padding:5px;
+    margin: 5px;
+}
+.orText{
+    font-family: Arial;
+    font-size: 140%;
+    color: #fff; 
+    display: inline-block;
+    line-height: 36px;
+    margin: 0px 10px 0px 10px;
+}
+
 #formFields{
-    
+    margin-bottom: 30px;
 }
 #formConfirmation{
-    
+    margin-bottom: 30px;
 }
 .boxCopy{
     font-family: Arial;
     font-size: 100%;
     color: #fff;
+    font-weight: bold;
+}
+.boxHeader{
+    font-family: Arial;
+    font-size: 200%;
+    color: #fff; 
+    display: inline-block;
+    line-height: 36px;
+    margin-right: 10px;
+}
+
+#wantDrive{
+    background-color: #119D49;
+    border: medium none;
+    color: #FFFFFF;
+    cursor: pointer;
+    outline: medium none;
+    padding: 5px 10px;
+}
+#wantRide{
+    background-color: #119D49;
+    border: medium none;
+    color: #FFFFFF;
+    cursor: pointer;
+    outline: medium none;
+    padding: 5px 10px;
+}
+.driveOrRide{
+    background-color: #999999;
+    border: medium none;
+    color: #FFFFFF;
+    cursor: pointer;
+    outline: medium none;
+    padding: 2px 7px;
+    font-size: 200%;
+}
+
+.unselectedLabel{
+    background-color: #999999;
+}
+
+.unselectedLabel:hover{
+    background-color: #555;
+}
+
+.selectedLabel{
+    background-color: #119D49;
+}
+.formError{
+    color: #CC0033;
+    
 }
