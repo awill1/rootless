@@ -16,6 +16,10 @@
     padding: 0px 0px 0px 0px;
     height: 100%;
 }
+#rootlessPromoVideo{
+    float: left;
+    margin-bottom: 10px;
+}
 
 .rideCont {
     height: 60px;

@@ -12,6 +12,10 @@
 
 <h1>Dashboard</h1>
 
+<div id="rootlessPromoVideo">
+    <iframe src="http://player.vimeo.com/video/43364584?color=40b355" width="520" height="292" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+</div>
+
 <div id="rideSection">
     <div id="rideInformationDashLeft">
         <h3>Offers Posted</h3>
@@ -95,4 +99,6 @@
             <?php endforeach; ?>
         </ul>
     </div>
+    
 </div>
+
