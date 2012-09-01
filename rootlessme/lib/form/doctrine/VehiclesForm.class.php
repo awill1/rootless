@@ -21,6 +21,10 @@ class VehiclesForm extends BaseVehiclesForm
         unset($this['image_url_small']);
         unset($this['created_at']);
         unset($this['updated_at']);
+        
+        // Set labels on some widgets
+        // Correct a misspelling
+        $this->widgetSchema->setLabel('gas_milage', 'Gas mileage');
     }
     
     /**
