@@ -34,7 +34,11 @@ $(document).ready(function()
     
     //Ajax form success
     $('#specialForm').validate({
-        errorLabelContainer: $(".formError")
+        errorLabelContainer: $(".formError"),
+        invalidHandler: function() {
+            // Send an event to google analytics for the form validation error
+            _gaq.push(['_trackEvent', 'specialEvent', 'validationError']);
+        }
     });
     $('#specialForm').ajaxForm( 
         {
