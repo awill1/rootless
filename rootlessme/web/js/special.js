@@ -6,6 +6,7 @@
 
 $(document).ready(function()
 {
+    $("#backgroundImage").attr("src", "/images/patFansBackground.jpg" );
     $('#formFields').hide();
     $('#formConfirmations').hide();
     
@@ -25,11 +26,15 @@ $(document).ready(function()
 //    $("#formSubmit").click(function() {
 //        //return false;
 //    });
+//    
     //Ajax form success
+    $('#specialForm').validate({
+                errorLabelContainer: $(".formError")
+    });
     $('#specialForm').ajaxForm( 
         {
             // The resulting html should be sent to the test div
-            target: '#formConirmations',
+            //target: '#formConirmations',
             // The callback function when the form was successfully submitted
             success: function() {
                 $('#formConfirmations').show('blind');  

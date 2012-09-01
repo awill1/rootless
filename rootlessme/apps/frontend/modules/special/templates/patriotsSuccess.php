@@ -5,13 +5,8 @@
 ?>
 <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
 <script type="text/javascript" src="/js/special.js"></script>
-<script type="text/javascript">
-    $(document).ready(function()
-    {
-    $("#backgroundImage").attr("src", "/images/patFansBackground.jpg" );
-    });
-    
-</script>
+
+
 
 <div id="main">
     <div id="headline">
@@ -29,15 +24,14 @@
                 
                 <input id="wantRide" type="radio" name="userType" style="display: none;" value="ride" />
                 <label for="wantRide" class="driveOrRide unselectedLabel">ride</label>
-         
-                
-                
             </div>
+            
             <div id="formFields">
-                <input class="formFields" type="text" name="name" placeholder="Name"/>
-                <input class="formFields" type="text" name="email" placeholder="Email"/>
+                <div class="formError"> </div>
+                <input class="formFields required" type="text" name="name" placeholder="Name"/>
+                <input class="formFields required" type="text" name="email" placeholder="Email"/>
                 
-                <select name="game" class="formFields">
+                <select name="game" class="formFields required">
                     <option value="9/16_Patriots_vs._Cardinals">9/16 Patriots vs. Cardinals</option>
                     <option value="10/7_Patriots_vs._Broncos">10/7 Patriots vs. Broncos </option>
                     <option value="10/21_Patriots_vs._Jets">10/21 Patriots vs. Jets</option>
@@ -48,8 +42,8 @@
                     <option value="12/30_Patriots_vs._Dolphins">12/30 Patriots vs. Dolphins</option>
                 </select>
                 <br />
-                <input class="formFields" type="text" name="location" placeholder="From: Address, City, State"/>
-                <input class="formFields" type="text" name="seats" placeholder="How many spare seats?"/>
+                <input class="formFields required" type="text" name="location" placeholder="From: Address, City, State"/>
+                <input class="formFields required" type="text" name="seats" placeholder="How many spare seats?"/>
                 <input id="formSubmit" class="formFields" type="submit" value="Submit" />
             </div>
         </form>    

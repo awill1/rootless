@@ -23,6 +23,7 @@
     font-weight: bold;
     text-rendering: optimizelegibility;
     text-shadow: 0 0 15px rgba(0, 0, 0, 0.6), 0 -1px 1px rgba(0, 0, 0, 0.6);
+    line-height: 56px;
 }
 #formBox{
     background-color: rgba(0,0,0,0.73);
@@ -33,10 +34,10 @@
     filter:alpha(opacity=73);
 }
 #formButtons{
-    margin-bottom: 20px;
+    //margin-bottom: 10px;
 }
 .formFields{
-    padding:5px;
+    padding: 5px;
     margin: 5px;
 }
 .orText{
@@ -106,7 +107,10 @@
 .selectedLabel{
     background-color: #119D49;
 }
-.formError{
-    color: #CC0033;
+.formError{ 
+    margin: 2px;
+    color: #CC0000;
+    font-family: Arial;
+    font-size: 100%;
     
 }
