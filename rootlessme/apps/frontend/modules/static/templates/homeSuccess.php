@@ -8,7 +8,7 @@
 
 <div class="frontPageContent">
     <p>
-       A ridesharing network that helps get you out from behind your computer to enjoy life.
+       Life is a ride. Ride together.
     </p>
 </div>
 <form id="rideSearchForm"  action="<?php echo url_for('ride') ?>" method="get">
