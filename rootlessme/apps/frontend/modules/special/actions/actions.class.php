@@ -27,14 +27,47 @@ class specialActions extends sfActions
      */
     public function executeRegister(sfWebRequest $request)
     {
+        // Load the AWS SDK
+        require_once sfConfig::get('app_amazon_sdk_file');
+        
         // Verify the request parameters
+        $email = $request->getParameter('email');
+        $game = $request->getParameter('game');
+        $location = $request->getParameter('location');
+        $name = $request->getParameter('name');
+        $seats = $request->getParameter('seats');
+        $userType = $request->getParameter('userType');
         
-        
-        // Send the email to contact at rootless.me
-        
+        // Send the notification using Amazon SNS  
+        $snsService = new AmazonSNS(array('key' => sfConfig::get('app_amazon_sns_access_key'), 
+                                          'secret' => sfConfig::get('app_amazon_sns_secret_key')));
+        $messageTemplate = 
+            "New Special event request.
+            UserType: %userType%
+            Name: %name%
+            Email: %email%
+            Game: %game%
+            Location: %location%
+            Seats: %seats%";
+        $formattedMessage = strtr($messageTemplate, array(
+            '%userType%'  => $userType,
+            '%name%'      => $name,
+            '%email%'     => $email,
+            '%game%'      => $game,
+            '%location%'  => $location,
+            '%seats%'     => $seats
+        ));
+        $subjectTemplate = "%email% has registered for %game%";
+        $formattedSubject = strtr($subjectTemplate, array(
+            '%email%'     => $email,
+            '%game%'      => $game
+        ));
+        $snsService->publish(sfConfig::get('app_amazon_sns_access_key'), 
+                $formattedMessage, 
+                array('Subject' => $formattedSubject));
         
         // Return nothing to the page 
         $this->setLayout(sfView::NONE);
-        return $this->renderText("");
+        return $this->renderText("{ success: true }");
     }
 }
