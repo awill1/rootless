@@ -1,7 +1,7 @@
 <?php use_stylesheet(sfConfig::get('app_css_special')) ?>
 <?php slot(
   'title',
-  sprintf('Rootless - Patriots'))
+  sprintf('Rootless - Ride with other Patriots fans to Gillette Stadium in Foxborough. The most fun gameday carpool.'))
 ?>
 <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
 <script type="text/javascript" src="/js/special.js"></script>
