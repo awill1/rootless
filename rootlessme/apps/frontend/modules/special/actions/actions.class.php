@@ -62,7 +62,7 @@ class specialActions extends sfActions
             '%email%'     => $email,
             '%game%'      => $game
         ));
-        $snsService->publish(sfConfig::get('app_amazon_sns_access_key'), 
+        $snsService->publish(sfConfig::get('app_amazon_sns_site_activity_arn'), 
                 $formattedMessage, 
                 array('Subject' => $formattedSubject));
         
