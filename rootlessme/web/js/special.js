@@ -26,6 +26,23 @@ $(document).ready(function()
         
     });
     
+    //Change the placeholder text in the seats field to match the user context
+    $('#driveButton').click(function() {
+        $(this).attr(placeholder, "How many spare seats?");
+        } 
+          
+    );
+    
+    $('#rideButton').click(function() {
+        $(this).attr(placeholder, "How many passengers?");
+        } 
+          
+    );
+    
+    //////////////////////////////////
+    //
+    //
+    //
     // Form field change event handler
     $('.formFields').change(function(){
         // Send an event to google analytics for the type of form field changed

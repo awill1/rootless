@@ -18,12 +18,12 @@
                 <div class="boxHeader" >I want to </div>
                 
                 <input id="wantDrive" type="radio" name="userType" style="display: none;" value="drive" />
-                <label for="wantDrive" class="driveOrRide unselectedLabel">drive</label>
+                <label for="wantDrive" id="driveButton" class="driveOrRide unselectedLabel">drive</label>
                 
                 <div class="orText" > or </div> 
                 
                 <input id="wantRide" type="radio" name="userType" style="display: none;" value="ride" />
-                <label for="wantRide" class="driveOrRide unselectedLabel">ride</label>
+                <label for="wantRide" id="rideButton" class="driveOrRide unselectedLabel">ride</label>
             </div>
             
             <div id="formFields">
