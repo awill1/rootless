@@ -29,7 +29,7 @@
             <div id="formFields">
                 <div class="formError"> </div>
                 <input class="formFields required" type="text" name="name" placeholder="Name"/>
-                <input class="formFields reqiured" type="email" name="email" placeholder="Email"/>
+                <input class="formFields required email" type="text" name="email" placeholder="Email"/>
                 
                 <select name="game" class="formFields required">
                     <option value="9/16_Patriots_vs._Cardinals">9/16 Patriots vs. Cardinals</option>
@@ -42,8 +42,8 @@
                     <option value="12/30_Patriots_vs._Dolphins">12/30 Patriots vs. Dolphins</option>
                 </select>
                 <br />
-                <input class="formFields required" title type="text" name="location" placeholder="From: Address, City, State"/>
-                <input class="formFields required" id="seatsField" type="number" name="seats" placeholder="How many spare seats?"/>
+                <input class="formFields required" type="text" name="location" placeholder="From: Address, City, State"/>
+                <input id="seatsField" class="formFields required digits" type="text" name="seats" placeholder="How many spare seats?"/>
                 <input id="formSubmit" class="formFields" type="submit" value="Submit" />
             </div>
         </form>    

@@ -28,21 +28,13 @@ $(document).ready(function()
     
     //Change the placeholder text in the seats field to match the user context
     $('#driveButton').click(function() {
-        $(this).attr(placeholder, "How many spare seats?");
-        } 
-          
-    );
+        $('#seatsField').attr('placeholder', 'How many spare seats?');
+    });
     
     $('#rideButton').click(function() {
-        $(this).attr(placeholder, "How many passengers?");
-        } 
-          
-    );
+        $('#seatsField').attr('placeholder', 'How many passengers?');
+    });
     
-    //////////////////////////////////
-    //
-    //
-    //
     // Form field change event handler
     $('.formFields').change(function(){
         // Send an event to google analytics for the type of form field changed
@@ -55,6 +47,18 @@ $(document).ready(function()
         invalidHandler: function() {
             // Send an event to google analytics for the form validation error
             _gaq.push(['_trackEvent', 'specialEvent', 'validationError']);
+        },
+        messages: {
+            name: "Enter your name. ",
+            email: {
+                required: "Enter your email. ",
+                email: "Email must be a valid format. "
+            },
+            location: "Enter your location. ",
+            seats: {
+                required: "Enter the number of seats. ",
+                digits: "The seat count must be a valid number. "
+            }
         }
     });
     $('#specialForm').ajaxForm( 
