@@ -8,7 +8,7 @@
 
 <div class="frontPageContent">
     <p>
-       Life is a ride. Ride together.
+       Rootless is a ridesharing community that helps turn ordinary trips into adventures. Where do you want to go?
     </p>
 </div>
 <form id="rideSearchForm"  action="<?php echo url_for('ride') ?>" method="get">
