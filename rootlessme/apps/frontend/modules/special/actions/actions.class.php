@@ -11,15 +11,151 @@
 class specialActions extends sfActions
 {
     /**
+     * Executes buckeyes action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeBuckeyes(sfWebRequest $request)
+    {
+        $this->teamNameSingular = 'Buckeye';
+        $this->teamNamePlural = 'Buckeyes';
+        $this->fansName = 'Buckeye fans';
+        $this->title = 'Rootless - Ride with other Ohio State Buckeye fans to the game. The most fun gameday carpool.';
+        
+        // Build a dynamic schedule. Eventually this will go into a separate file
+
+        $fullSchedule = array(
+            'regularSeason1' => array(
+                'date' => '2012-09-01 23:00:00.0',
+                'id' => 'OSU_2012-09-01_vs._Miami_OH',
+                'displayName' => '9/01 vs. Miami (OH)'),
+            'regularSeason2' => array(
+                'date' => '2012-09-08 23:00:00.0',
+                'id' => 'OSU_2012-09-08_vs._UCF',
+                'displayName' => '9/08 vs. UCF' ),
+            'regularSeason3' => array(
+                'date' => '2012-09-15 23:00:00.0',
+                'id' => 'OSU_2012-09-15_vs._California',
+                'displayName' => '9/15 vs. California' ),
+            'regularSeason4' => array(
+                'date' => '2012-09-22 23:00:00.0',
+                'id' => 'OSU_2012-09-22_vs._UAB',
+                'displayName' => '9/22 vs. UAB' ),
+            'regularSeason5' => array(
+                'date' => '2012-09-29 23:00:00.0',
+                'id' => 'OSU_2012-09-29_at_Michigan_State',
+                'displayName' => '9/29 @ Michigan State' ),
+            'regularSeason6' => array(
+                'date' => '2012-10-06 23:00:00.0',
+                'id' => 'OSU_2012-10-06_vs.Nebraska',
+                'displayName' => '10/06 vs. Nebraska' ),
+            'regularSeason7' => array(
+                'date' => '2012-10-13 23:00:00.0',
+                'id' => 'OSU_2012-10-13_at_Indiana',
+                'displayName' => '10/13 @ Indiana' ),
+            'regularSeason8' => array(
+                'date' => '2012-10-20 23:00:00.0',
+                'id' => 'OSU_2012-10-20_vs._Purdue',
+                'displayName' => '10/20 vs. Purdue' ),
+            'regularSeason9' => array(
+                'date' => '2012-10-27 23:00:00.0',
+                'id' => 'OSU_2012-10-27_at_Penn_State',
+                'displayName' => '10/27 @ Penn State' ),
+            'regularSeason10' => array(
+                'date' => '2012-11-03 23:00:00.0',
+                'id' => 'OSU_2012-11-03_vs._Illinois',
+                'displayName' => '11/03 vs. Illinois' ),
+            'regularSeason11' => array(
+                'date' => '2012-11-17 23:00:00.0',
+                'id' => 'OSU_2012-11-17_at_Wisconsin',
+                'displayName' => '11/17 @ Wisconsin' ),
+            'regularSeason12' => array(
+                'date' => '2012-11-24 23:00:00.0',
+                'id' => 'OSU_2012-11-24_vs._Michigan',
+                'displayName' => '11/24 vs. Michigan' ),
+            'allHome' => array(
+                'date' => '2012-11-24 23:00:00.0',
+                'id' => 'OSU_2012_all_home',
+                'displayName' => 'All home games' ),
+            'allAway' => array(
+                'date' => '2012-11-24 23:00:00.0',
+                'id' => 'OSU_2012_all_away',
+                'displayName' => 'All away games' ),
+            'allHomeAndAway' => array(
+                'date' => '2012-11-24 23:00:00.0',
+                'id' => 'OSU_2012_all_home_and_away',
+                'displayName' => 'All home and away games' ));
+
+        // Only include the games that are in the future
+        $this->games = $this->getFutureGames($fullSchedule);
+        
+        // Use the Patriots template
+        $this->setTemplate('patriots');
+    }
+    
+    /**
      * Executes patriots action
      *
      * @param sfRequest $request A request object
      */
     public function executePatriots(sfWebRequest $request)
     {
+        $this->teamNameSingular = 'Patriot';
+        $this->teamNamePlural = 'Patriots';
+        $this->fansName = 'Patriots fans';
+        $this->title = 'Rootless - Ride with other New England Patriots fans to Gillette Stadium in Foxborough. The most fun gameday carpool.';
+        
+        // Build a dynamic schedule. Eventually this will go into a separate file.
+        $fullSchedule = array(
+            'preseason1' => array(
+                'date' => '2012-08-09 23:00:00.0',
+                'id' => 'Patriots_2012-08-09_vs._Saints',
+                'displayName' => '8/9 Patriots vs. Saints'),
+            'preseason2' => array(
+                'date' => '2012-08-20 23:00:00.0',
+                'id' => 'Patriots_2012-08-20_vs._Eagles',
+                'displayName' => '8/20 Patriots vs. Eagles'),
+            'regularSeason1' => array(
+                'date' => '2012-09-16 23:00:00.0',
+                'id' => 'Patriots_2012-09-16_vs._Cardinals',
+                'displayName' => '9/16 Patriots vs. Cardinals'),
+            'regularSeason2' => array(
+                'date' => '2012-10-07 23:00:00.0',
+                'id' => 'Patriots_2012-10-07_vs._Broncos',
+                'displayName' => '10/7 Patriots vs. Broncos' ),
+            'regularSeason3' => array(
+                'date' => '2012-10-21 23:00:00.0',
+                'id' => 'Patriots_2012-10-21_vs._Jets',
+                'displayName' => '10/21 Patriots vs. Jets' ),
+            'regularSeason4' => array(
+                'date' => '2012-11-11 23:00:00.0',
+                'id' => 'Patriots_2012-11-11_vs._Bills',
+                'displayName' => '11/11 Patriots vs. Bills' ),
+            'regularSeason5' => array(
+                'date' => '2012-11-18 23:00:00.0',
+                'id' => 'Patriots_2012-11-18_vs._Colts',
+                'displayName' => '11/18 Patriots vs. Colts' ),
+            'regularSeason6' => array(
+                'date' => '2012-12-10 23:00:00.0',
+                'id' => 'Patriots_2012-12-10_vs._Texans',
+                'displayName' => '12/10 Patriots vs. Texans' ),
+            'regularSeason7' => array(
+                'date' => '2012-12-16 23:00:00.0',
+                'id' => 'Patriots_2012-12-16_vs._49ers',
+                'displayName' => '12/16 Patriots vs. 49ers' ),
+            'regularSeason8' => array(
+                'date' => '2012-12-30 23:00:00.0',
+                'id' => 'Patriots_2012-12-30_vs._Dolphins',
+                'displayName' => '12/30 Patriots vs. Dolphins' ),
+            'allHome' => array(
+                'date' => '2012-12-30 23:00:00.0',
+                'id' => 'Patriots_2012_all_home',
+                'displayName' => 'All home games' ));
 
+        // Only include the games that are in the future
+        $this->games = $this->getFutureGames($fullSchedule);
     }
-  
+
     /**
      * Executes special events register action
      *
@@ -69,5 +205,33 @@ class specialActions extends sfActions
         // Return nothing to the page 
         $this->setLayout(sfView::NONE);
         return $this->renderText("{ success: true }");
+    }
+    
+    /**
+     * Gets the list of future games in the schedule
+     * @param Array $fullSchedule The full schedule for the season including past games
+     * @return Array The games that will still happen in the future 
+     */
+    private function getFutureGames($fullSchedule)
+    {
+        $futureGames = array();
+        foreach ($fullSchedule as $game) {
+            if ($this->isFuture($game['date']))
+            {
+                $futureGames[] = $game;
+            }
+        }
+        
+        return $futureGames;
+    }
+    
+    /**
+     * Checks to see if the time is in the future
+     * @param String $time The time string to compare
+     * @return Boolean True, if the time is in the future. False, otherwise. 
+     */
+    private function isFuture($time)
+    {
+        return (strtotime($time) > time());
     }
 }

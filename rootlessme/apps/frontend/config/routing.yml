@@ -349,7 +349,11 @@ sf_routes_js:
   url: /js/sf.routes.js
   param: { module: sfRoutesJs, action: index }
   
-#special routes
+#special event routes
+buckeyes:
+  url: /buckeyes
+  param: { module: special, action: buckeyes }
+  
 patriots:
   url: /patriots
   param: { module: special, action: patriots }

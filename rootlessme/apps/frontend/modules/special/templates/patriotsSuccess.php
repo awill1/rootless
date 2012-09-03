@@ -1,7 +1,7 @@
 <?php use_stylesheet(sfConfig::get('app_css_special')) ?>
 <?php slot(
   'title',
-  sprintf('Rootless - Ride with other Patriots fans to Gillette Stadium in Foxborough. The most fun gameday carpool.'))
+  sprintf($title))
 ?>
 <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
 <script type="text/javascript" src="/js/special.js"></script>
@@ -10,7 +10,7 @@
 
 <div id="main">
     <div id="headline">
-        Ride with other Patriots fans to the next game. 
+        Ride with other <?php echo $fansName; ?> to the next game. 
     </div>
     <div id="formBox">
         <form id="specialForm" action="<?php echo url_for('special_event_register'); ?>" method="post">
@@ -32,14 +32,9 @@
                 <input class="formFields required email" type="text" name="email" placeholder="Email"/>
                 
                 <select name="game" class="formFields required">
-                    <option value="9/16_Patriots_vs._Cardinals">9/16 Patriots vs. Cardinals</option>
-                    <option value="10/7_Patriots_vs._Broncos">10/7 Patriots vs. Broncos </option>
-                    <option value="10/21_Patriots_vs._Jets">10/21 Patriots vs. Jets</option>
-                    <option value="11/11_Patriots_vs._Bills">11/11 Patriots vs. Bills</option>
-                    <option value="11/18_Patriots_vs._Colts">11/18 Patriots vs. Colts</option>
-                    <option value="12/10_Patriots_vs._Texans">12/10 Patriots vs. Texans</option>
-                    <option value="12/16_Patriots_vs._49ers">12/16 Patriots vs. 49ers</option>
-                    <option value="12/30_Patriots_vs._Dolphins">12/30 Patriots vs. Dolphins</option>
+                    <?php foreach ($games as $game) : ?>
+                        <option value="<?php echo $game['id']; ?>"><?php echo $game['displayName']; ?></option>
+                    <?php endforeach; ?>
                 </select>
                 <br />
                 <input class="formFields required" type="text" name="location" placeholder="From: Address, City, State"/>
