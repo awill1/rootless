@@ -13,6 +13,11 @@ Rootless.Static.Utils = Class.extend({
                 isDestinationDecodePending : false,
                 isDirectionsPending        : false,
                 isFormSubmitPending        : false
+            },
+            
+            formAjaxOptions : { 
+                target : null,
+                success: null
             }
             
         }, params);
@@ -25,40 +30,10 @@ Rootless.Static.Utils = Class.extend({
     canSubmitForm : function(){
         return !this._.formBlock.isOriginDecodePending && !this._.formBlock.isDestinationDecodePending && !this._.formBlock.isDirectionsPending;
     }
-   /* 
-    formAjaxOptions : function() { 
-        target: '#results',
-        success: function() {
-            // Clear the form submit pending flag
-            isFormSubmitPending = false;
-
-            // This handler function will run when the form is complete
-            $('#loader').hide();
-            $('#results').show('blind');
-
-            // Add the results to the google map
-            LoadItemsIntoGoogleMap();
-
-            // Change the hover style
-            $("#rideTable tbody tr")
-                .hover(
-                    function() {
-                        HighlightRow($(this))
-                    }, function(){
-                        UnHighlightRow($(this))
-                    }
-                )
-                .find('td:not(:has(:checkbox, a))')
-                    .click(function () {
-                    window.location = $(this).parent().find("a").attr("href");
-                });
-            }
-        }*/
-
     
 });
 
-Class.addSingleton(Rootless.StaticUtils);
+Class.addSingleton(Rootless.Static.Utils);
 
 
 

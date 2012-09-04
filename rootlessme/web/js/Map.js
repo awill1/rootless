@@ -52,7 +52,9 @@ Rootless.Map = Class.extend({
                     
                 }
            
-           }
+           },
+           
+           directionsService : new google.maps.DirectionsService()
            
            
        }, params);
@@ -85,6 +87,10 @@ Rootless.Map = Class.extend({
         self._.mapItem.marker.destinationMarker = self.initializeMarker("Destination");
         // Setup the path, the maps are null because the path is hidden
         self._.mapItem.polyline.routePolyline = self.initializePath();
+        
+        // Route preview changes whenever the user finished editing the
+        // origin or destination textboxes
+        self.bindTextBoxesToMap(self._.el.$originTextBox, self._.el.$destinationTextBox);
    },
    
    /**
@@ -156,8 +162,8 @@ Rootless.Map = Class.extend({
     bindTextBoxesToMap : function() {
         // Route preview changes whenever the user finished editing the
         // seat pickup and dropoff textboxes
-        this._.el.$originTextBox.change(previewRoute);
-        this._.el.$destinationTextBox.change(previewRoute);
+        this._.el.$originTextBox.change(this.previewRoute);
+        this._.el.$destinationTextBox.change(this.previewRoute);
     },
     
     /**
@@ -166,7 +172,7 @@ Rootless.Map = Class.extend({
      */
      clearOriginDecodePendingFlag : function() {
         // Clear the flag
-        Rootless.StaticUtils._.formBlock.isOriginDecodePending = false;
+        Rootless.Static.Utils.getInstance()._.formBlock.isOriginDecodePending = false;
         // Submit the form if necessary and if the function is defined
         if (typeof(MaybeSubmitForm) == typeof(Function)) {
             MaybeSubmitForm();
@@ -179,7 +185,7 @@ Rootless.Map = Class.extend({
      */
      clearDestinationDecodePendingFlag : function() {
         // Clear the flag
-        Rootless.StaticUtils._.formBlock.isDestinationDecodePending = false;
+        Rootless.Static.Utils.getInstance()._.formBlock.isDestinationDecodePending = false;
         // Submit the form if necessary and if the function is defined
         if (typeof(MaybeSubmitForm) == typeof(Function)) {
             MaybeSubmitForm();
@@ -192,12 +198,202 @@ Rootless.Map = Class.extend({
      */
      clearDirectionsPendingFlag : function() {
         // Clear the flag
-        Rootless.StaticUtils._.formBlock.isDirectionsPending = false;
+        Rootless.Static.Utils.getInstance()._.formBlock.isDirectionsPending = false;
         // Submit the form if necessary and if the function is defined
         if (typeof(MaybeSubmitForm) == typeof(Function)) {
             MaybeSubmitForm();
         }
-     }
+     },
+     
+     /**
+     * Previews a route on the map
+     */
+     previewRoute : function() {
+        var map = Rootless.Map.getInstance();
+        var util = Rootless.Static.Utils.getInstance();
+
+        // Set the pending google map api flags to prevent form submitting
+        util._.formBlock.isOriginDecodePending = true;
+        util._.formBlock.isDestinationDecodePending = true;
+        util._.formBlock.isDirectionsPending = true;
+
+        var originValue = map._.el.$originTextBox.val();
+        if (originValue){
+            // Get the location of the origin, and place a marker on the map
+            var originGeocodeRequest = {
+                address: originValue
+            };
+            map._.geocoder.geocode(originGeocodeRequest, map.geocodeOrigin);
+        } else {
+            // Clear the origin pending flag
+            map.clearOriginDecodePendingFlag();
+
+            // There is no origin so clear the marker from the map
+            map._.mapItem.marker.originMarker.setMap(null);
+            // Clear the search parameters too
+            map._.el.$originLatitude.val("");
+            map._.el.$originLongitude.val("");
+            
+            if (typeof(originDataField) != "undefined")
+            {
+                $(originDataField).val("");
+            }
+            // Clear the latitude and longitude fields if they exist
+            if (typeof(map._.el.$originLatitude) != "undefined")
+            {
+                map._.el.$originLatitude.val("");
+            }
+            if (typeof(map._.el.$originLongitude) != "undefined")
+            {
+                map._.el.$originLongitude.val("");
+            }
+        }
+
+        var destinationValue = map._.el.$destinationTextBox.val();
+        if (destinationValue)
+        {
+            // Get the location of the destination, and place a marker on the map
+            var destinationGeocodeRequest = {
+                address: destinationValue
+            };
+            map._.geocoder.geocode(destinationGeocodeRequest, map.geocodeDestination);
+        }
+        else
+        {
+            // Clear the destination pending flag
+            map.clearDestinationDecodePendingFlag();
+
+            // There is no destination so clear the marker from the map
+            map._.mapItem.marker.destinationMarker.setMap(null);
+            // Clear the search parameters too
+            map._.el.$destinationLatitude.val("");
+            map._.el.$destinationLongitude.val("");
+            if (typeof(destinationDataField) != "undefined")
+            {
+                $(destinationDataField).val("");
+            }
+            // Update the latitude and longitude fields if they exist
+            if (typeof(map._.el.$destinationLatitude) != "undefined")
+            {
+                map._.el.$destinationLatitude.val("");
+            }
+            if (typeof(map._.el.$destinationLongitude) != "undefined")
+            {
+                map._.el.$destinationLongitude.val("");
+            }
+        }
+
+        if (originValue && destinationValue)
+        {
+            // Get the directions
+            map.calcRoute();
+        }
+        else
+        {
+            // Clear the directions pending flag
+            map.clearDirectionsPendingFlag();
+
+            // Clear the directions from the map
+            map._.mapItem.polyline.routePolyline.setMap(null);
+
+            // Clear the route data
+            if (typeof(routeDataField) != "undefined")
+            {
+                $(routeDataField).val("");
+            }
+        }
+      },
+    
+    geocodeOrigin : function(results, status) {     
+        var map = Rootless.Map.getInstance();
+        
+        // Display the results
+        map.showResults(results, status, map._.mapItem.marker.originMarker);
+        // Send the geocoded information to the server
+        if (typeof(originDataField) != "undefined")
+        {
+            $(originDataField).val(formatGoogleJSON(strangeLat, strangeLon, JSON.stringify(results[0])));
+        }
+        // Update the latitude and longitude fields if they exist
+        if (typeof(map._.el.originLatitude) != "undefined")
+        {
+            map._.el.$originLatitude.val(map._.mapItem.marker.originMarker.getPosition().lat());
+        }
+        if (typeof(map._.el.originLongitude) != "undefined")
+        {
+            map._.el.$originLongitude.val(map._.mapItem.marker.originMarker.getPosition().lng());
+        }
+
+        // Finally, clear the origin pending flag to allow form submission
+        map.clearOriginDecodePendingFlag();
+    },
+    
+    geocodeDestination : function(results, status) {
+        var map = Rootless.Map.getInstance();
+        // Display the results
+        map.showResults(results, status, map._.mapItem.marker.destinationMarker);
+        // Send the geocoded information to the server
+        if (typeof(destinationDataField) != "undefined")
+        {
+            $(destinationDataField).val(formatGoogleJSON(strangeLat, strangeLon, JSON.stringify(results[0])));
+        }
+        // Update the latitude and longitude fields if they exist
+        if (typeof(map._.el.destinationLatitude) != "undefined")
+        {
+            map._.el.$destinationLatitude.val(map._.mapItem.marker.destinationMarker.getPosition().lat());
+        }
+        if (typeof(map._.el.destinationLongitude) != "undefined")
+        {
+            map._.el.$destinationLongitude.val(map._.mapItem.marker.destinationMarker.getPosition().lng());
+        }
+
+        // Finally, clear the destination pending flag to allow form submission
+        map.clearDestinationDecodePendingFlag();
+    },
+    
+    showResults : function(results, status, marker) {
+        if (! results) {
+            alert("Geocoder did not return a valid response");
+        } else {
+            if (status == google.maps.GeocoderStatus.OK) {
+                var myLatLng = results[0].geometry.location;
+                marker.setPosition(myLatLng);
+                marker.setMap(Rootless.Map.getInstance()._.MapObject);
+                Rootless.Map.getInstance()._.MapObject.panTo(myLatLng);
+            } else {
+                // There was a problem with the geocoding
+            }
+       }
+    },
+    
+    calcRoute : function() {
+      var map = Rootless.Map.getInstance();
+      var start = map._.el.$originTextBox.val();
+      var end = map._.el.$destinationTextBox.val();
+      var request = {
+        origin:start,
+        destination:end,
+        travelMode: google.maps.TravelMode.DRIVING
+      };
+      map._.directionsService.route(request, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+
+            // Set the route field to the results object for posting to the
+            // server
+            if (typeof(routeDataField) != "undefined")
+            {
+                $(routeDataField).val(formatGoogleJSON(strangeLat, strangeLon, JSON.stringify(result)));
+            }
+
+            // Display the directions
+            map._.mapItem.polyline.routePolyline.setPath(result.routes[0].overview_path);
+            map._.mapItem.polyline.routePolyline.setMap(map._.MapObject);
+            map._.MapObject.fitBounds(result.routes[0].bounds);
+        }
+        // Finally, clear the directions pending flag to allow form submission
+        map.clearDirectionsPendingFlag();
+      });
+    }
     
     
    
