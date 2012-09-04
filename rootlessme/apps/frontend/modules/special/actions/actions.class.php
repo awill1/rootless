@@ -160,7 +160,7 @@ class specialActions extends sfActions
         $this->games = $this->getFutureGames($fullSchedule);
         
         //Set background image
-        $this->backgroundImage = "patFansBackground.jpg";
+        $this->backgroundImage = "patFansNew.jpg";
     }
 
     /**
