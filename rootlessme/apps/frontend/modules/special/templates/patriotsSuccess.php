@@ -5,7 +5,12 @@
 ?>
 <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
 <script type="text/javascript" src="/js/special.js"></script>
-
+<script type="text/javascript">
+    $(document).ready(function()
+{
+    $("#backgroundImage").attr("src", "/images/<?php echo $backgroundImage; ?>" );
+});
+</script>
 
 
 <div id="main">

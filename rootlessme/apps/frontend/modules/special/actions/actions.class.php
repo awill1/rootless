@@ -89,8 +89,12 @@ class specialActions extends sfActions
         // Only include the games that are in the future
         $this->games = $this->getFutureGames($fullSchedule);
         
+        //Set background image
+        $this->backgroundImage = "buckeyesBG.jpg";
+        
         // Use the Patriots template
         $this->setTemplate('patriots');
+       
     }
     
     /**
@@ -154,6 +158,9 @@ class specialActions extends sfActions
 
         // Only include the games that are in the future
         $this->games = $this->getFutureGames($fullSchedule);
+        
+        //Set background image
+        $this->backgroundImage = "patFansBackground.jpg";
     }
 
     /**

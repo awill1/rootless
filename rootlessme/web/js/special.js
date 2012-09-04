@@ -6,7 +6,7 @@
 
 $(document).ready(function()
 {
-    $("#backgroundImage").attr("src", "/images/patFansBackground.jpg" );
+    
     $('#formFields').hide();
     $('#formConfirmations').hide();
 
