@@ -17,8 +17,7 @@ class profileActions extends sfActions
     public function executeIndex(sfWebRequest $request)
     {
         $this->profiles = Doctrine_Core::getTable('Profiles')
-          ->createQuery('a')
-          ->execute();
+            ->getProfilesWithPictures(25);
     }
 
     /**
