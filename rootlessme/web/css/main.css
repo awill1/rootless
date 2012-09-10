@@ -24,6 +24,7 @@ img {
 
 a {
     text-decoration: none;
+    color: #FFF;
 }
 
 .clearfix {
@@ -127,7 +128,7 @@ textarea {
     left: 0;
     background-color: #000000;
     overflow: hidden;
-
+    /*background-image: url("../images/frontpagebackground3.jpg");*/
 }
 
 .home {
@@ -287,7 +288,7 @@ textarea {
     margin-right: 10px;
     position: absolute;
     right: 0;
-    margin-top: -83px;
+    margin-top: -109px;
     width: 345px;
 }
 
@@ -452,7 +453,7 @@ textarea {
 }
 
 .home #rideSearchForm {
-    border-left: 1px solid #cebea9;
+   /* border-left: 1px solid #cebea9; */
     padding-left: 25px;
     margin-left: 25px;
     float: left;
@@ -1087,7 +1088,7 @@ textarea {
     padding: 20px 0px 20px 0px;
 }
 #footerFront {
-    margin-top: 100px;
+    margin-top: 50px;
     clear: both;
     padding: 20px 0px 20px 0px;
     color: #FFFFFF;
@@ -1110,6 +1111,7 @@ textarea {
     top: 0;
     right: 0;
     margin-right: 240px;
+    /*margin-top: -109px;*/
     z-index: 1001;
 }
 
@@ -1188,18 +1190,21 @@ textarea {
 
 .frontPageContent {
     padding: 0px;
-    color: #404040;
-    margin-bottom: 90px;
+    color: #ffffff;
+    /*margin-bottom: 90px;*/
+    margin-top: 50px;
 }
 
 .frontPageContent p {
-    font-size: 36px;
-    border-top: 1px solid #ccbda6;
-    border-bottom: 1px solid #ccbda6;
+    font-size: 300%;
     min-width: 400px;
-    max-width: 715px;
+    max-width: 815px;
     padding: 12px 5px;
     margin: 25px 0px;
+    /*margin: 0px;*/
+    font-weight: bold;
+    text-rendering: optimizelegibility;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.6), 0 -1px 1px rgba(0, 0, 0, 0.6);
 }
 
 .signUpText {
@@ -1462,10 +1467,10 @@ input[type='submit'].searchSubmit, input[type='submit'].headerSubmit, input[type
     background-color: #5F78AB;
     background-position: 0px 0px;
     background-repeat: no-repeat;
-    height: 39px;
+    height: 25px;
     color: #FFFFFF;
     font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
-    font-size: 24px;
+    font-size: 14px;
     font-weight: bold;
     cursor: pointer;
     display: inline-block;
@@ -1478,8 +1483,9 @@ input[type='submit'].searchSubmit, input[type='submit'].headerSubmit, input[type
 
 .facebookButtonLogo {
     background-image: url("../images/facebookLogos.png");
-    width: 39px;
-    height: 39px;
+    background-position: 0px -80px;
+    width: 25px;
+    height: 25px;
     display: inline-block;
     float: left;
 }
@@ -1520,7 +1526,8 @@ input[type='submit'].searchSubmit, input[type='submit'].headerSubmit, input[type
 }
 
 .facebookButton:active .facebookButtonLogo {
-    background-position: 0px -40px;
+    background-position: 0px -107px;
+    
 }
 
 .facebookButtonTable tbody tr td:last-child {
