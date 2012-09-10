@@ -127,11 +127,10 @@
             {
                 $(destinationTextBox).val(destination);
             }
-            if (origin != null || destination != null)
-            {
-                previewRoute();
-                $('#rides_find').click();
-            }    
+            
+            // Search for what is in the textboxes at page load time
+            previewRoute();
+            $('#rides_find').click(); 
         });
         
         function getParameterByName(name) {
