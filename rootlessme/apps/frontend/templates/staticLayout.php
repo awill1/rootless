@@ -161,7 +161,7 @@
         <!-- End Facebook javascript sdk -->
         
         <div id="containerFront">
-            <img id="backgroundImage" src="/images/FrontPageBackground2.jpg" alt="RootlessMe" />
+            <img id="backgroundImage" src="/images/FrontPageBackground2.jpg" alt="Rootless" />
         </div>
       
       <div id="container">
@@ -169,7 +169,7 @@
         <!-- Header -->
         <div id="header">
             
-            <a href="<?php echo url_for('home') ?>" ><img id="headerLogo" src="/images/LogoFront.png" alt="RootlessMe" /></a>
+            <a href="<?php echo url_for('home') ?>" ><img id="headerLogo" src="/images/LogoFront.png" alt="Rootless" /></a>
             <div id="headerControls">
             </div>
         </div>
