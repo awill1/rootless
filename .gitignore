@@ -1,2 +1,3 @@
 /rootlessme/cache/*
 /rootlessme/log/*
+/rootlessme/data/profile.*.index/*
