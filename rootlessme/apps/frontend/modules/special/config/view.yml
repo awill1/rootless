@@ -4,3 +4,6 @@
 # The special pages use the special layout file
 patriotsSuccess:
   layout: staticLayout
+  
+festivalSuccess:
+  layout: staticLayout
