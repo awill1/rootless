@@ -15,7 +15,7 @@
 
 <div id="main">
     <div id="headline">
-        Ride with other <?php echo $fansName; ?> to the next game. 
+        Ride with other <?php echo $peopleName; ?> to <?php echo $festivalName; ?>. 
     </div>
     <div id="formBox">
         <form id="specialForm" action="<?php echo url_for('special_event_register'); ?>" method="post">

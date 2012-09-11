@@ -202,6 +202,35 @@ class specialActions extends sfActions
         //Set background image
         $this->backgroundImage = "patFansNew.jpg";
     }
+    
+    /**
+     * Executes werkout action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeWerkout(sfWebRequest $request)
+    {
+        $this->festivalName = 'The Werk Out';
+        
+        $this->peopleName = 'festival goers';
+        $this->title = 'Rootless - Ride with other festival goers to The Werk Out Music & Arts Festival 2012';
+        
+        // Build a dynamic schedule. Eventually this will go into a separate file.
+        $fullSchedule = array(
+            'preseason1' => array(
+                'date' => '2012-09-23 23:00:00.0',
+                'id' => 'WerkOut_9/20-23/2012_LegendValleyThornvilleOH',
+                'displayName' => 'The Werk Out 9/20-23/2012'));
+
+        // Only include the games that are in the future
+        $this->games = $this->getFutureGames($fullSchedule);
+        
+        //Set background image
+        $this->backgroundImage = "werkoutBackground.jpg";
+        
+        // Use the festival template
+        $this->setTemplate('festival');
+    }
 
     /**
      * Executes special events register action

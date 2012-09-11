@@ -49,7 +49,7 @@
 
 .subHead{
     float: left;
-    margin-right: 103px;
+    margin-right: 78px;
     color: #FFFFFF;
     font-size: 140%;
 }
@@ -95,6 +95,13 @@
 
 #ohioStateBox{
     background-color: #990000;
+    margin: 4px;
+    padding: 4px;
+    margin-bottom: 6px;
+}
+
+#werkOutBox{
+    background-color: #99489c;
     margin: 4px;
     padding: 4px;
 }

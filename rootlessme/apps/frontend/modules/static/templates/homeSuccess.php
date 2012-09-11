@@ -61,5 +61,10 @@
                 The Ohio State Buckeyes Games
             </div>
         </a>
+        <a href="<?php echo url_for('werkout') ?>" class="featureLink">
+            <div id="werkOutBox">
+                The Werk Out Music & Arts Festival
+            </div>
+        </a>
     </div>
 </div>
