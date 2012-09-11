@@ -58,38 +58,8 @@
         </a>
         <a href="<?php echo url_for('buckeyes') ?>" class="featureLink">
             <div id="ohioStateBox">
-                The Ohio State Buckeyes Game
+                The Ohio State Buckeyes Games
             </div>
         </a>
     </div>
 </div>
-
-
-<!--    
-<div id="loginFormContainerB">
-    <img class="sideImagesL" src="/images/login.png" alt="Login" />
-    
-    <div class="blockableLoginContainer">
-        <div>
-            <div class="facebookButton">
-                <table class="facebookButtonTable" cellspacing="0" cellpadding="0">
-                    <tr>
-                        <td>
-                            <i class="facebookButtonLogo"> </i>
-                        </td>
-                        <td>
-                            <span class="facebookButtonBorder">
-                                <span class="facebookButtonText">Register with Facebook</span>
-                            </span>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <span class="frontLabelText">or, use your email address</span>
-        <div class="registerText">
-            <?php// echo get_partial('sfGuardRegister/form', array('form' => $registerForm)) ?>
-        </div>
-    </div>
-</div>
--->
