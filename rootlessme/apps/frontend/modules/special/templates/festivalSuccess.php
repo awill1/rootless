@@ -33,7 +33,7 @@
             
             <div id="formFields">
                 <div class="formError"> </div>
-                <input class="formFields required" type="text" name="name" placeholder="Name"/>
+                <input class="formFields required" type="text" name="name" placeholder="First & Last Name"/>
                 <input class="formFields required email" type="text" name="email" placeholder="Email"/>
                 
                 <select name="game" class="formFields required">

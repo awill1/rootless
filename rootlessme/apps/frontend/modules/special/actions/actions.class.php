@@ -213,7 +213,7 @@ class specialActions extends sfActions
         $this->festivalName = 'The Werk Out';
         
         $this->peopleName = 'festival goers';
-        $this->title = 'Rootless - Ride with other people to the Werk Out.';
+        $this->title = 'Rootless - Ride with other festival goers to The Werk Out Music & Arts Festival 2012';
         
         // Build a dynamic schedule. Eventually this will go into a separate file.
         $fullSchedule = array(
