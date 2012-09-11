@@ -98,7 +98,7 @@ Rootless.Map = Class.extend({
         
         // Route preview changes whenever the user finished editing the
         // origin or destination textboxes
-        self.bindTextBoxesToMap(self._.el.$originTextBox, self._.el.$destinationTextBox);
+        self.bindTextBoxesToMap();
    },
    
    /**
@@ -171,8 +171,8 @@ Rootless.Map = Class.extend({
     	var self = this;
         // Route preview changes whenever the user finished editing the
         // seat pickup and dropoff textboxes
-        this._.el.$originTextBox.change(self.previewRoute(this._.el.$originTextBox));
-        this._.el.$destinationTextBox.change(self.previewRoute(this._.el.$destinationTextBox));
+        this._.el.$originTextBox.bind('change', function() {self.previewRoute(self._.el.$originTextBox)});
+        this._.el.$destinationTextBox.bind('change', function() {self.previewRoute(self._.el.$destinationTextBox)});
     },
     
     /**
@@ -183,8 +183,8 @@ Rootless.Map = Class.extend({
         // Clear the flag
         this._.formBlock.isOriginDecodePending = false;
         // Submit the form if necessary and if the function is defined
-        if (typeof(MaybeSubmitForm) == typeof(Function)) {
-            MaybeSubmitForm();
+        if (typeof(this.MaybeSubmitForm) == typeof(Function)) {
+           this.MaybeSubmitForm();
         }
     },
     
@@ -196,8 +196,8 @@ Rootless.Map = Class.extend({
         // Clear the flag
         this._.formBlock.isDestinationDecodePending = false;
         // Submit the form if necessary and if the function is defined
-        if (typeof(MaybeSubmitForm) == typeof(Function)) {
-            MaybeSubmitForm();
+        if (typeof(this.MaybeSubmitForm) == typeof(Function)) {
+            this.MaybeSubmitForm();
         }
     },
     
@@ -242,9 +242,9 @@ Rootless.Map = Class.extend({
             this._.el.$originLatitude.val("");
             this._.el.$originLongitude.val("");
             
-            if (typeof(originDataField) != "undefined")
+            if (typeof(this._.el.originDataField) != "undefined")
             {
-                $(originDataField).val("");
+                $(this._.el.originDataField).val("");
             }
             // Clear the latitude and longitude fields if they exist
             if (typeof(this._.el.$originLatitude) != "undefined")
@@ -276,9 +276,9 @@ Rootless.Map = Class.extend({
             // Clear the search parameters too
             this._.el.$destinationLatitude.val("");
             this._.el.$destinationLongitude.val("");
-            if (typeof(destinationDataField) != "undefined")
+            if (typeof(this._el.destinationDataField) != "undefined")
             {
-                $(destinationDataField).val("");
+                $(this._el.destinationDataField).val("");
             }
             // Update the latitude and longitude fields if they exist
             if (typeof(this._.el.$destinationLatitude) != "undefined")
@@ -294,7 +294,7 @@ Rootless.Map = Class.extend({
         if (originValue && destinationValue)
         {
             // Get the directions
-            formElem.calcRoute();
+            this.calcRoute(formElem);
         }
         else
         {
@@ -305,9 +305,9 @@ Rootless.Map = Class.extend({
             this._.mapItem.polyline.routePolyline.setMap(null);
 
             // Clear the route data
-            if (typeof(routeDataField) != "undefined")
+            if (typeof(this._.routeDataField) != "undefined")
             {
-                $(routeDataField).val("");
+                $(this._.routeDataField).val("");
             }
         }
       },
@@ -318,9 +318,9 @@ Rootless.Map = Class.extend({
         // Display the results
         map.showResults(results, status, map._.mapItem.marker.originMarker);
         // Send the geocoded information to the server
-        if (typeof(originDataField) != "undefined")
+        if (typeof(this._.originDataField) != "undefined")
         {
-            $(originDataField).val(formatGoogleJSON(strangeLat, strangeLon, JSON.stringify(results[0])));
+            $(this._.originDataField).val(formatGoogleJSON(strangeLat, strangeLon, JSON.stringify(results[0])));
         }
         // Update the latitude and longitude fields if they exist
         if (typeof(map._.el.originLatitude) != "undefined")
@@ -374,16 +374,14 @@ Rootless.Map = Class.extend({
        }
     },
     
-    calcRoute : function() {
-      var map = Rootless.Map.getInstance();
-      var start = map._.el.$originTextBox.val();
-      var end = map._.el.$destinationTextBox.val();
+    calcRoute : function(formElem) {
+      var self = this;
       var request = {
-        origin:start,
-        destination:end,
+        origin: self._.el.$originTextBox.val(),
+        destination: self._.el.$destinationTextBox.val(),
         travelMode: google.maps.TravelMode.DRIVING
       };
-      map._.directionsService.route(request, function(result, status) {
+      this._.directionsService.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
 
             // Set the route field to the results object for posting to the
@@ -394,12 +392,12 @@ Rootless.Map = Class.extend({
             }
 
             // Display the directions
-            map._.mapItem.polyline.routePolyline.setPath(result.routes[0].overview_path);
-            map._.mapItem.polyline.routePolyline.setMap(map._.MapObject);
-            map._.MapObject.fitBounds(result.routes[0].bounds);
+            self._.mapItem.polyline.routePolyline.setPath(result.routes[0].overview_path);
+            self._.mapItem.polyline.routePolyline.setMap(self._.MapObject);
+            self._.MapObject.fitBounds(result.routes[0].bounds);
         }
         // Finally, clear the directions pending flag to allow form submission
-        map.clearDirectionsPendingFlag();
+        self.clearDirectionsPendingFlag();
       });
     },
     
@@ -409,7 +407,18 @@ Rootless.Map = Class.extend({
      */
     canSubmitForm : function(){
         return !this._.formBlock.isOriginDecodePending && !this._.formBlock.isDestinationDecodePending && !this._.formBlock.isDirectionsPending;
-    }
+    },
+    
+     /**
+      * Tries to submit the form. It will only be submitted if none of the
+      * blocking flags are set.
+      */
+     MaybeSubmitForm : function() {            
+       // Check to make sure nothing is blocking submitting the form
+       if (this.canSubmitForm() && this._.formBlock.isFormSubmitPending) {
+           $('#rideSearchForm').ajaxSubmit(formAjaxOptions);
+        }
+      }
     
     
    
