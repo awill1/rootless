@@ -242,9 +242,9 @@ Rootless.Map = Class.extend({
             this._.el.$originLatitude.val("");
             this._.el.$originLongitude.val("");
             
-            if (typeof(this._.el.originDataField) != "undefined")
+            if (typeof(self._.el.originDataField) != "undefined")
             {
-                $(this._.el.originDataField).val("");
+                $(self._.el.originDataField).val("");
             }
             // Clear the latitude and longitude fields if they exist
             if (typeof(this._.el.$originLatitude) != "undefined")
@@ -276,9 +276,9 @@ Rootless.Map = Class.extend({
             // Clear the search parameters too
             this._.el.$destinationLatitude.val("");
             this._.el.$destinationLongitude.val("");
-            if (typeof(this._el.destinationDataField) != "undefined")
+            if (typeof(this._.el.destinationDataField) != "undefined")
             {
-                $(this._el.destinationDataField).val("");
+                $(this._.el.destinationDataField).val("");
             }
             // Update the latitude and longitude fields if they exist
             if (typeof(this._.el.$destinationLatitude) != "undefined")
@@ -305,9 +305,9 @@ Rootless.Map = Class.extend({
             this._.mapItem.polyline.routePolyline.setMap(null);
 
             // Clear the route data
-            if (typeof(this._.routeDataField) != "undefined")
+            if (typeof(this._.el.routeDataField) != "undefined")
             {
-                $(this._.routeDataField).val("");
+                $(this._.el.routeDataField).val("");
             }
         }
       },
@@ -318,9 +318,9 @@ Rootless.Map = Class.extend({
         // Display the results
         map.showResults(results, status, map._.mapItem.marker.originMarker);
         // Send the geocoded information to the server
-        if (typeof(this._.originDataField) != "undefined")
+        if (typeof(map._.el.originDataField) != "undefined")
         {
-            $(this._.originDataField).val(formatGoogleJSON(strangeLat, strangeLon, JSON.stringify(results[0])));
+            $(map._.el.originDataField).val(formatGoogleJSON(strangeLat, strangeLon, JSON.stringify(results[0])));
         }
         // Update the latitude and longitude fields if they exist
         if (typeof(map._.el.originLatitude) != "undefined")
