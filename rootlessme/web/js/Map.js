@@ -42,6 +42,14 @@ Rootless.Map = Class.extend({
                $destinationLongitude : $("#rides_destination_longitude")
            },
            
+           // Variables used to block form submitting before map api results are returned
+            formBlock : {
+                isOriginDecodePending      : false,
+                isDestinationDecodePending : false,
+                isDirectionsPending        : false,
+                isFormSubmitPending        : false
+            },
+           
            //map markers and polylines should be here
            mapItem : {
                 polyline : {
@@ -160,10 +168,11 @@ Rootless.Map = Class.extend({
      * @param destinationTextBox The textbox used for destination input
      */
     bindTextBoxesToMap : function() {
+    	var self = this;
         // Route preview changes whenever the user finished editing the
         // seat pickup and dropoff textboxes
-        this._.el.$originTextBox.change(this.previewRoute);
-        this._.el.$destinationTextBox.change(this.previewRoute);
+        this._.el.$originTextBox.change(self.previewRoute(this._.el.$originTextBox));
+        this._.el.$destinationTextBox.change(self.previewRoute(this._.el.$destinationTextBox));
     },
     
     /**
@@ -172,7 +181,7 @@ Rootless.Map = Class.extend({
      */
      clearOriginDecodePendingFlag : function() {
         // Clear the flag
-        Rootless.Static.Utils.getInstance()._.formBlock.isOriginDecodePending = false;
+        this._.formBlock.isOriginDecodePending = false;
         // Submit the form if necessary and if the function is defined
         if (typeof(MaybeSubmitForm) == typeof(Function)) {
             MaybeSubmitForm();
@@ -185,7 +194,7 @@ Rootless.Map = Class.extend({
      */
      clearDestinationDecodePendingFlag : function() {
         // Clear the flag
-        Rootless.Static.Utils.getInstance()._.formBlock.isDestinationDecodePending = false;
+        this._.formBlock.isDestinationDecodePending = false;
         // Submit the form if necessary and if the function is defined
         if (typeof(MaybeSubmitForm) == typeof(Function)) {
             MaybeSubmitForm();
@@ -198,7 +207,7 @@ Rootless.Map = Class.extend({
      */
      clearDirectionsPendingFlag : function() {
         // Clear the flag
-        Rootless.Static.Utils.getInstance()._.formBlock.isDirectionsPending = false;
+        this._.formBlock.isDirectionsPending = false;
         // Submit the form if necessary and if the function is defined
         if (typeof(MaybeSubmitForm) == typeof(Function)) {
             MaybeSubmitForm();
@@ -208,93 +217,92 @@ Rootless.Map = Class.extend({
      /**
      * Previews a route on the map
      */
-     previewRoute : function() {
-        var map = Rootless.Map.getInstance();
-        var util = Rootless.Static.Utils.getInstance();
-
+     previewRoute : function(formElem) {
+     	var self = this;
+     	
         // Set the pending google map api flags to prevent form submitting
-        util._.formBlock.isOriginDecodePending = true;
-        util._.formBlock.isDestinationDecodePending = true;
-        util._.formBlock.isDirectionsPending = true;
+        this._.formBlock.isOriginDecodePending = true;
+        this._.formBlock.isDestinationDecodePending = true;
+        this._.formBlock.isDirectionsPending = true;
 
-        var originValue = map._.el.$originTextBox.val();
+        var originValue = this._.el.$originTextBox.val();
         if (originValue){
             // Get the location of the origin, and place a marker on the map
             var originGeocodeRequest = {
                 address: originValue
             };
-            map._.geocoder.geocode(originGeocodeRequest, map.geocodeOrigin);
+            this._.geocoder.geocode(originGeocodeRequest, self.geocodeOrigin);
         } else {
             // Clear the origin pending flag
-            map.clearOriginDecodePendingFlag();
+            this.clearOriginDecodePendingFlag();
 
             // There is no origin so clear the marker from the map
-            map._.mapItem.marker.originMarker.setMap(null);
+            this._.mapItem.marker.originMarker.setMap(null);
             // Clear the search parameters too
-            map._.el.$originLatitude.val("");
-            map._.el.$originLongitude.val("");
+            this._.el.$originLatitude.val("");
+            this._.el.$originLongitude.val("");
             
             if (typeof(originDataField) != "undefined")
             {
                 $(originDataField).val("");
             }
             // Clear the latitude and longitude fields if they exist
-            if (typeof(map._.el.$originLatitude) != "undefined")
+            if (typeof(this._.el.$originLatitude) != "undefined")
             {
-                map._.el.$originLatitude.val("");
+                this._.el.$originLatitude.val("");
             }
-            if (typeof(map._.el.$originLongitude) != "undefined")
+            if (typeof(this._.el.$originLongitude) != "undefined")
             {
-                map._.el.$originLongitude.val("");
+                this._.el.$originLongitude.val("");
             }
         }
 
-        var destinationValue = map._.el.$destinationTextBox.val();
+        var destinationValue = this._.el.$destinationTextBox.val();
         if (destinationValue)
         {
             // Get the location of the destination, and place a marker on the map
             var destinationGeocodeRequest = {
                 address: destinationValue
             };
-            map._.geocoder.geocode(destinationGeocodeRequest, map.geocodeDestination);
+            this._.geocoder.geocode(destinationGeocodeRequest, self.geocodeDestination);
         }
         else
         {
             // Clear the destination pending flag
-            map.clearDestinationDecodePendingFlag();
+            this.clearDestinationDecodePendingFlag();
 
             // There is no destination so clear the marker from the map
-            map._.mapItem.marker.destinationMarker.setMap(null);
+            this._.mapItem.marker.destinationMarker.setMap(null);
             // Clear the search parameters too
-            map._.el.$destinationLatitude.val("");
-            map._.el.$destinationLongitude.val("");
+            this._.el.$destinationLatitude.val("");
+            this._.el.$destinationLongitude.val("");
             if (typeof(destinationDataField) != "undefined")
             {
                 $(destinationDataField).val("");
             }
             // Update the latitude and longitude fields if they exist
-            if (typeof(map._.el.$destinationLatitude) != "undefined")
+            if (typeof(this._.el.$destinationLatitude) != "undefined")
             {
-                map._.el.$destinationLatitude.val("");
+                this._.el.$destinationLatitude.val("");
             }
-            if (typeof(map._.el.$destinationLongitude) != "undefined")
+            if (typeof(this._.el.$destinationLongitude) != "undefined")
             {
-                map._.el.$destinationLongitude.val("");
+                this._.el.$destinationLongitude.val("");
             }
         }
 
         if (originValue && destinationValue)
         {
             // Get the directions
-            map.calcRoute();
+            formElem.calcRoute();
         }
         else
         {
             // Clear the directions pending flag
-            map.clearDirectionsPendingFlag();
+            this.clearDirectionsPendingFlag();
 
             // Clear the directions from the map
-            map._.mapItem.polyline.routePolyline.setMap(null);
+            this._.mapItem.polyline.routePolyline.setMap(null);
 
             // Clear the route data
             if (typeof(routeDataField) != "undefined")
@@ -393,6 +401,14 @@ Rootless.Map = Class.extend({
         // Finally, clear the directions pending flag to allow form submission
         map.clearDirectionsPendingFlag();
       });
+    },
+    
+    /**
+     * Verifies a form can be submitted and is not blocked
+     * @returns bool True, if the form can be submitted. False, if the form is blocked.
+     */
+    canSubmitForm : function(){
+        return !this._.formBlock.isOriginDecodePending && !this._.formBlock.isDestinationDecodePending && !this._.formBlock.isDirectionsPending;
     }
     
     
