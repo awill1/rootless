@@ -161,7 +161,7 @@
         <!-- End Facebook javascript sdk -->
         
         <div id="containerFront">
-            <img id="backgroundImage" src="/images/FrontPageBackground2.jpg" alt="Rootless" />
+            <img id="backgroundImage" src="/images/frontpagebackground3.jpg" alt="Rootless" />
         </div>
       
       <div id="container">
