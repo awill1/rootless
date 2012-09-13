@@ -498,6 +498,105 @@ Messages:
       local: author_id
       foreign: person_id
       type: one
+Notifications:
+  connection: doctrine
+  tableName: notifications
+  actAs: { Timestampable: ~ }
+  columns:
+    notification_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    display_text:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    slug:
+      type: string(45)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    NotificationSettings:
+      local: notification_id
+      foreign: notification_id
+      type: many
+NotificationSettings:
+  connection: doctrine
+  tableName: notification_settings
+  actAs: { Timestampable: ~ }
+  columns:
+    notification_setting_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    notification_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    person_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    wants_email:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    Notifications:
+      local: notification_id
+      foreign: notification_id
+      type: one
+    People:
+      local: person_id
+      foreign: person_id
+      type: one
 Passengers:
   connection: doctrine
   tableName: passengers
