@@ -231,6 +231,47 @@ class specialActions extends sfActions
         // Use the festival template
         $this->setTemplate('festival');
     }
+    
+    /**
+     * Executes werkout action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeMpmf12(sfWebRequest $request)
+    {
+        $this->festivalName = 'MPMF 2012';
+        
+        $this->peopleName = 'music fans';
+        $this->title = 'Rootless - Ride with other '.$this->peopleName.' to MidPoint Music Festival 2012';
+        
+        // Build a dynamic schedule. Eventually this will go into a separate file.
+        $fullSchedule = array(
+            'day1' => array(
+                'date' => '2012-09-27 23:00:00.0',
+                'id' => 'MPMF.12_9/27/2012_CincinnatiOH',
+                'displayName' => 'MPMF.12 9/27'),
+            'day2' => array(
+                'date' => '2012-09-28 23:00:00.0',
+                'id' => 'MPMF.12_9/28/2012_CincinnatiOH',
+                'displayName' => 'MPMF.12 9/28'),
+            'day3' => array(
+                'date' => '2012-09-29 23:00:00.0',
+                'id' => 'MPMF.12_9/29/2012_CincinnatiOH',
+                'displayName' => 'MPMF.12 9/29'),
+            'allDays' => array(
+                'date' => '2012-09-29 23:00:00.0',
+                'id' => 'MPMF.12_9/27-29/2012_CincinnatiOH',
+                'displayName' => 'MPMF.12 All Days'));
+
+        // Only include the games that are in the future
+        $this->games = $this->getFutureGames($fullSchedule);
+        
+        //Set background image
+        $this->backgroundImage = "mpmf12_webbackground_yellow_1280x800.jpg";
+        
+        // Use the festival template
+        $this->setTemplate('festival');
+    }
 
     /**
      * Executes special events register action
