@@ -9,7 +9,7 @@
 #horzRideSearchBox{
     padding: 2px;
     background-color: rgba(0,0,0,0.33);
-    filter: alpha(opacity=33);
+    filter: alpha(opacity=100);
     width: 554px;
     margin: 10px 0px 30px 0px;
 }
@@ -42,7 +42,7 @@
 #videoBox{
     padding: 4px;
     background-color: rgba(0,0,0,0.33);
-    filter:alpha(opacity=33);
+    filter: alpha(opacity=100);
     width:550px;
     height: 310px;
 }
@@ -52,7 +52,6 @@
     margin-right: 78px;
     color: #FFFFFF;
     font-size: 140%;
-    /*font-weight: bold;*/
 }
 .joinRootless{
     color:#FFF;
@@ -60,7 +59,7 @@
     font-size: 80%;
     padding: 4px;
     background-color: rgba(0,0,0,0.33);
-    filter:alpha(opacity=33);
+    filter: alpha(opacity=100);
     margin-top: 3px;
     height: 61px;
 }
@@ -71,7 +70,7 @@
     font-size: 80%;
     padding: 2px;
     background-color: rgba(0,0,0,0.33);
-    filter:alpha(opacity=33);
+    filter:alpha(opacity=100);
     margin-top: 3px;
 }
 
@@ -118,6 +117,7 @@
     text-shadow: 0 0 15px rgba(0, 0, 0, 0.6), 0 -1px 1px rgba(0, 0, 0, 0.6);
 }
 
+.featureLink {color: #FFFFFF;}
 .featureLink a:link {color:#FFFFFF;}      /* unvisited link */
 .featureLink a:visited {color:#FFFFFF;}  /* visited link */
 .featureLink a:hover {color:#FFFFFF;}   /* mouse over link */
