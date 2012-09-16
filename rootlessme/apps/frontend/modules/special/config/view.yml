@@ -7,3 +7,6 @@ patriotsSuccess:
   
 festivalSuccess:
   layout: staticLayout
+  
+patriots2Success:
+  layout: specialLayout
