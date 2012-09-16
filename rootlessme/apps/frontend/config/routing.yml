@@ -417,5 +417,5 @@ vehicle_show:
 # default rules
 homepage:
   url:   /
-  param: { module: static, action: home }
+  param: { module: static, action: home2 }
 
