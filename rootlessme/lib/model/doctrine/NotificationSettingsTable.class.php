@@ -16,4 +16,12 @@ class NotificationSettingsTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('NotificationSettings');
     }
+    
+    public function getNotificationSettingsForPerson($personId)
+    {
+        $q = $this->createQuery('ns')
+            ->innerJoin('ns.Notifications n')
+            ->where('ns.person_id = ?', array($personId));
+        return $q->execute();
+    }
 }

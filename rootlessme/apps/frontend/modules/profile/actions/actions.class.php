@@ -71,6 +71,7 @@ class profileActions extends sfActions
         $this->additionalInfoForm = new ProfilesAdditionalInfoForm($profile);
         $this->vehicleInfoForm = new VehiclesForm($profile->getPeople()->getVehicles()->getFirst());
         $this->sfGuardUserForm = new sfGuardUserAccountForm($profile->getPeople()->getSfGuardUser());
+        $this->notificationsForm = new UserNotificationSettingsForm($profile->getPersonId());
     } 
 
     /**
@@ -99,6 +100,10 @@ class profileActions extends sfActions
         if ($section == 'password')
         {
             $profileForm = new sfGuardUserAccountForm($profile->getPeople()->getSfGuardUser());
+        }
+        if ($section == 'notifications')
+        {
+            $notificationsForm = new UserNotificationSettingsForm($profile->getPersonId());
         }
         
         // Save the changes to the profile
