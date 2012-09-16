@@ -4,3 +4,6 @@
 # The static pages use the static layout file
 homeSuccess:
   layout: staticLayout
+  
+home2Success:
+  layout: staticLayout2
