@@ -366,6 +366,10 @@ werkout:
   url: /werkout
   param: { module: special, action: werkout }
   
+mpmf12:
+  url: /mpmf12
+  param: { module: special, action: mpmf12 }
+  
 special_event_register:
   url: /specialEvent/register
   param: { module: special, action: register }
