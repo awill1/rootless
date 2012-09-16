@@ -30,12 +30,6 @@ home:
   url: /home
   param:
     module: static
-    action: home
-    
-home2:
-  url: /home2
-  param:
-    module: static
     action: home2
 
 privacy:
@@ -362,10 +356,6 @@ buckeyes:
   
 patriots:
   url: /patriots
-  param: { module: special, action: patriots }
-  
-patriots2:
-  url: /patriots2
   param: { module: special, action: patriots2 }
 
 werkout:
