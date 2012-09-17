@@ -21,6 +21,7 @@ class specialActions extends sfActions
         $this->teamNamePlural = 'Buckeyes';
         $this->fansName = 'Buckeye fans';
         $this->title = 'Rootless - Ride with other Ohio State Buckeye fans to the game. The most fun gameday carpool.';
+        $this->destination = '411 Woody Hayes Drive, Columbus, OH';
         
         // Build a dynamic schedule. Eventually this will go into a separate file
 
@@ -108,6 +109,7 @@ class specialActions extends sfActions
         $this->teamNamePlural = 'Patriots';
         $this->fansName = 'Patriots fans';
         $this->title = 'Rootless - Ride with other New England Patriots fans to Gillette Stadium in Foxborough. The most fun gameday carpool.';
+        $this->destination = 'One Patriot Place Foxborough, MA';
         
         // Build a dynamic schedule. Eventually this will go into a separate file.
         $fullSchedule = array(
@@ -224,6 +226,7 @@ class specialActions extends sfActions
         
         $this->peopleName = 'festival goers';
         $this->title = 'Rootless - Ride with other festival goers to The Werk Out Music & Arts Festival 2012';
+        $this->destination = '7400 Kindle Rd., Thornville, OH';
         
         // Build a dynamic schedule. Eventually this will go into a separate file.
         $fullSchedule = array(
@@ -253,6 +256,7 @@ class specialActions extends sfActions
         
         $this->peopleName = 'music fans';
         $this->title = 'Rootless - Ride with other '.$this->peopleName.' to MidPoint Music Festival 2012';
+        $this->destination = '1345 Main St, Cincinnati, OH';
         
         // Build a dynamic schedule. Eventually this will go into a separate file.
         $fullSchedule = array(
@@ -297,6 +301,7 @@ class specialActions extends sfActions
         $email = $request->getParameter('email');
         $game = $request->getParameter('game');
         $location = $request->getParameter('location');
+        $destination = $request->getParameter('destination');
         $name = $request->getParameter('name');
         $seats = $request->getParameter('seats');
         $userType = $request->getParameter('userType');
@@ -311,14 +316,16 @@ class specialActions extends sfActions
             Email: %email%
             Game: %game%
             Location: %location%
+            Destination: %destination%
             Seats: %seats%";
         $formattedMessage = strtr($messageTemplate, array(
-            '%userType%'  => $userType,
-            '%name%'      => $name,
-            '%email%'     => $email,
-            '%game%'      => $game,
-            '%location%'  => $location,
-            '%seats%'     => $seats
+            '%userType%'    => $userType,
+            '%name%'        => $name,
+            '%email%'       => $email,
+            '%game%'        => $game,
+            '%location%'    => $location,
+            '%destination%' => $destination,
+            '%seats%'       => $seats
         ));
         $subjectTemplate = "%email% has registered for %game%";
         $formattedSubject = strtr($subjectTemplate, array(
