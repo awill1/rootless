@@ -16,6 +16,7 @@
         
           
         $( ".datePicker" ).datepicker();  
+        $( ".timePicker" ).timepicker({ampm: true});
         
         //rootless namespace that should be added to our global template
         var rootless = Rootless.getInstance({sessionId : 'newSuccess.php'});

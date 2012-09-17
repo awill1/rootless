@@ -183,6 +183,7 @@ Rootless.Map = Class.extend({
      */
     bindTextBoxesToMap : function() {
     	var self = this;
+   
         // Route preview changes whenever the user finished editing the
         // seat pickup and dropoff textboxes
         this._.el.$originTextBox.bind('change', function() {self.previewRoute(self._.el.$originTextBox)});
