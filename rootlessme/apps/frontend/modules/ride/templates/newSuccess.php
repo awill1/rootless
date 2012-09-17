@@ -9,7 +9,6 @@
     <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_jquery_block_ui_script') ?>"></script>
     <script type="text/javascript" src="/js/Class.js"></script>
     <script type="text/javascript" src="/js/Rootless.js"></script>
-    <script type="text/javascript" src="/js/Utils.js"></script>
     <script type="text/javascript" src="/js/Map.js"></script>
     <script type="text/javascript" src="/js/map/Request.js"></script>
     <script type="text/javascript">   
@@ -19,7 +18,7 @@
         $( ".datePicker" ).datepicker();  
         
         //rootless namespace that should be added to our global template
-        var rootless = Rootless.getInstance({sessionId : 'hello'});
+        var rootless = Rootless.getInstance({sessionId : 'newSuccess.php'});
        
        //the map object
         var map = Rootless.Map.Request.getInstance({
@@ -30,7 +29,7 @@
             destinationDataField : "<?php echo $rideType == 'offer' ? '#carpools_route_destination_data' : '#passengers_route_destination_data'; ?>",
         	routeDataField : "<?php echo $rideType == 'offer' ? '#carpools_route_route_data' : '#passengers_route_route_data'; ?>" }
         	
-        	});
+        });
        
         map.mapInit();
       });

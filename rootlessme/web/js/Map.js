@@ -53,7 +53,7 @@ Rootless.Map = Class.extend({
            //map markers and polylines should be here
            mapItem : {
                 polyline : {
-               
+                	polylines : []
                 },
                 
                 marker : {
@@ -100,6 +100,20 @@ Rootless.Map = Class.extend({
         // origin or destination textboxes
         self.bindTextBoxesToMap();
    },
+   
+    /**
+	 * formatGoogleJSON is used to change the strange keys used for 
+	 * latitude and longitude into easier to use "lat" and "lon" keys.
+	 * The quotes must be included or else we could replace unexpected 
+	 * pieces of the string such as street name or encoded polyline
+	 */
+	formatGoogleJSON: function(strangeLat, strangeLon, jsonString) {
+	    // Build the regular expressions, and return the replacement
+	    var strangeLatRegExp = new RegExp("\""+strangeLat+"\"","g");
+	    var strangeLonRegExp = new RegExp("\""+strangeLon+"\"","g");
+	    return jsonString.replace(strangeLatRegExp,"\"lat\"")
+	                     .replace(strangeLonRegExp, "\"lon\"");
+	},
    
    /**
     * Initializes a marker that is at the default latitude and longitude, but is
@@ -231,6 +245,7 @@ Rootless.Map = Class.extend({
             var originGeocodeRequest = {
                 address: originValue
             };
+            
             this._.geocoder.geocode(originGeocodeRequest, self.geocodeOrigin);
         } else {
             // Clear the origin pending flag
@@ -312,62 +327,17 @@ Rootless.Map = Class.extend({
         }
       },
     
-    geocodeOrigin : function(results, status) {     
-        var map = Rootless.Map.getInstance();
-        
-        // Display the results
-        map.showResults(results, status, map._.mapItem.marker.originMarker);
-        // Send the geocoded information to the server
-        if (typeof(map._.el.originDataField) != "undefined")
-        {
-            $(map._.el.originDataField).val(formatGoogleJSON(strangeLat, strangeLon, JSON.stringify(results[0])));
-        }
-        // Update the latitude and longitude fields if they exist
-        if (typeof(map._.el.originLatitude) != "undefined")
-        {
-            map._.el.$originLatitude.val(map._.mapItem.marker.originMarker.getPosition().lat());
-        }
-        if (typeof(map._.el.originLongitude) != "undefined")
-        {
-            map._.el.$originLongitude.val(map._.mapItem.marker.originMarker.getPosition().lng());
-        }
-
-        // Finally, clear the origin pending flag to allow form submission
-        map.clearOriginDecodePendingFlag();
-    },
-    
-    geocodeDestination : function(results, status) {
-        var map = Rootless.Map.getInstance();
-        // Display the results
-        map.showResults(results, status, map._.mapItem.marker.destinationMarker);
-        // Send the geocoded information to the server
-        if (typeof(destinationDataField) != "undefined")
-        {
-            $(destinationDataField).val(formatGoogleJSON(strangeLat, strangeLon, JSON.stringify(results[0])));
-        }
-        // Update the latitude and longitude fields if they exist
-        if (typeof(map._.el.destinationLatitude) != "undefined")
-        {
-            map._.el.$destinationLatitude.val(map._.mapItem.marker.destinationMarker.getPosition().lat());
-        }
-        if (typeof(map._.el.destinationLongitude) != "undefined")
-        {
-            map._.el.$destinationLongitude.val(map._.mapItem.marker.destinationMarker.getPosition().lng());
-        }
-
-        // Finally, clear the destination pending flag to allow form submission
-        map.clearDestinationDecodePendingFlag();
-    },
-    
     showResults : function(results, status, marker) {
+
         if (! results) {
             alert("Geocoder did not return a valid response");
         } else {
             if (status == google.maps.GeocoderStatus.OK) {
+     
                 var myLatLng = results[0].geometry.location;
                 marker.setPosition(myLatLng);
-                marker.setMap(Rootless.Map.getInstance()._.MapObject);
-                Rootless.Map.getInstance()._.MapObject.panTo(myLatLng);
+                marker.setMap(this._.MapObject);
+                this._.MapObject.panTo(myLatLng);
             } else {
                 // There was a problem with the geocoding
             }
@@ -409,16 +379,13 @@ Rootless.Map = Class.extend({
         return !this._.formBlock.isOriginDecodePending && !this._.formBlock.isDestinationDecodePending && !this._.formBlock.isDirectionsPending;
     },
     
-     /**
-      * Tries to submit the form. It will only be submitted if none of the
-      * blocking flags are set.
-      */
-     MaybeSubmitForm : function() {            
-       // Check to make sure nothing is blocking submitting the form
-       if (this.canSubmitForm() && this._.formBlock.isFormSubmitPending) {
-           $('#rideSearchForm').ajaxSubmit(formAjaxOptions);
-        }
-      }
+    /**
+     * Tries to submit the form. It will only be submitted if none of the
+     * blocking flags are set.
+     */
+    MaybeSubmitForm : function() {            
+       //left this blank to show that this function in used in almost all classes but the function changes based on form
+    }
     
     
    
