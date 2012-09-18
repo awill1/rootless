@@ -24,7 +24,13 @@
         var rootless = Rootless.getInstance({sessionId : 'indexSuccess'});
        
        //the map object
-        var map = Rootless.Map.Search.getInstance({mapId : 'map'});
+        var map = Rootless.Map.Search.getInstance({mapId : 'map', el: {
+        	$originLatitude       : $("#rides_origin_latitude"),
+            $originLongitude      : $("#rides_origin_longitude"),
+            $destinationLatitude  : $("#rides_destination_latitude"),
+            $destinationLongitude : $("#rides_destination_longitude")
+        }
+        });
         map.mapInit();
       });
     </script>

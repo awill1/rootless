@@ -36,10 +36,6 @@ Rootless.Map = Class.extend({
            el : {
                $originTextBox        : $("#rides_origin"),
                $destinationTextBox   : $("#rides_destination"),
-               $originLatitude       : $("#rides_origin_latitude"),
-               $originLongitude      : $("#rides_origin_longitude"),
-               $destinationLatitude  : $("#rides_destination_latitude"),
-               $destinationLongitude : $("#rides_destination_longitude")
            },
            
            // Variables used to block form submitting before map api results are returned
@@ -254,9 +250,6 @@ Rootless.Map = Class.extend({
 
             // There is no origin so clear the marker from the map
             this._.mapItem.marker.originMarker.setMap(null);
-            // Clear the search parameters too
-            this._.el.$originLatitude.val("");
-            this._.el.$originLongitude.val("");
             
             if (typeof(self._.el.originDataField) != "undefined")
             {
@@ -280,18 +273,15 @@ Rootless.Map = Class.extend({
             var destinationGeocodeRequest = {
                 address: destinationValue
             };
+            console.log(self);
             this._.geocoder.geocode(destinationGeocodeRequest, self.geocodeDestination);
-        }
-        else
-        {
+        } else {
             // Clear the destination pending flag
             this.clearDestinationDecodePendingFlag();
 
             // There is no destination so clear the marker from the map
             this._.mapItem.marker.destinationMarker.setMap(null);
-            // Clear the search parameters too
-            this._.el.$destinationLatitude.val("");
-            this._.el.$destinationLongitude.val("");
+            
             if (typeof(this._.el.destinationDataField) != "undefined")
             {
                 $(this._.el.destinationDataField).val("");
@@ -357,9 +347,9 @@ Rootless.Map = Class.extend({
 
             // Set the route field to the results object for posting to the
             // server
-            if (typeof(routeDataField) != "undefined")
+            if (typeof(self._.el.routeDataField) != "undefined")
             {
-                $(routeDataField).val(formatGoogleJSON(strangeLat, strangeLon, JSON.stringify(result)));
+               $(self._.el.routeDataField).val(self.formatGoogleJSON(self.strangeLat, self.strangeLon, JSON.stringify(result)));
             }
 
             // Display the directions

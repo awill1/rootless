@@ -41,10 +41,34 @@ Rootless.Map.Request = Rootless.Map.extend({
         // Route preview changes whenever the user finished editing the
         // origin or destination textboxes
         self.bindTextBoxesToMap();
-        self._.strangeLat;
-        self._.strangeLon;
-        self._.testPoint = new google.maps.LatLng(23,45);
+        self.strangeLat;
+        self.strangeLon;
+        self.testPoint = new google.maps.LatLng(23,45);
+		
+		// Discover the strange keys used for longitude and latitude
+        // in the data returned from google maps api.
+        var googleTestString = JSON.stringify(self.testPoint);
+        // this is a random two character string which represents latitude
+        //  and longitude in the stringified data
+        self.strangeLat = googleTestString.substring(2,4);
+        self.strangeLon = googleTestString.substring(10,12);
+        
+        // Use the safe form submit function incase the google map api has
+        // not returned yet
+        $('.submitButton').click(function(){
+            // Set the form submit flag
+             self._.formBlock.isFormSubmitPending = true;
+                
+             // Block the fragment-vehicles div
+             $("#newRideFormArea").block({ 
+                  message: '<img src="/images/ajax-loader.gif" alt="Saving..." />'
+             }); 
 
+             // Disable the default submission. We will let the helper 
+             // function do it
+             self.MaybeSubmitForm();
+             return false;
+         });
    },
    
 	geocodeOrigin : function(results, status) {     
@@ -55,16 +79,7 @@ Rootless.Map.Request = Rootless.Map.extend({
         // Send the geocoded information to the server
         if (typeof(map._.el.originDataField) != "undefined")
         {
-            $(map._.el.originDataField).val(map.formatGoogleJSON(map._.strangeLat, map._.strangeLon, JSON.stringify(results[0])));
-        }
-        // Update the latitude and longitude fields if they exist
-        if (typeof(map._.el.originLatitude) != "undefined")
-        {
-            map._.el.$originLatitude.val(map._.mapItem.marker.originMarker.getPosition().lat());
-        }
-        if (typeof(map._.el.originLongitude) != "undefined")
-        {
-            map._.el.$originLongitude.val(map._.mapItem.marker.originMarker.getPosition().lng());
+            $(map._.el.originDataField).val(map.formatGoogleJSON(map.strangeLat, map.strangeLon, JSON.stringify(results[0])));
         }
 
         // Finally, clear the origin pending flag to allow form submission
@@ -77,18 +92,9 @@ Rootless.Map.Request = Rootless.Map.extend({
         // Display the results
         map.showResults(results, status, map._.mapItem.marker.destinationMarker);
         // Send the geocoded information to the server
-        if (typeof(destinationDataField) != "undefined")
+        if (typeof(map._.el.destinationDataField) != "undefined")
         {
-            $(map._.el.destinationDataField).val(map.formatGoogleJSON(strangeLat, strangeLon, JSON.stringify(results[0])));
-        }
-        // Update the latitude and longitude fields if they exist
-        if (typeof(map._.el.destinationLatitude) != "undefined")
-        {
-             map._.el.$destinationLatitude.val(map._.mapItem.marker.destinationMarker.getPosition().lat());
-        }
-        if (typeof(map._.el.destinationLongitude) != "undefined")
-        {
-             map._.el.$destinationLongitude.val(map._.mapItem.marker.destinationMarker.getPosition().lng());
+            $(map._.el.destinationDataField).val(map.formatGoogleJSON(map.strangeLat, map.strangeLon, JSON.stringify(results[0])));
         }
 
         // Finally, clear the destination pending flag to allow form submission

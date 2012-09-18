@@ -85,11 +85,7 @@ Rootless.Map.Search = Rootless.Map.extend({
         // Display the results
         
         map.showResults(results, status, map._.mapItem.marker.originMarker);
-        // Send the geocoded information to the server
-        if (typeof(map._.el.originDataField) != "undefined")
-        {
-            map._.el.originDataField.val(map.formatGoogleJSON(strangeLat, strangeLon, JSON.stringify(results[0])));
-        }
+
         // Update the latitude and longitude fields if they exist
         if (typeof(map._.el.originLatitude) != "undefined")
         {
@@ -109,11 +105,7 @@ Rootless.Map.Search = Rootless.Map.extend({
 
         // Display the results
         map.showResults(results, status, map._.mapItem.marker.destinationMarker);
-        // Send the geocoded information to the server
-        if (typeof(destinationDataField) != "undefined")
-        {
-            map._.el.destinationDataField.val(map.formatGoogleJSON(strangeLat, strangeLon, JSON.stringify(results[0])));
-        }
+
         // Update the latitude and longitude fields if they exist
         if (typeof(map._.el.destinationLatitude) != "undefined")
         {
