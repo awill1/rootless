@@ -58,6 +58,14 @@ class CommonHelpers {
             mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff )
         );
     }
+    
+    /**
+     * Create temporary password. Used for new users who did not choose a password
+     * @return String The generated password
+     */
+    public static function CreateTemporaryPassword() {
+        return md5(rand() + time());
+    }
 
     /**
      * Tests whether a string is null or empty (present and neither empty 
@@ -70,6 +78,11 @@ class CommonHelpers {
         return (!isset($question) || trim($question)==='');
     }
     
+    /**
+     * Makes sure there is a http:// at the beginning of the url
+     * @param String $url The url
+     * @return String The full url including http://
+     */
     public static function urlParser($url) {
         if (preg_match('/^http:\/\//', $url)) {
             return $url;
@@ -77,6 +90,52 @@ class CommonHelpers {
             return "http://" . $url;
         }
         
+    }
+    
+    /**
+     * Gets the first name from a full name string. This is just the first 
+     * word before the first space. This may not yeild the desired results
+     * for multiple first names, like Mary Ann.
+     * @param String $fullName The full name
+     * @return String The first name
+     */
+    public static function getFirstName($fullName)
+    {
+        $fullName = trim($fullName);
+        $firstName = NULL;
+        $spacePosition = strpos($fullName, ' ');
+        if ($spacePosition === false) {
+            $firstName = $fullName;
+        } else {
+            $firstName = substr($fullName, 0, $spacePosition);
+        }
+        return $firstName;
+    }
+    
+    
+    /**
+     * Gets the last name from a full name string. This is just the  
+     * words after the first space. This may not yeild the desired results
+     * for multiple first names, like Mary Ann.
+     * @param String $fullName The full name
+     * @return String The last name
+     */
+    public static function getLastName($fullName)
+    {
+        $fullName = trim($fullName);
+        $lastName = NULL;
+        $spacePosition = strpos($fullName, ' ');
+        if ($spacePosition === false) {
+            // No last name was found
+            $lastName = NULL;
+        } else {
+            // Make sure the space is not at the end
+            if (($spacePosition + 1) < strlen($fullName))
+            {
+                $lastName = substr($fullName, $spacePosition + 1);
+            }
+        }
+        return $lastName;
     }
 
 }
