@@ -6,12 +6,35 @@
         This stylesheet formats the static pages of the rootlessme website.
 */
 
+#home {
+    height: 100%;
+}
+html, body {
+    height: 100%;
+}
+
+#container {
+    height: auto;
+    min-height: 100%;
+}
+
+#copyRight {
+    clear: both;
+}
+
+#bottomFeed {
+    position: relative;
+    clear: both;
+    margin-top: -38px;
+}
+
 #horzRideSearchBox{
     padding: 2px;
     background-color: rgba(0,0,0,0.33);
     filter: alpha(opacity=100);
-    width: 554px;
+    max-width: 554px;
     margin: 10px 0px 30px 0px;
+    clear:both;
 }
 
 #horzRideSearchForm{
@@ -50,6 +73,7 @@
 .subHead{
     float: left;
     margin-right: 78px;
+    margin-bottom: 50px;
     color: #FFFFFF;
     font-size: 140%;
 }

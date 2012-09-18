@@ -2,6 +2,16 @@
   'title',
   sprintf('Rootless - Share your ride or find a carpool.'))
 ?>
+
+
+<style>
+    .home {
+        background-image: url("../images/frontpagebackground3.jpg");
+        background-size: cover;
+        background-attachment: fixed;
+    }
+</style>
+
 <div id="loginFormContainer">
        <?php echo get_partial('sfGuardAuth/signin_form', array('form' => $signinForm, 'showForgotPassword' => false)); ?>
 </div>

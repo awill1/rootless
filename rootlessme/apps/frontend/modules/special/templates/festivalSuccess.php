@@ -12,6 +12,14 @@
 });
 </script>
 
+<style>
+    .home {
+        background-image: url("../images/<?php echo $backgroundImage; ?>");
+        background-size: cover;
+        background-attachment: fixed;
+    }
+</style>
+
 
 <div id="main">
     <div id="headline">
