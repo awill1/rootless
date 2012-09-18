@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:fb="http://ogp.me/ns/fb#">
+<html xml:lang="en" lang="en" xmlns:fb="http://ogp.me/ns/fb#">
   <head>
     <?php include_http_metas() ?>
     <?php include_metas() ?>
@@ -39,30 +39,6 @@
     
     //make sure the background image fills the screen
     $(document).ready(function(){
-
-        if (screen.width > 640) {
-        //get window height
-        var winH = $(window).height();
-        var winW = $(window).width();
-        if((winW/winH) < 1.5)
-        {
-            $("#backgroundImage").css({height: winH, width: ''});
-        } else {
-
-            $("#backgroundImage").css({width: winW, height: ''});
-        }
-       
-        $(window).resize(function(){
-            var winH = $(window).height();
-            var winW = $(window).width();
-
-            if((winW/winH) < 1.5) {
-                $("#backgroundImage").css({height: winH, width: ''});
-            } else {
-                $("#backgroundImage").css({width: winW, height: ''});
-            }
-        });
-        }
 
         // change orgin and destination text 
         $('.home #rideSearchForm label[for="rides_origin"]').html('from');
@@ -159,10 +135,6 @@
         }(document));
         </script>
         <!-- End Facebook javascript sdk -->
-        
-        <div id="containerFront">
-            <img id="backgroundImage" src="/images/frontpagebackground3.jpg" alt="Rootless" />
-        </div>
       
       <div id="container">
 

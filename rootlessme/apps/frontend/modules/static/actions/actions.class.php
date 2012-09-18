@@ -76,16 +76,6 @@ class staticActions extends sfActions
         
         }
     }
-    
-    /**
-     * Executes home 2 action
-     *
-     * @param sfRequest $request A request object
-     */
-    public function executeHome2(sfWebRequest $request)
-    {
-        $this->executeHome($request);
-    }
 
     /**
      * Executes privacy action

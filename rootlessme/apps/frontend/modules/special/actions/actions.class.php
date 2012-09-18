@@ -204,16 +204,6 @@ class specialActions extends sfActions
     }
     
     /**
-     * Executes patriots 2 action
-     *
-     * @param sfRequest $request A request object
-     */
-    public function executePatriots2(sfWebRequest $request)
-    {
-        $this->executePatriots($request);
-    }
-    
-    /**
      * Executes werkout action
      *
      * @param sfRequest $request A request object

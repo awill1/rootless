@@ -30,7 +30,7 @@ home:
   url: /home
   param:
     module: static
-    action: home2
+    action: home
 
 privacy:
   url: /privacy
@@ -356,7 +356,7 @@ buckeyes:
   
 patriots:
   url: /patriots
-  param: { module: special, action: patriots2 }
+  param: { module: special, action: patriots }
 
 werkout:
   url: /werkout
@@ -421,5 +421,5 @@ vehicle_show:
 # default rules
 homepage:
   url:   /
-  param: { module: static, action: home2 }
+  param: { module: static, action: home }
 

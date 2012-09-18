@@ -3,10 +3,7 @@
 
 # The special pages use the special layout file
 patriotsSuccess:
-  layout: staticLayout
+  layout: specialLayout
   
 festivalSuccess:
-  layout: staticLayout
-  
-patriots2Success:
   layout: specialLayout
