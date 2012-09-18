@@ -236,6 +236,20 @@ class seatActions extends sfActions
                 // Change the seat status and save with history
                 $seat->setSeatStatusId(SeatStatusesTable::$rideTypes['accepted']);
                 $updatedSeat = $seat->saveWithHistory($userId);
+                
+                // Send a notification to the other user
+                $userIsDriver = $seat->getDriverId() == $userId;
+                $userProfile = $this->getUser()->getGuardUser()->getPeople()->getProfile();
+                $otherProfile = NULL;
+                if ($userIsDriver)
+                {
+                    
+                }
+                else
+                {
+                    $otherProfile = $seat->getPeople();
+                }
+//                $notification = new seatAcceptNotification($seat, $userProfile, $otherProfile);
 
                 // If the request came from AJAX render the seat negotiation history
                 // partial with the updated seat information
