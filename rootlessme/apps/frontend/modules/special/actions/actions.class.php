@@ -310,7 +310,7 @@ class specialActions extends sfActions
                 'id' => 'ABetterWorld_9/30/2012_CincinnatiOH',
                 'displayName' => 'A Better World By Design 9/30'),
             'allDays' => array(
-                'date' => '2012-09-29 23:00:00.0',
+                'date' => '2012-09-30 23:00:00.0',
                 'id' => 'ABetterWorld_9/28-30/2012_ProvidenceRI',
                 'displayName' => 'A Better World By Design All Days'));
 
