@@ -366,6 +366,10 @@ mpmf12:
   url: /mpmf12
   param: { module: special, action: mpmf12 }
   
+abetterworldbydesign:
+  url: /abetterworldbydesign
+  param: { module: special, action: aBetterWorldByDesign }
+  
 special_event_register:
   url: /specialEvent/register
   param: { module: special, action: register }
