@@ -288,6 +288,7 @@ class specialActions extends sfActions
         
         $this->peopleName = 'attendees';
         $this->title = 'Rootless - Ride with others to the A Better World By Design Conference';
+        $this->destination = '69 Waterman St, Providence, RI';
         
         // Build a dynamic schedule. Eventually this will go into a separate file.
         $fullSchedule = array(
