@@ -64,7 +64,14 @@ class messageActions extends sfActions
         // Get all messages in the conversation
         $this->conversation = $message->getConversations();
         $this->messages = Doctrine_Core::getTable('Messages')->getMyConversationMessagesWithProfiles($this->conversation->getConversationId());
-
+        
+        //php loop
+        //loop through all messages and mark them as read
+        
+        foreach ($this->messages as $currentMessage) {
+            $currentMessage->markAsRead();
+        }
+        
         // Create the reply form
         $replyMessage = new Messages();
         // Set the known reply features

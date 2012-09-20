@@ -6,7 +6,6 @@
         This stylesheet formats the message pages of the rootlessme website.
 */
 
-
 td {
     clear: both;
     width: 100px;
@@ -38,7 +37,6 @@ tr {
     width: 320px;
     margin: 0px 0px 0px 0px;
     padding: 6px 0px 6px 10px;
-    
 }
 
 .dateForTable {
@@ -294,14 +292,11 @@ fieldset {
 
 
 #middleMessageDetails ul {
-    
     width: 100%;
     padding: 0;
-    
 }
 
 #middleMessageDetails ul li {
-    
     display: inline-block;
     width: 90px;
     height: 18px;
@@ -310,8 +305,6 @@ fieldset {
 }
 
 #middleMessageDetails ul li a:link,#middleMessageDetails ul li a:visited {
-    
-    
     display:block;
     width: 90px;
     height: 16px;
@@ -319,17 +312,12 @@ fieldset {
     padding-top: 2px;
     padding-left: 8px;
     background: url(../images/messageTabSprite.png) no-repeat top left;
-    
-    
-    
 }
 
 #middleMessageDetails ul li a:hover {
-    
     color: #212121; 
     background: url(../images/messageTabSprite.png) no-repeat;
     background-position: 0px -18px;
-    
 }
 
 #middleMessageDetails ul li.selectedNav a {
@@ -337,17 +325,14 @@ fieldset {
     color: #E0E0E0; 
     background: url(../images/messageTabSprite.png) no-repeat;
     background-position: bottom left;
- 
 }
 
 #contentBox {
     width: 100%;
     float:left;
-    
 }
 
 .composeNew th{
-    
     display: none;
 }
 

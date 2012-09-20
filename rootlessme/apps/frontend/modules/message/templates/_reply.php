@@ -7,8 +7,8 @@
     <?php endif; ?>
     <?php $myProfile = $sf_user->getGuardUser()->getPeople()->getProfiles(); ?>
     <div class="messageFromReply">
-     <p>From:</p>
-             </div>
+        <p>From:</p>
+    </div>
         <div class="messageAuthorPictureReply">
         <a href="<?php echo url_for("profile_show_user", $myProfile)  ?>"></a>
            <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $myProfile->getPictureUrlTiny() ?>" alt="<?php echo $myProfile->getFullName() ?>" />
@@ -16,7 +16,6 @@
         <div class="messageInformationLinkReply">
             <a class="messageAuthorLink" href="<?php echo url_for("profile_show_user", $myProfile)  ?>"><?php echo $myProfile->getFullName() ?></a>
             </div>
-
   <table class="messageReplyBox">
     <tfoot>
       <tr>
