@@ -249,7 +249,10 @@ class seatActions extends sfActions
                 {
                     $otherProfile = $seat->getPeople();
                 }
-//                $notification = new seatAcceptNotification($seat, $userProfile, $otherProfile);
+                
+                // Send out notifications
+                $notification = new seatAcceptNotification($seat, $userProfile, $otherProfile);
+                $notification->send();
 
                 // If the request came from AJAX render the seat negotiation history
                 // partial with the updated seat information

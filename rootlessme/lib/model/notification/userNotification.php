@@ -8,6 +8,7 @@
 abstract class userNotification {
     
     protected $replacementVariables;
+    protected $test;
     public function getReplacementVariables()
     {
         return $this->replacementVariables;
@@ -17,17 +18,23 @@ abstract class userNotification {
         $this->replacementVariables = $replacementVariables;
     }
     
-    abstract protected function getMessageTemplate();
-    abstract protected function getSubjectTemplate();
+    public function sendNotifications()
+    {
+        // Get the 
+    }
 
 
-    public function getMessage()
+    abstract protected function getEmailMessageTemplate();
+    abstract protected function getEmailSubjectTemplate();
+
+
+    public function getEmailMessage()
     {
         return $this->replaceVariablesInMessage($this->getReplacementVariables(),
                                                 $this->getMessageTemplate());
     }
     
-    public function getSubject()
+    public function getEmailSubject()
     {
         return $this->replaceVariablesInMessage($this->getReplacementVariables(),
                                                 $this->getSubjectTemplate());
