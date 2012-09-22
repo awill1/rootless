@@ -202,7 +202,7 @@ ride_search:
 
 # Ride creation
 ride_new:
-  url: /rides/:ride_type/new
+  url: /rides/new/:ride_type
   class:   sfRoute
   param:
     module: ride
@@ -212,7 +212,7 @@ ride_new:
     ride_type: (offer|request)
 
 ride_create:
-  url: /rides/:ride_type/create
+  url: /rides/create/:ride_type
   class:   sfRoute
   param:
     module: ride
@@ -221,9 +221,28 @@ ride_create:
     sf_method: [get]
     ride_type: (offer|request)
     
+ride_edit:
+  url: /rides/edit/:ride_type/:ride_id
+  class:   sfRoute
+  param:
+    module: ride
+    action: edit
+  requirements:
+    sf_method: [get]
+    ride_type: (offer|request)
+    
+ride_update:
+  url: /rides/update/:ride_type/:ride_id
+  class:   sfRoute
+  param:
+    module: ride
+    action: update
+  requirements:
+    sf_method: [post]
+    ride_type: (offer|request)
     
 ride_delete:
-  url: /rides/:ride_type/delete/:ride_id
+  url: /rides/delete/:ride_type/:ride_id
   class:   sfRoute
   param:
     module: ride
