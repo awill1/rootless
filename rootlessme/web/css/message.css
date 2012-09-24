@@ -189,7 +189,9 @@ tbody {
 }
 
 .messageDividerBar {
-    clear:left;
+    clear: left;
+    background-color: #FFFFFF;
+    color: #FFFFFF;
 }
 
 .messageTitle {
