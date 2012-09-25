@@ -214,10 +214,33 @@ class rideActions extends sfActions
                // be prevented by routing.yml).
                $this->forward404('Ride Type '.$this->rideType.'is invalid.');
         }
-                
-        $this->processForm($request, $this->form);
+          
+        // Save the ride
+        $ride = $this->processForm($request, $this->form);
         
-        // Return the thing.
+        // If the request came from AJAX render the seat negotiation history
+        // partial with the updated seat information
+        if ($request->isXmlHttpRequest())
+        {
+            if ($ride != null)
+            {
+            }
+            else
+            {
+                return $this->renderText('Ride was not updated');
+            }
+        }
+        else
+        {
+            $this->setTemplate('edit');
+
+            if ($ride != null)
+            {
+                // This is not an AJAX request so redirect to the show ride
+                // page
+                $this->redirect('ride_show', array('ride_type' =>$this->rideType , 'ride_id' => $ride->getRideId()));
+            }
+        }
     }
 
     /**
