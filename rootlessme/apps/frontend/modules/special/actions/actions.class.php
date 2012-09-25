@@ -21,6 +21,7 @@ class specialActions extends sfActions
         $this->teamNamePlural = 'Buckeyes';
         $this->fansName = 'Buckeye fans';
         $this->title = 'Rootless - Ride with other Ohio State Buckeye fans to the game. The most fun gameday carpool.';
+        $this->destination = '411 Woody Hayes Drive, Columbus, OH';
         
         // Build a dynamic schedule. Eventually this will go into a separate file
 
@@ -108,6 +109,7 @@ class specialActions extends sfActions
         $this->teamNamePlural = 'Patriots';
         $this->fansName = 'Patriots fans';
         $this->title = 'Rootless - Ride with other New England Patriots fans to Gillette Stadium in Foxborough. The most fun gameday carpool.';
+        $this->destination = 'One Patriot Place Foxborough, MA';
         
         // Build a dynamic schedule. Eventually this will go into a separate file.
         $fullSchedule = array(
@@ -214,6 +216,7 @@ class specialActions extends sfActions
         
         $this->peopleName = 'festival goers';
         $this->title = 'Rootless - Ride with other festival goers to The Werk Out Music & Arts Festival 2012';
+        $this->destination = '7400 Kindle Rd., Thornville, OH';
         
         // Build a dynamic schedule. Eventually this will go into a separate file.
         $fullSchedule = array(
@@ -243,6 +246,7 @@ class specialActions extends sfActions
         
         $this->peopleName = 'music fans';
         $this->title = 'Rootless - Ride with other '.$this->peopleName.' to MidPoint Music Festival 2012';
+        $this->destination = '1345 Main St, Cincinnati, OH';
         
         // Build a dynamic schedule. Eventually this will go into a separate file.
         $fullSchedule = array(
@@ -284,6 +288,7 @@ class specialActions extends sfActions
         
         $this->peopleName = 'attendees';
         $this->title = 'Rootless - Ride with others to the A Better World By Design Conference';
+        $this->destination = '69 Waterman St, Providence, RI';
         
         // Build a dynamic schedule. Eventually this will go into a separate file.
         $fullSchedule = array(
@@ -328,41 +333,141 @@ class specialActions extends sfActions
         $email = $request->getParameter('email');
         $game = $request->getParameter('game');
         $location = $request->getParameter('location');
+        $destination = $request->getParameter('destination');
         $name = $request->getParameter('name');
         $seats = $request->getParameter('seats');
         $userType = $request->getParameter('userType');
         
-        // Send the notification using Amazon SNS  
-        $snsService = new AmazonSNS(array('key' => sfConfig::get('app_amazon_sns_access_key'), 
-                                          'secret' => sfConfig::get('app_amazon_sns_secret_key')));
-        $messageTemplate = 
-            "New Special event request.
-            UserType: %userType%
-            Name: %name%
-            Email: %email%
-            Game: %game%
-            Location: %location%
-            Seats: %seats%";
-        $formattedMessage = strtr($messageTemplate, array(
-            '%userType%'  => $userType,
-            '%name%'      => $name,
-            '%email%'     => $email,
-            '%game%'      => $game,
-            '%location%'  => $location,
-            '%seats%'     => $seats
-        ));
-        $subjectTemplate = "%email% has registered for %game%";
-        $formattedSubject = strtr($subjectTemplate, array(
-            '%email%'     => $email,
-            '%game%'      => $game
-        ));
-        $snsService->publish(sfConfig::get('app_amazon_sns_site_activity_arn'), 
-                $formattedMessage, 
-                array('Subject' => $formattedSubject));
+        // Create the user if necessary
+        $isExistingUser = FALSE;
+        $password = NULL;
+        $wasUserCreated = FALSE;
+        // Make sure the email was passed in. Prevent null and empty ones.
+        if(!CommonHelpers::IsNullOrEmptyString($email))
+        {
+            // Check to see if user is already in our database
+            $user = Doctrine::getTable('sfGuardUser')->getUserByEmail($email);
+
+            // If no, create a new user instance and populate with the minumum data
+            if(!$user)
+            {
+                $password = CommonHelpers::CreateTemporaryPassword();
+                $firstName = CommonHelpers::getFirstName($name);
+                $lastName = CommonHelpers::getLastName($name);
+                $user = sfGuardUser::createMinimumUser($email, $password, $firstName, $lastName);
+                if (user)
+                {
+                    $wasUserCreated = TRUE;
+                }
+            }
+            else
+            {
+                // The user already exists
+                $isExistingUser = TRUE;
+            }
+        }
         
-        // Return nothing to the page 
-        $this->setLayout(sfView::NONE);
-        return $this->renderText("{ success: true }");
+        if (sfConfig::get('app_send_administration_notifications'))
+        {
+            // Send the notification using Amazon SNS  
+            $snsService = new AmazonSNS(array('key' => sfConfig::get('app_amazon_sns_access_key'), 
+                                              'secret' => sfConfig::get('app_amazon_sns_secret_key')));
+            $messageTemplate = 
+                "New Special event request.
+                UserType: %userType%
+                Name: %name%
+                Email: %email%
+                Game: %game%
+                Location: %location%
+                Destination: %destination%
+                Seats: %seats%
+                
+                User account:";
+            if ($isExistingUser)
+            {
+                $messageTemplate = $messageTemplate."
+                    The user already exists.
+                    Email: %email%
+                    Password: Exists
+                    ";
+            }
+            else
+            {
+                if ($wasUserCreated)
+                {
+                    // A new user was created
+                    $messageTemplate = $messageTemplate."
+                    The user was created.
+                    Email: %email%
+                    Password: %password%
+                    ";
+                }
+                else
+                {
+                    // A user was not creted for some reason
+                    $messageTemplate = $messageTemplate."
+                    The user was NOT created.
+                    Email: %email%
+                    Password: 
+                    ";
+                }
+            }
+            
+            // Add in the email message
+            $messageTemplate = $messageTemplate."
+                Welcome subject:
+Welcome to Rootless! Your ride has been posted.
+
+                Welcome email:
+Welcome %name%!
+
+And thanks for joining Rootless! We will be connecting you with other people traveling to the same event as matches become available.
+
+Here is what you can look forward to:
+
+
+1. We have created a profile for you, which you will use to interact with others.  Please log in at rootless.me with:
+
+    Username: %email%
+    Password: %password%
+
+2. Please change your password and fill out your profile, so you will be more likely to find great matches. Don't forget a photo!
+
+3. Your ride has been posted %RIDE_LINK%. Feel free to share the link with your other social networks! 
+
+4. Check your email! We will send you potential ride matches along your route as they become available.
+
+
+If you have any questions, please email us at contact@rootless.me. Thanks again and welcome!
+
+
+Enjoy the ride!
+The Rootless Team
+                ";
+            
+            $formattedMessage = strtr($messageTemplate, array(
+                '%userType%'    => $userType,
+                '%name%'        => $name,
+                '%email%'       => $email,
+                '%game%'        => $game,
+                '%location%'    => $location,
+                '%destination%' => $destination,
+                '%password%'    => $password,
+                '%seats%'       => $seats
+            ));
+            $subjectTemplate = "%email% has registered for %game%";
+            $formattedSubject = strtr($subjectTemplate, array(
+                '%email%'     => $email,
+                '%game%'      => $game
+            ));
+            $snsService->publish(sfConfig::get('app_amazon_sns_site_activity_arn'), 
+                    $formattedMessage, 
+                    array('Subject' => $formattedSubject));
+
+            // Return nothing to the page 
+            $this->setLayout(sfView::NONE);
+            return $this->renderText("{ success: true }");
+        }
     }
     
     /**
