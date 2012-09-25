@@ -218,7 +218,7 @@ class specialActions extends sfActions
         // Build a dynamic schedule. Eventually this will go into a separate file.
         $fullSchedule = array(
             'preseason1' => array(
-                'date' => '2012-09-23 23:00:00.0',
+                'date' => '2012-12-23 23:00:00.0',
                 'id' => 'WerkOut_9/20-23/2012_LegendValleyThornvilleOH',
                 'displayName' => 'The Werk Out 9/20-23/2012'));
 
