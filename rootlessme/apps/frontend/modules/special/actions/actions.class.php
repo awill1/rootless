@@ -236,6 +236,91 @@ class specialActions extends sfActions
     }
     
     /**
+     * Executes Voodoo action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeVoodoo(sfWebRequest $request)
+    {
+        $this->festivalName = 'Voodoo';
+        
+        $this->peopleName = 'festival goers';
+        $this->title = 'Rootless - Ride with other festival goers to Voodoo 2012';
+        $this->destination = 'City Park, New Orleans, LA';
+        
+        // Build a dynamic schedule. Eventually this will go into a separate file.
+        $fullSchedule = array(
+            'day1' => array(
+                'date' => '2012-10-26 23:00:00.0',
+                'id' => 'Voodoo_9/27/2012_CityParkNewOrleansLA',
+                'displayName' => 'Voodoo 10/26'),
+            'day2' => array(
+                'date' => '2012-10-27 23:00:00.0',
+                'id' => 'Voodoo_9/28/2012_CityParkNewOrleansLA',
+                'displayName' => 'Voodoo 10/27'),
+            'day3' => array(
+                'date' => '2012-10-28 23:00:00.0',
+                'id' => 'Voodoo_9/29/2012_CityParkNewOrleansLA',
+                'displayName' => 'Voodoo 10/28'));
+
+        // Only include the games that are in the future
+        $this->games = $this->getFutureGames($fullSchedule);
+        
+        //Set background image
+        $this->backgroundImage = "voodooBackground.jpg";
+        
+        // Use the festival template
+        $this->setTemplate('festival');
+    }
+    
+    /**
+     * Executes Halifax Pop action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeHalifaxPop(sfWebRequest $request)
+    {
+        $this->festivalName = 'Halifax Pop Explosion';
+        
+        $this->peopleName = 'festival goers';
+        $this->title = 'Rootless - Ride with other festival goers to Halifax Pop Explosion Festival & Conference 2012';
+        $this->destination = '1980 Robie Street, Halifax, Nova Scotia, Canada';
+        
+        // Build a dynamic schedule. Eventually this will go into a separate file.
+        $fullSchedule = array(
+            'day1' => array(
+                'date' => '2012-10-16 23:00:00.0',
+                'id' => 'HPX_10/16/2012_HalifaxNSCA',
+                'displayName' => 'HPX 10/27'),
+            'day2' => array(
+                'date' => '2012-10-17 23:00:00.0',
+                'id' => 'HPX_10/17/2012_HalifaxNSCA',
+                'displayName' => 'HPX 10/28'),
+            'day3' => array(
+                'date' => '2012-10-18 23:00:00.0',
+                'id' => 'HPX_10/18/2012_HalifaxNSCA',
+                'displayName' => 'HPX 10/29'),
+            'day4' => array(
+                'date' => '2012-10-19 23:00:00.0',
+                'id' => 'HPX_10/19/2012_HalifaxNSCA',
+                'displayName' => 'HPX 10/30'),
+            'allDays' => array(
+                'date' => '2012-10-20 23:00:00.0',
+                'id' => 'HPX_10/16-20/2012_HalifaxNSCA',
+                'displayName' => 'HPX New Ride Every Day'));
+
+        // Only include the games that are in the future
+        $this->games = $this->getFutureGames($fullSchedule);
+        
+        //Set background image
+        $this->backgroundImage = "werkoutBackground.jpg";
+        
+        // Use the festival template
+        $this->setTemplate('festival');
+    }
+    
+    
+    /**
      * Executes Midpoint Music Festival 2012 action
      *
      * @param sfRequest $request A request object

@@ -362,6 +362,14 @@ werkout:
   url: /werkout
   param: { module: special, action: werkout }
   
+halifaxpop:
+  url: /halifaxpopexplosion
+  param: { module: special, action: halifaxPop }
+  
+voodoo:
+  url: /voodoo
+  param: { module: special, action: voodoo }
+  
 mpmf12:
   url: /mpmf12
   param: { module: special, action: mpmf12 }

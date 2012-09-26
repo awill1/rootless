@@ -18,6 +18,9 @@
         background-size: cover;
         background-attachment: fixed;
     }
+    #headline{
+        color: #FFFFFF;
+    }
 </style>
 
 
