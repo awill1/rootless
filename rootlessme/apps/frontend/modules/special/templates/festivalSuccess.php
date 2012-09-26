@@ -19,7 +19,9 @@
         background-attachment: fixed;
     }
     #headline{
-        color: #FFFFFF;
+        color: <?php echo $headlineColor; ?>;
+        font-size: <?php echo $fontSize; ?>;
+        text-shadow: <?php echo $textShadow; ?>;
     }
 </style>
 

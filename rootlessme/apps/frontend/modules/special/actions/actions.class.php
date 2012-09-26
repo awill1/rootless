@@ -285,6 +285,9 @@ class specialActions extends sfActions
         $this->peopleName = 'festival goers';
         $this->title = 'Rootless - Ride with other festival goers to Halifax Pop Explosion Festival & Conference 2012';
         $this->destination = '1980 Robie Street, Halifax, Nova Scotia, Canada';
+        $this->headlineColor = '#ffffff';
+        $this->fontSize = '352%';
+        $this->textShadow = '0 0 15px rgba(0, 0, 0, 0.8), 0 -1px 1px rgba(0, 0, 0, 0.6)';
         
         // Build a dynamic schedule. Eventually this will go into a separate file.
         $fullSchedule = array(
@@ -313,7 +316,7 @@ class specialActions extends sfActions
         $this->games = $this->getFutureGames($fullSchedule);
         
         //Set background image
-        $this->backgroundImage = "werkoutBackground.jpg";
+        $this->backgroundImage = "hpxBackground2.jpg";
         
         // Use the festival template
         $this->setTemplate('festival');
