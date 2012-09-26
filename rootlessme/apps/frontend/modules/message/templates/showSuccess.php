@@ -63,6 +63,9 @@
         <h2 class="replyTitle">Reply</h2>
         <?php include_partial('reply', array('form' => $replyForm)) ?>
     </div>
+    <div>
+        <a class="backtoListLink" href="<?php echo url_for('message/index') ?>">Back to list</a>
+    </div>
 </div>
 </div>
 </div>

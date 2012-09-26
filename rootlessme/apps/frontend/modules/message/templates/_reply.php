@@ -20,10 +20,6 @@
     <tfoot>
       <tr>
         <td colspan="2">
-          &nbsp;<a class="backtoListLink" href="<?php echo url_for('message/index') ?>">Back to list</a>
-          <?php if (!$form->getObject()->isNew()): ?>
-            &nbsp;<?php echo link_to('Delete', 'message/delete?message_id='.$form->getObject()->getMessageId().'&conversation_id='.$form->getObject()->getConversationId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
-          <?php endif; ?>
           <input type="submit" value="Reply" />
         </td>
       </tr>
