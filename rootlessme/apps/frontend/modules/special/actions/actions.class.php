@@ -252,15 +252,15 @@ class specialActions extends sfActions
         $fullSchedule = array(
             'day1' => array(
                 'date' => '2012-10-26 23:00:00.0',
-                'id' => 'Voodoo_9/27/2012_CityParkNewOrleansLA',
+                'id' => 'Voodoo_10/27/2012_CityParkNewOrleansLA',
                 'displayName' => 'Voodoo 10/26'),
             'day2' => array(
                 'date' => '2012-10-27 23:00:00.0',
-                'id' => 'Voodoo_9/28/2012_CityParkNewOrleansLA',
+                'id' => 'Voodoo_10/28/2012_CityParkNewOrleansLA',
                 'displayName' => 'Voodoo 10/27'),
             'day3' => array(
                 'date' => '2012-10-28 23:00:00.0',
-                'id' => 'Voodoo_9/29/2012_CityParkNewOrleansLA',
+                'id' => 'Voodoo_10/29/2012_CityParkNewOrleansLA',
                 'displayName' => 'Voodoo 10/28'));
 
         // Only include the games that are in the future
