@@ -3,7 +3,7 @@
 
 <?php slot(
   'title',
-  sprintf('Rootless - New ride '.$rideType))
+  sprintf('Rootless - Edit ride '.$rideType))
 ?>
 <?php slot('gmapheader'); ?>
     <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_jquery_block_ui_script') ?>"></script>
