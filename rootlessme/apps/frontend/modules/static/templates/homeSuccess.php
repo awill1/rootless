@@ -61,14 +61,14 @@
 <div class="subHead">
     Featured Events!
     <div class="featuredEvents">
-        <a href="<?php echo url_for('patriots') ?>" class="featureLink">
-            <div id="patriotsBox">
-                New England Patriots Games
+        <a href="<?php echo url_for('halifaxpop') ?>" class="featureLink">
+            <div id="hpxBox">
+                Halifax Pop Explosion Music Festival
             </div>
         </a>
-        <a href="<?php echo url_for('buckeyes') ?>" class="featureLink">
-            <div id="ohioStateBox">
-                The Ohio State Buckeyes Games
+        <a href="<?php echo url_for('voodoo') ?>" class="featureLink">
+            <div id="voodooBox">
+                Voodoo Music + Art Experience
             </div>
         </a>
         <a href="<?php echo url_for('werkout') ?>" class="featureLink">
