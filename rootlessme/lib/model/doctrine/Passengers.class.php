@@ -13,6 +13,15 @@
 class Passengers extends BasePassengers
 {
     /**
+     * Gets the ride id. Common function for ride types. This should be an interface.
+     * @return Integer The ride id
+     */
+    public function getRideId()
+    {
+        return $this->getPassengerId();
+    }
+    
+    /**
      * Gets the origin location for a route
      * @return Locations The origin
      */
