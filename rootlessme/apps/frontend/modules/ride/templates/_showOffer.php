@@ -262,6 +262,11 @@
             <div class="rideActionButtons">
                 <ul class="rideActionButtonsList">
                     <li class="rideActionButtonsListItem">
+                        <form id="rideEditForm" class="rideActionForm" action="<?php echo url_for('ride_edit', array('ride_type' => 'offer', 'ride_id' => $carpool->getCarpoolId())) ?>" method="get">
+                            <input id="rideEditButton" class="rideActionButton" type="submit" value="Edit" />
+                        </form>
+                    </li>
+                    <li class="rideActionButtonsListItem">
                         <form id="rideDeleteForm" class="rideActionForm" action="<?php echo url_for('ride_delete', array('ride_type' => 'offer', 'ride_id' => $carpool->getCarpoolId())) ?>" method="post">
                             <input id="rideDeleteButton" class="rideActionButton" type="submit" value="Delete" />
                         </form>

@@ -234,13 +234,18 @@ class CarpoolsTable extends Doctrine_Table
         {
             // Reformat the date to work with the database
             $date = date('Y-m-d', strtotime($date));
-            $q = $q->andWhere('c.start_date = ?', $date);
+            $q = $q->andWhere('c.start_date = ?', $date)
+                   ->andWhere('c.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED]);
         }
         else
         {
             // Add the current rides filter to filter our rides from before today
             $q = $this->addCurrentRidesFilter($q);
         }
+        
+        // Order by the start date
+        $q = $q->orderBy('c.start_date');
+        
         // ON c.route_id = r.route_id
         // Add the components to the query so the results get hydrated into
         // their proper objects

@@ -12,6 +12,19 @@
 });
 </script>
 
+<style>
+    .home {
+        background-image: url("../images/<?php echo $backgroundImage; ?>");
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    #headline{
+        color: <?php echo $headlineColor; ?>;
+        font-size: <?php echo $fontSize; ?>;
+        text-shadow: <?php echo $textShadow; ?>;
+    }
+</style>
+
 
 <div id="main">
     <div id="headline">
@@ -43,6 +56,7 @@
                 </select>
                 <br />
                 <input class="formFields required" type="text" name="location" placeholder="From: Address, City, State"/>
+                <input id="destinationField" type="hidden" name="destination" value="<?php echo $destination; ?>" />
                 <input id="seatsField" class="formFields required digits" type="text" name="seats" placeholder="How many spare seats?"/>
                 <input id="formSubmit" class="formFields" type="submit" value="Submit" />
             </div>

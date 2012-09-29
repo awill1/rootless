@@ -73,7 +73,7 @@
         <div id="header">
             <a href="<?php if ($sf_user->isAuthenticated()) { echo url_for('dashboard');} else  {echo url_for('home');}  ?>" ><img id="headerLogo" src="/images/Logo.png" alt="Rootless" /></a>
                 <form id="headerSearchForm" action="<?php echo url_for('search') ?>" method="get" >
-                      <input id="searchInput" name="query" value="Search" onblur="if (this.value == ''){this.value = 'Search';}" onfocus="if(this.value == 'Search'){this.value='';}" />
+                      <input id="searchInput" name="query" value="Search Users" onblur="if (this.value == ''){this.value = 'Search Users';}" onfocus="if(this.value == 'Search Users'){this.value='';}" />
                       <input class="headerSubmit" type="submit" value="find" />
                 </form>
             <div id="headerControls">
