@@ -83,6 +83,12 @@ html, body {
     color: #fff;
     font-weight: bold;
 }
+.formCompleteMessage{
+    font-family: Arial;
+    font-size: 150%;
+    color: #009F40;
+    font-weight: normal;
+}
 .boxHeader{
     font-family: Arial;
     font-size: 200%;

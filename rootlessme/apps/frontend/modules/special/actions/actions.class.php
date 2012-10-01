@@ -252,16 +252,26 @@ class specialActions extends sfActions
         $fullSchedule = array(
             'day1' => array(
                 'date' => '2012-10-26 23:00:00.0',
-                'id' => 'Voodoo_10/27/2012_CityParkNewOrleansLA',
+                'id' => 'Voodoo_10/26/2012_CityParkNewOrleansLA',
                 'displayName' => 'Voodoo 10/26'),
             'day2' => array(
                 'date' => '2012-10-27 23:00:00.0',
-                'id' => 'Voodoo_10/28/2012_CityParkNewOrleansLA',
+                'id' => 'Voodoo_10/27/2012_CityParkNewOrleansLA',
                 'displayName' => 'Voodoo 10/27'),
             'day3' => array(
                 'date' => '2012-10-28 23:00:00.0',
-                'id' => 'Voodoo_10/29/2012_CityParkNewOrleansLA',
-                'displayName' => 'Voodoo 10/28'));
+                'id' => 'Voodoo_10/28/2012_CityParkNewOrleansLA',
+                'displayName' => 'Voodoo 10/28'),
+            'anyDay' => array(
+                'date' => '2012-10-28 23:00:00.0',
+                'id' => 'Voodoo_10/26-28/2012_CityParkNewOrleansLA',
+                'displayName' => 'Voodoo Get me there any day.'),
+            'allDays' => array(
+                'date' => '2012-10-28 23:00:00.0',
+                'id' => 'Voodoo_10/26-28/2012_CityParkNewOrleansLA',
+                'displayName' => 'Voodoo New ride every day.'));
+            
+            
 
         // Only include the games that are in the future
         $this->games = $this->getFutureGames($fullSchedule);
@@ -311,10 +321,14 @@ class specialActions extends sfActions
                 'date' => '2012-10-20 23:00:00.0',
                 'id' => 'HPX_10/20/2012_HalifaxNSCA',
                 'displayName' => 'HPX 10/20'),
+            'anyDay' => array(
+                'date' => '2012-10-20 23:00:00.0',
+                'id' => 'HPX_10/16-20/2012_HalifaxNSCA',
+                'displayName' => 'HPX Get me there any day.'),
             'allDays' => array(
                 'date' => '2012-10-20 23:00:00.0',
                 'id' => 'HPX_10/16-20/2012_HalifaxNSCA',
-                'displayName' => 'HPX New Ride Every Day'));
+                'displayName' => 'HPX New ride every day.'));
 
         // Only include the games that are in the future
         $this->games = $this->getFutureGames($fullSchedule);
@@ -459,6 +473,7 @@ class specialActions extends sfActions
             }
         }
         
+        //check to see if administration notifications are desried
         if (sfConfig::get('app_send_administration_notifications'))
         {
             // Send the notification using Amazon SNS  
@@ -556,10 +571,11 @@ The Rootless Team
                     $formattedMessage, 
                     array('Subject' => $formattedSubject));
 
-            // Return nothing to the page 
-            $this->setLayout(sfView::NONE);
-            return $this->renderText("{ success: true }");
+            
         }
+      // Return nothing to the page 
+      $this->setLayout(sfView::NONE);
+      return $this->renderText("{ success: true }");
     }
     
     /**
