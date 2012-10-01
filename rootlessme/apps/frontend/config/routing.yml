@@ -393,6 +393,10 @@ mpmf12:
   url: /mpmf12
   param: { module: special, action: mpmf12 }
   
+harvestfestival:
+  url: /harvestfestival
+  param: { module: special, action: harvestMusicFestival }
+  
 abetterworldbydesign:
   url: /abetterworldbydesign
   param: { module: special, action: aBetterWorldByDesign }
