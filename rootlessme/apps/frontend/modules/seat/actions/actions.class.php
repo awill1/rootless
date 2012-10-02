@@ -249,8 +249,6 @@ class seatActions extends sfActions
                 {
                     $otherPerson = $seat->getCarpools()->getPeople();
                 }
-                
-                // Send out notifications to the other person
                 $notification = new seatAcceptNotification($updatedSeat, $otherPerson, $userPerson);
                 $notification->sendNotifications();
 
@@ -311,6 +309,21 @@ class seatActions extends sfActions
                 // Change the seat status and save with history
                 $seat->setSeatStatusId(SeatStatusesTable::$rideTypes['declined']);
                 $updatedSeat = $seat->saveWithHistory($userId);
+                
+                // Send a notification to the other user
+                $userIsDriver = $seat->getCarpools()->getDriverId() == $userId;
+                $userPerson = $this->getUser()->getGuardUser()->getPeople();
+                $otherPerson = NULL;
+                if ($userIsDriver)
+                {
+                    $otherPerson = $seat->getPassengers()->getPeople();
+                }
+                else
+                {
+                    $otherPerson = $seat->getCarpools()->getPeople();
+                }
+                $notification = new seatDeclineNotification($updatedSeat, $otherPerson, $userPerson);
+                $notification->sendNotifications();
 
                 // If the request came from AJAX render the seat negotiation history
                 // partial with the updated seat information

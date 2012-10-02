@@ -1,15 +1,15 @@
 <?php
 
 /**
- * The notification created when a user accepts a seat.
+ * The notification created when a user declines a seat.
  *
  * @author awilliams
  */
-class seatAcceptNotification extends userNotification 
+class seatDeclineNotification extends userNotification 
 {
-    const EMAIL_HTML_PARTIAL = 'mail/acceptSeatHtml';
-    const EMAIL_TEXT_PARTIAL = 'mail/acceptSeatText';
-    const NOTIFICATION_SLUG = 'SEAT_ACCEPTED_NOTIFICATION';
+    const EMAIL_HTML_PARTIAL = 'mail/declineSeatHtml';
+    const EMAIL_TEXT_PARTIAL = 'mail/declineSeatText';
+    const NOTIFICATION_SLUG = 'SEAT_DECLINED_NOTIFICATION';
     
     /**
      * The changed seat
@@ -30,7 +30,7 @@ class seatAcceptNotification extends userNotification
     protected $otherUser;
     
     /**
-     * Creates a new instance of the seatAcceptNotification.
+     * Creates a new instance of the seatDeclineNotification.
      * @param Seats $seat The seat that was changed
      * @param Profiles $subscriber The user who is subscribed to the notification
      * @param Profiles $otherUser The other user who took action on the seat
@@ -54,7 +54,7 @@ class seatAcceptNotification extends userNotification
      * @return String The notification slug
      */
     protected function getNotificationSlug() {
-        return seatAcceptNotification::NOTIFICATION_SLUG;
+        return seatDeclineNotification::NOTIFICATION_SLUG;
     }
 
     /**
@@ -63,7 +63,7 @@ class seatAcceptNotification extends userNotification
      */
     protected function getEmailHtmlPartialName() 
     {
-        return seatAcceptNotification::EMAIL_HTML_PARTIAL;
+        return seatDeclineNotification::EMAIL_HTML_PARTIAL;
     }
     
     /**
@@ -72,7 +72,7 @@ class seatAcceptNotification extends userNotification
      */
     protected function getEmailTextPartialName() 
     {
-        return seatAcceptNotification::EMAIL_TEXT_PARTIAL;
+        return seatDeclineNotification::EMAIL_TEXT_PARTIAL;
     }
     
     /**
@@ -92,7 +92,7 @@ class seatAcceptNotification extends userNotification
      */
     protected function getEmailSubject()
     {
-        return 'Seat terms accepted by '.$this->otherUser->getProfiles()->getFullName();
+        return 'Seat terms declined by '.$this->otherUser->getProfiles()->getFullName();
     }
 }
 
