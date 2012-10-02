@@ -6,6 +6,29 @@
 class EmailHelpers
 {
     /**
+     * Creates a mailer from the app settings
+     * @return Swift_Mailer The created mailer
+     */
+    public static function createMailer()
+    {
+        // verify we have username/password to send out emails - IMPORTANT
+        if (!sfconfig::has('app_mailer_username') or !sfconfig::has('app_mailer_password'))
+        {
+            throw new sfException('SMTP username/password is required to send email out');
+        }
+        
+        // Create a smtp session
+        $connection = Swift_SmtpTransport::newInstance(sfconfig::get('app_mailer_host'),
+                                                       sfconfig::get('app_mailer_port'), 
+                                                       sfconfig::get('app_mailer_encryption'))
+            ->setUsername(sfconfig::get('app_mailer_username'))
+            ->setPassword(sfconfig::get('app_mailer_password'));
+
+        // setup connection/content
+        return Swift_Mailer::newInstance($connection);
+    }
+    
+    /**
      * Library to facilitate email messages being sent out, sendMail deprecated in symfony 1.2
      * Based on SendGrid documentation http://docs.sendgrid.com/documentation/get-started/integrate/examples/symfony-example-using-smtp/
      *
@@ -19,11 +42,6 @@ class EmailHelpers
      */
     public static function sendEmail($partials, $parameters, $mailFrom, $mailTo, $subject, $sgHeaders = null, $attachments = null)
     {
-        // verify we have username/password to send out emails - IMPORTANT
-        if (!sfconfig::has('app_sendgrid_username') or !sfconfig::has('app_sendgrid_password'))
-        {
-            throw new sfException('SMTP username/password is required to send email out');
-        }
         $text = null;
         $html = null;
         if (is_array($partials))
@@ -46,15 +64,7 @@ class EmailHelpers
 
         try
         {
-            /*
-            * Load connection for mailer
-            */
-            $connection = Swift_SmtpTransport::newInstance('smtp.sendgrid.net', 465, 'ssl')
-                ->setUsername(sfconfig::get('app_sendgrid_username'))
-                ->setPassword(sfconfig::get('app_sendgrid_password'));
-
-            // setup connection/content
-            $mailer = Swift_Mailer::newInstance($connection);
+            // Create the message
             $message = Swift_Message::newInstance()->setSubject($subject)->setTo($mailTo);
 
             if ($text && $html)
@@ -95,7 +105,12 @@ class EmailHelpers
 
             // Send
             $message->setFrom($mailFrom);
+            
+            // setup connection/content
+            $mailer = EmailHelpers::createMailer();
             $messagesSent = $mailer->send($message);
+            
+            // Log the message
             sfContext::getInstance()->getLogger()->info('MessagesSent='.$messagesSent);
         }
         catch (Exception $e)
