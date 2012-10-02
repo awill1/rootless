@@ -100,32 +100,52 @@ class seatActions extends sfActions
         $this->forward404Unless($request->isMethod(sfRequest::POST));
 
         $this->form = new SeatsRequestForm();
-
-        $seat = $this->processForm($request, $this->form);
-
-        // If the request came from AJAX render the seat negotiation partial
-        // with the new seat information
-        if ($request->isXmlHttpRequest())
+        
+        if ($this->getUser()->isAuthenticated())
         {
-            if ($seat != null)
+            $userId = $this->getUser()->getGuardUser()->getPersonId();
+
+            $seat = $this->processForm($request, $this->form);
+            
+            // Send a notification to the other user
+            $userIsDriver = $seat->getCarpools()->getDriverId() == $userId;
+            $userPerson = $this->getUser()->getGuardUser()->getPeople();
+            $otherPerson = NULL;
+            if ($userIsDriver)
             {
-                return $this->renderComponent('seat','negotiation', array('seat' => $seat));
+                $otherPerson = $seat->getPassengers()->getPeople();
             }
             else
             {
-                return $this->renderText('Seat was not created');
+                $otherPerson = $seat->getCarpools()->getPeople();
             }
-        }
-        else
-        {
-            $this->setTemplate('new');
+            $notification = new seatNewRequestNotification($seat, $otherPerson, $userPerson);
+            $notification->sendNotifications();
 
-            if ($seat != null)
+            // If the request came from AJAX render the seat negotiation partial
+            // with the new seat information
+            if ($request->isXmlHttpRequest())
             {
-                // This is not an AJAX request so redirect to the show seat
-                // page
+                if ($seat != null)
+                {
+                    return $this->renderComponent('seat','negotiation', array('seat' => $seat));
+                }
+                else
+                {
+                    return $this->renderText('Seat was not created');
+                }
+            }
+            else
+            {
+                $this->setTemplate('new');
 
-                $this->redirect('seats_show', array('seat_id', $seat->getSeatId()));
+                if ($seat != null)
+                {
+                    // This is not an AJAX request so redirect to the show seat
+                    // page
+
+                    $this->redirect('seats_show', array('seat_id', $seat->getSeatId()));
+                }
             }
         }
     }
@@ -140,32 +160,52 @@ class seatActions extends sfActions
         $this->forward404Unless($request->isMethod(sfRequest::POST));
 
         $this->form = new SeatsOfferForm();
-
-        $seat = $this->processForm($request, $this->form);
-
-        // If the request came from AJAX render the seat negotiation partial
-        // with the new seat information
-        if ($request->isXmlHttpRequest())
+        
+        if ($this->getUser()->isAuthenticated())
         {
-            if ($seat != null)
+            $userId = $this->getUser()->getGuardUser()->getPersonId();
+
+            $seat = $this->processForm($request, $this->form);
+
+            // Send a notification to the other user
+            $userIsDriver = $seat->getCarpools()->getDriverId() == $userId;
+            $userPerson = $this->getUser()->getGuardUser()->getPeople();
+            $otherPerson = NULL;
+            if ($userIsDriver)
             {
-                return $this->renderComponent('seat','negotiation', array('seat' => $seat));
+                $otherPerson = $seat->getPassengers()->getPeople();
             }
             else
             {
-                return $this->renderText('Seat was not created');
+                $otherPerson = $seat->getCarpools()->getPeople();
             }
-        }
-        else
-        {
-            $this->setTemplate('new');
+            $notification = new seatNewOfferNotification($seat, $otherPerson, $userPerson);
+            $notification->sendNotifications();
 
-            if ($seat != null)
+            // If the request came from AJAX render the seat negotiation partial
+            // with the new seat information
+            if ($request->isXmlHttpRequest())
             {
-                // This is not an AJAX request so redirect to the show seat
-                // page
+                if ($seat != null)
+                {
+                    return $this->renderComponent('seat','negotiation', array('seat' => $seat));
+                }
+                else
+                {
+                    return $this->renderText('Seat was not created');
+                }
+            }
+            else
+            {
+                $this->setTemplate('new');
 
-                $this->redirect('seats_show', array('seat_id', $seat->getSeatId()));
+                if ($seat != null)
+                {
+                    // This is not an AJAX request so redirect to the show seat
+                    // page
+
+                    $this->redirect('seats_show', array('seat_id', $seat->getSeatId()));
+                }
             }
         }
     }
