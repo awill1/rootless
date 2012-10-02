@@ -9,6 +9,69 @@
 Namespace('Rootless.Map.Search');
 
 Rootless.Map.Search = Rootless.Map.extend({
+	/**
+    *  Initializes the Google Maps API for Searches
+    *  @param params {arguments} - but mapId is needed to initialize map
+    */
+   init : function(params) {
+       this._ = $.extend(true, {
+           
+           //constant variables
+           CONST : {
+               PRIMARY_ROUTE_COLOR     : "#119F49",
+               PRIMARY_ROUTE_OPACITY   : .5,
+               PRIMARY_ROUTE_WEIGHT    : 5,
+               SECONDARY_ROUTE_COLOR   : "#FF0000",
+               SECONDARY_ROUTE_OPACITY : .5,
+               SECONDARY_ROUTE_WEIGHT  : 5,
+               TERTIARY_ROUTE_COLOR    : "#FF0000",
+               TERTIARY_ROUTE_OPACITY  : .2,
+               TERTIARY_ROUTE_WEIGHT   : 5,
+               MAP_DEFAULT_LATITUDE    : 37.0625,
+               MAP_DEFAULT_LONGITUDE   : -95.677068,
+               MAP_DEFAULT_ZOOM        : 3
+           },
+           
+           MapObject : undefined,
+           
+           //all html elements referred in the code should go here (including jquery)
+           el : {
+               $originTextBox        : $("#rides_origin"),
+               $destinationTextBox   : $("#rides_destination"),
+               
+               $loader               : $('#loader'),
+        	   $ridefind             : $('#rides_find'),
+        	   $results              : $('#results'),
+       		   $rideSearchForm       : $('#rideSearchForm')
+           },
+           
+           // Variables used to block form submitting before map api results are returned
+            formBlock : {
+                isOriginDecodePending      : false,
+                isDestinationDecodePending : false,
+                isDirectionsPending        : false,
+                isFormSubmitPending        : false
+            },
+           
+           //map markers and polylines should be here
+           mapItem : {
+                polyline : {
+                	polylines : []
+                },
+                
+                marker : {
+                    
+                }
+           
+           },
+           
+           directionsService : new google.maps.DirectionsService(),
+           geocoder          : new google.maps.Geocoder(),
+       	   directionsDisplay : new google.maps.DirectionsRenderer(),
+           
+           
+       }, params);
+    },
 
 	/**
     * Initializes a Google Map into a div
@@ -24,13 +87,9 @@ Rootless.Map.Search = Rootless.Map.extend({
            mapTypeId: google.maps.MapTypeId.ROADMAP
        };
         
-        var mapObj = new google.maps.Map(document.getElementById(self._.mapId),
+        self._.MapObject = new google.maps.Map(document.getElementById(self._.mapId),
             myOptions);
-      
-        self._.MapObject = mapObj;
-        self._.geocoder = new google.maps.Geocoder();
-        self._.directionsDisplay = new google.maps.DirectionsRenderer();
-        self._.directionsDisplay.setMap(mapObj);
+        self._.directionsDisplay.setMap(self._.MapObject);
 
         // Setup the origin and destination marker, the maps are null
         // because the markers are hidden
@@ -43,23 +102,26 @@ Rootless.Map.Search = Rootless.Map.extend({
         // origin or destination textboxes
         self.bindTextBoxesToMap();
         
-         $('#loader').hide();
+        //elements used on ride search pages
+        
+        
+        self._.el.$loader.hide();
 
-            // Handler for the find button
-            $('#rides_find').click(function(){
-                 $('#loader').show();
-                 $('#results').toggle('blind');
-                self.ClearPolylinesFromMap();
-              });
+        // Handler for the find button
+        self._.el.$ridefind.click(function(){
+            self._.el.$loader.show();
+            self._.el.$results.toggle('blind');
+            self.ClearPolylinesFromMap();
+        });
               
-             $('#rideSearchForm').submit(function(){
-                 // Set the form submit flag
-                 self._.formBlock.isFormSubmitPending = true;
+        self._.el.$rideSearchForm.submit(function(){
+            // Set the form submit flag
+            self._.formBlock.isFormSubmitPending = true;
                 
-                 // Disable the default submission. We will let AJAX do it
-                 self.MaybeSubmitForm();
-                 return false;
-             });
+            // Disable the default submission. We will let AJAX do it
+            self.MaybeSubmitForm();
+            return false;
+        });
         
         
         // Set textboxes to match the query string variables
@@ -76,7 +138,7 @@ Rootless.Map.Search = Rootless.Map.extend({
             
         if (origin != null || destination != null) {
             this.previewRoute();
-            $('#rides_find').click();
+            self._.el.$ridefind.click();
         }    
 	},
 	
@@ -184,23 +246,6 @@ Rootless.Map.Search = Rootless.Map.extend({
       
     DoNav : function(theUrl) {
             document.location.href = theUrl;
-    },
-    
-    displayEncodedPolyline : function (map, encodedPolyline, isPrimary) {
-	    // Decode the polyline for the route
-	    var routeCoordinates  = google.maps.geometry.encoding.decodePath(encodedPolyline);
-	    
-	    if (isPrimary == true) {
-	      var routePath = this.createPrimaryPolyline(routeCoordinates);
-	    } else {
-	      var routePath = this.createNonPrimaryPolyline(routeCoordinates);
-	    }
-	
-	    // Bind the polyline to the map
-	    routePath.setMap(map);
-	    
-	    // Return the created polyline
-	    return routePath;
     },
         
     LoadItemsIntoGoogleMap : function() {

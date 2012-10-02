@@ -32,6 +32,7 @@ Rootless.Map = Class.extend({
                MAP_DEFAULT_ZOOM        : 3
            },
            
+           MapObject : undefined,
            //all html elements referred in the code should go here (including jquery)
            el : {
                $originTextBox        : $("#rides_origin"),
@@ -58,7 +59,9 @@ Rootless.Map = Class.extend({
            
            },
            
-           directionsService : new google.maps.DirectionsService()
+           directionsService : new google.maps.DirectionsService(),
+           geocoder          : new google.maps.Geocoder(),
+       	   directionsDisplay : new google.maps.DirectionsRenderer(),
            
            
        }, params);
@@ -76,14 +79,10 @@ Rootless.Map = Class.extend({
            center: latlng,
            mapTypeId: google.maps.MapTypeId.ROADMAP
        };
-        
-        var mapObj = new google.maps.Map(document.getElementById(self._.mapId),
-            myOptions);
       
-        self._.MapObject = mapObj;
-        self._.geocoder = new google.maps.Geocoder();
-        self._.directionsDisplay = new google.maps.DirectionsRenderer();
-        self._.directionsDisplay.setMap(mapObj);
+        self._.MapObject = new google.maps.Map(document.getElementById(self._.mapId),
+            myOptions);
+        self._.directionsDisplay.setMap(self._.MapObject);
 
         // Setup the origin and destination marker, the maps are null
         // because the markers are hidden
@@ -273,7 +272,7 @@ Rootless.Map = Class.extend({
             var destinationGeocodeRequest = {
                 address: destinationValue
             };
-            console.log(self);
+            
             this._.geocoder.geocode(destinationGeocodeRequest, self.geocodeDestination);
         } else {
             // Clear the destination pending flag
@@ -317,6 +316,23 @@ Rootless.Map = Class.extend({
             }
         }
       },
+      
+     displayEncodedPolyline : function (map, encodedPolyline, isPrimary) {
+	   // Decode the polyline for the route
+	    var routeCoordinates  = google.maps.geometry.encoding.decodePath(encodedPolyline);
+	    
+	    if (isPrimary == true) {
+	      var routePath = this.createPrimaryPolyline(routeCoordinates);
+	    } else {
+	      var routePath = this.createNonPrimaryPolyline(routeCoordinates);
+	    }
+	
+	    // Bind the polyline to the map
+	    routePath.setMap(map);
+	    
+	    // Return the created polyline
+	    return routePath;
+    },
     
     showResults : function(results, status, marker) {
 

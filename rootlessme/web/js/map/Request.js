@@ -9,7 +9,67 @@
 Namespace('Rootless.Map.Request');
 
 Rootless.Map.Request = Rootless.Map.extend({
-	 /**
+	/**
+    *  Initializes the Google Maps API for request forms
+    *  @param params {arguments} - but mapId is needed to initialize map
+    */
+   init : function(params) {
+       this._ = $.extend(true, {
+           
+           //constant variables
+           CONST : {
+               PRIMARY_ROUTE_COLOR     : "#119F49",
+               PRIMARY_ROUTE_OPACITY   : .5,
+               PRIMARY_ROUTE_WEIGHT    : 5,
+               SECONDARY_ROUTE_COLOR   : "#FF0000",
+               SECONDARY_ROUTE_OPACITY : .5,
+               SECONDARY_ROUTE_WEIGHT  : 5,
+               TERTIARY_ROUTE_COLOR    : "#FF0000",
+               TERTIARY_ROUTE_OPACITY  : .2,
+               TERTIARY_ROUTE_WEIGHT   : 5,
+               MAP_DEFAULT_LATITUDE    : 37.0625,
+               MAP_DEFAULT_LONGITUDE   : -95.677068,
+               MAP_DEFAULT_ZOOM        : 3
+           },
+           
+           MapObject : undefined,
+           
+           //all html elements referred in the code should go here (including jquery)
+           el : {
+               $originTextBox        : $("#rides_origin"),
+               $destinationTextBox   : $("#rides_destination"),
+               $submitButton		 : $('.submitButton'),
+               $newRideFormArea	     : $("#newRideFormArea")
+           },
+           
+           // Variables used to block form submitting before map api results are returned
+            formBlock : {
+                isOriginDecodePending      : false,
+                isDestinationDecodePending : false,
+                isDirectionsPending        : false,
+                isFormSubmitPending        : false
+            },
+           
+           //map markers and polylines should be here
+           mapItem : {
+                polyline : {
+                	polylines : []
+                },
+                
+                marker : {
+                    
+                }
+           
+           },
+           
+           directionsService : new google.maps.DirectionsService(),
+           geocoder          : new google.maps.Geocoder(),
+       	   directionsDisplay : new google.maps.DirectionsRenderer(),
+           
+           
+       }, params);
+   },
+   /**
     * Initializes a Google Map into a div
     */
    mapInit : function(){
@@ -22,14 +82,10 @@ Rootless.Map.Request = Rootless.Map.extend({
            center: latlng,
            mapTypeId: google.maps.MapTypeId.ROADMAP
        };
-        
-        var mapObj = new google.maps.Map(document.getElementById(self._.mapId),
-            myOptions);
       
-        self._.MapObject = mapObj;
-        self._.geocoder = new google.maps.Geocoder();
-        self._.directionsDisplay = new google.maps.DirectionsRenderer();
-        self._.directionsDisplay.setMap(mapObj);
+        self._.MapObject = new google.maps.Map(document.getElementById(self._.mapId),
+            myOptions);;
+        self._.directionsDisplay.setMap(self._.MapObject);
 
         // Setup the origin and destination marker, the maps are null
         // because the markers are hidden
@@ -55,12 +111,12 @@ Rootless.Map.Request = Rootless.Map.extend({
         
         // Use the safe form submit function incase the google map api has
         // not returned yet
-        $('.submitButton').click(function(){
+        self._.el.$submitButton.click(function(){
             // Set the form submit flag
              self._.formBlock.isFormSubmitPending = true;
                 
              // Block the fragment-vehicles div
-             $("#newRideFormArea").block({ 
+             self._.el.$newRideFormArea.block({ 
                   message: '<img src="/images/ajax-loader.gif" alt="Saving..." />'
              }); 
 

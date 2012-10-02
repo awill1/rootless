@@ -9,7 +9,65 @@
 Namespace('Rootless.Map.Negotiation');
 
 Rootless.Map.Negotiation = Rootless.Map.extend({
-	 /**
+	/**
+    *  Initializes the Google Maps API for Negotiations
+    *  @param params {arguments} - but mapId is needed to initialize map
+    */
+   init : function(params) {
+       this._ = $.extend(true, {
+           
+           //constant variables
+           CONST : {
+               PRIMARY_ROUTE_COLOR     : "#119F49",
+               PRIMARY_ROUTE_OPACITY   : .5,
+               PRIMARY_ROUTE_WEIGHT    : 5,
+               SECONDARY_ROUTE_COLOR   : "#FF0000",
+               SECONDARY_ROUTE_OPACITY : .5,
+               SECONDARY_ROUTE_WEIGHT  : 5,
+               TERTIARY_ROUTE_COLOR    : "#FF0000",
+               TERTIARY_ROUTE_OPACITY  : .2,
+               TERTIARY_ROUTE_WEIGHT   : 5,
+               MAP_DEFAULT_LATITUDE    : 37.0625,
+               MAP_DEFAULT_LONGITUDE   : -95.677068,
+               MAP_DEFAULT_ZOOM        : 3
+           },
+           
+           //all html elements referred in the code should go here (including jquery)
+           el : {
+               $originTextBox        : $("#rides_origin"),
+               $destinationTextBox   : $("#rides_destination"),
+               $rideDeleteForm       : $("#rideDeleteForm")
+           },
+           
+           // Variables used to block form submitting before map api results are returned
+            formBlock : {
+                isOriginDecodePending      : false,
+                isDestinationDecodePending : false,
+                isDirectionsPending        : false,
+                isFormSubmitPending        : false
+            },
+           
+           //map markers and polylines should be here
+           mapItem : {
+                polyline : {
+                	polylines : []
+                },
+                
+                marker : {
+                    
+                }
+           
+           },
+           
+           directionsService : new google.maps.DirectionsService(),
+           geocoder          : new google.maps.Geocoder(),
+       	   directionsDisplay : new google.maps.DirectionsRenderer(),
+           
+           
+       }, params);
+   },
+   
+   /**
     * Initializes a Google Map into a div
     */
    mapInit : function(){
@@ -23,20 +81,17 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
            mapTypeId: google.maps.MapTypeId.ROADMAP
        };
         
-        var mapObj = new google.maps.Map(document.getElementById(self._.mapId),
+        self._.MapObject = new google.maps.Map(document.getElementById(self._.mapId),
             myOptions);
-      
-        self._.MapObject = mapObj;
-        self._.geocoder = new google.maps.Geocoder();
-        self._.directionsDisplay = new google.maps.DirectionsRenderer();
-        self._.directionsDisplay.setMap(mapObj);
-
+        self._.directionsDisplay.setMap(self._.MapObject);
+        
         // Setup the origin and destination marker, the maps are null
         // because the markers are hidden
         self._.mapItem.marker.originMarker = self.initializeMarker("Origin");
         self._.mapItem.marker.destinationMarker = self.initializeMarker("Destination");
-        // Setup the path, the maps are null because the path is hidden
-        self._.mapItem.polyline.routePolyline = self.initializePath();
+        console.log(this);
+		// Decode the polyline for the route
+        self._.mapItem.polyline.routePolyline = self.displayEncodedPolyline(self._.MapObject, self._.mapItem.polyline.encodePolyline, true);
         
         // Route preview changes whenever the user finished editing the
         // origin or destination textboxes
@@ -50,35 +105,44 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         var googleTestString = JSON.stringify(self.testPoint);
         // this is a random two character string which represents latitude
         //  and longitude in the stringified data
-        self.strangeLat = googleTestString.substring(2,4);
+        self.strangeLat = googleTestString.substring(2,4);	
         self.strangeLon = googleTestString.substring(10,12);
         
-        // Use the safe form submit function incase the google map api has
-        // not returned yet
-        $('.submitButton').click(function(){
-            // Set the form submit flag
-             self._.formBlock.isFormSubmitPending = true;
-                
-             // Block the fragment-vehicles div
-             $("#newRideFormArea").block({ 
-                  message: '<img src="/images/ajax-loader.gif" alt="Saving..." />'
-             }); 
+        
+        // When a user clicks on the riderListItem load details about
+        // the seat request
+        $(".dynamicDetailsLink").click(self.loadSeatDetails);
 
-             // Disable the default submission. We will let the helper 
-             // function do it
-             self.MaybeSubmitForm();
-             return false;
-         });
+        // Load the seat negotiation if it belongs to the user
+        $("#mySeat").each(self.loadSeatDetails);
+        
+        // If the window url hash is set load that seat's details
+        if (window.location.hash != "") {
+       		var hash = window.location.hash;
+            $(hash).trigger('click');
+        }
+        
+       // Bind the ride click buttons
+       self._.el.$rideDeleteForm.submit(function(){
+           // Confirm the user wants to delete the post
+           var confirmed = confirm("Are you sure you want to delete this ride?");
+           if (confirmed==true) {
+              // Submit the form
+              return true;
+           } else {
+              // Cancel the form submit
+              return false; 
+           }
+       });
    },
    
 	geocodeOrigin : function(results, status) {     
-        var map = Rootless.Map.Request.getInstance();
+        var map = Rootless.Map.Negotiation.getInstance();
         // Display the results
         
         map.showResults(results, status, map._.mapItem.marker.originMarker);
         // Send the geocoded information to the server
-        if (typeof(map._.el.originDataField) != "undefined")
-        {
+        if (typeof(map._.el.originDataField) != "undefined") {
             $(map._.el.originDataField).val(map.formatGoogleJSON(map.strangeLat, map.strangeLon, JSON.stringify(results[0])));
         }
 
@@ -87,7 +151,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     },
     
     geocodeDestination : function(results, status) {
-    	var map = Rootless.Map.Request.getInstance();
+    	var map = Rootless.Map.Negotiation.getInstance();
 
         // Display the results
         map.showResults(results, status, map._.mapItem.marker.destinationMarker);
@@ -99,6 +163,30 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 
         // Finally, clear the destination pending flag to allow form submission
         map.clearDestinationDecodePendingFlag();
+    },
+    
+    loadSeatDetails : function() {
+    	if($('.selectedUser').length > 0) {
+            $('.selectedUser').removeClass('selectedUser');
+        }
+        
+        $(this).parent().append($('#seatSpinnerContainer'));
+        $('#seatSpinnerContainer').show();
+        $(this).parent().addClass('selectedUser');
+
+        $("#seatNegotiationBlock").slideUp("blind");
+        $("#seatNegotiationBlock").load($(this).attr("href"),
+        	function(){
+            	$('#negotiationSpinnerContainer').hide();
+                $("#seatNegotiationBlock").slideDown("blind");
+                self.bindTextBoxesToMap();
+            });
+
+        // Set the # in the url to keep track of which seat was clicked
+        window.location.hash = $(this).attr('id');
+
+        // Return false to override default click behavior
+        return false;
     },
     
 	MaybeSubmitForm : function() {            
