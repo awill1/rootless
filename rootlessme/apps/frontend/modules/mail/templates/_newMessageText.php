@@ -4,7 +4,7 @@
 
 <?php echo $otherUserProfile->getFullName(); ?> has sent you a message!
 
-You can view and reply to the message at %LINK%
+You can view and reply to the message at <?php echo url_for2('messages_show', array('message_id' => $message->getMessageId()), true); ?>
 
 Thanks for using Rootless,
 
