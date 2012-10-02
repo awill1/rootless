@@ -264,11 +264,11 @@ class specialActions extends sfActions
                 'displayName' => 'Voodoo 10/28'),
             'anyDay' => array(
                 'date' => '2012-10-28 23:00:00.0',
-                'id' => 'Voodoo_10/26-28/2012_CityParkNewOrleansLA',
+                'id' => 'Voodoo_10/26-28/2012_Any_CityParkNewOrleansLA',
                 'displayName' => 'Voodoo any day.'),
             'allDays' => array(
                 'date' => '2012-10-28 23:00:00.0',
-                'id' => 'Voodoo_10/26-28/2012_CityParkNewOrleansLA',
+                'id' => 'Voodoo_10/26-28/2012_Every_CityParkNewOrleansLA',
                 'displayName' => 'Voodoo every day.'));
             
             
@@ -323,11 +323,11 @@ class specialActions extends sfActions
                 'displayName' => 'HPX 10/20'),
             'anyDay' => array(
                 'date' => '2012-10-20 23:00:00.0',
-                'id' => 'HPX_10/16-20/2012_HalifaxNSCA',
+                'id' => 'HPX_10/16-20/2012_Any_HalifaxNSCA',
                 'displayName' => 'HPX any day.'),
             'allDays' => array(
                 'date' => '2012-10-20 23:00:00.0',
-                'id' => 'HPX_10/16-20/2012_HalifaxNSCA',
+                'id' => 'HPX_10/16-20/2012_Every_HalifaxNSCA',
                 'displayName' => 'HPX every day.'));
 
         // Only include the games that are in the future
@@ -373,11 +373,11 @@ class specialActions extends sfActions
                 'displayName' => 'Harvest 10/13'),
             'anyDay' => array(
                 'date' => '2012-10-20 23:00:00.0',
-                'id' => 'Harvest_10/11-13/2012_MulberryMountainAR',
+                'id' => 'Harvest_10/11-13/2012_Any_MulberryMountainAR',
                 'displayName' => 'Harvest any day.'),
             'allDays' => array(
                 'date' => '2012-10-20 23:00:00.0',
-                'id' => 'Harvest_10/11-13/2012_MulberryMountainAR',
+                'id' => 'Harvest_10/11-13/2012_Every_MulberryMountainAR',
                 'displayName' => 'Harvest every day.'));
 
         // Only include the games that are in the future
