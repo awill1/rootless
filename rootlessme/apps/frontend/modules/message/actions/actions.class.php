@@ -197,6 +197,12 @@ class messageActions extends sfActions
                     // Add the recipient to the added recipient list to
                     // prevent duplicate messages
                     $addedRecipientIds[] = $recipientId;
+                    
+                    // Send a notification to the recipient
+                    $recipientPerson = Doctrine_Core::getTable('People')->getPersonWithProfile($recipientId);
+                    $authorPerson = $message->getPeople();
+                    $notification = new newMessageNotification($message, $recipientPerson, $authorPerson);
+                    $notification->sendNotifications();
                 }
             }
             return $message;
