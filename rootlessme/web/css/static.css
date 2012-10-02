@@ -118,6 +118,14 @@ html, body {
     margin-bottom: 6px;
 }
 
+#harvestBox{
+    background-color: #FFEB9C;
+    color: #000000;
+    margin: 4px;
+    padding: 4px;
+    margin-bottom: 6px;
+}
+
 #hpxBox{
     background-color: #D81F43;
     color: #FFFFFF;
