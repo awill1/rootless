@@ -6,34 +6,25 @@
  *
  * @author awilliams
  */
-abstract class userNotification {
-    /**
-     * The person to sent the notification to.
-     * @var People The person to send the notification to. 
-     */
-    protected $person;
-    
+abstract class userNotification 
+{    
     /**
      * Sends notifications to a person
-     * @param People $person The person
      */
-    public function sendNotifications($person)
+    public function sendNotifications()
     {
-        $this->person = $person;
-        
         // Get the notification settings for the user for this notification
         // Fix this. Wants email should be false and it should be retrieved 
         // from the notification settings
         $wantsEmail = true;
         $wantsSms = false;
         $slug = $this->getNotificationSlug();
-        $notificationSetting = Doctrine_Core::getTable('NotificationSettings')->getNotificationSettingForPerson($this->person->getPersonId(), $slug);
+        $notificationSetting = Doctrine_Core::getTable('NotificationSettings')->getNotificationSettingForPerson($this->getSubscriber()->getPersonId(), $slug);
         
         if ($notificationSetting)
         {
             $wantsEmail = $notificationSetting->getWantsEmail();
         }
-        
         
         // Send email notification if desirend
         if ($wantsEmail)
@@ -60,9 +51,15 @@ abstract class userNotification {
         EmailHelpers::sendEmail($emailPartials, 
                                 $this->getEmailPartialParameters(), 
                                 $mailFrom, 
-                                $this->person->getSfGuardUser()->getEmailAddress(), 
+                                $this->getSubscriber()->getSfGuardUser()->getEmailAddress(), 
                                 $this->getEmailSubject());
     }
+    
+    
+    /**
+     * Gets the subscriber of the notification
+     */
+    abstract protected function getSubscriber();
     
     /**
      * Gets the notification slug

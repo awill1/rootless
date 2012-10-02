@@ -1,6 +1,8 @@
-Hi <?php echo $reader->getFirstName(); ?>,
+<?php $subscriberProfile = $subscriber->getProfiles();
+      $otherUserProfile = $otherUser->getProfiles();
+?>Hi <?php echo $subscriberProfile->getFirstName(); ?>,
 
-<?php echo $otherUser->getFullName(); ?> has accepted the terms from <?php echo $seat->getRoutes()->getOriginString(); ?> to <?php echo $seat->getRoutes()->getDestinationString(); ?> on <?php echo $seat->getPickupDate(); ?> at <?php echo $seat->getPickupTime(); ?>!
+<?php echo $otherUserProfile->getFullName(); ?> has accepted the terms from <?php echo $seat->getRoutes()->getOriginString(); ?> to <?php echo $seat->getRoutes()->getDestinationString(); ?> on <?php echo $seat->getPickupDate(); ?> at <?php echo $seat->getPickupTime(); ?>!
 
 You can view the terms at %LINK%
 

@@ -18,30 +18,38 @@ class seatAcceptNotification extends userNotification
     protected $seat;
     
     /**
-     * The person's profile who will receive the notification
-     * @var Profiles The person's profile who will receive the notification
+     * The person's profile who is subscribed to the notification
+     * @var People The person's profile who will receive the notification
      */
-    protected $reader;
+    protected $subscriber;
     
     /**
      * The person who accepted the seat.
-     * @var Profiles The person who accepted the seat.
+     * @var People The person who accepted the seat.
      */
     protected $otherUser;
     
     /**
      * Creates a new instance of the seatAcceptNotification.
-     * @param Seats $seat
-     * @param Profiles $reader
-     * @param Profiles $otherUser
+     * @param Seats $seat The seat that was changed
+     * @param Profiles $subscriber The user who is subscribed to the notification
+     * @param Profiles $otherUser The other user who took action on the seat
      */
-    public function __construct($seat, $reader, $otherUser) {
+    public function __construct($seat, $subscriber, $otherUser) {
         $this->seat = $seat;
-        $this->reader = $reader;
+        $this->subscriber = $subscriber;
         $this->otherUser = $otherUser;
     }
     
     /**
+     * Gets the person subscribed to this notification
+     * @return People The subscriber
+     */
+    protected function getSubscriber() {
+        return $this->subscriber;
+    }
+
+        /**
      * Gets the notification slug
      * @return String The notification slug
      */
@@ -74,7 +82,7 @@ class seatAcceptNotification extends userNotification
     protected function getEmailPartialParameters()
     {
         return array('seat' =>  $this->seat,
-                     'reader' => $this->reader,
+                     'subscriber' => $this->subscriber,
                      'otherUser' => $this->otherUser);
     }
 
@@ -84,7 +92,7 @@ class seatAcceptNotification extends userNotification
      */
     protected function getEmailSubject()
     {
-        return 'Rootless seat accepted by '.$this->otherUser->getFullName();
+        return 'Seat terms accepted by '.$this->otherUser->getProfiles()->getFullName();
     }
 }
 

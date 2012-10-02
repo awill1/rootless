@@ -239,20 +239,20 @@ class seatActions extends sfActions
                 
                 // Send a notification to the other user
                 $userIsDriver = $seat->getCarpools()->getDriverId() == $userId;
-                $userProfile = $this->getUser()->getGuardUser()->getPeople()->getProfiles();
-                $otherProfile = NULL;
+                $userPerson = $this->getUser()->getGuardUser()->getPeople();
+                $otherPerson = NULL;
                 if ($userIsDriver)
                 {
-                    $otherProfile = $seat->getPassengers()->getPeople()->getProfiles();
+                    $otherPerson = $seat->getPassengers()->getPeople();
                 }
                 else
                 {
-                    $otherProfile = $seat->getCarpools()->getPeople()->getProfiles();
+                    $otherPerson = $seat->getCarpools()->getPeople();
                 }
                 
-                // Send out notifications
-                $notification = new seatAcceptNotification($seat, $otherProfile, $userProfile);
-                $notification->sendNotifications($this->getUser()->getGuardUser()->getPeople());
+                // Send out notifications to the other person
+                $notification = new seatAcceptNotification($updatedSeat, $otherPerson, $userPerson);
+                $notification->sendNotifications();
 
                 // If the request came from AJAX render the seat negotiation history
                 // partial with the updated seat information
