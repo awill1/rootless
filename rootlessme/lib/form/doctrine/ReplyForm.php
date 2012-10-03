@@ -27,9 +27,10 @@ class ReplyForm extends MessagesForm
 
       // Add the conversation widget as a hidden text field
       $this->setWidget('conversation_id', new sfWidgetFormInputHidden());
+      // Hides the subject field because it's a reply form.
+      $this->setWidget('subject', new sfWidgetFormInputHidden());
 
       // Set up the new validators
-//      $this->setValidator('to', new sfValidatorString(array('required' => true)));
       $this->setValidator('to', new sfValidatorDoctrineChoice(array(
           'model' => $this->getRelatedModelName('People'),
           'multiple' => true
@@ -40,7 +41,6 @@ class ReplyForm extends MessagesForm
       unset($this['updated_at']);
       $this->useFields(array(
           'conversation_id',
-          'to',
           'subject',
           'body' ));
   }
