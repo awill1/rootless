@@ -81,15 +81,17 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
            mapTypeId: google.maps.MapTypeId.ROADMAP
        };
         
+       	
         self._.MapObject = new google.maps.Map(document.getElementById(self._.mapId),
             myOptions);
         self._.directionsDisplay.setMap(self._.MapObject);
+        
         
         // Setup the origin and destination marker, the maps are null
         // because the markers are hidden
         self._.mapItem.marker.originMarker = self.initializeMarker("Origin");
         self._.mapItem.marker.destinationMarker = self.initializeMarker("Destination");
-        console.log(this);
+
 		// Decode the polyline for the route
         self._.mapItem.polyline.routePolyline = self.displayEncodedPolyline(self._.MapObject, self._.mapItem.polyline.encodePolyline, true);
         
@@ -108,6 +110,53 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         self.strangeLat = googleTestString.substring(2,4);	
         self.strangeLon = googleTestString.substring(10,12);
         
+         // AJAX form submit button handlers
+    $('#seatNegotiationForm, #seatAcceptForm, #seatDeclineForm').submit(function(e) {
+        e.preventDefault();
+        
+        $(this).closest('#seatDetailsBlock').block({ 
+            message: '<img src="/images/ajax-loader.gif" alt="Submitting..." />'
+        }); 
+        var curId = $(e.target).attr('id');
+
+		var picLoc ='';
+        if (curId == 'seatNegotiationForm') {
+            picLoc = 'pending';
+        } else if (curId == 'seatAcceptForm' && ($('.selectedUser').parent().hasClass('pending') || $('.selectedUser').parent().hasClass('declined'))) {
+            picLoc = 'accepted';
+            $(e.target).fadeOut();
+            
+        } else if (curId == 'seatDeclineForm' && ($('.selectedUser').parent().hasClass('pending') || $('.selectedUser').parent().hasClass('accepted'))){
+            picLoc = 'declined';
+            $(e.target).fadeOut();
+        } else {
+            picLoc = 'pending';
+        }
+        
+        // Show the spinner
+        $('#negotiationSpinner').show();
+        $('.selectedUser').slideUp(function(){
+            var parentCheck = $(this).parent();
+            
+            if (parentCheck.children.length == 1) {
+              $(parentCheck).find('.none').show();
+            } else {
+              $(parentCheck).find('.none').hide();
+            }
+            
+            $(this).slideDown();
+            $('.' + picLoc).find('.none').hide();
+            $('.' + picLoc).append($(this));
+        });
+       
+        // Set the form submit flag
+        
+        self._.formBlock.isFormSubmitPending = true;
+
+        // Disable the default submission. We will let AJAX do it
+        self.MaybeSubmitForm($(e.currentTarget));
+
+    });
         
         // When a user clicks on the riderListItem load details about
         // the seat request
@@ -165,6 +214,22 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         map.clearDestinationDecodePendingFlag();
     },
     
+    formAjaxOptions : {
+	    // The resulting html should be sent to the test div
+	    target: '#temporaryNewSeatHolder',
+	    // The callback function when the form was successfully submitted
+	    success: function() {
+	        // Move the resulting html from the temporaryNewSeatHolder
+	        // to the actual seat history list.
+	        $('#seatNegotiationHistoryList').prepend($('#temporaryNewSeatHolder').contents());
+	
+	        $('#seatDetailsBlock').unblock();
+	
+	        // Hide the spinner
+	        $("#negotiationSpinner").hide();
+	    }
+	},
+    
     loadSeatDetails : function() {
     	if($('.selectedUser').length > 0) {
             $('.selectedUser').removeClass('selectedUser');
@@ -189,11 +254,19 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         return false;
     },
     
-	MaybeSubmitForm : function() {            
+    clearRouteId : function() {
+        // Clear the route id
+        $('#seats_route_route_id').val('');;
+    },
+    
+	MaybeSubmitForm : function(tar) { 
+	   var map = Rootless.Map.Negotiation.getInstance();           
        // Check to make sure nothing is blocking submitting the form
-       if (this.canSubmitForm() && this._.formBlock.isFormSubmitPending) {
-            $('.newRideForm').submit();
-        }
+       if (map.canSubmitForm() && map._.formBlock.isFormSubmitPending && tar.attr('id') == 'seatNegotiationForm') {
+           $('#seatNegotiationForm').ajaxSubmit(map.formAjaxOptions);
+       } else if (map.canSubmitForm() && map._.formBlock.isFormSubmitPending && (tar.attr('id') == 'seatDeclineForm' || tar.attr('id') == 'seatAcceptForm')) {
+       	   tar.ajaxSubmit(map.formAjaxOptions);
+       }
      }
     
 });

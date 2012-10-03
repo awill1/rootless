@@ -34,7 +34,7 @@ $(document).ready(function()
         var curId = $(e.target).attr('id');
 
        
-        var picLoc ='';
+       /* var picLoc ='';
         if (curId == 'seatNegotiationForm') {
             picLoc = 'pending';
         } else if (curId == 'seatAcceptForm' && ($('.selectedUser').parent().hasClass('pending') || $('.selectedUser').parent().hasClass('declined'))) {
@@ -47,11 +47,11 @@ $(document).ready(function()
         } else {
             picLoc = 'pending';
         }
-        
+        */
        
         // Show the spinner
         $('#negotiationSpinner').show();
-        $('.selectedUser').slideUp(function(){
+       /* $('.selectedUser').slideUp(function(){
             var parentCheck = $(this).parent();
             
             if (parentCheck.children.length == 1) {
@@ -64,7 +64,7 @@ $(document).ready(function()
             $('.' + picLoc).find('.none').hide();
             $('.' + picLoc).append($(this));
         });
-     
+     */
         // Set the form submit flag
         
         isFormSubmitPending = true;
@@ -78,9 +78,6 @@ $(document).ready(function()
     $(originTextBox).change(clearRouteId);
     $(destinationTextBox).change(clearRouteId);
 
-    // Change all of the appropriate textboxes to date and time pickers
-    $( ".datePicker" ).datepicker();
-    $( ".timePicker" ).timepicker({ampm: true});
 });
 
 function clearRouteId()

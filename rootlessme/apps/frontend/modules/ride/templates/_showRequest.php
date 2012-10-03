@@ -18,7 +18,6 @@
         <script type="text/javascript" src="/js/Rootless.js"></script>
         <script type="text/javascript" src="/js/Map.js"></script>
         <script type="text/javascript" src="/js/map/Negotiation.js"></script>
-        <script type="text/javascript" src="/js/seatNegotiation.js"></script>
         <script type="text/javascript">
 			$(document).ready(function(){
 				 // Change all of the appropriate textboxes to date and time pickers
