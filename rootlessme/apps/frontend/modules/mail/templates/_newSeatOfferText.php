@@ -4,7 +4,7 @@
 
 <?php echo $otherUserProfile->getFullName(); ?> has offered you a ride! The offer is from <?php echo $seat->getRoutes()->getOriginString(); ?> to <?php echo $seat->getRoutes()->getDestinationString(); ?> on <?php echo $seat->getPickupDate(); ?> at <?php echo $seat->getPickupTime(); ?>!
 
-You can view the terms at %LINK%
+You can view the terms at <?php echo url_for('ride_show', array('ride_id' => $rideId, 'ride_type' => $rideType), true).'#seat-'.$seat->getSeatId(); ?>
 
 Please respond to the offer promptly to accept, decline, or change the terms.
 

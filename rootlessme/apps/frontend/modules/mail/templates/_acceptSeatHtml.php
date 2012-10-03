@@ -4,7 +4,7 @@
 
 <p><?php echo $otherUserProfile->getFullName(); ?> has accepted the terms from <?php echo $seat->getRoutes()->getOriginString(); ?> to <?php echo $seat->getRoutes()->getDestinationString(); ?> on <?php echo $seat->getPickupDate(); ?> at <?php echo $seat->getPickupTime(); ?>!</p>
 
-<p>You can view the terms at <a href="%LINK%">%LINK%</a></p>
+<p>You can view the terms at <a href="<?php echo url_for('ride_show', array('ride_id' => $rideId, 'ride_type' => $rideType), true).'#seat-'.$seat->getSeatId(); ?>"><?php echo url_for('ride_show', array('ride_id' => $rideId, 'ride_type' => $rideType), true).'#seat-'.$seat->getSeatId(); ?></a></p>
 
 <p>Now that your terms have been accepted, what next?</p>
 

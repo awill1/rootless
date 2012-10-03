@@ -81,9 +81,15 @@ class seatDeclineNotification extends userNotification
      */
     protected function getEmailPartialParameters()
     {
+        $subscriberId = $this->subscriber->getPersonId();
+        $ride = $this->seat->getMyRide($subscriberId);
+        $rideId = $ride->getRideId();
+        $rideType = $ride->getRideType();
         return array('seat' =>  $this->seat,
                      'subscriber' => $this->subscriber,
-                     'otherUser' => $this->otherUser);
+                     'otherUser' => $this->otherUser,
+                     'rideId' => $rideId,
+                     'rideType' => $rideType);
     }
 
     /**
