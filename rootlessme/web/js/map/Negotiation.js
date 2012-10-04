@@ -76,6 +76,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
        
        var latlng = new google.maps.LatLng(self._.CONST.MAP_DEFAULT_LATITUDE, self._.CONST.MAP_DEFAULT_LONGITUDE);
        var myOptions = {
+       	   scrollwheel: false,
            zoom: self._.CONST.MAP_DEFAULT_ZOOM,
            center: latlng,
            mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -94,6 +95,9 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 
 		// Decode the polyline for the route
         self._.mapItem.polyline.routePolyline = self.displayEncodedPolyline(self._.MapObject, self._.mapItem.polyline.encodePolyline, true);
+        
+        //center the map on the route
+        self.centerOnRoute();
         
         // Route preview changes whenever the user finished editing the
         // origin or destination textboxes

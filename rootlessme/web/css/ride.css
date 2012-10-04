@@ -159,7 +159,7 @@ tbody {
 #mainRideSummary {
     float: left;
     width: 300px;
-    margin: 0px 0px 0px 0px;
+    margin: 0px 0px 10px 0px;
 }
 
 #mainRideInformation {
@@ -170,10 +170,7 @@ tbody {
     
 }
 
-#mainRidePeople {
-    
-
-    
+#mainRidePeople {  
     float: left;
     
 }
@@ -198,32 +195,42 @@ tbody {
     width: 400px;
     height: 230px;
     float: right;
-    /* Need to lower the z-index so the javascript menus appear over the map.
-       Commented out because it disabled mouse control*/
-/*    z-index: -1;*/
-/*    margin-top: 50px;
-    margin-bottom: 50px;*/
 }
 
 
 
 #rideProfileMap {
-    width: 400px;
-    height: 230px;
-    float: right;
-    /* Need to lower the z-index so the javascript menus appear over the map. 
-       Commented out because it disabled mouse control*/
-/*    z-index: -1;*/
+    width: 100%;
+    height: 300px;
+    float: left;
     margin-bottom: 20px;
+    border: 1px solid #ccc;
 }
 
 #informationContainer {
-    clear: right;
-    width: 280px;
+    float: left;
+	background: #F4F4F4;
+	width: 100.4%;
+}
+
+#mainRidePeople .profileImageLink {
+	display: block;
+	margin: 22px;
 }
 
 .postedByStyles {
-    margin: 0px 0px 15px 0px;
+    margin: 0px;
+    padding: 8px 0px 8px 10px;
+    width: auto;
+    font-weight: bold;
+    font-size: 14px;
+    background: #393C39;
+    color: #fff;
+}
+
+.postedByStyles span{
+	color: #119D49;
+	font-style: italic;
 }
 
 .driverPicture {
@@ -551,8 +558,10 @@ ul {
 }
 
 .addThisToolBar {
-    clear: left;
-    margin: 0px 0px 10px 0px;
+    float: left;
+    margin: 6px 0px 10px 14px;
+    width: 150px;
+    height: 16px;
 }
 
 #seatNegotiationForm input#negotiateButton {
@@ -576,8 +585,10 @@ label span.dollar-sign {
 }
 
 .rideActionButtonsList {
-    margin: 0px;
-    padding: 0px;
+	margin: -5px 0px 0px -2px;
+	padding: 0px;
+	float: left;
+	clear: both;
 }
 
 .rideActionButtonsListItem {

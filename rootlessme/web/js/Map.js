@@ -75,6 +75,7 @@ Rootless.Map = Class.extend({
        
        var latlng = new google.maps.LatLng(self._.CONST.MAP_DEFAULT_LATITUDE, self._.CONST.MAP_DEFAULT_LONGITUDE);
        var myOptions = {
+       	   scrollwheel: false,
            zoom: self._.CONST.MAP_DEFAULT_ZOOM,
            center: latlng,
            mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -376,6 +377,20 @@ Rootless.Map = Class.extend({
         // Finally, clear the directions pending flag to allow form submission
         self.clearDirectionsPendingFlag();
       });
+    },
+    
+    /**
+     * Centers the map on the Route
+     */
+    centerOnRoute : function() {
+    	var self = this;
+    	var tempLocHolder = self._.mapItem.polyline.routePolyline.getPath().b;
+        var bounds = new google.maps.LatLngBounds();
+        for (var i = 0; i < tempLocHolder.length; i++) {
+        	bounds.extend(tempLocHolder[i]);
+        }
+        
+        self._.MapObject.fitBounds(bounds);
     },
     
     /**

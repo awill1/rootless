@@ -69,19 +69,7 @@
 
         </h1>
         <span class="tripDistance">One Way Trip</span>
-        <br />
-        <span class="seatsAvailable">
-            <?php echo $passenger->getPassengerCount() ?>
-            <?php echo ($passenger->getPassengerCount() == 1 ? "seat" : "seats") ?>
-            needed
-        </span>
-        <br />
-        <span class="tripValue">Willing to pay: $<?php echo $passenger->getAskingPrice() ?> per person</span>
-        <!-- TODO: Add smoking -->
-        <p id="mainRideInformation">
-            <?php echo nl2br($passenger->getDescription()) ?>
-        </p>
-        <div class="addThisToolBar">
+         <div class="addThisToolBar">
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style ">
             <a class="addthis_button_preferred_1"></a>
@@ -95,6 +83,19 @@
             <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fcfd8880ba6587c"></script>
             <!-- AddThis Button END -->
         </div>
+       <!-- <br />
+        <span class="seatsAvailable">
+            <?php //echo $passenger->getPassengerCount() ?>
+            <?php //echo ($passenger->getPassengerCount() == 1 ? "seat" : "seats") ?>
+            needed
+        </span>
+        <br />
+        <span class="tripValue">Willing to pay: $<?php echo $passenger->getAskingPrice() ?> per person</span>
+        <!-- TODO: Add smoking 
+        <p id="mainRideInformation">
+            <?php echo nl2br($passenger->getDescription()) ?>
+        </p>-->
+    
         <?php if ($isMyPost): ?>
             <div class="rideActionButtons">
                 <ul class="rideActionButtonsList">
@@ -112,9 +113,9 @@
 
     <div id="informationContainer">
         <div id="mainRidePeople">
-            <h3 class="postedByStyles">Posted By: <a class="personLink" href="<?php echo url_for("profile_show_user", $rider)  ?>"><?php echo $rider->getFullName() ?></a></h3>
-            <a href="<?php echo url_for("profile_show_user", $rider)  ?>">
+            <a class="profileImageLink" href="<?php echo url_for("profile_show_user", $rider)  ?>">
                 <img class="driverPicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $rider->getPictureUrlLarge() ?>" alt="<?php echo $rider->getFullName() ?>" />
+            	<h3 class="postedByStyles">Posted By: <span class="green"><?php echo $rider->getFullName() ?></span></h3>
             </a>
             <div class="riderListBlock">
             <h3>Accepted</h3>
@@ -165,8 +166,7 @@
                 <?php endif; ?>
             </div>
         </div>
-    </div>
-    <div id="mainRideDetails">
+        <div id="mainRideDetails">
         <?php if ($isMyPost) :?>
             <div class="riderListBlock">
                 <h3>Pending</h3>
@@ -212,13 +212,14 @@
                 to request a seat.
             </div>
         <?php endif; ?>
-        <div id="seatSpinnerContainer" style="display: none;">
-            <img id="negotiationSpinner" alt="Loading..." src="/images/ajax-loader.gif" />
-        </div>
-        <img id="loader" alt="Loading spinner" src="/images/ajax-loader.gif" style="vertical-align: middle; display: none" />
-        <div id ="seatNegotiationBlock">
-
-        </div>
+	        <div id="seatSpinnerContainer" style="display: none;">
+	            <img id="negotiationSpinner" alt="Loading..." src="/images/ajax-loader.gif" />
+	        </div>
+	        <img id="loader" alt="Loading spinner" src="/images/ajax-loader.gif" style="vertical-align: middle; display: none" />
+	        <div id ="seatNegotiationBlock">
+	
+	        </div>
+    	</div>
     </div>
 
 <?php endif; ?>

@@ -29,6 +29,10 @@ a {
     clear:both;
 }
 
+.green {
+	color: #119D49;
+}
+
 .composeNew textarea {
     font-family: Arial, Geneva, sans-serif;
     font-size: 100%;
