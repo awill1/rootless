@@ -40,6 +40,27 @@ class ProfilesTable extends Doctrine_Table
 
         return $q->execute();
     }
+        
+    /**
+     * Gets a list of profiles with pictures set
+     * @param type $limit The limit for the number of results returned. Null,
+     * if no limit is desired. Use a number if a limit is desired.
+     * @return Doctrine_Table The profiles with pictures
+     */
+    public function getProfilesWithPictures($limit = null)
+    {
+        $query = Doctrine_Core::getTable('Profiles')
+            ->createQuery('a');
+        $query = $query->addWhere('a.picture_url IS NOT NULL');
+        
+        // Add a limit if required
+        if (isset($limit) && is_numeric($limit))
+        {
+            $query = $query->limit($limit);
+        }
+        
+        return $query->execute();
+    }
 
     /**
      * Gets the profils of mutual friends between two people

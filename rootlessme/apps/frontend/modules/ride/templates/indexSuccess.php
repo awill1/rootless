@@ -16,7 +16,6 @@
 
     <script type="text/javascript">   
       $(document).ready(function(){
-        
           
         $( ".datePicker" ).datepicker();  
         

@@ -357,6 +357,10 @@ buckeyes:
 patriots:
   url: /patriots
   param: { module: special, action: patriots }
+
+werkout:
+  url: /werkout
+  param: { module: special, action: werkout }
   
 special_event_register:
   url: /specialEvent/register
