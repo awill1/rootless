@@ -71,9 +71,9 @@
                 Voodoo Music + Art Experience
             </div>
         </a>
-        <a href="<?php echo url_for('werkout') ?>" class="featureLink">
-            <div id="werkOutBox">
-                The Werk Out Music & Arts Festival
+        <a href="<?php echo url_for('harvestfestival') ?>" class="featureLink">
+            <div id="harvestBox">
+                Harvest Music Festival
             </div>
         </a>
     </div>

@@ -11,7 +11,16 @@
     $("#backgroundImage").attr("src", "/images/<?php echo $backgroundImage; ?>" );
 });
 </script>
-
+<!-- facebook like button script -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!-- end facebook like button script -->
 <style>
     .home {
         background-image: url("../images/<?php echo $backgroundImage; ?>");
@@ -63,7 +72,9 @@
         </form>    
         <div id="formConfirmations">
             <div class="boxCopy">
-                Thanks for ridesharing with Rootless! Your potential ride matches will be emailed to you as they become available. 
+                <div class="formCompleteMessage">
+                    Yay! Thanks for ridesharing with Rootless! Your potential ride matches will be emailed to you as they become available. 
+                </div>
                 <br /><br />
                 Share this with your friends!
                 <br /><br />
@@ -81,6 +92,8 @@
                     <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fcfd8880ba6587c"></script>
                     <!-- AddThis Button END -->
                 </div>
+                
+                
             </div>
         </div>
         
@@ -91,5 +104,9 @@
     <div id="socialLinks">
         <a href="http://www.twitter.com/rootlessme"><img src="/images/twitter.png" width="30" height="30"/></a>
         <a href="http://www.facebook.com/rootlessme"><img src="/images/f_logo.png" width="30" height="30"/></a>
+        <br />
+        <!-- facebook like button -->
+               <div class="fb-like" data-href="http://www.facebook.com/rootlessme" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="arial"></div>
+        <!-- end facebook like button -->
     </div>
 </div>

@@ -252,22 +252,32 @@ class specialActions extends sfActions
         $fullSchedule = array(
             'day1' => array(
                 'date' => '2012-10-26 23:00:00.0',
-                'id' => 'Voodoo_10/27/2012_CityParkNewOrleansLA',
+                'id' => 'Voodoo_10/26/2012_CityParkNewOrleansLA',
                 'displayName' => 'Voodoo 10/26'),
             'day2' => array(
                 'date' => '2012-10-27 23:00:00.0',
-                'id' => 'Voodoo_10/28/2012_CityParkNewOrleansLA',
+                'id' => 'Voodoo_10/27/2012_CityParkNewOrleansLA',
                 'displayName' => 'Voodoo 10/27'),
             'day3' => array(
                 'date' => '2012-10-28 23:00:00.0',
-                'id' => 'Voodoo_10/29/2012_CityParkNewOrleansLA',
-                'displayName' => 'Voodoo 10/28'));
+                'id' => 'Voodoo_10/28/2012_CityParkNewOrleansLA',
+                'displayName' => 'Voodoo 10/28'),
+            'anyDay' => array(
+                'date' => '2012-10-28 23:00:00.0',
+                'id' => 'Voodoo_10/26-28/2012_Any_CityParkNewOrleansLA',
+                'displayName' => 'Voodoo any day.'),
+            'allDays' => array(
+                'date' => '2012-10-28 23:00:00.0',
+                'id' => 'Voodoo_10/26-28/2012_Every_CityParkNewOrleansLA',
+                'displayName' => 'Voodoo every day.'));
+            
+            
 
         // Only include the games that are in the future
         $this->games = $this->getFutureGames($fullSchedule);
         
         //Set background image
-        $this->backgroundImage = "voodooBackground.jpg";
+        $this->backgroundImage = "voodooBackground2.jpg";
         
         // Use the festival template
         $this->setTemplate('festival');
@@ -311,16 +321,70 @@ class specialActions extends sfActions
                 'date' => '2012-10-20 23:00:00.0',
                 'id' => 'HPX_10/20/2012_HalifaxNSCA',
                 'displayName' => 'HPX 10/20'),
+            'anyDay' => array(
+                'date' => '2012-10-20 23:00:00.0',
+                'id' => 'HPX_10/16-20/2012_Any_HalifaxNSCA',
+                'displayName' => 'HPX any day.'),
             'allDays' => array(
                 'date' => '2012-10-20 23:00:00.0',
-                'id' => 'HPX_10/16-20/2012_HalifaxNSCA',
-                'displayName' => 'HPX New Ride Every Day'));
+                'id' => 'HPX_10/16-20/2012_Every_HalifaxNSCA',
+                'displayName' => 'HPX every day.'));
 
         // Only include the games that are in the future
         $this->games = $this->getFutureGames($fullSchedule);
         
         //Set background image
         $this->backgroundImage = "hpxBackground2.jpg";
+        
+        // Use the festival template
+        $this->setTemplate('festival');
+    }
+    
+    
+    /**
+     * Executes Halifax Pop action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeHarvestMusicFestival(sfWebRequest $request)
+    {
+        $this->festivalName = 'Harvest Music Festival';
+        
+        $this->peopleName = 'festival goers';
+        $this->title = 'Rootless - Ride with other festival goers to Yonder Mountain String Band\'s Harvest Music Festival 2012';
+        $this->destination = '23978 Arkansas 23 Ozark National Forest, Ozark, AR 72949';
+        $this->headlineColor = '#ffffff';
+        $this->fontSize = '352%';
+        $this->textShadow = '0 0 15px rgba(0, 0, 0, 0.8), 0 -1px 1px rgba(0, 0, 0, 0.6)';
+        
+        // Build a dynamic schedule. Eventually this will go into a separate file.
+        $fullSchedule = array(
+            'day1' => array(
+                'date' => '2012-10-11 23:00:00.0',
+                'id' => 'Harvest_10/11/2012_MulberryMountainAR',
+                'displayName' => 'Harvest 10/11'),
+            'day2' => array(
+                'date' => '2012-10-12 23:00:00.0',
+                'id' => 'Harvest_10/12/2012_MulberryMountainAR',
+                'displayName' => 'Harvest 10/12'),
+            'day3' => array(
+                'date' => '2012-10-13 23:00:00.0',
+                'id' => 'Harvest_10/13/2012_MulberryMountainAR',
+                'displayName' => 'Harvest 10/13'),
+            'anyDay' => array(
+                'date' => '2012-10-20 23:00:00.0',
+                'id' => 'Harvest_10/11-13/2012_Any_MulberryMountainAR',
+                'displayName' => 'Harvest any day.'),
+            'allDays' => array(
+                'date' => '2012-10-20 23:00:00.0',
+                'id' => 'Harvest_10/11-13/2012_Every_MulberryMountainAR',
+                'displayName' => 'Harvest every day.'));
+
+        // Only include the games that are in the future
+        $this->games = $this->getFutureGames($fullSchedule);
+        
+        //Set background image
+        $this->backgroundImage = "harvestBackground.jpg";
         
         // Use the festival template
         $this->setTemplate('festival');
@@ -368,6 +432,8 @@ class specialActions extends sfActions
         // Use the festival template
         $this->setTemplate('festival');
     }
+    
+    
     
     /**
      * Executes Better World By Design action
@@ -459,6 +525,7 @@ class specialActions extends sfActions
             }
         }
         
+        //check to see if administration notifications are desried
         if (sfConfig::get('app_send_administration_notifications'))
         {
             // Send the notification using Amazon SNS  
@@ -556,10 +623,11 @@ The Rootless Team
                     $formattedMessage, 
                     array('Subject' => $formattedSubject));
 
-            // Return nothing to the page 
-            $this->setLayout(sfView::NONE);
-            return $this->renderText("{ success: true }");
+            
         }
+      // Return nothing to the page 
+      $this->setLayout(sfView::NONE);
+      return $this->renderText("{ success: true }");
     }
     
     /**
