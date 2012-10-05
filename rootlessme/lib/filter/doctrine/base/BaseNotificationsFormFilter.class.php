@@ -13,17 +13,19 @@ abstract class BaseNotificationsFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'display_text'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'slug'            => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'created_at'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
-      'updated_at'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'display_text'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'slug'                => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'default_wants_email' => new sfWidgetFormFilterInput(),
+      'created_at'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'updated_at'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
     ));
 
     $this->setValidators(array(
-      'display_text'    => new sfValidatorPass(array('required' => false)),
-      'slug'            => new sfValidatorPass(array('required' => false)),
-      'created_at'      => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
-      'updated_at'      => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'display_text'        => new sfValidatorPass(array('required' => false)),
+      'slug'                => new sfValidatorPass(array('required' => false)),
+      'default_wants_email' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'created_at'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'updated_at'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
     ));
 
     $this->widgetSchema->setNameFormat('notifications_filters[%s]');
@@ -43,11 +45,12 @@ abstract class BaseNotificationsFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'notification_id' => 'Number',
-      'display_text'    => 'Text',
-      'slug'            => 'Text',
-      'created_at'      => 'Date',
-      'updated_at'      => 'Date',
+      'notification_id'     => 'Number',
+      'display_text'        => 'Text',
+      'slug'                => 'Text',
+      'default_wants_email' => 'Number',
+      'created_at'          => 'Date',
+      'updated_at'          => 'Date',
     );
   }
 }

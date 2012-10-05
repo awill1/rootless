@@ -10,6 +10,7 @@ Doctrine_Manager::getInstance()->bindComponent('Notifications', 'doctrine');
  * @property integer $notification_id
  * @property string $display_text
  * @property string $slug
+ * @property integer $default_wants_email
  * @property timestamp $created_at
  * @property timestamp $updated_at
  * @property Doctrine_Collection $NotificationSettings
@@ -17,12 +18,14 @@ Doctrine_Manager::getInstance()->bindComponent('Notifications', 'doctrine');
  * @method integer             getNotificationId()       Returns the current record's "notification_id" value
  * @method string              getDisplayText()          Returns the current record's "display_text" value
  * @method string              getSlug()                 Returns the current record's "slug" value
+ * @method integer             getDefaultWantsEmail()    Returns the current record's "default_wants_email" value
  * @method timestamp           getCreatedAt()            Returns the current record's "created_at" value
  * @method timestamp           getUpdatedAt()            Returns the current record's "updated_at" value
  * @method Doctrine_Collection getNotificationSettings() Returns the current record's "NotificationSettings" collection
  * @method Notifications       setNotificationId()       Sets the current record's "notification_id" value
  * @method Notifications       setDisplayText()          Sets the current record's "display_text" value
  * @method Notifications       setSlug()                 Sets the current record's "slug" value
+ * @method Notifications       setDefaultWantsEmail()    Sets the current record's "default_wants_email" value
  * @method Notifications       setCreatedAt()            Sets the current record's "created_at" value
  * @method Notifications       setUpdatedAt()            Sets the current record's "updated_at" value
  * @method Notifications       setNotificationSettings() Sets the current record's "NotificationSettings" collection
@@ -62,6 +65,15 @@ abstract class BaseNotifications extends sfDoctrineRecord
              'notnull' => true,
              'autoincrement' => false,
              'length' => 45,
+             ));
+        $this->hasColumn('default_wants_email', 'integer', 1, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
              ));
         $this->hasColumn('created_at', 'timestamp', 25, array(
              'type' => 'timestamp',
