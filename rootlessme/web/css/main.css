@@ -1441,11 +1441,20 @@ textarea {
     outline: none;
     color: #fff;
     padding: 5px 10px;
+    text-align: center;
     cursor: pointer;
 }
 
 .cta:hover, input[type='submit']:hover, input[type='button']:hover {
     background-color: #D05A36;
+}
+
+.big-btn {
+	display: inline-block;
+	margin-right: 10px;
+	font-size: 12px;
+	padding: 9px 0px;
+	width: 85px;	
 }
 
 input[type='submit'].searchSubmit, input[type='submit'].headerSubmit, input[type='submit'].searchSubmit:hover, input[type='submit'].headerSubmit:hover {

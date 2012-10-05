@@ -53,6 +53,7 @@ function initializeGoogleMap(mapId)
     // Google map loading
     var latlng = new google.maps.LatLng(MAP_DEFAULT_LATITUDE, MAP_DEFAULT_LONGITUDE);
     var myOptions = {
+    	scrollwheel: false,
         zoom: MAP_DEFAULT_ZOOM,
         center: latlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP

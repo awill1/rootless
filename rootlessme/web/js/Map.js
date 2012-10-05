@@ -118,6 +118,7 @@ Rootless.Map = Class.extend({
     */
    initializeMarker : function(title){
        var self = this;
+
        // Setup the origin and destination marker, the maps are null
        // because the markers are hidden
        var latlng = new google.maps.LatLng(self._.CONST.MAP_DEFAULT_LATITUDE, self._.CONST.MAP_DEFAULT_LONGITUDE);
@@ -230,7 +231,7 @@ Rootless.Map = Class.extend({
      */
      previewRoute : function(formElem) {
      	var self = this;
-     	
+   
         // Set the pending google map api flags to prevent form submitting
         this._.formBlock.isOriginDecodePending = true;
         this._.formBlock.isDestinationDecodePending = true;
@@ -392,7 +393,7 @@ Rootless.Map = Class.extend({
         
         self._.MapObject.fitBounds(bounds);
     },
-    
+
     /**
      * Verifies a form can be submitted and is not blocked
      * @returns bool True, if the form can be submitted. False, if the form is blocked.

@@ -232,18 +232,7 @@
 
         </h1>
         <span class="tripDistance">One Way Trip</span>
-        <br />
-        <span class="seatsAvailable">
-            <?php echo $carpool->getSeatsAvailable() ?>
-            <?php echo ($carpool->getSeatsAvailable() == 1 ? "seat" : "seats") ?>
-            available
-        </span>
-        <br />
-        <span class="tripValue">Asking price: $<?php echo $carpool->getAskingPrice() ?> per person</span>
-        <!-- TODO: Add smoking -->
-        <p id="mainRideInformation">
-            <?php echo nl2br($carpool->getDescription()) ?>
-        </p>
+      
         <div class="addThisToolBar">
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style ">
@@ -275,117 +264,23 @@
 
     <div id="informationContainer">
         <div id="mainRidePeople">
-            <h3 class="postedByStyles">Posted By: <a class="personLink" href="<?php echo url_for("profile_show_user", $driver)  ?>"><?php echo $driver->getFullName() ?></a></h3>
-            <a href="<?php echo url_for("profile_show_user", $driver)  ?>">
+            <a class="profileImageLink" href="<?php echo url_for("profile_show_user", $driver)  ?>">
                 <img class="driverPicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driver->getPictureUrlLarge() ?>" alt="<?php echo $driver->getFullName() ?>" />
+            	<h3 class="postedByStyles">Posted By: <span class="green"><?php echo $driver->getFullName() ?></span></h3>
             </a>
-            <div class="riderListBlock">
-            <h3>Accepted</h3>
-                <?php if ($acceptedSeats->count() > 0) :?>
-                <ul class="riderList accepted">
-                    <li class='none' style="display:none;">No Accepted seats</li>
-                    <?php foreach ($acceptedSeats as $seat):
-                        $riderProfile = $seat->getPassengers()->getPeople()->getProfiles(); ?>
-                    <li class="riderListItem">
-                        <?php if ($isMyPost || $seat == $mySeat) :?>
-                            <a id="seat-<?php echo $seat->getSeatId(); ?>" class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>">
-                                <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" />
-                            </a>
-                        <?php else :?>
-                            <a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>">
-                                <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" />
-                            </a>
-                        <?php endif; ?>
-                        <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
-                    </li>
-                    <?php endforeach; ?>
-                </ul>
-                <?php else: ?>
-                  <ul class="riderList accepted">
-                    <li class='none'>No Accepted seats</li>
-                  </ul>
-                <?php endif; ?>
-            </div>
-            <div class="riderListBlock">
-                <h3>Declined</h3>
-                <?php if ($declinedSeats->count() > 0) :?>
-                <ul class="riderList declined">
-                    <li class='none' style="display:none;">No Declined seats</li>
-                    <?php foreach ($declinedSeats as $seat):
-                        $riderProfile = $seat->getPassengers()->getPeople()->getProfiles(); ?>
-                        <li class="riderListItem">
-                            <?php if ($isMyPost) :?>
-                                <a  id="seat-<?php echo $seat->getSeatId(); ?>" class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a>
-                            <?php else :?>
-                                <a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a>
-                            <?php endif; ?>
-                             <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden pendingLine routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-                <?php else: ?>
-                  <ul class="riderList declined">
-                    <li class='none'>No Declined seats</li>
-                  </ul>
-                <?php endif; ?>
-            </div>
-        </div>
-    </div>
-    <div id="mainRideDetails">
-        <?php if ($isMyPost) :?>
-            <div class="riderListBlock">
-                <h3>Pending</h3>
-                <?php if ($pendingSeats->count() > 0) :?>
-                <ul class="riderList pending">
-                    <li class='none' style="display:none;">No Pending seats</li>
-                    <?php foreach ($pendingSeats as $seat):
-                          $riderProfile = $seat->getPassengers()->getPeople()->getProfiles(); ?>
-                        <li class="riderListItem">
-                            <?php if ($isMyPost) :?>
-                                <a id="seat-<?php echo $seat->getSeatId(); ?>" class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a>
-                            <?php else :?>
-                                <a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a>
-                            <?php endif; ?>
-                             <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden pendingLine routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-                <?php else: ?>
-                  <ul class="riderList pending">
-                    <li class='none'>No Pending seats</li>
-                  </ul>
-                <?php endif; ?>
-            </div>
-
-        <?php elseif ($mySeat != null): ?>
-            <div class="riderListBlock">
-                <h3>My Seat Request</h3>
-                <ul class="riderList">
-                    <?php $myProfile = $mySeat->getPassengers()->getPeople()->getProfiles(); ?>
-                    <li class="riderListItem">
-                        <a id="mySeat" class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$mySeat->getSeatId()))  ?>">
-                            <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $myProfile->getPictureUrlSmall() ?>" alt="<?php echo $myProfile->getFullName() ?>" />
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        <?php elseif ($myUserId!=null): ?>
-            <?php include_component('seat', 'requestForm', array('ride'=>$carpool)) ?>
-        <?php else: ?>
-            <div>
-                You must 
-                <a href="<?php echo url_for('sf_guard_signin') ?>">login</a> 
-                or <a href="<?php echo url_for('sf_guard_register') ?>">register</a> 
-                to request a seat.
-            </div>
-        <?php endif; ?>
-        <div id="seatSpinnerContainer" style="display: none;">
-            <img id="negotiationSpinner" alt="Loading..." src="/images/ajax-loader.gif" />
-        </div>
-        <img id="loader" alt="Loading spinner" src="/images/ajax-loader.gif" style="vertical-align: middle; display: none" />
-        <div id ="seatNegotiationBlock">
 
         </div>
+        <div id="mainRideDetails">
+        	<h4>Ride Details</h4>
+        	<p><?php echo nl2br($carpool->getDescription()) ?></p>
+        	<p><span>Price:</span> $<?php echo $carpool->getAskingPrice() ?> per seat</p>
+        	<p><span>Number of seats:</span> <?php echo $carpool->getSeatsAvailable() ?></p>
+        	<?php if ($myUserId == null) : ?>
+        		<h5 class="green">Only members can request rides...</h5>
+                <a class="cta big-btn" href="<?php echo url_for('sf_guard_signin') ?>">Log in</a>
+                <a class="cta big-btn" href="<?php echo url_for('sf_guard_register') ?>">Sign up</a>
+        	<?php endif; ?>
+   	 	</div>
     </div>
 
 <?php endif; ?>

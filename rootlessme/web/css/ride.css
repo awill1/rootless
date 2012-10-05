@@ -176,18 +176,35 @@ tbody {
 }
 
 #mainRideDetails {
-    float: right;
-    margin: 0px 0px 0px 0px;
-    width: 400px;
+    float: left;
+	margin: 0px 0px 20px 0px;
+	width: 50%;
     
+}
+
+#mainRideDetails h4, #mainRideDetails p span {
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 0;
+}
+
+#mainRideDetails h5 {
+	font-style: italic;
+	font-size: 14px;
+	margin-bottom: 19px;
+}
+
+#mainRideDetails p {
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
 #mainEventTitle {
     margin: 0px 0px 0px 70px;
+    width: 100%;
 }
 
-.middleRidesFormArea
-{
+.middleRidesFormArea {
     display: inline-block;
 }
 
@@ -196,7 +213,6 @@ tbody {
     height: 230px;
     float: right;
 }
-
 
 
 #rideProfileMap {
@@ -215,7 +231,7 @@ tbody {
 
 #mainRidePeople .profileImageLink {
 	display: block;
-	margin: 22px;
+	margin: 20px;
 }
 
 .postedByStyles {
