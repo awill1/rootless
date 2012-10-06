@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xml:lang="en" lang="en" xmlns:fb="http://ogp.me/ns/fb#">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:fb="http://ogp.me/ns/fb#">
   <head>
     <?php include_http_metas() ?>
     <?php include_metas() ?>
@@ -36,21 +36,8 @@
             test = document.createElement('input');
             if('placeholder' in test) jQuery.support.placeholder = true;
         });
-    
-    //make sure the background image fills the screen
+        
     $(document).ready(function(){
-
-        // change orgin and destination text 
-        $('.home #rideSearchForm label[for="rides_origin"]').html('from');
-        $('.home #rideSearchForm label[for="rides_destination"]').html('to');
-       
-        // Add the background outlines to the text boxes
-        $('.home #rideSearchForm tbody tr input')
-            .wrap('<div class="homeControl" />')
-            .before('<div class="opaqueBg" /><span class="plusSign">+</span>');
-        $('.home #loginFormContainerB tbody tr input[type="text"], .home #loginFormContainerB tbody tr input[type="password"]')
-           .wrap('<div class="homeControl" />')
-           .before('<div class="opaqueBg" />');
      
         // Make Login form submit value = 'Login'
         $('.home #loginFormContainer tfoot input').attr('value', 'Login');
@@ -62,13 +49,7 @@
         // Find ride textbox watermarks
         $('#rides_origin').attr('placeholder','Address, City, State');
         $('#rides_destination').attr('placeholder','Address, City, State');
-    
-        // Register textbox watermarks
-        $('#sf_guard_user_first_name').attr('placeholder','First Name');
-        $('#sf_guard_user_last_name').attr('placeholder','Last Name');
-        $('#sf_guard_user_email_address').attr('placeholder','Email');
-        $('#sf_guard_user_password').attr('placeholder','Password');
-        $('#sf_guard_user_password_again').attr('placeholder','Password Again');
+
        
         // Correct the placeholders on unsupported browsers
         if(!$.support.placeholder) {
@@ -108,34 +89,7 @@
 
     </script>
   </head>
-  <body class="home">
-        <!-- Start Facebook javascript sdk -->
-        <div id="fb-root"></div>
-        <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-            appId      : <?php echo sfConfig::get('app_facebook_app_id') ?>, // App ID
-            channelUrl : '<?php echo public_path(sfConfig::get('app_facebook_channel_path'), true); ?>', // Channel File
-            status     : true, // check login status
-            cookie     : true, // enable cookies to allow the server to access the session
-            xfbml      : true  // parse XFBML
-            });
-
-            // Additional initialization code here
-            initClientFacebook();
-        };
-
-        // Load the SDK Asynchronously
-        (function(d){
-            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement('script'); js.id = id; js.async = true;
-            js.src = "//connect.facebook.net/en_US/all.js";
-            ref.parentNode.insertBefore(js, ref);
-        }(document));
-        </script>
-        <!-- End Facebook javascript sdk -->
-      
+  <body class="home">      
       <div id="container">
 
         <!-- Header -->

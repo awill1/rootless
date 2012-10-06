@@ -150,6 +150,98 @@ class rideActions extends sfActions
             $this->redirect('ride_show', array('ride_type'=>$this->rideType, 'ride_id'=>$ride_id));
         }
     }
+    
+    /**
+     * Executes edit action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeEdit(sfWebRequest $request)
+    {
+        // Get the input parameters
+        $this->rideType = $request->getParameter('ride_type');
+        $this->rideId = $request->getParameter('ride_id');
+
+        // Create the appropriate type of form with the ride
+        switch ($this->rideType) {
+            case "offer":
+                // Get the seat information
+                $this->ride = Doctrine_Core::getTable('Carpools')->find($this->rideId);
+                $this->forward404Unless($this->ride);
+                $this->form = new CarpoolsForm($this->ride);
+                $this->partial = 'rideOfferForm';
+                break;
+            case "request":
+                $this->ride = Doctrine_Core::getTable('Passengers')->find($this->rideId);
+                $this->forward404Unless($this->ride);
+                $this->form = new PassengersForm($this->ride);
+                $this->partial = 'rideRequestForm';
+                break;
+            default:
+               // Default case just in case the ride_type is invalid (should
+               // be prevented by routing.yml).
+               echo 'Ride Type '.$this->rideType.'is invalid.';
+        }
+    }
+    
+    /**
+     * Executes update action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeUpdate(sfWebRequest $request)
+    {
+        // Get the input parameters
+        $this->rideType = $request->getParameter('ride_type');
+        $this->rideId = $request->getParameter('ride_id');
+
+        $this->form = NULL;
+        // Create the appropriate type of form with the ride
+        switch ($this->rideType) {
+            case "offer":
+                // Get the seat information
+                $this->ride = Doctrine_Core::getTable('Carpools')->find($this->rideId);
+                $this->forward404Unless($this->ride);
+                $this->form = new CarpoolsForm($this->ride);
+                break;
+            case "request":
+                $this->ride = Doctrine_Core::getTable('Passengers')->find($this->rideId);
+                $this->forward404Unless($this->ride);
+                $this->form = new PassengersForm($this->ride);
+                break;
+            default:
+               // Default case just in case the ride_type is invalid (should
+               // be prevented by routing.yml).
+               $this->forward404('Ride Type '.$this->rideType.'is invalid.');
+        }
+          
+        // Save the ride
+        $ride = $this->processForm($request, $this->form);
+        
+        // If the request came from AJAX render the seat negotiation history
+        // partial with the updated seat information
+        if ($request->isXmlHttpRequest())
+        {
+            if ($ride != null)
+            {
+            }
+            else
+            {
+                return $this->renderText('Ride was not updated');
+            }
+        }
+        else
+        {
+            $this->setTemplate('edit');
+
+            if ($ride != null)
+            {
+                // This is not an AJAX request so redirect to the show ride
+                // page
+                $this->redirect('ride_show', array('ride_type' =>$this->rideType , 'ride_id' => $ride->getRideId()));
+            }
+        }
+    }
 
     /**
     * Executes show action

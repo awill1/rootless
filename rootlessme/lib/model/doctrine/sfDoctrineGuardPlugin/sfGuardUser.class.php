@@ -74,5 +74,36 @@ class sfGuardUser extends PluginsfGuardUser
         }
     }
     
-    
+    /**
+     * Creates a user using the minimum amount of information
+     * @param String $email The email address
+     * @param String $password The password
+     * @param String $firstName The first name
+     * @param String $lastName The last name
+     * @return \sfGuardUser The created user
+     */
+    public static function createMinimumUser($email, $password, $firstName, $lastName)
+    {
+        // Create the user
+        $user = new sfGuardUser();
+        
+        // Set the user information
+        $user->setEmailAddress($email);
+        $user->setPassword($password);
+        $user->setFirstName($firstName);
+        $user->setLastName($lastName);
+
+        // Save new user data to database
+        $user->save();
+
+        // Update the profile information too
+        $profile = $user->getPeople()->getProfiles();
+        $profile->setFirstName($firstName);
+        $profile->setLastName($lastName);
+
+        // Save the updated profile
+        $profile->save();
+        
+        return $user;
+    }
 }

@@ -5,12 +5,14 @@
 ?>
 <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
 <script type="text/javascript" src="/js/special.js"></script>
-<script type="text/javascript">
-    $(document).ready(function()
-{
-    $("#backgroundImage").attr("src", "/images/<?php echo $backgroundImage; ?>" );
-});
-</script>
+
+<style>
+    .home {
+        background-image: url("../images/<?php echo $backgroundImage; ?>");
+        background-size: cover;
+        background-attachment: fixed;
+    }
+</style>
 
 
 <div id="main">
@@ -43,6 +45,7 @@
                 </select>
                 <br />
                 <input class="formFields required" type="text" name="location" placeholder="From: Address, City, State"/>
+                <input id="destinationField" type="hidden" name="destination" value="<?php echo $destination; ?>" />
                 <input id="seatsField" class="formFields required digits" type="text" name="seats" placeholder="How many spare seats?"/>
                 <input id="formSubmit" class="formFields" type="submit" value="Submit" />
             </div>

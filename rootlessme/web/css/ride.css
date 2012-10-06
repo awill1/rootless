@@ -610,6 +610,7 @@ label span.dollar-sign {
 .rideActionButtonsListItem {
     margin: 0px;
     padding: 0px;
+    display: inline-block;
 }
 
 .negotiate-dollar-sign {

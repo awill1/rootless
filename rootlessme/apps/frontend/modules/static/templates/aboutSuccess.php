@@ -6,7 +6,7 @@
 <h1>About us</h1>
 <div>
     <p id="footerPages">
-        Rootless.me was an idea we came up with one summer not too long ago. 
+        Rootless was an idea we came up with one summer not too long ago. 
         With gas prices high and a large population of young adults without cars, 
         we decided it was time to change the way people travel. There are so many 
         empty seats on the road and no real reason for it to be that way. Our solution is Rootless.me.
@@ -23,12 +23,13 @@
         in person, not just a place for looking at silly cat pictures (but we do that too).
         <br/>
         <br/>
-        If you have any questions or suggestions, please visit the 'Contact Us' page. We really 
+        If you have any questions or suggestions, please visit the 
+        <a href="<?php echo url_for('contact'); ?>">'Contact Us'</a> page. We really 
         appreciate any and all feedback!
         <br/>
         <br/>
         Thank you,
         <br/>
-        <span id="footerSignature">The Rootless.me Crew.</span>
+        <span id="footerSignature">The Rootless Crew.</span>
     </p>
 </div>

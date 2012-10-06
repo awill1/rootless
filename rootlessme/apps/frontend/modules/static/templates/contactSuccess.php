@@ -24,7 +24,7 @@
         <span id="footerSignature">Feedback@rootless.me</span>
     <br/>
     <br/>
-        For any questions about the site or our company, Star Banana, please email:
+        For any questions about the site or our company, Rootless, please email:
 
     <br/>
         <span id="footerSignature">Help@rootless.me</span>

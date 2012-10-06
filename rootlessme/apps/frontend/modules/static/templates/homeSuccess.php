@@ -2,6 +2,16 @@
   'title',
   sprintf('Rootless - Share your ride or find a carpool.'))
 ?>
+
+
+<style>
+    .home {
+        background-image: url("../images/frontpagebackground3.jpg");
+        background-size: cover;
+        background-attachment: fixed;
+    }
+</style>
+
 <div id="loginFormContainer">
        <?php echo get_partial('sfGuardAuth/signin_form', array('form' => $signinForm, 'showForgotPassword' => false)); ?>
 </div>
@@ -51,19 +61,19 @@
 <div class="subHead">
     Featured Events!
     <div class="featuredEvents">
-        <a href="<?php echo url_for('patriots') ?>" class="featureLink">
-            <div id="patriotsBox">
-                New England Patriots Games
+        <a href="<?php echo url_for('halifaxpop') ?>" class="featureLink">
+            <div id="hpxBox">
+                Halifax Pop Explosion Music Festival
             </div>
         </a>
-        <a href="<?php echo url_for('buckeyes') ?>" class="featureLink">
-            <div id="ohioStateBox">
-                The Ohio State Buckeyes Games
+        <a href="<?php echo url_for('voodoo') ?>" class="featureLink">
+            <div id="voodooBox">
+                Voodoo Music + Art Experience
             </div>
         </a>
-        <a href="<?php echo url_for('werkout') ?>" class="featureLink">
-            <div id="werkOutBox">
-                The Werk Out Music & Arts Festival
+        <a href="<?php echo url_for('harvestfestival') ?>" class="featureLink">
+            <div id="harvestBox">
+                Harvest Music Festival
             </div>
         </a>
     </div>
