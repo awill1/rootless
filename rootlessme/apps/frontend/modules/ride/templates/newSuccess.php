@@ -7,9 +7,6 @@
 ?>
 <?php slot('gmapheader'); ?>
     <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_jquery_block_ui_script') ?>"></script>
-    <script type="text/javascript" src="/js/Class.js"></script>
-    <script type="text/javascript" src="/js/Rootless.js"></script>
-    <script type="text/javascript" src="/js/Map.js"></script>
     <script type="text/javascript" src="/js/map/Request.js"></script>
     <script type="text/javascript">   
       $(document).ready(function(){

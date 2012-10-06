@@ -23,6 +23,9 @@
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
     <?php if (has_slot('gmapheader')): ?>
+    	<script type="text/javascript" src="/js/Class.js"></script>
+        <script type="text/javascript" src="/js/Rootless.js"></script>
+        <script type="text/javascript" src="/js/Map.js"></script>
         <?php include_slot('gmapheader') ?>
     <?php endif; ?>
     <!-- Google Analytics Javascript -->
