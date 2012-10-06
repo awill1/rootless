@@ -117,11 +117,13 @@
         	<p><?php echo nl2br($passenger->getDescription()) ?></p>
         	<p><span>Price:</span> $<?php echo $passenger->getAskingPrice() ?> per seat</p>
         	<p><span>Number of seats:</span> <?php echo $passenger->getPassengerCount() ?></p>
+        	<!-- if user is not logged in -->
         	<?php if ($myUserId == null) : ?>
         		<h5 class="green">Only members can offer rides...</h5>
                 <a class="cta big-btn" href="<?php echo url_for('sf_guard_signin') ?>">Log in</a>
                 <a class="cta big-btn" href="<?php echo url_for('sf_guard_register') ?>">Sign up</a>
         	<?php endif; ?>
+        	
         </div>
     </div>
 <?php endif; ?>
