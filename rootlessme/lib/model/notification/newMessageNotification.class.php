@@ -54,7 +54,7 @@ class newMessageNotification extends userNotification
      * @return String The notification slug
      */
     protected function getNotificationSlug() {
-        return seatAcceptNotification::NOTIFICATION_SLUG;
+        return newMessageNotification::NOTIFICATION_SLUG;
     }
 
     /**

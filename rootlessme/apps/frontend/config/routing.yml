@@ -151,19 +151,16 @@ profile_edit_user:
 
 profile_update_user:
   url:   /profiles/update/:section
-#  class:   sfDoctrineRoute
   class:   sfRoute
   options:
     model: Profiles
     type: object
   param:
-#    module: static
-#    action: home
     module: profile
     action: update
   requirements:
     sf_method: [post]
-    section: (account|additional|password)
+    section: (account|additional|password|notifications)
 
 profile_show_user:
   url:   /profiles/:profile_name

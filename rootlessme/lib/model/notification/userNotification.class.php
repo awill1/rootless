@@ -14,9 +14,7 @@ abstract class userNotification
     public function sendNotifications()
     {
         // Get the notification settings for the user for this notification
-        // Fix this. Wants email should be false and it should be retrieved 
-        // from the notification settings
-        $wantsEmail = true;
+        $wantsEmail = false;
         $wantsSms = false;
         $slug = $this->getNotificationSlug();
         $notificationSetting = Doctrine_Core::getTable('NotificationSettings')->getNotificationSettingForPerson($this->getSubscriber()->getPersonId(), $slug);

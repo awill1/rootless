@@ -13,4 +13,13 @@
 class Notifications extends BaseNotifications
 {
 
+    /**
+     * Returns a string that represents the notification. Overrides the default
+     * __toString method.
+     * @return string The notification represented as a string
+     */
+    public function __toString()
+    {
+        return $this->getDisplayText();
+    }
 }

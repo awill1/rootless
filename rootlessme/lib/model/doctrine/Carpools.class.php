@@ -55,7 +55,7 @@ class Carpools extends BaseCarpools
     /**
      * Returns a string that represents the carpool. Overrides the default
      * __toString method.
-     * @return string The passenger represented as a string
+     * @return string The carpool represented as a string
      */
     public function __toString()
     {

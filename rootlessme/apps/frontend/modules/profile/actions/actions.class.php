@@ -103,33 +103,39 @@ class profileActions extends sfActions
         }
         if ($section == 'notifications')
         {
-            $notificationsForm = new UserNotificationSettingsForm($profile->getPersonId());
+            $profileForm = new UserNotificationSettingsForm($profile->getPersonId());
         }
         
         // Save the changes to the profile
-        $profile = $this->processForm($request, $profileForm);
+        $updatedProfile = $this->processForm($request, $profileForm);
         
         // If the request came from AJAX render the edit profile partial
         // with the new profile information
         if ($request->isXmlHttpRequest())
         {
-            if ($profile != null)
+            if ($updatedProfile != null)
             {
                 // Create the form to be returned to the web page
                 $profileForm = null;
+                $profilePartial = 'profile/form';
                 if ($section == 'account')
                 {
-                    $profileForm = new ProfilesAccountInfoForm($profile);
+                    $profileForm = new ProfilesAccountInfoForm($updatedProfile);
                 }
                 if ($section == 'additional')
                 {
-                    $profileForm = new ProfilesAdditionalInfoForm($profile);
+                    $profileForm = new ProfilesAdditionalInfoForm($updatedProfile);
                 }
                 if ($section == 'password')
                 {
-                    $profileForm = new sfGuardUserAccountForm($profile);
+                    $profileForm = new sfGuardUserAccountForm($updatedProfile);
                 }
-                return $this->renderPartial('profile/form', array('form' => $profileForm, 'section' => $section));
+                if ($section == 'notifications')
+                {
+                    $profileForm = new UserNotificationSettingsForm($updatedProfile->getPersonId());
+                    $profilePartial = 'profile/userNotificationSettingsForm';
+                }
+                return $this->renderPartial($profilePartial, array('form' => $profileForm, 'section' => $section));
             }
             else
             {

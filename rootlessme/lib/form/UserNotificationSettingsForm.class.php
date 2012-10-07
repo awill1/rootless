@@ -40,34 +40,48 @@ class UserNotificationSettingsForm extends BaseForm
             $notification = $userNotificationSetting->getNotifications();
             $notificationSlug = $notification->getSlug();
             
-            // Create a widget
-            $this->setWidget($notificationSlug, new sfWidgetFormInputCheckbox());
-            // Set the label
-            $this->widgetSchema->setLabel($notificationSlug, $notification->getDisplayText());
-            // Create a validator
-            $this->setValidator($notificationSlug, new sfValidatorInteger(array('required' => false)));
+            // Embed the notification setting form
+            $notificationSettingForm = new NotificationSettingsForm($userNotificationSetting);
+            $this->embedForm($notificationSlug, $notificationSettingForm);
         }
-        
-        
-//        // Setup the form widgets
-//        $this->setWidgets(array(
-//          'origin'    => new sfWidgetFormInputText(),
-//          'destination'   => new sfWidgetFormInputText(),
-//          'date'   => new sfWidgetFormInputText(),
-//          'trip_type'   => new sfWidgetFormInputCheckbox(),
-//          'origin_latitude' => new sfWidgetFormInputHidden(),
-//          'origin_longitude' => new sfWidgetFormInputHidden(),
-//          'destination_latitude' => new sfWidgetFormInputHidden(),
-//          'destination_longitude' => new sfWidgetFormInputHidden()
-//        ));
-//        
-//        // Set labels on some widgets
-//        // Correct a misspelling
-//        $this->widgetSchema->setLabel('origin', 'From');
-//        $this->widgetSchema->setLabel('destination', 'To');
 
         // Setup the name format
         $this->widgetSchema->setNameFormat('notificationSettings[%s]');
     }
-
+    
+    protected function doBind(array $values) {
+        
+        parent::doBind($values);
+        
+        // bind embedded forms
+        foreach ($this->getEmbeddedForms() as $name => $embeddedForm) 
+        {    
+            if ($embeddedForm instanceof sfFormObject)
+            {
+                $embeddedForm->bind($values[$name]);
+            }         
+        }
+    }
+    
+    public function save()
+    {
+        foreach ($this->getEmbeddedForms() as $name => $embeddedForm) 
+        {    
+            if ($embeddedForm instanceof sfFormObject)
+            {
+                // Manually go through and save the description settings
+                $notificationSetting = Doctrine_Core::getTable('NotificationSettings')
+                                        ->getNotificationSettingForPerson($this->personId, $name);
+                $wantsEmail = $embeddedForm->getValue('wants_email');
+                $notificationSetting->setWantsEmail($wantsEmail);
+                $notificationSetting->save(); 
+            }          
+        }
+        
+        // Return the person whose notification settings where changed
+        $person = Doctrine_Core::getTable('People')->find($this->personId);
+        return $person;
+        
+    }
+    
 }
