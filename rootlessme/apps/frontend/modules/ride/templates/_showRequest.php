@@ -119,6 +119,8 @@
         		<h5 class="green">Only members can offer rides...</h5>
                 <a class="cta big-btn" href="<?php echo url_for('sf_guard_signin') ?>">Log in</a>
                 <a class="cta big-btn" href="<?php echo url_for('sf_guard_register') ?>">Sign up</a>
+        	<?php elseif (!$isMyPost) : ?>
+                <a class="cta big-btn" href="javascript:(0)">Offer a Ride</a>
         	<?php endif; ?>
         	
         </div>

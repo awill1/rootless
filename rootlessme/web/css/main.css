@@ -1453,8 +1453,7 @@ textarea {
 	display: inline-block;
 	margin-right: 10px;
 	font-size: 12px;
-	padding: 9px 0px;
-	width: 85px;	
+	padding: 9px 25px;	
 }
 
 input[type='submit'].searchSubmit, input[type='submit'].headerSubmit, input[type='submit'].searchSubmit:hover, input[type='submit'].headerSubmit:hover {

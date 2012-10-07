@@ -126,12 +126,6 @@
                     var hash = window.location.hash;
                     $(hash).trigger('click');
                 }
-
-                $('.riderListItem').hover(function(){
-                    HoverOverPassenger($(this));
-                }, function() {
-                    HoverOutPassenger($(this));
-                });
                 
                 // Bind the ride click buttons
                 $("#rideDeleteForm").submit(function(){
@@ -149,31 +143,6 @@
                     }
                 });
 
-            function HoverOverPassenger(passengerItem)
-            {
-                // Get the polyline from the row
-                var item = passengerItem.find(".routePolyline");
-                var key = item.attr('id');
-                var polyline = polyLineObj[key];
-
-                  HighlightPolyline(polyline);
-
-
-            }
-
-            function HoverOutPassenger(passengerItem)
-            {
-                // Get the polyline from the row
-                var item = passengerItem.find(".routePolyline");
-                var key = item.attr('id');
-                var polyline = polyLineObj[key];
-
-                if (!(item.hasClass('pendingLine'))) {
-                  PassengerUnHighlightPolyline(polyline);
-                } else {
-                  PendingUnHighlightPolyline(polyline)
-                }
-            }
             });
 
             function loadSeatDetails() {
@@ -296,12 +265,14 @@
                 </ul>
                 <?php else: ?>
                   <ul class="riderList accepted">
+                  	<li class='none'>No Accepted seats</li>
                   </ul>
                 <?php endif; ?>
             </div>
+            <?php if ($isMyPost): ?>
 			<div class="riderListBlock">
                 <h3><?php echo $declinedSeats->count(); ?> declined <?php echo ($declinedSeats->count() == 1 ? "seat" : "seats") ?></h3>
-                <?php if ($isMyPost && $declinedSeats->count() > 0) :?>
+                <?php if ($declinedSeats->count() > 0) :?>
                 <ul class="riderList declined">
                     <?php foreach ($declinedSeats as $seat):
                         $riderProfile = $seat->getPassengers()->getPeople()->getProfiles(); ?>
@@ -321,6 +292,7 @@
                   </ul>
                 <?php endif; ?>
             </div>
+            <?php endif; ?>
 			
 			
         </div>
@@ -333,7 +305,9 @@
         	<?php if ($myUserId == null) : ?>
         		<h5 class="green">Only members can request rides...</h5>
                 <a class="cta big-btn" href="<?php echo url_for('sf_guard_signin') ?>">Log in</a>
-                <a class="cta big-btn" href="<?php echo url_for('sf_guard_register') ?>">Sign up</a>   	
+                <a class="cta big-btn" href="<?php echo url_for('sf_guard_register') ?>">Sign up</a>
+            <?php elseif (!$isMyPost) : ?>
+                <a class="cta big-btn" href="javascript:(0)">Request a Ride</a>
         	<?php endif; ?>
    	 	</div>
     </div>
