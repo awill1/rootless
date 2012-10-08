@@ -27,7 +27,11 @@ abstract class userNotification
         // Send email notification if desirend
         if ($wantsEmail)
         {
-            $this->sendEmailNotification();
+            // Make sure the environment allows sending the users emails
+            if(sfConfig::get('app_send_users_email_notifications'))
+            {
+                $this->sendEmailNotification();
+            }
         }
         
         // Send sms notification if desired
