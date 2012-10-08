@@ -92,7 +92,9 @@ class newMessageNotification extends userNotification
      */
     protected function getEmailSubject()
     {
-        return 'You have a message from '.$this->otherUser->getProfiles()->getFullName();
+        return sprintf('You have a message from %s about %s', 
+                       $this->otherUser->getProfiles()->getFullName(), 
+                       $this->message->getSubject());
     }
 }
 

@@ -98,7 +98,8 @@ class seatDeclineNotification extends userNotification
      */
     protected function getEmailSubject()
     {
-        return 'Seat terms declined by '.$this->otherUser->getProfiles()->getFullName();
+        return sprintf('Ride terms declined by %s!', 
+                       $this->otherUser->getProfiles()->getFullName());
     }
 }
 

@@ -12,7 +12,7 @@
         </tr>
     </thead>
     <tbody>
-       <?php echo $form->renderHiddenFields() ?>
+        <?php echo $form->renderHiddenFields() ?>
         <?php foreach (array_keys ($form->getEmbeddedForms()) as $embeddedFormKey) : ?>
             <tr>
                 <td>

@@ -98,7 +98,8 @@ class seatUpdateNotification extends userNotification
      */
     protected function getEmailSubject()
     {
-        return 'Seat terms changed by '.$this->otherUser->getProfiles()->getFullName();
+        return sprintf('Ride terms changed by %s!', 
+                       $this->otherUser->getProfiles()->getFullName());
     }
 }
 

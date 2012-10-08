@@ -98,7 +98,8 @@ class seatAcceptNotification extends userNotification
      */
     protected function getEmailSubject()
     {
-        return 'Seat terms accepted by '.$this->otherUser->getProfiles()->getFullName();
+        return sprintf('Ride terms accepted by %s!', 
+                       $this->otherUser->getProfiles()->getFullName());
     }
 }
 

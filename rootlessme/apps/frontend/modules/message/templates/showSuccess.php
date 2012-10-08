@@ -45,13 +45,13 @@
             </a>
         </div>
         <div class="messageBody">
-        <div class="messageAuthorInformation">
-            <a class="messageAuthorLink" href="<?php echo url_for("profile_show_user", $author)  ?>"><?php echo $author->getFullName() ?></a>
-            <br />
-            <br />
-            <span class ="dateText"><?php echo date("n\/j\/Y g\:ia",strtotime($message->getCreatedAt())) ?></span>
-            <br />
-        </div>
+            <div class="messageAuthorInformation">
+                <a class="messageAuthorLink" href="<?php echo url_for("profile_show_user", $author)  ?>"><?php echo $author->getFullName() ?></a>
+                <br />
+                <br />
+                <span class ="dateText"><?php echo date("n\/j\/Y g\:ia",strtotime($message->getCreatedAt())) ?></span>
+                <br />
+            </div>
             <p class="bodyGreyBackground">
                 <?php echo nl2br($message->getBody()) ?>
             </p>

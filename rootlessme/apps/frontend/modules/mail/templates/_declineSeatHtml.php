@@ -1,13 +1,20 @@
-<?php $subscriberProfile = $subscriber->getProfiles();
+<?php use_helper('Date');
+      $subscriberProfile = $subscriber->getProfiles();
       $otherUserProfile = $otherUser->getProfiles();
 ?><p>Hi <?php echo $subscriberProfile->getFirstName(); ?>,</p>
 
-<p><?php echo $otherUserProfile->getFullName(); ?> has declined the terms from <?php echo $seat->getRoutes()->getOriginString(); ?> to <?php echo $seat->getRoutes()->getDestinationString(); ?> on <?php echo $seat->getPickupDate(); ?> at <?php echo $seat->getPickupTime(); ?>!</p>
+<p><?php echo $otherUserProfile->getFullName(); ?> has declined the terms for the ride:</p>
 
-<p>You can view the terms at <a href="<?php echo url_for('ride_show', array('ride_id' => $rideId, 'ride_type' => $rideType), true).'#seat-'.$seat->getSeatId(); ?>"><?php echo url_for('ride_show', array('ride_id' => $rideId, 'ride_type' => $rideType), true).'#seat-'.$seat->getSeatId(); ?></a></p>
+<p>
+    From <?php echo $seat->getRoutes()->getOriginString(); ?> <br />
+    To <?php echo $seat->getRoutes()->getDestinationString(); ?> <br />
+    On <?php echo format_date($seat->getPickupDate(), 'P'); ?>
+</p>
 
-<p>Sorry your terms have been declined, but don't let that get you down, there may be others you can travel with.  Check out the search page to find new matches.</p>
+<p>You can view the full terms at <a href="<?php echo url_for('ride_show', array('ride_id' => $rideId, 'ride_type' => $rideType), true).'#seat-'.$seat->getSeatId(); ?>"><?php echo url_for('ride_show', array('ride_id' => $rideId, 'ride_type' => $rideType), true).'#seat-'.$seat->getSeatId(); ?></a></p>
 
-<p>Thanks for using Rootless,</p>
+<p>Sorry your terms have been declined, but don't let that get you down. <a href="<?php echo url_for('ride'); ?>" >Search</a> and find new amazing people to travel with!</p>
+
+<p>Thanks for riding with Rootless,</p>
 
 <p>The Rootless Team</p>

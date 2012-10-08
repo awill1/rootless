@@ -98,7 +98,8 @@ class seatNewOfferNotification extends userNotification
      */
     protected function getEmailSubject()
     {
-        return $this->otherUser->getProfiles()->getFullName().' has offered you a seat!';
+        return sprintf('%s has offered you a ride!', 
+                       $this->otherUser->getProfiles()->getFullName());
     }
 }
 
