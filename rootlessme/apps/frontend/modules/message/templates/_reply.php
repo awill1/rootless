@@ -6,12 +6,26 @@
     <input type="hidden" name="sf_method" value="put" />
     <?php endif; ?>
     <?php $myProfile = $sf_user->getGuardUser()->getPeople()->getProfiles(); ?>
-
-  <?php foreach($participants as $participant)
-    {
-        echo($participant->getPersonId().' '.$participant->getProfiles()->getFullName().' ');
-        
-    } ?>
+    <div id="replyRecipients">
+        <?php foreach($participants as $participant){
+                echo("<div class='replyRecipientsPic'>");
+                
+                echo("<a href=".url_for('profile_show_user', array('profile_name' => $participant->getProfiles()->getProfileName())).">");
+                echo("<img src='".sfConfig::get('app_profile_picture_directory').$participant->getProfiles()->getPictureUrlTiny()."' alt='".$participant->getProfiles()->getFullName()."'>");
+                echo("</a>");
+                
+                echo("</div>");
+                
+                //echo(url_for('profile_show_user', array('profile_name' => $participant->getProfiles()->getProfileName())));
+                
+                echo("<div class='replyRecipientsName'>");
+                echo("<a href=".url_for('profile_show_user', array('profile_name' => $participant->getProfiles()->getProfileName())).">");
+                echo($participant->getProfiles()->getFullName());
+                echo("</a>");
+                echo("</div>");
+              } 
+        ?>
+    </div>
   <table class="messageReplyBox">
     <tfoot>
       <tr>
