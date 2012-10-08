@@ -295,6 +295,57 @@ tbody {
     background-color: #D14D2F;
 }
 
+.pendingListBlock {
+	width: 97.4%;
+	float: left;
+	background: #F4F4F4;
+	margin-bottom: 20px;
+	padding-left: 20px;
+}
+
+.pendingListBlock .riderList {
+	margin: 0;
+}
+
+.pendingListBlock .riderListItem {
+	background: #fff;
+	padding: 10px;
+	width: 190px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+.pendingListBlock .riderListItem:hover, .pendingListBlock .riderListItem.selectedUser {
+	background: #2E2E2E;
+}
+
+.pendingListBlock .riderListItem.selectedUser  {
+	border: 2px solid #119D49;
+}
+
+.pendingListBlock .riderListItem:hover p, .pendingListBlock .riderListItem.selectedUser p {
+	color: #fff;
+}
+
+.pendingListBlock .riderListItem h3, .pendingListBlock .riderListItem img, .pendingListBlock .riderListItem p {
+	float: left;
+	font-style: normal;
+	margin: 0;
+}
+
+.pendingListBlock .riderListItem h3, .pendingListBlock .riderListItem p {
+	font-size: 12px;
+	font-weight: normal;
+	color: #000;
+	padding-left: 10px;
+	width: 105px;
+}
+
+.pendingListBlock h3 {
+	font-style: italic;
+	font-size: 13px;
+}
+
 .riderListBlock
 {
     clear: left;
@@ -322,7 +373,7 @@ tbody {
 }
 
 .riderListItem.selectedUser {
-    background-color: #F1F1F1;
+   /* background-color: #F1F1F1; */
 }
 
 #seatDetailsBlock {
