@@ -12,5 +12,13 @@
  */
 class NotificationSettings extends BaseNotificationSettings
 {
-
+    /**
+     * Returns a string that represents the notification setting. Overrides the default
+     * __toString method.
+     * @return string The notification represented as a string
+     */
+    public function __toString()
+    {
+        return $this->getNotifications()->getDisplayText();
+    }
 }

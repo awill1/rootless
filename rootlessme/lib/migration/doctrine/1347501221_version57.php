@@ -118,23 +118,23 @@ class Version57 extends Doctrine_Migration_Base
     {
         // Add in the customer notifications
         $seatRequestedNotification = new Notifications();
-        $seatRequestedNotification->display_text = 'Someone requests a seat from me';
+        $seatRequestedNotification->display_text = 'Someone requests a ride from me';
         $seatRequestedNotification->slug = 'SEAT_REQUESTED_NOTIFICATION';
         $seatRequestedNotification->save();
         $seatOfferedNotification = new Notifications();
-        $seatOfferedNotification->display_text = 'Someone offers a seat to me';
+        $seatOfferedNotification->display_text = 'Someone offers me a ride';
         $seatOfferedNotification->slug = 'SEAT_OFFERED_NOTIFICATION';
         $seatOfferedNotification->save();
         $seatNegotiatedNotification = new Notifications();
-        $seatNegotiatedNotification->display_text = 'Someone negotiates my seat';
+        $seatNegotiatedNotification->display_text = 'Someone changes the terms of a ride with me';
         $seatNegotiatedNotification->slug = 'SEAT_NEGOTIATED_NOTIFICATION';
         $seatNegotiatedNotification->save();
         $seatAcceptedNotification = new Notifications();
-        $seatAcceptedNotification->display_text = 'Someone accepts my seat';
+        $seatAcceptedNotification->display_text = 'Someone accepts the terms of a ride with me';
         $seatAcceptedNotification->slug = 'SEAT_ACCEPTED_NOTIFICATION';
         $seatAcceptedNotification->save();
         $seatDeclinedNotification = new Notifications();
-        $seatDeclinedNotification->display_text = 'Someone declined my seat';
+        $seatDeclinedNotification->display_text = 'Someone declines the terms of a ride with me';
         $seatDeclinedNotification->slug = 'SEAT_DECLINED_NOTIFICATION';
         $seatDeclinedNotification->save();
         
