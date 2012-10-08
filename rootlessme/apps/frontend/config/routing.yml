@@ -71,7 +71,7 @@ messages:
     sf_method: [get]
 
 messages_create:
-  url: /messages/create
+  url: /messages/create/:messageType
   class:   sfDoctrineRoute
   param:
     module: message
@@ -81,6 +81,7 @@ messages_create:
     type: object
   requirements:
     sf_method: [post]
+    messageType: (reply|new)
 
 messages_list:
   url: /messages/:list_type

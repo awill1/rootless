@@ -1,18 +1,23 @@
 <?php
 
 /**
- * Messages form.
+ * Reply form.
  *
  * @package    RootlessMe
  * @subpackage form
  * @author     awilliams
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class MessagesForm extends BaseMessagesForm
+class ReplyForm extends MessagesForm
 {
   public function configure()
   {
+      parent::configure();
+      
       // Add the facebook like field for recipients
+//      $this->setWidget('to', new sfWidgetFormInputText());
+      // For now just allow 1 recipient
+//      $this->setWidget('to', new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('People'), 'add_empty' => false)));
       // Allow multiple recipients
       $this->setWidget('to', new sfWidgetFormDoctrineChoice(array(
           'model' => $this->getRelatedModelName('People'),
@@ -22,9 +27,10 @@ class MessagesForm extends BaseMessagesForm
 
       // Add the conversation widget as a hidden text field
       $this->setWidget('conversation_id', new sfWidgetFormInputHidden());
+      // Hides the subject field because it's a reply form.
+      $this->setWidget('subject', new sfWidgetFormInputHidden());
 
       // Set up the new validators
-//      $this->setValidator('to', new sfValidatorString(array('required' => true)));
       $this->setValidator('to', new sfValidatorDoctrineChoice(array(
           'model' => $this->getRelatedModelName('People'),
           'multiple' => true
@@ -35,7 +41,6 @@ class MessagesForm extends BaseMessagesForm
       unset($this['updated_at']);
       $this->useFields(array(
           'conversation_id',
-          'to',
           'subject',
           'body' ));
   }
@@ -62,8 +67,8 @@ class MessagesForm extends BaseMessagesForm
             //$message->setConversationId($newConversation->getConversationId());
             $this->values['conversation_id'] = $newConversation->getConversationId();
         }
-        
+
         // Call the parent function to save the message
-        return parent::doSave($con);   
+         return parent::doSave($con);
     }
 }
