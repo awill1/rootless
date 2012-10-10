@@ -342,7 +342,7 @@ class specialActions extends sfActions
     
     
     /**
-     * Executes Halifax Pop action
+     * Executes Harvest Music Festival action
      *
      * @param sfRequest $request A request object
      */
@@ -385,6 +385,40 @@ class specialActions extends sfActions
         
         //Set background image
         $this->backgroundImage = "harvestBackground.jpg";
+        
+        // Use the festival template
+        $this->setTemplate('festival');
+    }
+    
+    
+/**
+     * Executes Shark Tank action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeSharkTank(sfWebRequest $request)
+    {
+        $this->festivalName = 'The FutureM Shark Tank';
+        
+        $this->peopleName = 'chum';
+        $this->title = 'Rootless - Ride with other chum to The FutureM Shark Tank 2012';
+        $this->destination = '1 Memorial Drive, Cambridge MA';
+        $this->headlineColor = '#ffffff';
+        $this->fontSize = '352%';
+        $this->textShadow = '0 0 15px rgba(0, 0, 0, 0.8), 0 -1px 1px rgba(0, 0, 0, 0.6)';
+        
+        // Build a dynamic schedule. Eventually this will go into a separate file.
+        $fullSchedule = array(
+            'day1' => array(
+                'date' => '2012-10-25 23:00:00.0',
+                'id' => 'SharkTank_10/25/2012_CambridgeMA',
+                'displayName' => 'The FutureM Shark Tank 10/25'));
+
+        // Only include the games that are in the future
+        $this->games = $this->getFutureGames($fullSchedule);
+        
+        //Set background image
+        $this->backgroundImage = "sharkTankBackground.jpg";
         
         // Use the festival template
         $this->setTemplate('festival');

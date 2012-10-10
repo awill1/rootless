@@ -395,6 +395,10 @@ harvestfestival:
   url: /harvestfestival
   param: { module: special, action: harvestMusicFestival }
   
+sharktank:
+  url: /sharktank
+  param: { module: special, action: sharkTank }
+  
 abetterworldbydesign:
   url: /abetterworldbydesign
   param: { module: special, action: aBetterWorldByDesign }
