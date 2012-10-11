@@ -398,6 +398,10 @@ harvestfestival:
 sharktank:
   url: /sharktank
   param: { module: special, action: sharkTank }
+
+novascotiamusicweek:
+  url: /nsmusicweek
+  param: { module: special, action: novaScotiaMusicWeek }
   
 abetterworldbydesign:
   url: /abetterworldbydesign
