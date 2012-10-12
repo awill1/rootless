@@ -102,4 +102,25 @@ class Passengers extends BasePassengers
         
         return $isDeleted;
     }
+    
+    /**
+     * Finds potential drivers for the passenger
+     * @param float $distance The distance to search for in miles
+     * @return Doctrine_Collection The matched drivers
+     */
+    public function findDrivers($distance)
+    {
+        $origin = $this->getOriginLocation();
+        $destination = $this->getDestinationLocation();
+        
+        $results = Doctrine_Core::getTable('Carpools')->getNearPoints (
+                                   $distance,
+                                   $origin->getLatitude(),
+                                   $origin->getLongitude(),
+                                   $destination->getLatitude(),
+                                   $destination->getLongitude(),
+                                   $this->getStartDate());
+        
+        return $results;
+    }
 }

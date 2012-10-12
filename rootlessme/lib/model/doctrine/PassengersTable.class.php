@@ -280,5 +280,75 @@ class PassengersTable extends Doctrine_Table
 
         // Run the query and return the results
         return $q->execute();
-    }  
+    }
+    
+    /**
+     * Gets the passengers who need to be picked up in a bounding box
+     * @param LatLngBounds $box The box to search in
+     * @param String $date The date to search on
+     * @return Doctrine_Collection The passengers who need picked up near a point
+     */
+    public function getPickUpPassengersInBox($box, $date = null)
+    {
+        $boxMinLatitude = $box->getSouthWest()->lat();
+        $boxMaxLatitude = $box->getNorthEast()->lat();
+        $boxMinLongitude = $box->getSouthWest()->lng();
+        $boxMaxLongitude = $box->getNorthEast()->lng();
+        
+        $q = $this->createQuery('pa')
+                ->innerJoin('pa.Routes r')
+                ->where('r.origin_latitude BETWEEN ? AND ? ', array($boxMinLatitude, $boxMaxLatitude))
+                ->andWhere('r.origin_longitude BETWEEN ? AND ? ', array($boxMinLongitude, $boxMaxLongitude));
+                
+        // See if we need to add a where clause for the date
+        if ($date != null)
+        {
+            // Reformat the date to work with the database
+            $date = date('Y-m-d', strtotime($date));
+            $q = $q->andWhere('pa.start_date = ?', $date)
+                   ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED]);
+        }
+        else
+        {
+            // Add the current rides filter to filter our rides from before today
+            $q = $this->addCurrentRidesFilter($q);
+        }
+                
+        return $q->execute();
+    }
+    
+    /**
+     * Gets the passengers who need to be dropped off in a bounding box
+     * @param LatLngBounds $box The box to search in
+     * @param String $date The date to search on
+     * @return Doctrine_Collection The passengers who need dropped off up near a point
+     */
+    public function getDropOffPassengersInBox($box, $date = null)
+    {
+        $boxMinLatitude = $box->getSouthWest()->lat();
+        $boxMaxLatitude = $box->getNorthEast()->lat();
+        $boxMinLongitude = $box->getSouthWest()->lng();
+        $boxMaxLongitude = $box->getNorthEast()->lng();
+        
+        $q = $this->createQuery('pa')
+                ->innerJoin('pa.Routes r')
+                ->where('r.destination_latitude BETWEEN ? AND ? ', array($boxMinLatitude, $boxMaxLatitude))
+                ->andWhere('r.destination_longitude BETWEEN ? AND ? ', array($boxMinLongitude, $boxMaxLongitude));
+                
+        // See if we need to add a where clause for the date
+        if ($date != null)
+        {
+            // Reformat the date to work with the database
+            $date = date('Y-m-d', strtotime($date));
+            $q = $q->andWhere('pa.start_date = ?', $date)
+                   ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED]);
+        }
+        else
+        {
+            // Add the current rides filter to filter our rides from before today
+            $q = $this->addCurrentRidesFilter($q);
+        }
+                
+        return $q->execute();
+    }
 }

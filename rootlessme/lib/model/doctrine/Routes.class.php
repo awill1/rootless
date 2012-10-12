@@ -343,4 +343,13 @@ class Routes extends BaseRoutes
 
         return $locationString;
     }
+    
+    /**
+     * Gets the locations contained in the route
+     * @return Array The locations in an array
+     */
+    public function getLocationsInRoute()
+    {
+        return Doctrine_Core::getTable('Locations')->getLocationsInRoute($this->getRouteId());
+    }
 }

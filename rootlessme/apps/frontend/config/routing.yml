@@ -170,7 +170,25 @@ profile_show_user:
   param: { module: profile, action: show }
   requirements:
     sf_method: [get]
+    
+# recommendation rules
 
+recommendations_find_drivers:
+  url: /recommendations/finddrivers
+  param: { module: recommendations, action: findDrivers }
+  requirements:
+    sf_method: [get]
+
+recommendations_find_passengers:
+  url: /recommendations/findpassengers
+  param: { module: recommendations, action: findPassengers }
+  requirements:
+    sf_method: [get]
+
+recommendations:
+  url: /recommendations
+  param: { module: recommendations, action: index }
+  
 # review rules
 review_create:
   url:     /reviews/create
