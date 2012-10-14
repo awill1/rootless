@@ -36,13 +36,30 @@ class rideActions extends sfActions
         $myStartLongitude = $ride_parameters['origin_longitude'];
         $myEndLatitude = $ride_parameters['destination_latitude'];
         $myEndLongitude = $ride_parameters['destination_longitude'];
+        $myPolyline = $ride_parameters['polyline'];
         // Use the application default distance setting
         $myDistance = sfConfig::get('app_default_search_distance');
 
+        // Get the list of driver matches
         $this->carpools = Doctrine_Core::getTable('Carpools')
              ->getNearPoints($myDistance, $myStartLatitude, $myStartLongitude, $myEndLatitude, $myEndLongitude, $searchDate);
-        $this->passengers = Doctrine_Core::getTable('Passengers')
-             ->getNearPoints($myDistance, $myStartLatitude, $myStartLongitude, $myEndLatitude, $myEndLongitude, $searchDate);
+        
+        // Get the list of passenger matches
+        $this->passengers = null;
+        if (CommonHelpers::IsNullOrEmptyString($myPolyline))
+        {
+            // The origin and destination points were not both specified, so do
+            // a search near the point specified
+            $this->passengers = Doctrine_Core::getTable('Passengers')
+                 ->getNearPoints($myDistance, $myStartLatitude, $myStartLongitude, $myEndLatitude, $myEndLongitude, $searchDate);
+        }
+        else
+        {
+            // The origin and destination points were both specified, so 
+            // search along the route
+            $this->passengers = Doctrine_Core::getTable('Passengers')
+                 ->getAlongRoute($myDistance, $myPolyline, $searchDate);
+        }
         
         if ($request->isXmlHttpRequest())
         {

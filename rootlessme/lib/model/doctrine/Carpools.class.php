@@ -110,84 +110,9 @@ class Carpools extends BaseCarpools
      */
     public function findPassengers($distance)
     {
-        // Get the list of all intermediate points
-        $intermediatePoints = $this->getRoutes()->getLocationsInRoute();
-        $intermediatePointsCount = count($intermediatePoints);
-        sfContext::getInstance()->getLogger()->info( sprintf('Intermediate point count: %d', $intermediatePointsCount ));
-        
-        // Keep an array of passengers that match
-        $results = new Doctrine_Collection('Passengers');
-        
-        // We need to keep a list of passengers whose pick up and drop off
-        // locations matched along the route
-        $pickUpMatches = new Doctrine_Collection('Passengers');
-        $dropOffMatches = new Doctrine_Collection('Passengers');
+        $results = Doctrine_Core::getTable('Passengers')
+             ->getAlongRoute($distance, $this->getRoutes()->getEncodedPolyline(), $this->getStartDate());
 
-        // Build the array of points to be fed into the route boxer
-	$latlngs = array();
-        foreach ($intermediatePoints as $index => $point)
-        {
-            $latlngs[] = new LatLng($point['latitude'], $point['longitude']);
-        }
-        
-        // Build the route boxes to search within. Eventually this should
-        // be replaced with a spatial database supporting OpenGIS like PostGIS
-        $distanceInKilometers = $distance * 1.60934; 
-        $routeBoxer = new RouteBoxer();
-	$boxes = $routeBoxer->box($latlngs, $distanceInKilometers);
-        
-        // Loop through all of the boxes and get all origin points and 
-        // destination points in the box
-	foreach ($boxes as $box)
-	{
-            // Get the passengers who can be picked up in the box
-            $pickUpPassengerMatches = Doctrine_Core::getTable('Passengers')->getPickUpPassengersInBox($box, $this->getStartDate());
-            
-            // Add the pick up passengers to the pick up matches list
-            foreach ($pickUpPassengerMatches as $pickUpPassengerMatch) 
-            {
-                // Add the pick up passenger to the matches. This prevents duplicates.
-                $pickUpMatches->add($pickUpPassengerMatch, $pickUpPassengerMatch->getPassengerId());
-            }
-            
-            // Get the passengers who can be dropped off up in the box
-            $dropOffPassengerMatches = Doctrine_Core::getTable('Passengers')->getDropOffPassengersInBox($box,  $this->getStartDate());
-            
-            // Add the drop off passengers to the drop off matches list
-            foreach($dropOffPassengerMatches as $dropOffPassengerMatch)
-            {
-                // Add the drop off passenger to the matches. This prevents duplicates.
-                $dropOffMatches->add($dropOffPassengerMatch, $dropOffPassengerMatch->getPassengerId());
-            }
-	}
-        
-        // Decide which of the matches are true matches
-        foreach ($pickUpMatches as $pickUpMatch)
-        {
-            $pickUpMatchId = $pickUpMatch->getPassengerId();
-            
-            // Passenger matches must exist in the pickup and dropoff lists
-            if ($dropOffMatches->contains($pickUpMatchId))
-            {
-                // Filter to make sure the passenger is going in the same 
-                // direction as the driver. The distance from the driver origin 
-                // to the passenger pick up location must be less than the 
-                // distance to the passenger drop off location
-                $driverOriginLatitude = $this->getRoutes()->getOriginLatitude();
-                $driverOriginLongitude = $this->getRoutes()->getOriginLongitude();
-                $passengerPickUpLatitude = $pickUpMatch->getRoutes()->getOriginLatitude();
-                $passengerPickUpLongitude = $pickUpMatch->getRoutes()->getOriginLongitude();
-                $passengerDropOffLatitude = $pickUpMatch->getRoutes()->getDestinationLatitude();
-                $passengerDropOffLongitude = $pickUpMatch->getRoutes()->getDestinationLongitude();
-                if(GeometryHelpers::getDistanceBetweenPoints($driverOriginLatitude, $driverOriginLongitude, $passengerPickUpLatitude, $passengerPickUpLongitude)
-                        < GeometryHelpers::getDistanceBetweenPoints($driverOriginLatitude, $driverOriginLongitude, $passengerDropOffLatitude, $passengerDropOffLongitude))
-                {
-                    // This is a real match! Add it to results.
-                    $results->add($pickUpMatch);
-                }
-            }
-        }
-        
         return $results;
     }
 }

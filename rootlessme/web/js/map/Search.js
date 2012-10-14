@@ -38,6 +38,7 @@ Rootless.Map.Search = Rootless.Map.extend({
            el : {
                $originTextBox        : $("#rides_origin"),
                $destinationTextBox   : $("#rides_destination"),
+               $polyline             : $("#rides_polyline"),
                $originLatitude       : $("#rides_origin_latitude"),
                $originLongitude      : $("#rides_origin_longitude"),
                $destinationLatitude  : $("#rides_destination_latitude"),
