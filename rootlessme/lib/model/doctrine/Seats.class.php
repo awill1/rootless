@@ -94,15 +94,72 @@ class Seats extends BaseSeats
         $isMySeat = false;
         
         // Check to see if the user is the driver
-        if ($this->getCarpools()->getDriverId() == $personId)
+        if ($this->isDriver($personId))
         {
             $isMySeat = true;
         }
-        else if ($this->getPassengers()->getPersonId() == $personId) 
+        else if ($this->isPassenger($personId)) 
         {
             $isMySeat = true;
         }
         return $isMySeat;
+    }
+    
+    /**
+     * Checks to see if a person is the driver for a seat.
+     * @param Integer $personId The person id
+     * @return boolean True, if the person is the driver. False, otherwise.
+     */
+    public function isDriver($personId)
+    {
+        $isDriver = false;
+        
+        // Check to see if the user is the driver
+        if ($this->getCarpools()->getDriverId() == $personId)
+        {
+            $isDriver = true;
+        }
+        return $isDriver;
+    }
+    
+    /**
+     * Checks to see if a person is the passenger for a seat.
+     * @param type $personId The person id
+     * @return boolean True, if the person is the passenger. False, otherwise.
+     */
+    public function isPassenger($personId)
+    {
+        $isPassenger = false;
+        
+        // Check to see if the user is the passenger
+        if ($this->getPassengers()->getPersonId() == $personId) 
+        {
+            $isPassenger = true;
+        }
+        return $isPassenger;
+    }
+    
+    /**
+     * Gets the ride for the person
+     * @param Integer $personId The person id
+     * @return mixed A carpool if the person is the driver. A passenger if the 
+     * person is a passenger. Null, otherwise. 
+     */
+    public function getMyRide($personId)
+    {
+        $myRide = NULL;
+
+        // Check to see if the user is the driver
+        if ($this->isDriver($personId))
+        {
+            $myRide = $this->getCarpools();
+        }
+        else if ($this->isPassenger($personId))
+        {
+            $myRide = $this->getPassengers();
+        }
+        
+        return $myRide;
     }
     
     /**

@@ -360,13 +360,6 @@ class Profiles extends BaseProfiles
                     $this->setState($location->state);
                 }
             }
-//            if ($shouldOverwrite || CommonHelpers::IsNullOrEmptyString($this->getCounty()))
-//            {
-//                if (property_exists($location, 'country'))
-//                {
-//                    $this->setCountry($location->country);
-//                }
-//            }
         }
     }
     

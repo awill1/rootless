@@ -76,5 +76,10 @@
                 Harvest Music Festival
             </div>
         </a>
+        <a href="<?php echo url_for('novascotiamusicweek') ?>" class="featureLink">
+            <div id="nsmusicweekBox">
+                Nova Scotia Music Week
+            </div>
+        </a>
     </div>
 </div>

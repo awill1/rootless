@@ -22,6 +22,15 @@ class Passengers extends BasePassengers
     }
     
     /**
+     * Gets the ride type. Common function for ride types. This should be an interface.
+     * @return String The ride type
+     */
+    public function getRideType()
+    {
+        return 'request';
+    }
+    
+    /**
      * Gets the origin location for a route
      * @return Locations The origin
      */

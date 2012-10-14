@@ -64,7 +64,16 @@ class messageActions extends sfActions
         // Get all messages in the conversation
         $this->conversation = $message->getConversations();
         $this->messages = Doctrine_Core::getTable('Messages')->getMyConversationMessagesWithProfiles($this->conversation->getConversationId());
-
+        
+        
+        $this->participants = $this->conversation->getParticipants();
+        
+        //php loop
+        //loop through all messages and mark them as read
+        foreach ($this->messages as $currentMessage) {
+            $currentMessage->markAsRead();
+        }
+        
         // Create the reply form
         $replyMessage = new Messages();
         // Set the known reply features
@@ -77,7 +86,7 @@ class messageActions extends sfActions
         // Link the message and the recipient together
         //$replyRecipient->setMessages($replyMessage);
         // Add the reply message to the reply form
-        $this->replyForm = new MessagesForm($replyMessage);
+        $this->replyForm = new ReplyForm($replyMessage);
         // Set the recipient to be the old author
 
         $this->forward404Unless($message);
@@ -100,9 +109,17 @@ class messageActions extends sfActions
     public function executeCreate(sfWebRequest $request)
     {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
-
-        $this->form = new MessagesForm();
-
+         
+        $this->form = null;
+        //gets type of message
+        $messageType = $request->getParameter('messageType');
+        if ($messageType=='new')
+        {
+            $this->form = new MessagesForm();
+        }else{
+            $this->form = new ReplyForm();
+        }
+        
         $message = $this->processForm($request, $this->form);
 
         $this->setTemplate('new');
@@ -176,9 +193,25 @@ class messageActions extends sfActions
             $messageId = $message->getMessageId();
 
             // Update the list of recipients
-
-            // Multiple recipients
-            $recipientIds = $form->getValue('to');
+            if ($form->getValue('to'))
+            {
+                // Multiple recipients
+                $recipientIds = $form->getValue('to');
+            }
+            else
+            {
+                $participants = $message->getConversations()->getParticipants();
+                $authorId = $this->getUser()->getGuardUser()->getPeople()->getPersonId();
+                $participantIds = array();
+                foreach($participants as $participant)
+                {
+                    $recipientId = $participant->getPersonId();
+                    if ($recipientId!=$authorId){
+                        $recipientIds[] = $recipientId;
+                    }
+                     
+                }
+            }
             $addedRecipientIds = array();
             foreach ($recipientIds as $recipientId)
             {
@@ -197,8 +230,14 @@ class messageActions extends sfActions
                     // Add the recipient to the added recipient list to
                     // prevent duplicate messages
                     $addedRecipientIds[] = $recipientId;
+                    
+                    // Send a notification to the recipient
+                    $recipientPerson = Doctrine_Core::getTable('People')->getPersonWithProfile($recipientId);
+                    $authorPerson = $message->getPeople();
+                    $notification = new newMessageNotification($message, $recipientPerson, $authorPerson);
+                    $notification->sendNotifications();
                 }
-            }
+            }            
             return $message;
         }
     }

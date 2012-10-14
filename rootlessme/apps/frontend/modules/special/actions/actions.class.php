@@ -342,7 +342,7 @@ class specialActions extends sfActions
     
     
     /**
-     * Executes Halifax Pop action
+     * Executes Harvest Music Festival action
      *
      * @param sfRequest $request A request object
      */
@@ -389,6 +389,92 @@ class specialActions extends sfActions
         // Use the festival template
         $this->setTemplate('festival');
     }
+    
+    
+/**
+     * Executes Shark Tank action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeSharkTank(sfWebRequest $request)
+    {
+        $this->festivalName = 'The FutureM Shark Tank';
+        $this->peopleName = 'chum';
+        $this->title = 'Rootless - Ride with other chum to The FutureM Shark Tank 2012';
+        $this->destination = '1 Memorial Drive, Cambridge MA';
+        $this->headlineColor = '#ffffff';
+        $this->fontSize = '352%';
+        $this->textShadow = '0 0 15px rgba(0, 0, 0, 0.8), 0 -1px 1px rgba(0, 0, 0, 0.6)';
+        
+        // Build a dynamic schedule. Eventually this will go into a separate file.
+        $fullSchedule = array(
+            'day1' => array(
+                'date' => '2012-10-25 23:00:00.0',
+                'id' => 'SharkTank_10/25/2012_CambridgeMA',
+                'displayName' => 'The FutureM Shark Tank 10/25'));
+
+        // Only include the games that are in the future
+        $this->games = $this->getFutureGames($fullSchedule);
+        
+        //Set background image
+        $this->backgroundImage = "sharkTankBackground.jpg";
+        
+        // Use the festival template
+        $this->setTemplate('festival');
+    }
+    
+/**
+     * Executes Nova Scotia Music Week action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeNovaScotiaMusicWeek(sfWebRequest $request)
+    {
+        $this->festivalName = 'Nova Scotia Music Week';
+        $this->peopleName = 'festival goers';
+        $this->title = 'Rootless - Ride with other festival goers to Nova Scotia Music Week 2012';
+        $this->destination = 'Liverpool, Nova Scotia';
+        $this->headlineColor = '#ffffff';
+        $this->fontSize = '352%';
+        $this->textShadow = '0 0 15px rgba(0, 0, 0, 0.8), 0 -1px 1px rgba(0, 0, 0, 0.6)';
+        
+        // Build a dynamic schedule. Eventually this will go into a separate file.
+        $fullSchedule = array(
+            'day1' => array(
+                'date' => '2012-11-08 23:00:00.0',
+                'id' => 'NSMW_11/08/2012_LiverpoolNS',
+                'displayName' => 'Music Week 11/08'),
+            'day2' => array(
+                'date' => '2012-11-09 23:00:00.0',
+                'id' => 'NSMW_11/09/2012_LiverpoolNS',
+                'displayName' => 'Music Week 11/09'),
+            'day3' => array(
+                'date' => '2012-11-10 23:00:00.0',
+                'id' => 'NSMW_11/10/2012_LiverpoolNS',
+                'displayName' => 'Music Week 11/10'),
+            'day4' => array(
+                'date' => '2012-11-11 23:00:00.0',
+                'id' => 'NSMW_11/11/2012_LiverpoolNS',
+                'displayName' => 'Music Week 11/11'),
+            'anyDay' => array(
+                'date' => '2012-11-11 23:00:00.0',
+                'id' => 'NSMW_11/08-11/2012_Any_LiverpoolNS',
+                'displayName' => 'Music Week any day.'),
+            'allDays' => array(
+                'date' => '2012-11-11 23:00:00.0',
+                'id' => 'NSMW_10/08-11/2012_Every_LiverpoolNS',
+                'displayName' => 'Music Week every day.'));
+
+        // Only include the games that are in the future
+        $this->games = $this->getFutureGames($fullSchedule);
+        
+        //Set background image
+        $this->backgroundImage = "nsmwBackground.jpg";
+        
+        // Use the festival template
+        $this->setTemplate('festival');
+    }
+    
     
     
     /**

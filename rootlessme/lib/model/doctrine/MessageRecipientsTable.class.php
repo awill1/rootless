@@ -16,4 +16,25 @@ class MessageRecipientsTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('MessageRecipients');
     }
+    
+    /**
+     * Gets a message recipient based on messageId and personId.
+     * @param Integer $messageId The messsage id
+     * @param Integer $personId The person id
+     * @return MessageRecipients the message recipient if found. null, otherwise.
+     */
+    public function getMessageRecipient($messageId, $personId)
+    {
+        $q = $this->createQuery('mr')
+                  ->addWhere('mr.message_id = ?', array($messageId))
+                  ->addWhere('mr.person_id = ?', array($personId));
+        $result = $q->execute();
+        
+        $messageRecipient = null;
+        
+        if ($result->count()==1){
+            $messageRecipient = $result->getFirst();
+        }
+        return $messageRecipient;
+    }
 }
