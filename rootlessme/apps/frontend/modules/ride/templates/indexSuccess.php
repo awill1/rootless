@@ -32,6 +32,7 @@
         var originLongitude = "#rides_origin_longitude";
         var destinationLatitude = "#rides_destination_latitude";
         var destinationLongitude = "#rides_destination_longitude";
+        var routePolylineDataField = "#rides_polyline";
         var polylines = new Object;
         
         // Form submit options used for the ajax form

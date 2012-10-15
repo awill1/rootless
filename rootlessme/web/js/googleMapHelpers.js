@@ -354,6 +354,12 @@ function previewRoute()
         {
             $(routeDataField).val("");
         }
+        
+        // Clear the route polyline field 
+        if (typeof(routePolylineDataField) != "undefined")
+        {
+            $(routePolylineDataField).val("");
+        }
     }
 }
 
@@ -438,6 +444,13 @@ function calcRoute() {
         routePolyline.setPath(result.routes[0].overview_path);
         routePolyline.setMap(map);
         map.fitBounds(result.routes[0].bounds);
+        
+        // Set the route field to the results object for posting to the
+        // server
+        if (typeof(routePolylineDataField) != "undefined")
+        {
+            $(routePolylineDataField).val(result.routes[0].overview_polyline.points);
+        }
     }
     // Finally, clear the directions pending flag to allow form submission
     clearDirectionsPendingFlag();
