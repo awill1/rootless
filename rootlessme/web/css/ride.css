@@ -688,3 +688,115 @@ label span.dollar-sign {
     width: auto !important;
     float: right;
 }
+
+#negotiationBox{
+    color: #7f7f7f;
+    background-color: #f4f4f4;
+    clear: both;
+    padding: 20px;
+}
+#negotiationBox h3{
+    color: #31A24A;
+    font-weight: bold;
+    font-style: italic;
+    margin: 0px;
+}
+#negotiationBox h2{
+    color: #000000;
+    font-weight: normal;
+    margin: 0px;
+}
+
+#dualPost{
+    color: #000000;
+    background-color: #f4f4f4;
+}
+
+#existingRequests{
+    color: #000000;
+    background-color: #f4f4f4;
+}
+
+#rideDetails1{
+    color: #000000;
+    background-color: #f4f4f4;
+}
+#rideDetails2{
+    color: #000000;
+    background-color: #f4f4f4;
+}
+#discuss{
+    color: #000000;
+    background-color: #f4f4f4;
+}
+#confirmation{
+    color: #000000;
+    background-color: #f4f4f4;
+}
+
+.dualYesOrNo{
+    font-size: 200%;
+    width: 100px;
+    height: 50px;
+    color: #FFFFFF;
+    background-color: #999999;
+    border: medium none;
+    outline: medium none;
+    padding: 2px 7px;
+    cursor: pointer;
+    
+}
+
+.unselectedLabel{
+    background-color: #D9D9D9;
+    color: #000000;
+}
+
+.unselectedLabel:hover{
+    background-color: #555;
+    color: #ffffff;
+}
+
+.selectedLabel{
+    background-color: #119D49;
+    color: #31A24A;
+}
+.Button{
+    float: left;
+    margin-right:20px;
+    font-size: 200%;
+    padding: 10px 10px 20px 15px;
+    width:60px;
+    height:20px;
+    background-color: #D9D9D9;
+    color: #000000;
+}
+.Button:hover{
+    float: left;
+    margin-right:20px;
+    width:60px;
+    height:20px;
+    background-color: #555;
+    color: #ffffff;
+}
+.Button:active{
+    float: left;
+    margin-right:20px;
+    width:60px;
+    height:20px;
+    background-color: #119D49;
+    color: #ffffff;
+}
+
+.rideDetailsFields{
+    width: 350px;
+    margin: 5px 5px 15px 0px;
+    padding: 5px;
+    font-size: 110%;
+}
+.chatBox{
+    width: 350px;
+    margin: 5px 5px 15px 0px;
+    padding: 5px;
+    font-size: 110%;
+}

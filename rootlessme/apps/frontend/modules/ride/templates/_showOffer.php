@@ -6,7 +6,7 @@
   sprintf('Rootless - %s to %s', $route->getOriginString(), $route->getDestinationString()))
 ?>
 
-<h1> Ride Offer</h1>
+<h1>Ride Offer</h1>
 
 <?php if ($carpool->isDeleted()): ?>
     <p>This ride has been deleted.</p>
@@ -200,7 +200,7 @@
             </span>
 
         </h1>
-        <span class="tripDistance">One Way Trip</span>
+<!--        <span class="tripDistance"></span>-->
       
         <div class="addThisToolBar">
             <!-- AddThis Button BEGIN -->
@@ -323,9 +323,9 @@
         	<p><span>Start date:</span> <?php echo date("F",strtotime($carpool->getStartDate())) ?> <?php echo date("j",strtotime($carpool->getStartDate())) ?> at <?php echo date("g:i A",strtotime($carpool->getStartTime())) ?></p>
         	<p><span>Price:</span> $<?php echo $carpool->getAskingPrice() ?> per seat</p>
         	<p><span>Number of seats:</span> <?php echo $carpool->getSeatsAvailable() ?></p>
-        	<?php if ($myUserId == null) : ?>
-        		<!-- if user is not logged in -->
-        		<h5 class="green">Only members can request rides...</h5>
+            <?php if ($myUserId == null) : ?>
+        	<!-- if user is not logged in -->
+        	<h5 class="green">Only members can request rides...</h5>
                 <a class="cta big-btn" href="<?php echo url_for('sf_guard_signin') ?>">Log in</a>
                 <a class="cta big-btn" href="<?php echo url_for('sf_guard_register') ?>">Sign up</a>
             <?php elseif (!$isMyPost) : ?>
@@ -334,10 +334,72 @@
             <?php elseif ($isMyPost) : ?>
             	<!-- do we want to put the edit and delete buttons here? -->
         	<?php endif; ?>
-   	 	</div>
+   	</div>
    	 	<?php if ($mySeat != null): ?>
    	    <?php elseif ($myUserId!=null): ?>
-   	    	<?php include_component('seat', 'requestForm', array('ride'=>$carpool)) ?>
+   	    	<!--<?php// include_component('seat', 'requestForm', array('ride'=>$carpool)) ?> -->
+                
+                <div id="negotiationBox">
+                    <div id="dualPost">
+                        <h2>Have you already requested or posted a ride for this trip?</h2>
+                        <br />
+                        <input id="dualPostYes" type="radio" name="dualPostYes" style="display: none;" value="Yes" />
+                        <label for="dualPostYes" id="dualPostButtonYes" class="dualYesOrNo unselectedLabel">Yes</label>
+                        
+                        <input id="dualPostNo" type="radio" name="dualPostNo" style="display: none;" value="No" />
+                        <label for="dualPostNo" id="dualPostButtonNo" class="dualYesOrNo unselectedLabel">No</label>
+                        
+                    </div>
+                    <div id="existingRequests">
+                        existing Requests
+                    </div>
+                    <div id="rideDetails1">
+                        <h3>Ride Details</h3>
+                        <br />
+                        <h2>Where would you like to be picked up?</h2>
+                        <input class="rideDetailsFields required" type="text" name="pickup" placeholder="Address, City, State"/>
+                        <h2>Where would you like to be dropped off?</h2>
+                        <input class="rideDetailsFields required" type="text" name="dropoff" placeholder="Address, City, State"/>
+                        <h2>What day would you like to leave?</h2>
+                        <input class="rideDetailsFields required" type="text" name="day" placeholder="Day"/>
+                        <h2>What time would you like to leave?</h2>
+                        <input class="rideDetailsFields required" type="text" name="time" placeholder="Time"/>
+                        <br />
+                        
+                        <div id="rideDetails1NextButton" class="Button">Next</div>
+                        <br /><br /><br /><br />
+                        step 1 of 3
+                    </div>
+                    <div id="rideDetails2">
+                        <h3>Ride Details</h3>
+                        <h2>Would you like to adjust the asking price (per seat)?</h2>
+                        <input class="rideDetailsFields required" type="text" name="pickup" placeholder="C.R.E.A.M."/>
+                        <h2>How many seats do you need?</h2>
+                        <input class="rideDetailsFields required" type="text" name="pickup" placeholder="How deep you rollin'?"/>
+                        <br />
+                        <div id="rideDetails2BackButton" class="Button">Back</div><div id="rideDetails2NextButton" class="Button">Next</div>
+                        <br /><br /><br /><br />
+                        step 2 of 3
+                    </div>
+                    <div id="discuss">
+                        <h2>Is there anything else you would like to discuss?</h2>
+                        <br />
+                        Things to consider:
+                        <ul>
+                            <li>Smoking or non-smoking</li>
+                            <li>Is there a return trip?</li>
+                            <li>Phone number exchange</li>
+                            <li>Are you bringing anything?</li>
+                        </ul>
+                        <br />
+                        <textarea class="chatBox" name="chatBox" placeholder="Say something..."></textarea> <br />
+                        <div id="discussBackButton" class="Button">Back</div><div id="discussSubmitButton" class="Button">Submit</div>
+                        <br /><br /><br /><br />
+                        step 3 of 3 
+                    </div>
+                    <div id="confirmation">Yay you did it!</div>
+                    Back to Ride Profile
+                </div>
    	    <?php endif; ?>
     </div>
 
