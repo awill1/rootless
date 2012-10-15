@@ -181,7 +181,6 @@ class Seats extends BaseSeats
             // 2. Whether the user made the last change to the seat
             $seatStatusId = $this->getSeatStatusId();
             $lastHistory = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryForSeat($this->getSeatId());
-            $didUserChangeLast = $lastHistory->getChangerId() == $personId;
             
             // Whether the user can decline depends on the state of the seat
             switch ($seatStatusId) {
@@ -191,6 +190,7 @@ class Seats extends BaseSeats
                     break;
                 case SeatStatusesTable::$rideTypes['declined']:
                     // If the user accepted the ride last, they can decline
+                    $didUserChangeLast = $lastHistory->getChangerId() == $personId;
                     if ($didUserChangeLast)
                     {
                         $canAccept = true;
@@ -203,6 +203,7 @@ class Seats extends BaseSeats
                 case SeatStatusesTable::$rideTypes['pending']:
                     // If the user made the last change to the seat they can not
                     // be the one to accept it
+                    $didUserChangeLast = $lastHistory->getChangerId() == $personId;
                     if ($didUserChangeLast)
                     {
                         $canAccept = false;
@@ -211,6 +212,10 @@ class Seats extends BaseSeats
                     {
                         $canAccept = true;
                     }
+                    break;
+                case SeatStatusesTable::$rideTypes['recommended']:
+                    // Negotiation have not started yet.
+                    $canAccept = false;
                     break;
                 default:
                     // Unknown seat status id
@@ -242,7 +247,6 @@ class Seats extends BaseSeats
             // 2. Whether the user made the last change to the seat
             $seatStatusId = $this->getSeatStatusId();
             $lastHistory = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryForSeat($this->getSeatId());
-            $didUserChangeLast = $lastHistory->getChangerId() == $personId;
             
             // Whether the user can decline depends on the state of the seat
             switch ($seatStatusId) {
@@ -257,6 +261,10 @@ class Seats extends BaseSeats
                 case SeatStatusesTable::$rideTypes['pending']:
                     // An user involved in the seat can decline at any time
                     $canDecline = true;
+                    break;
+                case SeatStatusesTable::$rideTypes['recommended']:
+                    // Negotiations have not started yet.
+                    $canDecline = false;
                     break;
                 default:
                     // Unknown seat status id
@@ -281,15 +289,43 @@ class Seats extends BaseSeats
         // Check to make sure the person is involved in the seat
         if ($this->isMySeat($personId))
         {
-            // This logic need to be expanded more
-
             // The only case we are blocking from negotiation for now is if
             // the other user put the seat into the decline state
             $lastHistory = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryForSeat($this->getSeatId());
             $seatStatusId = $this->getSeatStatusId();
-            if ($lastHistory->getChangerId() != $personId && $seatStatusId == Doctrine_Core::getTable('SeatStatusesTable')->rideTypes['declined'])
-            {
-                $canNegotiate = false;
+            
+            // Whether the user can decline depends on the state of the seat
+            switch ($seatStatusId) {
+                case SeatStatusesTable::$rideTypes['accepted']:
+                    // A user can always change a seat from accepted to negotiated
+                    $canNegotiate = true;
+                    break;
+                case SeatStatusesTable::$rideTypes['declined']:
+                    // The seat is already declined so it cannot be declined again
+                    $didUserChangeLast = $lastHistory->getChangerId() == $personId;
+                    if ($didUserChangeLast)
+                    {
+                        // You can reopen a seat for negotiation if you were the one who declined it.
+                        $canNegotiate = true;
+                    }
+                    else
+                    {
+                        // You cannot negotiate on a declined seat if you did not do to declining
+                        $canNegotiate = false;
+                    }
+                    break;
+                case SeatStatusesTable::$rideTypes['pending']:
+                    // An user involved in a pending seat can negotiate at any time
+                    $canNegotiate = true;
+                    break;
+                case SeatStatusesTable::$rideTypes['recommended']:
+                    // Negotiations have not started yet, but they can be started.
+                    $canNegotiate = true;
+                    break;
+                default:
+                    // Unknown seat status id
+                    $canNegotiate = false;
+                    break;
             }
         }
 

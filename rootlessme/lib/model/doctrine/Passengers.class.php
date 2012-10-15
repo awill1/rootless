@@ -123,4 +123,54 @@ class Passengers extends BasePassengers
         
         return $results;
     }
+      
+    /**
+     * Creates recommendations for potential drivers for the passenger
+     * @param float $distance The distance to search for in miles
+     * @return Doctrine_Collection The new recommendations
+     */
+    public function recommendDrivers($distance)
+    {
+        $recommendations = new Doctrine_Collection('Seats');
+        
+        // Get all driver matches
+        $matches = $this->findDrivers($distance);
+        
+        // Get all existing seats for this ride
+        $existingSeats = $this->getSeats();
+        
+        // Go through all of the matches
+        foreach ($matches as $match)
+        {
+            $matchCarpoolId = $match->getCarpoolId();
+            
+            // Only create a seat recommendation if there is not already a seat
+            // between this driver and passenger
+            $seatAlreadyExists = false;
+            for($i = 0 ; $i < $existingSeats->count() && !$seatAlreadyExists ; $i++)
+            {
+                // Is the driver in this existing seat?
+                $seatAlreadyExists = $existingSeats[$i]->getCarpoolId() == $matchCarpoolId;
+            }
+            
+            // If there was no existing seat, create the recommendation
+            if (!$seatAlreadyExists)
+            {
+                // Create the recommendation
+                $recommendation = Doctrine_Core::getTable('Seats')->createSeatRecommendation($match, $this);
+                
+                if ($recommendation)
+                {
+                    // Add the recommendation to the recommendation list
+                    $recommendations->add($recommendation);
+                    
+                    // Send a notification to the other user
+                    $notification = new seatRecommendedNotification($recommendation, $match->getPeople(), $this->getPeople());
+                    $notification->sendNotifications();
+                }
+            }
+        }
+
+        return $recommendations;
+    }
 }

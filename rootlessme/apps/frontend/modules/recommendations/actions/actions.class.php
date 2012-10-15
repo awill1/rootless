@@ -33,7 +33,14 @@ class recommendationsActions extends sfActions
         // Get the driver to find passengers for
         $this->driver = Doctrine_Core::getTable('Carpools')->find($rideId);
         
-        $this->passengers = $this->driver->findPassengers(10);
+        // Create recommendations
+        $recommendations = $this->driver->recommendPassengers(10);
+        
+        $this->passengers = new Doctrine_Collection('Passengers');
+        foreach ($recommendations as $recommendation) 
+        {
+            $this->passengers->add($recommendation->getPassengers());
+        }
         
         $this->timeElapsed = 0;
     }
@@ -50,9 +57,15 @@ class recommendationsActions extends sfActions
         
         // Get the passenger to find drivers for
         $this->passenger = Doctrine_Core::getTable('Passengers')->find($rideId);
-                
-        // Search for the 
-        $this->drivers = $this->passenger->findDrivers(10);
+
+        // Create recommendations
+        $recommendations = $this->passenger->recommendDrivers(10);
+        
+        $this->drivers = new Doctrine_Collection('Carpools');
+        foreach ($recommendations as $recommendation) 
+        {
+            $this->drivers->add($recommendation->getCarpools());
+        }
         
         $this->timeElapsed = 0;
     }

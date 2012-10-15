@@ -187,4 +187,31 @@ class SeatsTable extends Doctrine_Table
         // the future
         return $query->andWhere('s.pickup_date < ?', date('Y-m-d'));
     }
+    
+    /**
+     * Creates a new seat recommendation between a driver and a passenger
+     * @param Carpools $driver The driver
+     * @param Passengers $passenger The passenger
+     * @return Seats The seat recommendation
+     */
+    public function createSeatRecommendation($driver, $passenger)
+    {
+        // Create the new seat recommendation
+        $newRecommendation = new Seats();
+        $newRecommendation->setCarpools($driver);
+        $newRecommendation->setPassengers($passenger);
+        $newRecommendation->setSeatStatusId(SeatStatusesTable::$rideTypes['recommended']);
+
+        // Default most of the recommendation to the passenger settings
+        $newRecommendation->setPrice($passenger->getAskingPrice());
+        $newRecommendation->setSeatCount($passenger->getPassengerCount());
+        $newRecommendation->setPickupDate($passenger->getStartDate());
+        $newRecommendation->setPickupTime($passenger->getStartTime());
+        $newRecommendation->setRoutes($passenger->getRoutes());
+             
+        // Save the recommendation
+        $newRecommendation->save();
+        
+        return $newRecommendation;
+    }
 }

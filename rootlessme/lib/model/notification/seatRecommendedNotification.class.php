@@ -1,19 +1,19 @@
 <?php
 
 /**
- * The notification created when a user offers a seat.
+ * The notification created when a user has a seat recommended
  *
  * @author awilliams
  */
-class seatNewOfferNotification extends userNotification 
+class seatRecommendedNotification extends userNotification 
 {
-    const EMAIL_HTML_PARTIAL = 'mail/newSeatOfferHtml';
-    const EMAIL_TEXT_PARTIAL = 'mail/newSeatOfferText';
-    const NOTIFICATION_SLUG = 'SEAT_OFFERED_NOTIFICATION';
+    const EMAIL_HTML_PARTIAL = 'mail/recommendSeatHtml';
+    const EMAIL_TEXT_PARTIAL = 'mail/recommendSeatText';
+    const NOTIFICATION_SLUG = 'SEAT_RECOMMENDED_NOTIFICATION';
     
     /**
-     * The seat
-     * @var Seats The seat
+     * The changed seat
+     * @var Seats The changed seat
      */
     protected $seat;
     
@@ -24,16 +24,16 @@ class seatNewOfferNotification extends userNotification
     protected $subscriber;
     
     /**
-     * The person who changed the seat.
-     * @var People The person who changed the seat.
+     * The other person who is involved with the seat.
+     * @var People The person who is also involved with the seat.
      */
     protected $otherUser;
     
     /**
-     * Creates a new instance of the seatNewOfferNotification.
+     * Creates a new instance of the seatRecommendedNotification.
      * @param Seats $seat The seat that was changed
      * @param People $subscriber The user who is subscribed to the notification
-     * @param People $otherUser The other user who took action on the seat
+     * @param People $otherUser The other user involved in the seat
      */
     public function __construct($seat, $subscriber, $otherUser) {
         $this->seat = $seat;
@@ -54,7 +54,7 @@ class seatNewOfferNotification extends userNotification
      * @return String The notification slug
      */
     protected function getNotificationSlug() {
-        return seatNewOfferNotification::NOTIFICATION_SLUG;
+        return seatRecommendedNotification::NOTIFICATION_SLUG;
     }
 
     /**
@@ -63,7 +63,7 @@ class seatNewOfferNotification extends userNotification
      */
     protected function getEmailHtmlPartialName() 
     {
-        return seatNewOfferNotification::EMAIL_HTML_PARTIAL;
+        return seatRecommendedNotification::EMAIL_HTML_PARTIAL;
     }
     
     /**
@@ -72,7 +72,7 @@ class seatNewOfferNotification extends userNotification
      */
     protected function getEmailTextPartialName() 
     {
-        return seatNewOfferNotification::EMAIL_TEXT_PARTIAL;
+        return seatRecommendedNotification::EMAIL_TEXT_PARTIAL;
     }
     
     /**
@@ -98,8 +98,7 @@ class seatNewOfferNotification extends userNotification
      */
     protected function getEmailSubject()
     {
-        return sprintf('%s has offered you a ride!', 
-                       $this->otherUser->getProfiles()->getFullName());
+        return sprintf('You have a new ride recommendation!');
     }
 }
 
