@@ -351,7 +351,14 @@
                         
                     </div>
                     <div id="existingRequests">
-                        existing Requests
+                        <h2>Please select from your existing requests:</h2>
+                        <div class="existingRequest">
+                            <div class="existingRequestPicture"><img src="#" width="54" height="54" alt="person"></div>
+                            <div class="existingRequestName">Person's Name</div>
+                            <div class="existingRequestPlaces">New York, NY to Boston, MA</div>
+                            <div class="existingRequestDate">November 24th, 2012</div>
+                            <div class="existingRequestArrow">&gt;</div>
+                        </div>
                     </div>
                     <div id="rideDetails1">
                         <h3>Ride Details</h3>
@@ -384,8 +391,8 @@
                     <div id="discuss">
                         <h2>Is there anything else you would like to discuss?</h2>
                         <br />
-                        Things to consider:
-                        <ul>
+                        
+                        <ul> Things to consider:
                             <li>Smoking or non-smoking</li>
                             <li>Is there a return trip?</li>
                             <li>Phone number exchange</li>
@@ -393,6 +400,7 @@
                         </ul>
                         <br />
                         <textarea class="chatBox" name="chatBox" placeholder="Say something..."></textarea> <br />
+<!--                        this actually needs to be the back div button and the form submit button not two divs... the form in general isn't here yet either-->
                         <div id="discussBackButton" class="Button">Back</div><div id="discussSubmitButton" class="Button">Submit</div>
                         <br /><br /><br /><br />
                         step 3 of 3 
