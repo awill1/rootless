@@ -133,6 +133,13 @@ html, body {
     padding: 4px;
     margin-bottom: 6px;
 }
+#nsmusicweekBox{
+    background-color: #058cce;
+    color: #FFFFFF;
+    margin: 4px;
+    padding: 4px;
+    margin-bottom: 6px;
+}
 
 #werkOutBox{
     background-color: #99489c;

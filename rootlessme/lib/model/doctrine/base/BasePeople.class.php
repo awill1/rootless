@@ -22,6 +22,7 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @property sfGuardUser $sfGuardUser
  * @property Doctrine_Collection $Vehicles
  * @property Doctrine_Collection $MessageRecipients
+ * @property Doctrine_Collection $NotificationSettings
  * 
  * @method integer             getPersonId()                 Returns the current record's "person_id" value
  * @method timestamp           getCreatedAt()                Returns the current record's "created_at" value
@@ -38,6 +39,7 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @method sfGuardUser         getSfGuardUser()              Returns the current record's "sfGuardUser" value
  * @method Doctrine_Collection getVehicles()                 Returns the current record's "Vehicles" collection
  * @method Doctrine_Collection getMessageRecipients()        Returns the current record's "MessageRecipients" collection
+ * @method Doctrine_Collection getNotificationSettings()     Returns the current record's "NotificationSettings" collection
  * @method People              setPersonId()                 Sets the current record's "person_id" value
  * @method People              setCreatedAt()                Sets the current record's "created_at" value
  * @method People              setUpdatedAt()                Sets the current record's "updated_at" value
@@ -53,6 +55,7 @@ Doctrine_Manager::getInstance()->bindComponent('People', 'doctrine');
  * @method People              setSfGuardUser()              Sets the current record's "sfGuardUser" value
  * @method People              setVehicles()                 Sets the current record's "Vehicles" collection
  * @method People              setMessageRecipients()        Sets the current record's "MessageRecipients" collection
+ * @method People              setNotificationSettings()     Sets the current record's "NotificationSettings" collection
  * 
  * @package    RootlessMe
  * @subpackage model
@@ -140,6 +143,10 @@ abstract class BasePeople extends sfDoctrineRecord
              'foreign' => 'person_id'));
 
         $this->hasMany('MessageRecipients', array(
+             'local' => 'person_id',
+             'foreign' => 'person_id'));
+
+        $this->hasMany('NotificationSettings', array(
              'local' => 'person_id',
              'foreign' => 'person_id'));
 

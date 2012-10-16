@@ -64,20 +64,25 @@ $(document).ready(function()
     $('#specialForm').ajaxForm( 
         {
             beforeSubmit: function() {
+                //blocking
+                $("#specialForm").block({ 
+                    message: '<img src="/images/ajax-loader.gif" alt="Saving..." />'
+                }); 
                 // Send an event to google analytics for the form submission
                 _gaq.push(['_trackEvent', 'specialEvent', 'registerSubmitted']);
             },
             error: function() {
+                $("#specialForm").unblock();
                 // Send an event to google analytics for the form submission
                 _gaq.push(['_trackEvent', 'specialEvent', 'registerError']);
             },
             // The callback function when the form was successfully submitted
             success: function() {
                 $('#formConfirmations').show('blind');
+                $("#specialForm").unblock();
                 
                 // Send an event to google analytics to show the form was submitted properly
                 _gaq.push(['_trackEvent', 'specialEvent', 'registerSuccess']);
             }
         });
-    
 });

@@ -13,9 +13,6 @@ class MessagesForm extends BaseMessagesForm
   public function configure()
   {
       // Add the facebook like field for recipients
-//      $this->setWidget('to', new sfWidgetFormInputText());
-      // For now just allow 1 recipient
-//      $this->setWidget('to', new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('People'), 'add_empty' => false)));
       // Allow multiple recipients
       $this->setWidget('to', new sfWidgetFormDoctrineChoice(array(
           'model' => $this->getRelatedModelName('People'),
@@ -65,8 +62,8 @@ class MessagesForm extends BaseMessagesForm
             //$message->setConversationId($newConversation->getConversationId());
             $this->values['conversation_id'] = $newConversation->getConversationId();
         }
-
+        
         // Call the parent function to save the message
-         return parent::doSave($con);
+        return parent::doSave($con);   
     }
 }

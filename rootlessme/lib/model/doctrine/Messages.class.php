@@ -36,5 +36,26 @@ class Messages extends BaseMessages
 
         return $isUnread;
     }
+    
+    public function markAsRead(){
+        
+        
+        if (sfContext::getInstance()->getUser()->isAuthenticated())
+        {
+            // Get the authenticated user's personId
+            $myId = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
+
+            // Check to see if the message is unread for the user
+            $myRecipientInfo = null;
+            $myRecipientInfo = Doctrine_Core::getTable('MessageRecipients')->getMessageRecipient($this->getMessageId(), $myId);
+            
+            if ($myRecipientInfo != null)
+            {
+               $isUnread = $myRecipientInfo->setUnread(0);
+               $myRecipientInfo->save();
+            }
+        }
+        
+    }
 
 }

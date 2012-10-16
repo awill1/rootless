@@ -71,7 +71,7 @@ messages:
     sf_method: [get]
 
 messages_create:
-  url: /messages/create
+  url: /messages/create/:messageType
   class:   sfDoctrineRoute
   param:
     module: message
@@ -81,6 +81,7 @@ messages_create:
     type: object
   requirements:
     sf_method: [post]
+    messageType: (reply|new)
 
 messages_list:
   url: /messages/:list_type
@@ -151,19 +152,16 @@ profile_edit_user:
 
 profile_update_user:
   url:   /profiles/update/:section
-#  class:   sfDoctrineRoute
   class:   sfRoute
   options:
     model: Profiles
     type: object
   param:
-#    module: static
-#    action: home
     module: profile
     action: update
   requirements:
     sf_method: [post]
-    section: (account|additional|password)
+    section: (account|additional|password|notifications)
 
 profile_show_user:
   url:   /profiles/:profile_name
@@ -396,6 +394,14 @@ mpmf12:
 harvestfestival:
   url: /harvestfestival
   param: { module: special, action: harvestMusicFestival }
+  
+sharktank:
+  url: /sharktank
+  param: { module: special, action: sharkTank }
+
+novascotiamusicweek:
+  url: /nsmusicweek
+  param: { module: special, action: novaScotiaMusicWeek }
   
 abetterworldbydesign:
   url: /abetterworldbydesign

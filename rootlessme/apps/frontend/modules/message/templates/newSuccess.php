@@ -7,7 +7,7 @@
 <h1>New Message</h1>
 <div class="composeNew">
     
-<?php include_partial('form', array('form' => $form)) ?>
+<?php include_partial('form', array('form' => $form, 'messageType' => 'new')); ?>
 </div>
 
 <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_jquery_fcbk_complete_script') ?>"></script>

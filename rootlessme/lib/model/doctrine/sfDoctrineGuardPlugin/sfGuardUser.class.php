@@ -32,6 +32,18 @@ class sfGuardUser extends PluginsfGuardUser
             // The profile id should be a UUID
             $profile->setProfileName(CommonHelpers::CreateSimpleUuid());
             $profile->save();
+            
+            // Create the notification settings for the user
+            $notifications = Doctrine_Core::getTable('Notifications')->findAll();
+            foreach ($notifications as $notification) {
+                $notificationSetting = new NotificationSettings();
+                $notificationSetting->setNotifications($notification);
+                $notificationSetting->setPeople($person);
+                
+                // Set the default values for notifications
+                $notificationSetting->setWantsEmail($notification->getDefaultWantsEmail());
+                $notificationSetting->save();
+            }
         }
         
         // Save the user

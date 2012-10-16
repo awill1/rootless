@@ -31,4 +31,24 @@ class Conversations extends BaseConversations
 
       return Doctrine_Core::getTable('Messages')->getMessages($q);
     }
+    public function getParticipants()
+    {
+        $q = Doctrine_Query::create()
+            ->select('p.*')
+            ->distinct()
+            ->from('People p')
+            ->innerJoin('p.MessageRecipients mr')
+            ->innerJoin('mr.Messages m')
+            ->innerJoin('m.Conversations c')
+            ->innerJoin('p.Profiles pr')
+            ->where('c.conversation_id = ?', array($this->getConversationId()));
+        
+        $results = $q->execute();
+        if (!$results->contains($this->getAuthorId()))
+        {
+            $results->add($this->getPeople());    
+        }
+        return $results;
+        
+    }
 }

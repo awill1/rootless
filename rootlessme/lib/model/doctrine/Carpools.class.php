@@ -22,6 +22,15 @@ class Carpools extends BaseCarpools
     }
     
     /**
+     * Gets the ride type. Common function for ride types. This should be an interface.
+     * @return String The ride type
+     */
+    public function getRideType()
+    {
+        return 'offer';
+    }
+    
+    /**
      * Gets the origin location for a route
      * @return Locations The origin
      */
@@ -46,7 +55,7 @@ class Carpools extends BaseCarpools
     /**
      * Returns a string that represents the carpool. Overrides the default
      * __toString method.
-     * @return string The passenger represented as a string
+     * @return string The carpool represented as a string
      */
     public function __toString()
     {
