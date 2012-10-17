@@ -537,23 +537,31 @@ class specialActions extends sfActions
         // Build a dynamic schedule. Eventually this will go into a separate file.
         $fullSchedule = array(
             'day1' => array(
+                'date' => '2012-10-25 23:00:00.0',
+                'id' => 'HangtownHalloweenBall_10/25/2012_PlacervilleCA',
+                'displayName' => 'Thursday, October 25th'),
+            'day2' => array(
                 'date' => '2012-10-26 23:00:00.0',
                 'id' => 'HangtownHalloweenBall_10/26/2012_PlacervilleCA',
                 'displayName' => 'Friday, October 26th'),
-            'day2' => array(
+            'day3' => array(
                 'date' => '2012-10-27 23:00:00.0',
                 'id' => 'HangtownHalloweenBall_10/27/2012_PlacervilleCA',
                 'displayName' => 'Saturday, October 27th'),
-            'day3' => array(
+            'day4' => array(
                 'date' => '2012-10-28 23:00:00.0',
                 'id' => 'HangtownHalloweenBall_10/28/2012_PlacervilleCA',
                 'displayName' => 'Sunday, October 28th'),
+            'day5' => array(
+                'date' => '2012-10-29 23:00:00.0',
+                'id' => 'HangtownHalloweenBall_10/29/2012_PlacervilleCA',
+                'displayName' => 'Monday, October 29th'),
             'anyDay' => array(
-                'date' => '2012-10-28 23:00:00.0',
+                'date' => '2012-10-29 23:00:00.0',
                 'id' => 'HangtownHalloweenBall_Any_PlacervilleCA',
                 'displayName' => 'Halloween Ball any day.'),
             'allDays' => array(
-                'date' => '2012-10-28 23:00:00.0',
+                'date' => '2012-10-29 23:00:00.0',
                 'id' => 'HangtownHalloweenBall_Every_PlacervilleCA',
                 'displayName' => 'Halloween Ball every day.'));
 
