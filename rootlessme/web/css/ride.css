@@ -765,27 +765,17 @@ label span.dollar-sign {
     float: left;
     margin-right:20px;
     font-size: 200%;
-    padding: 10px 10px 20px 15px;
-    width:60px;
+    padding: 10px 15px 20px;
     height:20px;
     background-color: #D9D9D9;
     color: #000000;
 }
 .Button:hover{
-    float: left;
-    margin-right:20px;
-    width:60px;
-    height:20px;
     background-color: #555;
     color: #ffffff;
 }
 .Button:active{
-    float: left;
-    margin-right:20px;
-    width:60px;
-    height:20px;
     background-color: #119D49;
-    color: #ffffff;
 }
 
 .rideDetailsFields{
