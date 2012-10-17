@@ -423,7 +423,7 @@ class specialActions extends sfActions
         $this->setTemplate('festival');
     }
     
-/**
+    /**
      * Executes Nova Scotia Music Week action
      *
      * @param sfRequest $request A request object
@@ -514,6 +514,54 @@ class specialActions extends sfActions
         
         //Set background image
         $this->backgroundImage = "mpmf12_webbackground_yellow_1280x800.jpg";
+        
+        // Use the festival template
+        $this->setTemplate('festival');
+    }
+    
+    /**
+     * Executes Hangtown Halloween Ball action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeHangtownHalloweenBall(sfWebRequest $request)
+    {
+        $this->festivalName = 'Hangtown Halloween Ball';
+        $this->peopleName = 'festival goers';
+        $this->title = 'Rootless - Ride with other festival goers to the Hangtown Halloween Ball 2012 in Placerville, California';
+        $this->destination = 'Armory Road, Placerville, CA';
+        $this->headlineColor = '#ffffff';
+        $this->fontSize = '352%';
+        $this->textShadow = '0 0 15px rgba(0, 0, 0, 0.8), 0 -1px 1px rgba(0, 0, 0, 0.6)';
+        
+        // Build a dynamic schedule. Eventually this will go into a separate file.
+        $fullSchedule = array(
+            'day1' => array(
+                'date' => '2012-10-26 23:00:00.0',
+                'id' => 'HangtownHalloweenBall_10/26/2012_PlacervilleCA',
+                'displayName' => 'Friday, October 26th'),
+            'day2' => array(
+                'date' => '2012-10-27 23:00:00.0',
+                'id' => 'HangtownHalloweenBall_10/27/2012_PlacervilleCA',
+                'displayName' => 'Saturday, October 27th'),
+            'day3' => array(
+                'date' => '2012-10-28 23:00:00.0',
+                'id' => 'HangtownHalloweenBall_10/28/2012_PlacervilleCA',
+                'displayName' => 'Sunday, October 28th'),
+            'anyDay' => array(
+                'date' => '2012-10-28 23:00:00.0',
+                'id' => 'HangtownHalloweenBall_Any_PlacervilleCA',
+                'displayName' => 'Halloween Ball any day.'),
+            'allDays' => array(
+                'date' => '2012-10-28 23:00:00.0',
+                'id' => 'HangtownHalloweenBall_Every_PlacervilleCA',
+                'displayName' => 'Halloween Ball every day.'));
+
+        // Only include the games that are in the future
+        $this->games = $this->getFutureGames($fullSchedule);
+        
+        //Set background image
+        $this->backgroundImage = "hangtownBackground.jpg";
         
         // Use the festival template
         $this->setTemplate('festival');

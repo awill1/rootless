@@ -383,6 +383,10 @@ halifaxpop:
   url: /halifaxpopexplosion
   param: { module: special, action: halifaxPop }
   
+halifaxpop:
+  url: /hangtownhalloween
+  param: { module: special, action: hangtownHalloweenBall }
+
 voodoo:
   url: /voodoo
   param: { module: special, action: voodoo }
