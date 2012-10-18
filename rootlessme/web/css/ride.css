@@ -794,6 +794,12 @@ label span.dollar-sign {
     padding: 5px;
     font-size: 110%;
 }
+/*.rideDetailsFields input{
+    width: 350px;
+    margin: 5px 5px 15px 0px;
+    padding: 5px;
+    font-size: 110%;
+}*/
 .chatBox{
     width: 350px;
     margin: 5px 5px 15px 0px;

@@ -337,9 +337,9 @@
    	</div>
    	 	<?php if ($mySeat != null): ?>
    	    <?php elseif ($myUserId!=null): ?>
-   	    	<!--<?php// include_component('seat', 'requestForm', array('ride'=>$carpool)) ?> -->
+   	    	<?php include_component('seat', 'requestForm', array('ride'=>$carpool)) ?>
                 
-                <div id="negotiationBox">
+<!--                <div id="negotiationBox">
                     <div id="dualPost">
                         <h2>Have you already requested or posted a ride for this trip?</h2>
                         <br />
@@ -400,14 +400,14 @@
                         </ul>
                         <br />
                         <textarea class="chatBox" name="chatBox" placeholder="Say something..."></textarea> <br />
-<!--                        this actually needs to be the back div button and the form submit button not two divs... the form in general isn't here yet either-->
+                        this actually needs to be the back div button and the form submit button not two divs... the form in general isn't here yet either
                         <div id="discussBackButton" class="Button">Back</div><div id="discussSubmitButton" class="Button">Submit</div>
                         <br /><br /><br /><br />
                         step 3 of 3 
                     </div>
                     <div id="confirmation">Yay you did it!</div>
                     Back to Ride Profile
-                </div>
+                </div>-->
    	    <?php endif; ?>
     </div>
 

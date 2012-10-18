@@ -9,8 +9,80 @@
 
 <div id="seatDetailsBlock">
     <form id="seatRequestForm" class="userInputForm" action="<?php echo url_for('seats_requests_create') ?>" method="post">
-        <h3>Request a Seat</h3>
-        <table>
+        <div id="negotiationBox">
+                    <div id="dualPost">
+                        <h2>Have you already requested or posted a ride for this trip?</h2>
+                        <br />
+                        <input id="dualPostYes" type="radio" name="dualPostYes" style="display: none;" value="Yes" />
+                        <label for="dualPostYes" id="dualPostButtonYes" class="dualYesOrNo unselectedLabel">Yes</label>
+                        
+                        <input id="dualPostNo" type="radio" name="dualPostNo" style="display: none;" value="No" />
+                        <label for="dualPostNo" id="dualPostButtonNo" class="dualYesOrNo unselectedLabel">No</label>
+                        
+                    </div>
+                    <div id="existingRequests">
+                        <h2>Please select from your existing requests:</h2>
+                        <div class="existingRequest">
+                            <div class="existingRequestPicture"><img src="#" width="54" height="54" alt="person"></div>
+                            <div class="existingRequestName">Person's Name</div>
+                            <div class="existingRequestPlaces">New York, NY to Boston, MA</div>
+                            <div class="existingRequestDate">November 24th, 2012</div>
+                            <div class="existingRequestArrow">&gt;</div>
+                        </div>
+                    </div>
+                    <div id="rideDetails1">
+                        <h3>Ride Details</h3>
+                        <br />
+                        <h2>Where would you like to be picked up?</h2>
+                        <div><?php echo $seatForm['route']['origin']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Address, City, State')) ?></div>
+                        
+                        <h2>Where would you like to be dropped off?</h2>
+                        <div><?php echo $seatForm['route']['destination']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Address, City, State')) ?></div>
+                        
+                        <h2>What day would you like to leave?</h2>
+                        <div><?php echo $seatForm['pickup_date']->render(array('class'=>'datePicker rideDetailsFields')) ?></div>
+                        
+                        <h2>What time would you like to leave?</h2>
+                        <div><?php echo $seatForm['pickup_time']->render(array('class'=>'timePicker rideDetailsFields', 'placeholder'=>'click to add a time')) ?></div>
+                        <br />
+                        <div id="rideDetails1NextButton" class="Button">Next</div>
+                        <br /><br /><br /><br />
+                        step 1 of 3
+                    </div>
+                    <div id="rideDetails2">
+                        <h3>Ride Details</h3>
+                        <h2>Would you like to adjust the asking price (per seat)?</h2>
+                        <div><?php echo $seatForm['price']->render(array('class'=>'rideDetailsFields')) ?></div>
+                        <h2>How many seats do you need?</h2>
+                        <div><?php echo $seatForm['seat_count']->render(array('class'=>'rideDetailsFields')) ?></div>
+                        <br />
+                        <div id="rideDetails2BackButton" class="Button">Back</div><div id="rideDetails2NextButton" class="Button">Next</div>
+                        <br /><br /><br /><br />
+                        step 2 of 3
+                    </div>
+                    <div id="discuss">
+                        <h2>Is there anything else you would like to discuss?</h2>
+                        <br />
+                        
+                        <ul> Things to consider:
+                            <li>Smoking or non-smoking</li>
+                            <li>Is there a return trip?</li>
+                            <li>Phone number exchange</li>
+                            <li>Are you bringing anything?</li>
+                        </ul>
+                        <br />
+                        <div><?php echo $seatForm['description']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Say something...')) ?></div> <br />
+<!--                        this actually needs to be the back div button and the form submit button not two divs... the form in general isn't here yet either-->
+                        <div id="discussBackButton" class="Button">Back</div><div id="discussSubmitButton" class="Button">Submit</div>
+                        <br /><br /><br /><br />
+                        step 3 of 3 
+                    </div>
+                    <div id="confirmation">Yay you did it!</div>
+                    Back to Ride Profile
+                </div>
+        
+        
+<!--        <table>
             <tbody>
                 <tr>
                     <td colspan="2" >
@@ -39,7 +111,7 @@
                     </td>
                 </tr>
             </tfoot>
-        </table>
+        </table>-->
     </form>
 </div>
 <div id="temporaryNewSeatHolder">
