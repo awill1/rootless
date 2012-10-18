@@ -764,11 +764,12 @@ label span.dollar-sign {
 .Button{
     float: left;
     margin-right:20px;
-    font-size: 200%;
-    padding: 10px 15px 20px;
+    font-size: 150%;
+    font-weight: bold;
+    padding: 10px 10px 10px;
     height:20px;
     background-color: #D9D9D9;
-    color: #000000;
+    color: #2e2e2e;
 }
 .Button:hover{
     background-color: #555;
@@ -783,6 +784,10 @@ label span.dollar-sign {
     margin: 5px 5px 15px 0px;
     padding: 5px;
     font-size: 110%;
+    color: #31A24A;
+    background-color: #F4F4F4;
+    border-color: #E6E6E6;
+    border-style: solid;
 }
 /*.rideDetailsFields input{
     width: 350px;
@@ -847,4 +852,10 @@ label span.dollar-sign {
     float: right;
     color: #fff;
     font-size: 20px;
+}
+ul{
+    list-style-type: circle;
+}
+.plainText {
+    color: #7a7a7a;
 }

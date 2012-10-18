@@ -18,7 +18,6 @@
                         
                         <input id="dualPostNo" type="radio" name="dualPostNo" style="display: none;" value="No" />
                         <label for="dualPostNo" id="dualPostButtonNo" class="dualYesOrNo unselectedLabel">No</label>
-                        
                     </div>
                     <div id="existingRequests">
                         <h2>Please select from your existing requests:</h2>
@@ -32,7 +31,6 @@
                     </div>
                     <div id="rideDetails1">
                         <h3>Ride Details</h3>
-                        <br />
                         <h2>Where would you like to be picked up?</h2>
                         <div><?php echo $seatForm['route']['origin']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Address, City, State')) ?></div>
                         
@@ -46,8 +44,8 @@
                         <div><?php echo $seatForm['pickup_time']->render(array('class'=>'timePicker rideDetailsFields', 'placeholder'=>'click to add a time')) ?></div>
                         <br />
                         <div id="rideDetails1NextButton" class="Button">Next</div>
-                        <br /><br /><br /><br />
-                        step 1 of 3
+                        <br /><br /><br/>
+                        <span class="plainText">step 1 of 3</span>
                     </div>
                     <div id="rideDetails2">
                         <h3>Ride Details</h3>
@@ -57,14 +55,14 @@
                         <div><?php echo $seatForm['seat_count']->render(array('class'=>'rideDetailsFields')) ?></div>
                         <br />
                         <div id="rideDetails2BackButton" class="Button">Back</div><div id="rideDetails2NextButton" class="Button">Next</div>
-                        <br /><br /><br /><br />
-                        step 2 of 3
+                        <br /><br /><br/>
+                        <span class="plainText">step 2 of 3</span>
                     </div>
                     <div id="discuss">
                         <h2>Is there anything else you would like to discuss?</h2>
                         <br />
                         
-                        <ul> Things to consider:
+                        <ul class="plainText"> Things to consider:
                             <li>Smoking or non-smoking</li>
                             <li>Is there a return trip?</li>
                             <li>Phone number exchange</li>
@@ -73,12 +71,19 @@
                         <br />
                         <div><?php echo $seatForm['description']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Say something...')) ?></div> <br />
 <!--                        this actually needs to be the back div button and the form submit button not two divs... the form in general isn't here yet either-->
-                        <div id="discussBackButton" class="Button">Back</div><div id="discussSubmitButton" class="Button">Submit</div>
-                        <br /><br /><br /><br />
-                        step 3 of 3 
+                        <div id="discussBackButton" class="Button">Back</div> <div><input type="submit" value="Submit"></div>
+                        <br />
+                        <span class="plainText">step 3 of 3</span>
                     </div>
-                    <div id="confirmation">Yay you did it!</div>
-                    Back to Ride Profile
+                    <div id="confirmation">
+                        <h2>Thank you for requesting a seat!</h2><br/>
+                        <div class="plainText">Be sure to check your dashboard to hear back<br />
+                            from the driver, but feel free to keep searching!<br />
+                            The more requests you submit, the better your<br /> 
+                            chances of finding the right ride!
+                        </div><br/>
+                        <div id="confirmationBackButton" class="Button">Back to Rides</div>
+                    </div>
                 </div>
         
         
@@ -114,5 +119,7 @@
         </table>-->
     </form>
 </div>
+    <br/><br/>
+    Back to Ride Profile
 <div id="temporaryNewSeatHolder">
 </div>
