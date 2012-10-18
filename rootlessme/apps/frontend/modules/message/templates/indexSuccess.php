@@ -5,7 +5,7 @@
   sprintf('Rootless - Messages'))
 ?>
 
-<?php slot('gmapheader'); ?>
+<?php slot('nomapheader'); ?>
     <script type="text/javascript" src="/js/tableRowNavigation.js"></script>
     <script type="text/javascript">
         

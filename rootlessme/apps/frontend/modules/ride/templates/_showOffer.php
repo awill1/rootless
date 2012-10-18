@@ -13,7 +13,7 @@
 <?php else: // The ride is not deleted ?>
 
     <?php slot('gmapheader'); ?>
-        <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_jquery_block_ui_script') ?>"></script>
+        <script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_block_ui_script') ?>"></script>
         <script type="text/javascript" src="/js/map/negotiation/RideOffer.js"></script>
     <?php end_slot();?>
 
