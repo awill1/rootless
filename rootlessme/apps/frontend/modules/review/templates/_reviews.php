@@ -3,7 +3,7 @@
 <?php use_helper('PartialPlus') ?>
 <?php append_to_slot('gmapheader'); ?>
 
-<script type="text/javascript" src="/js/<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
+<script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
 <script type="text/javascript" src="/js/radioFormStyle.js"></script>
 <script type="text/javascript">
     $(document).ready(function()
