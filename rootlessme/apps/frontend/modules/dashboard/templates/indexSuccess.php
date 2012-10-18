@@ -5,8 +5,7 @@
   sprintf('Rootless - Dashboard'))
 ?>
 
-<?php slot('gmapheader'); ?>
-    <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_jquery_block_ui_script') ?>"></script>
+<?php slot('nomapheader'); ?>
     <script type="text/javascript" src="/js/dashboard.js"></script>
 <?php end_slot();?>
 

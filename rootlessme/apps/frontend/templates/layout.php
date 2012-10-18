@@ -22,11 +22,15 @@
     <?php use_javascript('navigation') ?>
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
+    <script type="text/javascript" src="/js/Class.js"></script>
+    <script type="text/javascript" src="/js/Rootless.js"></script>
     <?php if (has_slot('gmapheader')): ?>
-    	<script type="text/javascript" src="/js/Class.js"></script>
-        <script type="text/javascript" src="/js/Rootless.js"></script>
         <script type="text/javascript" src="/js/Map.js"></script>
         <?php include_slot('gmapheader') ?>
+    <?php endif; ?>
+    
+    <?php if (has_slot('nomapheader')): ?>
+    	<?php include_slot('nomapheader') ?>
     <?php endif; ?>
     <!-- Google Analytics Javascript -->
     <script type="text/javascript">
