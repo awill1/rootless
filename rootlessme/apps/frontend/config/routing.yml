@@ -383,10 +383,14 @@ halifaxpop:
   url: /halifaxpopexplosion
   param: { module: special, action: halifaxPop }
   
-halifaxpop:
+hangtownHalloween:
   url: /hangtownhalloween
   param: { module: special, action: hangtownHalloweenBall }
 
+harvestfestival:
+  url: /harvestfestival
+  param: { module: special, action: harvestMusicFestival }
+  
 voodoo:
   url: /voodoo
   param: { module: special, action: voodoo }
@@ -395,9 +399,9 @@ mpmf12:
   url: /mpmf12
   param: { module: special, action: mpmf12 }
   
-harvestfestival:
-  url: /harvestfestival
-  param: { module: special, action: harvestMusicFestival }
+mullummusicfestival:
+  url: /mullummusicfestival
+  param: { module: special, action: mullum }
   
 sharktank:
   url: /sharktank

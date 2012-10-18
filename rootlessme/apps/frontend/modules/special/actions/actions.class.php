@@ -576,6 +576,58 @@ class specialActions extends sfActions
     }
     
     
+    /**
+     * Executes Mullum Music Festival action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeMullum(sfWebRequest $request)
+    {
+        $this->festivalName = 'The Mullum Music Festival';
+        $this->peopleName = 'festival goers';
+        $this->title = 'Rootless - Ride with other festival goers to the Mullum Music Festival 2012 in Mullumbimby, NSW';
+        $this->destination = 'Mullumbimby NSW , Australia';
+        $this->headlineColor = '#ffffff';
+        $this->fontSize = '335%';
+        $this->textShadow = '0 0 15px rgba(0, 0, 0, 0.8), 0 -1px 1px rgba(0, 0, 0, 0.6)';
+        
+        // Build a dynamic schedule. Eventually this will go into a separate file.
+        $fullSchedule = array(
+            'day1' => array(
+                'date' => '2012-11-22 23:00:00.0',
+                'id' => 'MullumMusicFestival_11/22/2012_MullumbimbyNSW',
+                'displayName' => 'Thursday, 22 November'),
+            'day2' => array(
+                'date' => '2012-11-23 23:00:00.0',
+                'id' => 'MullumMusicFestival_11/23/2012_MullumbimbyNSW',
+                'displayName' => 'Friday, 23 November'),
+            'day3' => array(
+                'date' => '2012-11-24 23:00:00.0',
+                'id' => 'MullumMusicFestival_11/24/2012_MullumbimbyNSW',
+                'displayName' => 'Saturday, 24 November'),
+            'day4' => array(
+                'date' => '2012-11-25 23:00:00.0',
+                'id' => 'MullumMusicFestival_11/25/2012_MullumbimbyNSW',
+                'displayName' => 'Sunday, 25 November'),
+            'anyDay' => array(
+                'date' => '2012-11-25 23:00:00.0',
+                'id' => 'MullumMusicFestival_Any_MullumbimbyNSW',
+                'displayName' => 'Mullum Music Festival any day'),
+            'allDays' => array(
+                'date' => '2012-11-25 23:00:00.0',
+                'id' => 'MullumMusicFestival_Every_MullumbimbyNSW',
+                'displayName' => 'Mullum Music Festival every day.'));
+
+        // Only include the games that are in the future
+        $this->games = $this->getFutureGames($fullSchedule);
+        
+        //Set background image
+        $this->backgroundImage = "mullumBackground.jpg";
+        
+        // Use the festival template
+        $this->setTemplate('festival');
+    }
+    
     
     /**
      * Executes Better World By Design action
