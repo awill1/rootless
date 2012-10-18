@@ -1,6 +1,6 @@
 /*
- * Request Map Class
- * @constructor Rootless.Map.Request
+ * Negotaiation Map Class
+ * @constructor Rootless.Map.Negotation
  * @params spec <Object> Object that holds all the variables for the maps
  * This script requires the Google Map and JQuery scripts to already be loaded
  * in the browser.
