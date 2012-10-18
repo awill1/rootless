@@ -14,7 +14,28 @@
 
     <?php slot('gmapheader'); ?>
         <script type="text/javascript" src="/js/map/Negotiation.js"></script>
-        <script type="text/javascript" src="/js/map/negotiation/RideOffer.js"></script>
+        <script type="text/javascript" src="/js/map/negotiation/RideRequest.js"></script>
+        <script type="text/javascript">
+			$(document).ready(function(){
+				 // Change all of the appropriate textboxes to date and time pickers
+                $( ".datePicker" ).datepicker();
+                $( ".timePicker" ).timepicker({ampm: true});
+        		
+        		//the map object for negotiations 
+        		var map = Rootless.Map.Negotiation.RideRequest.getInstance({mapId : "rideProfileMap",
+        			el: {
+			        	$originTextBox         : $("#seats_route_origin"),
+			            $destinationTextBox    : $("#seats_route_destination"),
+			            $originDataField       : $("#seats_route_origin_data"),
+			            $destinationDataField  : $("#seats_route_destination_data"),
+			            
+        			},
+        			mapItem: { polyline : { encodePolyline : "<?php echo str_replace('\\','\\\\',$route->getEncodedPolyline()); ?>"}},
+        		});
+        		map.mapInit();
+        		
+			});
+        </script>
     <?php end_slot();?>
 
     <div id="mainRideSummary">
@@ -171,7 +192,7 @@
                 <a class="cta big-btn" href="<?php echo url_for('sf_guard_register') ?>">Sign up</a>
             <?php elseif (!$isMyPost) : ?>
             	<!-- offer seen by Requester -->
-                <a class="cta big-btn" href="javascript:(0)">Request a Ride</a>
+                <a class="cta big-btn" id="startNegotiation" href="javascript:(0)">Request a Ride</a>
             <?php elseif ($isMyPost) : ?>
             	<!-- do we want to put the edit and delete buttons here? -->
         	<?php endif; ?>

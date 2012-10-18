@@ -1,19 +1,19 @@
 /*
- * Negotaiation Map Class
- * @constructor Rootless.Map.Negotation
+ * Negotaiation Ride Request Map Class
+ * @constructor Rootless.Map.Negotation.RideRequest
  * @params spec <Object> Object that holds all the variables for the maps
  * This script requires the Google Map and JQuery scripts to already be loaded
  * in the browser.
  */
 
-Namespace('Rootless.Map.Negotiation');
+Namespace('Rootless.Map.Negotiation.RideRequest');
 
 Rootless.Map.Negotiation = Rootless.Map.extend({
 	/**
     *  Initializes the Google Maps API for Negotiations
     *  @param params {arguments} - but mapId is needed to initialize map
     */
-    init : function(params) {
+   init : function(params) {
        this._ = $.extend(true, {
            
            //constant variables
@@ -31,7 +31,13 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                MAP_DEFAULT_LONGITUDE   : -95.677068,
                MAP_DEFAULT_ZOOM        : 3
            },
-      
+           
+           //all html elements referred in the code should go here (including jquery)
+           el : {
+               $originTextBox        : $("#rides_origin"),
+               $destinationTextBox   : $("#rides_destination"),
+               $rideDeleteForm       : $("#rideDeleteForm")
+           },
            
            // Variables used to block form submitting before map api results are returned
             formBlock : {
@@ -59,12 +65,12 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
            
            
        }, params);
-    },
+   },
    
    /**
     * Initializes a Google Map into a div
     */
-    mapInit : function(){
+   mapInit : function(){
        // variable that keeps object available in inner functions
        var self = this;
        
@@ -108,7 +114,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         self.strangeLat = googleTestString.substring(2,4);	
         self.strangeLon = googleTestString.substring(10,12);
 
-    },
+   },
    
 	geocodeOrigin : function(results, status) {     
         var map = Rootless.Map.Negotiation.getInstance();
@@ -184,6 +190,16 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         $('#seats_route_route_id').val('');;
     },
     
+	MaybeSubmitForm : function(tar) { 
+	   var map = Rootless.Map.Negotiation.getInstance();           
+       // Check to make sure nothing is blocking submitting the form
+       if (map.canSubmitForm() && map._.formBlock.isFormSubmitPending && tar.attr('id') == 'seatNegotiationForm') {
+           $('#seatNegotiationForm').ajaxSubmit(map.formAjaxOptions);
+       } else if (map.canSubmitForm() && map._.formBlock.isFormSubmitPending && (tar.attr('id') == 'seatDeclineForm' || tar.attr('id') == 'seatAcceptForm')) {
+       	   tar.ajaxSubmit(map.formAjaxOptions);
+       }
+     }
+    
 });
 
-Class.addSingleton(Rootless.Map.Negotiation);
+Class.addSingleton(Rootless.Map.Negotiation.RideRequest);

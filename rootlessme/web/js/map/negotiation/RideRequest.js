@@ -1,6 +1,6 @@
 /*
- * Negotaiation Ride Request Map Class
- * @constructor Rootless.Map.Negotation.RideRequest
+ * Negotaiation RideOffer Map Class
+ * @constructor Rootless.Map.Negotation.RideOffer
  * @params spec <Object> Object that holds all the variables for the maps
  * This script requires the Google Map and JQuery scripts to already be loaded
  * in the browser.
@@ -8,7 +8,7 @@
 
 Namespace('Rootless.Map.Negotiation.RideRequest');
 
-Rootless.Map.Negotiation = Rootless.Map.extend({
+Rootless.Map.Negotiation.RideRequest = Rootless.Map.Negotiation.extend({
 	/**
     *  Initializes the Google Maps API for Negotiations
     *  @param params {arguments} - but mapId is needed to initialize map
@@ -36,7 +36,20 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
            el : {
                $originTextBox        : $("#rides_origin"),
                $destinationTextBox   : $("#rides_destination"),
-               $rideDeleteForm       : $("#rideDeleteForm")
+               $rideDeleteForm       : $("#rideDeleteForm"),
+               $startNegotiationBtn  : $('#startNegotiation'),
+               $seatRequestForm      : $('#seatRequestForm'),
+               $seatDetailsBlock     : $('#seatDetailsBlock'),
+               $negotiationBox       : $('#negotiationBox'),
+               
+               $mainRidePeople          : $('#mainRidePeople'),
+               $mainRideDetails         : $('#mainRideDetails'),
+               $rideDetails1NextButton  : $('#rideDetails1NextButton'),
+               $rideDetails2NextButton  : $('#rideDetails2NextButton'),
+               $rideDetails2BackButton  : $('#rideDetails2BackButton'),
+               $dualPostButtonNo        : $('#dualPostButtonNo'),
+               $dualPostButtonYes       : $('#dualPostButtonYes'),
+               $discussBackButton       : $('#discussBackButton')
            },
            
            // Variables used to block form submitting before map api results are returned
@@ -105,6 +118,8 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         self.strangeLat;
         self.strangeLon;
         self.testPoint = new google.maps.LatLng(23,45);
+        
+        self.negotiationInit();
 		
 		// Discover the strange keys used for longitude and latitude
         // in the data returned from google maps api.
@@ -115,6 +130,58 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         self.strangeLon = googleTestString.substring(10,12);
 
    },
+   
+   negotiationInit : function() {
+     	var self = this;
+     	self.stepCount = self._.el.$negotiationBox.children().length;
+     	self.currentStep = 0;
+     	self._.el.$startNegotiationBtn.bind('click', self.step);
+     	self._.el.$rideDetails1NextButton.bind('click', self.step);
+     	self._.el.$rideDetails2NextButton.bind('click', self.step);
+     	self._.el.$rideDetails2BackButton.bind('click', self.prevStep);
+     	self._.el.$discussBackButton.bind('click', self.prevStep);
+     	self._.el.$dualPostButtonNo.bind('click', function() {
+     		self.step(true);
+     	});
+     	self._.el.$dualPostButtonYes.bind('click', self.step);
+    },
+   
+    step : function (b_skip) {
+        var map = Rootless.Map.Negotiation.RideRequest.getInstance();
+        
+        map._.el.$seatDetailsBlock.show();
+        
+        if (map.currentStep == 0) {
+    		map._.el.$mainRidePeople.hide();
+    		map._.el.$mainRideDetails.hide();
+    	} else if (map.currentStep == map.stepCount) {
+    		map._.el.$mainRidePeople.show();
+    		map._.el.$mainRideDetails.show();
+    		map._.el.$seatDetailsBlock.hide();
+    		map.CurrentStep == 0;
+    		
+    		return true;
+    	} else {
+    		map._.el.$negotiationBox.children().eq(map.currentStep-1).hide();
+    	}
+    	
+    	if (b_skip == true) {
+    		map.currentStep++;
+    	}
+    	
+   	    map._.el.$negotiationBox.children().eq(map.currentStep).fadeIn();
+   	    
+   	    map.currentStep++;
+   	    
+    },
+   
+    prevStep : function() {
+   	   var map = Rootless.Map.Negotiation.RideRequest.getInstance();
+   	   map._.el.$negotiationBox.children().eq(map.currentStep-1).hide();
+   	   
+   	   map._.el.$negotiationBox.children().eq(map.currentStep-2).fadeIn();
+   	   map.currentStep--;
+    },
    
 	geocodeOrigin : function(results, status) {     
         var map = Rootless.Map.Negotiation.getInstance();
