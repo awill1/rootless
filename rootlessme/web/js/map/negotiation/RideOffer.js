@@ -1,14 +1,14 @@
 /*
- * Negotaiation Map Class
- * @constructor Rootless.Map.Negotation
+ * Negotaiation RideOffer Map Class
+ * @constructor Rootless.Map.Negotation.RideOffer
  * @params spec <Object> Object that holds all the variables for the maps
  * This script requires the Google Map and JQuery scripts to already be loaded
  * in the browser.
  */
 
-Namespace('Rootless.Map.Negotiation');
+Namespace('Rootless.Map.Negotiation.RideOffer');
 
-Rootless.Map.Negotiation = Rootless.Map.extend({
+Rootless.Map.Negotiation.RideOffer = Rootless.Map.Negotiation.extend({
 	/**
     *  Initializes the Google Maps API for Negotiations
     *  @param params {arguments} - but mapId is needed to initialize map
@@ -202,4 +202,4 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     
 });
 
-Class.addSingleton(Rootless.Map.Negotiation);
+Class.addSingleton(Rootless.Map.Negotiation.RideOffer);
