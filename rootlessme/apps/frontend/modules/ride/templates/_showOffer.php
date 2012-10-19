@@ -97,6 +97,8 @@
     </div>
     
     <div id="rideProfileMap"></div>
+<!--        comments delete this chuck and do a php if $isMyPpost display all 'seats' $seats contains all seats related to this offer. -->
+<!--        php foreach seats as seat (change line 107)  -->
 
 	<?php if ($isMyPost && $pendingSeats->count() > 0): ?>
 		<div class="pendingListBlock">
@@ -118,6 +120,7 @@
                </ul>
         </div>
    	<?php endif; ?>
+<!--        end chunk -->
 
     <div id="informationContainer">
         <div id="mainRidePeople">
@@ -133,15 +136,15 @@
                     <?php foreach ($acceptedSeats as $seat):
                         $riderProfile = $seat->getPassengers()->getPeople()->getProfiles(); ?>
                     <li class="riderListItem">
-                        <?php if ($isMyPost || $seat == $mySeat) :?>
-                            <a id="seat-<?php echo $seat->getSeatId(); ?>" class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>">
+                        <?php// if ($isMyPost || $seat == $mySeat) :?>
+<!--                            <a id="seat-<?php echo $seat->getSeatId(); ?>" class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>">
                                 <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" />
-                            </a>
-                        <?php else :?>
+                            </a>-->
+                        <?php// else :?>
                             <a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>">
                                 <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" />
                             </a>
-                        <?php endif; ?>
+                        <?php// endif; ?>
                         <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
                     </li>
                     <?php endforeach; ?>
@@ -160,11 +163,11 @@
                     <?php foreach ($declinedSeats as $seat):
                         $riderProfile = $seat->getPassengers()->getPeople()->getProfiles(); ?>
                         <li class="riderListItem">
-                            <?php if ($isMyPost) :?>
-                                <a  id="seat-<?php echo $seat->getSeatId(); ?>" class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a>
-                            <?php else :?>
+                            <?php// if ($isMyPost) :?>
+                        <!--        <a  id="seat-<?php echo $seat->getSeatId(); ?>" class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a>-->
+                            <?php// else :?>
                                 <a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a>
-                            <?php endif; ?>
+                            <?php// endif; ?>
                              <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden pendingLine routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
                         </li>
                     <?php endforeach; ?>
@@ -197,6 +200,7 @@
             	<!-- do we want to put the edit and delete buttons here? -->
         	<?php endif; ?>
    	</div>
+        <div id="seatDeatils"></div>
    	 	<?php if ($mySeat != null): ?>
    	    <?php elseif ($myUserId!=null): ?>
    	    	<?php include_component('seat', 'requestForm', array('ride'=>$carpool)) ?>
