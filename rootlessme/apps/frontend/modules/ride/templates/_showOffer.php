@@ -27,7 +27,7 @@
 			        	$originTextBox         : $("#seats_route_origin"),
 			            $destinationTextBox    : $("#seats_route_destination"),
 			            $originDataField       : $("#seats_route_origin_data"),
-			            $destinationDataField  : $("#seats_route_destination_data"),
+			            $destinationDataField  : $("#seats_route_destination_data")
 			            
         			},
         			mapItem: { polyline : { encodePolyline : "<?php echo str_replace('\\','\\\\',$route->getEncodedPolyline()); ?>"}},

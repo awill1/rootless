@@ -55,7 +55,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
            
            directionsService : new google.maps.DirectionsService(),
            geocoder          : new google.maps.Geocoder(),
-       	   directionsDisplay : new google.maps.DirectionsRenderer(),
+       	   directionsDisplay : new google.maps.DirectionsRenderer()
            
            
        }, params);
@@ -116,8 +116,8 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         
         map.showResults(results, status, map._.mapItem.marker.originMarker);
         // Send the geocoded information to the server
-        if (typeof(map._.el.originDataField) != "undefined") {
-            $(map._.el.originDataField).val(map.formatGoogleJSON(map.strangeLat, map.strangeLon, JSON.stringify(results[0])));
+        if (typeof(map._.el.$originDataField) != "undefined") {
+            $(map._.el.$originDataField).val(map.formatGoogleJSON(map.strangeLat, map.strangeLon, JSON.stringify(results[0])));
         }
 
         // Finally, clear the origin pending flag to allow form submission
@@ -130,9 +130,9 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         // Display the results
         map.showResults(results, status, map._.mapItem.marker.destinationMarker);
         // Send the geocoded information to the server
-        if (typeof(map._.el.destinationDataField) != "undefined")
+        if (typeof(map._.el.$destinationDataField) != "undefined")
         {
-            $(map._.el.destinationDataField).val(map.formatGoogleJSON(map.strangeLat, map.strangeLon, JSON.stringify(results[0])));
+            $(map._.el.$destinationDataField).val(map.formatGoogleJSON(map.strangeLat, map.strangeLon, JSON.stringify(results[0])));
         }
 
         // Finally, clear the destination pending flag to allow form submission

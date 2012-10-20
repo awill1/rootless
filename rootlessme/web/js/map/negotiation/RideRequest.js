@@ -1,6 +1,6 @@
 /*
- * Negotaiation RideOffer Map Class
- * @constructor Rootless.Map.Negotation.RideOffer
+ * Negotiation RideRequest Map Class
+ * @constructor Rootless.Map.Negotation.RideRequest
  * @params spec <Object> Object that holds all the variables for the maps
  * This script requires the Google Map and JQuery scripts to already be loaded
  * in the browser.
@@ -263,7 +263,7 @@ Rootless.Map.Negotiation.RideRequest = Rootless.Map.Negotiation.extend({
     },
     
     MaybeSubmitForm : function(tar) { 
-	   var map = Rootless.Map.Negotiation.getInstance();           
+	   var map = Rootless.Map.Negotiation.RideRequest.getInstance();           
        // Check to make sure nothing is blocking submitting the form
        if (map.canSubmitForm() && map._.formBlock.isFormSubmitPending && tar.attr('id') == 'seatNegotiationForm') {
            $('#seatNegotiationForm').ajaxSubmit(map.formAjaxOptions);
