@@ -195,16 +195,18 @@
                 <a class="cta big-btn" href="<?php echo url_for('sf_guard_register') ?>">Sign up</a>
             <?php elseif (!$isMyPost) : ?>
             	<!-- offer seen by Requester -->
-                <a class="cta big-btn" id="startNegotiation" href="javascript:(0)">Request a Ride</a>
+                <a class="cta big-btn" id="startNegotiation" href="<?php echo url_for('seats_requests_new', array('ride_id'=>$carpool->getCarpoolId())); ?>">Request a Ride</a>
             <?php elseif ($isMyPost) : ?>
             	<!-- do we want to put the edit and delete buttons here? -->
         	<?php endif; ?>
    	</div>
-        <div id="seatDeatils"></div>
+        <div id="seatDetails">
    	 	<?php if ($mySeat != null): ?>
-   	    <?php elseif ($myUserId!=null): ?>
+   	        <?php elseif ($myUserId!=null): ?>
    	    	<?php include_component('seat', 'requestForm', array('ride'=>$carpool)) ?>
-                
+            
+   	    <?php endif; ?>
+        </div>
 <!--                <div id="negotiationBox">
                     <div id="dualPost">
                         <h2>Have you already requested or posted a ride for this trip?</h2>
@@ -274,7 +276,7 @@
                     <div id="confirmation">Yay you did it!</div>
                     Back to Ride Profile
                 </div>-->
-   	    <?php endif; ?>
+   	    <?php // endif; ?>
     </div>
 
 <?php endif; ?>

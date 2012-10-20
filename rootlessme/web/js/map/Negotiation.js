@@ -110,7 +110,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 
     },
    
-	geocodeOrigin : function(results, status) {     
+    geocodeOrigin : function(results, status) {     
         var map = Rootless.Map.Negotiation.getInstance();
         // Display the results
         
@@ -181,8 +181,8 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     
     clearRouteId : function() {
         // Clear the route id
-        $('#seats_route_route_id').val('');;
-    },
+        $('#seats_route_route_id').val('');
+    }
     
 });
 

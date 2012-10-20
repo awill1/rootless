@@ -1,0 +1,1 @@
+<?php include_component('seat', 'requestForm', array('ride'=>$ride)) ?>

@@ -41,6 +41,9 @@ Rootless.Map.Negotiation.RideRequest = Rootless.Map.Negotiation.extend({
                $seatRequestForm      : $('#seatRequestForm'),
                $seatDetailsBlock     : $('#seatDetailsBlock'),
                $negotiationBox       : $('#negotiationBox'),
+               $originDataField      : $('#seats_route_origin_data'),
+               $destinationDataField : $('#seats_route_destination_data'),
+               $routeDataField       : $('#seats_route_route_data'),
                
                $mainRidePeople          : $('#mainRidePeople'),
                $mainRideDetails         : $('#mainRideDetails'),
@@ -74,7 +77,7 @@ Rootless.Map.Negotiation.RideRequest = Rootless.Map.Negotiation.extend({
            
            directionsService : new google.maps.DirectionsService(),
            geocoder          : new google.maps.Geocoder(),
-       	   directionsDisplay : new google.maps.DirectionsRenderer(),
+       	   directionsDisplay : new google.maps.DirectionsRenderer()
            
            
        }, params);
@@ -169,9 +172,11 @@ Rootless.Map.Negotiation.RideRequest = Rootless.Map.Negotiation.extend({
     		map.currentStep++;
     	}
     	
-   	    map._.el.$negotiationBox.children().eq(map.currentStep).fadeIn();
+        map._.el.$negotiationBox.children().eq(map.currentStep).fadeIn();
    	    
-   	    map.currentStep++;
+        map.currentStep++;
+        
+        return false;
    	    
     },
    
@@ -183,14 +188,14 @@ Rootless.Map.Negotiation.RideRequest = Rootless.Map.Negotiation.extend({
    	   map.currentStep--;
     },
    
-	geocodeOrigin : function(results, status) {     
-        var map = Rootless.Map.Negotiation.getInstance();
+    geocodeOrigin : function(results, status) {
+    	var map = Rootless.Map.Negotiation.RideRequest.getInstance();
         // Display the results
         
         map.showResults(results, status, map._.mapItem.marker.originMarker);
         // Send the geocoded information to the server
-        if (typeof(map._.el.originDataField) != "undefined") {
-            $(map._.el.originDataField).val(map.formatGoogleJSON(map.strangeLat, map.strangeLon, JSON.stringify(results[0])));
+        if (typeof(map._.el.$originDataField) != "undefined") {
+            $(map._.el.$originDataField).val(map.formatGoogleJSON(map.strangeLat, map.strangeLon, JSON.stringify(results[0])));
         }
 
         // Finally, clear the origin pending flag to allow form submission
@@ -198,14 +203,14 @@ Rootless.Map.Negotiation.RideRequest = Rootless.Map.Negotiation.extend({
     },
     
     geocodeDestination : function(results, status) {
-    	var map = Rootless.Map.Negotiation.getInstance();
+    	var map = Rootless.Map.Negotiation.RideRequest.getInstance();
 
         // Display the results
         map.showResults(results, status, map._.mapItem.marker.destinationMarker);
         // Send the geocoded information to the server
-        if (typeof(map._.el.destinationDataField) != "undefined")
+        if (typeof(map._.el.$destinationDataField) != "undefined")
         {
-            $(map._.el.destinationDataField).val(map.formatGoogleJSON(map.strangeLat, map.strangeLon, JSON.stringify(results[0])));
+            $(map._.el.$destinationDataField).val(map.formatGoogleJSON(map.strangeLat, map.strangeLon, JSON.stringify(results[0])));
         }
 
         // Finally, clear the destination pending flag to allow form submission
@@ -226,7 +231,7 @@ Rootless.Map.Negotiation.RideRequest = Rootless.Map.Negotiation.extend({
 	        // Hide the spinner
 	        $("#negotiationSpinner").hide();
 	    }
-	},
+    },
     
     loadSeatDetails : function() {
     	if($('.selectedUser').length > 0) {
@@ -254,10 +259,10 @@ Rootless.Map.Negotiation.RideRequest = Rootless.Map.Negotiation.extend({
     
     clearRouteId : function() {
         // Clear the route id
-        $('#seats_route_route_id').val('');;
+        $('#seats_route_route_id').val('');
     },
     
-	MaybeSubmitForm : function(tar) { 
+    MaybeSubmitForm : function(tar) { 
 	   var map = Rootless.Map.Negotiation.getInstance();           
        // Check to make sure nothing is blocking submitting the form
        if (map.canSubmitForm() && map._.formBlock.isFormSubmitPending && tar.attr('id') == 'seatNegotiationForm') {

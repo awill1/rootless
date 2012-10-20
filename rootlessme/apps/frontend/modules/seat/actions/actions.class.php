@@ -91,6 +91,23 @@ class seatActions extends sfActions
     }
     
     /**
+     * The action for creating a new seat request
+     * @param sfWebRequest $request The web request
+     */
+    public function executeRequestNew(sfWebRequest $request)
+    {
+        $this->forward404Unless($request->isMethod(sfRequest::GET));
+        
+        // Get the ride id
+        $this->rideId = $request->getParameter('ride_id');
+        
+        // Get the carpool information based on the ride id
+        $this->ride = Doctrine_Core::getTable('Carpools')->find(array($this->rideId));
+        
+        $this->form = new SeatsRequestForm();
+    }
+    
+    /**
      * The action for creating a seat request
      * @param sfWebRequest $request The web request
      * @return string Rendered html of the created seat.
@@ -148,6 +165,23 @@ class seatActions extends sfActions
                 }
             }
         }
+    }
+    
+    /**
+     * The action for creating a new seat offer
+     * @param sfWebRequest $request The web request
+     */
+    public function executeOfferNew(sfWebRequest $request)
+    {
+        $this->forward404Unless($request->isMethod(sfRequest::GET));
+        
+        // Get the ride id
+        $this->rideId = $request->getParameter('ride_id');
+        
+        // Get the passenger information based on the ride id
+        $this->ride = Doctrine_Core::getTable('Passengers')->find(array($this->rideId));
+        
+        $this->form = new SeatsOfferForm();
     }
     
     /**
