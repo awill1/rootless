@@ -98,8 +98,12 @@
     
     <div id="rideProfileMap"></div>
 <!--        comments delete this chuck and do a php if $isMyPpost display all 'seats' $seats contains all seats related to this offer. -->
-<!--        php foreach seats as seat (change line 107)  -->
-
+<!--        php foreach seats as seat (change line 107)  use li if possible -->
+<div id="seatList">
+    <ul>
+        <li>Lauren<br/>more<br/>even more<br/></li>
+    </ul>
+</div>
 	<?php if ($isMyPost && $pendingSeats->count() > 0): ?>
 		<div class="pendingListBlock">
         	<h3 class="green">You have <?php echo $pendingSeats->count(); ?> pending <?php echo ($pendingSeats->count() == 1 ? "request" : "requests") ?>!</h3>
