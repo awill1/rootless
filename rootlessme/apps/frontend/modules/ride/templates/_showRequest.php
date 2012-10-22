@@ -15,7 +15,6 @@
     <?php slot('gmapheader'); ?>
     	<script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_block_ui_script') ?>"></script>
         <script type="text/javascript" src="/js/map/Negotiation.js"></script>
-        <script type="text/javascript" src="/js/map/negotiation/RideOffer.js"></script>
         <script type="text/javascript">
 			$(document).ready(function(){
 				 // Change all of the appropriate textboxes to date and time pickers
@@ -26,7 +25,7 @@
         		var rootless = Rootless.getInstance({sessionId : '_showRequest.php'});
         		
         		//the map object for negotiations 
-        		var map = Rootless.Map.Negotiation.RideOffer.getInstance({mapId : "rideProfileMap",
+        		var map = Rootless.Map.Negotiation.getInstance({mapId : "rideProfileMap",
         			el: {
 			        	$originTextBox         : $("#seats_route_origin"),
 			            $destinationTextBox    : $("#seats_route_destination"),

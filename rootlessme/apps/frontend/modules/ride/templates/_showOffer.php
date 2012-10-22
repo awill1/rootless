@@ -14,7 +14,6 @@
 
     <?php slot('gmapheader'); ?>
         <script type="text/javascript" src="/js/map/Negotiation.js"></script>
-        <script type="text/javascript" src="/js/map/negotiation/RideRequest.js"></script>
         <script type="text/javascript">
 			$(document).ready(function(){
 				 // Change all of the appropriate textboxes to date and time pickers
@@ -22,7 +21,7 @@
                 $( ".timePicker" ).timepicker({ampm: true});
         		
         		//the map object for negotiations 
-        		var map = Rootless.Map.Negotiation.RideRequest.getInstance({mapId : "rideProfileMap",
+        		var map = Rootless.Map.Negotiation.getInstance({mapId : "rideProfileMap",
         			el: {
 			        	$originTextBox         : $("#seats_route_origin"),
 			            $destinationTextBox    : $("#seats_route_destination"),
@@ -30,10 +29,44 @@
 			            $destinationDataField  : $("#seats_route_destination_data")
 			            
         			},
-        			mapItem: { polyline : { encodePolyline : "<?php echo str_replace('\\','\\\\',$route->getEncodedPolyline()); ?>"}},
+        			mapItem: { polyline : { 
+        				encodedPolyline : "<?php echo str_replace('\\','\\\\',$route->getEncodedPolyline()); ?>",
+        			    polyLineObj : []
+        			}},
         		});
+        		
+        		
+        		
         		map.mapInit();
         		
+        		<?php if ($acceptedSeats->count() > 0): ?>
+                  <?php foreach ($acceptedSeats as $seat): ?>
+                   var key = "ride-passenger-<?php echo $seat->getSeatId(); ?>";
+                   var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
+                   var acceptedSeatPolyline = map.displayEncodedPolyline(map._.MapObject, seatPolyline , false);
+                   map._.mapItem.polyline.polyLineObj[key] = acceptedSeatPolyline;
+                 <?php endforeach; ?>
+                <?php endif; ?>
+                
+                 <?php if ($pendingSeats->count() > 0): ?>
+                  <?php foreach ($pendingSeats as $seat): ?> 
+                   var key = "ride-passenger-<?php echo $seat->getSeatId(); ?>";
+                   var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
+                   var pendingSeatPolyline = map.displayEncodedPolyline(map._.MapObject, seatPolyline , false);
+                   pendingSeatPolyline.setOptions({strokeOpacity: 0})
+                   map._.mapItem.polyline.polyLineObj[key] = pendingSeatPolyline;
+                 <?php endforeach; ?>
+                <?php endif; ?>
+                
+                 <?php if ($declinedSeats->count() > 0): ?>
+                  <?php foreach ($declinedSeats as $seat): ?>
+                   var key = "ride-passenger-<?php echo $seat->getSeatId(); ?>";
+                   var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
+                   var pendingSeatPolyline = map.displayEncodedPolyline(map._.MapObject, seatPolyline , false);
+                   pendingSeatPolyline.setOptions({strokeOpacity: 0})
+                   map._.mapItem.polyline.polyLineObj[key] = pendingSeatPolyline;
+                 <?php endforeach; ?>
+                <?php endif; ?>
 			});
         </script>
     <?php end_slot();?>
@@ -79,7 +112,7 @@
             <!-- AddThis Button END -->
         </div>
         <?php if ($isMyPost): ?>
-            <div class="rideActionButtons">
+            <div class="rideActionButtons editOfferBtn">
                 <ul class="rideActionButtonsList">
                     <li class="rideActionButtonsListItem">
                         <form id="rideEditForm" class="rideActionForm" action="<?php echo url_for('ride_edit', array('ride_type' => 'offer', 'ride_id' => $carpool->getCarpoolId())) ?>" method="get">
