@@ -81,5 +81,15 @@
                 Nova Scotia Music Week
             </div>
         </a>
+        <a href="<?php echo url_for('hangtownHalloween') ?>" class="featureLink">
+            <div id="hangtownHalloweenBallBox">
+                Hangtown Halloween Ball
+            </div>
+        </a>
+        <a href="<?php echo url_for('mullummusicfestival') ?>" class="featureLink">
+            <div id="mullumMusicFestivalBox">
+                Mullum Music Festival
+            </div>
+        </a>
     </div>
 </div>
