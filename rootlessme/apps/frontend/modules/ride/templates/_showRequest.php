@@ -66,7 +66,7 @@
             </span>
 
         </h1>
-        <span class="tripDistance">One Way Trip</span>
+<!--        <span class="tripDistance">One Way Trip</span>-->
          <div class="addThisToolBar">
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style ">

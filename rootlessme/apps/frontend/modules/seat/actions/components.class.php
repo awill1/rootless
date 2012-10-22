@@ -28,6 +28,38 @@ class seatComponents extends sfComponents
         $this->canAccept = $this->seat->canAccept($userId);
         $this->canDecline = $this->seat->canDecline($userId);
     }
+    
+    /**
+     * Executes the action for the _showSeat component.
+     * @param sfWebRequest $request The web request
+     */
+    public function executeShowSeat(sfWebRequest $request)
+    {
+        // Get the user id. The user must be authenticated
+        $userId = $this->getUser()->getGuardUser()->getPersonId();
+        
+        // Get the seat type and number from the request parameters
+        $this->seat = $this->getVar('seat');
+        
+        $this->otherPersonProfile = null;
+        
+        if ($this->seat->getCarpools()->getDriverId() == $userId){
+            $this->otherPersonProfile = $this->seat->getPassengers()->getPeople()->getProfiles();
+        }else{
+            $this->otherPersonProfile = $this->seat->getCarpools()->getPeople()->getProfiles();
+        }
+        
+        // Form and seat needed for seat negotiation
+        $this->form = new SeatsNegotiationForm($this->seat);
+        
+        // Get the seat negotiation changes history
+        $this->negotiationChangesHistory = Doctrine_Core::getTable('SeatsHistory')
+                              ->getHistoryDifferencesForSeat($this->seat->getSeatId());
+        
+        // Get the actions available to the user
+        $this->canAccept = $this->seat->canAccept($userId);
+        $this->canDecline = $this->seat->canDecline($userId);
+    }
 
     /**
      * Executes the action for the _negotiationItem component.
