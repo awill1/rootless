@@ -15,6 +15,7 @@
     <?php slot('gmapheader'); ?>
     	<script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_block_ui_script') ?>"></script>
         <script type="text/javascript" src="/js/map/Negotiation.js"></script>
+        <script type="text/javascript" src="/js/map/negotiation/RideOffer.js"></script>
         <script type="text/javascript">
 			$(document).ready(function(){
 				 // Change all of the appropriate textboxes to date and time pickers
@@ -25,12 +26,12 @@
         		var rootless = Rootless.getInstance({sessionId : '_showRequest.php'});
         		
         		//the map object for negotiations 
-        		var map = Rootless.Map.Negotiation.getInstance({mapId : "rideProfileMap",
+        		var map = Rootless.Map.Negotiation.RideOffer.getInstance({mapId : "rideProfileMap",
         			el: {
 			        	$originTextBox         : $("#seats_route_origin"),
 			            $destinationTextBox    : $("#seats_route_destination"),
 			            $originDataField       : $("#seats_route_origin_data"),
-			            $destinationDataField  : $("#seats_route_destination_data"),
+			            $destinationDataField  : $("#seats_route_destination_data")
 			            
         			},
         			mapItem: { polyline : { encodePolyline : "<?php echo str_replace('\\','\\\\',$route->getEncodedPolyline()); ?>"}},
@@ -142,12 +143,15 @@
                 <a class="cta big-btn" href="<?php echo url_for('sf_guard_register') ?>">Sign up</a>
         	<?php elseif (!$isMyPost) : ?>
         		<!-- Request seen by offerer -->
-                <a class="cta big-btn" href="javascript:(0)">Offer a Ride</a>
+                <a class="cta big-btn" id="startNegotiation" href="<?php echo url_for('seats_offers_new', array('ride_id'=>$passenger->getPassengerId())); ?>">Offer a Ride</a>
         	<?php endif; ?> 	
         </div>
-        <?php if ($mySeat != null): ?>
+        
+        <div class="seatDetails">
+            <?php if ($mySeat != null): ?>
    	    <?php elseif ($myUserId!=null): ?>
    	    	<?php include_component('seat', 'offerForm', array('ride'=>$passenger)) ?>
    	    <?php endif; ?>
+        </div>
     </div>
 <?php endif; ?>

@@ -8,6 +8,7 @@
 
 <div id="seatDetailsBlock">
     <form id="seatRequestForm" class="userInputForm" action="<?php echo url_for('seats_requests_create') ?>" method="post">
+        <?php echo $seatForm->renderHiddenFields(); ?>
         <div id="negotiationBox">
                     <div id="dualPost">
                         <h2>Have you already requested or posted a ride for this trip?</h2>

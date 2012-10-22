@@ -252,9 +252,9 @@ Rootless.Map = Class.extend({
             // There is no origin so clear the marker from the map
             this._.mapItem.marker.originMarker.setMap(null);
             
-            if (typeof(self._.el.originDataField) != "undefined")
+            if (typeof(self._.el.$originDataField) != "undefined")
             {
-                $(self._.el.originDataField).val("");
+                $(self._.el.$originDataField).val("");
             }
             // Clear the latitude and longitude fields if they exist
             if (typeof(this._.el.$originLatitude) != "undefined")
@@ -283,9 +283,9 @@ Rootless.Map = Class.extend({
             // There is no destination so clear the marker from the map
             this._.mapItem.marker.destinationMarker.setMap(null);
             
-            if (typeof(this._.el.destinationDataField) != "undefined")
+            if (typeof(this._.el.$destinationDataField) != "undefined")
             {
-                $(this._.el.destinationDataField).val("");
+                $(this._.el.$destinationDataField).val("");
             }
             // Update the latitude and longitude fields if they exist
             if (typeof(this._.el.$destinationLatitude) != "undefined")
@@ -312,9 +312,9 @@ Rootless.Map = Class.extend({
             this._.mapItem.polyline.routePolyline.setMap(null);
 
             // Clear the route data
-            if (typeof(this._.el.routeDataField) != "undefined")
+            if (typeof(this._.el.$routeDataField) != "undefined")
             {
-                $(this._.el.routeDataField).val("");
+                $(this._.el.$routeDataField).val("");
             }
         }
       },
@@ -365,9 +365,9 @@ Rootless.Map = Class.extend({
 
             // Set the route field to the results object for posting to the
             // server
-            if (typeof(self._.el.routeDataField) != "undefined")
+            if (typeof(self._.el.$routeDataField) != "undefined")
             {
-               $(self._.el.routeDataField).val(self.formatGoogleJSON(self.strangeLat, self.strangeLon, JSON.stringify(result)));
+               $(self._.el.$routeDataField).val(self.formatGoogleJSON(self.strangeLat, self.strangeLon, JSON.stringify(result)));
             }
 
             // Display the directions

@@ -864,3 +864,42 @@ ul{
 .plainText {
     color: #7a7a7a;
 }
+
+#seatList{
+    background-color: #f4f4f4;
+    float: left;
+    margin: 0px 10px 20px 0px;
+    width: 100.4%;
+}
+#seatList ul{
+    list-style-type: none;
+    margin: 0px 0px 0px 0px;
+}
+.seat{
+    background-color: #ffffff;
+    float: left;
+    width: 200px;
+    height: 55px;
+    margin: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
+}
+.seatPicture{
+    float: left;
+    width:54px;
+    height:54px;
+    background-color: #99489c;
+    margin-right: 10px;
+}
+.seatName{
+    float: left;
+    color: #119D49;
+}
+.seatPlaces{
+    color: #000;
+}
+.seatListHeadline{
+    color: #119D49;
+    font-style: italic;
+    font-weight: bold;
+    margin: 20px 0px 10px 20px;
+}
