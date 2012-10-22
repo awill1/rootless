@@ -41,7 +41,7 @@
         		
         		<?php if ($acceptedSeats->count() > 0): ?>
                   <?php foreach ($acceptedSeats as $seat): ?>
-                   var key = "ride-passenger-<?php echo $seat->getSeatId(); ?>";
+                   var key = "ride-passenger-<?php echo $seat->getPassengerId(); ?>";
                    var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
                    var acceptedSeatPolyline = map.displayEncodedPolyline(map._.MapObject, seatPolyline , false);
                    map._.mapItem.polyline.polyLineObj[key] = acceptedSeatPolyline;
@@ -50,7 +50,7 @@
                 
                  <?php if ($pendingSeats->count() > 0): ?>
                   <?php foreach ($pendingSeats as $seat): ?> 
-                   var key = "ride-passenger-<?php echo $seat->getSeatId(); ?>";
+                   var key = "ride-passenger-<?php echo $seat->getPassengerId(); ?>";
                    var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
                    var pendingSeatPolyline = map.displayEncodedPolyline(map._.MapObject, seatPolyline , false);
                    pendingSeatPolyline.setOptions({strokeOpacity: 0})
@@ -60,11 +60,11 @@
                 
                  <?php if ($declinedSeats->count() > 0): ?>
                   <?php foreach ($declinedSeats as $seat): ?>
-                   var key = "ride-passenger-<?php echo $seat->getSeatId(); ?>";
+                   var key = "ride-passenger-<?php echo $seat->getPassengerId(); ?>";
                    var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
-                   var pendingSeatPolyline = map.displayEncodedPolyline(map._.MapObject, seatPolyline , false);
-                   pendingSeatPolyline.setOptions({strokeOpacity: 0})
-                   map._.mapItem.polyline.polyLineObj[key] = pendingSeatPolyline;
+                   var declinedSeatPolyline = map.displayEncodedPolyline(map._.MapObject, seatPolyline , false);
+                   declinedSeatPolyline.setOptions({strokeOpacity: 0})
+                   map._.mapItem.polyline.polyLineObj[key] = declinedSeatPolyline;
                  <?php endforeach; ?>
                 <?php endif; ?>
 			});

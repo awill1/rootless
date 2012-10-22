@@ -42,7 +42,9 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                $originDataField      : $("#seats_route_origin_data"),
                $destinationDataField : $("#seats_route_destination_data"),
                $routeDataField       : $("#seats_route_route_data"),
-               $seatRouteId          : $('#seats_route_route_id'),
+               $seatRouteId          : $("#seats_route_route_id"),
+               $dynamicDetailsLink   : $(".dynamicDetailsLink"),
+               $riderListItem        : $(".riderListItem"),
                
                //negotiation steps
                $negotiationBox          : $("#negotiationBox"),
@@ -75,7 +77,6 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
            //map markers and polylines should be here
            mapItem : {
                 polyline : {
-                	polylines : []
                 },
                 
                 marker : {
@@ -143,7 +144,34 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         self.strangeLon = googleTestString.substring(10,12);
         
         self.negotiationInit();
-
+        
+        self._.el.$dynamicDetailsLink.click(this.loadSeatDetails);
+        
+        // Bind the ride click buttons
+        self._.el.$rideDeleteForm.submit(function(){
+            // Confirm the user wants to delete the post
+            var confirmed = confirm("Are you sure you want to delete this ride?");
+            if (confirmed==true) {
+                // Submit the form
+                return true;
+            } else {
+                // Cancel the form submit
+                return false; 
+            }
+        });
+        
+        // If the window url hash is set load that seat's details
+        if (window.location.hash != "") {
+            var hash = window.location.hash;
+            $(hash).trigger('click');
+        }
+        
+       
+	     self._.el.$riderListItem.hover(function() {
+	         self.hoverOverPassenger($(this));
+	     }, function() {
+	         self.hoverOutPassenger($(this));
+	     });
         // When the origin or the destination change, clear the route id.
         self._.el.$originTextBox.change(self.clearRouteId);
         self._.el.$destinationTextBox.change(self.clearRouteId);

@@ -33,7 +33,7 @@
 			            $destinationDataField  : $("#seats_route_destination_data")
 			            
         			},
-        			mapItem: { polyline : { encodePolyline : "<?php echo str_replace('\\','\\\\',$route->getEncodedPolyline()); ?>"}},
+        			mapItem: { polyline : { encodedPolyline : "<?php echo str_replace('\\','\\\\',$route->getEncodedPolyline()); ?>"}},
         		});
         		map.mapInit();
         		
