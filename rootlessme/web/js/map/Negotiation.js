@@ -306,6 +306,14 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     clearRouteId : function() {
         // Clear the route id
         Rootless.Map.Negotiation.getInstance()._.el.$seatRouteId.val('');
+    },
+    
+    maybeSubmitForm : function() {
+    	var self = Rootless.Map.Negotiation.getInstance();            
+	    // Check to make sure nothing is blocking submitting the form
+	    if (self.canSubmitForm() && self._.formBlock.isFormSubmitPending) {
+	        self._.el.$seatRequestForm.ajaxSubmit(self.formAjaxOptions);
+	    } 
     }
     
 });
