@@ -31,6 +31,39 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                MAP_DEFAULT_LONGITUDE   : -95.677068,
                MAP_DEFAULT_ZOOM        : 3
            },
+           
+           //all html elements referred in the code should go here (including jquery)
+           el : {
+               $originTextBox        : $("#rides_origin"),
+               $destinationTextBox   : $("#rides_destination"),
+               $rideDeleteForm       : $("#rideDeleteForm"),
+               $seatRequestForm      : $("#seatRequestForm"),
+               $seatDetailsBlock     : $("#seatDetailsBlock"),
+               $originDataField      : $("#seats_route_origin_data"),
+               $destinationDataField : $("#seats_route_destination_data"),
+               $routeDataField       : $("#seats_route_route_data"),
+               $seatRouteId          : $("#seats_route_route_id"),
+               $dynamicDetailsLink   : $(".dynamicDetailsLink"),
+               $riderListItem        : $(".riderListItem"),
+               
+               //negotiation steps
+               $negotiationBox          : $("#negotiationBox"),
+               $startNegotiationBtn     : $("#startNegotiation"),
+               $mainRidePeople          : $("#mainRidePeople"),
+               $mainRideDetails         : $("#mainRideDetails"),
+               $rideDetails1NextButton  : $("#rideDetails1NextButton"),
+               $rideDetails2NextButton  : $("#rideDetails2NextButton"),
+               $rideDetails2BackButton  : $("#rideDetails2BackButton"),
+               $dualPostButtonNo        : $("#dualPostButtonNo"),
+               $dualPostButtonYes       : $("#dualPostButtonYes"),
+               $discussBackButton       : $("#discussBackButton"),
+                
+               //form ajax elements
+               temporaryNewSeatHolder       : "#temporaryNewSeatHolder",
+               $seatNegotiationHistoryList  : $("#seatNegotiationHistoryList"),
+               $negotiationSpinner          : $("#negotiationSpinner"),
+           },
+           
       
            
            // Variables used to block form submitting before map api results are returned
@@ -44,7 +77,6 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
            //map markers and polylines should be here
            mapItem : {
                 polyline : {
-                	polylines : []
                 },
                 
                 marker : {
@@ -88,10 +120,13 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         self._.mapItem.marker.destinationMarker = self.initializeMarker("Destination");
 
 		// Decode the polyline for the route
-        self._.mapItem.polyline.routePolyline = self.displayEncodedPolyline(self._.MapObject, self._.mapItem.polyline.encodePolyline, true);
+        self._.mapItem.polyline.routePolyline = self.displayEncodedPolyline(self._.MapObject, self._.mapItem.polyline.encodedPolyline, true);
         
         //center the map on the route
         self.centerOnRoute();
+        
+        
+        self._.mapItem.polyline.routePolyline = self.initializePath()
         
         // Route preview changes whenever the user finished editing the
         // origin or destination textboxes
@@ -107,7 +142,93 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         //  and longitude in the stringified data
         self.strangeLat = googleTestString.substring(2,4);	
         self.strangeLon = googleTestString.substring(10,12);
-
+        
+        self.negotiationInit();
+        
+        self._.el.$dynamicDetailsLink.click(this.loadSeatDetails);
+        
+        // Bind the ride click buttons
+        self._.el.$rideDeleteForm.submit(function(){
+            // Confirm the user wants to delete the post
+            var confirmed = confirm("Are you sure you want to delete this ride?");
+            if (confirmed==true) {
+                // Submit the form
+                return true;
+            } else {
+                // Cancel the form submit
+                return false; 
+            }
+        });
+        
+        // If the window url hash is set load that seat's details
+        if (window.location.hash != "") {
+            var hash = window.location.hash;
+            $(hash).trigger('click');
+        }
+        
+       
+	     self._.el.$riderListItem.hover(function() {
+	         self.hoverOverPassenger($(this));
+	     }, function() {
+	         self.hoverOutPassenger($(this));
+	     });
+        // When the origin or the destination change, clear the route id.
+        self._.el.$originTextBox.change(self.clearRouteId);
+        self._.el.$destinationTextBox.change(self.clearRouteId);
+    },
+    
+    negotiationInit : function() {
+     	var self = this;
+     	self.stepCount = self._.el.$negotiationBox.children().length;
+     	self.currentStep = 0;
+     	self._.el.$startNegotiationBtn.bind('click', self.step);
+     	self._.el.$rideDetails1NextButton.bind('click', self.step);
+     	self._.el.$rideDetails2NextButton.bind('click', self.step);
+     	self._.el.$rideDetails2BackButton.bind('click', self.prevStep);
+     	self._.el.$discussBackButton.bind('click', self.prevStep);
+     	self._.el.$dualPostButtonNo.bind('click', function() {
+     		self.step(true);
+     	});
+     	self._.el.$dualPostButtonYes.bind('click', self.step);
+    },
+   
+    step : function (b_skip) {
+        var map = Rootless.Map.Negotiation.getInstance();
+        
+        map._.el.$seatDetailsBlock.show();
+        
+        if (map.currentStep == 0) {
+    		map._.el.$mainRidePeople.hide();
+    		map._.el.$mainRideDetails.hide();
+    	} else if (map.currentStep == map.stepCount) {
+    		map._.el.$mainRidePeople.show();
+    		map._.el.$mainRideDetails.show();
+    		map._.el.$seatDetailsBlock.hide();
+    		map.CurrentStep == 0;
+    		
+    		return true;
+    	} else {
+    		map._.el.$negotiationBox.children().eq(map.currentStep-1).hide();
+    	}
+    	
+    	if (b_skip == true) {
+    		map.currentStep++;
+    	}
+    	
+        map._.el.$negotiationBox.children().eq(map.currentStep).fadeIn();
+   	    
+        map.currentStep++;
+        
+        return false;
+   	    
+    },
+   
+    prevStep : function() {
+   	   var map = Rootless.Map.Negotiation.getInstance();
+   	   map._.el.$negotiationBox.children().eq(map.currentStep-1).hide();
+   	   
+   	   map._.el.$negotiationBox.children().eq(map.currentStep-2).fadeIn();
+   	   map.currentStep--;
     },
    
     geocodeOrigin : function(results, status) {     
@@ -140,21 +261,23 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     },
     
     formAjaxOptions : {
+    	
 	    // The resulting html should be sent to the test div
 	    target: '#temporaryNewSeatHolder',
 	    // The callback function when the form was successfully submitted
 	    success: function() {
+	    	var map = Rootless.Map.Negotiation.getInstance();
 	        // Move the resulting html from the temporaryNewSeatHolder
 	        // to the actual seat history list.
-	        $('#seatNegotiationHistoryList').prepend($('#temporaryNewSeatHolder').contents());
+	        map._.el.$seatNegotiationHistoryList.prepend($(map._.el.temporaryNewSeatHolder).contents());
 	
-	        $('#seatDetailsBlock').unblock();
+	        map._.el.$seatDetailsBlock.unblock();
 	
 	        // Hide the spinner
-	        $("#negotiationSpinner").hide();
+	        map._.el.$negotiationSpinner.hide();
 	    }
 	},
-    
+	
     loadSeatDetails : function() {
     	if($('.selectedUser').length > 0) {
             $('.selectedUser').removeClass('selectedUser');
@@ -179,9 +302,18 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         return false;
     },
     
+    
     clearRouteId : function() {
         // Clear the route id
-        $('#seats_route_route_id').val('');
+        Rootless.Map.Negotiation.getInstance()._.el.$seatRouteId.val('');
+    },
+    
+    maybeSubmitForm : function() {
+    	var self = Rootless.Map.Negotiation.getInstance();            
+	    // Check to make sure nothing is blocking submitting the form
+	    if (self.canSubmitForm() && self._.formBlock.isFormSubmitPending) {
+	        self._.el.$seatRequestForm.ajaxSubmit(self.formAjaxOptions);
+	    } 
     }
     
 });

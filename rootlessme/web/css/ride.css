@@ -30,19 +30,6 @@ label {
     position: relative;
 }
 
-/*#findARideForm label {
-    position: absolute;
-    font-weight: bold;
-    margin: 0px 10px 0px 0px;
-    width: 130px;
-    border: 1px solid;
-}
-
-#findARideForm input,
-#findARideForm select {
-    margin-left: 140px;
-}*/
-
 .home .signUpText td,
  
 td {
@@ -289,6 +276,11 @@ tbody {
     background-color: #119D49;
 }
 
+input[type="text"]:focus, textarea:focus {
+   background-color: #ffffff;
+   color: #000;
+} 
+
 #rideSearchForm input#rides_find:hover {
     
     
@@ -309,10 +301,16 @@ tbody {
 
 .pendingListBlock .riderListItem {
 	background: #fff;
-	padding: 10px;
 	width: 190px;
 	margin-right: 20px;
 	margin-bottom: 20px;
+	float: left;
+}
+
+.pendingListBlock .riderListItem a {
+	display: block;
+    float: left;
+    padding: 10px;
 }
 
 .pendingListBlock .riderListItem:hover, .pendingListBlock .riderListItem.selectedUser {
@@ -365,13 +363,6 @@ tbody {
     float: left;
 }
 
-.riderListItem {
-    padding: 4px 10px 0px 0px;
-    cursor: pointer;
-    position: relative;
-    float: left;
-}
-
 .riderListItem.selectedUser {
    /* background-color: #F1F1F1; */
 }
@@ -384,11 +375,6 @@ tbody {
     width: 400px;
     height: 210px;
     float: right;
-    /* Need to lower the z-index so the javascript menus appear over the map.
-       Commented out because it disabled mouse control*/
-/*    z-index: -1;*/
-/*    margin-top: 50px;
-    margin-bottom: 50px;*/
 }
 
 .backtoListLink {
@@ -661,6 +647,10 @@ label span.dollar-sign {
 	padding: 0px;
 	float: left;
 	clear: both;
+}
+
+.editOfferBtn .rideActionButtonsList {
+	margin: 5px 0px 0px -2px;
 }
 
 .rideActionButtonsListItem {

@@ -162,13 +162,13 @@ Rootless.Map = Class.extend({
      * @returns google.maps.Polyline The polyline
      */
     createNonPrimaryPolyline : function(polylineCoordinates) { 
+    	var self = this;
         var routePath = new google.maps.Polyline({
             path: polylineCoordinates,
             strokeColor: self._.CONST.SECONDARY_ROUTE_COLOR,
             strokeOpacity: self._.CONST.SECONDARY_ROUTE_OPACITY,
             strokeWeight: self._.CONST.SECONDARY_ROUTE_WEIGHT
         });
-
         // Return the created polyline
         return routePath;
     },
@@ -181,6 +181,23 @@ Rootless.Map = Class.extend({
     bindTextBoxesToMap : function() {
     	var self = this;
    
+   
+        this._.el.$originTextBox.tipsy({
+        	gravity : 'w',
+        	title   : 'placeholder',
+        	trigger : 'focus',
+        	html    : false,
+        	live    : true,
+        	offset  : 15
+        });
+        this._.el.$destinationTextBox.tipsy({
+        	gravity : 'w',
+        	title   : 'placeholder',
+        	trigger : 'focus',
+        	html    : false,
+        	live    : true,
+        	offset  : 15
+        });
         // Route preview changes whenever the user finished editing the
         // seat pickup and dropoff textboxes
         this._.el.$originTextBox.bind('change', function() {self.previewRoute(self._.el.$originTextBox)});
@@ -222,7 +239,7 @@ Rootless.Map = Class.extend({
         this._.formBlock.isDirectionsPending = false;
         // Submit the form if necessary and if the function is defined
         if (typeof(MaybeSubmitForm) == typeof(Function)) {
-            MaybeSubmitForm();
+            this.MaybeSubmitForm();
         }
      },
      
@@ -392,6 +409,50 @@ Rootless.Map = Class.extend({
         }
         
         self._.MapObject.fitBounds(bounds);
+    },
+    	
+    hoverOverPassenger : function(passengerItem) {
+		self = this;
+        // Get the polyline from the row
+        var item = passengerItem.find(".routePolyline");
+        var key = item.attr('id');
+        var polyline = self._.mapItem.polyline.polyLineObj[key];
+        
+        self.highlightPolyline(polyline);
+    },
+
+    hoverOutPassenger : function(passengerItem) {
+   	   var self = this;
+       // Get the polyline from the row
+       var item = passengerItem.find(".routePolyline");
+       var key = item.attr('id');
+       var polyline = self._.mapItem.polyline.polyLineObj[key];
+
+        if (!(item.hasClass('pendingLine'))) {
+            self.passengerUnHighlightPolyline(polyline);
+        } else {
+            self.pendingUnHighlightPolyline(polyline);
+        }
+    },
+    
+    highlightPolyline : function(polyline) {
+    	var self = this;
+        polyline.setOptions({strokeColor: self._.CONST.SECONDARY_ROUTE_COLOR, zIndex: 100, strokeOpacity:  self._.CONST.SECONDARY_ROUTE_OPACITY});
+    },
+        
+    unHighlightPolyline : function(polyline) {
+    	var self = this;
+       polyline.setOptions({strokeColor: self._.CONST.PRIMARY_ROUTE_COLOR, zIndex: 1});
+    },
+	
+	passengerUnHighlightPolyline : function(polyline) {
+	   var self = this;
+       polyline.setOptions({strokeColor: self._.CONST.SECONDARY_ROUTE_COLOR, zIndex: -1});
+    },
+   
+    pendingUnHighlightPolyline : function(polyline) {
+       var self = this;
+       polyline.setOptions({strokeColor: self._.CONST.SECONDARY_ROUTE_COLOR, zIndex: -1, strokeOpacity: 0 });
     },
 
     /**
