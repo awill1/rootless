@@ -211,6 +211,7 @@ tbody {
 }
 
 #informationContainer {
+	position: relative;
     float: left;
 	background: #F4F4F4;
 	width: 100.4%;
@@ -892,6 +893,15 @@ ul{
     font-style: italic;
     font-weight: bold;
     margin: 20px 0px 10px 20px;
+}
+
+.removeBtn {
+	cursor: pointer;
+	color: #ccc;
+}
+
+.removeBtn:hover {
+	color: #222;
 }
 
 #seatDetailsBlock2{

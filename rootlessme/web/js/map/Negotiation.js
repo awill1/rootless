@@ -39,12 +39,14 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                $rideDeleteForm       : $("#rideDeleteForm"),
                $seatRequestForm      : $("#seatRequestForm"),
                $seatDetailsBlock     : $("#seatDetailsBlock"),
+               $seatDetails          : $("#seatDetails"),
                $originDataField      : $("#seats_route_origin_data"),
                $destinationDataField : $("#seats_route_destination_data"),
                $routeDataField       : $("#seats_route_route_data"),
                $seatRouteId          : $("#seats_route_route_id"),
                $dynamicDetailsLink   : $(".dynamicDetailsLink"),
                $riderListItem        : $(".riderListItem"),
+     
                
                //negotiation steps
                $negotiationBox          : $("#negotiationBox"),
@@ -62,6 +64,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                temporaryNewSeatHolder       : "#temporaryNewSeatHolder",
                $seatNegotiationHistoryList  : $("#seatNegotiationHistoryList"),
                $negotiationSpinner          : $("#negotiationSpinner"),
+               $informationContainer        : $('#informationContainer')
            },
            
       
@@ -145,7 +148,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         
         self.negotiationInit();
         
-        self._.el.$dynamicDetailsLink.click(this.loadSeatDetails);
+        self._.el.$dynamicDetailsLink.click(self.loadSeatDetails);
         
         // Bind the ride click buttons
         self._.el.$rideDeleteForm.submit(function(){
@@ -279,27 +282,37 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	},
 	
     loadSeatDetails : function() {
-    	if($('.selectedUser').length > 0) {
-            $('.selectedUser').removeClass('selectedUser');
-        }
-        
-        $(this).parent().append($('#seatSpinnerContainer'));
-        $('#seatSpinnerContainer').show();
+        var map = Rootless.Map.Negotiation.getInstance();
         $(this).parent().addClass('selectedUser');
-
-        $("#seatNegotiationBlock").slideUp("blind");
-        $("#seatNegotiationBlock").load($(this).attr("href"),
-        	function(){
-            	$('#negotiationSpinnerContainer').hide();
-                $("#seatNegotiationBlock").slideDown("blind");
-                self.bindTextBoxesToMap();
-            });
-
+        $(this).parent().siblings().removeClass('selectedUser');
+        
+        $.ajax({
+        	url : $(this).attr("href"), 
+        	success : function(response, status){
+        		if (status == 'success') {
+        			map._.el.$seatDetails.empty();
+                    map._.el.$seatDetails.append(response);
+                    map._.el.$seatDetails.children(0).show().prepend('<div class="removeBtn">X</div>');
+                    
+                    $('.removeBtn').bind('click', map.emptyBlock);
+                    
+              
+                    
+                    map.bindTextBoxesToMap();
+                
+                }
+            }
+        });
+        
         // Set the # in the url to keep track of which seat was clicked
         window.location.hash = $(this).attr('id');
 
         // Return false to override default click behavior
         return false;
+    },
+    
+    emptyBlock: function () {
+    	$(this).parent().empty();
     },
     
     
