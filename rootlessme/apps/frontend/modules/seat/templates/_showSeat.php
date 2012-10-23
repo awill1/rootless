@@ -12,7 +12,7 @@
                 <img class="driverPicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $otherPersonProfile->getPictureUrlLarge() ?>" alt="<?php echo $otherPersonProfile->getFullName() ?>" />
             	<h3 class="postedByStyles">Posted By: <span class="green"><?php echo $otherPersonProfile->getFullName() ?></span></h3>
     </a>
-        <form id="seatNegotiationForm" class="userInputForm" action="<?php echo url_for('seats_update', array('seat_id'=>$seat->getSeatId())) ?>" method="post">
+<!--        <form id="seatNegotiationForm" class="userInputForm" action="<?php echo url_for('seats_update', array('seat_id'=>$seat->getSeatId())) ?>" method="post">
         <p span class="negotationInstructions">You may negotiate with the driver by changing the ride details below.
 The driver can approve your request or negotiate back with you.
         </p>
@@ -35,7 +35,7 @@ The driver can approve your request or negotiate back with you.
           </tr>
         </tfoot>
       </table>
-    </form>
+    </form>-->
     <?php if ($canAccept) : ?>
         <form id="seatAcceptForm" action="<?php echo url_for('seats_accept') ?>" method="post">
             <input id="seat_id" name="seat_id" type="hidden" value="<?php echo $seat->getSeatId() ?>"  />

@@ -112,7 +112,7 @@
                                 <a id="seat-<?php echo $seat->getSeatId(); ?>" class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>">
                                 	<img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driverProfile->getPictureUrlSmall() ?>" alt="<?php echo $driverProfile->getFullName() ?>" />
                                 	<h3 class="green"><?php echo $driverProfile->getFullName() ?></h3>
-                                	<p><?php echo $seat->getOriginLocation(); ?> to <?php echo $seat->getDestinationLocation(); ?></p>
+                                	<p><?php echo $seat->getOriginString(); ?> to <?php echo $seat->getDestinationString(); ?></p>
                                 </a>
                              <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden pendingLine routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
                         </li>
