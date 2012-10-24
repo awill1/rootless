@@ -95,8 +95,6 @@
             </span>
 
         </h1>
-<!--        <span class="tripDistance"></span>-->
-      
         <div class="addThisToolBar">
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style ">
@@ -130,31 +128,26 @@
     </div>
     
     <div id="rideProfileMap"></div>
-<!--        comments delete this chuck and do a php if $isMyPpost display all 'seats' $seats contains all seats related to this offer. -->
-<!--        php foreach seats as seat (change line 107)  -->
-
-	<?php if ($isMyPost && $pendingSeats->count() > 0): ?>
-		<div class="pendingListBlock">
-        	<h3 class="green">You have <?php echo $pendingSeats->count(); ?> pending <?php echo ($pendingSeats->count() == 1 ? "request" : "requests") ?>!</h3>
-            	<ul class="riderList pending">
-                    <?php foreach ($pendingSeats as $seat):
-                          $riderProfile = $seat->getPassengers()->getPeople()->getProfiles(); ?>
-                        <li class="riderListItem">
-                            <?php if ($isMyPost) :?>
-                                <a id="seat-<?php echo $seat->getSeatId(); ?>" class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>">
-                                	<img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" />
-                                	<h3 class="green"><?php echo $riderProfile->getFullName() ?></h3>
-                                	<p><?php echo $seat->getOriginString(); ?> to <?php echo $seat->getDestinationString(); ?></p>
-                                </a>
-                            <?php endif; ?>
-                             <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden pendingLine routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
-                        </li>
-                    <?php endforeach; ?>
-               </ul>
-        </div>
-   	<?php endif; ?>
-<!--        end chunk -->
-
+    <?php if ($isMyPost && $pendingSeats->count() > 0): ?>
+            <div class="pendingListBlock">
+            <h3 class="green">You have <?php echo $pendingSeats->count(); ?> pending <?php echo ($pendingSeats->count() == 1 ? "request" : "requests") ?>!</h3>
+            <ul class="riderList pending">
+                <?php foreach ($pendingSeats as $seat):
+                      $riderProfile = $seat->getPassengers()->getPeople()->getProfiles(); ?>
+                    <li class="riderListItem">
+                        <?php if ($isMyPost) :?>
+                            <a id="seat-<?php echo $seat->getSeatId(); ?>" class="dynamicDetailsLink" href="<?php echo url_for("seats_show", array('seat_id'=>$seat->getSeatId()))  ?>">
+                                    <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" />
+                                    <h3 class="green"><?php echo $riderProfile->getFullName() ?></h3>
+                                    <p><?php echo $seat->getOriginString(); ?> to <?php echo $seat->getDestinationString(); ?></p>
+                            </a>
+                        <?php endif; ?>
+                         <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden pendingLine routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
+                    </li>
+                <?php endforeach; ?>
+           </ul>
+    </div>
+    <?php endif; ?>
     <div id="informationContainer">
         <div id="mainRidePeople">
             <a class="profileImageLink" href="<?php echo url_for("profile_show_user", $driver)  ?>">
@@ -211,9 +204,7 @@
                   </ul>
                 <?php endif; ?>
             </div>
-            <?php endif; ?>
-			
-			
+            <?php endif; ?>	
         </div>
         <div id="mainRideDetails">
         	<h4>Ride Details</h4>
@@ -230,86 +221,15 @@
             	<!-- offer seen by Requester -->
                 <a class="cta big-btn" id="startNegotiation" href="<?php echo url_for('seats_requests_new', array('ride_id'=>$carpool->getCarpoolId())); ?>">Request a Ride</a>
             <?php elseif ($isMyPost) : ?>
-            	<!-- do we want to put the edit and delete buttons here? -->
+                <!-- old edit & delete button spot -->
         	<?php endif; ?>
    	</div>
         <div id="seatDetails">
    	 	<?php if ($mySeat != null): ?>
    	        <?php elseif ($myUserId!=null): ?>
    	    	<?php include_component('seat', 'requestForm', array('ride'=>$carpool)) ?>
-            
-   	    <?php endif; ?>
+                <?php endif; ?>
         </div>
-<!--                <div id="negotiationBox">
-                    <div id="dualPost">
-                        <h2>Have you already requested or posted a ride for this trip?</h2>
-                        <br />
-                        <input id="dualPostYes" type="radio" name="dualPostYes" style="display: none;" value="Yes" />
-                        <label for="dualPostYes" id="dualPostButtonYes" class="dualYesOrNo unselectedLabel">Yes</label>
-                        
-                        <input id="dualPostNo" type="radio" name="dualPostNo" style="display: none;" value="No" />
-                        <label for="dualPostNo" id="dualPostButtonNo" class="dualYesOrNo unselectedLabel">No</label>
-                        
-                    </div>
-                    <div id="existingRequests">
-                        <h2>Please select from your existing requests:</h2>
-                        <div class="existingRequest">
-                            <div class="existingRequestPicture"><img src="#" width="54" height="54" alt="person"></div>
-                            <div class="existingRequestName">Person's Name</div>
-                            <div class="existingRequestPlaces">New York, NY to Boston, MA</div>
-                            <div class="existingRequestDate">November 24th, 2012</div>
-                            <div class="existingRequestArrow">&gt;</div>
-                        </div>
-                    </div>
-                    <div id="rideDetails1">
-                        <h3>Ride Details</h3>
-                        <br />
-                        <h2>Where would you like to be picked up?</h2>
-                        <input class="rideDetailsFields required" type="text" name="pickup" placeholder="Address, City, State"/>
-                        <h2>Where would you like to be dropped off?</h2>
-                        <input class="rideDetailsFields required" type="text" name="dropoff" placeholder="Address, City, State"/>
-                        <h2>What day would you like to leave?</h2>
-                        <input class="rideDetailsFields required" type="text" name="day" placeholder="Day"/>
-                        <h2>What time would you like to leave?</h2>
-                        <input class="rideDetailsFields required" type="text" name="time" placeholder="Time"/>
-                        <br />
-                        
-                        <div id="rideDetails1NextButton" class="Button">Next</div>
-                        <br /><br /><br /><br />
-                        step 1 of 3
-                    </div>
-                    <div id="rideDetails2">
-                        <h3>Ride Details</h3>
-                        <h2>Would you like to adjust the asking price (per seat)?</h2>
-                        <input class="rideDetailsFields required" type="text" name="pickup" placeholder="C.R.E.A.M."/>
-                        <h2>How many seats do you need?</h2>
-                        <input class="rideDetailsFields required" type="text" name="pickup" placeholder="How deep you rollin'?"/>
-                        <br />
-                        <div id="rideDetails2BackButton" class="Button">Back</div><div id="rideDetails2NextButton" class="Button">Next</div>
-                        <br /><br /><br /><br />
-                        step 2 of 3
-                    </div>
-                    <div id="discuss">
-                        <h2>Is there anything else you would like to discuss?</h2>
-                        <br />
-                        
-                        <ul> Things to consider:
-                            <li>Smoking or non-smoking</li>
-                            <li>Is there a return trip?</li>
-                            <li>Phone number exchange</li>
-                            <li>Are you bringing anything?</li>
-                        </ul>
-                        <br />
-                        <textarea class="chatBox" name="chatBox" placeholder="Say something..."></textarea> <br />
-                        this actually needs to be the back div button and the form submit button not two divs... the form in general isn't here yet either
-                        <div id="discussBackButton" class="Button">Back</div><div id="discussSubmitButton" class="Button">Submit</div>
-                        <br /><br /><br /><br />
-                        step 3 of 3 
-                    </div>
-                    <div id="confirmation">Yay you did it!</div>
-                    Back to Ride Profile
-                </div>-->
-   	    <?php // endif; ?>
     </div>
 
 <?php endif; ?>

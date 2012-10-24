@@ -36,13 +36,13 @@ class seatActions extends sfActions
         }
 
         // If the request came from AJAX render the seat negotiation partial
-        if ($request->isXmlHttpRequest())
-        {
-            return $this->renderPartial('seat/negotiation',
-                                array('ride_type' => $this->jobs,
-                                      'ride' => $this->jobs,
-                                      'seat_id' => $this->seat->getSeatId()));
-        }
+//        if ($request->isXmlHttpRequest())
+//        {
+//            return $this->renderPartial('seat/showSeat',
+//                                array('ride_type' => $this->jobs,
+//                                      'ride' => $this->jobs,
+//                                      'seat_id' => $this->seat->getSeatId()));
+//        }
     }
 
     /**

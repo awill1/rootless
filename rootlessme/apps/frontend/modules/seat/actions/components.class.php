@@ -59,6 +59,12 @@ class seatComponents extends sfComponents
         // Get the actions available to the user
         $this->canAccept = $this->seat->canAccept($userId);
         $this->canDecline = $this->seat->canDecline($userId);
+        
+   
+        //look in base history to find how to get name from History object
+        $this->lastHistory = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryForSeat($this->getSeatId());
+        //did the viewer change something last
+        $this->didUserChangeLast = $lastHistory->getChangerId() == $userId;
     }
 
     /**

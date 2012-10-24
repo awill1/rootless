@@ -64,7 +64,11 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                temporaryNewSeatHolder       : "#temporaryNewSeatHolder",
                $seatNegotiationHistoryList  : $("#seatNegotiationHistoryList"),
                $negotiationSpinner          : $("#negotiationSpinner"),
-               $informationContainer        : $('#informationContainer')
+               $informationContainer        : $('#informationContainer'),
+               
+               //seatHistoryToggle
+               $seatHistoryToggle           : $("#seatHistoryToggle"),
+               $seatHistoryBlock            : $("#seatHistoryBlock")
            },
            
       
@@ -291,14 +295,21 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         	success : function(response, status){
         		if (status == 'success') {
         			map._.el.$seatDetails.empty();
+                    //hide main ride details & main ride people info
+                    map._.el.$mainRideDetails.hide();
+                    map._.el.$mainRidePeople.hide();
+                    
+                    //show seat details
+                    
                     map._.el.$seatDetails.append(response);
                     map._.el.$seatDetails.children(0).show().prepend('<div class="removeBtn">X</div>');
-                    
                     $('.removeBtn').bind('click', map.emptyBlock);
                     
-              
-                    
+  
                     map.bindTextBoxesToMap();
+                    
+                    //bind seat histoy toggle
+                    $('#seatHistoryToggle').bind('click', map.seatHistoryToggle);
                 
                 }
             }
@@ -327,6 +338,11 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	    if (self.canSubmitForm() && self._.formBlock.isFormSubmitPending) {
 	        self._.el.$seatRequestForm.ajaxSubmit(self.formAjaxOptions);
 	    } 
+    },
+    
+    seatHistoryToggle : function() {
+        var map = Rootless.Map.Negotiation.getInstance();
+        $('#seatHistoryBlock').toggle();
     }
     
 });

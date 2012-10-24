@@ -896,11 +896,13 @@ ul{
 }
 
 .removeBtn {
+        
 	cursor: pointer;
 	color: #ccc;
 }
 
 .removeBtn:hover {
+    
 	color: #222;
 }
 
@@ -908,5 +910,16 @@ ul{
     background-color: #f4f4f4;
 }
 #largeUserPicture{
-    background-color: #
+    background-color: #000;
+}
+#seatHistoryBlock{
+    display: none;
+}
+#seatHistoryToggle{
+    color: #FF6A4D;
+}
+#seatTerms{
+    float: left;
+    margin: 0 0 20px 10px;
+    width: 50%;
 }
