@@ -162,15 +162,9 @@
                     <?php foreach ($acceptedSeats as $seat):
                         $riderProfile = $seat->getPassengers()->getPeople()->getProfiles(); ?>
                     <li class="riderListItem">
-                        <?php// if ($isMyPost || $seat == $mySeat) :?>
-<!--                            <a id="seat-<?php echo $seat->getSeatId(); ?>" class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>">
-                                <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" />
-                            </a>-->
-                        <?php// else :?>
                             <a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>">
                                 <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" />
                             </a>
-                        <?php// endif; ?>
                         <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
                     </li>
                     <?php endforeach; ?>
@@ -189,11 +183,7 @@
                     <?php foreach ($declinedSeats as $seat):
                         $riderProfile = $seat->getPassengers()->getPeople()->getProfiles(); ?>
                         <li class="riderListItem">
-                            <?php// if ($isMyPost) :?>
-                        <!--        <a  id="seat-<?php echo $seat->getSeatId(); ?>" class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a>-->
-                            <?php// else :?>
                                 <a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" /></a>
-                            <?php// endif; ?>
                              <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden pendingLine routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
                         </li>
                     <?php endforeach; ?>
@@ -231,5 +221,4 @@
                 <?php endif; ?>
         </div>
     </div>
-
 <?php endif; ?>

@@ -239,6 +239,7 @@ tbody {
 
 .driverPicture {
     width: 270px;
+    display: block;
 }
 
 #rideSearchForm input, #rideSearchForm select {
@@ -488,6 +489,12 @@ input[type="text"]:focus, textarea:focus {
     background-color: #D14D2F;
 }
 
+#negotiationSpinnerContainer{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
 .seatNegotiationHistoryItem {
     font-size: 90%;
     padding-bottom: 17px;
@@ -596,22 +603,26 @@ ul {
     position: relative;
 }
 
-#seatAcceptForm, #seatDeclineForm {
+#seatAcceptForm, #seatDeclineForm, #seatEditForm {
     display: inline-block;
-    position: absolute;
-    bottom: 15px;
+    margin-right: 10px;
+/*    position: absolute;*/
+/*    bottom: 15px;
     right: 43px;
-    height: 25px;
+    height: 25px;*/
+}
+#seatFormButtons{
+    float: left;
 }
 
 #seatAcceptForm {
-    display: inline-block;
-    position: absolute;
-    left: 137px;
+    /*display: inline-block;*/
+/*    position: absolute;*/
+/*    left: 137px;*/
 
 }
 
-#seatAcceptForm input[type="submit"], #seatDeclineForm input[type="submit"] {
+#seatAcceptForm input[type="submit"], #seatDeclineForm input[type="submit"], #seatEditForm input[type="button"] {
     width: 95px;
     height: 25px;
 }
@@ -896,14 +907,16 @@ ul{
 }
 
 .removeBtn {
-        
+        float: left;
 	cursor: pointer;
 	color: #ccc;
+        margin-left: 37px;
 }
 
 .removeBtn:hover {
-    
+        float: left;
 	color: #222;
+        margin-left: 37px;
 }
 
 #seatDetailsBlock2{
@@ -913,13 +926,52 @@ ul{
     background-color: #000;
 }
 #seatHistoryBlock{
+    margin-top:20px;
     display: none;
+    float: left;
 }
 #seatHistoryToggle{
+    float: left;
     color: #FF6A4D;
+    margin: 10px 0px 0px 0px;
 }
 #seatTerms{
     float: left;
-    margin: 0 0 20px 10px;
+    margin: 0 0 20px 30px;
     width: 50%;
+}
+#seatTerms h3{
+    margin-top: 0px;
+}
+#seatTerms h4, #seatTerms span {
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 0;
+}
+
+#seatTerms h5 {
+	font-style: italic;
+	font-size: 14px;
+	margin-bottom: 19px;
+}
+
+#seatTerms p {
+        font-size: 12px;
+        font-weight: normal;
+	margin-top: 12px;
+	margin-bottom: 12px;
+}
+
+#seatUserBox{
+    float: left;
+}
+#seatInfoPadder{
+    margin: 10px;
+}
+#seatHistoryWhitespace{
+    margin-top: 10px;
+    float: left;
+    width: 100.4%;
+    height: 20px;
+    background-color: #fff;
 }

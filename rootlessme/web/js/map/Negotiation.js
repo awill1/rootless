@@ -302,7 +302,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                     //show seat details
                     
                     map._.el.$seatDetails.append(response);
-                    map._.el.$seatDetails.children(0).show().prepend('<div class="removeBtn">X</div>');
+                    map._.el.$seatDetails.children(0).show();//.prepend('<div class="removeBtn">X</div>');
                     $('.removeBtn').bind('click', map.emptyBlock);
                     
   
