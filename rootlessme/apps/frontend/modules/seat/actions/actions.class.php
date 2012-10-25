@@ -89,6 +89,51 @@ class seatActions extends sfActions
                                                      'seat' => $this->seat));
         }
     }
+    /**
+     * The action for editing the seat terms
+     * @param sfWebRequest $request The http request
+     * @return string A rendered output if the request was an AJAX request
+     */
+    public function executeEdit(sfWebRequest $request)
+    {
+        // Get the seat id from the request
+        $seatId = $request->getParameter('seat_id');
+
+        // Get the seat information
+        $this->seat = Doctrine_Core::getTable('Seats')->getSeatWithCarpoolAndPassenger($seatId);
+        $this->forward404Unless($this->seat);
+
+        // Seats should only be displayed if the user is one of the people
+        // involved in the ride
+        $this->isMySeat = false;
+        if ($this->getUser()->isAuthenticated())
+        {
+            $myUserId = $this->getUser()->getGuardUser()->getPersonId();
+            $this->myUserId = $myUserId;
+            // Check to see if the user is the driver
+            if ( $this->seat->getCarpools()->getDriverId() == $myUserId )
+            {
+                $this->isMySeat = true;
+            }
+
+            // Check to see if the user is the passenger
+            if ($this->seat->getPassengers()->getPersonId() == $myUserId)
+            {
+                $this->isMySeat = true;
+            }
+        }
+        // If the seat does not belong to the user they are unauthorized to
+        // view this page
+        $this->forward404If(!$this->isMySeat, 'Seat was not found.');
+
+        // If the request came from AJAX render the seat edit partial
+        if ($request->isXmlHttpRequest())
+        {
+            return $this->renderComponent('seat', 'editSeat', array(
+                                                     'seat' => $this->seat));
+        }
+        
+    }
     
     /**
      * The action for creating a new seat request

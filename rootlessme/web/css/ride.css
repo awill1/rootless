@@ -372,6 +372,9 @@ input[type="text"]:focus, textarea:focus {
 #seatDetailsBlock {
     clear: left;
 }
+#seatEditBlock {
+    clear: left;
+}
 
 #RequestMap {
     width: 400px;

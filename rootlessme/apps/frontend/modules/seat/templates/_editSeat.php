@@ -3,7 +3,7 @@
 <?php end_slot();?>
 <script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
 <script type="text/javascript" src="/js/seatNegotiation.js"></script>
-<div id="seatDetailsBlock" title="Seat details">
+<div id="seatEditBlock" title="Edit Seat Details">
     <div id='seatNegotiationContainer'>
     <div id="seatInfo">
         <div id="seatInfoPadder">
@@ -15,8 +15,7 @@
                 <div id="seatHistoryToggle">See Discussion History</div>
             </div>
             <div id="seatTerms">
-                <h3>Ride Details <span class="green">last edited by whoever.</span></h3>
-                
+                <h3>Ride Details <span class="green">currently being edited by you.</span></h3>
                 <p><span>Price:</span> $<?php echo $seat->getPrice() ?> per seat</p>
                 <p><span>Number of seats:</span> <?php echo $seat->getSeatCount() ?></p>
                 <p><span>Pickup Location:</span> <?php echo $seat->getRoutes()->getOriginString() ?></p>
@@ -28,19 +27,19 @@
                     <?php if ($canAccept) : ?>
                         <form id="seatAcceptForm" action="<?php echo url_for('seats_accept') ?>" method="post">
                             <input id="seat_id" name="seat_id" type="hidden" value="<?php echo $seat->getSeatId() ?>"  />
-                            <input id="acceptButton" type="submit" value="Accept"  />
+                            <input id="acceptButton" type="submit" value="Save"  />
                         </form>    
                     <?php endif ?>
                     <?php if ($canEdit) : ?>
-                        <form id="seatEditForm" action="<?php echo url_for('seats_edit', array('seat_id'=>$seat->getSeatId())) ?>" >
+                        <form id="seatEditForm" action="<?php echo url_for('seats_negotiation', array('seat_id'=>$seat->getSeatId())) ?>" method="post">
                             <input id="seat_id" name="seat_id" type="hidden" value="<?php echo $seat->getSeatId() ?>"  />
-                            <input id="editButton" type="button" value="Edit Terms"  />
+                            <input id="acceptButton" type="button" value="Cancel"  />
                         </form>    
                     <?php endif ?>
                     <?php if ($canDecline) : ?>
                         <form id="seatDeclineForm" action="<?php echo url_for('seats_decline') ?>" method="post">
                             <input id="seat_id" name="seat_id" type="hidden" value="<?php echo $seat->getSeatId() ?>"  />
-                            <input id="declineButton" type="submit" value="Decline"  />
+                            <input id="declineButton" type="submit" value="Null"  />
                         </form>    
                     <?php endif ?>
                 </div>

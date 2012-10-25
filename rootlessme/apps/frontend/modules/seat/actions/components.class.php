@@ -30,6 +30,30 @@ class seatComponents extends sfComponents
     }
     
     /**
+     * Executes the action for the _editSeat component.
+     * @param sfWebRequest $request The web request
+     */
+    public function executeEditSeat(sfWebRequest $request)
+    {
+        // Get the user id. The user must be authenticated
+        $userId = $this->getUser()->getGuardUser()->getPersonId();
+        
+        // Get the seat type and number from the request parameters
+        $this->seat = $this->getVar('seat');
+        
+        // Form and seat needed for seat negotiation
+        $this->form = new SeatsNegotiationForm($this->seat);
+        
+        // Get the seat negotiation changes history
+        $this->negotiationChangesHistory = Doctrine_Core::getTable('SeatsHistory')
+                              ->getHistoryDifferencesForSeat($this->seat->getSeatId());
+        
+        // Get the actions available to the user
+        $this->canAccept = $this->seat->canAccept($userId);
+        $this->canDecline = $this->seat->canDecline($userId);
+    }
+    
+    /**
      * Executes the action for the _showSeat component.
      * @param sfWebRequest $request The web request
      */
@@ -66,6 +90,7 @@ class seatComponents extends sfComponents
         //did the viewer change something last
         //$this->didUserChangeLast = $lastHistory->getChangerId() == $userId;
     }
+    
 
     /**
      * Executes the action for the _negotiationItem component.

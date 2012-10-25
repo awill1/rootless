@@ -348,6 +348,14 @@ seats_negotiation:
   param: { module: seat, action: negotiation }
   requirements:
     sf_method: [get]
+    
+seats_edit:
+  url:   /seats/edit/:seat_id
+  class:   sfDoctrineRoute
+  options: { model: Seats, type: object }
+  param: { module: seat, action: edit }
+  requirements:
+    sf_method: [get]
 
 seats_show:
   url:   /seats/:seat_id
