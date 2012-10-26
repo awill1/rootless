@@ -936,8 +936,14 @@ ul{
 #seatHistoryToggle{
     float: left;
     color: #FF6A4D;
+    cursor: pointer;
     margin: 10px 0px 0px 0px;
 }
+
+#seatHistoryToggle:hover {
+    text-decoration: underline;	
+}
+
 #seatTerms{
     float: left;
     margin: 0 0 20px 30px;

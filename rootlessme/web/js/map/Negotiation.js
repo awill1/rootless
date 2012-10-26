@@ -347,6 +347,11 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     
     seatHistoryToggle : function() {
         var map = Rootless.Map.Negotiation.getInstance();
+        $(this).toggleClass('open');
+        
+        var text = $(this).hasClass('open') ? 'Hide Discussion History' : 'See Discussion History';
+        $(this).html(text);
+        
         $('#seatHistoryBlock').toggle();
     },
     
