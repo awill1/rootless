@@ -72,7 +72,8 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                $seatHistoryBlock            : $("#seatHistoryBlock"),
                
                //seatDetailsEdit
-               $seatEditButton              : $("#seatEditButton")
+               $seatEditButton              : $("#editButton"),
+               $seatRemoveButton            : $('.removeBtn')
            },
            
       
@@ -307,9 +308,10 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                     
                     map._.el.$seatDetails.append(response);
                     map._.el.$seatDetails.children(0).show();//.prepend('<div class="removeBtn">X</div>');
-                    $('.removeBtn').bind('click', map.emptyBlock);
-                    $('#seatEditButton').bind('click', self.seatEditButton);
-                    
+                
+
+                    map._.el.$seatRemoveButton.live('click', map.emptyBlock);
+                    map._.el.$seatEditButton.live('click', map.seatEditButton);
   
                     map.bindTextBoxesToMap();
                     
@@ -356,34 +358,34 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     },
     
     seatEditButton : function(){
-        var self = Rootless.Map.Negotiation.getInstance();
-        alert('stuff & things1');
-        $.ajax({
-        	url : $(this).parent().attr("action"), 
-        	success : function(response, status){
-        		if (status == 'success') {
-                            map._.el.$seatDetails.empty();
-                            //hide main ride details & main ride people info
-                            map._.el.$mainRideDetails.hide();
-                            map._.el.$mainRidePeople.hide();
-
-                            //hide seat details
-                            map._.el.$seatDetails.append(response);
-                            map._.el.$seatDetailsBlock.children(0).hide();//.prepend('<div class="removeBtn">X</div>');
-                            $('.removeBtn').bind('click', map.emptyBlock);
-                            
-                            //show seat edit
-                            map._.el.$seatEditBlock.children(0).show();
-                            alert('stuff & things');
-
-                            map.bindTextBoxesToMap();
-
-                            //bind seat histoy toggle
-                            $('#seatHistoryToggle').bind('click', map.seatHistoryToggle);
-                
-                        }
-                }
-        });
+        var map = Rootless.Map.Negotiation.getInstance();
+ 
+	    $.ajax({
+	         url : $(this).parent().attr("action"), 
+	         success : function(response, status){
+	         	console.log(response, status);
+	             if (status == 'success') {
+	                 map._.el.$seatDetails.empty();
+	                 //hide main ride details & main ride people info
+	                 map._.el.$mainRideDetails.hide();
+	                 map._.el.$mainRidePeople.hide();
+	
+	                 //hide seat details
+	                 map._.el.$seatDetails.append(response);
+	                 map._.el.$seatDetailsBlock.children(0).hide();//.prepend('<div class="removeBtn">X</div>');
+	                 $('.removeBtn').bind('click', map.emptyBlock);
+	                            
+	                 //show seat edit
+	                 map._.el.$seatEditBlock.children(0).show();
+	
+	                 map.bindTextBoxesToMap();
+	
+	                 //bind seat histoy toggle
+	                 $('#seatHistoryToggle').bind('click', map.seatHistoryToggle);
+	                
+	             }
+	        }
+	    });
    }
     
 });
