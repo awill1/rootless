@@ -8,9 +8,10 @@
     <div id="seatInfo">
         <div id="seatInfoPadder">
             <div id="seatUserBox">
-                <a class="profileImageLink" href="<?php echo url_for("profile_show_user", $otherPersonProfile)  ?>">
-                            <img class="driverPicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $otherPersonProfile->getPictureUrlLarge() ?>" alt="<?php echo $otherPersonProfile->getFullName() ?>" />
-                            <h3 class="postedByStyles">Posted By: <span class="green"><?php echo $otherPersonProfile->getFullName() ?></span></h3>
+            	<!-- $otherPersonProfile is not defined yet --> 
+                <a class="profileImageLink" href="<?php //echo url_for("profile_show_user", $otherPersonProfile)  ?>">
+                            <img class="driverPicture" src="<?php //echo sfConfig::get('app_profile_picture_directory') ?><?php //echo $otherPersonProfile->getPictureUrlLarge() ?>" alt="<?php //echo $otherPersonProfile->getFullName() ?>" />
+                            <h3 class="postedByStyles">Posted By: <span class="green"><?php //echo $otherPersonProfile->getFullName() ?></span></h3>
                 </a>
                 <div id="seatHistoryToggle">See Discussion History</div>
             </div>
