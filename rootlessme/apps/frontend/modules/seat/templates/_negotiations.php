@@ -12,7 +12,7 @@
                 </div>
                 <div class="seatNegotiationHistoryUserName">
                     <p>
-                        <span class="seatNegotiationUserNameText">  <?php echo $changer->getFullName() ?> </span>changed 
+                        <span class="seatNegotiationUserNameText"><?php echo $changer->getFullName() ?> </span>changed:
                     </p>
                  </div>
                 <div class="seatNegotiationHistorySpecifics">
