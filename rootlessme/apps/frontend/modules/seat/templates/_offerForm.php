@@ -42,7 +42,7 @@
                         <div><?php echo $seatForm['pickup_date']->render(array('class'=>'datePicker rideDetailsFields')) ?></div>
                         
                         <h2>What time would you like to leave?</h2>
-                        <div><?php echo $seatForm['pickup_time']->render(array('class'=>'timePicker rideDetailsFields', 'placeholder'=>'click to add a time')) ?></div>
+                        <div><?php echo $seatForm['pickup_time']->render(array('class'=>'timePicker rideDetailsFields', 'placeholder'=>'click to add a time')) ?></div>         
                         <br />
                         <div id="rideDetails1NextButton" class="Button">Next</div>
                         <br /><br /><br/>

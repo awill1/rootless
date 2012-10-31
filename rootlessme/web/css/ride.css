@@ -713,7 +713,7 @@ label span.dollar-sign {
 #negotiationBox h2{
     color: #2e2e2e;
     font-weight: bold;
-    font-size: 100%;
+    font-size: 108%;
     margin: 0px;
 }
 
@@ -793,7 +793,17 @@ label span.dollar-sign {
     width: 350px;
     margin: 5px 5px 15px 0px;
     padding: 5px;
-    font-size: 110%;
+    font-size: 95%;
+    color: #31A24A;
+    background-color: #F4F4F4;
+    border-color: #E6E6E6;
+    border-style: solid;
+}
+.editSeatFields{
+    width: auto;
+    margin: 0px 5px 0px 0px;
+    padding: 5px;
+    font-size: 95%;
     color: #31A24A;
     background-color: #F4F4F4;
     border-color: #E6E6E6;
@@ -965,7 +975,7 @@ ul{
 }
 
 #seatTerms p {
-        font-size: 12px;
+        font-size: 14px;
         font-weight: normal;
 	margin-top: 12px;
 	margin-bottom: 12px;
