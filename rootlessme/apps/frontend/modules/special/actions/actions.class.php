@@ -670,6 +670,48 @@ class specialActions extends sfActions
         // Use the festival template
         $this->setTemplate('festival');
     }
+    
+    /**
+     * Executes NYC action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeNyc(sfWebRequest $request)
+    {
+//        $this->festivalName = 'the BWxD Conference';
+//        
+//        $this->peopleName = 'attendees';
+        $this->title = 'Rootless - Carpool into New York City';
+//        $this->destination = '69 Waterman St, Providence, RI';
+//        
+//        // Build a dynamic schedule. Eventually this will go into a separate file.
+//        $fullSchedule = array(
+//            'day1' => array(
+//                'date' => '2012-09-28 23:00:00.0',
+//                'id' => 'ABetterWorld_9/28/2012_CincinnatiOH',
+//                'displayName' => 'A Better World By Design 9/28'),
+//            'day2' => array(
+//                'date' => '2012-09-29 23:00:00.0',
+//                'id' => 'ABetterWorld_9/29/2012_CincinnatiOH',
+//                'displayName' => 'A Better World By Design 9/29'),
+//            'day3' => array(
+//                'date' => '2012-09-30 23:00:00.0',
+//                'id' => 'ABetterWorld_9/30/2012_CincinnatiOH',
+//                'displayName' => 'A Better World By Design 9/30'),
+//            'allDays' => array(
+//                'date' => '2012-09-30 23:00:00.0',
+//                'id' => 'ABetterWorld_9/28-30/2012_ProvidenceRI',
+//                'displayName' => 'A Better World By Design All Days'));
+//
+//        // Only include the games that are in the future
+//        $this->games = $this->getFutureGames($fullSchedule);
+//        
+//        //Set background image
+//        $this->backgroundImage = "abetterworld_background.jpg";
+        
+        // Use the festival template
+        $this->setTemplate('realtime');
+    }
 
     /**
      * Executes special events register action

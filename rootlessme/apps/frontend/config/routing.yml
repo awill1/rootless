@@ -415,6 +415,10 @@ abetterworldbydesign:
   url: /abetterworldbydesign
   param: { module: special, action: aBetterWorldByDesign }
   
+nyc:
+  url: /nyc
+  param: { module: special, action: nyc }
+  
 special_event_register:
   url: /specialEvent/register
   param: { module: special, action: register }
