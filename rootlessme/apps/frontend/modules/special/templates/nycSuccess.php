@@ -93,20 +93,28 @@
                     </tr>
                     <tr>        
                         <td class="labelCell">
+                            <label for="name">Full Name:<span class="required">*</span></label>        
+                        </td>
+                        <td class="inputCell">
+                            <input id="name" class="formFields required" type="text" name="name" placeholder="Full Name"/><br/>
+                        </td>
+                    </tr>
+                    <tr>        
+                        <td class="labelCell">
                             <label for="email">Email Address:<span class="required">*</span></label>        
                         </td>
                         <td class="inputCell">
                             <input id="email" class="formFields required email" type="text" name="email" placeholder="Email"/><br/>
                         </td>
                     </tr>
-                    <tr>
+<!--                    <tr>
                         <td class="labelCell">
                             <label for="phone">Phone (for SMS):</label>
                         </td>
                         <td class="inputCell">
                             <input id="phone" class="formFields phone" type="text" name="phone" placeholder="Phone"/><br/>
                         </td>
-                    </tr>
+                    </tr>-->
                 </table>
                 
                 <input id="formSubmit" class="" type="submit" value="Submit" />

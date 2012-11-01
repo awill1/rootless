@@ -235,7 +235,8 @@ class CarpoolsTable extends Doctrine_Table
             // Reformat the date to work with the database
             $date = date('Y-m-d', strtotime($date));
             $q = $q->andWhere('c.start_date = ?', $date)
-                   ->andWhere('c.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED]);
+                   ->andWhere('c.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED])
+                   ->andWhere('c.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_CLOSED]);
         }
         else
         {
@@ -299,7 +300,8 @@ class CarpoolsTable extends Doctrine_Table
         // the future 
         // that are not deleted
         return $query->andWhere('c.start_date >= ?', date('Y-m-d'))
-                     ->andWhere('c.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED]);
+                     ->andWhere('c.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED])
+                     ->andWhere('c.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_CLOSED]);
         
     }
     

@@ -865,6 +865,7 @@ The Rootless Team
             $destination = $request->getParameter('destination');
             $date = $request->getParameter('date');
             $time = $request->getParameter('time');
+            $name = $request->getParameter('name');
             $email = $request->getParameter('email');
             $phone = $request->getParameter('phone');
 
@@ -896,6 +897,10 @@ The Rootless Team
             {
                 throw new Exception('Time was not specified.');
             }
+            if(CommonHelpers::IsNullOrEmptyString($name))
+            {
+                throw new Exception('Name was not specified.');
+            }
             if(CommonHelpers::IsNullOrEmptyString($email))
             {
                 throw new Exception('Email was not specified.');
@@ -916,9 +921,13 @@ The Rootless Team
                 $firstName = CommonHelpers::getFirstName($name);
                 $lastName = CommonHelpers::getLastName($name);
                 $user = sfGuardUser::createMinimumUser($email, $password, $firstName, $lastName);
-                if (user)
+                if ($user)
                 {
                     $wasUserCreated = TRUE;
+                }
+                else
+                {
+                    throw new Exception('Could not create user.');
                 }
             }
             else
@@ -928,17 +937,56 @@ The Rootless Team
             }
             
             
-            throw new Exception('Cannot create rides yet.');
             
             // Create the user's rides
+            $mysqlDate = date('Y-m-d H:i:s', strtotime($date));
             if ($userType == 'ride' || $userType == 'either')
             {
+                // Create the passenger post
+                $passenger = new Passengers();
                 
+                // Set the minumum amount of data known
+                $passenger->setStartDate($mysqlDate);
+                $passenger->setStartTime($time);
+                $passenger->setStatusId(RideStatuses::$statuses[RideStatuses::RIDE_OPEN]);
+                $passenger->setPeople($user->getPeople());
+                $passenger->setPassengerCount(1);
+                
+                
+                // Create the route from passed in data. The save happens inside
+                // of the createFromGoogleDirections function.
+                $route = new Routes();
+                $route->createFromGoogleDirections($routeData, $originData, $destinationData);
+                
+                $passenger->setRoutes($route);
+                
+                $passenger->save();
             }
             if ($userType == 'drive' || $userType == 'either')
             {
+                // Create the carpool
+                $carpool = new Carpools();
+                
+                // Set the minumum amount of data known
+                $carpool->setStartDate($mysqlDate);
+                $carpool->setStartTime($time);
+                $carpool->setStatusId(RideStatuses::$statuses[RideStatuses::RIDE_OPEN]);
+                $carpool->setPeople($user->getPeople());
+                $carpool->setSeatsAvailable(1);
+                
+                
+                // Create the route from passed in data. The save happens inside
+                // of the createFromGoogleDirections function.
+                $route = new Routes();
+                $route->createFromGoogleDirections($routeData, $originData, $destinationData);
+                
+                $carpool->setRoutes($route);
+                $carpool->setSoloRouteId($route->getRouteId());
+                
+                $carpool->save();
                 
             }
+            
 
             //check to see if administration notifications are desried
             if (sfConfig::get('app_send_administration_notifications'))
@@ -949,12 +997,12 @@ The Rootless Team
                 $messageTemplate = 
                     "New Special event request.
                     UserType: %userType%
+                    Origin: %origin%
+                    Destination: %destination%
+                    Date: %date%
+                    Time: %time%
                     Name: %name%
                     Email: %email%
-                    Game: %game%
-                    Location: %location%
-                    Destination: %destination%
-                    Seats: %seats%
 
                     User account:";
                 if ($isExistingUser)
@@ -993,46 +1041,21 @@ The Rootless Team
     Welcome to Rootless! Your ride has been posted.
 
                     Welcome email:
-    Welcome %name%!
-
-    And thanks for joining Rootless! We will be connecting you with other people traveling to the same event as matches become available.
-
-    Here is what you can look forward to:
-
-
-    1. We have created a profile for you, which you will use to interact with others.  Please log in at rootless.me with:
-
-        Username: %email%
-        Password: %password%
-
-    2. Please change your password and fill out your profile, so you will be more likely to find great matches. Don't forget a photo!
-
-    3. Your ride has been posted %RIDE_LINK%. Feel free to share the link with your other social networks! 
-
-    4. Check your email! We will send you potential ride matches along your route as they become available.
-
-
-    If you have any questions, please email us at contact@rootless.me. Thanks again and welcome!
-
-
-    Enjoy the ride!
-    The Rootless Team
-                    ";
+ ";
 
                 $formattedMessage = strtr($messageTemplate, array(
                     '%userType%'    => $userType,
+                    '%origin%'      => $origin,
+                    '%destination%' => $destination,
+                    '%date%'        => $date,
+                    '%time%'        => $time,
                     '%name%'        => $name,
                     '%email%'       => $email,
-                    '%game%'        => $game,
-                    '%location%'    => $location,
-                    '%destination%' => $destination,
-                    '%password%'    => $password,
-                    '%seats%'       => $seats
+                    '%password%'    => $password
                 ));
-                $subjectTemplate = "%email% has registered for %game%";
+                $subjectTemplate = "%email% has registered for NYC carpool";
                 $formattedSubject = strtr($subjectTemplate, array(
-                    '%email%'     => $email,
-                    '%game%'      => $game
+                    '%email%'     => $email
                 ));
                 $snsService->publish(sfConfig::get('app_amazon_sns_site_activity_arn'), 
                         $formattedMessage, 
@@ -1040,6 +1063,27 @@ The Rootless Team
 
 
             }
+            
+            // If the user was created send a welcome email
+            if ($wasUserCreated)
+            {
+                // Send the welcome email to the user
+                $welcomeEmailPartials = array('text' => 'mail/registerNycText', 
+                                              'html'=> 'mail/registerNycHtml');
+                $mailFrom = array('email' => sfConfig::get('app_sf_guard_plugin_default_from_email'),
+                                  'name' => sfConfig::get('app_sf_guard_plugin_default_from_name'));
+                $welcomeEmailSubject = 'Welcome to the Rootless NYC Carpool';
+                EmailHelpers::sendEmail($welcomeEmailPartials, 
+                                        array('subscriber' => $user->getPeople(), 'password' => $password, 'email' => $email), 
+                                        $mailFrom, 
+                                        $email, 
+                                        $welcomeEmailSubject);
+            }
+            
+            // Send ride created email with matches
+            
+            throw new Exception('Cannot do matching rides yet.');
+            
             // Return nothing to the page 
             $this->setLayout(sfView::NONE);
             return $this->renderText("{ success: true }");

@@ -84,7 +84,8 @@ class PassengersTable extends Doctrine_Table
         // Add a where clause to the query to only return carpools today or in
         // the future
         return $query->andWhere('pa.start_date >= ?', date('Y-m-d'))
-                     ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED]);
+                     ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED])
+                     ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_CLOSED]);
     }
     
     /**
@@ -259,7 +260,8 @@ class PassengersTable extends Doctrine_Table
             // Reformat the date to work with the database
             $date = date('Y-m-d', strtotime($date));
             $q = $q->andWhere('pa.start_date = ?', $date)
-                   ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED]);
+                   ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED])
+                   ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_CLOSED]);
         }
         else
         {
@@ -396,7 +398,8 @@ class PassengersTable extends Doctrine_Table
             // Reformat the date to work with the database
             $date = date('Y-m-d', strtotime($date));
             $q = $q->andWhere('pa.start_date = ?', $date)
-                   ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED]);
+                   ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED])
+                   ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_CLOSED]);
         }
         else
         {
@@ -431,7 +434,8 @@ class PassengersTable extends Doctrine_Table
             // Reformat the date to work with the database
             $date = date('Y-m-d', strtotime($date));
             $q = $q->andWhere('pa.start_date = ?', $date)
-                   ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED]);
+                   ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED])
+                   ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_CLOSED]);
         }
         else
         {

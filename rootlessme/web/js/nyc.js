@@ -111,6 +111,14 @@ $(document).ready(function()
     // origin or destination textboxes
     bindTextBoxesToMap(originTextBox, destinationTextBox);
     
+    // Discover the strange keys used for longitude and latitude
+    // in the data returned from google maps api.
+    var googleTestString = JSON.stringify(testPoint);
+    // this is a random two character string which represents latitude
+    //  and longitude in the stringified data
+    strangeLat = googleTestString.substring(2,4);
+    strangeLon = googleTestString.substring(10,12);
+    
     //Ajax form success
     $('#specialForm').validate({
         invalidHandler: function() {
