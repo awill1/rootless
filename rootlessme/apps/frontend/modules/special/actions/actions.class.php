@@ -994,11 +994,11 @@ The Rootless Team
             $recommendedDrivers = NULL;
             if (!is_null($carpool))
             {
-                $recommendedPassengers = $carpool->recommendPassengers(1);
+                $recommendedPassengers = $carpool->recommendPassengers(2);
             }
             if (!is_null($passenger))
             {
-                $recommendedDrivers = $passenger->recommendDrivers(1);
+                $recommendedDrivers = $passenger->recommendDrivers(2);
             }
             
 
