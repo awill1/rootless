@@ -802,7 +802,7 @@ label span.dollar-sign {
 .editSeatFields{
     width: auto;
     margin: 0px 5px 0px 0px;
-    padding: 5px;
+    padding: 2px;
     font-size: 95%;
     color: #31A24A;
     background-color: #F4F4F4;
@@ -977,8 +977,9 @@ ul{
 #seatTerms p {
         font-size: 14px;
         font-weight: normal;
-	margin-top: 12px;
-	margin-bottom: 12px;
+/*	margin-top: 12px;
+	margin-bottom: 12px;*/
+        margin: 8px 0 8px 0;
 }
 
 #seatUserBox{

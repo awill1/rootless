@@ -41,6 +41,14 @@ class seatComponents extends sfComponents
         // Get the seat type and number from the request parameters
         $this->seat = $this->getVar('seat');
         
+        $this->otherPersonProfile = null;
+        
+        if ($this->seat->getCarpools()->getDriverId() == $userId){
+            $this->otherPersonProfile = $this->seat->getPassengers()->getPeople()->getProfiles();
+        }else{
+            $this->otherPersonProfile = $this->seat->getCarpools()->getPeople()->getProfiles();
+        }
+        
         // Form and seat needed for seat negotiation
         $this->form = new SeatsNegotiationForm($this->seat);
         
