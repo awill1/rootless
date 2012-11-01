@@ -1047,7 +1047,7 @@ The Rootless Team
         catch (Exception $e)
         {
             // Log the error
-            $this->logMessage($e->getMessage(), 'err');
+            $this->logMessage($e->getMessage()."; ".$e->getTraceAsString(), 'err');
             // Return the error json
             return $this->renderText('{ success: '.$success.', message: "'.$e->getMessage().'" }');
         }
