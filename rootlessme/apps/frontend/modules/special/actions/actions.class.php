@@ -920,7 +920,7 @@ The Rootless Team
                 $password = CommonHelpers::CreateTemporaryPassword();
                 $firstName = CommonHelpers::getFirstName($name);
                 $lastName = CommonHelpers::getLastName($name);
-                $user = sfGuardUser::createMinimumUser($email, $password, $firstName, $lastName);
+                $user = sfGuardUser::createMinimumUser($email, $password, $firstName, $lastName, $phone);
                 if ($user)
                 {
                     $wasUserCreated = TRUE;
@@ -940,6 +940,8 @@ The Rootless Team
             
             // Create the user's rides
             $mysqlDate = date('Y-m-d H:i:s', strtotime($date));
+            $passenger = NULL;
+            $carpool = NULL;
             if ($userType == 'ride' || $userType == 'either')
             {
                 // Create the passenger post
@@ -985,6 +987,18 @@ The Rootless Team
                 
                 $carpool->save();
                 
+            }
+            
+            // Do recommendations
+            $recommendedPassengers = NULL;
+            $recommendedDrivers = NULL;
+            if (!is_null($carpool))
+            {
+                $recommendedPassengers = $carpool->recommendPassengers(1);
+            }
+            if (!is_null($passenger))
+            {
+                $recommendedDrivers = $passenger->recommendDrivers(1);
             }
             
 
@@ -1080,9 +1094,28 @@ The Rootless Team
                                         $welcomeEmailSubject);
             }
             
-            // Send ride created email with matches
-            
-            throw new Exception('Cannot do matching rides yet.');
+            // Send ride created email with matches if a ride was created
+            if (!is_null($carpool) || !is_null($passenger))
+            {
+                // Send the welcome email to the user
+                $rideEmailPartials = array('text' => 'mail/ridePostedNycText',
+                                           'html' => 'mail/ridePostedNycHtml');
+                $mailFrom = array('email' => sfConfig::get('app_sf_guard_plugin_default_from_email'),
+                                  'name' => sfConfig::get('app_sf_guard_plugin_default_from_name'));
+                $rideEmailSubjectTemplate = "%s to %s carpool information";
+                $rideEmailSubject = sprintf($rideEmailSubjectTemplate, $origin, $destination);
+                EmailHelpers::sendEmail($rideEmailPartials, 
+                                        array('subscriber' => $user->getPeople(),
+                                              'recommendedPassengers' => $recommendedPassengers, 
+                                              'recommendedDrivers' => $recommendedDrivers,
+                                              'origin' => $origin,
+                                              'destination' => $destination,
+                                              'date' => $date,
+                                              'time' => $time), 
+                                        $mailFrom, 
+                                        $email, 
+                                        $rideEmailSubject);
+            }
             
             // Return nothing to the page 
             $this->setLayout(sfView::NONE);

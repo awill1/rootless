@@ -77,5 +77,7 @@ class Version60 extends Doctrine_Migration_Base
     {
         $this->removeColumn('seats', 'is_hidden_for_driver');
         $this->removeColumn('seats', 'is_hidden_for_passenger');
+        
+        // Need to delete the SEAT_RECOMMENDED_NOTIFICATION and settings too
     }
 }

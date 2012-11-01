@@ -133,6 +133,9 @@ class Passengers extends BasePassengers
     {
         $recommendations = new Doctrine_Collection('Seats');
         
+        // Get the passenger id
+        $passengerId = $this->getPersonId();
+        
         // Get all driver matches
         $matches = $this->findDrivers($distance);
         
@@ -156,17 +159,21 @@ class Passengers extends BasePassengers
             // If there was no existing seat, create the recommendation
             if (!$seatAlreadyExists)
             {
-                // Create the recommendation
-                $recommendation = Doctrine_Core::getTable('Seats')->createSeatRecommendation($match, $this);
-                
-                if ($recommendation)
+                // Make sure the driver is not also the passenger
+                if ($match->getDriverId() != $passengerId)
                 {
-                    // Add the recommendation to the recommendation list
-                    $recommendations->add($recommendation);
-                    
-                    // Send a notification to the other user
-                    $notification = new seatRecommendedNotification($recommendation, $match->getPeople(), $this->getPeople());
-                    $notification->sendNotifications();
+                    // Create the recommendation
+                    $recommendation = Doctrine_Core::getTable('Seats')->createSeatRecommendation($match, $this);
+
+                    if ($recommendation)
+                    {
+                        // Add the recommendation to the recommendation list
+                        $recommendations->add($recommendation);
+
+                        // Send a notification to the other user
+                        $notification = new seatRecommendedNotification($recommendation, $match->getPeople(), $this->getPeople());
+                        $notification->sendNotifications();
+                    }
                 }
             }
         }

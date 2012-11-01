@@ -107,14 +107,14 @@
                             <input id="email" class="formFields required email" type="text" name="email" placeholder="Email"/><br/>
                         </td>
                     </tr>
-<!--                    <tr>
+                    <tr>
                         <td class="labelCell">
-                            <label for="phone">Phone (for SMS):</label>
+                            <label for="phone">Phone:</label>
                         </td>
                         <td class="inputCell">
                             <input id="phone" class="formFields phone" type="text" name="phone" placeholder="Phone"/><br/>
                         </td>
-                    </tr>-->
+                    </tr>
                 </table>
                 
                 <input id="formSubmit" class="" type="submit" value="Submit" />

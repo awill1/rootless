@@ -163,7 +163,6 @@ $(document).ready(function()
             },
             // The callback function when the form was successfully submitted
             success: function(responseText, statusText, xhr) {
-                alert(responseText);
                 $('#formConfirmations').show('blind');
                 $("#specialForm").unblock();
                 

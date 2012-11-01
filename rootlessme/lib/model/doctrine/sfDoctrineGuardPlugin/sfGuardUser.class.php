@@ -94,7 +94,7 @@ class sfGuardUser extends PluginsfGuardUser
      * @param String $lastName The last name
      * @return \sfGuardUser The created user
      */
-    public static function createMinimumUser($email, $password, $firstName, $lastName)
+    public static function createMinimumUser($email, $password, $firstName, $lastName, $phone = null)
     {
         // Create the user
         $user = new sfGuardUser();
@@ -112,6 +112,10 @@ class sfGuardUser extends PluginsfGuardUser
         $profile = $user->getPeople()->getProfiles();
         $profile->setFirstName($firstName);
         $profile->setLastName($lastName);
+        if (!CommonHelpers::IsNullOrEmptyString($phone))
+        {
+            $profile->setPhoneNumber($phone);
+        }
 
         // Save the updated profile
         $profile->save();

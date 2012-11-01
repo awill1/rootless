@@ -3,17 +3,20 @@
       $otherUserProfile = $otherUser->getProfiles();
 ?>Hi <?php echo $subscriberProfile->getFirstName(); ?>,
 
-<?php echo $otherUserProfile->getFullName(); ?> is traveling your way! Based on your trip details, we think the two of you might want to ride together.
+We have found a carpool match for you! Based on your trip details, we think the two of you might want to ride together.
+
 
 The recommendation is:
 
-From <?php echo $seat->getRoutes()->getOriginString(); ?> 
-To <?php echo $seat->getRoutes()->getDestinationString(); ?> 
-On <?php echo format_date($seat->getPickupDate(), 'P'); ?> 
+<?php if ($rideType=='offer') {echo 'Passenger: ';} else {echo "Driver: ";} ?><?php echo $otherUserProfile->getFullName(); ?>
+Phone: <?php echo $otherUserProfile->getFullName(); ?> 
+Email: <?php echo $otherUserProfile->getFullName(); ?> 
+Pick up Location: <?php echo $seat->getRoutes()->getOriginString(); ?>  
+Drop off Location: <?php echo $seat->getRoutes()->getDestinationString(); ?> 
+On: <?php echo format_date($seat->getPickupDate(), 'P'); ?> 
 
-You can view the full details of the recommendation at <?php echo url_for('ride_show', array('ride_id' => $rideId, 'ride_type' => $rideType), true).'#seat-'.$seat->getSeatId(); ?>
+If the match looks good, go ahead and start discussing the important details with the person. 
 
-If the match looks good, go ahead and start discussing the important details. If you are not interested in beginning the discussion, you can hide the recommendation.
 
 Thanks for riding with Rootless,
 

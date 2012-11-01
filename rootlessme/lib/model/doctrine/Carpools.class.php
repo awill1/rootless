@@ -131,6 +131,9 @@ class Carpools extends BaseCarpools
         // Get all existing seats for this ride
         $existingSeats = $this->getSeats();
         
+        // Get the driver id of the carpool
+        $driverId = $this->getDriverId();
+        
         // Go through all of the matches
         foreach ($matches as $match)
         {
@@ -144,21 +147,25 @@ class Carpools extends BaseCarpools
                 // Is the passenger in this existing seat?
                 $seatAlreadyExists = $existingSeats[$i]->getPassengerId() == $matchPassengerId;
             }
-            
+
             // If there was no existing seat, create the recommendation
             if (!$seatAlreadyExists)
             {
-                // Create the recommendation
-                $recommendation = Doctrine_Core::getTable('Seats')->createSeatRecommendation($this, $match);
-                
-                if ($recommendation)
+                // Make sure the driver is not also the passenger
+                if ($match->getPersonId() != $driverId)
                 {
-                    // Add the recommendation to the recommendation list
-                    $recommendations->add($recommendation);
-                    
-                    // Send a notification to the other user
-                    $notification = new seatRecommendedNotification($recommendation, $match->getPeople(), $this->getPeople());
-                    $notification->sendNotifications();
+                    // Create the recommendation
+                    $recommendation = Doctrine_Core::getTable('Seats')->createSeatRecommendation($this, $match);
+
+                    if ($recommendation)
+                    {
+                        // Add the recommendation to the recommendation list
+                        $recommendations->add($recommendation);
+
+                        // Send a notification to the other user
+                        $notification = new seatRecommendedNotification($recommendation, $match->getPeople(), $this->getPeople());
+                        $notification->sendNotifications();
+                    }
                 }
             }
         }
