@@ -1009,7 +1009,7 @@ The Rootless Team
                 $snsService = new AmazonSNS(array('key' => sfConfig::get('app_amazon_sns_access_key'), 
                                                   'secret' => sfConfig::get('app_amazon_sns_secret_key')));
                 $messageTemplate = 
-                    "New Special event request.
+                    "New NYC event request.
                     UserType: %userType%
                     Origin: %origin%
                     Destination: %destination%
@@ -1017,6 +1017,7 @@ The Rootless Team
                     Time: %time%
                     Name: %name%
                     Email: %email%
+                    Phone: %phone%
 
                     User account:";
                 if ($isExistingUser)
@@ -1048,14 +1049,42 @@ The Rootless Team
                         ";
                     }
                 }
-
-                // Add in the email message
+                
+                // Add in ride creation
                 $messageTemplate = $messageTemplate."
-                    Welcome subject:
-    Welcome to Rootless! Your ride has been posted.
-
-                    Welcome email:
- ";
+                    Rides created:
+                        Ride offer id: %OFFER_ID%
+                        Ride request id: %REQUEST_ID%
+                        ";
+                $offerId = 0;
+                if (!is_null($carpool))
+                {
+                    $offerId = $carpool->getCarpoolId();
+                }
+                $requestId = 0;
+                if (!is_null($passenger))
+                {
+                    $requestId = $passenger->getPassengerId();
+                }
+                
+                
+                // Add in the matches count
+                $messageTemplate = $messageTemplate."
+                    Matches:
+                        Recommended drivers count: %RECOMMENDED_DRIVERS%
+                        Recommended passengers count: %RECOMMENDED_PASSENGERS%
+                        ";
+                $recommendedDriverCount = 0;
+                if (!is_null($recommendedDrivers))
+                {
+                    $recommendedDriverCount = $recommendedDrivers->count();
+                }
+                $recommendedPassengerCount = 0;
+                if (!is_null($recommendedPassengers))
+                {
+                    $recommendedPassengerCount = $recommendedPassengers->count();
+                }
+                
 
                 $formattedMessage = strtr($messageTemplate, array(
                     '%userType%'    => $userType,
@@ -1065,7 +1094,12 @@ The Rootless Team
                     '%time%'        => $time,
                     '%name%'        => $name,
                     '%email%'       => $email,
-                    '%password%'    => $password
+                    '%phone%'       => $phone,
+                    '%password%'    => $password,
+                    '%OFFER_ID%'               => $offerId,
+                    '%REQUEST_ID%'             => $requestId,
+                    '%RECOMMENDED_DRIVERS%'    => $recommendedDriverCount,
+                    '%RECOMMENDED_PASSENGERS%' => $recommendedPassengerCount
                 ));
                 $subjectTemplate = "%email% has registered for NYC carpool";
                 $formattedSubject = strtr($subjectTemplate, array(
