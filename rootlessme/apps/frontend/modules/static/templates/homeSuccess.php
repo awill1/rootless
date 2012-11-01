@@ -61,6 +61,12 @@
 <div class="subHead">
     Featured Events!
     <div class="featuredEvents">
+        <a href="<?php echo url_for('nyc') ?>" class="featureLink">
+            <div id="nycBox">
+                Carpool NYC
+            </div>
+        </a>
+        
         <a href="<?php echo url_for('halifaxpop') ?>" class="featureLink">
             <div id="hpxBox">
                 Halifax Pop Explosion Music Festival
@@ -69,11 +75,6 @@
         <a href="<?php echo url_for('voodoo') ?>" class="featureLink">
             <div id="voodooBox">
                 Voodoo Music + Art Experience
-            </div>
-        </a>
-        <a href="<?php echo url_for('harvestfestival') ?>" class="featureLink">
-            <div id="harvestBox">
-                Harvest Music Festival
             </div>
         </a>
         <a href="<?php echo url_for('novascotiamusicweek') ?>" class="featureLink">

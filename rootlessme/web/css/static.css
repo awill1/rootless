@@ -160,6 +160,13 @@ html, body {
     padding: 4px;
     margin-bottom: 6px;
 }
+#nycBox{
+    background-color: #109545;
+    color: #ffffff;
+    margin: 4px;
+    padding: 4px;
+    margin-bottom: 6px;
+}
 
 .frontHeadline{
     font-size: 300%;
