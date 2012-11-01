@@ -678,38 +678,9 @@ class specialActions extends sfActions
      */
     public function executeNyc(sfWebRequest $request)
     {
-//        $this->festivalName = 'the BWxD Conference';
-//        
-//        $this->peopleName = 'attendees';
         $this->title = 'Rootless - Carpool into New York City';
-//        $this->destination = '69 Waterman St, Providence, RI';
-//        
-//        // Build a dynamic schedule. Eventually this will go into a separate file.
-//        $fullSchedule = array(
-//            'day1' => array(
-//                'date' => '2012-09-28 23:00:00.0',
-//                'id' => 'ABetterWorld_9/28/2012_CincinnatiOH',
-//                'displayName' => 'A Better World By Design 9/28'),
-//            'day2' => array(
-//                'date' => '2012-09-29 23:00:00.0',
-//                'id' => 'ABetterWorld_9/29/2012_CincinnatiOH',
-//                'displayName' => 'A Better World By Design 9/29'),
-//            'day3' => array(
-//                'date' => '2012-09-30 23:00:00.0',
-//                'id' => 'ABetterWorld_9/30/2012_CincinnatiOH',
-//                'displayName' => 'A Better World By Design 9/30'),
-//            'allDays' => array(
-//                'date' => '2012-09-30 23:00:00.0',
-//                'id' => 'ABetterWorld_9/28-30/2012_ProvidenceRI',
-//                'displayName' => 'A Better World By Design All Days'));
-//
-//        // Only include the games that are in the future
-//        $this->games = $this->getFutureGames($fullSchedule);
-//        
-//        //Set background image
-//        $this->backgroundImage = "abetterworld_background.jpg";
         
-        // Use the festival template
+        // Use the nyc template
         $this->setTemplate('nyc');
     }
 
@@ -864,6 +835,222 @@ The Rootless Team
       // Return nothing to the page 
       $this->setLayout(sfView::NONE);
       return $this->renderText("{ success: true }");
+    }
+    
+    /**
+     * Executes special NYC register action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeNycRegister(sfWebRequest $request)
+    {
+        // Return nothing to the page 
+        $this->setLayout(sfView::NONE);
+        
+        //Success variable and message
+        $success = 'false';
+        
+        try
+        {
+        
+            // Load the AWS SDK
+            require_once sfConfig::get('app_amazon_sdk_file');
+
+            // Verify the request parameters
+            $userType = $request->getParameter('userType');
+            $originData = $request->getParameter('rides_origin_data');
+            $destinationData = $request->getParameter('rides_destination_data');
+            $routeData = $request->getParameter('rides_route_data');
+            $origin = $request->getParameter('origin');
+            $destination = $request->getParameter('destination');
+            $date = $request->getParameter('date');
+            $time = $request->getParameter('time');
+            $email = $request->getParameter('email');
+            $phone = $request->getParameter('phone');
+
+            if(CommonHelpers::IsNullOrEmptyString($originData))
+            {
+                throw new Exception('Origin data was not specified.');
+            }
+            if(CommonHelpers::IsNullOrEmptyString($destinationData))
+            {
+                throw new Exception('Destination data was not specified.');
+            }
+            if(CommonHelpers::IsNullOrEmptyString($routeData))
+            {
+                throw new Exception('Route data was not specified.');
+            }
+            if(CommonHelpers::IsNullOrEmptyString($origin))
+            {
+                throw new Exception('Origin was not specified.');
+            }
+            if(CommonHelpers::IsNullOrEmptyString($destination))
+            {
+                throw new Exception('Destination was not specified.');
+            }
+            if(CommonHelpers::IsNullOrEmptyString($date))
+            {
+                throw new Exception('Date was not specified.');
+            }
+            if(CommonHelpers::IsNullOrEmptyString($time))
+            {
+                throw new Exception('Time was not specified.');
+            }
+            if(CommonHelpers::IsNullOrEmptyString($email))
+            {
+                throw new Exception('Email was not specified.');
+            }
+
+            // Create the user if necessary
+            $isExistingUser = FALSE;
+            $password = NULL;
+            $wasUserCreated = FALSE;
+            
+            // Check to see if user is already in our database
+            $user = Doctrine::getTable('sfGuardUser')->getUserByEmail($email);
+
+            // If no, create a new user instance and populate with the minumum data
+            if(!$user)
+            {
+                $password = CommonHelpers::CreateTemporaryPassword();
+                $firstName = CommonHelpers::getFirstName($name);
+                $lastName = CommonHelpers::getLastName($name);
+                $user = sfGuardUser::createMinimumUser($email, $password, $firstName, $lastName);
+                if (user)
+                {
+                    $wasUserCreated = TRUE;
+                }
+            }
+            else
+            {
+                // The user already exists
+                $isExistingUser = TRUE;
+            }
+            
+            
+            throw new Exception('Cannot create rides yet.');
+            
+            // Create the user's rides
+            if ($userType == 'ride' || $userType == 'either')
+            {
+                
+            }
+            if ($userType == 'drive' || $userType == 'either')
+            {
+                
+            }
+
+            //check to see if administration notifications are desried
+            if (sfConfig::get('app_send_administration_notifications'))
+            {
+                // Send the notification using Amazon SNS  
+                $snsService = new AmazonSNS(array('key' => sfConfig::get('app_amazon_sns_access_key'), 
+                                                  'secret' => sfConfig::get('app_amazon_sns_secret_key')));
+                $messageTemplate = 
+                    "New Special event request.
+                    UserType: %userType%
+                    Name: %name%
+                    Email: %email%
+                    Game: %game%
+                    Location: %location%
+                    Destination: %destination%
+                    Seats: %seats%
+
+                    User account:";
+                if ($isExistingUser)
+                {
+                    $messageTemplate = $messageTemplate."
+                        The user already exists.
+                        Email: %email%
+                        Password: Exists
+                        ";
+                }
+                else
+                {
+                    if ($wasUserCreated)
+                    {
+                        // A new user was created
+                        $messageTemplate = $messageTemplate."
+                        The user was created.
+                        Email: %email%
+                        Password: %password%
+                        ";
+                    }
+                    else
+                    {
+                        // A user was not creted for some reason
+                        $messageTemplate = $messageTemplate."
+                        The user was NOT created.
+                        Email: %email%
+                        Password: 
+                        ";
+                    }
+                }
+
+                // Add in the email message
+                $messageTemplate = $messageTemplate."
+                    Welcome subject:
+    Welcome to Rootless! Your ride has been posted.
+
+                    Welcome email:
+    Welcome %name%!
+
+    And thanks for joining Rootless! We will be connecting you with other people traveling to the same event as matches become available.
+
+    Here is what you can look forward to:
+
+
+    1. We have created a profile for you, which you will use to interact with others.  Please log in at rootless.me with:
+
+        Username: %email%
+        Password: %password%
+
+    2. Please change your password and fill out your profile, so you will be more likely to find great matches. Don't forget a photo!
+
+    3. Your ride has been posted %RIDE_LINK%. Feel free to share the link with your other social networks! 
+
+    4. Check your email! We will send you potential ride matches along your route as they become available.
+
+
+    If you have any questions, please email us at contact@rootless.me. Thanks again and welcome!
+
+
+    Enjoy the ride!
+    The Rootless Team
+                    ";
+
+                $formattedMessage = strtr($messageTemplate, array(
+                    '%userType%'    => $userType,
+                    '%name%'        => $name,
+                    '%email%'       => $email,
+                    '%game%'        => $game,
+                    '%location%'    => $location,
+                    '%destination%' => $destination,
+                    '%password%'    => $password,
+                    '%seats%'       => $seats
+                ));
+                $subjectTemplate = "%email% has registered for %game%";
+                $formattedSubject = strtr($subjectTemplate, array(
+                    '%email%'     => $email,
+                    '%game%'      => $game
+                ));
+                $snsService->publish(sfConfig::get('app_amazon_sns_site_activity_arn'), 
+                        $formattedMessage, 
+                        array('Subject' => $formattedSubject));
+
+
+            }
+            // Return nothing to the page 
+            $this->setLayout(sfView::NONE);
+            return $this->renderText("{ success: true }");
+        }
+        catch (Exception $e)
+        {
+            // Log the error
+            $this->logMessage($e->getMessage(), 'err');
+            // Return the error json
+            return $this->renderText('{ success: '.$success.', message: "'.$e->getMessage().'" }');
+        }
     }
     
     /**

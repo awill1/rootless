@@ -13,6 +13,9 @@ var locations = new Array();
 // The text boxes to match depend on the ride type
 var originTextBox = "#origin";
 var destinationTextBox = "#destination";
+var originDataField = "#rides_origin_data";
+var destinationDataField = "#rides_destination_data";
+var routeDataField = "#rides_route_data";
 var originMarker;
 var destinationMarker;
 var routePolyline;
@@ -21,6 +24,12 @@ var originLongitude = "#rides_origin_longitude";
 var destinationLatitude = "#rides_destination_latitude";
 var destinationLongitude = "#rides_destination_longitude";
 var polylines = new Object;
+// Latitude and longitude key names change in google maps api.
+// This testPoint helps us figure out which letters google is using 
+// this time around.
+var testPoint = new google.maps.LatLng(23,45);
+var strangeLat;
+var strangeLon;
 
 // Form submit options used for the ajax form
 var formAjaxOptions = 
@@ -74,7 +83,7 @@ $(document).ready(function()
     // Form field change event handler
     $('.formFields').change(function(){
         // Send an event to google analytics for the type of form field changed
-        _gaq.push(['_trackEvent', 'specialEvent', 'changeFormField', $(this).attr('name')]);
+        _gaq.push(['_trackEvent', 'nycEvent', 'changeFormField', $(this).attr('name')]);
     });
     
     // Create the Google Map
@@ -106,7 +115,7 @@ $(document).ready(function()
     $('#specialForm').validate({
         invalidHandler: function() {
             // Send an event to google analytics for the form validation error
-            _gaq.push(['_trackEvent', 'specialEvent', 'validationError']);
+            _gaq.push(['_trackEvent', 'nycEvent', 'validationError']);
         },
         messages: {
             name: "Enter your name. ",
@@ -121,6 +130,14 @@ $(document).ready(function()
             }
         }
     });
+    $('#rideSearchForm').click(function(){
+        // Set the form submit flag
+        isFormSubmitPending = true;
+
+        // Disable the default submission. We will let AJAX do it
+        MaybeSubmitForm();
+        return false;
+    });
     $('#specialForm').ajaxForm( 
         {
             beforeSubmit: function() {
@@ -129,20 +146,21 @@ $(document).ready(function()
                     message: '<img src="/images/ajax-loader.gif" alt="Saving..." />'
                 }); 
                 // Send an event to google analytics for the form submission
-                _gaq.push(['_trackEvent', 'specialEvent', 'registerSubmitted']);
+                _gaq.push(['_trackEvent', 'nycEvent', 'registerSubmitted']);
             },
             error: function() {
                 $("#specialForm").unblock();
                 // Send an event to google analytics for the form submission
-                _gaq.push(['_trackEvent', 'specialEvent', 'registerError']);
+                _gaq.push(['_trackEvent', 'nycEvent', 'registerError']);
             },
             // The callback function when the form was successfully submitted
-            success: function() {
+            success: function(responseText, statusText, xhr) {
+                alert(responseText);
                 $('#formConfirmations').show('blind');
                 $("#specialForm").unblock();
                 
                 // Send an event to google analytics to show the form was submitted properly
-                _gaq.push(['_trackEvent', 'specialEvent', 'registerSuccess']);
+                _gaq.push(['_trackEvent', 'nycEvent', 'registerSuccess']);
             }
         });
         
@@ -164,7 +182,8 @@ $(document).ready(function()
         {
             hours = 12;
         }
-        var minutes = currentTime.getMinutes();
+        // Need the minutes to always be 2 digits wide
+        var minutes = ("0" + currentTime.getMinutes()).slice (-2);;
         var timeString = hours + ":" + minutes + " " + ampm;
         $("#date").attr('value', dateString);
         $("#time").attr('value', timeString);
@@ -190,14 +209,6 @@ $(document).ready(function()
                  $('#loader').show();
                  $('#results').toggle('blind');
                  ClearPolylinesFromMap();
-              });
-              $('#rideSearchForm').submit(function(){
-                  // Set the form submit flag
-                  isFormSubmitPending = true;
-                
-                  // Disable the default submission. We will let AJAX do it
-                  MaybeSubmitForm();
-                  return false;
               });
 
 //            // Create the Google Map
@@ -238,9 +249,9 @@ $(document).ready(function()
 //                $(destinationTextBox).val(destination);
 //            }
             
-            // Search for what is in the textboxes at page load time
-            previewRoute();
-            $('#rides_find').click(); 
+//            // Search for what is in the textboxes at page load time
+//            previewRoute();
+//            $('#rides_find').click(); 
         });
         
         function getParameterByName(name) {

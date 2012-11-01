@@ -34,21 +34,24 @@
         <div id="map" style="width:300px; height:300px;"></div>
     </div>
     <div id="formBox">
-        <form id="specialForm" action="<?php echo url_for('special_event_register'); ?>" method="post">
+        <form id="specialForm" action="<?php echo url_for('special_nyc_register'); ?>" method="post">
             <input id="rides_origin_latitude" class="required" type="hidden" name="rides_origin_latitude" value="" />
             <input id="rides_origin_longitude" type="hidden" name="rides_origin_longitude" value="" />
             <input id="rides_destination_latitude" type="hidden" name="rides_destination_latitude" value="" />
             <input id="rides_destination_longitude" type="hidden" name="rides_destination_longitude" value="" />
+            <input id="rides_origin_data" class="required" type="hidden" name="rides_origin_data" value="" />
+            <input id="rides_destination_data" type="hidden" name="rides_destination_data" value="" />
+            <input id="rides_route_data" type="hidden" name="rides_route_data" value="" />
             
             
             <div id="">
                 <div class="formError"> </div>
-                I want to:<br/>
+                I am a:<br/>
                 <div class="rideTypeRadio" >
-                    <input id="userTypeDrive" type="radio" name="userType" value="drive" /><label for="userTypeDrive">Drive</label>
+                    <input id="userTypeDrive" type="radio" name="userType" value="drive" /><label for="userTypeDrive">Driver</label>
                 </div>
                 <div class="rideTypeRadio" >
-                    <input id="userTypeRide" type="radio" name="userType" value="ride" /><label for="userTypeRide">Ride</label>
+                    <input id="userTypeRide" type="radio" name="userType" value="ride" /><label for="userTypeRide">Passenger</label>
                 </div>
                 <div class="rideTypeRadio" >
                     <input id="userTypeEither" type="radio" name="userType" value="either" checked="yes" /><label for="userTypeEither">Either</label>
@@ -98,10 +101,10 @@
                     </tr>
                     <tr>
                         <td class="labelCell">
-                            <label for="phone">Phone Number:</label>
+                            <label for="phone">Phone (for SMS):</label>
                         </td>
                         <td class="inputCell">
-                            <input id="phone" class="formFields required phone" type="text" name="phone" placeholder="Phone"/><br/>
+                            <input id="phone" class="formFields phone" type="text" name="phone" placeholder="Phone"/><br/>
                         </td>
                     </tr>
                 </table>
@@ -134,9 +137,31 @@
         </div>
         
         <div class="descriptionBox">
+            <h2>Minimum passenger requirement for all vehicles entering Manhattan</h2>
             <p>
-                Mayor Bloomberg has set a minimum passenger into Manhattan. Use Rootless to find a car with empty seats or to find extra passengers so you can meet the minimum passenger limit and get into Manhattan.
+                As a result of the devastating aftermath of Hurricane Sandy in New York City, Mayor Bloomberg has set a minimum passenger requirement on all cars driving into Manhattan to reduce traffic congestion. Use Rootless to find a car with empty seats or to find extra passengers so you can meet the minimum passenger limit and get into Manhattan.
             </p>
+            <h2>How it works</h2>
+            <p>We are trying to make ridesharing and carpooling easy for people trying to get into Manhattan.</p>
+            <ol>
+                <li>
+                    Submit your start location, end location, date, and time or your trip along with your name, email address, and optionally a phone number.
+                </li>
+                <li>
+                    You will receive email and SMS updates when we find drivers and passengers along your route. We will send you information on how to get in contact with them.
+                </li>
+                <li>
+                    Contact the other person by email or sms.
+                </li>
+                <li>
+                    Unsubscribe from the alerts after you have found a ride or filled your car.
+                </li>
+            </ol>
+            <h2>About Rootless</h2>
+            <p>
+                Rootless is a ridesharing community that helps passengers and drivers get where they want to go, together. One of our co-founders lives in Brooklyn and he has seen the transporation problems in NYC as a result of Hurricane Sandy. We wanted to help the greater New York City area get around easier during this difficult time.
+            </p>
+            
         </div>
     </div>
     <div id="socialLinks">

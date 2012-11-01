@@ -424,6 +424,11 @@ special_event_register:
   param: { module: special, action: register }
   requirements: { sf_method: post }
   
+special_nyc_register:
+  url: /specialNyc/register
+  param: { module: special, action: nycRegister }
+  requirements: { sf_method: post }
+  
 # user rules
 user_facebook_login:
   url: /facebook-connect-login
