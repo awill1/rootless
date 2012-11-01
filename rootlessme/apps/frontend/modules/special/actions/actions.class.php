@@ -710,7 +710,7 @@ class specialActions extends sfActions
 //        $this->backgroundImage = "abetterworld_background.jpg";
         
         // Use the festival template
-        $this->setTemplate('realtime');
+        $this->setTemplate('nyc');
     }
 
     /**

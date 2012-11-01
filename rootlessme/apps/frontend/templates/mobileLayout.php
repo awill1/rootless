@@ -130,7 +130,7 @@
 
 
     </div>
-      <div id="bottomFeed">   
+      <div id="footer">   
             <div id="footerLink">
             <?php echo link_to('About', 'about') ?>
             -

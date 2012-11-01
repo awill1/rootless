@@ -8,5 +8,5 @@ patriotsSuccess:
 festivalSuccess:
   layout: specialLayout
   
-realtimeSuccess:
+nycSuccess:
   layout: mobileLayout
