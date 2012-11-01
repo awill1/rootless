@@ -123,9 +123,20 @@
         </form>    
         <div id="formConfirmations">
             <div class="boxCopy">
-                Thanks for ridesharing with Rootless! Your potential ride matches will be emailed to you as they become available. 
-                <br /><br />
-                Share this with your friends!
+                <h1 class="successConfirmation" >Success!</h1>
+                <div>
+                Your carpool request has been submitted. Your potential ride matches will be emailed to you as they become available. Thanks for ridesharing with Rootless!
+                </div>
+                <br />
+                <br />
+                
+                <div id="nextStepsBox">
+                    <a id="backToFormButton" class="linkButton" href="#">Want to carpool some more?</a>
+                </div>
+                
+                <br />
+                <br />
+                <div>Share this with your friends!</div>
                 <br /><br />
                 <div class="addThisToolBar">
                     <!-- AddThis Button BEGIN -->
@@ -156,7 +167,7 @@
                     Submit your start location, end location, date, and time or your trip along with your name, email address, and optionally a phone number.
                 </li>
                 <li>
-                    You will receive email and SMS updates when we find drivers and passengers along your route. We will send you information on how to get in contact with them.
+                    You will receive email updates when we find drivers and passengers along your route. We will send you information on how to get in contact with them.
                 </li>
                 <li>
                     Contact the other person by email or sms.
@@ -165,6 +176,7 @@
                     Unsubscribe from the alerts after you have found a ride or filled your car.
                 </li>
             </ol>
+            <p>* The information you input above will only be shared with other riders who are potential carpool matches.</p>
             <h2>About Rootless</h2>
             <p>
                 Rootless is a ridesharing community that helps passengers and drivers get where they want to go, together. One of our co-founders lives in Brooklyn and he has seen the transporation problems in NYC as a result of Hurricane Sandy. We wanted to help the greater New York City area get around easier during this difficult time.

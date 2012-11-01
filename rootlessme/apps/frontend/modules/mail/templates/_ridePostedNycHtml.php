@@ -46,7 +46,22 @@
 
 <?php endif; ?>
 
-<p>We will continue sending you matches as they are added into our system. If you have already arranged your carpool or would not like to continue receiving recommendation emails for this ride post, please click this link %CLOSE_LINK% to close the ride. </p>
+<p>We will continue sending you matches as they are added into our system. If you have already arranged your carpool or would not like to continue receiving recommendation emails for this ride post, please close the ride posts:
 
+<?php 
+        
+if(!is_null($carpool))
+{
+    echo '<a href="'.url_for('ride_close', array('ride_type' => 'offer','ride_id' => $carpool->getCarpoolId(),'hash' => $hash), TRUE).'">'.url_for('ride_close', array('ride_type' => 'offer','ride_id' => $carpool->getCarpoolId(),'hash' => $hash), TRUE).'</a>';
+    echo '<br />';
+}
+if(!is_null($passenger))
+{
+    echo '<a href="'.url_for('ride_close', array('ride_type' => 'request' ,'ride_id' => $passenger->getPassengerId() ,'hash' => $hash), TRUE).'">'.url_for('ride_close', array('ride_type' => 'request' ,'ride_id' => $passenger->getPassengerId() ,'hash' => $hash), TRUE).'</a>';
+    echo '<br />';
+}
+?>
+</p>
+    
 <p>Enjoy the ride!</p>
 <p>The Rootless Team</p>

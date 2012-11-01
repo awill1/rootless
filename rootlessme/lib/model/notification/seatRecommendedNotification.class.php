@@ -88,6 +88,7 @@ class seatRecommendedNotification extends userNotification
         return array('seat' =>  $this->seat,
                      'subscriber' => $this->subscriber,
                      'otherUser' => $this->otherUser,
+                     'hash' => sha1($this->subscriber->getPersonId()),
                      'rideId' => $rideId,
                      'rideType' => $rideType);
     }

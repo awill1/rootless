@@ -19,6 +19,21 @@
 
 <p>If the match looks good, go ahead and start discussing the important details with the person. </p>
 
+<p>If you have already arranged your carpool, or you would no longer like to recieve emails for this ride click this link to close the ride:</p>
+<p>
+<?php 
+        
+if($rideType=='offer')
+{
+    echo '<a href="'.url_for('ride_close', array('ride_type' => 'offer','ride_id' => $seat->getCarpoolId(),'hash' => $hash), TRUE).'" >'.url_for('ride_close', array('ride_type' => 'offer','ride_id' => $seat->getCarpoolId(),'hash' => $hash), TRUE).'</a>' ;
+}
+else
+{
+    echo '<a href="'.url_for('ride_close', array('ride_type' => 'request' ,'ride_id' => $seat->getPassengerId() ,'hash' => $hash), TRUE).'" >'.url_for('ride_close', array('ride_type' => 'request' ,'ride_id' => $seat->getPassengerId() ,'hash' => $hash), TRUE).'</a>' ;
+}
+?>
+</p>
+
 <p>Thanks for riding with Rootless,</p>
 
 <p>The Rootless Team</p>

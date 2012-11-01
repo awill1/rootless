@@ -12,3 +12,6 @@ search:
 
 show:
   is_secure: false
+  
+close:
+  is_secure: false

@@ -42,7 +42,20 @@ There are no recommendations yet. We will let you know when a good match enters 
 
 <?php endif; ?>
 
-We will continue sending you matches as they are added into our system. If you have already arranged your carpool or would not like to continue receiving recommendation emails for this ride post, please click this link %CLOSE_LINK% to close the ride. 
+We will continue sending you matches as they are added into our system. If you have already arranged your carpool or would not like to continue receiving recommendation emails for this ride post, please close the ride posts:
+
+<?php 
+        
+if(!is_null($carpool))
+{
+    echo url_for('ride_close', array('ride_type' => 'offer','ride_id' => $carpool->getCarpoolId(),'hash' => $hash), TRUE) ;
+}
+if(!is_null($passenger))
+{
+    echo url_for('ride_close', array('ride_type' => 'request' ,'ride_id' => $passenger->getPassengerId() ,'hash' => $hash), TRUE) ;
+}
+?>
+
 
 Enjoy the ride!
 The Rootless Team

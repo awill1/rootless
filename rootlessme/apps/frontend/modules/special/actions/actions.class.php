@@ -1104,14 +1104,20 @@ The Rootless Team
                                   'name' => sfConfig::get('app_sf_guard_plugin_default_from_name'));
                 $rideEmailSubjectTemplate = "%s to %s carpool information";
                 $rideEmailSubject = sprintf($rideEmailSubjectTemplate, $origin, $destination);
+                // Just a tiny bit more protection against closing the rides 
+                // since the user does not need to be logged in
+                $hash = sha1($user->getPersonId());
                 EmailHelpers::sendEmail($rideEmailPartials, 
                                         array('subscriber' => $user->getPeople(),
+                                              'carpool' => $carpool,
+                                              'passenger' => $passenger,
                                               'recommendedPassengers' => $recommendedPassengers, 
                                               'recommendedDrivers' => $recommendedDrivers,
                                               'origin' => $origin,
                                               'destination' => $destination,
                                               'date' => $date,
-                                              'time' => $time), 
+                                              'time' => $time,
+                                              'hash' => $hash), 
                                         $mailFrom, 
                                         $email, 
                                         $rideEmailSubject);

@@ -17,6 +17,19 @@ On: <?php echo format_date($seat->getPickupDate(), 'P'); ?>
 
 If the match looks good, go ahead and start discussing the important details with the person. 
 
+If you have already arranged your carpool, or you would no longer like to recieve emails for this ride click this link to close the ride:
+<?php 
+        
+if($rideType=='offer')
+{
+    echo url_for('ride_close', array('ride_type' => 'offer','ride_id' => $seat->getCarpoolId(),'hash' => $hash), TRUE) ;
+}
+else
+{
+    echo url_for('ride_close', array('ride_type' => 'request' ,'ride_id' => $seat->getPassengerId() ,'hash' => $hash), TRUE) ;
+}
+?>
+
 
 Thanks for riding with Rootless,
 

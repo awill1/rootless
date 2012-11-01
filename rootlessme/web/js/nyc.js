@@ -165,10 +165,15 @@ $(document).ready(function()
             success: function(responseText, statusText, xhr) {
                 $('#formConfirmations').show('blind');
                 $("#specialForm").unblock();
+                $("#specialForm").hide();
                 
                 // Send an event to google analytics to show the form was submitted properly
                 _gaq.push(['_trackEvent', 'nycEvent', 'registerSuccess']);
             }
+        });
+        $('#backToFormButton').click(function(){
+            $('#formConfirmations').hide();
+            $('#specialForm').show('blind');
         });
         
         // Set the start date and time to be the current value
