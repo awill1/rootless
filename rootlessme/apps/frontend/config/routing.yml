@@ -447,6 +447,12 @@ abetterworldbydesign:
 nyc:
   url: /nyc
   param: { module: special, action: nyc }
+Nyc:
+  url: /Nyc
+  param: { module: special, action: nyc }
+NYC:
+  url: /NYC
+  param: { module: special, action: nyc }
   
 special_event_register:
   url: /specialEvent/register
