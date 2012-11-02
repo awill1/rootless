@@ -33,9 +33,41 @@
 			            $destinationDataField  : $("#seats_route_destination_data")
 			            
         			},
-        			mapItem: { polyline : { encodedPolyline : "<?php echo str_replace('\\','\\\\',$route->getEncodedPolyline()); ?>"}},
+        			mapItem: { polyline : { 
+        				encodedPolyline : "<?php echo str_replace('\\','\\\\',$route->getEncodedPolyline()); ?>",
+        			    polyLineObj : []
+        			}},
         		});
         		map.mapInit();
+        		
+        		<?php if ($acceptedSeats->count() > 0): ?>
+                  <?php foreach ($acceptedSeats as $seat): ?>
+                   var key = "ride-passenger-<?php echo $seat->getPassengerId(); ?>";
+                   var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
+                   var acceptedSeatPolyline = map.displayEncodedPolyline(map._.MapObject, seatPolyline , false);
+                   map._.mapItem.polyline.polyLineObj[key] = acceptedSeatPolyline;
+                 <?php endforeach; ?>
+                <?php endif; ?>
+                
+                 <?php if ($pendingSeats->count() > 0): ?>
+                  <?php foreach ($pendingSeats as $seat): ?> 
+                   var key = "ride-passenger-<?php echo $seat->getPassengerId(); ?>";
+                   var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
+                   var pendingSeatPolyline = map.displayEncodedPolyline(map._.MapObject, seatPolyline , false);
+                   pendingSeatPolyline.setOptions({strokeOpacity: 0})
+                   map._.mapItem.polyline.polyLineObj[key] = pendingSeatPolyline;
+                 <?php endforeach; ?>
+                <?php endif; ?>
+                
+                 <?php if ($declinedSeats->count() > 0): ?>
+                  <?php foreach ($declinedSeats as $seat): ?>
+                   var key = "ride-passenger-<?php echo $seat->getPassengerId(); ?>";
+                   var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
+                   var declinedSeatPolyline = map.displayEncodedPolyline(map._.MapObject, seatPolyline , false);
+                   declinedSeatPolyline.setOptions({strokeOpacity: 0})
+                   map._.mapItem.polyline.polyLineObj[key] = declinedSeatPolyline;
+                 <?php endforeach; ?>
+                <?php endif; ?>
         		
 			});
         </script>
@@ -82,7 +114,7 @@
         </div>
     
         <?php if ($isMyPost): ?>
-            <div class="rideActionButtons">
+            <div class="rideActionButtons editOfferBtn">
                 <ul class="rideActionButtonsList">
                     <li class="rideActionButtonsListItem">
                         <form id="rideEditForm" class="rideActionForm" action="<?php echo url_for('ride_edit', array('ride_type' => 'request', 'ride_id' => $passenger->getPassengerId())) ?>" method="get">
