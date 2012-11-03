@@ -678,7 +678,12 @@ class specialActions extends sfActions
      */
     public function executeNyc(sfWebRequest $request)
     {
+        $response = $this->getResponse();
+ 
         $this->title = 'Rootless - Carpool into New York City';
+        
+        // Metas for facebook sharing
+        $response->addMeta('og:title', $this->title);
         
         // Use the nyc template
         $this->setTemplate('nyc');

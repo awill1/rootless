@@ -9,6 +9,8 @@
           <?php endif; ?>
       </title>
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta property="og:image" content="https://rootlessme.s3.amazonaws.com/images/rootless_logo_square.jpg"/>
+    <meta property="og:site_name" content="Rootless"/>
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php use_stylesheet(sfConfig::get('app_css_main')) ?>
     <?php use_javascript(sfConfig::get('app_jquery_script')) ?>
