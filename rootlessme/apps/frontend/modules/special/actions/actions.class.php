@@ -876,15 +876,15 @@ The Rootless Team
 
             if(CommonHelpers::IsNullOrEmptyString($originData))
             {
-                throw new Exception('Origin data was not specified.');
+                throw new Exception('Origin data was not specified. Origin: '.$origin);
             }
             if(CommonHelpers::IsNullOrEmptyString($destinationData))
             {
-                throw new Exception('Destination data was not specified.');
+                throw new Exception('Destination data was not specified. Destination: '.$destination);
             }
             if(CommonHelpers::IsNullOrEmptyString($routeData))
             {
-                throw new Exception('Route data was not specified.');
+                throw new Exception('Route data was not specified. Origin: '.$origin.' Destination: '.$destination);
             }
             if(CommonHelpers::IsNullOrEmptyString($origin))
             {

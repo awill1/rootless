@@ -156,7 +156,33 @@
         </div>
         
         <div class="descriptionBox">
+            <h2 class="highlighted">URGENT - NYC volunteers need transportation! #sandyvolunteer</h2>
+            <p>
+                Volunteers in NYC are trying to get to troubled areas, but they are 
+                having a hard time getting around with public transportation suspensions, gas shortages, and traffic.
+            </p>
+            <p>
+                Drivers, please help volunteers get around by using this page to offer the extra seats in your vehicles, especially vans and other high occupancy
+                vehicles.
+            </p>
+            <p>
+                Volunteers, please enter your transportation needs and Rootless will help match you with drivers.
+            </p>
+            <p>
+                Tweet @rootlessme with #sandyvolunteer if you have any ideas on how Rootless can continue helping with transportation. 
+            </p>
+            <h2>Gas shortage in NYC area</h2>
+            <p>
+                Throughout the New York area, people are experiencing gas shortages.
+                Lets help each other get around during these difficult times
+                by sharing empty seats in cars and carpooling whenever a car is
+                needed. You can use this page to find a ride or to offer the empty
+                seats in your car.
+            </p>
             <h2>Minimum passenger requirement for all vehicles entering Manhattan</h2>
+            <p>
+                Update - The minimum passenger ban has been lifted as of 11/2/2012 afternoon, but ridesharing will still help relieve traffic in the area. 
+            </p>
             <p>
                 As a result of the devastating aftermath of Hurricane Sandy in New York City, Mayor Bloomberg has set a minimum passenger requirement on all cars driving into Manhattan to reduce traffic congestion. Use Rootless to find a car with empty seats or to find extra passengers so you can meet the minimum passenger limit and get into Manhattan.
             </p>
