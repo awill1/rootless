@@ -684,6 +684,7 @@ class specialActions extends sfActions
         
         // Metas for facebook sharing
         $response->addMeta('og:title', $this->title);
+        $response->addMeta('og:description', "Rootless is New York City's carpooling solution. Find a ride or share the empty seats in your car.");
         
         // Use the nyc template
         $this->setTemplate('nyc');
