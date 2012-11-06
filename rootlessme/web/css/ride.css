@@ -460,6 +460,7 @@ input[type="text"]:focus, textarea:focus {
     outline-color: #119D49;
 }
 
+
 #rideOfferForm th {
     padding:5px 10px 0px 10px;
 
@@ -625,7 +626,7 @@ ul {
 
 }
 
-#seatAcceptForm input[type="submit"], #seatDeclineForm input[type="submit"], #seatEditForm input[type="button"] {
+#saveTermsButton input[type="submit"], #cancelTermsButton input[type="button"], #seatAcceptForm input[type="submit"], #seatDeclineForm input[type="submit"], #seatEditForm input[type="button"] {
     width: 95px;
     height: 25px;
 }
@@ -795,19 +796,25 @@ label span.dollar-sign {
     padding: 5px;
     font-size: 95%;
     color: #31A24A;
-    background-color: #F4F4F4;
+/*    background-color: #F4F4F4;*/
     border-color: #E6E6E6;
     border-style: solid;
 }
 .editSeatFields{
-    width: auto;
+    width: 100%;
     margin: 0px 5px 0px 0px;
     padding: 2px;
     font-size: 95%;
     color: #31A24A;
-    background-color: #F4F4F4;
+/*    background-color: #F4F4F4;*/
     border-color: #E6E6E6;
     border-style: solid;
+}
+.editSeatFieldsShort{
+    width: 50px;
+}
+.editSeatFieldsMedium{
+    width: 100px;
 }
 /*.rideDetailsFields input{
     width: 350px;
@@ -959,11 +966,18 @@ ul{
     margin: 0 0 20px 30px;
     width: 50%;
 }
-#seatTerms h3{
+
+#seatTerms h3, #editSeatTerms h3{
     margin-top: 0px;
 }
-#seatTerms h4, #seatTerms span {
+#seatTerms h4, #seatTerms span{
 	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 0;
+}
+
+#editSeatTerms h4, #editSeatTerms span{
+        font-size: 14px;
 	font-weight: bold;
 	margin-bottom: 0;
 }
@@ -975,11 +989,36 @@ ul{
 }
 
 #seatTerms p {
+    font-size: 14px;
+    font-weight: normal;
+/*    margin: 8px 0 8px 0;*/
+    margin: 13px 0;
+}
+#editSeatTerms{
+    float: left;
+    margin: 0 0 20px 30px;
+    width: 50%;
+}
+
+#editSeatTerms textarea {
+    
+    width: 100%;
+    padding: 2px;
+    border: 2px solid #999;
+    outline-color: #119D49;
+    
+/*    background-color: #F4F4F4;*/
+    border-color: #E6E6E6;
+    border-style: solid;
+    color: #31A24A;
+    display: inline-block;
+}
+
+
+#editSeatTerms p {
         font-size: 14px;
         font-weight: normal;
-/*	margin-top: 12px;
-	margin-bottom: 12px;*/
-        margin: 8px 0 8px 0;
+        margin: 6px 0 6px 0;
 }
 
 #seatUserBox{
@@ -994,4 +1033,7 @@ ul{
     width: 100.4%;
     height: 20px;
     background-color: #fff;
+}
+.noteSpanMod{
+    margin-top: -10px;
 }

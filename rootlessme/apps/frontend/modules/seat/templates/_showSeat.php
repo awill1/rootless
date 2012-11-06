@@ -16,12 +16,12 @@
             </div>
             <div id="seatTerms">
                 <h3>Ride Details <span class="green">last edited by whoever.</span></h3>
-                
-                <p><span>Price:</span> $<?php echo $seat->getPrice() ?> per seat</p>
-                <p><span>Number of seats:</span> <?php echo $seat->getSeatCount() ?></p>
                 <p><span>Pickup Location:</span> <?php echo $seat->getRoutes()->getOriginString() ?></p>
                 <p><span>Dropoff Location:</span> <?php echo $seat->getRoutes()->getDestinationString() ?></p>
-                <p><span>Pickup Time:</span> <?php echo date("F",strtotime($seat->getPickupDate())) ?> <?php echo date("j",strtotime($seat->getPickupDate())) ?> at <?php echo date("g:i A",strtotime($seat->getPickupTime())) ?></p>
+                <p><span>Price:</span> $<?php echo $seat->getPrice() ?> per seat</p>
+                <p><span>Number of seats:</span> <?php echo $seat->getSeatCount() ?></p>
+                <p><span>Day:</span> <?php echo date("F",strtotime($seat->getPickupDate())) ?> <?php echo date("j",strtotime($seat->getPickupDate())) ?></p>
+                <p><span>Time:</span> <?php echo date("g:i A",strtotime($seat->getPickupTime())) ?></p>
                 <p><span>Note:</span> <?php echo nl2br($seat->getDescription()) ?></p>
                 <div id="seatFormButtons">
                     <?php $canEdit = 1; ?>
