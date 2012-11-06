@@ -35,12 +35,13 @@
 <!--                        <form id="editSeatSaveForm" action="<?php echo url_for('seats_accept') ?>" method="post">-->
                             <input id="seat_id" name="seat_id" type="hidden" value="<?php echo $seat->getSeatId() ?>"  />
                             <input id="saveTermsButton" type="submit" value="Send"  />
-                            
+                
 <!--                        <form id="editSeatCancelForm" action="<?php echo url_for('seats_negotiation', array('seat_id'=>$seat->getSeatId())) ?>" method="post">-->
                             <input id="seat_id" name="seat_id" type="hidden" value="<?php echo $seat->getSeatId() ?>"  />
                             <input id="cancelTermsButton" type="button" value="Cancel"  />
-                </form>    
                 </div>
+                </form>    
+                
 
             </div>
             <div class="removeBtn">X</div>

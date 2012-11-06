@@ -626,7 +626,11 @@ ul {
 
 }
 
-#saveTermsButton input[type="submit"], #cancelTermsButton input[type="button"], #seatAcceptForm input[type="submit"], #seatDeclineForm input[type="submit"], #seatEditForm input[type="button"] {
+#seatAcceptForm input[type="submit"], #seatDeclineForm input[type="submit"], #seatEditForm input[type="button"] {
+    width: 95px;
+    height: 25px;
+}
+#saveTermsButton input[type="submit"], #cancelTermsButton input[type="button"]{
     width: 95px;
     height: 25px;
 }
