@@ -17,20 +17,21 @@
             </div>
             <div id="editSeatTerms">
                 <h3>Ride Details <span class="green">currently being edited by you.</span></h3>
-                <form id='editSeatForm' action="#" method="post">
-                <p><span>Pickup Location:</span> <input class='editSeatFields' type='text' name='pickupLocation' placeholder='<?php echo $seat->getRoutes()->getOriginString() ?>'></p>
+                <form id="editSeatForm" action="<?php echo url_for('seats_update', array('seat_id'=>$seat->getSeatId())) ?>" method="post">
+                <?php echo $form->renderHiddenFields(); ?>
+                <p><span>Pickup Location:</span> <?php echo $form['route']['origin']->render(array('class'=>'editSeatFields', 'placeholder'=>'Address, City, State')) ?></p>
                 
-                <p><span>Dropoff Location:</span> <input class='editSeatFields' type='text' name='dropoffLocation' placeholder='<?php echo $seat->getRoutes()->getDestinationString() ?>'></p>
+                <p><span>Dropoff Location:</span> <?php echo $form['route']['destination']->render(array('class'=>'editSeatFields', 'placeholder'=>'Address, City, State')) ?></p>
                 
-                <p><span>Price:</span> <input class='editSeatFields editSeatFieldsShort' type='text' name='price' placeholder='$<?php echo $seat->getPrice() ?>'>per seat</p>
+                <p><span>Price:</span> <?php echo $form['price']->render(array('class'=>'editSeatFields editSeatFieldsShort')) ?> per seat</p>
                 
-                <p><span>Number of seats:</span> <input class='editSeatFields editSeatFieldsShort' type='text' name='seats' placeholder='<?php echo $seat->getSeatCount() ?>'></p>
+                <p><span>Number of seats:</span> <?php echo $form['seat_count']->render(array('class'=>'editSeatFields editSeatFieldsShort')) ?></p>
                 
-                <p><span>Day:</span> <input class='editSeatFields editSeatFieldsMedium' type='text' name='pickupDay' placeholder='<?php echo date("F",strtotime($seat->getPickupDate())) ?> <?php echo date("j",strtotime($seat->getPickupDate())) ?>'></p>
+                <p><span>Day:</span> <?php echo $form['pickup_date']->render(array('class'=>'datePicker editSeatFields editSeatFieldsMedium')) ?></p>
                 
-                <p><span>Time:</span> <input class='editSeatFields editSeatFieldsMedium' type='text' name='pickupTime' placeholder='<?php echo date("g:i A",strtotime($seat->getPickupTime())) ?>'></p>
+                <p><span>Time:</span> <?php echo $form['pickup_time']->render(array('class'=>'timePicker editSeatFields editSeatFieldsMedium')) ?></p>
                 
-                <p><span>Note:</span> <textarea><?php echo nl2br($seat->getDescription()) ?></textarea></p>
+                <p><span>Note:</span> <?php echo $form['description']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Chat...')) ?></p>
                 <div id="seatFormButtons">
 <!--                        <form id="editSeatSaveForm" action="<?php echo url_for('seats_accept') ?>" method="post">-->
                             <input id="seat_id" name="seat_id" type="hidden" value="<?php echo $seat->getSeatId() ?>"  />

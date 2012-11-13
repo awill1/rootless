@@ -70,7 +70,7 @@
                             <li>Are you bringing anything?</li>
                         </ul>
                         <br />
-                        <div><?php echo $seatForm['description']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Say something...')) ?></div> <br />
+                        <div><?php echo $seatForm['description']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Chat...')) ?></div> <br />
 <!--                        this actually needs to be the back div button and the form submit button not two divs... the form in general isn't here yet either-->
                         <div id="discussBackButton" class="Button">Back</div> <div><input type="submit" value="Submit"></div>
                         <br />
