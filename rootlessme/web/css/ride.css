@@ -73,7 +73,6 @@ tbody {
    /* float: right;*/
 }
 
-
 .rideListNotSelectedRow {
     background-color: #EAEAEA;
     height: 67px;
@@ -365,6 +364,10 @@ input[type="text"]:focus, textarea:focus {
     float: left;
 }
 
+.riderListItem {
+	display: inline-block;
+}
+
 .riderListItem.selectedUser {
    /* background-color: #F1F1F1; */
 }
@@ -488,13 +491,12 @@ input[type="text"]:focus, textarea:focus {
 }
 
 #rideOfferForm input#rides_find:hover {
-    
-    
     background-color: #D14D2F;
 }
 
 #negotiationSpinnerContainer{
     position: absolute;
+    display: none;
     left: 50%;
     top: 50%;
 }

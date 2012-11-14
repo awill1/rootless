@@ -177,6 +177,11 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
             }
         });
         
+        //default live listeners
+        self._.el.$seatRemoveButton.live('click', self.emptyBlock);
+        self._.el.$cancelTermsButton.live('click', self.emptyBlock);
+        self._.el.$seatEditButton.live('click', self.seatEditButton);
+        
         // If the window url hash is set load that seat's details
         if (window.location.hash != "") {
             var hash = window.location.hash;
@@ -311,14 +316,11 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                     
                     //show seat details
                     
-                    map._.el.$seatDetails.append(response);
+                    map._.el.$seatDetails.append($(response)[6]);
                     map._.el.$seatDetails.show();
                     map._.el.$seatDetails.prepend('<div class="removeBtn">X</div>');
                 
-
-                    map._.el.$seatRemoveButton.live('click', map.emptyBlock);
-                    map._.el.$seatEditButton.live('click', map.seatEditButton);
-                    map._.el.$cancelTermsButton.live('click', map.cancelTermsButtonClick);
+                
                     map.bindTextBoxesToMap();
                     
                     //bind seat histoy toggle
@@ -338,12 +340,22 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     emptyBlock: function () {
     	var map = Rootless.Map.Negotiation.getInstance();
     	
-    	$(this).parent().empty();
-    	map._.el.$mainRideDetails.show();
-	    map._.el.$mainRidePeople.show();
+        var url = $(this).hasClass('removeBtn') ? '' : window.location.hash;
+
+    	$(this).closest('#seatDetails').empty();
+    	map._.el.$riderListItem.removeClass('selectedUser');
+
+        if (url != '') {
+            $(url).trigger('click');	
+        } else {
+        	map._.el.$mainRideDetails.show();
+	        map._.el.$mainRidePeople.show();
+        	window.location.hash = url;
+        }
+        
     	
+
     },
-    
     
     clearRouteId : function() {
         // Clear the route id
@@ -374,18 +386,16 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	    $.ajax({
 	         url : $(this).parent().attr("action"), 
 	         success : function(response, status){
-	         	console.log(response, status);
 	             if (status == 'success') {
 	                 map._.el.$seatDetails.empty();
 	                 //hide main ride details & main ride people info
 	                 map._.el.$mainRideDetails.hide();
-	                 map._.el.$mainRidePeople.hide();
-	
-	                 //hide seat details
-	                 map._.el.$seatDetails.append(response);
-	                 map._.el.$seatDetailsBlock.prepend('<div class="removeBtn">X</div>');
-	                 $('.removeBtn').bind('click', map.emptyBlock);
-	                            
+	                 map._.el.$mainRidePeople.hide();	
+
+	                 map._.el.$seatDetails.append($(response)[4]);
+	                 map._.el.$seatDetails.show();
+	                 map._.el.$seatDetails.prepend('<div class="removeBtn">X</div>');
+   
 	                 //show seat edit
 	                 map._.el.$seatEditBlock.show();
 	
@@ -397,13 +407,6 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	             }
 	        }
 	    });
-   },
-   
-   cancelTermsButtonClick : function(){
-        var map = Rootless.Map.Negotiation.getInstance();
-            alert("hider");
-	    map._.el.$seatDetailsBlock.children(0).show();
-            
    }
     
 });
