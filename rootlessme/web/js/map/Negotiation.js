@@ -74,7 +74,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                
                //seatDetailsEdit
                $seatEditButton              : $("#editButton"),
-               $cancelTermsButton              : $("#cancelTermsButton"),
+               $cancelTermsButton           : $("#cancelTermsButton"),
                $seatRemoveButton            : $('.removeBtn'),
                
                //seatNegotiationStuff
@@ -312,7 +312,8 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                     //show seat details
                     
                     map._.el.$seatDetails.append(response);
-                    map._.el.$seatDetails.children(0).show();//.prepend('<div class="removeBtn">X</div>');
+                    map._.el.$seatDetails.show();
+                    map._.el.$seatDetails.prepend('<div class="removeBtn">X</div>');
                 
 
                     map._.el.$seatRemoveButton.live('click', map.emptyBlock);
@@ -335,7 +336,12 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     },
     
     emptyBlock: function () {
+    	var map = Rootless.Map.Negotiation.getInstance();
+    	
     	$(this).parent().empty();
+    	map._.el.$mainRideDetails.show();
+	    map._.el.$mainRidePeople.show();
+    	
     },
     
     
@@ -377,11 +383,11 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	
 	                 //hide seat details
 	                 map._.el.$seatDetails.append(response);
-	                 map._.el.$seatDetailsBlock.children(0).hide();//.prepend('<div class="removeBtn">X</div>');
+	                 map._.el.$seatDetailsBlock.prepend('<div class="removeBtn">X</div>');
 	                 $('.removeBtn').bind('click', map.emptyBlock);
 	                            
 	                 //show seat edit
-	                 map._.el.$seatEditBlock.children(0).show();
+	                 map._.el.$seatEditBlock.show();
 	
 	                 map.bindTextBoxesToMap();
 	

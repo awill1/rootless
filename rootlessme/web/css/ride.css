@@ -610,10 +610,6 @@ ul {
 #seatAcceptForm, #seatDeclineForm, #seatEditForm {
     display: inline-block;
     margin-right: 10px;
-/*    position: absolute;*/
-/*    bottom: 15px;
-    right: 43px;
-    height: 25px;*/
 }
 #seatFormButtons{
     float: left;
@@ -699,7 +695,7 @@ label span.dollar-sign {
     float: right;
 }
 
-#seatDetailsBlock, #dualPost, #existingRequests, #rideDetails1, #rideDetails2, #discuss, #confirmation {
+#seatDetails, #dualPost, #existingRequests, #rideDetails1, #rideDetails2, #discuss, #confirmation {
 	display: none;
 }
 
@@ -800,7 +796,6 @@ label span.dollar-sign {
     padding: 5px;
     font-size: 95%;
     color: #31A24A;
-/*    background-color: #F4F4F4;*/
     border-color: #E6E6E6;
     border-style: solid;
 }
@@ -810,7 +805,6 @@ label span.dollar-sign {
     padding: 2px;
     font-size: 95%;
     color: #31A24A;
-/*    background-color: #F4F4F4;*/
     border-color: #E6E6E6;
     border-style: solid;
 }
@@ -931,16 +925,17 @@ ul{
 }
 
 .removeBtn {
-        float: left;
 	cursor: pointer;
 	color: #ccc;
-        margin-left: 37px;
+    position: absolute;
+    right: 15px;
+    z-index: 100;
 }
 
 .removeBtn:hover {
-        float: left;
+    float: left;
 	color: #222;
-        margin-left: 37px;
+    margin-left: 37px;
 }
 
 #seatDetailsBlock2{
@@ -981,7 +976,7 @@ ul{
 }
 
 #editSeatTerms h4, #editSeatTerms span{
-        font-size: 14px;
+    font-size: 14px;
 	font-weight: bold;
 	margin-bottom: 0;
 }
@@ -995,7 +990,6 @@ ul{
 #seatTerms p {
     font-size: 14px;
     font-weight: normal;
-/*    margin: 8px 0 8px 0;*/
     margin: 13px 0;
 }
 #editSeatTerms{
@@ -1010,8 +1004,6 @@ ul{
     padding: 2px;
     border: 2px solid #999;
     outline-color: #119D49;
-    
-/*    background-color: #F4F4F4;*/
     border-color: #E6E6E6;
     border-style: solid;
     color: #31A24A;

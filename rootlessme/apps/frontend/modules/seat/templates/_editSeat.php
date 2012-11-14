@@ -45,8 +45,6 @@
                 
 
             </div>
-            <div class="removeBtn">X</div>
-            
         </div>
         
         
