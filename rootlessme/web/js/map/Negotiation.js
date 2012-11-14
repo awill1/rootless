@@ -74,6 +74,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                
                //seatDetailsEdit
                $seatEditButton              : $("#editButton"),
+               $saveTermsButton             : $("#saveTermsButton"),
                $cancelTermsButton           : $("#cancelTermsButton"),
                $seatRemoveButton            : $('.removeBtn'),
                
@@ -177,10 +178,12 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
             }
         });
         
-        //default live listeners
+        //default live listeners TODO == find a better way to do this
         self._.el.$seatRemoveButton.live('click', self.emptyBlock);
         self._.el.$cancelTermsButton.live('click', self.emptyBlock);
         self._.el.$seatEditButton.live('click', self.seatEditButton);
+        self._.el.$saveTermsButton.live('click', self.saveTerms);
+        
         
         // If the window url hash is set load that seat's details
         if (window.location.hash != "") {
@@ -355,6 +358,12 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         
     	
 
+    },
+    
+    saveTerms: function() {
+    	var map = Rootless.Map.Negotiation.getInstance();
+    	$(this).closest('form').ajaxSubmit(map.formAjaxOptions);
+    	return false;
     },
     
     clearRouteId : function() {
