@@ -208,14 +208,21 @@
                 <a class="cta big-btn" href="<?php echo url_for('sf_guard_signin') ?>">Log in</a>
                 <a class="cta big-btn" href="<?php echo url_for('sf_guard_register') ?>">Sign up</a>
             <?php elseif (!$isMyPost) : ?>
-            	<!-- offer seen by Requester -->
-                <a class="cta big-btn" id="startNegotiation" href="<?php echo url_for('seats_requests_new', array('ride_id'=>$carpool->getCarpoolId())); ?>">Request a Ride</a>
+            	
+                <?php if ($mySeat != null): ?>
+                    <!-- offer seen by someone who has already requested and started negotiations -->
+                    <a class="cta big-btn" id="viewMyRequestBtn" href="<?php echo url_for('seats_show', array('seat_id'=>$mySeat->getSeatId())); ?>">View My Request</a>
+                <?php else: ?>
+                    <!-- offer seen by Requester -->
+                    <a class="cta big-btn" id="startNegotiation" href="<?php echo url_for('seats_requests_new', array('ride_id'=>$carpool->getCarpoolId())); ?>">Request a Ride</a>
+                <?php endif; ?>
             <?php elseif ($isMyPost) : ?>
-                <!-- old edit & delete button spot -->
-        	<?php endif; ?>
+                    <!-- old edit & delete button spot -->
+            <?php endif; ?>
    	</div>
         <div id="seatDetails">
    	 	<?php if ($mySeat != null): ?>
+                <?php include_component('seat', 'showSeat', array('seat'=>$mySeat)) ?>
    	        <?php elseif ($myUserId!=null): ?>
    	    	<?php include_component('seat', 'requestForm', array('ride'=>$carpool)) ?>
                 <?php endif; ?>

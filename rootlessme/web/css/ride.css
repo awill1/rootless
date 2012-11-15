@@ -572,8 +572,6 @@ ul {
 }
 
 .seatNegotiationHistoryItemUserSays {
-    padding-left: 15px;
-    margin-left: 64px;
     display: inline;
     float: left;
     font-size: 14px;

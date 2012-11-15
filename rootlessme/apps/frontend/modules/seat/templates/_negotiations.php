@@ -63,16 +63,19 @@
                                <span class="seatNegotiationHistoryItemSpecificText"><?php echo date("g:i A",strtotime($newHistoryItem->getPickupTime())) ?></span>
                             </li>
                         <?php endif; ?>
-                    </ul>
-                </div>
-                <?php if ($negotiationChange->getIsDescriptionDifferent() && $newHistoryItem->getDescription() != ''): ?>
-                    <div class="seatNegotiationHistoryItemUserSays">
+                        <?php if ($negotiationChange->getIsDescriptionDifferent() && $newHistoryItem->getDescription() != ''): ?>
+                            <li>
+                               <div class="seatNegotiationHistoryItemUserSays">
                                <span class="seatNegotiationHistoryItemCategorySays"><?php echo $changer->getFullName() ?> says: </span>
                                <br />
                                <br />
                                <?php echo $newHistoryItem->getDescription() ?>
-                    </div>
+                               </div>
+                            </li>
                 <?php endif; ?>
+                    </ul>
+                </div>
+                
                 <div class="seatNegotiationHistoryUpdateTime">
                     Updated at <?php echo date('g:i A l, F j, Y', strtotime($newHistoryItem->getCreatedAt())) ?>
                 </div>
