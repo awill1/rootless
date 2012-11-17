@@ -181,10 +181,10 @@ Rootless.Map = Class.extend({
     bindTextBoxesToMap : function() {
     	var self = this;
    
-        if (this._.el.$originTextBox.val()) {
+        if (this._.el.$originTextBox.text) {
 	        this._.el.$originTextBox.tipsy({
 	        	gravity : 'w',
-	        	title   : 'placeholder',
+	        	title   : 'value',
 	        	trigger : 'focus',
 	        	html    : false,
 	        	live    : true,
@@ -193,10 +193,10 @@ Rootless.Map = Class.extend({
         
         }
         
-        if (this._.el.$destinationTextBox.val()) {
+        if (this._.el.$destinationTextBox.text) {
 	        this._.el.$destinationTextBox.tipsy({
 	        	gravity : 'w',
-	        	title   : 'placeholder',
+	        	title   : 'value',
 	        	trigger : 'focus',
 	        	html    : false,
 	        	live    : true,
