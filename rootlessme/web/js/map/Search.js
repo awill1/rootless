@@ -63,12 +63,7 @@ Rootless.Map.Search = Rootless.Map.extend({
                     
                 }
            
-           },
-           
-           directionsService : new google.maps.DirectionsService(),
-           geocoder          : new google.maps.Geocoder(),
-       	   directionsDisplay : new google.maps.DirectionsRenderer(),
-           
+           }
            
        }, params);
     },
@@ -87,10 +82,14 @@ Rootless.Map.Search = Rootless.Map.extend({
            center: latlng,
            mapTypeId: google.maps.MapTypeId.ROADMAP
        };
+       
+        this.directionsService = new google.maps.DirectionsService();
+        this.geocoder          = new google.maps.Geocoder();
+       	this.directionsDisplay = new google.maps.DirectionsRenderer();
         
         self._.MapObject = new google.maps.Map(document.getElementById(self._.mapId),
             myOptions);
-        self._.directionsDisplay.setMap(self._.MapObject);
+        self.directionsDisplay.setMap(self._.MapObject);
 
         // Setup the origin and destination marker, the maps are null
         // because the markers are hidden

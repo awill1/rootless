@@ -387,7 +387,6 @@ Rootless.Map = Class.extend({
         if (status == google.maps.DirectionsStatus.OK) {
             // Set the route field to the results object for posting to the
             // server
-            console.log(self._.el.routeDataField);
             if (typeof(self._.el.routeDataField) != "undefined")
             {    
                $(self._.el.routeDataField).val(self.formatGoogleJSON(self.strangeLat, self.strangeLon, JSON.stringify(result)));
