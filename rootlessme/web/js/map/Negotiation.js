@@ -220,7 +220,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     step : function (b_skip) {
         var map = Rootless.Map.Negotiation.getInstance();
         
-        map._.el.$seatDetailsBlock.show();
+        map._.el.$seatDetails.show();
         
         if (map.currentStep == 0) {
     		map._.el.$mainRidePeople.hide();

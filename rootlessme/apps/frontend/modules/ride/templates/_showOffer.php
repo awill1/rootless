@@ -222,10 +222,10 @@
    	</div>
         <div id="seatDetails">
    	 	<?php if ($mySeat != null): ?>
-                <?php include_component('seat', 'showSeat', array('seat'=>$mySeat)) ?>
-   	        <?php elseif ($myUserId!=null): ?>
-   	    	<?php include_component('seat', 'requestForm', array('ride'=>$carpool)) ?>
-                <?php endif; ?>
+             <?php include_component('seat', 'showSeat', array('seat'=>$mySeat)) ?>
+   	    <?php elseif ($myUserId!=null): ?>
+   	         <?php include_component('seat', 'requestForm', array('ride'=>$carpool)) ?>
+        <?php endif; ?>
         </div>
     </div>
 <?php endif; ?>
