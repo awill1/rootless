@@ -59,10 +59,6 @@ Rootless.Map = Class.extend({
            
            },
            
-           directionsService : new google.maps.DirectionsService(),
-           geocoder          : new google.maps.Geocoder(),
-       	   directionsDisplay : new google.maps.DirectionsRenderer(),
-           
            
        }, params);
    },
@@ -84,6 +80,10 @@ Rootless.Map = Class.extend({
         self._.MapObject = new google.maps.Map(document.getElementById(self._.mapId),
             myOptions);
         self._.directionsDisplay.setMap(self._.MapObject);
+        
+        this.directionsService = new google.maps.DirectionsService();
+        this.geocoder          = new google.maps.Geocoder();
+       	this.directionsDisplay = new google.maps.DirectionsRenderer();
 
         // Setup the origin and destination marker, the maps are null
         // because the markers are hidden
@@ -181,23 +181,28 @@ Rootless.Map = Class.extend({
     bindTextBoxesToMap : function() {
     	var self = this;
    
-   
-        this._.el.$originTextBox.tipsy({
-        	gravity : 'w',
-        	title   : 'placeholder',
-        	trigger : 'focus',
-        	html    : false,
-        	live    : true,
-        	offset  : 15
-        });
-        this._.el.$destinationTextBox.tipsy({
-        	gravity : 'w',
-        	title   : 'placeholder',
-        	trigger : 'focus',
-        	html    : false,
-        	live    : true,
-        	offset  : 15
-        });
+        if (this._.el.$originTextBox.val()) {
+	        this._.el.$originTextBox.tipsy({
+	        	gravity : 'w',
+	        	title   : 'placeholder',
+	        	trigger : 'focus',
+	        	html    : false,
+	        	live    : true,
+	        	offset  : 15
+	        });
+        
+        }
+        
+        if (this._.el.$destinationTextBox.val()) {
+	        this._.el.$destinationTextBox.tipsy({
+	        	gravity : 'w',
+	        	title   : 'placeholder',
+	        	trigger : 'focus',
+	        	html    : false,
+	        	live    : true,
+	        	offset  : 15
+	        });
+        }
         // Route preview changes whenever the user finished editing the
         // seat pickup and dropoff textboxes
         this._.el.$originTextBox.bind('change', function() {self.previewRoute(self._.el.$originTextBox)});
@@ -261,7 +266,7 @@ Rootless.Map = Class.extend({
                 address: originValue
             };
             
-            this._.geocoder.geocode(originGeocodeRequest, self.geocodeOrigin);
+            this.geocoder.geocode(originGeocodeRequest, self.geocodeOrigin);
         } else {
             // Clear the origin pending flag
             this.clearOriginDecodePendingFlag();
@@ -292,7 +297,7 @@ Rootless.Map = Class.extend({
                 address: destinationValue
             };
             
-            this._.geocoder.geocode(destinationGeocodeRequest, self.geocodeDestination);
+            this.geocoder.geocode(destinationGeocodeRequest, self.geocodeDestination);
         } else {
             // Clear the destination pending flag
             this.clearDestinationDecodePendingFlag();
@@ -377,14 +382,15 @@ Rootless.Map = Class.extend({
         destination: self._.el.$destinationTextBox.val(),
         travelMode: google.maps.TravelMode.DRIVING
       };
-      this._.directionsService.route(request, function(result, status) {
+      
+      this.directionsService.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
-
             // Set the route field to the results object for posting to the
             // server
-            if (typeof(self._.el.$routeDataField) != "undefined")
-            {
-               $(self._.el.$routeDataField).val(self.formatGoogleJSON(self.strangeLat, self.strangeLon, JSON.stringify(result)));
+            console.log(self._.el.routeDataField);
+            if (typeof(self._.el.routeDataField) != "undefined")
+            {    
+               $(self._.el.routeDataField).val(self.formatGoogleJSON(self.strangeLat, self.strangeLon, JSON.stringify(result)));
             }
 
             // Display the directions
