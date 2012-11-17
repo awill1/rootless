@@ -118,7 +118,7 @@ Rootless.Map.Request = Rootless.Map.extend({
                 
              // Block the fragment-vehicles div
              self._.el.$newRideFormArea.block({ 
-                  message: '<img src="/images/ajax-loader.gif" alt="Saving..." />'
+                  message: 'saving'
              }); 
 
              // Disable the default submission. We will let the helper 

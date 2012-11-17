@@ -101,11 +101,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                     
                 }
            
-           },
-           
-           directionsService : new google.maps.DirectionsService(),
-           geocoder          : new google.maps.Geocoder(),
-       	   directionsDisplay : new google.maps.DirectionsRenderer()
+           }
            
            
        }, params);
@@ -115,21 +111,25 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     * Initializes a Google Map into a div
     */
     mapInit : function(){
-       // variable that keeps object available in inner functions
-       var self = this;
+        // variable that keeps object available in inner functions
+        var self = this;
        
-       var latlng = new google.maps.LatLng(self._.CONST.MAP_DEFAULT_LATITUDE, self._.CONST.MAP_DEFAULT_LONGITUDE);
-       var myOptions = {
-       	   scrollwheel: false,
-           zoom: self._.CONST.MAP_DEFAULT_ZOOM,
-           center: latlng,
-           mapTypeId: google.maps.MapTypeId.ROADMAP
-       };
+        var latlng = new google.maps.LatLng(self._.CONST.MAP_DEFAULT_LATITUDE, self._.CONST.MAP_DEFAULT_LONGITUDE);
+        var myOptions = {
+       	    scrollwheel: false,
+            zoom: self._.CONST.MAP_DEFAULT_ZOOM,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+       
+        this.directionsService = new google.maps.DirectionsService();
+        this.geocoder          = new google.maps.Geocoder();
+       	this.directionsDisplay = new google.maps.DirectionsRenderer();
         
        	
         self._.MapObject = new google.maps.Map(document.getElementById(self._.mapId),
             myOptions);
-        self._.directionsDisplay.setMap(self._.MapObject);
+        self.directionsDisplay.setMap(self._.MapObject);
         
         
         // Setup the origin and destination marker, the maps are null
