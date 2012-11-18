@@ -43,7 +43,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                $seatDetails          : $("#seatDetails"),
                $originDataField      : $("#seats_route_origin_data"),
                $destinationDataField : $("#seats_route_destination_data"),
-               $routeDataField       : $("#seats_route_route_data"),
+               routeDataField       : "#seats_route_route_data",
                $seatRouteId          : $("#seats_route_route_id"),
                $dynamicDetailsLink   : $(".dynamicDetailsLink"),
                $riderListItem        : $(".riderListItem"),
