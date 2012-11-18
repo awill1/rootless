@@ -69,16 +69,17 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                $informationContainer        : $('#informationContainer'),
                
                //seatHistoryToggle
-               $seatHistoryToggle           : $("#seatHistoryToggle"),
-               $seatHistoryBlock            : $("#seatHistoryBlock"),
+               seatHistoryToggle            : "#seatHistoryToggle",
+               seatHistoryBlock             : "#seatHistoryBlock",
                
                //seatDetailsEdit
-               $seatEditButton              : $("#editButton"),
-               $saveTermsButton             : $("#saveTermsButton"),
-               $cancelTermsButton           : $("#cancelTermsButton"),
-               $seatRemoveButton            : $('.removeBtn'),
+               seatEditButton              : "#editButton",
+               saveTermsButton             : "#saveTermsButton",
+               cancelTermsButton           : "#cancelTermsButton",
+               seatRemoveButton            : '.removeBtn',
                
-               //seatNegotiationStuff
+               //form Accept/Decline buttons
+               declineButtonButton         : "#declineButton",
                
            },
            
@@ -177,14 +178,8 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                 return false; 
             }
         });
-        
-        //default live listeners TODO == find a better way to do this
-        self._.el.$seatRemoveButton.live('click', self.emptyBlock);
-        self._.el.$cancelTermsButton.live('click', self.emptyBlock);
-        self._.el.$seatEditButton.live('click', self.seatEditButton);
-        self._.el.$saveTermsButton.live('click', self.saveTerms);
-        
-        
+     
+         
         // If the window url hash is set load that seat's details
         if (window.location.hash != "") {
             var hash = window.location.hash;
@@ -307,7 +302,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         var map = Rootless.Map.Negotiation.getInstance();
         $(this).parent().toggleClass('selectedUser');
         $(this).parent().siblings().removeClass('selectedUser');
-        
+
         if ($(this).parent().hasClass('selectedUser')) {
 	        $.ajax({
 	        	url : $(this).attr("href"), 
@@ -319,16 +314,20 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	                    map._.el.$mainRidePeople.hide();
 	                    
 	                    //show seat details
-	                    
 	                    map._.el.$seatDetails.append($(response)[6]);
 	                    map._.el.$seatDetails.show();
 	                    map._.el.$seatDetails.prepend('<div class="removeBtn">X</div>');
+	                    
+	                    $(map._.el.seatRemoveButton).bind('click', map.emptyBlock);              
+                        $(map._.el.seatEditButton).bind('click', map.seatEditButton);
+                        $(map._.el.declineButtonButton).bind('click', map.decline);
+	                    
 	                
 	                
 	                    map.bindTextBoxesToMap();
 	                    
 	                    //bind seat histoy toggle
-	                    $('#seatHistoryToggle').bind('click', map.seatHistoryToggle);
+	                    $(map._.el.seatHistoryToggle).bind('click', map.seatHistoryToggle);
 	                
 	                }
 	            }
@@ -338,7 +337,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	        return false;
         
         } else {
-        	$('.removeBtn').trigger('click');
+        	$(map._.el.seatRemoveButton).trigger('click');
         	window.location.hash = '';
         	return false;
         }
@@ -374,6 +373,14 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     	return false;
     },
     
+    decline : function(e) {
+    	var map = Rootless.Map.Negotiation.getInstance();
+    	$(this).closest('form').ajaxSubmit();
+    	$(map._.el.seatRemoveButton).trigger('click');
+    	location.reload(true);
+    	return false;
+    },
+    
     clearRouteId : function() {
         // Clear the route id
         Rootless.Map.Negotiation.getInstance()._.el.$seatRouteId.val('');
@@ -394,7 +401,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         var text = $(this).hasClass('open') ? 'Hide Discussion History' : 'See Discussion History';
         $(this).html(text);
         
-        $('#seatHistoryBlock').toggle();
+        $(map._.el.seatHistoryBlock).toggle();
     },
     
     seatEditButton : function(){
@@ -412,6 +419,9 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	                 map._.el.$seatDetails.append($(response)[4]);
 	                 map._.el.$seatDetails.show();
 	                 map._.el.$seatDetails.prepend('<div class="removeBtn">X</div>');
+	                 
+	                 $(map._.el.cancelTermsButton).bind('click', map.emptyBlock);
+	                 $(map._.el.saveTermsButton).bind('click', map.saveTerms);
    
 	                 //show seat edit
 	                 map._.el.$seatEditBlock.show();
@@ -419,7 +429,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	                 map.bindTextBoxesToMap();
 	
 	                 //bind seat histoy toggle
-	                 $('#seatHistoryToggle').bind('click', map.seatHistoryToggle);
+	                 $(map._.el.seatHistoryToggle).bind('click', map.seatHistoryToggle);
 	                
 	             }
 	        }
