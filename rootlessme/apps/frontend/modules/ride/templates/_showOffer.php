@@ -211,7 +211,7 @@
             	
                 <?php if ($mySeat != null): ?>
                     <!-- offer seen by someone who has already requested and started negotiations -->
-                    <a class="cta big-btn" id="viewMyRequestBtn" href="<?php echo url_for('seats_show', array('seat_id'=>$mySeat->getSeatId())); ?>">View My Request</a>
+                    <a class="cta big-btn viewMyRequestBtn" id="seat-<?php echo $mySeat->getSeatId() ?>" href="<?php echo url_for('seats_show', array('seat_id'=>$mySeat->getSeatId())); ?>">View My Request</a>
                 <?php else: ?>
                     <!-- offer seen by Requester -->
                     <a class="cta big-btn" id="startNegotiation" href="<?php echo url_for('seats_requests_new', array('ride_id'=>$carpool->getCarpoolId())); ?>">Request a Ride</a>

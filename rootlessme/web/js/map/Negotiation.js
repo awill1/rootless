@@ -47,6 +47,9 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                $seatRouteId          : $("#seats_route_route_id"),
                $dynamicDetailsLink   : $(".dynamicDetailsLink"),
                $riderListItem        : $(".riderListItem"),
+               
+               //view my Request
+               viewMyRequestBtn      : '.viewMyRequestBtn',
      
                
                //negotiation steps
@@ -163,6 +166,10 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         self.strangeLon = googleTestString.substring(10,12);
         
         self.negotiationInit();
+        
+        if ($(self._.el.viewMyRequestBtn)) {
+        	$(self._.el.viewMyRequestBtn).bind('click', self.loadSeatDetails);
+        }
         
         self._.el.$dynamicDetailsLink.click(self.loadSeatDetails);
         
@@ -300,13 +307,17 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	
     loadSeatDetails : function() {
         var map = Rootless.Map.Negotiation.getInstance();
-        $(this).parent().toggleClass('selectedUser');
-        $(this).parent().siblings().removeClass('selectedUser');
+        
+        if ($(this).parent().hasClass('riderListItem')) {
+            $(this).parent().toggleClass('selectedUser');
+            $(this).parent().siblings().removeClass('selectedUser');
+        }
 
-        if ($(this).parent().hasClass('selectedUser')) {
+        if ($(this).parent().hasClass('selectedUser') || $(this).hasClass('viewMyRequestBtn')) {
 	        $.ajax({
 	        	url : $(this).attr("href"), 
 	        	success : function(response, status){
+	        		
 	        		if (status == 'success') {
 	        			map._.el.$seatDetails.empty();
 	                    //hide main ride details & main ride people info
@@ -322,8 +333,6 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                         $(map._.el.seatEditButton).bind('click', map.seatEditButton);
                         $(map._.el.declineButtonButton).bind('click', map.decline);
 	                    
-	                
-	                
 	                    map.bindTextBoxesToMap();
 	                    
 	                    //bind seat histoy toggle
