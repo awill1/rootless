@@ -5,9 +5,9 @@
 var formAjaxOptions = 
 {
     // The resulting html should be sent to the test div
-    target: '#temporaryNewSeatHolder',
+   // target: '#temporaryNewSeatHolder',
     // The callback function when the form was successfully submitted
-    success: function() {
+  /*  success: function() {
         // Move the resulting html from the temporaryNewSeatHolder
         // to the actual seat history list.
         $('#seatNegotiationHistoryList').prepend($('#temporaryNewSeatHolder').contents());
@@ -16,22 +16,23 @@ var formAjaxOptions =
 
         // Hide the spinner
         $("#negotiationSpinner").hide();
-    }
+    }*/
 };
 
 $(document).ready(function()
 {
+	
     // Hide the spinner
-    $("#negotiationSpinner").hide();
+  //  $("#negotiationSpinner").hide();
 
     // AJAX form submit button handlers
-    $('#seatNegotiationForm, #seatAcceptForm, #seatDeclineForm').submit(function(e) {
-        e.preventDefault();
+    //$('#seatNegotiationForm, #seatAcceptForm, #seatDeclineForm').submit(function(e) {
+   //     e.preventDefault();
         
-        $(this).closest('#seatDetailsBlock').block({ 
-            message: '<img src="/images/ajax-loader.gif" alt="Submitting..." />'
-        }); 
-        var curId = $(e.target).attr('id');
+     //   $(this).closest('#seatDetailsBlock').block({ 
+      //      message: '<img src="/images/ajax-loader.gif" alt="Submitting..." />'
+   //     }); 
+      //  var curId = $(e.target).attr('id');
 
        
        /* var picLoc ='';
@@ -50,7 +51,7 @@ $(document).ready(function()
         */
        
         // Show the spinner
-        $('#negotiationSpinner').show();
+       // $('#negotiationSpinner').show();
        /* $('.selectedUser').slideUp(function(){
             var parentCheck = $(this).parent();
             
@@ -67,23 +68,23 @@ $(document).ready(function()
      */
         // Set the form submit flag
         
-        isFormSubmitPending = true;
+       // isFormSubmitPending = true;
 
         // Disable the default submission. We will let AJAX do it
-        MaybeSubmitForm($(e.currentTarget));
+        //MaybeSubmitForm($(e.currentTarget));
 
-    });
+  //  });
     
     // When the origin or the destination change, clear the route id.
-    $(originTextBox).change(clearRouteId);
-    $(destinationTextBox).change(clearRouteId);
-
+    //$(originTextBox).change(clearRouteId);
+    //$(destinationTextBox).change(clearRouteId);
+    console.log('seatNegotiations');
 });
 
 function clearRouteId()
 {
     // Clear the route id
-    $('#seats_route_route_id').val('');;
+    //$('#seats_route_route_id').val('');;
 }
 
 /**
@@ -93,11 +94,11 @@ function clearRouteId()
 function MaybeSubmitForm(tar)
 {            
     // Check to make sure nothing is blocking submitting the form
-    if (canSubmitForm() && isFormSubmitPending && tar.attr('id') == 'seatNegotiationForm')
+  /*  if (canSubmitForm() && isFormSubmitPending && tar.attr('id') == 'seatNegotiationForm')
     {
         $('#seatNegotiationForm').ajaxSubmit(formAjaxOptions);
     } else if (canSubmitForm() && isFormSubmitPending && (tar.attr('id') == 'seatDeclineForm' || tar.attr('id') == 'seatAcceptForm')) {
         tar.ajaxSubmit(formAjaxOptions);
-    }
+    }*/
 
 }
