@@ -43,7 +43,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                $seatDetails          : $("#seatDetails"),
                $originDataField      : $("#seats_route_origin_data"),
                $destinationDataField : $("#seats_route_destination_data"),
-               routeDataField       : "#seats_route_route_data",
+               routeDataField        : "#seats_route_route_data",
                $seatRouteId          : $("#seats_route_route_id"),
                $dynamicDetailsLink   : $(".dynamicDetailsLink"),
                $riderListItem        : $(".riderListItem"),
@@ -305,36 +305,44 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	
     loadSeatDetails : function() {
         var map = Rootless.Map.Negotiation.getInstance();
-        $(this).parent().addClass('selectedUser');
+        $(this).parent().toggleClass('selectedUser');
         $(this).parent().siblings().removeClass('selectedUser');
         
-        $.ajax({
-        	url : $(this).attr("href"), 
-        	success : function(response, status){
-        		if (status == 'success') {
-        			map._.el.$seatDetails.empty();
-                    //hide main ride details & main ride people info
-                    map._.el.$mainRideDetails.hide();
-                    map._.el.$mainRidePeople.hide();
-                    
-                    //show seat details
-                    
-                    map._.el.$seatDetails.append($(response)[6]);
-                    map._.el.$seatDetails.show();
-                    map._.el.$seatDetails.prepend('<div class="removeBtn">X</div>');
-                
-                
-                    map.bindTextBoxesToMap();
-                    
-                    //bind seat histoy toggle
-                    $('#seatHistoryToggle').bind('click', map.seatHistoryToggle);
-                
-                }
-            }
-        });
+        if ($(this).parent().hasClass('selectedUser')) {
+	        $.ajax({
+	        	url : $(this).attr("href"), 
+	        	success : function(response, status){
+	        		if (status == 'success') {
+	        			map._.el.$seatDetails.empty();
+	                    //hide main ride details & main ride people info
+	                    map._.el.$mainRideDetails.hide();
+	                    map._.el.$mainRidePeople.hide();
+	                    
+	                    //show seat details
+	                    
+	                    map._.el.$seatDetails.append($(response)[6]);
+	                    map._.el.$seatDetails.show();
+	                    map._.el.$seatDetails.prepend('<div class="removeBtn">X</div>');
+	                
+	                
+	                    map.bindTextBoxesToMap();
+	                    
+	                    //bind seat histoy toggle
+	                    $('#seatHistoryToggle').bind('click', map.seatHistoryToggle);
+	                
+	                }
+	            }
+	        });
+	        // Set the # in the url to keep track of which seat was clicked
+	        window.location.hash = $(this).attr('id');
+	        return false;
         
-        // Set the # in the url to keep track of which seat was clicked
-        window.location.hash = $(this).attr('id');
+        } else {
+        	$('.removeBtn').trigger('click');
+        	window.location.hash = '';
+        	return false;
+        }
+        
 
         // Return false to override default click behavior
         return false;
