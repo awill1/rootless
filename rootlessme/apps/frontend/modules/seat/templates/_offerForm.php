@@ -19,6 +19,8 @@
                         <input id="dualPostNo" type="radio" name="dualPostNo" style="display: none;" value="No" />
                         <label for="dualPostNo" id="dualPostButtonNo" class="dualYesOrNo unselectedLabel">No</label>
                     </div>
+                    
+<!--                    add a loop to display all of the current user's existing requests that could match the ride.-->
                     <div id="existingRequests">
                         <h2>Please select from your existing offers:</h2>
                         <div class="existingRequest">
@@ -26,7 +28,7 @@
                             <div class="existingRequestName">Person's Name</div>
                             <div class="existingRequestPlaces">New York, NY to Boston, MA</div>
                             <div class="existingRequestDate">November 24th, 2012</div>
-                            <div class="existingRequestArrow">&gt;</div>
+      
                         </div>
                     </div>
                     <div id="rideDetails1">

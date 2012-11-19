@@ -25,7 +25,6 @@
                             <div class="existingRequestName">Person's Name</div>
                             <div class="existingRequestPlaces">New York, NY to Boston, MA</div>
                             <div class="existingRequestDate">November 24th, 2012</div>
-                            <div class="existingRequestArrow">&gt;</div>
                         </div>
                     </div>
                     <div id="rideDetails1">

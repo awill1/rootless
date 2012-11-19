@@ -583,7 +583,7 @@ ul {
 }
 
 
-.negotationInstructions {
+.negotationInstructions{
     color: #D14D2F;
     font-size: 80%;
     padding: 5px 15px 0px 15px;
@@ -839,20 +839,22 @@ label span.dollar-sign {
     font-size: 110%;
 }
 .existingRequest{
-    width: 350px;
+    width: 395px;
     height: 64px;
     color: #000;
     background-color: #D9D9D9;
     padding: 5px 5px 5px 5px;
     margin-bottom: 5px;
+    background-image: url('../images/existingRequestBackgroundLight.jpg');
 }
 .existingRequest:hover{
-    width: 350px;
+    width: 395px;
     height: 64px;
     color: #FFF;
     background-color: #2D2D2D;
     padding: 5px 5px 5px 5px;
     margin-bottom: 5px;
+    background-image: url('../images/existingRequestBackgroundDark.jpg');
 }
 .existingRequestPicture{
     width: 54px;

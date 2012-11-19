@@ -44,16 +44,10 @@
                         </form>    
                     <?php endif ?>
                 </div>
-                
             </div>
-        </div>
-        
-        
-        
+        </div> 
     </div>
-        <div id="temporaryNewSeatHolder">
-        </div>
-        
+    <div id="temporaryNewSeatHolder"></div>
     </div>
     <div id="negotiationSpinnerContainer">
             <img id="negotiationSpinner" alt="Loading..." src="/images/ajax-loader.gif" />
