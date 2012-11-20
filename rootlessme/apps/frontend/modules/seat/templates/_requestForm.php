@@ -20,12 +20,14 @@
                     </div>
                     <div id="existingRequests">
                         <h2>Please select from your existing requests:</h2>
+                        <?php foreach($passengers as $passenger): ?>
                         <div class="existingRequest">
-                            <div class="existingRequestPicture"><img src="#" width="54" height="54" alt="person"></div>
-                            <div class="existingRequestName">Person's Name</div>
-                            <div class="existingRequestPlaces">New York, NY to Boston, MA</div>
-                            <div class="existingRequestDate">November 24th, 2012</div>
+                            <div class="existingRequestPicture"><img src="'/../images/'.<?php echo $passenger->getPeople()->getProfiles()->getPictureUrlTiny() ?>" width="54" height="54" alt="<?php echo $passenger->getPeople()->getProfiles()->getFullName() ?>"></div>
+                            <div class="existingRequestName"><?php echo $passenger->getPeople()->getProfiles()->getFullName() ?></div>
+                            <div class="existingRequestPlaces"><?php echo $passenger->getRoutes()->getOriginString() ?> to <?php echo $passenger->getRoutes()->getDestinationString() ?></div>
+                            <div class="existingRequestDate"><?php echo $passenger->getRoutes()->getCarpools()->getStartDate() ?> @ <?php echo $passenger->getRoutes()->getCarpools()->getStartTime() ?></div>
                         </div>
+                        <?php endforeach; ?>
                     </div>
                     <div id="rideDetails1">
                         <h3>Ride Details</h3>

@@ -158,7 +158,14 @@ class seatComponents extends sfComponents
 
         // Create the seat
         $this->seat = new Seats();
-
+        
+        // Get the authenticated user's personId
+        if ($this->getUser()->isAuthenticated())
+        {
+            $myId = $this->getUser()->getGuardUser()->getPersonId();
+            //$myId = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
+            $this->passengers = Doctrine_Core::getTable('Passengers')->getPassengersForPerson($myId);
+        }
         // The ride was an offer so set the carpool field
         $this->seat->setCarpools($this->ride);
         // Set the default seat count
