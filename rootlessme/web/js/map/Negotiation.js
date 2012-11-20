@@ -46,6 +46,8 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                routeDataField        : "#seats_route_route_data",
                $seatRouteId          : $("#seats_route_route_id"),
                $dynamicDetailsLink   : $(".dynamicDetailsLink"),
+               $declinedDetailsLink  : $(".declinedlinks"),
+               $acceptedDetailsLink  : $(".acceptedlinks"),
                $riderListItem        : $(".riderListItem"),
                
                //view my Request
@@ -172,6 +174,8 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         }
         
         self._.el.$dynamicDetailsLink.click(self.loadSeatDetails);
+        self._.el.$declinedDetailsLink.click(self.loadSeatDetails);
+        self._.el.$acceptedDetailsLink.click(self.loadSeatDetails);
         
         // Bind the ride click buttons
         self._.el.$rideDeleteForm.submit(function(){
@@ -191,6 +195,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         if (window.location.hash != "") {
             var hash = window.location.hash;
             $(hash).trigger('click');
+            return false;
         }
         
        
@@ -312,8 +317,8 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
             $(this).parent().toggleClass('selectedUser');
             $(this).parent().siblings().removeClass('selectedUser');
         }
-
-        if ($(this).parent().hasClass('selectedUser') || $(this).hasClass('viewMyRequestBtn')) {
+        
+        if ($(this).parent().hasClass('selectedUser') || $(this).hasClass('viewMyRequestBtn') || $(this).hasClass('.declinedlinks')) {
 	        $.ajax({
 	        	url : $(this).attr("href"), 
 	        	success : function(response, status){
@@ -337,7 +342,6 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	                    
 	                    //bind seat histoy toggle
 	                    $(map._.el.seatHistoryToggle).bind('click', map.seatHistoryToggle);
-	                
 	                }
 	            }
 	        });
@@ -372,8 +376,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         	window.location.hash = url;
         }
         
-    	
-
+    	return false;
     },
     
     saveTerms: function() {
@@ -440,10 +443,12 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	
 	                 //bind seat histoy toggle
 	                 $(map._.el.seatHistoryToggle).bind('click', map.seatHistoryToggle);
+	                 return false;
 	                
 	             }
 	        }
 	    });
+	    return false;
    }
     
 });
