@@ -2,8 +2,7 @@
     Document   : ride.css
     Created on : Mar 16, 2011, 7:44:43 PM
     Author     : awilliams
-    Description:
-        This stylesheet formats the ride pages of the rootlessme website.
+    Description: This stylesheet formats the ride pages of the rootlessme website.
 */
 
 h1 {
@@ -70,7 +69,6 @@ tbody {
 #rideMapImage {
     width: 453px;
     height: 305px;
-   /* float: right;*/
 }
 
 .rideListNotSelectedRow {
@@ -283,8 +281,6 @@ input[type="text"]:focus, textarea:focus {
 } 
 
 #rideSearchForm input#rides_find:hover {
-    
-    
     background-color: #D14D2F;
 }
 
@@ -368,10 +364,6 @@ input[type="text"]:focus, textarea:focus {
 	display: inline-block;
 }
 
-.riderListItem.selectedUser {
-   /* background-color: #F1F1F1; */
-}
-
 #seatDetailsBlock {
     clear: left;
 }
@@ -439,8 +431,6 @@ input[type="text"]:focus, textarea:focus {
 }
 
 #rideRequestForm input#rides_find:hover {
-    
-    
     background-color: #D14D2F;
 }
 
@@ -625,13 +615,6 @@ ul {
 }
 #seatFormButtons{
     float: left;
-}
-
-#seatAcceptForm {
-    /*display: inline-block;*/
-/*    position: absolute;*/
-/*    left: 137px;*/
-
 }
 
 #seatAcceptForm input[type="submit"], #seatDeclineForm input[type="submit"], #seatEditForm input[type="button"] {
@@ -826,12 +809,7 @@ label span.dollar-sign {
 .editSeatFieldsMedium{
     width: 100px;
 }
-/*.rideDetailsFields input{
-    width: 350px;
-    margin: 5px 5px 15px 0px;
-    padding: 5px;
-    font-size: 110%;
-}*/
+
 .chatBox{
     width: 350px;
     margin: 5px 5px 15px 0px;

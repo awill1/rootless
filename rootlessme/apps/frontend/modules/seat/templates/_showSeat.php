@@ -1,7 +1,7 @@
 <?php use_helper('PartialPlus') ?>
 <?php append_to_slot('gmapheader'); ?>
-<?php end_slot();?>
 <script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
+<?php end_slot();?>
 <script type="text/javascript"></script>
 <div id="seatDetailsBlock" title="Seat details">
     <div id='seatNegotiationContainer'>
