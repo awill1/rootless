@@ -4,7 +4,6 @@
 <?php append_to_slot('gmapheader'); ?>
     <script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
 <?php end_slot();?>
-
 <div id="seatDetailsBlock">
     <form id="seatRequestForm" class="userInputForm" action="<?php echo url_for('seats_requests_create') ?>" method="post">
         <?php echo $seatForm->renderHiddenFields(); ?>
@@ -22,10 +21,10 @@
                         <h2>Please select from your existing requests:</h2>
                         <?php foreach($passengers as $passenger): ?>
                         <div class="existingRequest">
-                            <div class="existingRequestPicture"><img src="'/../images/'.<?php echo $passenger->getPeople()->getProfiles()->getPictureUrlTiny() ?>" width="54" height="54" alt="<?php echo $passenger->getPeople()->getProfiles()->getFullName() ?>"></div>
+                            <div class="existingRequestPicture"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $passenger->getPeople()->getProfiles()->getPictureUrlSmall() ?>" alt="<?php echo $passenger->getPeople()->getProfiles()->getFullName() ?>"></div>
                             <div class="existingRequestName"><?php echo $passenger->getPeople()->getProfiles()->getFullName() ?></div>
                             <div class="existingRequestPlaces"><?php echo $passenger->getRoutes()->getOriginString() ?> to <?php echo $passenger->getRoutes()->getDestinationString() ?></div>
-                            <div class="existingRequestDate"><?php echo $passenger->getRoutes()->getCarpools()->getStartDate() ?> @ <?php echo $passenger->getRoutes()->getCarpools()->getStartTime() ?></div>
+                            <div class="existingRequestDate"><?php echo date_format(new DateTime($passenger->getStartDate()), 'l, F jS Y'); ?> @ <?php echo date_format(new DateTime($passenger->getStartTime()), 'g:i A') ?></div>
                         </div>
                         <?php endforeach; ?>
                     </div>
