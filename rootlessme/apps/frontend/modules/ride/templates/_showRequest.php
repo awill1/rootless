@@ -139,7 +139,7 @@
                     <?php foreach ($pendingSeats as $seat):
                           $driverProfile = $seat->getCarpools()->getPeople()->getProfiles(); ?>
                         <li class="riderListItem">
-                                <a id="seat-<?php echo $seat->getSeatId(); ?>" class="dynamicDetailsLink" href="<?php echo url_for("seats_negotiation", array('seat_id'=>$seat->getSeatId()))  ?>">
+                                <a id="seat-<?php echo $seat->getSeatId(); ?>" class="dynamicDetailsLink" href="<?php echo url_for("seats_show", array('seat_id'=>$seat->getSeatId()))  ?>">
                                 	<img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driverProfile->getPictureUrlSmall() ?>" alt="<?php echo $driverProfile->getFullName() ?>" />
                                 	<h3 class="green"><?php echo $driverProfile->getFullName() ?></h3>
                                 	<p><?php echo $seat->getOriginString(); ?> to <?php echo $seat->getDestinationString(); ?></p>
@@ -177,8 +177,9 @@
         	<?php endif; ?> 	
         </div>
         
-        <div class="seatDetails">
-            <?php if ($mySeat != null): ?>
+        <div id="seatDetails">
+        <?php if ($mySeat != null): ?>
+        	<?php include_component('seat', 'showSeat', array('seat'=>$mySeat)) ?>
    	    <?php elseif ($myUserId!=null): ?>
    	    	<?php include_component('seat', 'offerForm', array('ride'=>$passenger)) ?>
    	    <?php endif; ?>

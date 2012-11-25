@@ -317,12 +317,11 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
             $(this).parent().toggleClass('selectedUser');
             $(this).parent().siblings().removeClass('selectedUser');
         }
-        
+
         if ($(this).parent().hasClass('selectedUser') || $(this).hasClass('viewMyRequestBtn') || $(this).hasClass('.declinedlinks')) {
 	        $.ajax({
 	        	url : $(this).attr("href"), 
 	        	success : function(response, status){
-	        		
 	        		if (status == 'success') {
 	        			map._.el.$seatDetails.empty();
 	                    //hide main ride details & main ride people info

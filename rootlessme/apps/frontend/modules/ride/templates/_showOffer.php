@@ -162,9 +162,9 @@
                     <?php foreach ($acceptedSeats as $seat):
                         $riderProfile = $seat->getPassengers()->getPeople()->getProfiles(); ?>
                     <li class="riderListItem">
-                            <a id="seat-<?php echo $seat->getSeatId(); ?>" class="acceptedlinks" href="<?php echo url_for("seats_show", array('seat_id'=>$seat->getSeatId()))  ?>">
-                                <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" />
-                            </a>
+                        <a id="seat-<?php echo $seat->getSeatId(); ?>" class="acceptedlinks" href="<?php echo url_for("seats_show", array('seat_id'=>$seat->getSeatId()))  ?>">
+                            <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" />
+                        </a>
                         <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
                     </li>
                     <?php endforeach; ?>
@@ -197,7 +197,7 @@
             <?php endif; ?>	
         </div>
         <div id="mainRideDetails">
-        	<h4>Ride Details</h4>
+            <h4>Ride Details</h4>
         	<p><?php echo nl2br($carpool->getDescription()) ?></p>
         	<p><span>Start date:</span> <?php echo date("F",strtotime($carpool->getStartDate())) ?> <?php echo date("j",strtotime($carpool->getStartDate())) ?> at <?php echo date("g:i A",strtotime($carpool->getStartTime())) ?></p>
         	<p><span>Price:</span> $<?php echo $carpool->getAskingPrice() ?> per seat</p>
@@ -219,7 +219,7 @@
             <?php elseif ($isMyPost) : ?>
                     <!-- old edit & delete button spot -->
             <?php endif; ?>
-   	</div>
+   	   </div>
         <div id="seatDetails">
    	 	<?php if ($mySeat != null): ?>
              <?php include_component('seat', 'showSeat', array('seat'=>$mySeat)) ?>
