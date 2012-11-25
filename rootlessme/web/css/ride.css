@@ -921,10 +921,12 @@ li{
 
 .removeBtn {
 	cursor: pointer;
-	color: #ccc;
-    position: absolute;
-    right: 15px;
-    z-index: 100;
+	color: #CCC;
+	position: absolute;
+	right: 12px;
+	z-index: 100;
+	font-size: 18px;
+	top: 7px;
 }
 
 .removeBtn:hover {
@@ -1016,7 +1018,7 @@ li{
     float: left;
 }
 #seatInfoPadder{
-    margin: 10px;
+    margin: 20px;
 }
 #seatHistoryWhitespace{
     margin-top: 10px;

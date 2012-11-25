@@ -172,8 +172,12 @@
                 <a class="cta big-btn" href="<?php echo url_for('sf_guard_signin') ?>">Log in</a>
                 <a class="cta big-btn" href="<?php echo url_for('sf_guard_register') ?>">Sign up</a>
         	<?php elseif (!$isMyPost) : ?>
-        		<!-- Request seen by offerer -->
-                <a class="cta big-btn" id="startNegotiation" href="<?php echo url_for('seats_offers_new', array('ride_id'=>$passenger->getPassengerId())); ?>">Offer a Ride</a>
+        		<?php if ($mySeat == null): ?>
+        		  <!-- Request seen by offerer -->
+                  <a class="cta big-btn" id="startNegotiation" href="<?php echo url_for('seats_offers_new', array('ride_id'=>$passenger->getPassengerId())); ?>">Offer a Ride</a>
+        	    <?php else: ?>
+        	      <a class="cta big-btn viewMyRequestBtn" id="seat-<?php echo $mySeat->getSeatId() ?>" href="<?php echo url_for('seats_show', array('seat_id'=>$mySeat->getSeatId())); ?>">View My Offer</a>
+        	    <?php endif; ?>
         	<?php endif; ?> 	
         </div>
         
