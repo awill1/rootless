@@ -676,9 +676,16 @@ label span.dollar-sign {
     font-weight: normal;
 }
 
-#seatDetailsBlock input {
+#seatDetailsBlock input[type='text'] {
     width: 220px;
 }
+
+#seatDetailsBlock #negotiationBox input[type='submit'] {
+   margin-top: 0;
+   padding: 9px;
+   font-size: 150%;
+}
+
 
 #seatNegotiationContainer input[name="seats[price]"], #seatDetailsBlock #seats_price {
     width: 210px;

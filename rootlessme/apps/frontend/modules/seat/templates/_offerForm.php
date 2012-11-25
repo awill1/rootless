@@ -23,13 +23,14 @@
 <!--                    add a loop to display all of the current user's existing requests that could match the ride.-->
                     <div id="existingRequests">
                         <h2>Please select from your existing offers:</h2>
+                        <?php foreach($passengers as $passenger): ?>
                         <div class="existingRequest">
-                            <div class="existingRequestPicture"><img src="#" width="54" height="54" alt="person"></div>
-                            <div class="existingRequestName">Person's Name</div>
-                            <div class="existingRequestPlaces">New York, NY to Boston, MA</div>
-                            <div class="existingRequestDate">November 24th, 2012</div>
-      
+                            <div class="existingRequestPicture"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $passenger->getPeople()->getProfiles()->getPictureUrlSmall() ?>" alt="<?php echo $passenger->getPeople()->getProfiles()->getFullName() ?>"></div>
+                            <div class="existingRequestName"><?php echo $passenger->getPeople()->getProfiles()->getFullName() ?></div>
+                            <div class="existingRequestPlaces"><?php echo $passenger->getRoutes()->getOriginString() ?> to <?php echo $passenger->getRoutes()->getDestinationString() ?></div>
+                            <div class="existingRequestDate"><?php echo date_format(new DateTime($passenger->getStartDate()), 'l, F jS Y'); ?> @ <?php echo date_format(new DateTime($passenger->getStartTime()), 'g:i A') ?></div>
                         </div>
+                        <?php endforeach; ?>
                     </div>
                     <div id="rideDetails1">
                         <h3>Ride Details</h3>

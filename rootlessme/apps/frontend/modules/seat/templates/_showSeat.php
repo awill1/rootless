@@ -14,7 +14,7 @@
                 <div id="seatHistoryToggle">See Discussion History</div>
             </div>
             <div id="seatTerms">
-                <h3>Ride Details <span class="green">last edited by whoever.</span></h3>
+                <h3>Ride Details <span class="green">last edited by <?php if ($canAccept) { echo $otherPersonProfile->getFullName(); } else { echo 'you';} ?>.</span></h3>
                 <p><span>Pickup Location:</span> <?php echo $seat->getRoutes()->getOriginString() ?></p>
                 <p><span>Dropoff Location:</span> <?php echo $seat->getRoutes()->getDestinationString() ?></p>
                 <p><span>Price:</span> $<?php echo $seat->getPrice() ?> per seat</p>
