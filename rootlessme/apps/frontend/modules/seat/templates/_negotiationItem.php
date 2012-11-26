@@ -1,3 +1,10 @@
+<?php if (($negotiationChange->getIsSoloRouteIdDifferent()) || 
+          ($negotiationChange->getIsSeatStatusIdDifferent()) || 
+          ($negotiationChange->getIsPriceDifferent()) || 
+		  ($negotiationChange->getIsSeatCountDifferent()) ||
+		  ($negotiationChange->getIsPickupDateDifferent()) ||
+		  ($negotiationChange->getIsPickupTimeDifferent()) ||
+		  ($negotiationChange->getIsDescriptionDifferent() && $newHistoryItem->getDescription() != '')): ?>
 <div class="seatNegotiationHistoryItem">
     <div class="seatNegotiationHistoryUserImage">
         <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $changer->getPictureUrlSmall() ?>" alt="<?php echo $changer->getFullName() ?>" />   
@@ -76,4 +83,6 @@
     <?php echo date('g:i A  l, F j, Y', strtotime($newHistoryItem->getCreatedAt())) ?>             
     </div>
     <div class="clearfix"></div>
+    <hr class="historyHr"/>
 </div>
+<?php endif; ?>

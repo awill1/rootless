@@ -46,10 +46,10 @@
             </div>
         </div> 
     </div>
-    <div id="temporaryNewSeatHolder"></div>
+    <div id="temporaryNewSeatHolder" class="hide"></div>
     </div>
     <div id="negotiationSpinnerContainer">
-            <img id="negotiationSpinner" alt="Loading..." src="/images/ajax-loader.gif" />
+        <img id="negotiationSpinner" alt="Loading..." src="/images/ajax-loader.gif" />
     </div>
     <div id="seatHistoryWhitespace"></div>
     <div id="seatHistoryBlock">

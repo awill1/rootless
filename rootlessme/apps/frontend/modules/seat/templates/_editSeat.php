@@ -50,7 +50,7 @@
         
         
     </div>
-        <div id="temporaryNewSeatHolder">
+        <div id="temporaryNewSeatHolder" class='hide'>
         </div>
         
     </div>

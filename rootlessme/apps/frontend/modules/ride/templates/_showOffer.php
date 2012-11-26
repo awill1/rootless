@@ -41,7 +41,7 @@
         		
         		<?php if ($acceptedSeats->count() > 0): ?>
                   <?php foreach ($acceptedSeats as $seat): ?>
-                   var key = "ride-passenger-<?php echo $seat->getPassengerId(); ?>";
+				   var key = "ride-passenger-<?php echo $seat->getPassengerId(); ?>";
                    var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
                    var acceptedSeatPolyline = map.displayEncodedPolyline(map._.MapObject, seatPolyline , false);
                    map._.mapItem.polyline.polyLineObj[key] = acceptedSeatPolyline;
@@ -50,7 +50,7 @@
                 
                  <?php if ($pendingSeats->count() > 0 && $isMyPost): ?>
                   <?php foreach ($pendingSeats as $seat): ?> 
-                   var key = "ride-passenger-<?php echo $seat->getPassengerId(); ?>";
+				   var key = "ride-passenger-<?php echo $seat->getPassengerId(); ?>";
                    var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
                    var pendingSeatPolyline = map.displayEncodedPolyline(map._.MapObject, seatPolyline , false);
                    pendingSeatPolyline.setOptions({strokeOpacity: 0})
@@ -60,7 +60,7 @@
                 
                  <?php if ($declinedSeats->count() > 0 && $isMyPost): ?>
                   <?php foreach ($declinedSeats as $seat): ?>
-                   var key = "ride-passenger-<?php echo $seat->getPassengerId(); ?>";
+				   var key = "ride-passenger-<?php echo $seat->getPassengerId(); ?>";
                    var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
                    var declinedSeatPolyline = map.displayEncodedPolyline(map._.MapObject, seatPolyline , false);
                    declinedSeatPolyline.setOptions({strokeOpacity: 0})

@@ -183,24 +183,26 @@ Rootless.Map = Class.extend({
    
         if (this._.el.$originTextBox.text) {
 	        this._.el.$originTextBox.tipsy({
-	        	gravity : 'w',
+	        	gravity : 'e',
 	        	title   : 'value',
 	        	trigger : 'focus',
 	        	html    : false,
 	        	live    : true,
-	        	offset  : 15
+	        	offset  : 15,
+	        	opacity : 1
 	        });
         
         }
         
         if (this._.el.$destinationTextBox.text) {
 	        this._.el.$destinationTextBox.tipsy({
-	        	gravity : 'w',
+	        	gravity : 'e',
 	        	title   : 'value',
 	        	trigger : 'focus',
 	        	html    : false,
 	        	live    : true,
-	        	offset  : 15
+	        	offset  : 15,
+	        	opacity : 1
 	        });
         }
         // Route preview changes whenever the user finished editing the

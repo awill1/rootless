@@ -69,8 +69,8 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                 
                //form ajax elements
                temporaryNewSeatHolder       : "#temporaryNewSeatHolder",
-               $seatNegotiationHistoryList  : $("#seatNegotiationHistoryList"),
-               $negotiationSpinner          : $("#negotiationSpinner"),
+               seatNegotiationHistoryList  : "#seatNegotiationHistoryList",
+               $negotiationSpinner          : "#negotiationSpinner",
                $informationContainer        : $('#informationContainer'),
                
                //seatHistoryToggle
@@ -297,16 +297,17 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	    // The resulting html should be sent to the test div
 	    target: '#temporaryNewSeatHolder',
 	    // The callback function when the form was successfully submitted
-	    success: function() {
+	    success: function(response) {
 	    	var map = Rootless.Map.Negotiation.getInstance();
 	        // Move the resulting html from the temporaryNewSeatHolder
 	        // to the actual seat history list.
-	        map._.el.$seatNegotiationHistoryList.prepend($(map._.el.temporaryNewSeatHolder).contents());
+
+	        $(map._.el.seatNegotiationHistoryList).prepend(response);
 	
 	        map._.el.$seatDetailsBlock.unblock();
-	
+	        
 	        // Hide the spinner
-	        map._.el.$negotiationSpinner.hide();
+	        $(map._.el.negotiationSpinner).hide();
 	    }
 	},
 	
@@ -353,7 +354,6 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         	window.location.hash = '';
         	return false;
         }
-        
 
         // Return false to override default click behavior
         return false;
@@ -381,6 +381,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     saveTerms: function() {
     	var map = Rootless.Map.Negotiation.getInstance();
     	$(this).closest('form').ajaxSubmit(map.formAjaxOptions);
+    	$(map._.el.seatHistoryToggle).trigger('click');
     	return false;
     },
     
@@ -449,7 +450,6 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	    });
 	    return false;
    }
-    
 });
 
 Class.addSingleton(Rootless.Map.Negotiation);

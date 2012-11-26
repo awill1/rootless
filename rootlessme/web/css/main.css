@@ -29,6 +29,10 @@ a {
     clear:both;
 }
 
+.hide {
+	display: none;
+}
+
 .green {
 	color: #119D49 !important;
 }

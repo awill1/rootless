@@ -10,7 +10,7 @@ $(document).ready(function()
     {
         // The resulting html should be sent to the test div and replace it
         target: '#seatDetailsBlock',
-        replaceTarget: true,
+        //replaceTarget: true,
         beforeSubmit: function() {
 
             $('#seatDetailsBlock').block({ 
