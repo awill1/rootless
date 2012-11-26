@@ -48,7 +48,7 @@
                  <?php endforeach; ?>
                 <?php endif; ?>
                 
-                 <?php if ($pendingSeats->count() > 0): ?>
+                 <?php if ($pendingSeats->count() > 0 && $isMyPost): ?>
                   <?php foreach ($pendingSeats as $seat): ?> 
                    var key = "ride-passenger-<?php echo $seat->getPassengerId(); ?>";
                    var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
@@ -58,7 +58,7 @@
                  <?php endforeach; ?>
                 <?php endif; ?>
                 
-                 <?php if ($declinedSeats->count() > 0): ?>
+                 <?php if ($declinedSeats->count() > 0 && $isMyPost): ?>
                   <?php foreach ($declinedSeats as $seat): ?>
                    var key = "ride-passenger-<?php echo $seat->getPassengerId(); ?>";
                    var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
@@ -141,8 +141,8 @@
                                     <h3 class="green"><?php echo $riderProfile->getFullName() ?></h3>
                                     <p><?php echo $seat->getOriginString(); ?> to <?php echo $seat->getDestinationString(); ?></p>
                             </a>
+                            <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden pendingLine routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
                         <?php endif; ?>
-                         <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden pendingLine routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
                     </li>
                 <?php endforeach; ?>
            </ul>
@@ -162,10 +162,16 @@
                     <?php foreach ($acceptedSeats as $seat):
                         $riderProfile = $seat->getPassengers()->getPeople()->getProfiles(); ?>
                     <li class="riderListItem">
-                        <a id="seat-<?php echo $seat->getSeatId(); ?>" class="acceptedlinks" href="<?php echo url_for("seats_show", array('seat_id'=>$seat->getSeatId()))  ?>">
-                            <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" />
-                        </a>
-                        <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
+                    	<?php if ($isMyPost): ?>
+                            <a id="seat-<?php echo $seat->getSeatId(); ?>" class="acceptedlinks" href="<?php echo url_for("seats_show", array('seat_id'=>$seat->getSeatId()))  ?>">
+                                <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" />
+                            </a>
+                            <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
+                        <?php else: ?>
+                        	<a href="<?php echo url_for("profile_show_user", $riderProfile)  ?>">
+                                <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" />
+                            </a>
+                        <?php endif; ?>
                     </li>
                     <?php endforeach; ?>
                 </ul>

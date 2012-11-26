@@ -20,9 +20,6 @@
                 $( ".datePicker" ).datepicker();
                 $( ".timePicker" ).timepicker({ampm: true});
                 
-                //rootless namespace that should be added to our global template
-        		var rootless = Rootless.getInstance({sessionId : '_showRequest.php'});
-        		
         		//the map object for negotiations 
         		var map = Rootless.Map.Negotiation.getInstance({mapId : "rideProfileMap",
         			el: {
