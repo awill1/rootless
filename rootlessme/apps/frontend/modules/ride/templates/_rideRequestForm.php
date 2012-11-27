@@ -10,7 +10,7 @@
     <tfoot>
       <tr>
         <td colspan="2">
-          <input type="submit" class="submitButton" value="Save" />
+          <input type="submit" class="submitButton" value="Submit" />
         </td>
       </tr>
     </tfoot>

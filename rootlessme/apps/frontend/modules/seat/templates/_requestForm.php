@@ -18,7 +18,7 @@
                         <label for="dualPostNo" id="dualPostButtonNo" class="dualYesOrNo unselectedLabel">No</label>
                     </div>
                     <div id="existingRequests">
-                        <h2>Please select from your existing requests:</h2>
+                        <h2 class="dualPostHeader">Please select from your existing requests:</h2>
                         <?php foreach($passengers as $passenger): ?>
                         <div class="existingRequest">
                             <div class="existingRequestPicture"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $passenger->getPeople()->getProfiles()->getPictureUrlSmall() ?>" alt="<?php echo $passenger->getPeople()->getProfiles()->getFullName() ?>"></div>
@@ -59,16 +59,16 @@
                     </div>
                     <div id="discuss">
                         <h2>Is there anything else you would like to discuss?</h2>
-                        <br />
-                        
-                        <ul class="plainText"> Things to consider:
+                        <br/><br/>
+                        <span class="plainText"> Things to consider:</span>
+                        <ul class="plainText considerList">
                             <li>Smoking or non-smoking</li>
                             <li>Is there a return trip?</li>
                             <li>Phone number exchange</li>
                             <li>Are you bringing anything?</li>
                         </ul>
                         <br />
-                        <div><?php echo $seatForm['description']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Say something...')) ?></div> <br />
+                        <div><?php echo $seatForm['description']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Chat...')) ?></div> <br />
 <!--                        this actually needs to be the back div button and the form submit button not two divs... the form in general isn't here yet either-->
                         <div id="discussBackButton" class="Button">Back</div> <div><input type="submit" value="Submit"></div>
                         <br />
