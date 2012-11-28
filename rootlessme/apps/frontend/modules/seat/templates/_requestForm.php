@@ -59,8 +59,8 @@
                     </div>
                     <div id="discuss">
                         <h2>Is there anything else you would like to discuss?</h2>
-                        <br/><br/>
-                        <span class="plainText"> Things to consider:</span>
+                        <br/>
+                        <span class="plainText">Things to consider:</span>
                         <ul class="plainText considerList">
                             <li>Smoking or non-smoking</li>
                             <li>Is there a return trip?</li>

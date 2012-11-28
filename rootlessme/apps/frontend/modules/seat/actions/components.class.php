@@ -145,6 +145,13 @@ class seatComponents extends sfComponents
 
         // Create the seat form
         $this->seatForm = new SeatsOfferForm($this->seat);
+        
+        if ($this->getUser()->isAuthenticated())
+        {
+            $myId = $this->getUser()->getGuardUser()->getPersonId();
+            //$myId = sfContext::getInstance()->getUser()->getGuardUser()->getPersonId();
+            $this->carpools = Doctrine_Core::getTable('Carpools')->getCarpoolsForPerson($myId);
+        }
     }
 
     /**

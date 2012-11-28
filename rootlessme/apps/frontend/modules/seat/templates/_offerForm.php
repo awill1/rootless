@@ -23,12 +23,12 @@
 <!--                    add a loop to display all of the current user's existing requests that could match the ride.-->
                     <div id="existingRequests">
                         <h2 class="dualPostHeader">Please select from your existing offers:</h2>
-                        <?php foreach($passengers as $passenger): ?>
+                        <?php foreach($carpools as $driver): ?>
                         <div class="existingRequest">
-                            <div class="existingRequestPicture"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $passenger->getPeople()->getProfiles()->getPictureUrlSmall() ?>" alt="<?php echo $passenger->getPeople()->getProfiles()->getFullName() ?>"></div>
-                            <div class="existingRequestName"><?php echo $passenger->getPeople()->getProfiles()->getFullName() ?></div>
-                            <div class="existingRequestPlaces"><?php echo $passenger->getRoutes()->getOriginString() ?> to <?php echo $passenger->getRoutes()->getDestinationString() ?></div>
-                            <div class="existingRequestDate"><?php echo date_format(new DateTime($passenger->getStartDate()), 'l, F jS Y'); ?> @ <?php echo date_format(new DateTime($passenger->getStartTime()), 'g:i A') ?></div>
+                            <div class="existingRequestPicture"><img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driver->getPeople()->getProfiles()->getPictureUrlSmall() ?>" alt="<?php echo $driver->getPeople()->getProfiles()->getFullName() ?>"></div>
+                            <div class="existingRequestName"><?php echo $driver->getPeople()->getProfiles()->getFullName() ?></div>
+                            <div class="existingRequestPlaces"><?php echo $driver->getRoutes()->getOriginString() ?> to <?php echo $driver->getRoutes()->getDestinationString() ?></div>
+                            <div class="existingRequestDate"><?php echo date_format(new DateTime($driver->getStartDate()), 'l, F jS Y'); ?> @ <?php echo date_format(new DateTime($driver->getStartTime()), 'g:i A') ?></div>
                         </div>
                         <?php endforeach; ?>
                     </div>
@@ -63,8 +63,8 @@
                     </div>
                     <div id="discuss">
                         <h2>Is there anything else you would like to discuss?</h2>
-                        <br/><br/>
-                        <span class="plainText"> Things to consider:</span>
+                        <br/>
+                        <span class="plainText">Things to consider:</span>
                         <ul class="plainText considerList">
                             <li>Smoking or non-smoking</li>
                             <li>Is there a return trip?</li>
