@@ -70,7 +70,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                //form ajax elements
                temporaryNewSeatHolder       : "#temporaryNewSeatHolder",
                seatNegotiationHistoryList  : "#seatNegotiationHistoryList",
-               $negotiationSpinner          : "#negotiationSpinner",
+               negotiationSpinner          : "#negotiationSpinner",
                $informationContainer        : $('#informationContainer'),
                
                //seatHistoryToggle
@@ -84,7 +84,8 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                seatRemoveButton            : '.removeBtn',
                
                //form Accept/Decline buttons
-               declineButtonButton         : "#declineButton",
+               declineButton         : "#declineButton",
+               acceptButton          : "#acceptButton"
                
            },
            
@@ -339,7 +340,8 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	                    
 	                    $(map._.el.seatRemoveButton).bind('click', map.emptyBlock);              
                         $(map._.el.seatEditButton).bind('click', map.seatEditButton);
-                        $(map._.el.declineButtonButton).bind('click', map.decline);
+                        $(map._.el.declineButton).bind('click', map.submitForm);
+                        $(map._.el.acceptButton).bind('click', map.submitForm);
 	                    
 	                    map.bindTextBoxesToMap();
 	                    
@@ -391,7 +393,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     	return false;
     },
     
-    decline : function(e) {
+    submitForm : function(e) {
     	var map = Rootless.Map.Negotiation.getInstance();
     	$(this).closest('form').ajaxSubmit();
     	$(map._.el.seatRemoveButton).trigger('click');
