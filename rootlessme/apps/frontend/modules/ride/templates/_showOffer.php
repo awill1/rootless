@@ -129,7 +129,7 @@
     
     <div id="rideProfileMap"></div>
     <?php if ($isMyPost && $pendingSeats->count() > 0): ?>
-            <div class="pendingListBlock">
+    <div class="pendingListBlock">
             <h3 class="green">You have <?php echo $pendingSeats->count(); ?> pending <?php echo ($pendingSeats->count() == 1 ? "request" : "requests") ?>!</h3>
             <ul class="riderList pending">
                 <?php foreach ($pendingSeats as $seat):

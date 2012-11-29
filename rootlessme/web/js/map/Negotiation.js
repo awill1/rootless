@@ -318,7 +318,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     loadSeatDetails : function(e) {
         var map = Rootless.Map.Negotiation.getInstance();
         
-        if ($(this).parent().hasClass('riderListItem') && !e.isTrigger) {
+        if (($(this).parent().hasClass('riderListItem') && !e.isTrigger) || (!$(this).parent().hasClass('selectedUser') && e.isTrigger)) {
             $(this).parent().toggleClass('selectedUser');
             $(this).parent().siblings().removeClass('selectedUser');
         }
