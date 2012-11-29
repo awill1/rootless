@@ -7,7 +7,7 @@
 <?php end_slot();?>
 
 <div id="seatDetailsBlock">
-    <form id="seatRequestForm" class="userInputForm" action="<?php echo url_for('seats_offers_create') ?>" method="post">
+    <form id="seatRequestForm" class="userInputForm newSeatForm" action="<?php echo url_for('seats_offers_create') ?>" method="post">
         <?php echo $seatForm->renderHiddenFields(); ?>
         <div id="negotiationBox">
                     <div id="dualPost">

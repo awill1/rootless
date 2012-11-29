@@ -139,12 +139,17 @@ class seatComponents extends sfComponents
         // Set the default price to be the same as the ride price
         $this->seat->setPrice($this->ride->getAskingPrice());
         
+        
         // Set the default pickup date and time.
         $this->seat->setPickupDate(date("m/d/Y",strtotime($this->ride->getStartDate())));
         $this->seat->setPickupTime(date("g:i a",strtotime($this->ride->getStartTime())));
 
         // Create the seat form
         $this->seatForm = new SeatsOfferForm($this->seat);
+        
+        // Set the default origin and destination.
+        $this->seatForm->getEmbeddedForm('route')->setDefault('origin', $this->ride->getRoutes()->getOriginAddress());
+        $this->seatForm->getEmbeddedForm('route')->setDefault('destination', $this->ride->getRoutes()->getDestinationAddress());
         
         if ($this->getUser()->isAuthenticated())
         {

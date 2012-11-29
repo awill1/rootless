@@ -190,7 +190,7 @@ class seatActions extends sfActions
             {
                 if ($seat != null)
                 {
-                    return $this->renderComponent('seat','show_seat', array('seat' => $seat));
+                    return $this->renderComponent('seat','showSeat', array('seat' => $seat));
                 }
                 else
                 {
@@ -267,7 +267,7 @@ class seatActions extends sfActions
             {
                 if ($seat != null)
                 {
-                    return $this->renderComponent('seat','show_seat', array('seat' => $seat));
+                    return $this->renderComponent('seat','showSeat', array('seat' => $seat));
                 }
                 else
                 {

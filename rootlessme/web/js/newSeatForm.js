@@ -6,7 +6,7 @@ $(document).ready(function()
 {
     // Use an ajax form
     //$('#submit_seat').bind('mouseover', jsddm_open)
-    $('#seatRequestForm').ajaxForm(
+    $('.newSeatForm').ajaxForm(
     {
         // The resulting html should be sent to the test div and replace it
         target: '#seatDetailsBlock',
