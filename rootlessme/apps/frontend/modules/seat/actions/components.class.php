@@ -146,11 +146,7 @@ class seatComponents extends sfComponents
 
         // Create the seat form
         $this->seatForm = new SeatsOfferForm($this->seat);
-        
-        // Set the default origin and destination.
-        $this->seatForm->getEmbeddedForm('route')->setDefault('origin', $this->ride->getRoutes()->getOriginAddress());
-        $this->seatForm->getEmbeddedForm('route')->setDefault('destination', $this->ride->getRoutes()->getDestinationAddress());
-        
+
         if ($this->getUser()->isAuthenticated())
         {
             $myId = $this->getUser()->getGuardUser()->getPersonId();

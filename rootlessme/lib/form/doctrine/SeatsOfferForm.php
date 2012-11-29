@@ -18,5 +18,10 @@ class SeatsOfferForm extends SeatsForm
 
         // Change the passenger id to hidden, since it is already set.
         $this->setWidget('passenger_id',new sfWidgetFormInputHidden());
+        
+        $seat = $this->getObject();
+        $passenger = $seat->getPassengers();
+        $this->getEmbeddedForm('route')->setDefault('origin', $passenger->getRoutes()->getOriginAddress());
+        $this->getEmbeddedForm('route')->setDefault('destination', $passenger->getRoutes()->getDestinationAddress());
     }
 }
