@@ -328,14 +328,28 @@ input[type="text"]:focus, textarea:focus {
 	margin: 0;
 }
 
-.pendingListBlock .riderListItem h3, .pendingListBlock .riderListItem p {
+.pendingListBlock .riderListItem h3{
 	font-size: 12px;
 	font-weight: normal;
 	color: #000;
 	padding-left: 10px;
 	width: 105px;
 }
-
+.pendingListBlock .riderListItem p{
+        font-size: 10px;
+	font-weight: normal;
+	color: #000;
+	padding-left: 10px;
+	width: 105px;
+}
+.seatLabel{
+    font-size: 10px;
+    height: 14px;
+    padding: 2px;
+    margin-left:10px;
+    color: #2D2D2D;
+    background-color: #F9E69A;
+}
 .pendingListBlock h3 {
 	font-style: italic;
 	font-size: 13px;

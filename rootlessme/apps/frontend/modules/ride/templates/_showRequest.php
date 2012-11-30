@@ -6,7 +6,7 @@
   sprintf('Rootless - %s to %s', $route->getOriginString(), $route->getDestinationString()))
 ?>
 
-<h1> Ride Request</h1>
+<h1>Ride Request</h1>
 
 <?php if ($passenger->isDeleted()): ?>
     <p>This ride has been deleted.</p>

@@ -50,6 +50,9 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                $acceptedDetailsLink  : $(".acceptedlinks"),
                $riderListItem        : $(".riderListItem"),
                
+               //ride offer & request X
+               $negotiationBox       : $("#negotiationBox"),
+               
                //view my Request
                viewMyRequestBtn      : '.viewMyRequestBtn',
      
@@ -223,6 +226,10 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
      		self.step(true);
      	});
      	self._.el.$dualPostButtonYes.bind('click', self.step);
+        
+         
+       //offer request form X
+        map._.el.$negotiationBox.prepend('<div class="removeBtn">X</div>');
     },
    
     step : function (b_skip) {
