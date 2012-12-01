@@ -711,7 +711,12 @@ label span.dollar-sign {
     float: right;
 }
 
-#seatDetails, #dualPost, #existingRequests, #rideDetails1, #rideDetails2, #discuss, #confirmation {
+#seatDetails, 
+#existingRequests, 
+#rideDetails1, 
+#rideDetails2, 
+#discuss, 
+#confirmation {
 	display: none;
 }
 

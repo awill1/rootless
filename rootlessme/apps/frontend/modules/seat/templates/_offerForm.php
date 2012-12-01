@@ -89,6 +89,6 @@
                     </div>
                 </div>
     </form>
-</div>
-<div id="temporaryNewSeatHolder">
+    <div id="temporaryNewSeatHolder">
+    </div>
 </div>

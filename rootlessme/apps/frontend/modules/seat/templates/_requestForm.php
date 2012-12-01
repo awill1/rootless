@@ -85,6 +85,7 @@
                         <div id="confirmationBackButton" class="Button">Back to Rides</div>
                     </div>
                 </div>
-        
-<div id="temporaryNewSeatHolder">
+    </form>
+	<div id="temporaryNewSeatHolder">
+	</div>
 </div>

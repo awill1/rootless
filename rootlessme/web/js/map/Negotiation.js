@@ -58,7 +58,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
      
                
                //negotiation steps
-               $negotiationBox          : $("#negotiationBox"),
+               negotiationBox           : "#negotiationBox",
                $startNegotiationBtn     : $("#startNegotiation"),
                $mainRidePeople          : $("#mainRidePeople"),
                $mainRideDetails         : $("#mainRideDetails"),
@@ -170,11 +170,11 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         //  and longitude in the stringified data
         self.strangeLat = googleTestString.substring(2,4);	
         self.strangeLon = googleTestString.substring(10,12);
-        
-        self.negotiationInit();
-        
-        if ($(self._.el.viewMyRequestBtn)) {
+
+        if ($(self._.el.viewMyRequestBtn).length != 0) {
         	$(self._.el.viewMyRequestBtn).bind('click', self.loadSeatDetails);
+        } else if (self._.el.$startNegotiationBtn.length != 0) {
+        	self.negotiationInit();
         }
         
         self._.el.$dynamicDetailsLink.click(self.loadSeatDetails);
@@ -215,47 +215,37 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     
     negotiationInit : function() {
      	var self = this;
-     	self.stepCount = self._.el.$negotiationBox.children().length;
-     	self.currentStep = 0;
-     	self._.el.$startNegotiationBtn.bind('click', self.step);
-     	self._.el.$rideDetails1NextButton.bind('click', self.step);
-     	self._.el.$rideDetails2NextButton.bind('click', self.step);
-     	self._.el.$rideDetails2BackButton.bind('click', self.prevStep);
-     	self._.el.$discussBackButton.bind('click', self.prevStep);
-     	self._.el.$dualPostButtonNo.bind('click', function() {
+     	self.stepCount = 6;
+     	self.currentStep = 1;
+
+     	self._.el.$startNegotiationBtn.bind('click', self.loadSeatDetails);
+     	self._.el.$rideDetails1NextButton.live('click', self.step);
+     	self._.el.$rideDetails2NextButton.live('click', self.step);
+     	self._.el.$rideDetails2BackButton.live('click', self.prevStep);
+     	self._.el.$discussBackButton.live('click', self.prevStep);
+     	self._.el.$dualPostButtonNo.live('click', function() {
      		self.step(true);
      	});
-     	self._.el.$dualPostButtonYes.bind('click', self.step);
+     	self._.el.$dualPostButtonYes.live('click', self.step);
         
          
        //offer request form X
-        map._.el.$negotiationBox.prepend('<div class="removeBtn">X</div>');
+        self._.el.$seatDetails.prepend('<div class="removeBtn">X</div>');
+        $(self._.el.seatRemoveButton).bind('click', self.emptyBlock);    
+        
     },
    
     step : function (b_skip) {
         var map = Rootless.Map.Negotiation.getInstance();
-        
         map._.el.$seatDetails.show();
-        
-        if (map.currentStep == 0) {
-    		map._.el.$mainRidePeople.hide();
-    		map._.el.$mainRideDetails.hide();
-    	} else if (map.currentStep == map.stepCount) {
-    		map._.el.$mainRidePeople.show();
-    		map._.el.$mainRideDetails.show();
-    		map._.el.$seatDetailsBlock.hide();
-    		map.CurrentStep == 0;
-    		
-    		return true;
-    	} else {
-    		map._.el.$negotiationBox.children().eq(map.currentStep-1).hide();
-    	}
+
+    	$(map._.el.negotiationBox).children().eq(map.currentStep-1).hide();
     	
     	if (b_skip == true) {
     		map.currentStep++;
     	}
     	
-        map._.el.$negotiationBox.children().eq(map.currentStep).fadeIn();
+        $(map._.el.negotiationBox).children().eq(map.currentStep).fadeIn();
    	    
         map.currentStep++;
         
@@ -265,9 +255,9 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
    
     prevStep : function() {
    	   var map = Rootless.Map.Negotiation.getInstance();
-   	   map._.el.$negotiationBox.children().eq(map.currentStep-1).hide();
+   	   $(map._.el.negotiationBox).children().eq(map.currentStep-1).hide();
    	   
-   	   map._.el.$negotiationBox.children().eq(map.currentStep-2).fadeIn();
+   	   $(map._.el.negotiationBox).children().eq(map.currentStep-2).fadeIn();
    	   map.currentStep--;
     },
    
@@ -330,7 +320,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
             $(this).parent().siblings().removeClass('selectedUser');
         }
 
-        if ($(this).parent().hasClass('selectedUser') || $(this).hasClass('viewMyRequestBtn') || $(this).hasClass('.declinedlinks')) {
+        if ($(this).parent().hasClass('selectedUser') || $(this).hasClass('cta') || $(this).hasClass('.declinedlinks')) {
 	        $.ajax({
 	        	url : $(this).attr("href"), 
 	        	success : function(response, status){
@@ -339,6 +329,8 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	                    //hide main ride details & main ride people info
 	                    map._.el.$mainRideDetails.hide();
 	                    map._.el.$mainRidePeople.hide();
+	                    
+	                    map.currentStep = 1;
 	                    
 	                    //show seat details
 	                    map._.el.$seatDetails.append($(response)[$(response).length - 1]);
