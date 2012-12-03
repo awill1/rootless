@@ -38,7 +38,9 @@ Rootless.Map.Request = Rootless.Map.extend({
            el : {
                $originTextBox        : $("#rides_origin"),
                $destinationTextBox   : $("#rides_destination"),
-               $submitButton		 : $('.submitButton'),
+               originTextBox         : "#rides_origin",
+               destinationTextBox    : "#rides_destination",
+               $submitButton         : $('.submitButton'),
                $newRideFormArea	     : $("#newRideFormArea")
            },
            
@@ -128,13 +130,13 @@ Rootless.Map.Request = Rootless.Map.extend({
          });
    },
    
-	geocodeOrigin : function(results, status) {     
+    geocodeOrigin : function(results, status) {     
         var map = Rootless.Map.Request.getInstance();
         // Display the results
         
         map.showResults(results, status, map._.mapItem.marker.originMarker);
         // Send the geocoded information to the server
-        if (typeof(map._.el.originDataField) != "undefined")
+        if (typeof($(map._.el.originDataField)) != "undefined")
         {
             $(map._.el.originDataField).val(map.formatGoogleJSON(map.strangeLat, map.strangeLon, JSON.stringify(results[0])));
         }
@@ -149,7 +151,7 @@ Rootless.Map.Request = Rootless.Map.extend({
         // Display the results
         map.showResults(results, status, map._.mapItem.marker.destinationMarker);
         // Send the geocoded information to the server
-        if (typeof(map._.el.destinationDataField) != "undefined")
+        if (typeof($(map._.el.destinationDataField)) != "undefined")
         {
             $(map._.el.destinationDataField).val(map.formatGoogleJSON(map.strangeLat, map.strangeLon, JSON.stringify(results[0])));
         }

@@ -20,11 +20,14 @@
        //the map object
         var map = Rootless.Map.Request.getInstance({
         	mapId : 'RequestMap', 
-            el : {$originTextBox : $("<?php echo $rideType == 'offer' ? '#carpools_route_origin' : '#passengers_route_origin'; ?>"),
-        	$destinationTextBox : $("<?php echo $rideType == 'offer' ? '#carpools_route_destination' : '#passengers_route_destination'; ?>"),
-        	originDataField : "<?php echo $rideType == 'offer' ? '#carpools_route_origin_data' : '#passengers_route_origin_data'; ?>",
-            destinationDataField : "<?php echo $rideType == 'offer' ? '#carpools_route_destination_data' : '#passengers_route_destination_data'; ?>",
-        	routeDataField : "<?php echo $rideType == 'offer' ? '#carpools_route_route_data' : '#passengers_route_route_data'; ?>" }
+            el : {
+                $originTextBox       : $("<?php echo $rideType == 'offer' ? '#carpools_route_origin' : '#passengers_route_origin'; ?>"),
+        	$destinationTextBox  : $("<?php echo $rideType == 'offer' ? '#carpools_route_destination' : '#passengers_route_destination'; ?>"),
+                originTextBox       : "<?php echo $rideType == 'offer' ? '#carpools_route_origin' : '#passengers_route_origin'; ?>",
+        	destinationTextBox  : "<?php echo $rideType == 'offer' ? '#carpools_route_destination' : '#passengers_route_destination'; ?>",
+        	originDataField      : "<?php echo $rideType == 'offer' ? '#carpools_route_origin_data' : '#passengers_route_origin_data'; ?>",
+                destinationDataField : "<?php echo $rideType == 'offer' ? '#carpools_route_destination_data' : '#passengers_route_destination_data'; ?>",
+        	routeDataField       : "<?php echo $rideType == 'offer' ? '#carpools_route_route_data' : '#passengers_route_route_data'; ?>" }
         	
         });
        

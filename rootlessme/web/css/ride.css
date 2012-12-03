@@ -342,14 +342,43 @@ input[type="text"]:focus, textarea:focus {
 	padding-left: 10px;
 	width: 105px;
 }
-.seatLabel{
+.seatLabelPending{
+    float: left;
     font-size: 10px;
     height: 14px;
-    padding: 2px;
-    margin-left:10px;
+    padding: 0px 5px 0px;
+    margin-left: 10px;
     color: #2D2D2D;
     background-color: #F9E69A;
 }
+.seatLabelAccepted{
+    float: left;
+    font-size: 10px;
+    height: 14px;
+    padding: 0px 5px 3px;
+    margin-left: 10px;
+    color: #2D2D2D;
+    background-color: #84CBA0;
+}
+.seatLabelDeclined{
+    float: left;
+    font-size: 10px;
+    height: 14px;
+    padding: 0px 5px 3px;
+    margin-left: 10px;
+    color: #2D2D2D;
+    background-color: #DF866F;
+}
+.seatLabelRecommended{
+    float: left;
+    font-size: 10px;
+    height: 14px;
+    padding: 0px 5px 3px;
+    margin-left: 10px;
+    color: #2D2D2D;
+    background-color: #DEE0E2;
+}
+
 .pendingListBlock h3 {
 	font-style: italic;
 	font-size: 13px;

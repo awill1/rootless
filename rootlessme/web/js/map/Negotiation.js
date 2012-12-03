@@ -34,15 +34,19 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
            
            //all html elements referred in the code should go here (including jquery)
            el : {
-               $originTextBox        : $("#rides_origin"),
-               $destinationTextBox   : $("#rides_destination"),
+               $originTextBox        : $("#seats_route_origin"),
+               $destinationTextBox   : $("#seats_route_destination"),
+               originTextBox         : "#seats_route_origin",
+               destinationTextBox    : "#seats_route_destination",
                $rideDeleteForm       : $("#rideDeleteForm"),
                $seatRequestForm      : $("#seatRequestForm"),
                $seatDetailsBlock     : $("#seatDetailsBlock"),
                $seatEditBlock        : $("#seatEditBlock"),
                $seatDetails          : $("#seatDetails"),
                $originDataField      : $("#seats_route_origin_data"),
+               originDataField       : "#seats_route_origin_data",
                $destinationDataField : $("#seats_route_destination_data"),
+               destinationDataField  : "#seats_route_destination_data",
                routeDataField        : "#seats_route_route_data",
                $seatRouteId          : $("#seats_route_route_id"),
                $dynamicDetailsLink   : $(".dynamicDetailsLink"),
@@ -208,9 +212,10 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	     }, function() {
 	         self.hoverOutPassenger($(this));
 	     });
-        // When the origin or the destination change, clear the route id.
-        self._.el.$originTextBox.change(self.clearRouteId);
-        self._.el.$destinationTextBox.change(self.clearRouteId);
+        
+        
+        $(self._.el.originTextBox).change(self.clearRouteId);
+        $(self._.el.destinationTextBox).change(self.clearRouteId);
     },
     
     negotiationInit : function() {
@@ -227,7 +232,6 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
      		self.step(true);
      	});
      	self._.el.$dualPostButtonYes.live('click', self.step);
-        
          
        //offer request form X
         self._.el.$seatDetails.prepend('<div class="removeBtn">X</div>');
@@ -267,8 +271,8 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         
         map.showResults(results, status, map._.mapItem.marker.originMarker);
         // Send the geocoded information to the server
-        if (typeof(map._.el.$originDataField) != "undefined") {
-            $(map._.el.$originDataField).val(map.formatGoogleJSON(map.strangeLat, map.strangeLon, JSON.stringify(results[0])));
+        if (typeof($(map._.el.originDataField)) != "undefined") {
+            $(map._.el.originDataField).val(map.formatGoogleJSON(map.strangeLat, map.strangeLon, JSON.stringify(results[0])));
         }
 
         // Finally, clear the origin pending flag to allow form submission
@@ -281,9 +285,9 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         // Display the results
         map.showResults(results, status, map._.mapItem.marker.destinationMarker);
         // Send the geocoded information to the server
-        if (typeof(map._.el.$destinationDataField) != "undefined")
+        if (typeof($(map._.el.destinationDataField)) != "undefined")
         {
-            $(map._.el.$destinationDataField).val(map.formatGoogleJSON(map.strangeLat, map.strangeLon, JSON.stringify(results[0])));
+            $(map._.el.destinationDataField).val(map.formatGoogleJSON(map.strangeLat, map.strangeLon, JSON.stringify(results[0])));
         }
 
         // Finally, clear the destination pending flag to allow form submission
