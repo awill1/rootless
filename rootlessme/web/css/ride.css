@@ -357,7 +357,7 @@ input[type="text"]:focus, textarea:focus {
     float: left;
     font-size: 10px;
     height: 14px;
-    padding: 0px 5px 3px;
+    padding: 0px 5px 0px;
     margin-left: 10px;
     color: #2D2D2D;
     background-color: #84CBA0;
@@ -366,16 +366,16 @@ input[type="text"]:focus, textarea:focus {
     float: left;
     font-size: 10px;
     height: 14px;
-    padding: 0px 5px 3px;
+    padding: 0px 5px 0px;
     margin-left: 10px;
     color: #2D2D2D;
-    background-color: #DF866F;
+    background-color: #F29178;
 }
 .seatLabelRecommended{
     float: left;
     font-size: 10px;
     height: 14px;
-    padding: 0px 5px 3px;
+    padding: 0px 5px 0px;
     margin-left: 10px;
     color: #2D2D2D;
     background-color: #DEE0E2;

@@ -140,7 +140,8 @@
                                     <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" />
                                     <h3 class="green"><?php echo $riderProfile->getFullName() ?></h3>
                                     <p><?php echo $seat->getOriginString(); ?> to <?php echo $seat->getDestinationString(); ?></p>
-                                    <div class="seatLabelPending"><?php echo strtolower($seat->getSeatStatuses()->getDisplayText())?></div>
+                                    <?php $seatStatus = $seat->getSeatStatuses()->getDisplayText() ?>
+                                    <div class="seatLabel<?php echo $seatStatus ?>"><?php echo $seat->getSeatStatuses()->getDisplayText()?></div>
                             </a>
                             <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden pendingLine routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
                         <?php endif; ?>
