@@ -302,16 +302,18 @@ input[type="text"]:focus, textarea:focus {
 	margin-right: 20px;
 	margin-bottom: 20px;
 	float: left;
+        border: 2px solid #f4f4f4
 }
 
 .pendingListBlock .riderListItem a {
-	display: block;
+    display: block;
     float: left;
     padding: 10px;
 }
 
 .pendingListBlock .riderListItem:hover, .pendingListBlock .riderListItem.selectedUser {
 	background: #2E2E2E;
+        border: 2px solid #f4f4f4
 }
 
 .pendingListBlock .riderListItem.selectedUser  {
