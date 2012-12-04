@@ -3,7 +3,6 @@
 <?php use_helper('PartialPlus') ?>
 <?php append_to_slot('gmapheader'); ?>
     <script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
-    <script type="text/javascript" src="/js/newSeatForm.js"></script>
 <?php end_slot();?>
 <div id="seatDetailsBlock">
     <form id="seatRequestForm" class="userInputForm newSeatForm" action="<?php echo url_for('seats_requests_create') ?>" method="post">

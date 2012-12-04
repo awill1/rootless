@@ -72,6 +72,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                $dualPostButtonNo        : $("#dualPostButtonNo"),
                $dualPostButtonYes       : $("#dualPostButtonYes"),
                $discussBackButton       : $("#discussBackButton"),
+               negotiationSubmit        : ".newSeatForm",
                
                 
                //form ajax elements
@@ -242,7 +243,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     step : function (b_skip) {
         var map = Rootless.Map.Negotiation.getInstance();
         map._.el.$seatDetails.show();
-
+        
     	$(map._.el.negotiationBox).children().eq(map.currentStep-1).hide();
     	
     	if (b_skip == true) {
@@ -335,7 +336,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	                    map._.el.$mainRidePeople.hide();
 	                    
 	                    map.currentStep = 1;
-	                    
+	                 
 	                    //show seat details
 	                    map._.el.$seatDetails.append($(response)[$(response).length - 1]);
 	                    map._.el.$seatDetails.show();
@@ -345,8 +346,32 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                         $(map._.el.seatEditButton).bind('click', map.seatEditButton);
                         $(map._.el.declineButton).bind('click', map.submitForm);
                         $(map._.el.acceptButton).bind('click', map.submitForm);
-	                    
+                        
 	                    map.bindTextBoxesToMap();
+	                    
+	                    if(this.url.match(/new/)) {
+	                         $(map._.el.originTextBox).trigger('change');
+                             $(map._.el.destinationTextBox).trigger('change');
+                             
+                             /*$(map._.el.negotiationSubmit).ajaxForm({
+        	                     beforeSubmit : function() {
+        	                     	map._.el.$seatDetails.block({ 
+                                        message: '<img src="/images/ajax-loader.gif" alt="Submitting..." />'
+                                     });
+        	                     },
+        	                     
+        	                     error : function(response) {
+        	                        alert('something is wrong, solo');
+        	                        
+        	                     },
+        	                     
+        	                     success : function() {
+        	                         map._.el.$seatDetails.unblock();
+        	                         map.step();
+        	                     }
+                             });*/
+	                    }
+	                    
 	                    
 	                    //bind seat histoy toggle
 	                    $(map._.el.seatHistoryToggle).bind('click', map.seatHistoryToggle);
@@ -360,7 +385,6 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	        // Set the # in the url to keep track of which seat was clicked
 	        window.location.hash = $(this).attr('id');
 	        return false;
-        
         } else {
         	$(map._.el.seatRemoveButton).trigger('click');
         	window.location.hash = '';

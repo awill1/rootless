@@ -821,6 +821,7 @@ label span.dollar-sign {
     background-color: #119D49;
     color: #31A24A;
 }
+
 .Button{
     float: left;
     margin-right:20px;
@@ -832,12 +833,18 @@ label span.dollar-sign {
     color: #2e2e2e;
     cursor: pointer;
 }
+
 .Button:hover{
     background-color: #555;
     color: #ffffff;
 }
 .Button:active{
     background-color: #119D49;
+}
+
+#confirmationBackButton.Button {
+	float: none;
+	display: inline-block;
 }
 
 .rideDetailsFields{
