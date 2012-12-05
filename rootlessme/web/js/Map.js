@@ -37,6 +37,8 @@ Rootless.Map = Class.extend({
            el : {
                $originTextBox        : $("#rides_origin"),
                $destinationTextBox   : $("#rides_destination"),
+               originTextBox         : "#rides_origin",
+               destinationTextBox    : "#rides_destination"
            },
            
            // Variables used to block form submitting before map api results are returned
@@ -181,8 +183,8 @@ Rootless.Map = Class.extend({
     bindTextBoxesToMap : function() {
     	var self = this;
    
-        if (this._.el.$originTextBox.text) {
-	        this._.el.$originTextBox.tipsy({
+        if ($(this._.el.originTextBox).text) {
+	        $(this._.el.originTextBox).tipsy({
 	        	gravity : 'e',
 	        	title   : 'value',
 	        	trigger : 'focus',
@@ -194,8 +196,8 @@ Rootless.Map = Class.extend({
         
         }
         
-        if (this._.el.$destinationTextBox.text) {
-	        this._.el.$destinationTextBox.tipsy({
+        if ($(this._.el.destinationTextBox).text) {
+	        $(this._.el.destinationTextBox).tipsy({
 	        	gravity : 'e',
 	        	title   : 'value',
 	        	trigger : 'focus',
@@ -207,8 +209,8 @@ Rootless.Map = Class.extend({
         }
         // Route preview changes whenever the user finished editing the
         // seat pickup and dropoff textboxes
-        this._.el.$originTextBox.bind('change', function() {self.previewRoute(self._.el.$originTextBox)});
-        this._.el.$destinationTextBox.bind('change', function() {self.previewRoute(self._.el.$destinationTextBox)});
+        $(this._.el.originTextBox).bind('change', function() {self.previewRoute($(self._.el.originTextBox))});
+        $(this._.el.destinationTextBox).bind('change', function() {self.previewRoute($(self._.el.destinationTextBox))});
     },
     
     /**
@@ -261,7 +263,7 @@ Rootless.Map = Class.extend({
         this._.formBlock.isDestinationDecodePending = true;
         this._.formBlock.isDirectionsPending = true;
 
-        var originValue = this._.el.$originTextBox.val();
+        var originValue = $(this._.el.originTextBox).val();
         if (originValue){
             // Get the location of the origin, and place a marker on the map
             var originGeocodeRequest = {
@@ -276,22 +278,22 @@ Rootless.Map = Class.extend({
             // There is no origin so clear the marker from the map
             this._.mapItem.marker.originMarker.setMap(null);
             
-            if (typeof(self._.el.$originDataField) != "undefined")
+            if (typeof($(self._.el.originDataField)) != "undefined")
             {
-                $(self._.el.$originDataField).val("");
+                $(self._.el.originDataField).val("");
             }
             // Clear the latitude and longitude fields if they exist
-            if (typeof(this._.el.$originLatitude) != "undefined")
+            if (typeof($(this._.el.originLatitude)) != "undefined")
             {
-                this._.el.$originLatitude.val("");
+                $(this._.el.originLatitude).val("");
             }
-            if (typeof(this._.el.$originLongitude) != "undefined")
+            if (typeof($(this._.el.originLongitude)) != "undefined")
             {
-                this._.el.$originLongitude.val("");
+                $(this._.el.originLongitude).val("");
             }
         }
 
-        var destinationValue = this._.el.$destinationTextBox.val();
+        var destinationValue = $(this._.el.destinationTextBox).val();
         if (destinationValue)
         {
             // Get the location of the destination, and place a marker on the map
@@ -307,18 +309,18 @@ Rootless.Map = Class.extend({
             // There is no destination so clear the marker from the map
             this._.mapItem.marker.destinationMarker.setMap(null);
             
-            if (typeof(this._.el.$destinationDataField) != "undefined")
+            if (typeof($(this._.el.destinationDataField)) != "undefined")
             {
-                $(this._.el.$destinationDataField).val("");
+                $($(this._.el.destinationDataField)).val("");
             }
             // Update the latitude and longitude fields if they exist
-            if (typeof(this._.el.$destinationLatitude) != "undefined")
+            if (typeof($(this._.el.destinationLatitude)) != "undefined")
             {
-                this._.el.$destinationLatitude.val("");
+                $(this._.el.destinationLatitude).val("");
             }
             if (typeof(this._.el.$destinationLongitude) != "undefined")
             {
-                this._.el.$destinationLongitude.val("");
+                $(this._.el.destinationLongitude).val("");
             }
         }
 
@@ -336,9 +338,9 @@ Rootless.Map = Class.extend({
             this._.mapItem.polyline.routePolyline.setMap(null);
 
             // Clear the route data
-            if (typeof(this._.el.$routeDataField) != "undefined")
+            if (typeof($(this._.el.routeDataField)) != "undefined")
             {
-                $(this._.el.$routeDataField).val("");
+                $(this._.el.routeDataField).val("");
             }
         }
       },
@@ -380,8 +382,8 @@ Rootless.Map = Class.extend({
     calcRoute : function(formElem) {
       var self = this;
       var request = {
-        origin: self._.el.$originTextBox.val(),
-        destination: self._.el.$destinationTextBox.val(),
+        origin: $(self._.el.originTextBox).val(),
+        destination: $(self._.el.destinationTextBox).val(),
         travelMode: google.maps.TravelMode.DRIVING
       };
       

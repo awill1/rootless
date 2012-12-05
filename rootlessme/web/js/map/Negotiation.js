@@ -34,15 +34,19 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
            
            //all html elements referred in the code should go here (including jquery)
            el : {
-               $originTextBox        : $("#rides_origin"),
-               $destinationTextBox   : $("#rides_destination"),
+               $originTextBox        : $("#seats_route_origin"),
+               $destinationTextBox   : $("#seats_route_destination"),
+               originTextBox         : "#seats_route_origin",
+               destinationTextBox    : "#seats_route_destination",
                $rideDeleteForm       : $("#rideDeleteForm"),
                $seatRequestForm      : $("#seatRequestForm"),
                $seatDetailsBlock     : $("#seatDetailsBlock"),
                $seatEditBlock        : $("#seatEditBlock"),
                $seatDetails          : $("#seatDetails"),
                $originDataField      : $("#seats_route_origin_data"),
+               originDataField       : "#seats_route_origin_data",
                $destinationDataField : $("#seats_route_destination_data"),
+               destinationDataField  : "#seats_route_destination_data",
                routeDataField        : "#seats_route_route_data",
                $seatRouteId          : $("#seats_route_route_id"),
                $dynamicDetailsLink   : $(".dynamicDetailsLink"),
@@ -68,6 +72,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                $dualPostButtonNo        : $("#dualPostButtonNo"),
                $dualPostButtonYes       : $("#dualPostButtonYes"),
                $discussBackButton       : $("#discussBackButton"),
+               negotiationSubmit        : ".newSeatForm",
                
                 
                //form ajax elements
@@ -208,9 +213,10 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	     }, function() {
 	         self.hoverOutPassenger($(this));
 	     });
-        // When the origin or the destination change, clear the route id.
-        self._.el.$originTextBox.change(self.clearRouteId);
-        self._.el.$destinationTextBox.change(self.clearRouteId);
+        
+        
+        $(self._.el.originTextBox).change(self.clearRouteId);
+        $(self._.el.destinationTextBox).change(self.clearRouteId);
     },
     
     negotiationInit : function() {
@@ -227,7 +233,6 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
      		self.step(true);
      	});
      	self._.el.$dualPostButtonYes.live('click', self.step);
-        
          
        //offer request form X
         self._.el.$seatDetails.prepend('<div class="removeBtn">X</div>');
@@ -238,7 +243,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     step : function (b_skip) {
         var map = Rootless.Map.Negotiation.getInstance();
         map._.el.$seatDetails.show();
-
+        
     	$(map._.el.negotiationBox).children().eq(map.currentStep-1).hide();
     	
     	if (b_skip == true) {
@@ -267,8 +272,8 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         
         map.showResults(results, status, map._.mapItem.marker.originMarker);
         // Send the geocoded information to the server
-        if (typeof(map._.el.$originDataField) != "undefined") {
-            $(map._.el.$originDataField).val(map.formatGoogleJSON(map.strangeLat, map.strangeLon, JSON.stringify(results[0])));
+        if (typeof($(map._.el.originDataField)) != "undefined") {
+            $(map._.el.originDataField).val(map.formatGoogleJSON(map.strangeLat, map.strangeLon, JSON.stringify(results[0])));
         }
 
         // Finally, clear the origin pending flag to allow form submission
@@ -281,9 +286,9 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         // Display the results
         map.showResults(results, status, map._.mapItem.marker.destinationMarker);
         // Send the geocoded information to the server
-        if (typeof(map._.el.$destinationDataField) != "undefined")
+        if (typeof($(map._.el.destinationDataField)) != "undefined")
         {
-            $(map._.el.$destinationDataField).val(map.formatGoogleJSON(map.strangeLat, map.strangeLon, JSON.stringify(results[0])));
+            $(map._.el.destinationDataField).val(map.formatGoogleJSON(map.strangeLat, map.strangeLon, JSON.stringify(results[0])));
         }
 
         // Finally, clear the destination pending flag to allow form submission
@@ -331,7 +336,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	                    map._.el.$mainRidePeople.hide();
 	                    
 	                    map.currentStep = 1;
-	                    
+	                 
 	                    //show seat details
 	                    map._.el.$seatDetails.append($(response)[$(response).length - 1]);
 	                    map._.el.$seatDetails.show();
@@ -341,8 +346,32 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                         $(map._.el.seatEditButton).bind('click', map.seatEditButton);
                         $(map._.el.declineButton).bind('click', map.submitForm);
                         $(map._.el.acceptButton).bind('click', map.submitForm);
-	                    
+                        
 	                    map.bindTextBoxesToMap();
+	                    
+	                    if(this.url.match(/new/)) {
+	                         $(map._.el.originTextBox).trigger('change');
+                             $(map._.el.destinationTextBox).trigger('change');
+                             
+                             /*$(map._.el.negotiationSubmit).ajaxForm({
+        	                     beforeSubmit : function() {
+        	                     	map._.el.$seatDetails.block({ 
+                                        message: '<img src="/images/ajax-loader.gif" alt="Submitting..." />'
+                                     });
+        	                     },
+        	                     
+        	                     error : function(response) {
+        	                        alert('something is wrong, solo');
+        	                        
+        	                     },
+        	                     
+        	                     success : function() {
+        	                         map._.el.$seatDetails.unblock();
+        	                         map.step();
+        	                     }
+                             });*/
+	                    }
+	                    
 	                    
 	                    //bind seat histoy toggle
 	                    $(map._.el.seatHistoryToggle).bind('click', map.seatHistoryToggle);
@@ -356,7 +385,6 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	        // Set the # in the url to keep track of which seat was clicked
 	        window.location.hash = $(this).attr('id');
 	        return false;
-        
         } else {
         	$(map._.el.seatRemoveButton).trigger('click');
         	window.location.hash = '';

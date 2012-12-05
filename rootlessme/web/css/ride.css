@@ -302,16 +302,18 @@ input[type="text"]:focus, textarea:focus {
 	margin-right: 20px;
 	margin-bottom: 20px;
 	float: left;
+        border: 2px solid #f4f4f4
 }
 
 .pendingListBlock .riderListItem a {
-	display: block;
+    display: block;
     float: left;
     padding: 10px;
 }
 
 .pendingListBlock .riderListItem:hover, .pendingListBlock .riderListItem.selectedUser {
 	background: #2E2E2E;
+        border: 2px solid #f4f4f4
 }
 
 .pendingListBlock .riderListItem.selectedUser  {
@@ -342,14 +344,43 @@ input[type="text"]:focus, textarea:focus {
 	padding-left: 10px;
 	width: 105px;
 }
-.seatLabel{
+.seatLabelPending{
+    float: left;
     font-size: 10px;
     height: 14px;
-    padding: 2px;
-    margin-left:10px;
+    padding: 0px 5px 0px;
+    margin-left: 10px;
     color: #2D2D2D;
     background-color: #F9E69A;
 }
+.seatLabelAccepted{
+    float: left;
+    font-size: 10px;
+    height: 14px;
+    padding: 0px 5px 0px;
+    margin-left: 10px;
+    color: #2D2D2D;
+    background-color: #84CBA0;
+}
+.seatLabelDeclined{
+    float: left;
+    font-size: 10px;
+    height: 14px;
+    padding: 0px 5px 0px;
+    margin-left: 10px;
+    color: #2D2D2D;
+    background-color: #F29178;
+}
+.seatLabelRecommended{
+    float: left;
+    font-size: 10px;
+    height: 14px;
+    padding: 0px 5px 0px;
+    margin-left: 10px;
+    color: #2D2D2D;
+    background-color: #DEE0E2;
+}
+
 .pendingListBlock h3 {
 	font-style: italic;
 	font-size: 13px;
@@ -792,6 +823,7 @@ label span.dollar-sign {
     background-color: #119D49;
     color: #31A24A;
 }
+
 .Button{
     float: left;
     margin-right:20px;
@@ -803,12 +835,18 @@ label span.dollar-sign {
     color: #2e2e2e;
     cursor: pointer;
 }
+
 .Button:hover{
     background-color: #555;
     color: #ffffff;
 }
 .Button:active{
     background-color: #119D49;
+}
+
+#confirmationBackButton.Button {
+	float: none;
+	display: inline-block;
 }
 
 .rideDetailsFields{

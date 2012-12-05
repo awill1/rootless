@@ -132,7 +132,7 @@
     <div class="pendingListBlock">
             <h3 class="green">You have <?php echo $pendingSeats->count(); ?> pending <?php echo ($pendingSeats->count() == 1 ? "request" : "requests") ?>!</h3>
             <ul class="riderList pending">
-                <?php foreach ($pendingSeats as $seat):
+                <?php foreach ($seats as $seat):
                       $riderProfile = $seat->getPassengers()->getPeople()->getProfiles(); ?>
                     <li class="riderListItem">
                         <?php if ($isMyPost) :?>
@@ -140,7 +140,8 @@
                                     <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $riderProfile->getPictureUrlSmall() ?>" alt="<?php echo $riderProfile->getFullName() ?>" />
                                     <h3 class="green"><?php echo $riderProfile->getFullName() ?></h3>
                                     <p><?php echo $seat->getOriginString(); ?> to <?php echo $seat->getDestinationString(); ?></p>
-                                    <div class="seatLabel">Pending</div>
+                                    <?php $seatStatus = $seat->getSeatStatuses()->getDisplayText() ?>
+                                    <div class="seatLabel<?php echo $seatStatus ?>"><?php echo $seat->getSeatStatuses()->getDisplayText()?></div>
                             </a>
                             <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden pendingLine routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
                         <?php endif; ?>
