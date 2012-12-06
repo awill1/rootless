@@ -73,7 +73,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                $dualPostButtonYes       : $("#dualPostButtonYes"),
                $discussBackButton       : $("#discussBackButton"),
                negotiationSubmit        : ".newSeatForm",
-               
+               $backToRidesButton       : $("#confirmationBackButton"),
                 
                //form ajax elements
                temporaryNewSeatHolder       : "#temporaryNewSeatHolder",
@@ -236,8 +236,16 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
          
        //offer request form X
         self._.el.$seatDetails.prepend('<div class="removeBtn">X</div>');
-        $(self._.el.seatRemoveButton).bind('click', self.emptyBlock);    
+        $(self._.el.seatRemoveButton).bind('click', self.emptyBlock);  
         
+       //back to rides button
+       self._.el.$backToRidesButton.live('click', self.backToRides);
+        
+        
+    },
+   
+    backToRides : function (){
+        window.location = sf.url_for('ride', { });
     },
    
     step : function (b_skip) {
@@ -343,33 +351,35 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	                    map._.el.$seatDetails.prepend('<div class="removeBtn">X</div>');
 	                    
 	                    $(map._.el.seatRemoveButton).bind('click', map.emptyBlock);              
-                        $(map._.el.seatEditButton).bind('click', map.seatEditButton);
-                        $(map._.el.declineButton).bind('click', map.submitForm);
-                        $(map._.el.acceptButton).bind('click', map.submitForm);
+                            $(map._.el.seatEditButton).bind('click', map.seatEditButton);
+                            $(map._.el.declineButton).bind('click', map.submitForm);
+                            $(map._.el.acceptButton).bind('click', map.submitForm);
                         
 	                    map.bindTextBoxesToMap();
 	                    
 	                    if(this.url.match(/new/)) {
 	                         $(map._.el.originTextBox).trigger('change');
-                             $(map._.el.destinationTextBox).trigger('change');
-                             
-                             /*$(map._.el.negotiationSubmit).ajaxForm({
-        	                     beforeSubmit : function() {
-        	                     	map._.el.$seatDetails.block({ 
-                                        message: '<img src="/images/ajax-loader.gif" alt="Submitting..." />'
-                                     });
-        	                     },
-        	                     
-        	                     error : function(response) {
-        	                        alert('something is wrong, solo');
-        	                        
-        	                     },
-        	                     
-        	                     success : function() {
-        	                         map._.el.$seatDetails.unblock();
-        	                         map.step();
-        	                     }
-                             });*/
+                                 $(map._.el.destinationTextBox).trigger('change');
+                                 
+                                //previously commented out seat offer/request ajax code 
+                                 $(map._.el.negotiationSubmit).ajaxForm({
+                                         beforeSubmit : function() {
+                                            map._.el.$seatDetails.block({ 
+                                            message: '<img src="/images/ajax-loader.gif" alt="Submitting..." />'
+                                         });
+                                         },
+
+                                         error : function(response) {
+                                            alert('something is wrong, solo');
+                                            map._.el.$seatDetails.unblock();
+
+                                         },
+
+                                         success : function() {
+                                             map._.el.$seatDetails.unblock();
+                                             map.step();
+                                         }
+                                 });
 	                    }
 	                    
 	                    
