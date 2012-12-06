@@ -32,8 +32,8 @@ class newMessageNotification extends userNotification
     /**
      * Creates a new instance of the seatAcceptNotification.
      * @param Messages $message The message created
-     * @param Profiles $subscriber The user who is subscribed to the notification
-     * @param Profiles $otherUser The other user who took action on the seat
+     * @param People $subscriber The user who is subscribed to the notification
+     * @param People $otherUser The other user who took action on the seat
      */
     public function __construct($message, $subscriber, $otherUser) {
         $this->message = $message;

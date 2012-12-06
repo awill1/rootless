@@ -146,6 +146,27 @@ html, body {
     margin: 4px;
     padding: 4px;
 }
+#hangtownHalloweenBallBox{
+    background-color: #F0E7D6;
+    color: #000000;
+    margin: 4px;
+    padding: 4px;
+    margin-bottom: 6px;
+}
+#mullumMusicFestivalBox{
+    background-color: #85CEC3;
+    color: #000000;
+    margin: 4px;
+    padding: 4px;
+    margin-bottom: 6px;
+}
+#nycBox{
+    background-color: #109545;
+    color: #ffffff;
+    margin: 4px;
+    padding: 4px;
+    margin-bottom: 6px;
+}
 
 .frontHeadline{
     font-size: 300%;

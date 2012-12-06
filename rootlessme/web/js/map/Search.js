@@ -9,69 +9,75 @@
 Namespace('Rootless.Map.Search');
 
 Rootless.Map.Search = Rootless.Map.extend({
-	/**
-    *  Initializes the Google Maps API for Searches
-    *  @param params {arguments} - but mapId is needed to initialize map
-    */
-   init : function(params) {
-       this._ = $.extend(true, {
+    /**
+     *  Initializes the Google Maps API for Searches
+     *  @param params {arguments} - but mapId is needed to initialize map
+     */
+    init : function(params) {
+        this._ = $.extend(true, {
            
-           //constant variables
-           CONST : {
-               PRIMARY_ROUTE_COLOR     : "#119F49",
-               PRIMARY_ROUTE_OPACITY   : .5,
-               PRIMARY_ROUTE_WEIGHT    : 5,
-               SECONDARY_ROUTE_COLOR   : "#FF0000",
-               SECONDARY_ROUTE_OPACITY : .5,
-               SECONDARY_ROUTE_WEIGHT  : 5,
-               TERTIARY_ROUTE_COLOR    : "#FF0000",
-               TERTIARY_ROUTE_OPACITY  : .2,
-               TERTIARY_ROUTE_WEIGHT   : 5,
-               MAP_DEFAULT_LATITUDE    : 37.0625,
-               MAP_DEFAULT_LONGITUDE   : -95.677068,
-               MAP_DEFAULT_ZOOM        : 3
-           },
+            //constant variables
+            CONST : {
+                PRIMARY_ROUTE_COLOR     : "#119F49",
+                PRIMARY_ROUTE_OPACITY   : .5,
+                PRIMARY_ROUTE_WEIGHT    : 5,
+                SECONDARY_ROUTE_COLOR   : "#FF0000",
+                SECONDARY_ROUTE_OPACITY : .5,
+                SECONDARY_ROUTE_WEIGHT  : 5,
+                TERTIARY_ROUTE_COLOR    : "#FF0000",
+                TERTIARY_ROUTE_OPACITY  : .2,
+                TERTIARY_ROUTE_WEIGHT   : 5,
+                MAP_DEFAULT_LATITUDE    : 37.0625,
+                MAP_DEFAULT_LONGITUDE   : -95.677068,
+                MAP_DEFAULT_ZOOM        : 3
+            },
+
+            MapObject : undefined,
            
-           MapObject : undefined,
-           
-           //all html elements referred in the code should go here (including jquery)
-           el : {
-               $originTextBox        : $("#rides_origin"),
-               $destinationTextBox   : $("#rides_destination"),
-               
-               $loader               : $('#loader'),
-        	   $ridefind             : $('#rides_find'),
-        	   $results              : $('#results'),
-       		   $rideSearchForm       : $('#rideSearchForm')
-           },
-           
-           // Variables used to block form submitting before map api results are returned
-            formBlock : {
-                isOriginDecodePending      : false,
-                isDestinationDecodePending : false,
-                isDirectionsPending        : false,
-                isFormSubmitPending        : false
+            //all html elements referred in the code should go here (including jquery)
+            el : {
+                $originTextBox        : $("#rides_origin"),
+                originTextBox         : "#rides_origin",
+                $destinationTextBox   : $("#rides_destination"),
+                destinationTextBox    : "#rides_destination",
+                polyline              : "#rides_polyline",
+                originLatitude        : "#rides_origin_latitude",
+                originLongitude       : "#rides_origin_longitude",
+                destinationLatitude   : "#rides_destination_latitude",
+                destinationLongitude  : "#rides_destination_longitude",
+                $loader               : $('#loader'),
+                $ridefind             : $('#rides_find'),
+                $results              : $('#results'),
+                $rideSearchForm       : $('#rideSearchForm')
             },
            
-           //map markers and polylines should be here
-           mapItem : {
-                polyline : {
-                	polylines : []
-                },
-                
-                marker : {
-                    
-                }
+            // Variables used to block form submitting before map api results are returned
+             formBlock : {
+                 isOriginDecodePending      : false,
+                 isDestinationDecodePending : false,
+                 isDirectionsPending        : false,
+                 isFormSubmitPending        : false
+             },
            
-           }
-           
-       }, params);
+            //map markers and polylines should be here
+            mapItem : {
+                 polyline : {
+                         polylines : []
+                 },
+
+                 marker : {
+
+                 }
+
+            }
+
+        }, params);
     },
 
-	/**
+    /**
     * Initializes a Google Map into a div
     */
-	mapInit : function(){
+    mapInit : function(){
        // variable that keeps object available in inner functions
        var self = this;
        
@@ -140,22 +146,21 @@ Rootless.Map.Search = Rootless.Map.extend({
             this.previewRoute();
             self._.el.$ridefind.click();
         }    
-	},
+    },
 	
-	 geocodeOrigin : function(results, status) {     
+    geocodeOrigin : function(results, status) {     
         var map = Rootless.Map.Search.getInstance();
         // Display the results
-        
         map.showResults(results, status, map._.mapItem.marker.originMarker);
 
         // Update the latitude and longitude fields if they exist
-        if (typeof(map._.el.originLatitude) != "undefined")
+        if (typeof($(map._.el.originLatitude)) != "undefined")
         {
-            map._.el.$originLatitude.val(map._.mapItem.marker.originMarker.getPosition().lat());
+            $(map._.el.originLatitude).val(map._.mapItem.marker.originMarker.getPosition().lat());
         }
-        if (typeof(map._.el.originLongitude) != "undefined")
+        if (typeof($(map._.el.originLongitude)) != "undefined")
         {
-            map._.el.$originLongitude.val(map._.mapItem.marker.originMarker.getPosition().lng());
+            $(map._.el.originLongitude).val(map._.mapItem.marker.originMarker.getPosition().lng());
         }
 
         // Finally, clear the origin pending flag to allow form submission
@@ -169,13 +174,13 @@ Rootless.Map.Search = Rootless.Map.extend({
         map.showResults(results, status, map._.mapItem.marker.destinationMarker);
 
         // Update the latitude and longitude fields if they exist
-        if (typeof(map._.el.destinationLatitude) != "undefined")
+        if (typeof($(map._.el.destinationLatitude)) != "undefined")
         {
-             map._.el.$destinationLatitude.val(map._.mapItem.marker.destinationMarker.getPosition().lat());
+             $(map._.el.destinationLatitude).val(map._.mapItem.marker.destinationMarker.getPosition().lat());
         }
-        if (typeof(map._.el.destinationLongitude) != "undefined")
+        if (typeof($(map._.el.destinationLongitude)) != "undefined")
         {
-             map._.el.$destinationLongitude.val(map._.mapItem.marker.destinationMarker.getPosition().lng());
+             $(map._.el.destinationLongitude).val(map._.mapItem.marker.destinationMarker.getPosition().lng());
         }
 
         // Finally, clear the destination pending flag to allow form submission
@@ -184,36 +189,36 @@ Rootless.Map.Search = Rootless.Map.extend({
     
     // Form submit options used for the ajax form
     formAjaxOptions : {
-            target: '#results',
-            success: function()
-            {
-            	var map = Rootless.Map.Search.getInstance();
-                // Clear the form submit pending flag
-                isFormSubmitPending = false;
+        target: '#results',
+        success: function()
+        {
+            var map = Rootless.Map.Search.getInstance();
+            // Clear the form submit pending flag
+            isFormSubmitPending = false;
 
-                // This handler function will run when the form is complete
-                $('#loader').hide();
-                $('#results').show('blind');
+            // This handler function will run when the form is complete
+            $('#loader').hide();
+            $('#results').show('blind');
 
-                // Add the results to the google map
-                map.LoadItemsIntoGoogleMap();
+            // Add the results to the google map
+            map.LoadItemsIntoGoogleMap();
 
-                // Change the hover style
-                $("#rideTable tbody tr")
-                .hover(function(){
-                       map.HighlightRow($(this));
-                    }, function() {
-                       map.UnHighlightRow($(this));
-                    })
-                .find('td:not(:has(:checkbox, a))')
-                    .click(function () {
-                    window.location = $(this).parent().find("a").attr("href");
-                });
-            }
-       },
+            // Change the hover style
+            $("#rideTable tbody tr")
+            .hover(function(){
+                   map.HighlightRow($(this));
+                }, function() {
+                   map.UnHighlightRow($(this));
+                })
+            .find('td:not(:has(:checkbox, a))')
+                .click(function () {
+                window.location = $(this).parent().find("a").attr("href");
+            });
+        }
+    },
 
 		
-	getParameterByName : function(name) {
+    getParameterByName : function(name) {
     	var queryString = window.location.search;
         queryString = decodeURIComponent(queryString);
         var match = RegExp('[?&]' + name + '=([^&]*)')

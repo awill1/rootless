@@ -32,8 +32,8 @@ class seatAcceptNotification extends userNotification
     /**
      * Creates a new instance of the seatAcceptNotification.
      * @param Seats $seat The seat that was changed
-     * @param Profiles $subscriber The user who is subscribed to the notification
-     * @param Profiles $otherUser The other user who took action on the seat
+     * @param People $subscriber The user who is subscribed to the notification
+     * @param People $otherUser The other user who took action on the seat
      */
     public function __construct($seat, $subscriber, $otherUser) {
         $this->seat = $seat;

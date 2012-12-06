@@ -35,13 +35,30 @@ class rideActions extends sfActions
         $myStartLongitude = $ride_parameters['origin_longitude'];
         $myEndLatitude = $ride_parameters['destination_latitude'];
         $myEndLongitude = $ride_parameters['destination_longitude'];
+        $myPolyline = $ride_parameters['polyline'];
         // Use the application default distance setting
         $myDistance = sfConfig::get('app_default_search_distance');
 
+        // Get the list of driver matches
         $this->carpools = Doctrine_Core::getTable('Carpools')
              ->getNearPoints($myDistance, $myStartLatitude, $myStartLongitude, $myEndLatitude, $myEndLongitude, $searchDate);
-        $this->passengers = Doctrine_Core::getTable('Passengers')
-             ->getNearPoints($myDistance, $myStartLatitude, $myStartLongitude, $myEndLatitude, $myEndLongitude, $searchDate);
+        
+        // Get the list of passenger matches
+        $this->passengers = null;
+        if (CommonHelpers::IsNullOrEmptyString($myPolyline))
+        {
+            // The origin and destination points were not both specified, so do
+            // a search near the point specified
+            $this->passengers = Doctrine_Core::getTable('Passengers')
+                 ->getNearPoints($myDistance, $myStartLatitude, $myStartLongitude, $myEndLatitude, $myEndLongitude, $searchDate);
+        }
+        else
+        {
+            // The origin and destination points were both specified, so 
+            // search along the route
+            $this->passengers = Doctrine_Core::getTable('Passengers')
+                 ->getAlongRoute($myDistance, $myPolyline, $searchDate);
+        }
         
         if ($request->isXmlHttpRequest())
         {
@@ -288,7 +305,7 @@ class rideActions extends sfActions
     /**
      * Executes the delete action
      * @param sfWebRequest $request The web request.
-     * @return type Html to display afterwards.
+     * @return String Html to display afterwards.
      */
     public function executeDelete(sfWebRequest $request)
     {
@@ -343,6 +360,62 @@ class rideActions extends sfActions
                 }
             }
         }
+    }
+    
+    /**
+     * Executes close action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeClose(sfWebRequest $request)
+    {
+        // Get the input parameters
+        $this->rideType = $request->getParameter('ride_type');
+        $this->rideId = $request->getParameter('ride_id');
+        $hash = $request->getParameter('hash');
+        
+        $this->forward404Unless($hash);
+        
+        //Success variable
+        $this->setLayout(sfView::NONE);
+        $success = 'false';
+
+        // Create the appropriate type of form with the ride
+        switch ($this->rideType) {
+            case "offer":
+                // Get the seat information
+                $this->ride = Doctrine_Core::getTable('Carpools')->find($this->rideId);
+                // Add a tiny bit of security with a hash in the close url since 
+                // the user does not need to be logged in.
+                // Get the owner id address for the post
+                $ownerId = $this->ride->getDriverId();
+                $actualHash = sha1($ownerId);
+                $this->forward404Unless($hash == $actualHash);
+                $this->ride->setStatusId(RideStatuses::$statuses[RideStatuses::RIDE_CLOSED]);
+                $this->ride->save();
+                $this->forward404Unless($this->ride);
+                break;
+            case "request":
+                $this->ride = Doctrine_Core::getTable('Passengers')->find($this->rideId);
+                // Add a tiny bit of security with a hash in the close url since 
+                // the user does not need to be logged in.
+                // Get the owner id address for the post
+                $ownerId = $this->ride->getPersonId();
+                $actualHash = sha1($ownerId);
+                $this->forward404Unless($hash == $actualHash);
+                $this->ride->setStatusId(RideStatuses::$statuses[RideStatuses::RIDE_CLOSED]);
+                $this->ride->save();
+                $this->forward404Unless($this->ride);
+                break;
+            default:
+               // Default case just in case the ride_type is invalid (should
+               // be prevented by routing.yml).
+               echo 'Ride Type '.$this->rideType.'is invalid.';
+        }
+        
+        // Set a flash and move to the show ride page
+        $this->getUser()->setFlash( 'message', 'Some message here' );
+        $this->forward('ride', 'show', array('ride_id'=> $this->rideId, 'ride_type' => $this->rideType));
     }
 
     protected function processForm(sfWebRequest $request, sfForm $form)

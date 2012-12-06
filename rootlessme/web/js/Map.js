@@ -342,6 +342,12 @@ Rootless.Map = Class.extend({
             {
                 $(this._.el.routeDataField).val("");
             }
+            
+            // Clear the route polyline field 
+            if (typeof($(this._.el.polyline)) != "undefined")
+            {
+                $(this._.el.polyline).val("");
+            }
         }
       },
       
@@ -400,6 +406,13 @@ Rootless.Map = Class.extend({
             self._.mapItem.polyline.routePolyline.setPath(result.routes[0].overview_path);
             self._.mapItem.polyline.routePolyline.setMap(self._.MapObject);
             self._.MapObject.fitBounds(result.routes[0].bounds);
+            
+            // Set the route field to the results object for posting to the
+            // server
+            if (typeof($(self._.el.polyline)) != "undefined")
+            {
+                $(self._.el.polyline).val(result.routes[0].overview_polyline.points);
+            }
         }
         // Finally, clear the directions pending flag to allow form submission
         self.clearDirectionsPendingFlag();

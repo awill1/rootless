@@ -73,7 +73,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                $dualPostButtonYes       : $("#dualPostButtonYes"),
                $discussBackButton       : $("#discussBackButton"),
                negotiationSubmit        : ".newSeatForm",
-               $backToRidesButton       : $("#confirmationBackButton"),
+               
                 
                //form ajax elements
                temporaryNewSeatHolder       : "#temporaryNewSeatHolder",
@@ -152,12 +152,11 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         self._.mapItem.marker.originMarker = self.initializeMarker("Origin");
         self._.mapItem.marker.destinationMarker = self.initializeMarker("Destination");
 
-		// Decode the polyline for the route
+	// Decode the polyline for the route
         self._.mapItem.polyline.routePolyline = self.displayEncodedPolyline(self._.MapObject, self._.mapItem.polyline.encodedPolyline, true);
         
         //center the map on the route
         self.centerOnRoute();
-        
         
         self._.mapItem.polyline.routePolyline = self.initializePath()
         
@@ -236,16 +235,8 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
          
        //offer request form X
         self._.el.$seatDetails.prepend('<div class="removeBtn">X</div>');
-        $(self._.el.seatRemoveButton).bind('click', self.emptyBlock);  
+        $(self._.el.seatRemoveButton).bind('click', self.emptyBlock);    
         
-       //back to rides button
-       self._.el.$backToRidesButton.live('click', self.backToRides);
-        
-        
-    },
-   
-    backToRides : function (){
-        window.location = sf.url_for('ride', { });
     },
    
     step : function (b_skip) {
@@ -359,27 +350,26 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	                    
 	                    if(this.url.match(/new/)) {
 	                         $(map._.el.originTextBox).trigger('change');
-                                 $(map._.el.destinationTextBox).trigger('change');
-                                 
-                                //previously commented out seat offer/request ajax code 
-                                 $(map._.el.negotiationSubmit).ajaxForm({
-                                         beforeSubmit : function() {
-                                            map._.el.$seatDetails.block({ 
-                                            message: '<img src="/images/ajax-loader.gif" alt="Submitting..." />'
-                                         });
-                                         },
-
-                                         error : function(response) {
-                                            alert('something is wrong, solo');
-                                            map._.el.$seatDetails.unblock();
-
-                                         },
-
-                                         success : function() {
-                                             map._.el.$seatDetails.unblock();
-                                             map.step();
-                                         }
-                                 });
+                             $(map._.el.destinationTextBox).trigger('change');
+                             
+                             $(map._.el.negotiationSubmit).ajaxForm({
+        	                     beforeSubmit : function() {
+        	                     	map._.el.$seatDetails.block({ 
+                                        message: '<img src="/images/ajax-loader.gif" alt="Submitting..." />'
+                                     });
+        	                     },
+        	                     
+        	                     error : function(response) {
+        	                         alert('something is wrong, solo');
+        	                         map._.el.$seatDetails.unblock();
+        	                        
+        	                     },
+        	                     
+        	                     success : function() {
+        	                         map._.el.$seatDetails.unblock();
+        	                         map.step();
+        	                     }
+                             });
 	                    }
 	                    
 	                    

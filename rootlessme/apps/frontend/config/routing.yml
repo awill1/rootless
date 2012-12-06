@@ -181,7 +181,25 @@ profile_show_user:
   param: { module: profile, action: show }
   requirements:
     sf_method: [get]
+    
+# recommendation rules
 
+recommendations_find_drivers:
+  url: /recommendations/finddrivers
+  param: { module: recommendations, action: findDrivers }
+  requirements:
+    sf_method: [get]
+
+recommendations_find_passengers:
+  url: /recommendations/findpassengers
+  param: { module: recommendations, action: findPassengers }
+  requirements:
+    sf_method: [get]
+
+recommendations:
+  url: /recommendations
+  param: { module: recommendations, action: index }
+  
 # review rules
 review_create:
   url:     /reviews/create
@@ -250,6 +268,17 @@ ride_update:
     sf_method: [post]
     ride_type: (offer|request)
     
+
+ride_close:
+  url: /rides/close/:ride_type/:ride_id/:hash
+  class:   sfRoute
+  param:
+    module: ride
+    action: close
+  requirements:
+    sf_method: [get]
+    ride_type: (offer|request)
+
 ride_delete:
   url: /rides/delete/:ride_type/:ride_id
   class:   sfRoute
@@ -427,6 +456,14 @@ halifaxpop:
   url: /halifaxpopexplosion
   param: { module: special, action: halifaxPop }
   
+hangtownHalloween:
+  url: /hangtownhalloween
+  param: { module: special, action: hangtownHalloweenBall }
+
+harvestfestival:
+  url: /harvestfestival
+  param: { module: special, action: harvestMusicFestival }
+  
 voodoo:
   url: /voodoo
   param: { module: special, action: voodoo }
@@ -435,9 +472,9 @@ mpmf12:
   url: /mpmf12
   param: { module: special, action: mpmf12 }
   
-harvestfestival:
-  url: /harvestfestival
-  param: { module: special, action: harvestMusicFestival }
+mullummusicfestival:
+  url: /mullummusicfestival
+  param: { module: special, action: mullum }
   
 sharktank:
   url: /sharktank
@@ -451,9 +488,24 @@ abetterworldbydesign:
   url: /abetterworldbydesign
   param: { module: special, action: aBetterWorldByDesign }
   
+nyc:
+  url: /nyc
+  param: { module: special, action: nyc }
+Nyc:
+  url: /Nyc
+  param: { module: special, action: nyc }
+NYC:
+  url: /NYC
+  param: { module: special, action: nyc }
+  
 special_event_register:
   url: /specialEvent/register
   param: { module: special, action: register }
+  requirements: { sf_method: post }
+  
+special_nyc_register:
+  url: /specialNyc/register
+  param: { module: special, action: nycRegister }
   requirements: { sf_method: post }
   
 # user rules

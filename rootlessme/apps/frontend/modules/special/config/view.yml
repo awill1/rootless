@@ -7,3 +7,6 @@ patriotsSuccess:
   
 festivalSuccess:
   layout: specialLayout
+  
+nycSuccess:
+  layout: mobileLayout

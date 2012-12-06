@@ -1400,6 +1400,22 @@ Seats:
       primary: false
       notnull: false
       autoincrement: false
+    is_hidden_for_driver:
+      type: boolean
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+      default: false
+    is_hidden_for_passenger:
+      type: boolean
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+      default: false
     created_at:
       type: timestamp(25)
       fixed: false
