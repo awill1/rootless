@@ -1,6 +1,6 @@
 
-<script type="text/javascript" src="/js/<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
-<script type="text/javascript" src="/js/<?php echo sfConfig::get('app_jquery_block_ui_script') ?>"></script>
+<script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
+<script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_block_ui_script') ?>"></script>
 <script type="text/javascript" >
 // Function when the page is ready
 $(document).ready(function(){

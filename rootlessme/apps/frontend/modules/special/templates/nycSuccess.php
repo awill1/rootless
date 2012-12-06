@@ -5,8 +5,8 @@
 ?>
 
 <?php slot('gmapheader'); ?>
-    <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
-    <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_jquery_block_ui_script') ?>"></script>
+    <script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
+    <script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_block_ui_script') ?>"></script>
     <?php use_javascript(sfConfig::get('app_google_map_script')) ?>
     <script type="text/javascript" src="/js/Class.js"></script>
     <script type="text/javascript" src="/js/Rootless.js"></script>

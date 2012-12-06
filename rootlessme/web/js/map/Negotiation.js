@@ -152,12 +152,11 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         self._.mapItem.marker.originMarker = self.initializeMarker("Origin");
         self._.mapItem.marker.destinationMarker = self.initializeMarker("Destination");
 
-		// Decode the polyline for the route
+	// Decode the polyline for the route
         self._.mapItem.polyline.routePolyline = self.displayEncodedPolyline(self._.MapObject, self._.mapItem.polyline.encodedPolyline, true);
         
         //center the map on the route
         self.centerOnRoute();
-        
         
         self._.mapItem.polyline.routePolyline = self.initializePath()
         
@@ -343,9 +342,9 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	                    map._.el.$seatDetails.prepend('<div class="removeBtn">X</div>');
 	                    
 	                    $(map._.el.seatRemoveButton).bind('click', map.emptyBlock);              
-                        $(map._.el.seatEditButton).bind('click', map.seatEditButton);
-                        $(map._.el.declineButton).bind('click', map.submitForm);
-                        $(map._.el.acceptButton).bind('click', map.submitForm);
+                            $(map._.el.seatEditButton).bind('click', map.seatEditButton);
+                            $(map._.el.declineButton).bind('click', map.submitForm);
+                            $(map._.el.acceptButton).bind('click', map.submitForm);
                         
 	                    map.bindTextBoxesToMap();
 	                    
@@ -353,7 +352,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	                         $(map._.el.originTextBox).trigger('change');
                              $(map._.el.destinationTextBox).trigger('change');
                              
-                             /*$(map._.el.negotiationSubmit).ajaxForm({
+                             $(map._.el.negotiationSubmit).ajaxForm({
         	                     beforeSubmit : function() {
         	                     	map._.el.$seatDetails.block({ 
                                         message: '<img src="/images/ajax-loader.gif" alt="Submitting..." />'
@@ -361,7 +360,8 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         	                     },
         	                     
         	                     error : function(response) {
-        	                        alert('something is wrong, solo');
+        	                         alert('something is wrong, solo');
+        	                         map._.el.$seatDetails.unblock();
         	                        
         	                     },
         	                     
@@ -369,7 +369,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         	                         map._.el.$seatDetails.unblock();
         	                         map.step();
         	                     }
-                             });*/
+                             });
 	                    }
 	                    
 	                    
