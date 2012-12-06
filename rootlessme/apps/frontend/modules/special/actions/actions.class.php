@@ -423,7 +423,7 @@ class specialActions extends sfActions
         $this->setTemplate('festival');
     }
     
-/**
+    /**
      * Executes Nova Scotia Music Week action
      *
      * @param sfRequest $request A request object
@@ -519,6 +519,114 @@ class specialActions extends sfActions
         $this->setTemplate('festival');
     }
     
+    /**
+     * Executes Hangtown Halloween Ball action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeHangtownHalloweenBall(sfWebRequest $request)
+    {
+        $this->festivalName = 'Hangtown Halloween Ball';
+        $this->peopleName = 'festival goers';
+        $this->title = 'Rootless - Ride with other festival goers to the Hangtown Halloween Ball 2012 in Placerville, California';
+        $this->destination = 'Armory Road, Placerville, CA';
+        $this->headlineColor = '#ffffff';
+        $this->fontSize = '352%';
+        $this->textShadow = '0 0 15px rgba(0, 0, 0, 0.8), 0 -1px 1px rgba(0, 0, 0, 0.6)';
+        
+        // Build a dynamic schedule. Eventually this will go into a separate file.
+        $fullSchedule = array(
+            'day1' => array(
+                'date' => '2012-10-25 23:00:00.0',
+                'id' => 'HangtownHalloweenBall_10/25/2012_PlacervilleCA',
+                'displayName' => 'Thursday, October 25th'),
+            'day2' => array(
+                'date' => '2012-10-26 23:00:00.0',
+                'id' => 'HangtownHalloweenBall_10/26/2012_PlacervilleCA',
+                'displayName' => 'Friday, October 26th'),
+            'day3' => array(
+                'date' => '2012-10-27 23:00:00.0',
+                'id' => 'HangtownHalloweenBall_10/27/2012_PlacervilleCA',
+                'displayName' => 'Saturday, October 27th'),
+            'day4' => array(
+                'date' => '2012-10-28 23:00:00.0',
+                'id' => 'HangtownHalloweenBall_10/28/2012_PlacervilleCA',
+                'displayName' => 'Sunday, October 28th'),
+            'day5' => array(
+                'date' => '2012-10-29 23:00:00.0',
+                'id' => 'HangtownHalloweenBall_10/29/2012_PlacervilleCA',
+                'displayName' => 'Monday, October 29th'),
+            'anyDay' => array(
+                'date' => '2012-10-29 23:00:00.0',
+                'id' => 'HangtownHalloweenBall_Any_PlacervilleCA',
+                'displayName' => 'Halloween Ball any day.'),
+            'allDays' => array(
+                'date' => '2012-10-29 23:00:00.0',
+                'id' => 'HangtownHalloweenBall_Every_PlacervilleCA',
+                'displayName' => 'Halloween Ball every day.'));
+
+        // Only include the games that are in the future
+        $this->games = $this->getFutureGames($fullSchedule);
+        
+        //Set background image
+        $this->backgroundImage = "hangtownBackground.jpg";
+        
+        // Use the festival template
+        $this->setTemplate('festival');
+    }
+    
+    
+    /**
+     * Executes Mullum Music Festival action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeMullum(sfWebRequest $request)
+    {
+        $this->festivalName = 'The Mullum Music Festival';
+        $this->peopleName = 'festival goers';
+        $this->title = 'Rootless - Ride with other festival goers to the Mullum Music Festival 2012 in Mullumbimby, NSW';
+        $this->destination = 'Mullumbimby NSW , Australia';
+        $this->headlineColor = '#ffffff';
+        $this->fontSize = '335%';
+        $this->textShadow = '0 0 15px rgba(0, 0, 0, 0.8), 0 -1px 1px rgba(0, 0, 0, 0.6)';
+        
+        // Build a dynamic schedule. Eventually this will go into a separate file.
+        $fullSchedule = array(
+            'day1' => array(
+                'date' => '2012-11-22 23:00:00.0',
+                'id' => 'MullumMusicFestival_11/22/2012_MullumbimbyNSW',
+                'displayName' => 'Thursday, 22 November'),
+            'day2' => array(
+                'date' => '2012-11-23 23:00:00.0',
+                'id' => 'MullumMusicFestival_11/23/2012_MullumbimbyNSW',
+                'displayName' => 'Friday, 23 November'),
+            'day3' => array(
+                'date' => '2012-11-24 23:00:00.0',
+                'id' => 'MullumMusicFestival_11/24/2012_MullumbimbyNSW',
+                'displayName' => 'Saturday, 24 November'),
+            'day4' => array(
+                'date' => '2012-11-25 23:00:00.0',
+                'id' => 'MullumMusicFestival_11/25/2012_MullumbimbyNSW',
+                'displayName' => 'Sunday, 25 November'),
+            'anyDay' => array(
+                'date' => '2012-11-25 23:00:00.0',
+                'id' => 'MullumMusicFestival_Any_MullumbimbyNSW',
+                'displayName' => 'Mullum Music Festival any day'),
+            'allDays' => array(
+                'date' => '2012-11-25 23:00:00.0',
+                'id' => 'MullumMusicFestival_Every_MullumbimbyNSW',
+                'displayName' => 'Mullum Music Festival every day.'));
+
+        // Only include the games that are in the future
+        $this->games = $this->getFutureGames($fullSchedule);
+        
+        //Set background image
+        $this->backgroundImage = "mullumBackground.jpg";
+        
+        // Use the festival template
+        $this->setTemplate('festival');
+    }
     
     
     /**
@@ -561,6 +669,25 @@ class specialActions extends sfActions
         
         // Use the festival template
         $this->setTemplate('festival');
+    }
+    
+    /**
+     * Executes NYC action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeNyc(sfWebRequest $request)
+    {
+        $response = $this->getResponse();
+ 
+        $this->title = 'Rootless - Carpool into New York City';
+        
+        // Metas for facebook sharing
+        $response->addMeta('og:title', $this->title);
+        $response->addMeta('og:description', "Rootless is New York City's carpooling solution. Find a ride or share the empty seats in your car.");
+        
+        // Use the nyc template
+        $this->setTemplate('nyc');
     }
 
     /**
@@ -714,6 +841,339 @@ The Rootless Team
       // Return nothing to the page 
       $this->setLayout(sfView::NONE);
       return $this->renderText("{ success: true }");
+    }
+    
+    /**
+     * Executes special NYC register action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeNycRegister(sfWebRequest $request)
+    {
+        // Return nothing to the page 
+        $this->setLayout(sfView::NONE);
+        
+        //Success variable and message
+        $success = 'false';
+        
+        try
+        {
+        
+            // Load the AWS SDK
+            require_once sfConfig::get('app_amazon_sdk_file');
+
+            // Verify the request parameters
+            $userType = $request->getParameter('userType');
+            $originData = $request->getParameter('rides_origin_data');
+            $destinationData = $request->getParameter('rides_destination_data');
+            $routeData = $request->getParameter('rides_route_data');
+            $origin = $request->getParameter('origin');
+            $destination = $request->getParameter('destination');
+            $date = $request->getParameter('date');
+            $time = $request->getParameter('time');
+            $name = $request->getParameter('name');
+            $email = $request->getParameter('email');
+            $phone = $request->getParameter('phone');
+
+            if(CommonHelpers::IsNullOrEmptyString($originData))
+            {
+                throw new Exception('Origin data was not specified. Origin: '.$origin);
+            }
+            if(CommonHelpers::IsNullOrEmptyString($destinationData))
+            {
+                throw new Exception('Destination data was not specified. Destination: '.$destination);
+            }
+            if(CommonHelpers::IsNullOrEmptyString($routeData))
+            {
+                throw new Exception('Route data was not specified. Origin: '.$origin.' Destination: '.$destination);
+            }
+            if(CommonHelpers::IsNullOrEmptyString($origin))
+            {
+                throw new Exception('Origin was not specified.');
+            }
+            if(CommonHelpers::IsNullOrEmptyString($destination))
+            {
+                throw new Exception('Destination was not specified.');
+            }
+            if(CommonHelpers::IsNullOrEmptyString($date))
+            {
+                throw new Exception('Date was not specified.');
+            }
+            if(CommonHelpers::IsNullOrEmptyString($time))
+            {
+                throw new Exception('Time was not specified.');
+            }
+            if(CommonHelpers::IsNullOrEmptyString($name))
+            {
+                throw new Exception('Name was not specified.');
+            }
+            if(CommonHelpers::IsNullOrEmptyString($email))
+            {
+                throw new Exception('Email was not specified.');
+            }
+
+            // Create the user if necessary
+            $isExistingUser = FALSE;
+            $password = NULL;
+            $wasUserCreated = FALSE;
+            
+            // Check to see if user is already in our database
+            $user = Doctrine::getTable('sfGuardUser')->getUserByEmail($email);
+
+            // If no, create a new user instance and populate with the minumum data
+            if(!$user)
+            {
+                $password = CommonHelpers::CreateTemporaryPassword();
+                $firstName = CommonHelpers::getFirstName($name);
+                $lastName = CommonHelpers::getLastName($name);
+                $user = sfGuardUser::createMinimumUser($email, $password, $firstName, $lastName, $phone);
+                if ($user)
+                {
+                    $wasUserCreated = TRUE;
+                }
+                else
+                {
+                    throw new Exception('Could not create user.');
+                }
+            }
+            else
+            {
+                // The user already exists
+                $isExistingUser = TRUE;
+            }
+            
+            
+            
+            // Create the user's rides
+            $mysqlDate = date('Y-m-d H:i:s', strtotime($date));
+            $passenger = NULL;
+            $carpool = NULL;
+            if ($userType == 'ride' || $userType == 'either')
+            {
+                // Create the passenger post
+                $passenger = new Passengers();
+                
+                // Set the minumum amount of data known
+                $passenger->setStartDate($mysqlDate);
+                $passenger->setStartTime($time);
+                $passenger->setStatusId(RideStatuses::$statuses[RideStatuses::RIDE_OPEN]);
+                $passenger->setPeople($user->getPeople());
+                $passenger->setPassengerCount(1);
+                
+                
+                // Create the route from passed in data. The save happens inside
+                // of the createFromGoogleDirections function.
+                $route = new Routes();
+                $route->createFromGoogleDirections($routeData, $originData, $destinationData);
+                
+                $passenger->setRoutes($route);
+                
+                $passenger->save();
+            }
+            if ($userType == 'drive' || $userType == 'either')
+            {
+                // Create the carpool
+                $carpool = new Carpools();
+                
+                // Set the minumum amount of data known
+                $carpool->setStartDate($mysqlDate);
+                $carpool->setStartTime($time);
+                $carpool->setStatusId(RideStatuses::$statuses[RideStatuses::RIDE_OPEN]);
+                $carpool->setPeople($user->getPeople());
+                $carpool->setSeatsAvailable(1);
+                
+                
+                // Create the route from passed in data. The save happens inside
+                // of the createFromGoogleDirections function.
+                $route = new Routes();
+                $route->createFromGoogleDirections($routeData, $originData, $destinationData);
+                
+                $carpool->setRoutes($route);
+                $carpool->setSoloRouteId($route->getRouteId());
+                
+                $carpool->save();
+                
+            }
+            
+            // Do recommendations
+            $recommendedPassengers = NULL;
+            $recommendedDrivers = NULL;
+            if (!is_null($carpool))
+            {
+                $recommendedPassengers = $carpool->recommendPassengers(2);
+            }
+            if (!is_null($passenger))
+            {
+                $recommendedDrivers = $passenger->recommendDrivers(2);
+            }
+            
+
+            //check to see if administration notifications are desried
+            if (sfConfig::get('app_send_administration_notifications'))
+            {
+                // Send the notification using Amazon SNS  
+                $snsService = new AmazonSNS(array('key' => sfConfig::get('app_amazon_sns_access_key'), 
+                                                  'secret' => sfConfig::get('app_amazon_sns_secret_key')));
+                $messageTemplate = 
+                    "New NYC event request.
+                    UserType: %userType%
+                    Origin: %origin%
+                    Destination: %destination%
+                    Date: %date%
+                    Time: %time%
+                    Name: %name%
+                    Email: %email%
+                    Phone: %phone%
+
+                    User account:";
+                if ($isExistingUser)
+                {
+                    $messageTemplate = $messageTemplate."
+                        The user already exists.
+                        Email: %email%
+                        Password: Exists
+                        ";
+                }
+                else
+                {
+                    if ($wasUserCreated)
+                    {
+                        // A new user was created
+                        $messageTemplate = $messageTemplate."
+                        The user was created.
+                        Email: %email%
+                        Password: %password%
+                        ";
+                    }
+                    else
+                    {
+                        // A user was not creted for some reason
+                        $messageTemplate = $messageTemplate."
+                        The user was NOT created.
+                        Email: %email%
+                        Password: 
+                        ";
+                    }
+                }
+                
+                // Add in ride creation
+                $messageTemplate = $messageTemplate."
+                    Rides created:
+                        Ride offer id: %OFFER_ID%
+                        Ride request id: %REQUEST_ID%
+                        ";
+                $offerId = 0;
+                if (!is_null($carpool))
+                {
+                    $offerId = $carpool->getCarpoolId();
+                }
+                $requestId = 0;
+                if (!is_null($passenger))
+                {
+                    $requestId = $passenger->getPassengerId();
+                }
+                
+                
+                // Add in the matches count
+                $messageTemplate = $messageTemplate."
+                    Matches:
+                        Recommended drivers count: %RECOMMENDED_DRIVERS%
+                        Recommended passengers count: %RECOMMENDED_PASSENGERS%
+                        ";
+                $recommendedDriverCount = 0;
+                if (!is_null($recommendedDrivers))
+                {
+                    $recommendedDriverCount = $recommendedDrivers->count();
+                }
+                $recommendedPassengerCount = 0;
+                if (!is_null($recommendedPassengers))
+                {
+                    $recommendedPassengerCount = $recommendedPassengers->count();
+                }
+                
+
+                $formattedMessage = strtr($messageTemplate, array(
+                    '%userType%'    => $userType,
+                    '%origin%'      => $origin,
+                    '%destination%' => $destination,
+                    '%date%'        => $date,
+                    '%time%'        => $time,
+                    '%name%'        => $name,
+                    '%email%'       => $email,
+                    '%phone%'       => $phone,
+                    '%password%'    => $password,
+                    '%OFFER_ID%'               => $offerId,
+                    '%REQUEST_ID%'             => $requestId,
+                    '%RECOMMENDED_DRIVERS%'    => $recommendedDriverCount,
+                    '%RECOMMENDED_PASSENGERS%' => $recommendedPassengerCount
+                ));
+                $subjectTemplate = "%email% has registered for NYC carpool";
+                $formattedSubject = strtr($subjectTemplate, array(
+                    '%email%'     => $email
+                ));
+                $snsService->publish(sfConfig::get('app_amazon_sns_site_activity_arn'), 
+                        $formattedMessage, 
+                        array('Subject' => $formattedSubject));
+
+
+            }
+            
+            // If the user was created send a welcome email
+            if ($wasUserCreated)
+            {
+                // Send the welcome email to the user
+                $welcomeEmailPartials = array('text' => 'mail/registerNycText', 
+                                              'html'=> 'mail/registerNycHtml');
+                $mailFrom = array('email' => sfConfig::get('app_sf_guard_plugin_default_from_email'),
+                                  'name' => sfConfig::get('app_sf_guard_plugin_default_from_name'));
+                $welcomeEmailSubject = 'Welcome to the Rootless NYC Carpool';
+                EmailHelpers::sendEmail($welcomeEmailPartials, 
+                                        array('subscriber' => $user->getPeople(), 'password' => $password, 'email' => $email), 
+                                        $mailFrom, 
+                                        $email, 
+                                        $welcomeEmailSubject);
+            }
+            
+            // Send ride created email with matches if a ride was created
+            if (!is_null($carpool) || !is_null($passenger))
+            {
+                // Send the welcome email to the user
+                $rideEmailPartials = array('text' => 'mail/ridePostedNycText',
+                                           'html' => 'mail/ridePostedNycHtml');
+                $mailFrom = array('email' => sfConfig::get('app_sf_guard_plugin_default_from_email'),
+                                  'name' => sfConfig::get('app_sf_guard_plugin_default_from_name'));
+                $rideEmailSubjectTemplate = "%s to %s carpool information";
+                $rideEmailSubject = sprintf($rideEmailSubjectTemplate, $origin, $destination);
+                // Just a tiny bit more protection against closing the rides 
+                // since the user does not need to be logged in
+                $hash = sha1($user->getPersonId());
+                EmailHelpers::sendEmail($rideEmailPartials, 
+                                        array('subscriber' => $user->getPeople(),
+                                              'carpool' => $carpool,
+                                              'passenger' => $passenger,
+                                              'recommendedPassengers' => $recommendedPassengers, 
+                                              'recommendedDrivers' => $recommendedDrivers,
+                                              'origin' => $origin,
+                                              'destination' => $destination,
+                                              'date' => $date,
+                                              'time' => $time,
+                                              'hash' => $hash), 
+                                        $mailFrom, 
+                                        $email, 
+                                        $rideEmailSubject);
+            }
+            
+            // Return nothing to the page 
+            $this->setLayout(sfView::NONE);
+            return $this->renderText("{ success: true }");
+        }
+        catch (Exception $e)
+        {
+            // Log the error
+            $this->logMessage($e->getMessage()."; ".$e->getTraceAsString(), 'err');
+            // Return the error json
+            return $this->renderText('{ success: '.$success.', message: "'.$e->getMessage().'" }');
+        }
     }
     
     /**

@@ -235,7 +235,8 @@ class CarpoolsTable extends Doctrine_Table
             // Reformat the date to work with the database
             $date = date('Y-m-d', strtotime($date));
             $q = $q->andWhere('c.start_date = ?', $date)
-                   ->andWhere('c.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED]);
+                   ->andWhere('c.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED])
+                   ->andWhere('c.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_CLOSED]);
         }
         else
         {
@@ -254,8 +255,37 @@ class CarpoolsTable extends Doctrine_Table
         $q->addComponent('p', 'c.People p');
         $q->addComponent('pr', 'p.Profiles pr');
 
-        // Run the query and return the results
-        return $q->execute();
+        // Run the query 
+        $results =  $q->execute();
+        
+        $matches = new Doctrine_Collection('Carpools');
+        
+        // If any of the origin or destination coordinates are null we do not
+        // do a directional filter, because we are searching with 0 or 1 point.
+        if ($originLatitude == null || $originLongitude == null 
+              || $destinationLatitude == null || $destinationLongitude == null)
+        {
+            $matches = $results;
+        }
+        else
+        {
+            // When the origin and destination points are both used, 
+            // only results where the driver origin point is closer to the 
+            // passenger pickup point than the passenger dropoff point are real matches
+            foreach($results as $driver)
+            {
+                $driverRoute = $driver->getRoutes();
+                if (GeometryHelpers::getDistanceBetweenPoints($driverRoute->getOriginLatitude(), $driverRoute->getOriginLongitude(), $originLatitude, $originLongitude)
+                        < GeometryHelpers::getDistanceBetweenPoints($driverRoute->getOriginLatitude(), $driverRoute->getOriginLongitude(), $destinationLatitude, $destinationLongitude))
+                {
+                    // The passenger is a match
+                    $matches->add($driver);
+                }
+            }
+        }
+        
+        // Return the matches
+        return $matches;
     }  
     
     /**
@@ -270,7 +300,8 @@ class CarpoolsTable extends Doctrine_Table
         // the future 
         // that are not deleted
         return $query->andWhere('c.start_date >= ?', date('Y-m-d'))
-                     ->andWhere('c.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED]);
+                     ->andWhere('c.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED])
+                     ->andWhere('c.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_CLOSED]);
         
     }
     

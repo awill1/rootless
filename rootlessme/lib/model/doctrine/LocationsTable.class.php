@@ -16,4 +16,34 @@ class LocationsTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Locations');
     }
+    
+    /**
+     * Gets the locations contained in a route
+     * @param Integer $routeId The route Id
+     * @return Array The locations array.
+     */
+    public static function getLocationsInRoute($routeId)
+    {
+        // The query should look like
+        // select * from locations l
+        // inner join  steps s
+        // on l.step_id = s.step_id
+        // inner join legs le
+        // on le.leg_id = s.leg_id
+        // inner join routes r
+        // on r.route_id = le.route_id
+        // where r.route_id = 87
+        // order by l.sequence_order;
+        $q = Doctrine_Query::create()
+          ->select('l.location_id, l.sequence_order, l.latitude, l.longitude')
+          ->from('Locations l')
+          ->innerJoin('l.Steps s')
+          ->innerJoin('s.Legs le')
+          ->innerJoin('le.Routes r')
+          ->where('r.route_id = ?', array($routeId))
+          ->orderBy('l.sequence_order');
+        // Get the array instead for performance reasons
+        $locations = $q->fetchArray();
+        return $locations;
+    }
 }

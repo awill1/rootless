@@ -18,6 +18,7 @@ class RideSearchForm extends BaseForm
           'destination'   => new sfWidgetFormInputText(),
           'date'   => new sfWidgetFormInputText(),
           'trip_type'   => new sfWidgetFormInputCheckbox(),
+          'polyline' => new sfWidgetFormInputHidden(),
           'origin_latitude' => new sfWidgetFormInputHidden(),
           'origin_longitude' => new sfWidgetFormInputHidden(),
           'destination_latitude' => new sfWidgetFormInputHidden(),

@@ -1,0 +1,31 @@
+.rideTypeRadio 
+{
+    display: inline-block;
+    
+}
+
+.error
+{
+    color: #F55830;
+}
+
+.formFields
+{
+    width: 190px;
+}
+
+.linkButton {
+    padding: 10px;
+    font-weight: bold;
+    color: #FFFFFF;
+    cursor: pointer;
+    border: 0px;
+    background-color: #119D49;
+}
+
+
+
+.highlighted
+{
+    background-color: #ffff99;
+}
