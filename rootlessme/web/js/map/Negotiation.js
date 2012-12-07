@@ -73,6 +73,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                $dualPostButtonYes       : $("#dualPostButtonYes"),
                $discussBackButton       : $("#discussBackButton"),
                negotiationSubmit        : ".newSeatForm",
+               $backToRidesButton       : $("#confirmationBackButton"),
                
                 
                //form ajax elements
@@ -233,10 +234,17 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
      	});
      	self._.el.$dualPostButtonYes.live('click', self.step);
          
-       //offer request form X
+        //offer request form X
         self._.el.$seatDetails.prepend('<div class="removeBtn">X</div>');
-        $(self._.el.seatRemoveButton).bind('click', self.emptyBlock);    
+        $(self._.el.seatRemoveButton).bind('click', self.emptyBlock);
         
+        //back to rides button
+        self._.el.$backToRidesButton.live('click', self.backToRides);
+        
+    },
+    
+    backToRides : function (){
+        window.location = sf.url_for('ride', { });
     },
    
     step : function (b_skip) {
