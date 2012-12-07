@@ -19,9 +19,16 @@ class SeatsOfferForm extends SeatsForm
         // Change the passenger id to hidden, since it is already set.
         $this->setWidget('passenger_id',new sfWidgetFormInputHidden());
         
-//        $seat = $this->getObject();
-//        $passenger = $seat->getPassengers();
-//        $this->getEmbeddedForm('route')->setDefault('origin', $passenger->getRoutes()->getOriginAddress());
-//        $this->getEmbeddedForm('route')->setDefault('destination', $passenger->getRoutes()->getDestinationAddress());
+        // Set the default origin and destination to match the passenger
+        $seat = $this->getObject();
+        $passengerId = $seat->getPassengerId();
+        // For some reason configure is called twice and the second time the
+        // passenger id is null, so check for it.
+        if (!is_null($passengerId))
+        {
+            $passenger = Doctrine_Core::getTable('Passengers')->find($passengerId);
+            $this->getEmbeddedForm('route')->setDefault('origin', $passenger->getRoutes()->getOriginAddress());
+            $this->getEmbeddedForm('route')->setDefault('destination', $passenger->getRoutes()->getDestinationAddress());
+        }
     }
 }
