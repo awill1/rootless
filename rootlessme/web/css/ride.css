@@ -721,6 +721,13 @@ label span.dollar-sign {
     font-weight: normal;
 }
 
+.request-dollar-sign {
+    left: 27px;
+    top: 68px;
+    position: absolute;
+    font-weight: normal;
+}
+
 #seatDetailsBlock input[type='text'] {
     width: 220px;
 }

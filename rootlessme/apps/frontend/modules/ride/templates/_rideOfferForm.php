@@ -18,7 +18,6 @@
       <?php echo $form->renderHiddenFields() ?>
       <?php echo $form['route']['origin']->renderRow() ?>
       <?php echo $form['route']['destination']->renderRow() ?>
-      <?php echo $form['vehicle_id']->renderRow() ?>
       <?php echo $form['seats_available']->renderRow() ?>
       <?php echo $form['start_date']->renderRow(array('class'=>'datePicker')) ?>
       <?php echo $form['start_time']->renderRow(array('class'=>'timePicker')) ?>

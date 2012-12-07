@@ -50,7 +50,10 @@ class CarpoolsForm extends BaseCarpoolsForm
         $this->setWidget('start_date',new sfWidgetFormInputText());
         $this->setWidget('start_time',new sfWidgetFormInputText());
         
-        $this->widgetSchema->setLabel('asking_price', 'Asking Price (per person) <span class="dollar-sign">$</span>');
+        $this->widgetSchema->setLabel('seats_available', 'Seats Available');
+        $this->widgetSchema->setLabel('start_date', 'Start Date');
+        $this->widgetSchema->setLabel('start_time', 'Start Time');
+        $this->widgetSchema->setLabel('asking_price', 'Asking Price (per seat) <span class="dollar-sign">$</span>');
 
         // Choose the fields that will be displayed
         unset($this['created_at']);
