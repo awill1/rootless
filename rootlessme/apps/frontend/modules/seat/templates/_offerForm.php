@@ -52,7 +52,7 @@
                     <div id="rideDetails2">
                         <h3>Ride Details</h3>
                         <h2>Would you like to adjust the  price (per seat)?</h2>
-                        <div><?php echo $seatForm['price']->render(array('class'=>'rideDetailsFields')) ?></div>
+                        <div><?php echo $seatForm['price']->render(array('class'=>'rideDetailsFields')) ?><span class="request-dollar-sign">$</span></div>
                         <h2>How many extra seats do you have?</h2>
                         <div><?php echo $seatForm['seat_count']->render(array('class'=>'rideDetailsFields')) ?></div>
                         <br />
