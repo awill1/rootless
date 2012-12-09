@@ -727,6 +727,12 @@ label span.dollar-sign {
     position: absolute;
     font-weight: normal;
 }
+.editSeat-dollar-sign {
+    left: 368px;
+    top: 130px;
+    position: absolute;
+    font-weight: normal;
+}
 
 #seatDetailsBlock input[type='text'] {
     width: 220px;
