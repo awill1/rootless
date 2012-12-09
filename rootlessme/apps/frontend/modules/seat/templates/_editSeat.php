@@ -23,7 +23,7 @@
                 
                 <p><span>Dropoff Location:</span> <?php echo $form['route']['destination']->render(array('class'=>'editSeatFields', 'placeholder'=>'Address, City, State')) ?></p>
                 
-                <p><span>Price:</span> <?php echo $form['price']->render(array('class'=>'editSeatFields editSeatFieldsShort')) ?> per seat</p>
+                <p><span>Price:</span> <?php echo $form['price']->render(array('class'=>'editSeatFields editSeatFieldsShort')) ?><span class='editSeat-dollar-sign'>$</span> per seat</p>
                 
                 <p><span>Number of seats:</span> <?php echo $form['seat_count']->render(array('class'=>'editSeatFields editSeatFieldsShort')) ?></p>
                 
