@@ -69,7 +69,7 @@
                         </ul>
                         <br />
                         <div><?php echo $seatForm['description']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Chat...')) ?></div> <br />
-                        <div id="discussBackButton" class="Button">Back</div> <div><input type="submit" value="Submit"></div>
+                        <div id="discussBackButton" class="Button">Back</div> <div><input type="submit" value="Submit" ></div>
                         <br />
                         <span class="plainText">step 3 of 3</span>
                     </div>
