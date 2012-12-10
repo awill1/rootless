@@ -742,8 +742,22 @@ label span.dollar-sign {
    margin-top: 0;
    padding: 7px;
    font-size: 150%;
+   font-weight: bold;
+   color: #2e2e2e;
+   background-color: #d9d9d9;
 }
-
+#seatDetailsBlock #negotiationBox input[type='submit']:hover {
+   margin-top: 0;
+   padding: 7px;
+   font-size: 150%;
+   font-weight: bold;
+   color: #ffffff;
+   background-color: #555555;
+}
+#seatDetailsBlock #negotiationBox input[type='submit']:active {
+   background-color: #119D49;
+   color: #ffffff;
+}
 
 #seatNegotiationContainer input[name="seats[price]"], #seatDetailsBlock #seats_price {
     width: 210px;
