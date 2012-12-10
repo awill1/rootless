@@ -156,9 +156,15 @@ class rideActions extends sfActions
             switch ($this->rideType) {
                 case "offer":
                     $ride_id = $ride->getCarpoolId();
+                    // Do the recommendations
+                    $searchRadius = sfConfig::get('app_default_search_distance');
+                    $ride->recommendPassengers($searchRadius);
                     break;
                 case "request":
                     $ride_id = $ride->getPassengerId();
+                    // Do the recommendations
+                    $searchRadius = sfConfig::get('app_default_search_distance');
+                    $ride->recommendDrivers($searchRadius);       
                     break;
             }
 

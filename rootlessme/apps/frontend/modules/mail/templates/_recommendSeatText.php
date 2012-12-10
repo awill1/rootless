@@ -17,7 +17,7 @@ On: <?php echo format_date($seat->getPickupDate(), 'P'); ?>
 
 If the match looks good, go ahead and start discussing the important details with the person. 
 
-If you have already arranged your carpool, or you would no longer like to recieve emails for this ride click this link to close the ride:
+If you have already arranged your carpool, or you would no longer like to receive emails for this ride click this link to close the ride:
 <?php 
         
 if($rideType=='offer')
