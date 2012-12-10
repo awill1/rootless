@@ -823,6 +823,9 @@ label span.dollar-sign {
     margin-right: 20px;
     cursor: pointer;
 }
+.dualYesOrNo:active{
+    background-color: #119D49;
+}
 
 .unselectedLabel{
     background-color: #D9D9D9;
