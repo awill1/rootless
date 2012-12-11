@@ -761,7 +761,7 @@ label span.dollar-sign {
 }
 
 #seatNegotiationContainer input[name="seats[price]"], #seatDetailsBlock #seats_price {
-    width: 210px;
+    width: 53px;
     padding-left: 11px;
 }
 
