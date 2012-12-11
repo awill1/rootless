@@ -169,12 +169,22 @@
                 <a class="cta big-btn" href="<?php echo url_for('sf_guard_signin') ?>">Log in</a>
                 <a class="cta big-btn" href="<?php echo url_for('sf_guard_register') ?>">Sign up</a>
         	<?php elseif (!$isMyPost) : ?>
-        		<?php if ($mySeat == null): ?>
+                    <?php if ($mySeat == null): ?>
         		  <!-- Request seen by offerer -->
                   <a class="cta big-btn" id="startNegotiation" href="<?php echo url_for('seats_offers_new', array('ride_id'=>$passenger->getPassengerId())); ?>">Offer a Ride</a>
         	    <?php else: ?>
         	      <a class="cta big-btn viewMyRequestBtn" id="seat-<?php echo $mySeat->getSeatId() ?>" href="<?php echo url_for('seats_show', array('seat_id'=>$mySeat->getSeatId())); ?>">View My Offer</a>
         	    <?php endif; ?>
+                <?php elseif ($isMyPost) : ?>
+                    <!-- sharing tools -->
+                    <div id="myRideShare">
+                        <div id="twitterRideShare"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Just shared a ride with Rootless! Check it out!" data-via="rootlessme" data-size="large" data-count="none">Tweet</a>
+                             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                        </div>
+                        <div id="facebookRideShare">
+                            <div class="fb-like" data-send="true" data-width="350" data-show-faces="false" data-font="lucida grande" data-action="recommend"></div>
+                        </div>
+                    </div>
         	<?php endif; ?> 	
         </div>
         

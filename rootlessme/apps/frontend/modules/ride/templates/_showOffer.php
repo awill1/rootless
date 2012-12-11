@@ -184,7 +184,7 @@
                 <?php endif; ?>
             </div>
             <?php if ($isMyPost): ?>
-			<div class="riderListBlock">
+		<div class="riderListBlock">
                 <h3><?php echo $declinedSeats->count(); ?> declined <?php echo ($declinedSeats->count() == 1 ? "seat" : "seats") ?></h3>
                 <?php if ($declinedSeats->count() > 0) :?>
                 <ul class="riderList declined">
@@ -201,7 +201,8 @@
                     <li class='none'>No Declined seats</li>
                   </ul>
                 <?php endif; ?>
-            </div>
+                </div>
+            
             <?php endif; ?>	
         </div>
         <div id="mainRideDetails">
@@ -225,7 +226,15 @@
                     <a class="cta big-btn" id="startNegotiation" href="<?php echo url_for('seats_requests_new', array('ride_id'=>$carpool->getCarpoolId())); ?>">Request a Ride</a>
                 <?php endif; ?>
             <?php elseif ($isMyPost) : ?>
-                    <!-- old edit & delete button spot -->
+                    <!-- sharing tools -->
+                    <div id="myRideShare">
+                        <div id="twitterRideShare"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Just shared a ride with Rootless! Check it out!" data-via="rootlessme" data-size="large" data-count="none">Tweet</a>
+                             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                        </div>
+                        <div id="facebookRideShare">
+                            <div class="fb-like" data-send="true" data-width="350" data-show-faces="false" data-font="lucida grande" data-action="recommend"></div>
+                        </div>
+                    </div>
             <?php endif; ?>
    	   </div>
         <div id="seatDetails">

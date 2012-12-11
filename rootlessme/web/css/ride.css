@@ -1141,3 +1141,9 @@ li{
 .considerList li{
     margin-bottom: 5px;
 }
+#myRideShare{
+    float:left
+}
+#twitterRideShare{
+    margin-bottom: 15px;
+}
