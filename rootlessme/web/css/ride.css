@@ -142,7 +142,7 @@ tbody {
 
 #mainRideSummary {
     float: left;
-    width: 300px;
+    width: 712px;
     margin: 0px 0px 10px 0px;
 }
 
@@ -701,12 +701,12 @@ label span.dollar-sign {
 .rideActionButtonsList {
 	margin: -5px 0px 0px -2px;
 	padding: 0px;
-	float: left;
-	clear: both;
+	float: right;
+/*	clear: both;*/
 }
 
 .editOfferBtn .rideActionButtonsList {
-	margin: 5px 0px 0px -2px;
+	margin: 13px 0px 0px -2px;
 }
 
 .rideActionButtonsListItem {
@@ -746,6 +746,7 @@ label span.dollar-sign {
    color: #2e2e2e;
    background-color: #d9d9d9;
 }
+
 #seatDetailsBlock #negotiationBox input[type='submit']:hover {
    margin-top: 0;
    padding: 7px;
