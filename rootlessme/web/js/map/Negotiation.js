@@ -53,6 +53,9 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                $declinedDetailsLink  : $(".declinedlinks"),
                $acceptedDetailsLink  : $(".acceptedlinks"),
                $riderListItem        : $(".riderListItem"),
+               //note: the following two elements are named the same in _offerForm and in the seat negotiation... not sure if this will create a problem. -russ
+               $seatsPickupDate      : $("#seats_pickup_date"),
+               $seatsPickupTime      : $("#seats_pickup_time"),
                
                //ride offer & request X
                $negotiationBox       : $("#negotiationBox"),
@@ -78,8 +81,8 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                 
                //form ajax elements
                temporaryNewSeatHolder       : "#temporaryNewSeatHolder",
-               seatNegotiationHistoryList  : "#seatNegotiationHistoryList",
-               negotiationSpinner          : "#negotiationSpinner",
+               seatNegotiationHistoryList   : "#seatNegotiationHistoryList",
+               negotiationSpinner           : "#negotiationSpinner",
                $informationContainer        : $('#informationContainer'),
                
                //seatHistoryToggle
@@ -325,6 +328,11 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	},
 	
     loadSeatDetails : function(e) {
+        
+        //date & timepicker on _requestForm edit: this breaks the _requestForm page
+        //$SeatsPickupDate.datepicker();
+        //$SeatsPickupTime.timepicker({ampm: true});
+        
         var map = Rootless.Map.Negotiation.getInstance();
         
         if (($(this).parent().hasClass('riderListItem') && !e.isTrigger) || (!$(this).parent().hasClass('selectedUser') && e.isTrigger)) {
@@ -355,7 +363,11 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                             $(map._.el.acceptButton).bind('click', map.submitForm);
                         
 	                    map.bindTextBoxesToMap();
-	                    
+                            
+                            //adding time and datepicker to seat negotiation
+                            $SeatsPickupDate.datepicker();
+	                    $SeatsPickupTime.timepicker({ampm: true});
+                            
 	                    if(this.url.match(/new/)) {
 	                         $(map._.el.originTextBox).trigger('change');
                              $(map._.el.destinationTextBox).trigger('change');
