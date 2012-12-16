@@ -526,12 +526,18 @@ a#newReviewButton:hover {
 }
 
 .travelerListName {
-/*    padding: 5px 0px 0px 0px;*/
     color: #119D49;
     font-weight: bold;
     font-style: normal;
     float: left;
 
+}
+.travelerListName:hover {
+    color: #119D49;
+    font-weight: bold;
+    font-style: normal;
+    float: left;
+    text-decoration: underline;
 }
 
 .travelersListItem {
