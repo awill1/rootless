@@ -526,10 +526,10 @@ a#newReviewButton:hover {
 }
 
 .travelerListName {
-    padding: 5px 0px 0px 0px;
+/*    padding: 5px 0px 0px 0px;*/
     color: #119D49;
     font-weight: bold;
-    font-style: italic;
+    font-style: normal;
     float: left;
 
 }
@@ -547,7 +547,8 @@ a#newReviewButton:hover {
 .travelerHomeTown {
     color: #404040;
     font-size: 70%;
-    padding: 5px 0px 0px 0px;
+    font-style: italic;
+/*    padding: 5px 0px 0px 0px;*/
     float: left;
     clear: left;
 }
