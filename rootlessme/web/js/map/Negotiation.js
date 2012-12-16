@@ -365,8 +365,10 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	                    map.bindTextBoxesToMap();
                             
                             //adding time and datepicker to seat negotiation
-                            $SeatsPickupDate.datepicker();
-	                    $SeatsPickupTime.timepicker({ampm: true});
+                            //$SeatsPickupDate.datepicker();
+	                    //$SeatsPickupTime.timepicker({ampm: true});
+                            $('.datePicker').datepicker();
+                            $('.timePicker').timepicker();
                             
 	                    if(this.url.match(/new/)) {
 	                         $(map._.el.originTextBox).trigger('change');
