@@ -35,6 +35,11 @@ $(document).ready(function()
            $('#navigationMessages').removeClass('navigationItem');
            $('#navigationMessages').addClass('navigationItemSelected');
     }
+    // Messages
+    else if(loc.indexOf('/places') > -1){
+           $('#navigationPlaces').removeClass('navigationItem');
+           $('#navigationPlaces').addClass('navigationItemSelected');
+    }
 
 
 });

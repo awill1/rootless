@@ -18,8 +18,8 @@
     <?php use_javascript(sfConfig::get('app_jquery_block_ui_script')) ?>
     <?php use_javascript(url_for('sf_routes_js')) ?>
     <?php use_javascript(sfConfig::get('app_jquery_facebook_script')) ?>
-    <?php use_javascript('headerMenu') ?>
-    <?php use_javascript('navigation') ?>
+    <?php use_javascript(sfConfig::get('app_js_header_menu')) ?>
+    <?php use_javascript(sfConfig::get('app_js_navigation')) ?>
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
     <script type="text/javascript" src="/js/Class.js"></script>
@@ -142,13 +142,11 @@
                             travelers
                         </a>
                     </li>
-                    <?php if ($sf_user->isAuthenticated()): ?>
-                    <li  id="navigationMessages" class="navigationItem">
-                        <a class="navigationItemLink" href="<?php echo url_for("messages") ?>">
-                            messages
+                    <li id="navigationPlaces" class="navigationItem">
+                        <a class="navigationItemLink" href="<?php echo url_for("places") ?>">
+                            places
                         </a>
                     </li>
-                    <?php endif ?>
                 </ul>
                 <?php if ($sf_user->isAuthenticated()): ?>
                 <div id="leftContent" >

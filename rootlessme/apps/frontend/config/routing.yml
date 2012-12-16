@@ -139,6 +139,15 @@ messages_show:
   param: { module: message, action: show }
   requirements:
     sf_method: [get]
+    
+# place rules
+places:
+  url: /places
+  param:
+    module: place
+    action: index
+  requirements:
+    sf_method: [get]
 
 # profile rules
 profile:

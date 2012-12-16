@@ -21,7 +21,8 @@
     <?php use_javascript(sfConfig::get('app_jquery_facebook_script')) ?>
     <?php use_stylesheet(sfConfig::get('app_css_static')) ?>
     <?php use_javascript('headerMenu') ?>
-    <?php use_javascript('navigation') ?>
+    <?php use_javascript(sfConfig::get('app_js_header_menu')) ?>
+    <?php use_javascript(sfConfig::get('app_js_navigation')) ?>
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
     <?php if (has_slot('gmapheader')): ?>
