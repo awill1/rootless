@@ -328,11 +328,6 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	},
 	
     loadSeatDetails : function(e) {
-        
-        //date & timepicker on _requestForm edit: this breaks the _requestForm page
-        //$SeatsPickupDate.datepicker();
-        //$SeatsPickupTime.timepicker({ampm: true});
-        
         var map = Rootless.Map.Negotiation.getInstance();
         
         if (($(this).parent().hasClass('riderListItem') && !e.isTrigger) || (!$(this).parent().hasClass('selectedUser') && e.isTrigger)) {
@@ -364,9 +359,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                         
 	                    map.bindTextBoxesToMap();
                             
-                            //adding time and datepicker to seat negotiation
-                            //$SeatsPickupDate.datepicker();
-	                    //$SeatsPickupTime.timepicker({ampm: true});
+                            //attach pickers
                             $('.datePicker').datepicker();
                             $('.timePicker').timepicker();
                             
@@ -495,9 +488,10 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
    
 	                 //show seat edit
 	                 map._.el.$seatEditBlock.show();
-	
 	                 map.bindTextBoxesToMap();
-	
+                         //attach pickers
+                         $('.datePicker').datepicker();
+                         $('.timePicker').timepicker();
 	                 //bind seat histoy toggle
 	                 $(map._.el.seatHistoryToggle).bind('click', map.seatHistoryToggle);
 	                 return false;
