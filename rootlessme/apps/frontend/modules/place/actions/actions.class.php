@@ -10,12 +10,23 @@
  */
 class placeActions extends sfActions
 {
- /**
-  * Executes index action
-  *
-  * @param sfRequest $request A request object
-  */
-  public function executeIndex(sfWebRequest $request)
-  {
-  }
+    /**
+     * Executes index action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeIndex(sfWebRequest $request)
+    {
+    }
+    
+    /**
+     * Executes show action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeShow(sfWebRequest $request)
+    {
+        // Get the request parameters
+        $this->placeId = $this->getRequestParameter('id');
+    }
 }

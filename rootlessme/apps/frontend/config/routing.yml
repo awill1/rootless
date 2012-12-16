@@ -148,6 +148,14 @@ places:
     action: index
   requirements:
     sf_method: [get]
+    
+places_show:
+  url:   /places/:id
+  param:
+    module: place
+    action: show
+  requirements:
+    sf_method: [get]
 
 # profile rules
 profile:

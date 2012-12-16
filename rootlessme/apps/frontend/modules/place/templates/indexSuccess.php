@@ -2,7 +2,7 @@
 
 <?php slot(
   'title',
-  sprintf('Rootless - Rideboard'))
+  sprintf('Rootless - Share Rides to Your Favorite Places'))
 ?>
 
 <h1>Share Rides to Your Favorite Places</h1>
