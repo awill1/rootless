@@ -141,6 +141,48 @@ messages_show:
     sf_method: [get]
     
 # place rules
+place_new:
+  url:     /places/new
+  class:   sfDoctrineRoute
+  options: { model: Places, type: object }
+  param:   { module: place, action: new}
+  requirements: { sf_method: get }
+
+place_create:
+  url:     /places/create
+  class:   sfDoctrineRoute
+  options: { model: Places, type: object }
+  param:   { module: place, action: create}
+  requirements: { sf_method: post }
+
+place_edit:
+  url:     /places/:place_id/edit
+  class:   sfDoctrineRoute
+  options: { model: Places, type: object }
+  param:   { module: place, action: edit}
+  requirements: { sf_method: get }
+
+place_update:
+  url:     /places/:place_id/update
+  class:   sfDoctrineRoute
+  options: { model: Places, type: object }
+  param:   { module: place, action: update}
+  requirements: { sf_method: put }
+  
+place_delete:
+  url:     /places/:place_id/delete
+  class:   sfDoctrineRoute
+  options: { model: Places, type: object }
+  param:   { module: place, action: delete}
+  requirements: { sf_method: post }
+
+place_show:
+  url:     /places/:place_id
+  class:   sfDoctrineRoute
+  options: { model: Places, type: object }
+  param:   { module: place, action: show}
+  requirements: { sf_method: get }
+
 places:
   url: /places
   param:
@@ -148,14 +190,7 @@ places:
     action: index
   requirements:
     sf_method: [get]
-    
-places_show:
-  url:   /places/:id
-  param:
-    module: place
-    action: show
-  requirements:
-    sf_method: [get]
+
 
 # profile rules
 profile:
