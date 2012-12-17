@@ -121,7 +121,7 @@
         <?php endif; ?>
     </div>
     <div id="rideProfileMap"></div>
-    <?php if ($isMyPost && $pendingSeats->count() > 0): ?>
+    <?php if ($isMyPost && $seats->count() > 0): ?>
         <div class="pendingListBlock">
             <h3 class="green">You have <?php echo $pendingSeats->count(); ?> pending <?php echo ($pendingSeats->count() == 1 ? "offer" : "offers") ?>!</h3>
             <ul class="riderList pending">
