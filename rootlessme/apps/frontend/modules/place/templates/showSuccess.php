@@ -1,3 +1,29 @@
+<?php use_javascript(sfConfig::get('app_google_map_script')) ?>
+<?php use_stylesheet(sfConfig::get('app_css_place')) ?>
+
+<script type="text/javascript" src="/js/map/Request.js"></script>
+<script type="text/javascript">   
+  $(document).ready(function(){
+
+    $( ".datePicker" ).datepicker();  
+
+    //rootless namespace that should be added to our global template
+    var rootless = Rootless.getInstance({sessionId : 'showPlace'});
+
+   //the map object
+    var map = Rootless.Map.Request.getInstance({
+        mapId : 'map',
+        el: {
+            $originLatitude       : $("#rides_origin_latitude"),
+            $originLongitude      : $("#rides_origin_longitude"),
+            $destinationLatitude  : $("#rides_destination_latitude"),
+            $destinationLongitude : $("#rides_destination_longitude")
+        }
+    });
+    map.mapInit();
+  });
+</script>
+
 <h1>Share a ride to <?php echo $place->getName() ?></h1>
 
 <div id="placePostRideSection" >
@@ -12,7 +38,7 @@
 
 <div id="placeDetailsSection" >
     <div id="facebookLikeContainer" >
-        Like
+        <div class="fb-like" data-href="http://rootless.me/ski" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
     </div>
     <div id="map" >
     </div>
