@@ -121,7 +121,7 @@
     <div id="rideProfileMap"></div>
     <?php if ($isMyPost && $seats->count() > 0): ?>
         <div class="pendingListBlock">
-            <h3 class="green">You have <?php echo $pendingSeats->count(); ?> pending <?php echo ($pendingSeats->count() == 1 ? "request" : "requests") ?>!</h3>
+            <h3 class="green">You have <?php echo $seats->count(); ?> ride <?php echo ($seats->count() == 1 ? "request" : "requests") ?>!</h3>
             <ul class="riderList pending">
                 <?php foreach ($seats as $seat):
                     $riderProfile = $seat->getPassengers()->getPeople()->getProfiles(); ?>
