@@ -363,7 +363,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                             
                             //attach pickers
                             $('.datePicker').datepicker();
-                            $('.timePicker').timepicker();
+                            $('.timePicker').timepicker({ampm: true});
                             
 	                    if(this.url.match(/new/)) {
 	                         $(map._.el.originTextBox).trigger('change');
@@ -493,7 +493,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	                 map.bindTextBoxesToMap();
                          //attach pickers
                          $('.datePicker').datepicker();
-                         $('.timePicker').timepicker();
+                         $('.timePicker').timepicker({ampm: true});
 	                 //bind seat histoy toggle
 	                 $(map._.el.seatHistoryToggle).bind('click', map.seatHistoryToggle);
 	                 return false;
