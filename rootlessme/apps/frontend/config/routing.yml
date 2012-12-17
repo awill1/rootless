@@ -62,7 +62,7 @@ json_ride_show:
   url: /rides/json/show/:ride_type/:ride_id
   param:
     module: json
-    action: show_ride
+    action: showRide
   requirements:
     sf_method: [get]
     ride_type: (offer|request)

@@ -21,11 +21,11 @@ class jsonActions extends sfActions
   }
       
     /**
-     * Executes show action
+     * Executes show ride action
      *
      * @param sfRequest $request A request object
      */
-    public function executeShow(sfWebRequest $request)
+    public function executeShowRide(sfWebRequest $request)
     {
         // Get the ride type and ride id
         $this->rideType = $request->getParameter('ride_type');
@@ -44,5 +44,7 @@ class jsonActions extends sfActions
                // be prevented by routing.yml).
                echo 'Ride Type '.$this->rideType.'is invalid.';
         }
+        
+        return $this->renderPartial('rideJson');
     }
 }
