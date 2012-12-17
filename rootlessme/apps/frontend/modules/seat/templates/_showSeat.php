@@ -30,12 +30,12 @@
                             <input id="acceptButton" type="submit" value="Accept"  />
                         </form>    
                     <?php endif ?>
-                    
+                    <?php if ($canEdit) : ?>
                         <form id="seatEditForm" action="<?php echo url_for('seats_edit', array('seat_id'=>$seat->getSeatId())) ?>" >
                             <input id="seat_id" name="seat_id" type="hidden" value="<?php echo $seat->getSeatId() ?>"  />
                             <input id="editButton" type="button" value="Edit Terms"  />
                         </form>    
-                    
+                    <?php endif ?>
                     <?php if ($canDecline) : ?>
                         <form id="seatDeclineForm" action="<?php echo url_for('seats_decline') ?>" method="post">
                             <input id="seat_id" name="seat_id" type="hidden" value="<?php echo $seat->getSeatId() ?>"  />

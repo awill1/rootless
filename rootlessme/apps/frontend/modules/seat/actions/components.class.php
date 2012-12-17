@@ -27,6 +27,7 @@ class seatComponents extends sfComponents
         // Get the actions available to the user
         $this->canAccept = $this->seat->canAccept($userId);
         $this->canDecline = $this->seat->canDecline($userId);
+        $this->canEdit = $this->seat->canEdit($userId);
     }
     
     /**
@@ -59,6 +60,7 @@ class seatComponents extends sfComponents
         // Get the actions available to the user
         $this->canAccept = $this->seat->canAccept($userId);
         $this->canDecline = $this->seat->canDecline($userId);
+        $this->canEdit = $this->seat->canEdit($userId);
     }
     
     /**
@@ -91,6 +93,7 @@ class seatComponents extends sfComponents
         // Get the actions available to the user
         $this->canAccept = $this->seat->canAccept($userId);
         $this->canDecline = $this->seat->canDecline($userId);
+        $this->canEdit = $this->seat->canEdit($userId);
         
    
         //look in base history to find how to get name from History object
