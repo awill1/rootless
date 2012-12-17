@@ -75,12 +75,12 @@
                     </div>
                     <div id="confirmation">
                         <h2>Thank you for requesting a seat!</h2><br/>
-                        <div class="plainText">Be sure to check your dashboard to hear back<br />
-                            from the driver, but feel free to keep searching!<br />
-                            The more requests you submit, the better your<br /> 
+                        <div class="plainText">Be sure to check your dashboard to hear back
+                            from the driver, but feel free to keep searching!
+                            The more requests you submit, the better your
                             chances of finding the right ride!
                         </div><br/>
-                        <div id="confirmationViewButton" class="Button">View my request</div> <div id="confirmationBackButton" class="Button">Back to dashboard</div>
+                        <div id="confirmationViewButton" class="Button">View my request</div> <div id="confirmationBackButton" class="Button">View my dashboard</div>
                     </div>
                 </div>
     </form>

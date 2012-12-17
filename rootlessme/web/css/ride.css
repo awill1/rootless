@@ -723,7 +723,7 @@ label span.dollar-sign {
 
 .request-dollar-sign {
     left: 27px;
-    top: 68px;
+    top: 66px;
     position: absolute;
     font-weight: normal;
 }
@@ -732,6 +732,9 @@ label span.dollar-sign {
     top: 130px;
     position: absolute;
     font-weight: normal;
+}
+.seatCountField{
+    width: 60px;
 }
 
 #seatDetailsBlock input[type='text'] {
@@ -1037,7 +1040,7 @@ li{
 
 .removeBtn:hover {
     float: left;
-	color: #222;
+    color: #222;
     margin-left: 37px;
 }
 
