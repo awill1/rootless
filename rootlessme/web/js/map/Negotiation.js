@@ -263,7 +263,9 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         $(map._.el.negotiationBox).children().eq(map.currentStep).fadeIn();
    	    
         map.currentStep++;
-        
+        if (map.currentStep==6){
+          $(map._.el.seatRemoveButton).hide();
+        }
         return false;
    	    
     },
@@ -350,8 +352,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	                    //show seat details
 	                    map._.el.$seatDetails.append($(response)[$(response).length - 1]);
 	                    map._.el.$seatDetails.show();
-	                    map._.el.$seatDetails.prepend('<div class="removeBtn">X</div>');
-	                    
+                            map._.el.$seatDetails.prepend('<div class="removeBtn">X</div>');
 	                    $(map._.el.seatRemoveButton).bind('click', map.emptyBlock);              
                             $(map._.el.seatEditButton).bind('click', map.seatEditButton);
                             $(map._.el.declineButton).bind('click', map.submitForm);
