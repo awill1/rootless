@@ -76,7 +76,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                $dualPostButtonYes       : $("#dualPostButtonYes"),
                $discussBackButton       : $("#discussBackButton"),
                negotiationSubmit        : ".newSeatForm",
-               $backToRidesButton       : $("#confirmationBackButton"),
+               $backToDashboardButton       : $("#confirmationBackButton"),
                
                 
                //form ajax elements
@@ -242,12 +242,16 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         $(self._.el.seatRemoveButton).bind('click', self.emptyBlock);
         
         //back to rides button
-        self._.el.$backToRidesButton.live('click', self.backToRides);
+        self._.el.$backToDashboardButton.live('click', self.backToDashboard);
         
     },
     
     backToRides : function (){
         window.location = sf.url_for('ride', { });
+    },
+    
+    backToDashboard : function (){
+        window.location = sf.url_for('dashboard', { });
     },
    
     step : function (b_skip) {
@@ -346,9 +350,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	                    //hide main ride details & main ride people info
 	                    map._.el.$mainRideDetails.hide();
 	                    map._.el.$mainRidePeople.hide();
-	                    
 	                    map.currentStep = 1;
-	                 
 	                    //show seat details
 	                    map._.el.$seatDetails.append($(response)[$(response).length - 1]);
 	                    map._.el.$seatDetails.show();
@@ -357,7 +359,6 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                             $(map._.el.seatEditButton).bind('click', map.seatEditButton);
                             $(map._.el.declineButton).bind('click', map.submitForm);
                             $(map._.el.acceptButton).bind('click', map.submitForm);
-                        
 	                    map.bindTextBoxesToMap();
                             
                             //attach pickers
