@@ -10,7 +10,7 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @property integer $place_id
  * @property string $name
  * @property string $website_url
- * @property integer $isPublic
+ * @property integer $isPartner
  * @property string $contact_email_address
  * @property string $contact_phone_number
  * @property string $logo_url
@@ -19,7 +19,7 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @method integer getPlaceId()               Returns the current record's "place_id" value
  * @method string  getName()                  Returns the current record's "name" value
  * @method string  getWebsiteUrl()            Returns the current record's "website_url" value
- * @method integer getIsPublic()              Returns the current record's "isPublic" value
+ * @method integer getIsPartner()             Returns the current record's "isPartner" value
  * @method string  getContactEmailAddress()   Returns the current record's "contact_email_address" value
  * @method string  getContactPhoneNumber()    Returns the current record's "contact_phone_number" value
  * @method string  getLogoUrl()               Returns the current record's "logo_url" value
@@ -27,7 +27,7 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @method Places  setPlaceId()               Sets the current record's "place_id" value
  * @method Places  setName()                  Sets the current record's "name" value
  * @method Places  setWebsiteUrl()            Sets the current record's "website_url" value
- * @method Places  setIsPublic()              Sets the current record's "isPublic" value
+ * @method Places  setIsPartner()             Sets the current record's "isPartner" value
  * @method Places  setContactEmailAddress()   Sets the current record's "contact_email_address" value
  * @method Places  setContactPhoneNumber()    Sets the current record's "contact_phone_number" value
  * @method Places  setLogoUrl()               Sets the current record's "logo_url" value
@@ -69,7 +69,7 @@ abstract class BasePlaces extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 255,
              ));
-        $this->hasColumn('isPublic', 'integer', 1, array(
+        $this->hasColumn('isPartner', 'integer', 1, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,

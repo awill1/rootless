@@ -802,7 +802,7 @@ Places:
       primary: false
       notnull: false
       autoincrement: false
-    isPublic:
+    isPartner:
       type: integer(1)
       fixed: false
       unsigned: false

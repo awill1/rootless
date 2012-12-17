@@ -15,7 +15,7 @@ abstract class BasePlacesFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'name'                  => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'website_url'           => new sfWidgetFormFilterInput(),
-      'isPublic'              => new sfWidgetFormFilterInput(),
+      'isPartner'             => new sfWidgetFormFilterInput(),
       'contact_email_address' => new sfWidgetFormFilterInput(),
       'contact_phone_number'  => new sfWidgetFormFilterInput(),
       'logo_url'              => new sfWidgetFormFilterInput(),
@@ -27,7 +27,7 @@ abstract class BasePlacesFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'name'                  => new sfValidatorPass(array('required' => false)),
       'website_url'           => new sfValidatorPass(array('required' => false)),
-      'isPublic'              => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'isPartner'             => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'contact_email_address' => new sfValidatorPass(array('required' => false)),
       'contact_phone_number'  => new sfValidatorPass(array('required' => false)),
       'logo_url'              => new sfValidatorPass(array('required' => false)),
@@ -56,7 +56,7 @@ abstract class BasePlacesFormFilter extends BaseFormFilterDoctrine
       'place_id'              => 'Number',
       'name'                  => 'Text',
       'website_url'           => 'Text',
-      'isPublic'              => 'Number',
+      'isPartner'             => 'Number',
       'contact_email_address' => 'Text',
       'contact_phone_number'  => 'Text',
       'logo_url'              => 'Text',

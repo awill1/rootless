@@ -1,50 +1,45 @@
-<table>
-  <tbody>
-    <tr>
-      <th>Place:</th>
-      <td><?php echo $place->getPlaceId() ?></td>
-    </tr>
-    <tr>
-      <th>Name:</th>
-      <td><?php echo $place->getName() ?></td>
-    </tr>
-    <tr>
-      <th>Website url:</th>
-      <td><?php echo $place->getWebsiteUrl() ?></td>
-    </tr>
-    <tr>
-      <th>Is public:</th>
-      <td><?php echo $place->getIsPublic() ?></td>
-    </tr>
-    <tr>
-      <th>Contact email address:</th>
-      <td><?php echo $place->getContactEmailAddress() ?></td>
-    </tr>
-    <tr>
-      <th>Contact phone number:</th>
-      <td><?php echo $place->getContactPhoneNumber() ?></td>
-    </tr>
-    <tr>
-      <th>Logo url:</th>
-      <td><?php echo $place->getLogoUrl() ?></td>
-    </tr>
-    <tr>
-      <th>Tags:</th>
-      <td><?php echo $place->getTags() ?></td>
-    </tr>
-    <tr>
-      <th>Created at:</th>
-      <td><?php echo $place->getCreatedAt() ?></td>
-    </tr>
-    <tr>
-      <th>Updated at:</th>
-      <td><?php echo $place->getUpdatedAt() ?></td>
-    </tr>
-  </tbody>
-</table>
+<h1>Share a ride to <?php echo $place->getName() ?></h1>
 
-<hr />
+<div id="placePostRideSection" >
+    <h2>Post a Ride</h2> 
+    <div id="placeRideFormContainer">
+        <?php include_partial('returnTripForm', array('place' => $place)) ?>
+    </div>
+    <div id="placeRideConfirmationContainer">
+        
+    </div>
+</div>
 
-<a href="<?php echo url_for('place/edit?place_id='.$place->getPlaceId()) ?>">Edit</a>
-&nbsp;
-<a href="<?php echo url_for('place/index') ?>">List</a>
+<div id="placeDetailsSection" >
+    <div id="facebookLikeContainer" >
+        Like
+    </div>
+    <div id="map" >
+    </div>
+    <div id="placeAddressSection">
+        <?php echo $place->getName() ?> | <?php echo $place->getWebsiteUrl() ?> <br />
+        
+    </div>
+    
+    <div id="placeHelpContainer" class="helpBox">
+        <h3>How it works</h3>
+        <ol>
+            <li>
+                Fill out the form to the left with your ride details and post ride.
+            </li>
+            <li>
+                You will receive email updates when we find drivers and passengers along your route.
+            </li>
+            <li>
+                Once you find a driver or passenger, you will be able to negotiate on ride details until you come to an agreement.
+            </li>
+            <li>
+                Head to the mountain together!
+            </li>
+        </ol>
+        <h3>Questions</h3>
+        <p>
+            Feel free to email us at contact@rootless.me with any questions you might have!
+        </p>
+    </div>
+</div>
