@@ -1,4 +1,13 @@
-<h1>Places List</h1>
+<h1>Share Rides to your Favorite Places</h1>
+
+<ul>
+    <?php foreach ($places as $place): ?>
+        <li>
+            <?php echo $place->getName() ?><br />
+            <?php echo $place->getTags() ?>
+        </li>
+    <?php endforeach; ?>
+</ul>
 
 <table>
   <thead>
