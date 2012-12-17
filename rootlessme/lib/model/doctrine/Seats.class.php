@@ -211,7 +211,7 @@ class Seats extends BaseSeats
                     $canAccept = false;
                     break;
                 case SeatStatusesTable::$rideTypes['declined']:
-                    // If the user accepted the ride last, they can decline
+                    // If the user declined the ride last, they can accept
                     $didUserChangeLast = $lastHistory->getChangerId() == $personId;
                     if ($didUserChangeLast)
                     {
