@@ -76,7 +76,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                $dualPostButtonYes       : $("#dualPostButtonYes"),
                $discussBackButton       : $("#discussBackButton"),
                negotiationSubmit        : ".newSeatForm",
-               $backToRidesButton       : $("#confirmationBackButton"),
+               $backToDashboardButton       : $("#confirmationBackButton"),
                
                 
                //form ajax elements
@@ -242,12 +242,16 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         $(self._.el.seatRemoveButton).bind('click', self.emptyBlock);
         
         //back to rides button
-        self._.el.$backToRidesButton.live('click', self.backToRides);
+        self._.el.$backToDashboardButton.live('click', self.backToDashboard);
         
     },
     
     backToRides : function (){
         window.location = sf.url_for('ride', { });
+    },
+    
+    backToDashboard : function (){
+        window.location = sf.url_for('dashboard', { });
     },
    
     step : function (b_skip) {
@@ -263,7 +267,9 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         $(map._.el.negotiationBox).children().eq(map.currentStep).fadeIn();
    	    
         map.currentStep++;
-        
+        if (map.currentStep==6){
+          $(map._.el.seatRemoveButton).hide();
+        }
         return false;
    	    
     },
@@ -328,11 +334,6 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	},
 	
     loadSeatDetails : function(e) {
-        
-        //date & timepicker on _requestForm edit: this breaks the _requestForm page
-        //$SeatsPickupDate.datepicker();
-        //$SeatsPickupTime.timepicker({ampm: true});
-        
         var map = Rootless.Map.Negotiation.getInstance();
         
         if (($(this).parent().hasClass('riderListItem') && !e.isTrigger) || (!$(this).parent().hasClass('selectedUser') && e.isTrigger)) {
@@ -349,26 +350,20 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	                    //hide main ride details & main ride people info
 	                    map._.el.$mainRideDetails.hide();
 	                    map._.el.$mainRidePeople.hide();
-	                    
 	                    map.currentStep = 1;
-	                 
 	                    //show seat details
 	                    map._.el.$seatDetails.append($(response)[$(response).length - 1]);
 	                    map._.el.$seatDetails.show();
-	                    map._.el.$seatDetails.prepend('<div class="removeBtn">X</div>');
-	                    
+                            map._.el.$seatDetails.prepend('<div class="removeBtn">X</div>');
 	                    $(map._.el.seatRemoveButton).bind('click', map.emptyBlock);              
                             $(map._.el.seatEditButton).bind('click', map.seatEditButton);
                             $(map._.el.declineButton).bind('click', map.submitForm);
                             $(map._.el.acceptButton).bind('click', map.submitForm);
-                        
 	                    map.bindTextBoxesToMap();
                             
-                            //adding time and datepicker to seat negotiation
-                            //$SeatsPickupDate.datepicker();
-	                    //$SeatsPickupTime.timepicker({ampm: true});
+                            //attach pickers
                             $('.datePicker').datepicker();
-                            $('.timePicker').timepicker();
+                            $('.timePicker').timepicker({ampm: true});
                             
 	                    if(this.url.match(/new/)) {
 	                         $(map._.el.originTextBox).trigger('change');
@@ -495,9 +490,10 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
    
 	                 //show seat edit
 	                 map._.el.$seatEditBlock.show();
-	
 	                 map.bindTextBoxesToMap();
-	
+                         //attach pickers
+                         $('.datePicker').datepicker();
+                         $('.timePicker').timepicker({ampm: true});
 	                 //bind seat histoy toggle
 	                 $(map._.el.seatHistoryToggle).bind('click', map.seatHistoryToggle);
 	                 return false;

@@ -881,6 +881,10 @@ label span.dollar-sign {
 	float: none;
 	display: inline-block;
 }
+#confirmationViewButton.Button {
+	float: none;
+	display: inline-block;
+}
 
 .rideDetailsFields{
     width: 350px;
