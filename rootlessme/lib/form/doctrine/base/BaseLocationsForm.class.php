@@ -16,7 +16,7 @@ abstract class BaseLocationsForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'location_id'    => new sfWidgetFormInputHidden(),
-      'step_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Steps'), 'add_empty' => false)),
+      'step_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Steps'), 'add_empty' => true)),
       'name'           => new sfWidgetFormInputText(),
       'street1'        => new sfWidgetFormInputText(),
       'street2'        => new sfWidgetFormInputText(),
@@ -34,7 +34,7 @@ abstract class BaseLocationsForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'location_id'    => new sfValidatorChoice(array('choices' => array($this->getObject()->get('location_id')), 'empty_value' => $this->getObject()->get('location_id'), 'required' => false)),
-      'step_id'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Steps'))),
+      'step_id'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Steps'), 'required' => false)),
       'name'           => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'street1'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'street2'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),

@@ -38,7 +38,7 @@ abstract class BaseCarpoolsForm extends BaseFormDoctrine
       'route_id'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Routes'))),
       'solo_route_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Routes_3'))),
       'seats_available' => new sfValidatorInteger(array('required' => false)),
-      'start_date'      => new sfValidatorDate(),
+      'start_date'      => new sfValidatorDate(array('required' => false)),
       'start_time'      => new sfValidatorTime(array('required' => false)),
       'asking_price'    => new sfValidatorNumber(array('required' => false)),
       'description'     => new sfValidatorString(array('required' => false)),
