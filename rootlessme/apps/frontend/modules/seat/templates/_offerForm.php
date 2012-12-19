@@ -34,10 +34,10 @@
                     <div id="rideDetails1">
                         <h3>Ride Details</h3>
                         <h2>Where would you like to pick up?</h2>
-                        <div><?php echo $seatForm['route']['origin']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Address, City, State')) ?></div>
+                        <div><?php echo $seatForm['route']['origin']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Address, City, State', 'original-title'=>'Address, City, State')) ?></div>
                         
                         <h2>Where would you like to drop off?</h2>
-                        <div><?php echo $seatForm['route']['destination']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Address, City, State')) ?></div>
+                        <div><?php echo $seatForm['route']['destination']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Address, City, State', 'original-title'=>'Address, City, State')) ?></div>
                         
                         <h2>What day would you like to leave?</h2>
                         <div><?php echo $seatForm['pickup_date']->render(array('class'=>'datePicker rideDetailsFields')) ?></div>

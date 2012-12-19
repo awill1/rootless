@@ -16,8 +16,8 @@
     </tfoot>
     <tbody>
       <?php echo $form->renderHiddenFields() ?>
-      <?php echo $form['route']['origin']->renderRow() ?>
-      <?php echo $form['route']['destination']->renderRow() ?>
+      <?php echo $form['route']['origin']->renderRow(array('original-title'=>'Address, City, State')) ?>
+      <?php echo $form['route']['destination']->renderRow(array('original-title'=>'Address, City, State')) ?>
       <?php echo $form['seats_available']->renderRow() ?>
       <?php echo $form['start_date']->renderRow(array('class'=>'datePicker')) ?>
       <?php echo $form['start_time']->renderRow(array('class'=>'timePicker')) ?>
