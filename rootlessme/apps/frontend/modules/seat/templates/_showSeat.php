@@ -14,7 +14,21 @@
                 <div id="seatHistoryToggle">See Discussion History</div>
             </div>
             <div id="seatTerms">
-                <h3>Ride Details <span class="green">last <?php if($seat->getSeatStatuses()->getSlug() == 'pending') { echo 'edited'; } else {echo $seat->getSeatStatuses()->getSlug();} ?> by <?php if ($canAccept && $canDecline) { echo $otherPersonProfile->getFullName(); } else { echo 'you';} ?>.</span></h3>
+                <h3>Ride Details <span class="green">
+                    <?php if($seat->getSeatStatuses()->getSlug() == 'pending')
+                        { 
+                        echo 'last edited'; 
+                        }else{
+                              echo $seat->getSeatStatuses()->getSlug();
+                             } ?> by 
+                    <?php if ($canEdit && $canDecline) //this if test needs to be based on history
+                    { 
+                    echo $otherPersonProfile->getFullName(); 
+                    }else{
+                    echo 'you';
+                    }?>.</span></h3>
+                
+                
                 <p><span>Pickup Location:</span> <?php echo $seat->getRoutes()->getOriginString() ?></p>
                 <p><span>Dropoff Location:</span> <?php echo $seat->getRoutes()->getDestinationString() ?></p>
                 <p><span>Price:</span> $<?php echo $seat->getPrice() ?> per seat</p>
