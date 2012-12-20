@@ -21,7 +21,7 @@
                         }else{
                               echo $seat->getSeatStatuses()->getSlug();
                              } ?> by 
-                    <?php if ($canEdit && $canDecline) //this if test needs to be based on history
+                    <?php if ($canEdit && $canDecline) //this if test needs to be based on histo
                     { 
                     echo $otherPersonProfile->getFullName(); 
                     }else{

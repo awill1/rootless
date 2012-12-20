@@ -84,7 +84,8 @@
                             The more offers you submit, the better yours
                             chances of finding the right passenger!
                         </div><br/>
-                        <div id="confirmationViewButton" class="Button">View my offer</div> <div id="confirmationBackButton" class="Button">View my dashboard</div>
+<!--                        <div id="confirmationViewButton" class="Button">View my offer</div>-->
+                        <div id="confirmationBackButton" class="Button">View my dashboard</div>
                     </div>
                 </div>
     </form>

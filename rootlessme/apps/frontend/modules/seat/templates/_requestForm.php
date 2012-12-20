@@ -80,7 +80,8 @@
                             The more requests you submit, the better your
                             chances of finding the right ride!
                         </div><br/>
-                        <div id="confirmationViewButton" class="Button">View my request</div> <div id="confirmationBackButton" class="Button">View my dashboard</div>
+<!--                        <div id="confirmationViewButton" class="Button">View my request</div>-->
+                        <div id="confirmationBackButton" class="Button">View my dashboard</div>
                     </div>
                 </div>
     </form>
