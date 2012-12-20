@@ -31,10 +31,10 @@
                     <div id="rideDetails1">
                         <h3>Ride Details</h3>
                         <h2>Where would you like to be picked up?</h2>
-                        <div><?php echo $seatForm['route']['origin']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Address, City, State')) ?></div>
+                        <div><?php echo $seatForm['route']['origin']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Address, City, State', 'original-title'=>'Address, City, State')) ?></div>
                         
                         <h2>Where would you like to be dropped off?</h2>
-                        <div><?php echo $seatForm['route']['destination']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Address, City, State')) ?></div>
+                        <div><?php echo $seatForm['route']['destination']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Address, City, State', 'original-title'=>'Address, City, State')) ?></div>
                         
                         <h2>What day would you like to leave?</h2>
                         <div><?php echo $seatForm['pickup_date']->render(array('class'=>'datePicker rideDetailsFields')) ?></div>
@@ -75,12 +75,13 @@
                     </div>
                     <div id="confirmation">
                         <h2>Thank you for requesting a seat!</h2><br/>
-                        <div class="plainText">Be sure to check your dashboard to hear back<br />
-                            from the driver, but feel free to keep searching!<br />
-                            The more requests you submit, the better your<br /> 
+                        <div class="plainText">Be sure to check your dashboard to hear back
+                            from the driver, but feel free to keep searching!
+                            The more requests you submit, the better your
                             chances of finding the right ride!
                         </div><br/>
-                        <div id="confirmationViewButton" class="Button">View my request</div> <div id="confirmationBackButton" class="Button">Back to dashboard</div>
+<!--                        <div id="confirmationViewButton" class="Button">View my request</div>-->
+                        <div id="confirmationBackButton" class="Button">View my dashboard</div>
                     </div>
                 </div>
     </form>

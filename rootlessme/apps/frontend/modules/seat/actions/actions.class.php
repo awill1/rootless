@@ -304,48 +304,51 @@ class seatActions extends sfActions
         if ($this->getUser()->isAuthenticated())
         {
             $userId = $this->getUser()->getGuardUser()->getPersonId();
-
-            $seat = $this->processForm($request, $this->form);
-
-            // Send a notification to the other user
-            $userIsDriver = $seat->getCarpools()->getDriverId() == $userId;
-            $userPerson = $this->getUser()->getGuardUser()->getPeople();
-            $otherPerson = NULL;
-            if ($userIsDriver)
+            
+            if($seat->canEdit($userId))
             {
-                $otherPerson = $seat->getPassengers()->getPeople();
-            }
-            else
-            {
-                $otherPerson = $seat->getCarpools()->getPeople();
-            }
-            $notification = new seatUpdateNotification($seat, $otherPerson, $userPerson);
-            $notification->sendNotifications();
+                $seat = $this->processForm($request, $this->form);
 
-            // If the request came from AJAX render the seat negotiation history
-            // partial with the updated seat information
-            if ($request->isXmlHttpRequest())
-            {
-                if ($seat != null)
+                // Send a notification to the other user
+                $userIsDriver = $seat->getCarpools()->getDriverId() == $userId;
+                $userPerson = $this->getUser()->getGuardUser()->getPeople();
+                $otherPerson = NULL;
+                if ($userIsDriver)
                 {
-                    $lastSeatNegotiationDifference = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryDifferencesForSeat($seat->getSeatId());
-                    return $this->renderComponent('seat','negotiationItem', array('negotiationChange' => $lastSeatNegotiationDifference));
+                    $otherPerson = $seat->getPassengers()->getPeople();
                 }
                 else
                 {
-                    return $this->renderText('Seat was not updated');
+                    $otherPerson = $seat->getCarpools()->getPeople();
                 }
-            }
-            else
-            {
-                $this->setTemplate('edit');
+                $notification = new seatUpdateNotification($seat, $otherPerson, $userPerson);
+                $notification->sendNotifications();
 
-                if ($seat != null)
+                // If the request came from AJAX render the seat negotiation history
+                // partial with the updated seat information
+                if ($request->isXmlHttpRequest())
                 {
-                    // This is not an AJAX request so redirect to the show seat
-                    // page
+                    if ($seat != null)
+                    {
+                        $lastSeatNegotiationDifference = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryDifferencesForSeat($seat->getSeatId());
+                        return $this->renderComponent('seat','negotiationItem', array('negotiationChange' => $lastSeatNegotiationDifference));
+                    }
+                    else
+                    {
+                        return $this->renderText('Seat was not updated');
+                    }
+                }
+                else
+                {
+                    $this->setTemplate('edit');
 
-                    $this->redirect('seats_show', array('seat_id', $seat->getSeatId()));
+                    if ($seat != null)
+                    {
+                        // This is not an AJAX request so redirect to the show seat
+                        // page
+
+                        $this->redirect('seats_show', array('seat_id', $seat->getSeatId()));
+                    }
                 }
             }
         }
