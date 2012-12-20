@@ -97,9 +97,9 @@ class seatComponents extends sfComponents
         
    
         //look in base history to find how to get name from History object
-        //$this->lastHistory = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryForSeat($this->getSeatId());
+        $this->lastHistory = Doctrine_Core::getTable('SeatsHistory')->getLatestHistoryForSeat($this->seat->getSeatId());
         //did the viewer change something last
-        //$this->didUserChangeLast = $lastHistory->getChangerId() == $userId;
+        $this->didUserChangeLast = $this->lastHistory->getChangerId() == $userId;
     }
     
 

@@ -19,13 +19,14 @@
                         { 
                         echo 'last edited'; 
                         }else{
-                              echo $seat->getSeatStatuses()->getSlug();
-                             } ?> by 
-                    <?php if ($canEdit && $canDecline) //this if test needs to be based on histo
+                              echo $seat->getSeatStatuses()->getSlug(); //accepted or declined
+                             } ?> by
+                             
+                    <?php if ($didUserChangeLast)//$canEdit && $canDecline) //this if test needs to be based on histoy
                     { 
-                    echo $otherPersonProfile->getFullName(); 
+                     echo 'you';
                     }else{
-                    echo 'you';
+                    echo $otherPersonProfile->getFullName();
                     }?>.</span></h3>
                 
                 
@@ -37,7 +38,6 @@
                 <p><span>Time:</span> <?php echo date("g:i A",strtotime($seat->getPickupTime())) ?></p>
                 <p><span>Note:</span> <?php echo nl2br($seat->getDescription()) ?></p>
                 <div id="seatFormButtons">
-                    
                     <?php if ($canAccept) : ?>
                         <form id="seatAcceptForm" action="<?php echo url_for('seats_accept') ?>" method="post">
                             <input id="seat_id" name="seat_id" type="hidden" value="<?php echo $seat->getSeatId() ?>"  />
