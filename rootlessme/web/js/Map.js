@@ -100,18 +100,18 @@ Rootless.Map = Class.extend({
    },
    
     /**
-	 * formatGoogleJSON is used to change the strange keys used for 
-	 * latitude and longitude into easier to use "lat" and "lon" keys.
-	 * The quotes must be included or else we could replace unexpected 
-	 * pieces of the string such as street name or encoded polyline
-	 */
-	formatGoogleJSON: function(strangeLat, strangeLon, jsonString) {
-	    // Build the regular expressions, and return the replacement
-	    var strangeLatRegExp = new RegExp("\""+strangeLat+"\"","g");
-	    var strangeLonRegExp = new RegExp("\""+strangeLon+"\"","g");
-	    return jsonString.replace(strangeLatRegExp,"\"lat\"")
-	                     .replace(strangeLonRegExp, "\"lon\"");
-	},
+     * formatGoogleJSON is used to change the strange keys used for 
+     * latitude and longitude into easier to use "lat" and "lon" keys.
+     * The quotes must be included or else we could replace unexpected 
+     * pieces of the string such as street name or encoded polyline
+     */
+    formatGoogleJSON: function(strangeLat, strangeLon, jsonString) {
+       // Build the regular expressions, and return the replacement
+       var strangeLatRegExp = new RegExp("\""+strangeLat+"\"","g");
+       var strangeLonRegExp = new RegExp("\""+strangeLon+"\"","g");
+       return jsonString.replace(strangeLatRegExp,"\"lat\"")
+                        .replace(strangeLonRegExp, "\"lon\"");
+    },
    
    /**
     * Initializes a marker that is at the default latitude and longitude, but is
