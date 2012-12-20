@@ -185,8 +185,8 @@ Rootless.Map = Class.extend({
    
         if ($(this._.el.originTextBox).text) {
 	        $(this._.el.originTextBox).tipsy({
-	        	gravity : 'e',
-	        	title   : 'value',
+	        	gravity : 'w',
+	        	title   : 'original-title',
 	        	trigger : 'focus',
 	        	html    : false,
 	        	live    : true,
@@ -198,8 +198,8 @@ Rootless.Map = Class.extend({
         
         if ($(this._.el.destinationTextBox).text) {
 	        $(this._.el.destinationTextBox).tipsy({
-	        	gravity : 'e',
-	        	title   : 'value',
+	        	gravity : 'w',
+	        	title   : 'original-title',
 	        	trigger : 'focus',
 	        	html    : false,
 	        	live    : true,

@@ -14,7 +14,21 @@
                 <div id="seatHistoryToggle">See Discussion History</div>
             </div>
             <div id="seatTerms">
-                <h3>Ride Details <span class="green">last <?php if($seat->getSeatStatuses()->getSlug() == 'pending') { echo 'edited'; } else {echo $seat->getSeatStatuses()->getSlug();} ?> by <?php if ($canAccept && $canDecline) { echo $otherPersonProfile->getFullName(); } else { echo 'you';} ?>.</span></h3>
+                <h3>Ride Details <span class="green">
+                    <?php if($seat->getSeatStatuses()->getSlug() == 'pending')
+                        { 
+                        echo 'last edited'; 
+                        }else{
+                              echo $seat->getSeatStatuses()->getSlug();
+                             } ?> by 
+                    <?php if ($canEdit && $canDecline) //this if test needs to be based on histo
+                    { 
+                    echo $otherPersonProfile->getFullName(); 
+                    }else{
+                    echo 'you';
+                    }?>.</span></h3>
+                
+                
                 <p><span>Pickup Location:</span> <?php echo $seat->getRoutes()->getOriginString() ?></p>
                 <p><span>Dropoff Location:</span> <?php echo $seat->getRoutes()->getDestinationString() ?></p>
                 <p><span>Price:</span> $<?php echo $seat->getPrice() ?> per seat</p>
@@ -23,8 +37,8 @@
                 <p><span>Time:</span> <?php echo date("g:i A",strtotime($seat->getPickupTime())) ?></p>
                 <p><span>Note:</span> <?php echo nl2br($seat->getDescription()) ?></p>
                 <div id="seatFormButtons">
-                    <?php $canEdit = 1; ?>
-                    <?php if ($canAccept && $canDecline) : ?>
+                    
+                    <?php if ($canAccept) : ?>
                         <form id="seatAcceptForm" action="<?php echo url_for('seats_accept') ?>" method="post">
                             <input id="seat_id" name="seat_id" type="hidden" value="<?php echo $seat->getSeatId() ?>"  />
                             <input id="acceptButton" type="submit" value="Accept"  />

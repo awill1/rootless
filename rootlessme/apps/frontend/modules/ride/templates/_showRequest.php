@@ -1,17 +1,13 @@
 <?php use_javascript(sfConfig::get('app_google_map_script')) ?>
 <?php use_stylesheet(sfConfig::get('app_css_ride')) ?>
-
 <?php slot(
   'title',
   sprintf('Rootless - %s to %s', $route->getOriginString(), $route->getDestinationString()))
 ?>
-
 <h1>Ride Request</h1>
-
 <?php if ($passenger->isDeleted()): ?>
     <p>This ride has been deleted.</p>
 <?php else: // The ride is not deleted ?>
-
     <?php slot('gmapheader'); ?>
         <script type="text/javascript" src="/js/map/Negotiation.js"></script>
         <script type="text/javascript">
@@ -36,7 +32,7 @@
         		});
         		map.mapInit();
         		
-        		<?php if ($acceptedSeats->count() > 0): ?>
+        	<?php if ($acceptedSeats->count() > 0): ?>
                   <?php foreach ($acceptedSeats as $seat): ?>
                    var key = "ride-passenger-<?php echo $seat->getPassengerId(); ?>";
                    var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
@@ -93,7 +89,6 @@
             </span>
 
         </h1>
-<!--        <span class="tripDistance">One Way Trip</span>-->
          <div class="addThisToolBar">
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style ">
@@ -108,7 +103,6 @@
             <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fcfd8880ba6587c"></script>
             <!-- AddThis Button END -->
         </div>
-    
         <?php if ($isMyPost): ?>
             <div class="rideActionButtons editOfferBtn">
                 <ul class="rideActionButtonsList">
@@ -126,35 +120,35 @@
             </div>
         <?php endif; ?>
     </div>
-
     <div id="rideProfileMap"></div>
-    
-	<?php if ($isMyPost && $pendingSeats->count() > 0): ?>
-		<div class="pendingListBlock">
-        	<h3 class="green">You have <?php echo $pendingSeats->count(); ?> pending <?php echo ($pendingSeats->count() == 1 ? "offer" : "offers") ?>!</h3>
-            	<ul class="riderList pending">
-                    <?php foreach ($pendingSeats as $seat):
-                          $driverProfile = $seat->getCarpools()->getPeople()->getProfiles(); ?>
-                        <li class="riderListItem">
-                                <a id="seat-<?php echo $seat->getSeatId(); ?>" class="dynamicDetailsLink" href="<?php echo url_for("seats_show", array('seat_id'=>$seat->getSeatId()))  ?>">
-                                	<img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driverProfile->getPictureUrlSmall() ?>" alt="<?php echo $driverProfile->getFullName() ?>" />
-                                	<h3 class="green"><?php echo $driverProfile->getFullName() ?></h3>
-                                	<p><?php echo $seat->getOriginString(); ?> to <?php echo $seat->getDestinationString(); ?></p>
-                                </a>
-                             <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden pendingLine routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
-                        </li>
-                    <?php endforeach; ?>
-               </ul>
+    <?php if ($isMyPost && $seats->count() > 0): ?>
+        <div class="pendingListBlock">
+            <h3 class="green">You have <?php echo $seats->count(); ?> ride <?php echo ($seats->count() == 1 ? "offer" : "offers") ?>!</h3>
+            <ul class="riderList pending">
+                <?php foreach ($seats as $seat):
+                      $driverProfile = $seat->getCarpools()->getPeople()->getProfiles(); ?>
+                    <li class="riderListItem">
+                        <?php if ($isMyPost) :?>
+                            <a id="seat-<?php echo $seat->getSeatId(); ?>" class="dynamicDetailsLink" href="<?php echo url_for("seats_show", array('seat_id'=>$seat->getSeatId()))  ?>">
+                                    <img src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $driverProfile->getPictureUrlSmall() ?>" alt="<?php echo $driverProfile->getFullName() ?>" />
+                                    <h3 class="green"><?php echo $driverProfile->getFullName() ?></h3>
+                                    <p><?php echo $seat->getOriginString(); ?> to <?php echo $seat->getDestinationString(); ?></p>
+                                    <?php $seatStatus = $seat->getSeatStatuses()->getDisplayText() ?>
+                                    <div class="seatLabel<?php echo $seatStatus ?>"><?php echo $seat->getSeatStatuses()->getDisplayText()?></div>
+                            </a>
+                         <span id="ride-passenger-<?php echo $seat->getPassengerId() ?>" class="hidden pendingLine routePolyline"><?php echo $seat->getRoutes()->getEncodedPolyline(); ?></span> 
+                         <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
         </div>
-   	<?php endif; ?>
-   	
+    <?php endif; ?>
     <div id="informationContainer">
         <div id="mainRidePeople">
             <a class="profileImageLink" href="<?php echo url_for("profile_show_user", $rider)  ?>">
                 <img class="driverPicture" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $rider->getPictureUrlLarge() ?>" alt="<?php echo $rider->getFullName() ?>" />
             	<h3 class="postedByStyles">Posted By: <span class="green"><?php echo $rider->getFullName() ?></span></h3>
             </a>
-            
         </div>
         <div id="mainRideDetails">
         	<h4>Ride Details</h4>
@@ -187,7 +181,6 @@
                     </div>
         	<?php endif; ?> 	
         </div>
-        
         <div id="seatDetails">
         <?php if ($mySeat != null): ?>
         	<?php include_component('seat', 'showSeat', array('seat'=>$mySeat)) ?>

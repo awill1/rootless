@@ -1,17 +1,13 @@
 <?php use_javascript(sfConfig::get('app_google_map_script')) ?>
 <?php use_stylesheet(sfConfig::get('app_css_ride')) ?>
-
 <?php slot(
   'title',
   sprintf('Rootless - %s to %s', $route->getOriginString(), $route->getDestinationString()))
 ?>
-
 <h1>Ride Offer</h1>
-
 <?php if ($carpool->isDeleted()): ?>
     <p>This ride has been deleted.</p>
 <?php else: // The ride is not deleted ?>
-
     <?php slot('gmapheader'); ?>
         <script type="text/javascript" src="/js/map/Negotiation.js"></script>
         <script type="text/javascript">
@@ -34,14 +30,11 @@
         			    polyLineObj : []
         			}},
         		});
-        		
-        		
-        		
         		map.mapInit();
         		
-        		<?php if ($acceptedSeats->count() > 0): ?>
+        	<?php if ($acceptedSeats->count() > 0): ?>
                   <?php foreach ($acceptedSeats as $seat): ?>
-				   var key = "ride-passenger-<?php echo $seat->getPassengerId(); ?>";
+                   var key = "ride-passenger-<?php echo $seat->getPassengerId(); ?>";
                    var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
                    var acceptedSeatPolyline = map.displayEncodedPolyline(map._.MapObject, seatPolyline , false);
                    map._.mapItem.polyline.polyLineObj[key] = acceptedSeatPolyline;
@@ -50,7 +43,7 @@
                 
                  <?php if ($pendingSeats->count() > 0 && $isMyPost): ?>
                   <?php foreach ($pendingSeats as $seat): ?> 
-				   var key = "ride-passenger-<?php echo $seat->getPassengerId(); ?>";
+		   var key = "ride-passenger-<?php echo $seat->getPassengerId(); ?>";
                    var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
                    var pendingSeatPolyline = map.displayEncodedPolyline(map._.MapObject, seatPolyline , false);
                    pendingSeatPolyline.setOptions({strokeOpacity: 0})
@@ -60,7 +53,7 @@
                 
                  <?php if ($declinedSeats->count() > 0 && $isMyPost): ?>
                   <?php foreach ($declinedSeats as $seat): ?>
-				   var key = "ride-passenger-<?php echo $seat->getPassengerId(); ?>";
+		   var key = "ride-passenger-<?php echo $seat->getPassengerId(); ?>";
                    var seatPolyline = "<?php echo str_replace('\\','\\\\',$seat->getRoutes()->getEncodedPolyline()); ?>";
                    var declinedSeatPolyline = map.displayEncodedPolyline(map._.MapObject, seatPolyline , false);
                    declinedSeatPolyline.setOptions({strokeOpacity: 0})
@@ -93,7 +86,6 @@
             <span class="rideLocations">
                 <?php echo $route->getDestinationString() ?>
             </span>
-
         </h1>
         <div class="addThisToolBar">
             <!-- AddThis Button BEGIN -->
@@ -126,14 +118,13 @@
             </div>
         <?php endif; ?>
     </div>
-    
     <div id="rideProfileMap"></div>
-    <?php if ($isMyPost && $pendingSeats->count() > 0): ?>
-    <div class="pendingListBlock">
-            <h3 class="green">You have <?php echo $pendingSeats->count(); ?> pending <?php echo ($pendingSeats->count() == 1 ? "request" : "requests") ?>!</h3>
+    <?php if ($isMyPost && $seats->count() > 0): ?>
+        <div class="pendingListBlock">
+            <h3 class="green">You have <?php echo $seats->count(); ?> ride <?php echo ($seats->count() == 1 ? "request" : "requests") ?>!</h3>
             <ul class="riderList pending">
                 <?php foreach ($seats as $seat):
-                      $riderProfile = $seat->getPassengers()->getPeople()->getProfiles(); ?>
+                    $riderProfile = $seat->getPassengers()->getPeople()->getProfiles(); ?>
                     <li class="riderListItem">
                         <?php if ($isMyPost) :?>
                             <a id="seat-<?php echo $seat->getSeatId(); ?>" class="dynamicDetailsLink" href="<?php echo url_for("seats_show", array('seat_id'=>$seat->getSeatId()))  ?>">
@@ -148,7 +139,7 @@
                     </li>
                 <?php endforeach; ?>
            </ul>
-    </div>
+        </div>
     <?php endif; ?>
     <div id="informationContainer">
         <div id="mainRidePeople">
@@ -157,7 +148,7 @@
             	<h3 class="postedByStyles">Posted By: <span class="green"><?php echo $driver->getFullName() ?></span></h3>
             </a>
 			
-			<div class="riderListBlock">
+	<div class="riderListBlock">
             	<h3><?php echo $acceptedSeats->count(); ?> accepted <?php echo ($acceptedSeats->count() == 1 ? "seat" : "seats") ?></h3>
                 <?php if ($acceptedSeats->count() > 0) :?>
                 <ul class="riderList accepted">
@@ -182,7 +173,7 @@
                   	<li class='none'>No Accepted seats</li>
                   </ul>
                 <?php endif; ?>
-            </div>
+        </div>
             <?php if ($isMyPost): ?>
 		<div class="riderListBlock">
                 <h3><?php echo $declinedSeats->count(); ?> declined <?php echo ($declinedSeats->count() == 1 ? "seat" : "seats") ?></h3>
@@ -217,7 +208,6 @@
                 <a class="cta big-btn" href="<?php echo url_for('sf_guard_signin') ?>">Log in</a>
                 <a class="cta big-btn" href="<?php echo url_for('sf_guard_register') ?>">Sign up</a>
             <?php elseif (!$isMyPost) : ?>
-            	
                 <?php if ($mySeat != null): ?>
                     <!-- offer seen by someone who has already requested and started negotiations -->
                     <a class="cta big-btn viewMyRequestBtn" id="seat-<?php echo $mySeat->getSeatId() ?>" href="<?php echo url_for('seats_show', array('seat_id'=>$mySeat->getSeatId())); ?>">View My Request</a>

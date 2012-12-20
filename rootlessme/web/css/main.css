@@ -915,18 +915,19 @@ textarea {
 }
 
 #leftProfileName {
-    font-weight: normal;
+    color: #119D49;
+    font-weight: bold;
     font-size: 90%;
 }
 
 #leftProfileLocation {
+    color: #3d3d3d;
     font-style: italic;
-    color: #119D49;
-    font-weight: bold;
+    font-size: 80%;
 }
 
 #leftProfileViewLink {
-    font-style: italic;
+    font-style: normal;
     font-size: 80%;
     color: #3D3D3D;
 
@@ -938,8 +939,8 @@ textarea {
 }
 
 .leftWidgetTitle {
-    font-weight: normal;
-    font-size: 110%;
+    font-weight: bold;
+    font-size: 90%;
     margin: 0px 0px 0px 0px;
 }
 

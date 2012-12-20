@@ -34,10 +34,10 @@
                     <div id="rideDetails1">
                         <h3>Ride Details</h3>
                         <h2>Where would you like to pick up?</h2>
-                        <div><?php echo $seatForm['route']['origin']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Address, City, State')) ?></div>
+                        <div><?php echo $seatForm['route']['origin']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Address, City, State', 'original-title'=>'Address, City, State')) ?></div>
                         
                         <h2>Where would you like to drop off?</h2>
-                        <div><?php echo $seatForm['route']['destination']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Address, City, State')) ?></div>
+                        <div><?php echo $seatForm['route']['destination']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Address, City, State', 'original-title'=>'Address, City, State')) ?></div>
                         
                         <h2>What day would you like to leave?</h2>
                         <div><?php echo $seatForm['pickup_date']->render(array('class'=>'datePicker rideDetailsFields')) ?></div>
@@ -54,7 +54,7 @@
                         <h2>Would you like to adjust the  price (per seat)?</h2>
                         <div><?php echo $seatForm['price']->render(array('class'=>'rideDetailsFields')) ?><span class="request-dollar-sign">$</span></div>
                         <h2>How many extra seats do you have?</h2>
-                        <div><?php echo $seatForm['seat_count']->render(array('class'=>'rideDetailsFields')) ?></div>
+                        <div><?php echo $seatForm['seat_count']->render(array('class'=>'rideDetailsFields seatCountField')) ?></div>
                         <br />
                         <div id="rideDetails2BackButton" class="Button">Back</div><div id="rideDetails2NextButton" class="Button">Next</div>
                         <br /><br /><br/>
@@ -79,12 +79,13 @@
                     </div>
                     <div id="confirmation">
                         <h2>Thank you for offering a ride!</h2><br/>
-                        <div class="plainText">Be sure to check your dashboard to hear back<br />
-                            from the passenger, but feel free to keep searching!<br />
-                            The more offers you submit, the better your<br /> 
+                        <div class="plainText">Be sure to check your dashboard to hear back
+                            from the passenger, but feel free to keep searching!
+                            The more offers you submit, the better yours
                             chances of finding the right passenger!
                         </div><br/>
-                        <div id="confirmationBackButton" class="Button">Back to Rides</div>
+<!--                        <div id="confirmationViewButton" class="Button">View my offer</div>-->
+                        <div id="confirmationBackButton" class="Button">View my dashboard</div>
                     </div>
                 </div>
     </form>
