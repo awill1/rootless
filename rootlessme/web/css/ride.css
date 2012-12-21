@@ -1154,3 +1154,8 @@ li{
 #twitterRideShare{
     margin-bottom: 15px;
 }
+
+.invalid
+{
+    color: #F55830;
+}

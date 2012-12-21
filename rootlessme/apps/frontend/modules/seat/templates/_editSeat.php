@@ -2,7 +2,7 @@
 <?php append_to_slot('gmapheader'); ?>
 <?php end_slot();?>
 <script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
-<script type="text/javascript" src="/js/seatNegotiation.js"></script>
+<!--<script type="text/javascript" src="/js/seatNegotiation.js"></script>-->
 <div id="seatEditBlock" title="Edit Seat Details">
     <div id='seatNegotiationContainer'>
     <div id="seatInfo">
@@ -13,7 +13,6 @@
                             <h3 class="postedByStyles">Posted By: <span class="green"><?php echo $otherPersonProfile->getFullName() ?></span></h3>
                 </a>
                 <div id="seatHistoryToggle">See Discussion History</div>
-<!--                <div class="editSeatError"></div>-->
             </div>
             <div id="editSeatTerms">
                 <h3>Ride Details <span class="green">currently being edited by you.</span></h3>
@@ -23,8 +22,8 @@
                 <p><span>Dropoff Location:</span> <?php echo $form['route']['destination']->render(array('class'=>'editSeatFields required', 'placeholder'=>'Address, City, State')) ?></p>
                 <p><span>Price:</span> <?php echo $form['price']->render(array('class'=>'editSeatFields editSeatFieldsShort number')) ?><span class='editSeat-dollar-sign' style='font-weight: normal;'>$</span> per seat</p>
                 <p><span>Number of seats:</span> <?php echo $form['seat_count']->render(array('class'=>'editSeatFields editSeatFieldsShort digits')) ?></p>
-                <p><span>Day:</span> <?php echo $form['pickup_date']->render(array('class'=>'datePicker editSeatFields editSeatFieldsMedium')) ?></p>
-                <p><span>Time:</span> <?php echo $form['pickup_time']->render(array('class'=>'timePicker editSeatFields editSeatFieldsMedium')) ?></p>
+                <p><span>Day:</span> <?php echo $form['pickup_date']->render(array('class'=>'datePicker editSeatFields editSeatFieldsMedium date')) ?></p>
+                <p><span>Time:</span> <?php echo $form['pickup_time']->render(array('class'=>'timePicker editSeatFields editSeatFieldsMedium time')) ?></p>
                 <p><span>Note:</span> <?php echo $form['description']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Chat...')) ?></p>
                 <div id="seatFormButtons">
                             <input id="seat_id" name="seat_id" type="hidden" value="<?php echo $seat->getSeatId() ?>"  />

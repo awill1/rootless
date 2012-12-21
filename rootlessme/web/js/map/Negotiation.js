@@ -59,6 +59,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                
                //ride offer & request X
                $negotiationBox       : $("#negotiationBox"),
+               editSeatForm         : "#editSeatForm",
                
                //view my Request
                viewMyRequestBtn      : '.viewMyRequestBtn',
@@ -252,28 +253,6 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     step : function (b_skip) {
         var map = Rootless.Map.Negotiation.getInstance();
         map._.el.$seatDetails.show();
-        //validation
-                $('#seatRequestForm').validate({
-                errorLabelContainer: $(".wizardError"),
-                invalidHandler: function() {
-                    alert('invalid handler');
-                    // Send an event to google analytics for the form validation error
-                    //_gaq.push(['_trackEvent', 'specialEvent', 'validationError']);
-                },
-                messages: {
-                    name: "Enter your name. ",
-                    email: {
-                        required: "Enter your email. ",
-                        email: "Email must be a valid format. "
-                    },
-                    location: "Enter your location. ",
-                    seats: {
-                        required: "Enter the number of seats. ",
-                        digits: "The seat count must be a valid number. "
-                    }
-                }
-                });
-        //end validation
     	$(map._.el.negotiationBox).children().eq(map.currentStep-1).hide();
     	
     	if (b_skip == true) {
@@ -356,19 +335,6 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
             $(this).parent().toggleClass('selectedUser');
             $(this).parent().siblings().removeClass('selectedUser');
         }
-        
-        $('#editSeatForm').validate({
-                    invalidHandler: function(form, validator) {
-                    alert('invalid handler');
-//                    // Send an event to google analytics for the form validation error
-//                    //_gaq.push(['_trackEvent', 'specialEvent', 'validationError']);
-                    },
-                    submitHandler: function(form){
-                    alert('submithandler');
-                    //$(this).closest('form').ajaxSubmit(map.formAjaxOptions);
-                    },
-                    success: 'win'
-                    });
 
         if ($(this).parent().hasClass('selectedUser') || $(this).hasClass('cta') || $(this).hasClass('.declinedlinks')) {
 	        $.ajax({
@@ -418,13 +384,12 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                              });
 	                    }
 	                    
-	                    
 	                    //bind seat histoy toggle
 	                    $(map._.el.seatHistoryToggle).bind('click', map.seatHistoryToggle);
 	                    
 	                    if (e.isTrigger) {
         	                $(map._.el.seatHistoryToggle).trigger('click');
-                        }
+                            }
 	                }
 	            }
 	        });
@@ -462,63 +427,11 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     
     saveTerms: function() {
     	var map = Rootless.Map.Negotiation.getInstance();
+        // Validate the form before sending
+        if($(map._.el.editSeatForm).valid()){
+            $(map._.el.editSeatForm).ajaxSubmit(map.formAjaxOptions);
+        }
 
-                //validate the form
-                //$('#editSeatForm').form();
-                
-                if($('#editSeatForm').valid){
-                    $('#editSeatForm').ajaxSubmit(map.formAjaxOptions);
-                }
-                
-                
-//                  $('#editSeatForm').validate({
-//                    invalidHandler: function(form, validator) {
-//                    alert('invalid handler');
-////                    // Send an event to google analytics for the form validation error
-////                    //_gaq.push(['_trackEvent', 'specialEvent', 'validationError']);
-//                    },
-//                    submitHandler: function(form){
-//                    alert('submithandler');
-//                    //$(this).closest('form').ajaxSubmit(map.formAjaxOptions);
-//                    },
-//                    success: 'win'
-//                    });  
-                      
-                   
-//                  {
-//                  }
-//                invalidHandler: function() {
-//                    alert('invalid handler');
-////                    // Send an event to google analytics for the form validation error
-////                    //_gaq.push(['_trackEvent', 'specialEvent', 'validationError']);
-//                },
-//                submitHandler: function(){
-//                    $(this).closest('form').ajaxSubmit(map.formAjaxOptions);
-//                }
-//                  });
-//                  alert('end validating');
-//                $('#editSeatForm').validate({
-//                errorLabelContainer: $(".editSeatError"),
-//                invalidHandler: function() {
-//                    alert('invalid handler');
-//                    // Send an event to google analytics for the form validation error
-//                    //_gaq.push(['_trackEvent', 'specialEvent', 'validationError']);
-//                },
-//                messages: {
-//                    name: "Enter your name. ",
-//                    email: {
-//                        required: "Enter your email. ",
-//                        email: "Email must be a valid format. "
-//                    },
-//                    location: "Enter your location. ",
-//                    seats: {
-//                        required: "Enter the number of seats. ",
-//                        digits: "The seat count must be a valid number. "
-//                    }
-//                }
-//                });
-        //end validation
-    	//$(this).closest('form').ajaxSubmit(map.formAjaxOptions);
     	return false;
     },
     
@@ -572,24 +485,12 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	                 $(map._.el.seatRemoveButton).bind('click', map.emptyBlock);
 	                 $(map._.el.cancelTermsButton).bind('click', map.emptyBlock);
 	                 $(map._.el.saveTermsButton).bind('click', map.saveTerms);
-   
-                         $('#editSeatForm').validate({
-                            invalidHandler: function(form, validator) {
-                            alert('invalid handler');
-        //                    // Send an event to google analytics for the form validation error
-        //                    //_gaq.push(['_trackEvent', 'specialEvent', 'validationError']);
-                            },
-                            submitHandler: function(form){
-                            alert('submithandler');
-                            form.ajaxSubmit(map.formAjaxOptions);
-                            
-                            },
-                            success: 'win'
+                         // Setup validation on the edit seat form
+                         $(map._.el.editSeatForm).validate({
+                             errorClass: "invalid"
                          });
-                         
-                         //$('#seats_price').rules('add', 'digits');
-                         
-	                 //show seat edit
+
+                        //show seat edit
 	                 map._.el.$seatEditBlock.show();
 	                 map.bindTextBoxesToMap();
                          //attach pickers
