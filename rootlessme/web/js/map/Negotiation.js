@@ -100,9 +100,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                acceptButton          : "#acceptButton"
                
            },
-           
-      
-           
+
            // Variables used to block form submitting before map api results are returned
             formBlock : {
                 isOriginDecodePending      : false,
@@ -119,10 +117,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                 marker : {
                     
                 }
-           
            }
-           
-           
        }, params);
     },
    
@@ -216,8 +211,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	     }, function() {
 	         self.hoverOutPassenger($(this));
 	     });
-        
-        
+             
         $(self._.el.originTextBox).change(self.clearRouteId);
         $(self._.el.destinationTextBox).change(self.clearRouteId);
     },
@@ -229,6 +223,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 
      	self._.el.$startNegotiationBtn.bind('click', self.loadSeatDetails);
      	self._.el.$rideDetails1NextButton.live('click', self.step);
+        //only call step if validate successs
      	self._.el.$rideDetails2NextButton.live('click', self.step);
      	self._.el.$rideDetails2BackButton.live('click', self.prevStep);
      	self._.el.$discussBackButton.live('click', self.prevStep);
@@ -257,7 +252,28 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     step : function (b_skip) {
         var map = Rootless.Map.Negotiation.getInstance();
         map._.el.$seatDetails.show();
-        
+        //validation
+                $('#seatRequestForm').validate({
+                errorLabelContainer: $(".wizardError"),
+                invalidHandler: function() {
+                    alert('invalid handler');
+                    // Send an event to google analytics for the form validation error
+                    //_gaq.push(['_trackEvent', 'specialEvent', 'validationError']);
+                },
+                messages: {
+                    name: "Enter your name. ",
+                    email: {
+                        required: "Enter your email. ",
+                        email: "Email must be a valid format. "
+                    },
+                    location: "Enter your location. ",
+                    seats: {
+                        required: "Enter the number of seats. ",
+                        digits: "The seat count must be a valid number. "
+                    }
+                }
+                });
+        //end validation
     	$(map._.el.negotiationBox).children().eq(map.currentStep-1).hide();
     	
     	if (b_skip == true) {
@@ -340,6 +356,19 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
             $(this).parent().toggleClass('selectedUser');
             $(this).parent().siblings().removeClass('selectedUser');
         }
+        
+        $('#editSeatForm').validate({
+                    invalidHandler: function(form, validator) {
+                    alert('invalid handler');
+//                    // Send an event to google analytics for the form validation error
+//                    //_gaq.push(['_trackEvent', 'specialEvent', 'validationError']);
+                    },
+                    submitHandler: function(form){
+                    alert('submithandler');
+                    //$(this).closest('form').ajaxSubmit(map.formAjaxOptions);
+                    },
+                    success: 'win'
+                    });
 
         if ($(this).parent().hasClass('selectedUser') || $(this).hasClass('cta') || $(this).hasClass('.declinedlinks')) {
 	        $.ajax({
@@ -433,7 +462,63 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     
     saveTerms: function() {
     	var map = Rootless.Map.Negotiation.getInstance();
-    	$(this).closest('form').ajaxSubmit(map.formAjaxOptions);
+
+                //validate the form
+                //$('#editSeatForm').form();
+                
+                if($('#editSeatForm').valid){
+                    $('#editSeatForm').ajaxSubmit(map.formAjaxOptions);
+                }
+                
+                
+//                  $('#editSeatForm').validate({
+//                    invalidHandler: function(form, validator) {
+//                    alert('invalid handler');
+////                    // Send an event to google analytics for the form validation error
+////                    //_gaq.push(['_trackEvent', 'specialEvent', 'validationError']);
+//                    },
+//                    submitHandler: function(form){
+//                    alert('submithandler');
+//                    //$(this).closest('form').ajaxSubmit(map.formAjaxOptions);
+//                    },
+//                    success: 'win'
+//                    });  
+                      
+                   
+//                  {
+//                  }
+//                invalidHandler: function() {
+//                    alert('invalid handler');
+////                    // Send an event to google analytics for the form validation error
+////                    //_gaq.push(['_trackEvent', 'specialEvent', 'validationError']);
+//                },
+//                submitHandler: function(){
+//                    $(this).closest('form').ajaxSubmit(map.formAjaxOptions);
+//                }
+//                  });
+//                  alert('end validating');
+//                $('#editSeatForm').validate({
+//                errorLabelContainer: $(".editSeatError"),
+//                invalidHandler: function() {
+//                    alert('invalid handler');
+//                    // Send an event to google analytics for the form validation error
+//                    //_gaq.push(['_trackEvent', 'specialEvent', 'validationError']);
+//                },
+//                messages: {
+//                    name: "Enter your name. ",
+//                    email: {
+//                        required: "Enter your email. ",
+//                        email: "Email must be a valid format. "
+//                    },
+//                    location: "Enter your location. ",
+//                    seats: {
+//                        required: "Enter the number of seats. ",
+//                        digits: "The seat count must be a valid number. "
+//                    }
+//                }
+//                });
+        //end validation
+    	//$(this).closest('form').ajaxSubmit(map.formAjaxOptions);
     	return false;
     },
     
@@ -488,6 +573,22 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	                 $(map._.el.cancelTermsButton).bind('click', map.emptyBlock);
 	                 $(map._.el.saveTermsButton).bind('click', map.saveTerms);
    
+                         $('#editSeatForm').validate({
+                            invalidHandler: function(form, validator) {
+                            alert('invalid handler');
+        //                    // Send an event to google analytics for the form validation error
+        //                    //_gaq.push(['_trackEvent', 'specialEvent', 'validationError']);
+                            },
+                            submitHandler: function(form){
+                            alert('submithandler');
+                            form.ajaxSubmit(map.formAjaxOptions);
+                            
+                            },
+                            success: 'win'
+                         });
+                         
+                         //$('#seats_price').rules('add', 'digits');
+                         
 	                 //show seat edit
 	                 map._.el.$seatEditBlock.show();
 	                 map.bindTextBoxesToMap();
@@ -496,6 +597,8 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                          $('.timePicker').timepicker({ampm: true});
 	                 //bind seat histoy toggle
 	                 $(map._.el.seatHistoryToggle).bind('click', map.seatHistoryToggle);
+                         
+                         
 	                 return false;
 	                
 	             }
