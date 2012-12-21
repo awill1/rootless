@@ -18,8 +18,6 @@
                         <input id="dualPostNo" type="radio" name="dualPostNo" style="display: none;" value="No" />
                         <label for="dualPostNo" id="dualPostButtonNo" class="dualYesOrNo unselectedLabel">No</label>
                     </div>
-                    
-<!--                    add a loop to display all of the current user's existing requests that could match the ride.-->
                     <div id="existingRequests">
                         <h2 class="dualPostHeader">Please select from your existing offers:</h2>
                         <?php foreach($carpools as $driver): ?>
@@ -40,10 +38,10 @@
                         <div><?php echo $seatForm['route']['destination']->render(array('class'=>'rideDetailsFields required', 'placeholder'=>'Address, City, State', 'original-title'=>'Address, City, State')) ?></div>
                         
                         <h2>What day would you like to leave?</h2>
-                        <div><?php echo $seatForm['pickup_date']->render(array('class'=>'datePicker rideDetailsFields')) ?></div>
+                        <div><?php echo $seatForm['pickup_date']->render(array('class'=>'datePicker rideDetailsFields date')) ?></div>
                         
                         <h2>What time would you like to leave?</h2>
-                        <div><?php echo $seatForm['pickup_time']->render(array('class'=>'timePicker rideDetailsFields', 'placeholder'=>'click to add a time')) ?></div>         
+                        <div><?php echo $seatForm['pickup_time']->render(array('class'=>'timePicker rideDetailsFields time', 'placeholder'=>'click to add a time')) ?></div>         
                         <br />
                         <div id="rideDetails1NextButton" class="Button">Next</div>
                         <div class="wizardError"></div>
@@ -53,7 +51,7 @@
                     <div id="rideDetails2">
                         <h3>Ride Details</h3>
                         <h2>Would you like to adjust the  price (per seat)?</h2>
-                        <div><?php echo $seatForm['price']->render(array('class'=>'rideDetailsFields required number')) ?><span class="request-dollar-sign">$</span></div>
+                        <div><?php echo $seatForm['price']->render(array('class'=>'rideDetailsFields number')) ?><span class="request-dollar-sign">$</span></div>
                         <h2>How many extra seats do you have?</h2>
                         <div><?php echo $seatForm['seat_count']->render(array('class'=>'rideDetailsFields seatCountField digits')) ?></div>
                         <br />

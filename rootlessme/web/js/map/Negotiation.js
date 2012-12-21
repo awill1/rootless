@@ -59,11 +59,11 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                
                //ride offer & request X
                $negotiationBox       : $("#negotiationBox"),
-               editSeatForm         : "#editSeatForm",
+               editSeatForm          : "#editSeatForm",
+               seatRequestForm       : "#seatRequestForm",
                
                //view my Request
                viewMyRequestBtn      : '.viewMyRequestBtn',
-     
                
                //negotiation steps
                negotiationBox           : "#negotiationBox",
@@ -77,8 +77,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                $dualPostButtonYes       : $("#dualPostButtonYes"),
                $discussBackButton       : $("#discussBackButton"),
                negotiationSubmit        : ".newSeatForm",
-               $backToDashboardButton       : $("#confirmationBackButton"),
-               
+               $backToDashboardButton   : $("#confirmationBackButton"),
                 
                //form ajax elements
                temporaryNewSeatHolder       : "#temporaryNewSeatHolder",
@@ -167,7 +166,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
         self.strangeLon;
         self.testPoint = new google.maps.LatLng(23,45);
 		
-		// Discover the strange keys used for longitude and latitude
+        // Discover the strange keys used for longitude and latitude
         // in the data returned from google maps api.
         var googleTestString = JSON.stringify(self.testPoint);
         // this is a random two character string which represents latitude
@@ -220,7 +219,7 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     negotiationInit : function() {
      	var self = this;
      	self.stepCount = 6;
-     	self.currentStep = 1;
+     	self.currentStep = 3;
 
      	self._.el.$startNegotiationBtn.bind('click', self.loadSeatDetails);
      	self._.el.$rideDetails1NextButton.live('click', self.step);
@@ -253,17 +252,23 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
     step : function (b_skip) {
         var map = Rootless.Map.Negotiation.getInstance();
         map._.el.$seatDetails.show();
-    	$(map._.el.negotiationBox).children().eq(map.currentStep-1).hide();
-    	
-    	if (b_skip == true) {
-    		map.currentStep++;
-    	}
-    	
-        $(map._.el.negotiationBox).children().eq(map.currentStep).fadeIn();
-   	    
-        map.currentStep++;
-        if (map.currentStep==6){
-          $(map._.el.seatRemoveButton).hide();
+        
+        // Make sure the form is valid before steping. This is whole form
+        // validation for now. Eventually it should be partial form.
+        if ($(map._.el.seatRequestForm).valid())
+        {
+            $(map._.el.negotiationBox).children().eq(map.currentStep-1).hide();
+
+            if (b_skip == true) {
+                    map.currentStep++;
+            }
+
+            $(map._.el.negotiationBox).children().eq(map.currentStep).fadeIn();
+
+            map.currentStep++;
+            if (map.currentStep==6){
+              $(map._.el.seatRemoveButton).hide();
+            }
         }
         return false;
    	    
@@ -340,12 +345,13 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	        $.ajax({
 	        	url : $(this).attr("href"), 
 	        	success : function(response, status){
-	        		if (status == 'success') {
-	        			map._.el.$seatDetails.empty();
+                            if (status == 'success') {
+                                    map._.el.$seatDetails.empty();
 	                    //hide main ride details & main ride people info
 	                    map._.el.$mainRideDetails.hide();
 	                    map._.el.$mainRidePeople.hide();
-	                    map.currentStep = 1;
+                            // Disabling the do you already have a ride steps
+	                    map.currentStep = 3;
 	                    //show seat details
 	                    map._.el.$seatDetails.append($(response)[$(response).length - 1]);
 	                    map._.el.$seatDetails.show();
@@ -361,27 +367,25 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
                             $('.timePicker').timepicker({ampm: true});
                             
 	                    if(this.url.match(/new/)) {
-	                         $(map._.el.originTextBox).trigger('change');
-                             $(map._.el.destinationTextBox).trigger('change');
-                             
-                             $(map._.el.negotiationSubmit).ajaxForm({
-        	                     beforeSubmit : function() {
-        	                     	map._.el.$seatDetails.block({ 
-                                        message: '<img src="/images/ajax-loader.gif" alt="Submitting..." />'
-                                     });
-        	                     },
-        	                     
-        	                     error : function(response) {
-        	                         alert('something is wrong, solo');
-        	                         map._.el.$seatDetails.unblock();
-        	                        
-        	                     },
-        	                     
-        	                     success : function() {
-        	                         map._.el.$seatDetails.unblock();
-        	                         map.step();
-        	                     }
-                             });
+	                        $(map._.el.originTextBox).trigger('change');
+                                $(map._.el.destinationTextBox).trigger('change');
+
+                                $(map._.el.negotiationSubmit).ajaxForm({
+                                        beforeSubmit : function() {
+                                            map._.el.$seatDetails.block({ 
+                                                message: '<img src="/images/ajax-loader.gif" alt="Submitting..." />'
+                                            });
+                                        },
+                                        error : function(response) {
+                                            alert('There was an error. The seat was not created.');
+                                            map._.el.$seatDetails.unblock();
+
+                                        },
+                                        success : function() {
+                                            map._.el.$seatDetails.unblock();
+                                            map.step();
+                                        }
+                                });
 	                    }
 	                    
 	                    //bind seat histoy toggle
@@ -485,6 +489,10 @@ Rootless.Map.Negotiation = Rootless.Map.extend({
 	                 $(map._.el.seatRemoveButton).bind('click', map.emptyBlock);
 	                 $(map._.el.cancelTermsButton).bind('click', map.emptyBlock);
 	                 $(map._.el.saveTermsButton).bind('click', map.saveTerms);
+                         // Setup validation on the new seat form
+                         $(map._.el.seatRequestForm).validate({
+                             errorClass: "invalid"
+                         });
                          // Setup validation on the edit seat form
                          $(map._.el.editSeatForm).validate({
                              errorClass: "invalid"
