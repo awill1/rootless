@@ -142,10 +142,9 @@ Rootless.Map.Search = Rootless.Map.extend({
         	this._.el.$destinationTextBox.val(destination);
         }
             
-        if (origin != null || destination != null) {
-            this.previewRoute();
-            self._.el.$ridefind.click();
-        }    
+        // Search for what is in the textboxes at page load time
+        this.previewRoute();
+        self._.el.$ridefind.click();  
     },
 	
     geocodeOrigin : function(results, status) {     
