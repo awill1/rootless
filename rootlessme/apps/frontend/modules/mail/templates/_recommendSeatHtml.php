@@ -10,14 +10,24 @@
 
 <p>
     <?php if ($rideType=='offer') {echo 'Passenger: ';} else {echo "Driver: ";} ?><?php echo $otherUserProfile->getFullName(); ?><br />
-    Phone: <?php echo $otherUserProfile->getPhoneNumber(); ?><br />
-    Email: <?php echo $otherUser->getSfGuardUser()->getEmailAddress(); ?><br />
     Pick up Location: <?php echo $seat->getRoutes()->getOriginString(); ?> <br />
     Drop off Location: <?php echo $seat->getRoutes()->getDestinationString(); ?> <br />
     On: <?php echo format_date($seat->getPickupDate(), 'P'); ?> 
 </p>
 
-<p>If the match looks good, go ahead and start discussing the important details with the person. </p>
+<p>If the match looks good, go ahead and start discussing the important details with the person.
+    You can view and edit the full terms at 
+<?php 
+if($rideType=='offer')
+{
+    echo '<a href="'.url_for('ride_show', array('ride_type' => $rideType,'ride_id' => $seat->getCarpoolId()), TRUE).'#seat-'.$seat->getSeatId().'" >'.url_for('ride_show', array('ride_type' => $rideType,'ride_id' => $seat->getCarpoolId()), TRUE).'#seat-'.$seat->getSeatId().'</a>' ;
+}
+else
+{
+    echo '<a href="'.url_for('ride_show', array('ride_type' => $rideType,'ride_id' => $seat->getPassengerId()), TRUE).'#seat-'.$seat->getSeatId().'" >'.url_for('ride_show', array('ride_type' => $rideType,'ride_id' => $seat->getPassengerId()), TRUE).'#seat-'.$seat->getSeatId().'</a>' ;
+}
+?> . 
+</p>
 
 <p>If you have already arranged your carpool, or you would no longer like to receive emails for this ride click this link to close the ride:</p>
 <p>
