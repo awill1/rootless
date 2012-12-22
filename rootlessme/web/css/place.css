@@ -8,8 +8,84 @@
 
 
 
+#indexMain{
+    margin-top:11px;
+    float:left;
+}
+#devTable{
+    float:left;
+    margin-top: 100px;
+}
+#devNew{
+    float:left;
+}
 
 #map {
-    width: 400px;
-    height: 230px;
+    width: 352px;
+    height: 277px;
+}
+h1{
+    color: #E87C62;
+    font-weight: bold;
+    font-size: 33px;
+    margin-bottom: 15px;
+}
+.placesList{
+    list-style: none;
+    margin-left: 0;
+    padding: 0;
+}
+.placeBox{
+    width: 586px;
+    height: 115px;
+    float: left;
+    background-color: #EAEAEA;
+    margin-bottom: 25px;
+}
+.placeBox:hover{
+    width: 586px;
+    height: 115px;
+    float: left;
+    background-color: #565656;
+    margin-bottom: 25px;
+}
+.placeBox:hover .placeName{
+    color: #E87C62;
+}
+.placeBox:hover .placeLocation{
+    color: #fff;
+}
+.placeBox:hover .placeTags{
+    color: #fff;
+}
+.placeImg{
+    float: left;
+    width: 261px;
+    height: 115px;
+    background-color: #E87C62;
+    background-image: url('../images/placesindeximg.jpg');
+}
+.placeInfo{
+    float: left;
+/*    width: 315px;*/
+    padding-top: 10px;
+    margin-left: 14px;
+}
+.placeName{
+    color: #119F49;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 3px;
+}
+.placeLocation{
+    font-style: italic;
+    color:#565656;
+    font-size: 12px;
+    margin-bottom: 36px;
+    
+}
+.placeTags{
+    color:#565656;
+    font-weight: bold;
+    font-size: 14px;
 }
