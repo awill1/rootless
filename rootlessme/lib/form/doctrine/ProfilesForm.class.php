@@ -26,12 +26,7 @@ class ProfilesForm extends BaseProfilesForm
         $this->setWidget('picture_url_tiny', new sfWidgetFormInputHidden());
 
         // Change the birthday widget to be a textbox formatted as m/d/y
-        $dateFormatArray = array();
-        if ($this->getObject()->getBirthday() != null)
-        {
-            $dateFormatArray['value'] = date('m/d/Y', strtotime($this->getObject()->getBirthday()));
-        }
-        $this->setWidget('birthday', new sfWidgetFormInputText( array(),$dateFormatArray));
+        $this->setWidget('birthday', new sfWidgetFormInputDateText());
 
         // Setup the extra validators
         $this->setValidator('picture_url', new sfValidatorFile(array(

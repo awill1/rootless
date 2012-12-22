@@ -31,29 +31,31 @@
                     <div id="rideDetails1">
                         <h3>Ride Details</h3>
                         <h2>Where would you like to be picked up?</h2>
-                        <div><?php echo $seatForm['route']['origin']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Address, City, State')) ?></div>
+                        <div><?php echo $seatForm['route']['origin']->render(array('class'=>'rideDetailsFields required', 'placeholder'=>'Address, City, State', 'original-title'=>'Address, City, State')) ?></div>
                         
                         <h2>Where would you like to be dropped off?</h2>
-                        <div><?php echo $seatForm['route']['destination']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Address, City, State')) ?></div>
+                        <div><?php echo $seatForm['route']['destination']->render(array('class'=>'rideDetailsFields required', 'placeholder'=>'Address, City, State', 'original-title'=>'Address, City, State')) ?></div>
                         
                         <h2>What day would you like to leave?</h2>
-                        <div><?php echo $seatForm['pickup_date']->render(array('class'=>'datePicker rideDetailsFields')) ?></div>
+                        <div><?php echo $seatForm['pickup_date']->render(array('class'=>'datePicker rideDetailsFields date')) ?></div>
                         
                         <h2>What time would you like to leave?</h2>
-                        <div><?php echo $seatForm['pickup_time']->render(array('class'=>'timePicker rideDetailsFields', 'placeholder'=>'click to add a time')) ?></div>
+                        <div><?php echo $seatForm['pickup_time']->render(array('class'=>'timePicker rideDetailsFields time', 'placeholder'=>'click to add a time')) ?></div>
                         <br />
                         <div id="rideDetails1NextButton" class="Button">Next</div>
+                        <div class="wizardError"></div>
                         <br /><br /><br/>
                         <span class="plainText">step 1 of 3</span>
                     </div>
                     <div id="rideDetails2">
                         <h3>Ride Details</h3>
                         <h2>Would you like to adjust the asking price (per seat)?</h2>
-                        <div><?php echo $seatForm['price']->render(array('class'=>'rideDetailsFields')) ?><span class="request-dollar-sign">$</span></div>
+                        <div><?php echo $seatForm['price']->render(array('class'=>'rideDetailsFields required number')) ?><span class="request-dollar-sign">$</span></div>
                         <h2>How many seats do you need?</h2>
-                        <div><?php echo $seatForm['seat_count']->render(array('class'=>'rideDetailsFields')) ?></div>
+                        <div><?php echo $seatForm['seat_count']->render(array('class'=>'rideDetailsFields digits')) ?></div>
                         <br />
                         <div id="rideDetails2BackButton" class="Button">Back</div><div id="rideDetails2NextButton" class="Button">Next</div>
+                        <div class="wizardError"></div>
                         <br /><br /><br/>
                         <span class="plainText">step 2 of 3</span>
                     </div>
@@ -70,17 +72,19 @@
                         <br />
                         <div><?php echo $seatForm['description']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Chat...')) ?></div> <br />
                         <div id="discussBackButton" class="Button">Back</div> <div><input type="submit" value="Submit" ></div>
+                        <div class="wizardError"></div>
                         <br />
                         <span class="plainText">step 3 of 3</span>
                     </div>
                     <div id="confirmation">
                         <h2>Thank you for requesting a seat!</h2><br/>
-                        <div class="plainText">Be sure to check your dashboard to hear back<br />
-                            from the driver, but feel free to keep searching!<br />
-                            The more requests you submit, the better your<br /> 
+                        <div class="plainText">Be sure to check your dashboard to hear back
+                            from the driver, but feel free to keep searching!
+                            The more requests you submit, the better your
                             chances of finding the right ride!
                         </div><br/>
-                        <div id="confirmationBackButton" class="Button">Back to Rides</div>
+<!--                        <div id="confirmationViewButton" class="Button">View my request</div>-->
+                        <div id="confirmationBackButton" class="Button">View my dashboard</div>
                     </div>
                 </div>
     </form>

@@ -85,7 +85,7 @@
                 </div>
                 
                 <div class="seatNegotiationHistoryUpdateTime">
-                    Updated at <?php echo date('g:i A l, F j, Y', strtotime($newHistoryItem->getCreatedAt())) ?>
+                   <?php echo date('m/d/Y', strtotime($newHistoryItem->getCreatedAt())) ?> at <?php echo date('h:i a', strtotime($newHistoryItem->getCreatedAt())) ?>
                 </div>
                 
                 <div class="clearfix"></div>

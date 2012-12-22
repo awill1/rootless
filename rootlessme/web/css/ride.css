@@ -723,7 +723,7 @@ label span.dollar-sign {
 
 .request-dollar-sign {
     left: 27px;
-    top: 68px;
+    top: 66px;
     position: absolute;
     font-weight: normal;
 }
@@ -732,6 +732,9 @@ label span.dollar-sign {
     top: 130px;
     position: absolute;
     font-weight: normal;
+}
+.seatCountField{
+    width: 60px;
 }
 
 #seatDetailsBlock input[type='text'] {
@@ -771,8 +774,8 @@ label span.dollar-sign {
 }
 
 #seatDetails, 
-#existingRequests, 
-#rideDetails1, 
+#dualPost,
+#existingRequests,  
 #rideDetails2, 
 #discuss, 
 #confirmation {
@@ -878,6 +881,10 @@ label span.dollar-sign {
 }
 
 #confirmationBackButton.Button {
+	float: none;
+	display: inline-block;
+}
+#confirmationViewButton.Button {
 	float: none;
 	display: inline-block;
 }
@@ -1033,7 +1040,7 @@ li{
 
 .removeBtn:hover {
     float: left;
-	color: #222;
+    color: #222;
     margin-left: 37px;
 }
 
@@ -1146,4 +1153,9 @@ li{
 }
 #twitterRideShare{
     margin-bottom: 15px;
+}
+
+.invalid
+{
+    color: #F55830;
 }

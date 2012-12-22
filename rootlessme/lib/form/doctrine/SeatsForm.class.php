@@ -41,7 +41,7 @@ class SeatsForm extends BaseSeatsForm
         // Change the pickup date and time widgets to be textboxs for the
         // date and time picker. The default date and time validators will
         // still work
-        $this->setWidget('pickup_date',new sfWidgetFormInputText());
+        $this->setWidget('pickup_date',new sfWidgetFormInputDateText());
         $this->setWidget('pickup_time',new sfWidgetFormInputText());
 
         // Create the carpool and passenger choices, allowing the empty option

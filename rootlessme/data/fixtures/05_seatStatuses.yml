@@ -13,3 +13,7 @@ SeatStatuses:
     seat_status_id: 3
     display_text: Declined
     slug: declined
+  seat_status_recommended:
+    seat_status_id: 4
+    display_text: Recommended
+    slug: recommended

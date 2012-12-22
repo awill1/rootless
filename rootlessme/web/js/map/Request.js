@@ -104,7 +104,7 @@ Rootless.Map.Request = Rootless.Map.extend({
         self.strangeLon;
         self.testPoint = new google.maps.LatLng(23,45);
 		
-		// Discover the strange keys used for longitude and latitude
+        // Discover the strange keys used for longitude and latitude
         // in the data returned from google maps api.
         var googleTestString = JSON.stringify(self.testPoint);
         // this is a random two character string which represents latitude
