@@ -834,6 +834,17 @@ Places:
       primary: false
       notnull: false
       autoincrement: false
+  relations:
+    Origin_Route:
+      class: Routes
+      local: origin_place_id
+      foreign: place_id
+      type: one
+    Destination_Route:
+      class: Routes
+      local: destination_place_id
+      foreign: place_id
+      type: one
 Profiles:
   connection: doctrine
   tableName: profiles
@@ -1250,6 +1261,12 @@ Routes:
       primary: false
       notnull: false
       autoincrement: false
+    origin_place_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      autoincrement: false
+      notnull: false
     destination_address:
       type: string(255)
       fixed: false
@@ -1285,6 +1302,12 @@ Routes:
       primary: false
       notnull: false
       autoincrement: false
+    destination_place_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      autoincrement: false
+      notnull: false
     distance:
       type: integer(4)
       fixed: false
@@ -1339,6 +1362,16 @@ Routes:
       local: route_id
       foreign: solo_route_id
       type: many
+    Origin_Places:
+      class: Places
+      local: origin_place_id
+      foreign: place_id
+      type: one
+    Destination_Places:
+      class: Places
+      local: destination_place_id
+      foreign: place_id
+      type: one
 SeatStatuses:
   connection: doctrine
   tableName: seat_statuses
