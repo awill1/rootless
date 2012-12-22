@@ -3,6 +3,7 @@
     <h1>Share rides to your favorite places</h1>
     <ul class="placesList">
         <?php foreach ($places as $place): ?>
+        <a href="<?php echo url_for('place/show?place_id='.$place->getPlaceId()) ?>">
             <li>
                 <div class="placeBox">
                     <div class="placeImg">
@@ -15,6 +16,7 @@
                     </div>
                 </div>
             </li>
+        </a>
         <?php endforeach; ?>
     </ul>
 </div>
