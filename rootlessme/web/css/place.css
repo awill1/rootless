@@ -89,6 +89,8 @@ h1{
     font-weight: bold;
     font-size: 14px;
 }
+
+/*place page stuff*/
 #content{
     
 }
@@ -105,4 +107,58 @@ backgroundContainer{
 }
 body{
 /*    background-image: url('../images/eaglePoint_background_cropped.jpg');*/
+}
+#middleContent{
+    margin-left: 0px !important;
+}
+#placeHead{
+    width: auto;
+    height: 382px;
+    margin-left: 240px;
+}
+#placeContent{
+    float: left;
+}
+#headerAndLikeBox{
+    width: 940px;
+    float: left;
+    margin-bottom: 10px;
+}
+#placePostRideHeader{
+    float: left;
+    width: 300px;
+}
+#facebookLikeBox{
+    float:right;
+}
+#placeFormBox{
+    float: left;
+    background-color: #f3f3f3;
+    width: 543px;
+    margin-right: 45px;
+}
+#placeMapBox{
+    float:left;
+    margin-bottom: 20px;
+}
+#mapCaption{
+    
+}
+#placeTravelersBox{
+    float: left;
+    
+}
+#placeHowBox{
+    float:left;
+    background-color: #f3f3f3;
+    width:352px;
+}
+.placeContentHeader{
+    color: #009F40;
+    font-weight: bold;
+    font-size: 16px;
+}
+#placeDetailsSection{
+    float:left;
+    width: 352px;
 }
