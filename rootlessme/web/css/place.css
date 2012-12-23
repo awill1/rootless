@@ -89,3 +89,20 @@ h1{
     font-weight: bold;
     font-size: 14px;
 }
+#content{
+    
+}
+backgroundContainer{
+    background-image: url('../images/eaglePoint_background_cropped.jpg');
+/*    background-repeat: no-repeat;*/
+    display: overflow;
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    left:-500px;
+    top:-500px;
+    z-index:-1;
+}
+body{
+/*    background-image: url('../images/eaglePoint_background_cropped.jpg');*/
+}
