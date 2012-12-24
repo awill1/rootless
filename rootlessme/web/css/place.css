@@ -8,8 +8,231 @@
 
 
 
+#indexMain{
+    margin-top:11px;
+    float:left;
+}
+#devTable{
+    float:left;
+    margin-top: 100px;
+}
+#devNew{
+    float:left;
+}
 
 #map {
-    width: 400px;
-    height: 230px;
+    width: 352px;
+    height: 277px;
+}
+h1{
+    color: #E87C62;
+    font-weight: bold;
+    font-size: 33px;
+    margin-bottom: 15px;
+}
+.placesList{
+    list-style: none;
+    margin-left: 0;
+    padding: 0;
+}
+.placeBox{
+    width: 586px;
+    height: 115px;
+    float: left;
+    background-color: #EAEAEA;
+    margin-bottom: 25px;
+}
+.placeBox:hover{
+    width: 586px;
+    height: 115px;
+    float: left;
+    background-color: #565656;
+    margin-bottom: 25px;
+}
+.placeBox:hover .placeName{
+    color: #E87C62;
+}
+.placeBox:hover .placeLocation{
+    color: #fff;
+}
+.placeBox:hover .placeTags{
+    color: #fff;
+}
+.placeImg{
+    float: left;
+    width: 261px;
+    height: 115px;
+    background-color: #E87C62;
+    background-image: url('../images/placesindeximg.jpg');
+}
+.placeInfo{
+    float: left;
+/*    width: 315px;*/
+    padding-top: 10px;
+    margin-left: 14px;
+}
+.placeName{
+    color: #119F49;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 3px;
+}
+.placeLocation{
+    font-style: italic;
+    color:#565656;
+    font-size: 12px;
+    margin-bottom: 36px;
+    
+}
+.placeTags{
+    color:#565656;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/*place page stuff*/
+#content{
+    
+}
+backgroundContainer{
+    background-image: url('../images/eaglePoint_background_cropped.jpg');
+/*    background-repeat: no-repeat;*/
+    display: overflow;
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    left:-500px;
+    top:-500px;
+    z-index:-1;
+}
+body{
+/*    background-image: url('../images/eaglePoint_background_cropped.jpg');*/
+}
+#middleContent{
+    margin-left: 0px !important;
+}
+#placeHead{
+    width: auto;
+    height: 382px;
+    margin-left: 240px;
+}
+#placeContent{
+    float: left;
+}
+#headerAndLikeBox{
+    width: 940px;
+    float: left;
+    margin-bottom: 10px;
+}
+#placePostRideHeader{
+    float: left;
+    width: 300px;
+}
+#facebookLikeBox{
+    float:right;
+}
+#placeFormBox{
+    float: left;
+    background-color: #f3f3f3;
+    width: 543px;
+    margin-right: 25px;
+    padding: 15px;
+}
+#placeMapBox{
+    float:left;
+    margin-bottom: 20px;
+}
+#mapCaption{
+    
+}
+#placeTravelersBox{
+    float: left;
+    
+}
+#placeHowBox{
+    float:left;
+    background-color: #f3f3f3;
+    width:312px;
+    padding: 20px;
+}
+.placeContentHeader{
+    color: #009F40;
+    font-weight: bold;
+    font-size: 24px;
+}
+#placeDetailsSection{
+    float:left;
+    width: 352px;
+}
+.primaryTextStyle{
+    color: #E26C59;
+    font-weight:bold;
+    font-size: 18px;
+}
+.secondaryTextStyle{
+    color:#A0A0A0;
+    font-weight:bold;
+    font-size: 18px;
+}
+.tertiaryTextStyle{
+    color:#969696;
+    font-weight:normal;
+    font-size: 12px;
+}
+.fourthTextStyle{
+    color:#969696;
+    font-size: 12px;
+    
+}
+#placeLogo{
+    background-image: url('../images/eaglePointLogo.png');
+    width:113px;
+    height:129px;
+    position: absolute;
+    top: 290px;
+    left: 35px;
+}
+h3{
+    font-size:18px;
+    color:#565656;
+}
+.howtoList li{
+    margin-bottom: 15px;
+}
+.dollar-sign{
+    color:#565656;
+    font-size:18px;
+}
+.longField{
+    width: 287px;
+    padding: 5px;
+}
+.shortField{
+    width: 166px;
+    padding: 5px;
+}
+.tinyField{
+    width: 54px;
+    padding: 5px;
+}
+.dropDown{
+    width: 155px;
+    padding: 5px;
+}
+.tinyDropDown{
+    width: 65px;
+    padding: 5px;
+}
+#otherDetailsTextArea{
+    width:520px;
+    height:112px;
+}
+.postRideButton{
+    float: right;
+    font-weight: bold;
+    
+    padding: 5px;
+}
+tr{
+    height: 50px;
 }
