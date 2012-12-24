@@ -16,15 +16,16 @@
         <tr>
             <td><span class="primaryTextStyle">Starting From</span></td>
             <td>
-                <input id="originTextBox" type="text" name="origin" placeholder="Address, City, State" />
+                <input id="originTextBox" class="longField" type="text" name="origin" placeholder="Address, City, State" />
             </td>
         </tr>
-        <hr />
+        <tr><td colspan="2"><hr /></td></tr>
+        
         <tr>
             <td><span class="primaryTextStyle">Depart Date</span></td>
             <td>
-                <input id="startDateTextBox" class="datePicker" type="text" name="start_date" placeholder="MM/DD/YYYY" />
-                <select id="startTimeDropDown" name="start_time">
+                <input id="startDateTextBox" class="datePicker shortField" type="text" name="start_date" placeholder="MM/DD/YYYY" />
+                <select id="startTimeDropDown" class="dropDown" name="start_time">
                     <option value="">Anytime</option>
                     <?php for($i = 0; $i < 24 ; $i++): ?>
                         <option value="<?php echo $i; ?>:00"><?php echo $i; ?>:00</option>
@@ -33,14 +34,14 @@
                 </select>
                 <br />
                 <input id="startDateAnydayCheckBox" type="checkbox" name="start_date" placeholder="MM/DD/YYYY" />
-                <label for="startDateAnydayCheckBox">Any day</label>
+                <label for="startDateAnydayCheckBox"><span class='fourthTextStyle'>Any day</span></label>
             </td>
         </tr>
         <tr>
             <td><span class="primaryTextStyle">Return Date</span></td>
             <td>
-                <input id="returnDateTextBox" class="datePicker" type="text" name="return_date" placeholder="MM/DD/YYYY" />
-                <select id="returnTimeDropDown" name="return_time">
+                <input id="returnDateTextBox" class="datePicker shortField" type="text" name="return_date" placeholder="MM/DD/YYYY" />
+                <select id="returnTimeDropDown" class="dropDown" name="return_time">
                     <option value="">Anytime</option>
                     <?php for($i = 0; $i < 24 ; $i++): ?>
                         <option value="<?php echo $i; ?>:00"><?php echo $i; ?>:00</option>
@@ -49,17 +50,17 @@
                 </select>
                 <br />
                 <input id="returnDateAnydayCheckBox" type="checkbox" name="return_date" placeholder="MM/DD/YYYY" />
-                <label for="returnDateAnydayCheckBox">Any day</label>
+                <label for="returnDateAnydayCheckBox"><span class='fourthTextStyle'>Any day</span></label>
             </td>
         </tr>
-        <hr />
+        <tr><td colspan="2"><hr /></td></tr>
         <tr>
             <td class="secondaryTextStyle" colspan="2">As a driver:</td>
         </tr>
         <tr>
             <td><span class="primaryTextStyle">Seats Available</span></td>
             <td>
-                <select id="driverSeatsDropDown" name="driver_seats">
+                <select id="driverSeatsDropDown" class="tinyDropDown" name="driver_seats">
                     <?php for($i = 1; $i < 30 ; $i++): ?>
                         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                     <?php endfor; ?>
@@ -69,7 +70,7 @@
         <tr>
             <td><span class="primaryTextStyle">Price</span></td>
             <td>
-                <span class='dollar-sign'>$</span> <input id="driverPriceTextBox" type="text" name="driver_price" /> per seat
+                <span class='dollar-sign'>$</span> <input id="driverPriceTextBox" class="tinyField" type="text" name="driver_price" /> <span class='fourthTextStyle'>per seat</span>
             </td>
         </tr>
         <tr>
@@ -78,7 +79,7 @@
         <tr>
             <td><span class="primaryTextStyle">Seats needed</span></td>
             <td>
-                <select id="passengerSeatsDropDown" name="passenger_seats">
+                <select id="passengerSeatsDropDown" class="tinyDropDown" name="passenger_seats">
                     <?php for($i = 1; $i < 30 ; $i++): ?>
                         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                     <?php endfor; ?>
@@ -88,14 +89,14 @@
         <tr>
             <td><span class="primaryTextStyle">Willing to pay</span></td>
             <td>
-                <span class='dollar-sign'>$</span> <input id="passengerPriceTextBox" type="text" name="passenger_price" /> per seat
+                <span class='dollar-sign'>$</span> <input id="passengerPriceTextBox" class="tinyField" type="text" name="passenger_price" /> <span class='fourthTextStyle'>per seat</span>
             </td>
         </tr>
+        <tr><td colspan="2"><hr /></td></tr>
         <tr>
             <td colspan="2">
                 <span class="primaryTextStyle">Other ride details:</span><br />
                 <textarea id="otherDetailsTextArea" name="other_details" placeholder="How much space do you have/need for equipment, plans at the place, etc." >
-
                 </textarea>
             </td>
         </tr>
@@ -103,7 +104,7 @@
     <tfoot>
       <tr>
         <td colspan="2">
-          <input type="submit" value="Post Ride" />
+          <input type="submit" class="postRideButton" value="Post Ride" />
         </td>
       </tr>
     </tfoot>

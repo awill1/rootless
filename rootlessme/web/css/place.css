@@ -135,7 +135,8 @@ body{
     float: left;
     background-color: #f3f3f3;
     width: 543px;
-    margin-right: 45px;
+    margin-right: 25px;
+    padding: 15px;
 }
 #placeMapBox{
     float:left;
@@ -178,6 +179,11 @@ body{
     font-weight:normal;
     font-size: 12px;
 }
+.fourthTextStyle{
+    color:#969696;
+    font-size: 12px;
+    
+}
 #placeLogo{
     background-image: url('../images/eaglePointLogo.png');
     width:113px;
@@ -196,4 +202,37 @@ h3{
 .dollar-sign{
     color:#565656;
     font-size:18px;
+}
+.longField{
+    width: 287px;
+    padding: 5px;
+}
+.shortField{
+    width: 166px;
+    padding: 5px;
+}
+.tinyField{
+    width: 54px;
+    padding: 5px;
+}
+.dropDown{
+    width: 155px;
+    padding: 5px;
+}
+.tinyDropDown{
+    width: 65px;
+    padding: 5px;
+}
+#otherDetailsTextArea{
+    width:520px;
+    height:112px;
+}
+.postRideButton{
+    float: right;
+    font-weight: bold;
+    
+    padding: 5px;
+}
+tr{
+    height: 50px;
 }
