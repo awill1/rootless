@@ -176,6 +176,11 @@ place_delete:
   param:   { module: place, action: delete}
   requirements: { sf_method: post }
 
+place_create_ride:
+  url:     /places/createRide
+  param:   { module: place, action: create}
+  requirements: { sf_method: post }
+  
 place_show:
   url:     /places/:place_id
   class:   sfDoctrineRoute

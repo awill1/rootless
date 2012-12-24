@@ -3,7 +3,8 @@
 
 
 <?php slot('gmapheader'); ?>
-    <script type="text/javascript" src="/js/map/Request.js"></script>
+    <script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
+    <script type="text/javascript" src="/js/map/Place.js"></script>
     <script type="text/javascript">   
       $(document).ready(function(){
 
@@ -13,7 +14,7 @@
         var rootless = Rootless.getInstance({sessionId : 'showPlace'});
 
        //the map object
-        var map = Rootless.Map.Request.getInstance({
+        var map = Rootless.Map.Place.getInstance({
             mapId : 'map',
             el: {
                 $originLatitude       : $("#rides_origin_latitude"),

@@ -1,5 +1,5 @@
 /*
- * Request Map Class
+ * Search Map Class
  * @constructor Rootless.Map.Request
  * @params spec <Object> Object that holds all the variables for the maps
  * This script requires the Google Map and JQuery scripts to already be loaded
@@ -286,7 +286,7 @@ Rootless.Map.Search = Rootless.Map.extend({
 	},
 
         
-	MaybeSubmitForm : function() {            
+    MaybeSubmitForm : function() {            
        // Check to make sure nothing is blocking submitting the form
        if (this.canSubmitForm() && this._.formBlock.isFormSubmitPending) {
             $('#rideSearchForm').ajaxSubmit(this.formAjaxOptions);

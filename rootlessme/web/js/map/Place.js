@@ -1,15 +1,15 @@
 /*
- * Request Map Class
+ * Place Map Class
  * @constructor Rootless.Map.Request
  * @params spec <Object> Object that holds all the variables for the maps
  * This script requires the Google Map and JQuery scripts to already be loaded
  * in the browser.
  */
 
-Namespace('Rootless.Map.Request');
+Namespace('Rootless.Map.Place');
 
-Rootless.Map.Request = Rootless.Map.extend({
-	/**
+Rootless.Map.Place = Rootless.Map.extend({
+   /**
     *  Initializes the Google Maps API for request forms
     *  @param params {arguments} - but mapId is needed to initialize map
     */
@@ -36,12 +36,13 @@ Rootless.Map.Request = Rootless.Map.extend({
            
            //all html elements referred in the code should go here (including jquery)
            el : {
-               $originTextBox        : $("#rides_origin"),
-               $destinationTextBox   : $("#rides_destination"),
-               originTextBox         : "#rides_origin",
-               destinationTextBox    : "#rides_destination",
+               $originTextBox        : $("#originTextBox"),
+               $destinationTextBox   : $("#destinationTextBox"),
+               originTextBox         : "#originTextBox",
+               destinationTextBox    : "#destinationTextBox",
                $submitButton         : $('.submitButton'),
-               $newRideFormArea	     : $("#newRideFormArea")
+               $newRideFormArea	     : $("#newRideFormArea"),
+               rideForm              : "#roundTripForm"
            },
            
            // Variables used to block form submitting before map api results are returned
@@ -57,7 +58,6 @@ Rootless.Map.Request = Rootless.Map.extend({
                 polyline : {
                 	polylines : []
                 },
-                
                 marker : {
                 }
            }
@@ -156,13 +156,31 @@ Rootless.Map.Request = Rootless.Map.extend({
         map.clearDestinationDecodePendingFlag();
     },
     
-	MaybeSubmitForm : function() {            
+    // Form submit options used for the ajax form
+    formAjaxOptions : {
+        success: function()
+        {
+            var map = Rootless.Map.Place.getInstance();
+            // Clear the form submit pending flag
+            isFormSubmitPending = false;
+
+            // This handler function will run when the form is complete
+            $('#loader').hide();
+            $('#placeRideConfirmationContainer').show('blind');
+        }
+    },
+    
+    MaybeSubmitForm : function() {           
+       // variable that keeps object available in inner functions
+       var self = this;
+       
        // Check to make sure nothing is blocking submitting the form
        if (this.canSubmitForm() && this._.formBlock.isFormSubmitPending) {
-            $('.newRideForm').submit();
+            $().submit();
+            $(map._.el.rideForm).ajaxSubmit(self.formAjaxOptions);
         }
-     }
+    }
     
 });
 
-Class.addSingleton(Rootless.Map.Request);
+Class.addSingleton(Rootless.Map.Place);
