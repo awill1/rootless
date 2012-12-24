@@ -3,7 +3,7 @@
   <table>
     <tbody>
         <tr>
-            <td>I am a</td>
+            <td><span class="primaryTextStyle">I am a</span></td>
             <td>
                 <input id="rideTypeDriver" type="radio" name="ride_type" value="driver" />
                 <label for="rideTypeDriver">driver</label>
@@ -14,13 +14,14 @@
             </td>
         </tr>
         <tr>
-            <td>Starting From</td>
+            <td><span class="primaryTextStyle">Starting From</span></td>
             <td>
                 <input id="originTextBox" type="text" name="origin" placeholder="Address, City, State" />
             </td>
         </tr>
+        <hr />
         <tr>
-            <td>Depart Date</td>
+            <td><span class="primaryTextStyle">Depart Date</span></td>
             <td>
                 <input id="startDateTextBox" class="datePicker" type="text" name="start_date" placeholder="MM/DD/YYYY" />
                 <select id="startTimeDropDown" name="start_time">
@@ -36,7 +37,7 @@
             </td>
         </tr>
         <tr>
-            <td>Return Date</td>
+            <td><span class="primaryTextStyle">Return Date</span></td>
             <td>
                 <input id="returnDateTextBox" class="datePicker" type="text" name="return_date" placeholder="MM/DD/YYYY" />
                 <select id="returnTimeDropDown" name="return_time">
@@ -51,11 +52,12 @@
                 <label for="returnDateAnydayCheckBox">Any day</label>
             </td>
         </tr>
+        <hr />
         <tr>
-            <td class="formSubHeader" colspan="2">As a driver:</td>
+            <td class="secondaryTextStyle" colspan="2">As a driver:</td>
         </tr>
         <tr>
-            <td>Seats Available</td>
+            <td><span class="primaryTextStyle">Seats Available</span></td>
             <td>
                 <select id="driverSeatsDropDown" name="driver_seats">
                     <?php for($i = 1; $i < 30 ; $i++): ?>
@@ -65,16 +67,16 @@
             </td>
         </tr>
         <tr>
-            <td>Price</td>
+            <td><span class="primaryTextStyle">Price</span></td>
             <td>
-                $ <input id="driverPriceTextBox" type="text" name="driver_price" /> per seat
+                <span class='dollar-sign'>$</span> <input id="driverPriceTextBox" type="text" name="driver_price" /> per seat
             </td>
         </tr>
         <tr>
-            <td class="formSubHeader" colspan="2">As a passenger:</td>
+            <td class="secondaryTextStyle" colspan="2">As a passenger:</td>
         </tr>
         <tr>
-            <td>Seats needed</td>
+            <td><span class="primaryTextStyle">Seats needed</span></td>
             <td>
                 <select id="passengerSeatsDropDown" name="passenger_seats">
                     <?php for($i = 1; $i < 30 ; $i++): ?>
@@ -84,14 +86,14 @@
             </td>
         </tr>
         <tr>
-            <td>Willing to pay</td>
+            <td><span class="primaryTextStyle">Willing to pay</span></td>
             <td>
-                $ <input id="passengerPriceTextBox" type="text" name="passenger_price" /> per seat
+                <span class='dollar-sign'>$</span> <input id="passengerPriceTextBox" type="text" name="passenger_price" /> per seat
             </td>
         </tr>
         <tr>
             <td colspan="2">
-                Other ride details:<br />
+                <span class="primaryTextStyle">Other ride details:</span><br />
                 <textarea id="otherDetailsTextArea" name="other_details" placeholder="How much space do you have/need for equipment, plans at the place, etc." >
 
                 </textarea>

@@ -29,7 +29,9 @@
 <?php end_slot();?>
 <div id="placeHead">
     <h1>Share a ride to <?php echo $place->getName() ?></h1>
+    <div id="placeLogo"></div>
 </div>
+    
 <div id="placeContent">
     <div id="headerAndLikeBox" >
         <span class="placeContentHeader">Post a ride</span>
@@ -55,11 +57,9 @@
             <?php echo $place->getName() ?> | <?php echo $place->getWebsiteUrl() ?> <br />
         </div>
         </div>
-        
-
         <div id="placeHowBox" class="helpBox">
             <h3>How it works</h3>
-            <ol>
+            <ol class="howtoList">
                 <li>
                     Fill out the form to the left with your ride details and post ride.
                 </li>

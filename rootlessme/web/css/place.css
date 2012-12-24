@@ -151,14 +151,49 @@ body{
 #placeHowBox{
     float:left;
     background-color: #f3f3f3;
-    width:352px;
+    width:312px;
+    padding: 20px;
 }
 .placeContentHeader{
     color: #009F40;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 24px;
 }
 #placeDetailsSection{
     float:left;
     width: 352px;
+}
+.primaryTextStyle{
+    color: #E26C59;
+    font-weight:bold;
+    font-size: 18px;
+}
+.secondaryTextStyle{
+    color:#A0A0A0;
+    font-weight:bold;
+    font-size: 18px;
+}
+.tertiaryTextStyle{
+    color:#969696;
+    font-weight:normal;
+    font-size: 12px;
+}
+#placeLogo{
+    background-image: url('../images/eaglePointLogo.png');
+    width:113px;
+    height:129px;
+    position: absolute;
+    top: 290px;
+    left: 35px;
+}
+h3{
+    font-size:18px;
+    color:#565656;
+}
+.howtoList li{
+    margin-bottom: 15px;
+}
+.dollar-sign{
+    color:#565656;
+    font-size:18px;
 }
