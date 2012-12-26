@@ -837,13 +837,13 @@ Places:
   relations:
     Origin_Route:
       class: Routes
-      local: origin_place_id
-      foreign: place_id
+      local: place_id
+      foreign: origin_place_id
       type: one
     Destination_Route:
       class: Routes
-      local: destination_place_id
-      foreign: place_id
+      local: place_id
+      foreign: destination_place_id
       type: one
 Profiles:
   connection: doctrine

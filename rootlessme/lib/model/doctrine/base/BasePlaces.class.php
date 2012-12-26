@@ -17,30 +17,27 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @property string $tags
  * @property Routes $Origin_Route
  * @property Routes $Destination_Route
- * @property Doctrine_Collection $Routes
  * 
- * @method integer             getPlaceId()               Returns the current record's "place_id" value
- * @method string              getName()                  Returns the current record's "name" value
- * @method string              getWebsiteUrl()            Returns the current record's "website_url" value
- * @method integer             getIsPartner()             Returns the current record's "isPartner" value
- * @method string              getContactEmailAddress()   Returns the current record's "contact_email_address" value
- * @method string              getContactPhoneNumber()    Returns the current record's "contact_phone_number" value
- * @method string              getLogoUrl()               Returns the current record's "logo_url" value
- * @method string              getTags()                  Returns the current record's "tags" value
- * @method Routes              getOriginRoute()           Returns the current record's "Origin_Route" value
- * @method Routes              getDestinationRoute()      Returns the current record's "Destination_Route" value
- * @method Doctrine_Collection getRoutes()                Returns the current record's "Routes" collection
- * @method Places              setPlaceId()               Sets the current record's "place_id" value
- * @method Places              setName()                  Sets the current record's "name" value
- * @method Places              setWebsiteUrl()            Sets the current record's "website_url" value
- * @method Places              setIsPartner()             Sets the current record's "isPartner" value
- * @method Places              setContactEmailAddress()   Sets the current record's "contact_email_address" value
- * @method Places              setContactPhoneNumber()    Sets the current record's "contact_phone_number" value
- * @method Places              setLogoUrl()               Sets the current record's "logo_url" value
- * @method Places              setTags()                  Sets the current record's "tags" value
- * @method Places              setOriginRoute()           Sets the current record's "Origin_Route" value
- * @method Places              setDestinationRoute()      Sets the current record's "Destination_Route" value
- * @method Places              setRoutes()                Sets the current record's "Routes" collection
+ * @method integer getPlaceId()               Returns the current record's "place_id" value
+ * @method string  getName()                  Returns the current record's "name" value
+ * @method string  getWebsiteUrl()            Returns the current record's "website_url" value
+ * @method integer getIsPartner()             Returns the current record's "isPartner" value
+ * @method string  getContactEmailAddress()   Returns the current record's "contact_email_address" value
+ * @method string  getContactPhoneNumber()    Returns the current record's "contact_phone_number" value
+ * @method string  getLogoUrl()               Returns the current record's "logo_url" value
+ * @method string  getTags()                  Returns the current record's "tags" value
+ * @method Routes  getOriginRoute()           Returns the current record's "Origin_Route" value
+ * @method Routes  getDestinationRoute()      Returns the current record's "Destination_Route" value
+ * @method Places  setPlaceId()               Sets the current record's "place_id" value
+ * @method Places  setName()                  Sets the current record's "name" value
+ * @method Places  setWebsiteUrl()            Sets the current record's "website_url" value
+ * @method Places  setIsPartner()             Sets the current record's "isPartner" value
+ * @method Places  setContactEmailAddress()   Sets the current record's "contact_email_address" value
+ * @method Places  setContactPhoneNumber()    Sets the current record's "contact_phone_number" value
+ * @method Places  setLogoUrl()               Sets the current record's "logo_url" value
+ * @method Places  setTags()                  Sets the current record's "tags" value
+ * @method Places  setOriginRoute()           Sets the current record's "Origin_Route" value
+ * @method Places  setDestinationRoute()      Sets the current record's "Destination_Route" value
  * 
  * @package    RootlessMe
  * @subpackage model
@@ -126,16 +123,12 @@ abstract class BasePlaces extends sfDoctrineRecord
     {
         parent::setUp();
         $this->hasOne('Routes as Origin_Route', array(
-             'local' => 'origin_place_id',
-             'foreign' => 'place_id'));
-
-        $this->hasOne('Routes as Destination_Route', array(
-             'local' => 'destination_place_id',
-             'foreign' => 'place_id'));
-
-        $this->hasMany('Routes', array(
              'local' => 'place_id',
              'foreign' => 'origin_place_id'));
+
+        $this->hasOne('Routes as Destination_Route', array(
+             'local' => 'place_id',
+             'foreign' => 'destination_place_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

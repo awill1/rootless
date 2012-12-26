@@ -36,7 +36,6 @@ Doctrine_Manager::getInstance()->bindComponent('Routes', 'doctrine');
  * @property Doctrine_Collection $SeatsHistory
  * @property Places $Origin_Places
  * @property Places $Destination_Places
- * @property Doctrine_Collection $Places
  * 
  * @method integer             getRouteId()               Returns the current record's "route_id" value
  * @method string              getCopyright()             Returns the current record's "copyright" value
@@ -67,7 +66,6 @@ Doctrine_Manager::getInstance()->bindComponent('Routes', 'doctrine');
  * @method Doctrine_Collection getSeatsHistory()          Returns the current record's "SeatsHistory" collection
  * @method Places              getOriginPlaces()          Returns the current record's "Origin_Places" value
  * @method Places              getDestinationPlaces()     Returns the current record's "Destination_Places" value
- * @method Doctrine_Collection getPlaces()                Returns the current record's "Places" collection
  * @method Routes              setRouteId()               Sets the current record's "route_id" value
  * @method Routes              setCopyright()             Sets the current record's "copyright" value
  * @method Routes              setSummary()               Sets the current record's "summary" value
@@ -97,7 +95,6 @@ Doctrine_Manager::getInstance()->bindComponent('Routes', 'doctrine');
  * @method Routes              setSeatsHistory()          Sets the current record's "SeatsHistory" collection
  * @method Routes              setOriginPlaces()          Sets the current record's "Origin_Places" value
  * @method Routes              setDestinationPlaces()     Sets the current record's "Destination_Places" value
- * @method Routes              setPlaces()                Sets the current record's "Places" collection
  * 
  * @package    RootlessMe
  * @subpackage model
@@ -331,10 +328,6 @@ abstract class BaseRoutes extends sfDoctrineRecord
         $this->hasOne('Places as Destination_Places', array(
              'local' => 'destination_place_id',
              'foreign' => 'place_id'));
-
-        $this->hasMany('Places', array(
-             'local' => 'place_id',
-             'foreign' => 'origin_place_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

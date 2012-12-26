@@ -72,8 +72,71 @@ class placeActions extends sfActions
      */
     public function executeCreateRideToPlace(sfWebRequest $request)
     {
-        $this->place = Doctrine_Core::getTable('Places')->find(array($request->getParameter('place_id')));
-        $this->forward404Unless($this->place);
+        //Success variable and message
+        $success = 'false';
+        
+        try
+        {
+            // Load the AWS SDK
+            require_once sfConfig::get('app_amazon_sdk_file');
+        
+            // Make sure the user is authenticated
+
+            // Get the input parameters
+            $placeId = $request->getParameter('place_id');
+            $rideType = $request->getParameter('ride_type');
+            $origin = $request->getParameter('origin');
+            $startDate = $request->getParameter('start_date');
+            $startTime = $request->getParameter('start_time');
+            $startDateAny = $request->getParameter('start_date_any');
+            $returnDate = $request->getParameter('return_date');
+            $returnTime = $request->getParameter('return_time');
+            $returnDateAny = $request->getParameter('return_date_any');
+            $driverSeats = $request->getParameter('driver_seats');
+            $driverPrice = $request->getParameter('driver_price');
+            $passengerSeats = $request->getParameter('passenger_seats');
+            $passengerPrice = $request->getParameter('passenger_price');
+            $otherDetails = $request->getParameter('other_details');
+
+            // Validate the input parameters
+
+            // Create a ride to the place
+            if (!is_null($startDate) || $startDateAny)
+            {
+
+            }
+
+            // Create a ride back from the place
+            if (!is_null($startDate) || $startDateAny)
+            {
+
+            }
+
+            // Run recommendations on the rides
+
+            // If this was an ajax request
+            if ($request->isXmlHttpRequest())
+            {
+                // Return success json with no layout
+                $this->setLayout(sfView::NONE);
+                return $this->renderText("{ success: true }");
+            }
+            else
+            {
+                // This is not an ajax request
+
+            }
+            
+        }
+        catch (Exception $e)
+        {
+            // Log the error
+            $this->logMessage($e->getMessage()."; ".$e->getTraceAsString(), 'err');
+            // Return the error json
+            return $this->renderText('{ success: false, message: "'.$e->getMessage().'" }');
+        }
+        
+        
     }
 
     protected function processForm(sfWebRequest $request, sfForm $form)

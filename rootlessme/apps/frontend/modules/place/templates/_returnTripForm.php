@@ -33,7 +33,7 @@
                     <?php endfor; ?>
                 </select>
                 <br />
-                <input id="startDateAnydayCheckBox" type="checkbox" name="start_date" placeholder="MM/DD/YYYY" />
+                <input id="startDateAnydayCheckBox" type="checkbox" name="start_date_any" />
                 <label for="startDateAnydayCheckBox"><span class='fourthTextStyle'>Any day</span></label>
             </td>
         </tr>
@@ -49,7 +49,7 @@
                     <?php endfor; ?>
                 </select>
                 <br />
-                <input id="returnDateAnydayCheckBox" type="checkbox" name="return_date" placeholder="MM/DD/YYYY" />
+                <input id="returnDateAnydayCheckBox" type="checkbox" name="return_date_any" />
                 <label for="returnDateAnydayCheckBox"><span class='fourthTextStyle'>Any day</span></label>
             </td>
         </tr>
