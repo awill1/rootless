@@ -97,22 +97,90 @@ class placeActions extends sfActions
             $passengerSeats = $request->getParameter('passenger_seats');
             $passengerPrice = $request->getParameter('passenger_price');
             $otherDetails = $request->getParameter('other_details');
+            $originData = $request->getParameter('origin_data');
+            $destinationData = $request->getParameter('destination_data');
+            $departureRouteData = $request->getParameter('departure_route_data');
+            $returnRouteData = $request->getParameter('return_route_data');
 
             // Validate the input parameters
+            
+            // Create the user's rides
+            $departurePassenger = NULL;
+            $departureCarpool = NULL;
+            $returnPassenger = NULL;
+            $returnCarpool = NULL;
 
             // Create a ride to the place
             if (!is_null($startDate) || $startDateAny)
             {
-
+                if (CommonHelpers::IsNullOrEmptyString($startDate) && $startDateAny)
+                {
+                    $startDate = null;
+                }
+                elseif (!CommonHelpers::IsNullOrEmptyString($startDate)) 
+                {
+                    $startDate = date('Y-m-d H:i:s', strtotime($startDate));
+                }
+                
+                // If the user is a passenger or either, create the passenger post
+                if ($rideType == 'ride' || $rideType == 'either')
+                {
+                    $departurePassenger = PassengerFactory::createRide($startDate, $startTime, $person, $passengerSeats, $passengerPrice, $departureRouteData, $originData, $destinationData, $otherDetails);
+                }
+                // If the user will drive, create the driver post
+                if ($rideType == 'drive' || $rideType == 'either')
+                {
+                    $departureCarpool = CarpoolFactory::createRide($startDate, $startTime, $person, $driverSeats, $driverPrice, $departureRouteData, $originData, $destinationData, $otherDetails);
+                }
             }
 
             // Create a ride back from the place
-            if (!is_null($startDate) || $startDateAny)
+            if (!is_null($returnDate) || $returnDateAny)
             {
-
+                if (CommonHelpers::IsNullOrEmptyString($returnDate) && $returnDateAny)
+                {
+                    $returnDate = null;
+                }
+                elseif (!CommonHelpers::IsNullOrEmptyString($returnDate)) 
+                {
+                    $returnDate = date('Y-m-d H:i:s', strtotime($returnDate));
+                }
+                
+                // If the user is a passenger or either, create the passenger post
+                if ($rideType == 'ride' || $rideType == 'either')
+                {
+                    $returnPassenger = PassengerFactory::createRide($startDate, $startTime, $person, $passengerSeats, $passengerPrice, $returnRouteData, $destinationData, $originData, $otherDetails);
+                }
+                // If the user will drive, create the driver post
+                if ($rideType == 'drive' || $rideType == 'either')
+                {
+                    $returnCarpool = CarpoolFactory::createRide($startDate, $startTime, $person, $driverSeats, $driverPrice, $returnRouteData, $destinationData, $originData, $otherDetails);
+                }
             }
 
             // Run recommendations on the rides
+            // Do recommendations
+            $searchRadius = sfConfig::get('app_default_search_distance');
+            $recommendedDeparturePassengers = NULL;
+            $recommendedDepartureDrivers = NULL;
+            $recommendedReturnPassengers = NULL;
+            $recommendedReturnDrivers = NULL;
+            if (!is_null($departureCarpool))
+            {
+                $recommendedDeparturePassengers = $departureCarpool->recommendPassengers($searchRadius);
+            }
+            if (!is_null($departurePassenger))
+            {
+                $recommendedDepartureDrivers = $departurePassenger->recommendDrivers($searchRadius);
+            }
+            if (!is_null($returnCarpool))
+            {
+                $recommendedReturnPassengers = $returnCarpool->recommendPassengers($searchRadius);
+            }
+            if (!is_null($returnPassenger))
+            {
+                $recommendedReturnDrivers = $returnPassenger->recommendDrivers($searchRadius);
+            }
 
             // If this was an ajax request
             if ($request->isXmlHttpRequest())
