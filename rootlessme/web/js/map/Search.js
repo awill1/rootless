@@ -78,20 +78,23 @@ Rootless.Map.Search = Rootless.Map.extend({
     * Initializes a Google Map into a div
     */
     mapInit : function(){
-       // variable that keeps object available in inner functions
-       var self = this;
+        // variable that keeps object available in inner functions
+        var self = this;
+    
+        self.setLatLng();
+        var latlng = new google.maps.LatLng(self._.CONST.MAP_DEFAULT_LATITUDE, self._.CONST.MAP_DEFAULT_LONGITUDE);
        
-       var latlng = new google.maps.LatLng(self._.CONST.MAP_DEFAULT_LATITUDE, self._.CONST.MAP_DEFAULT_LONGITUDE);
-       var myOptions = {
-       	   scrollwheel: false,
-           zoom: self._.CONST.MAP_DEFAULT_ZOOM,
-           center: latlng,
-           mapTypeId: google.maps.MapTypeId.ROADMAP
-       };
+        var myOptions = {
+       	    scrollwheel: false,
+            zoom: self._.CONST.MAP_DEFAULT_ZOOM,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
        
         this.directionsService = new google.maps.DirectionsService();
         this.geocoder          = new google.maps.Geocoder();
        	this.directionsDisplay = new google.maps.DirectionsRenderer();
+      
         
         self._.MapObject = new google.maps.Map(document.getElementById(self._.mapId),
             myOptions);
@@ -136,15 +139,12 @@ Rootless.Map.Search = Rootless.Map.extend({
             
         if (origin != null) {
         	this._.el.$originTextBox.val(origin);
-        }
+        } 
         
         if (destination != null) {
         	this._.el.$destinationTextBox.val(destination);
         }
             
-        // Search for what is in the textboxes at page load time
-        this.previewRoute();
-        self._.el.$ridefind.click();  
     },
 	
     geocodeOrigin : function(results, status) {     
@@ -184,6 +184,47 @@ Rootless.Map.Search = Rootless.Map.extend({
 
         // Finally, clear the destination pending flag to allow form submission
         map.clearDestinationDecodePendingFlag();
+    },
+    
+    handleNoGeolocation : function(errorFlag) {
+        if (errorFlag == true) {
+            alert("Geolocation service failed.");
+        } else {
+            alert("Your browser doesn't support geolocation. We will show the default map view.");
+        }
+    },
+    
+    setLatLng : function() {
+    	var self = this;
+        var browserSupportFlag;
+        
+        if(navigator.geolocation) {
+            browserSupportFlag = true;
+       	    navigator.geolocation.getCurrentPosition(function(position) {
+       	        self._.CONST.MAP_DEFAULT_LATITUDE = position.coords.latitude;
+       	        self._.CONST.MAP_DEFAULT_LONGITUDE = position.coords.longitude;
+       	        var latlng = new google.maps.LatLng(self._.CONST.MAP_DEFAULT_LATITUDE, self._.CONST.MAP_DEFAULT_LONGITUDE);
+       	        self._.MapObject.setCenter(latlng);
+       	        self._.MapObject.setZoom(9);
+       	        var marker = new google.maps.Marker({ 
+       	        	position: latlng,
+                    map: self._.MapObject,
+                    icon : new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|119D49"),
+                });
+                
+        	    self.geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
+        	        self._.el.$originTextBox.val(results[0].formatted_address);
+        	        self.previewRoute();  
+        	        self._.el.$ridefind.click();
+        	        
+                });
+       	    }, function() {
+       	        self.handleNoGeolocation(browserSupportFlag);
+       	    });
+        } else {
+            browserSupportFlag = false;
+       	    this.handleNoGeolocation(browserSupportFlag);
+        }
     },
     
     // Form submit options used for the ajax form
