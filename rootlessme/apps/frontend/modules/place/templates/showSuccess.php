@@ -5,6 +5,7 @@
 <?php slot('gmapheader'); ?>
     <script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
     <script type="text/javascript" src="/js/map/Place.js"></script>
+    <script type="text/javascript" src="/js/custom-form-elements.js"></script>
     <script type="text/javascript">   
       $(document).ready(function(){
 
@@ -43,9 +44,7 @@
     <br/>
     
     <div id="placeFormBox">
-<!--        <div id="placeRideFormContainer">-->
             <?php include_partial('returnTripForm', array('place' => $place)) ?>
-<!--        </div>-->
         <div id="placeRideConfirmationContainer">
 
         </div>
@@ -55,7 +54,8 @@
             <div id="map" >
         </div>
         <div id="mapCaption">
-            <?php echo $place->getName() ?> | <?php echo $place->getWebsiteUrl() ?> <br />
+            <span class="strongSpan"><?php echo $place->getName() ?> |</span> <a href='<?php echo $place->getWebsiteUrl() ?>'><?php echo $place->getWebsiteUrl() ?></a>
+            <br />Long address goes here
         </div>
         </div>
         <div id="placeHowBox" class="helpBox">

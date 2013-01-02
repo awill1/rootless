@@ -143,7 +143,18 @@ body{
     margin-bottom: 20px;
 }
 #mapCaption{
-    
+    margin-top: 15px;
+}
+#mapCaption a{
+    color: #E26C59;
+}
+#mapCaption a:hover{
+    color: #E26C59;
+    text-decoration: underline;
+}
+.strongSpan{
+    font-weight: bold;
+    color:#565656;
 }
 #placeTravelersBox{
     float: left;
@@ -235,4 +246,34 @@ h3{
 }
 tr{
     height: 50px;
+}
+.placeFormHr{
+    background-color: #7a7a7a;
+    border: medium none;
+    color: #7a7a7a;
+    height: 1px;
+/*    width: 670px;*/
+}
+/*custom drop down and radio buttons stuff*/
+.checkbox, .radio {
+	width: 19px;
+	height: 25px;
+	padding: 0 5px 0 0;
+	background: url(checkbox.png) no-repeat;
+	display: block;
+	clear: left;
+	float: left;
+}
+.radio {
+	background: url(radio.png) no-repeat;
+}
+.select {
+	position: absolute;
+	width: 158px; /* With the padding included, the width is 190 pixels: the actual width of the image. */
+	height: 21px;
+	padding: 0 24px 0 8px;
+	color: #fff;
+	font: 12px/21px arial,sans-serif;
+	background: url('../images/clist156x32.png') no-repeat;
+	overflow: hidden;
 }

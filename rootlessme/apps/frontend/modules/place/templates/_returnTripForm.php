@@ -19,7 +19,7 @@
                 <input id="originTextBox" class="longField" type="text" name="origin" placeholder="Address, City, State" />
             </td>
         </tr>
-        <tr><td colspan="2"><hr /></td></tr>
+        <tr><td colspan="2"><hr class="placeFormHr"></td></tr>
         
         <tr>
             <td><span class="primaryTextStyle">Depart Date</span></td>
@@ -53,7 +53,7 @@
                 <label for="returnDateAnydayCheckBox"><span class='fourthTextStyle'>Any day</span></label>
             </td>
         </tr>
-        <tr><td colspan="2"><hr /></td></tr>
+        <tr><td colspan="2"><hr class="placeFormHr"/></td></tr>
         <tr>
             <td class="secondaryTextStyle" colspan="2">As a driver:</td>
         </tr>
@@ -92,7 +92,7 @@
                 <span class='dollar-sign'>$</span> <input id="passengerPriceTextBox" class="tinyField" type="text" name="passenger_price" /> <span class='fourthTextStyle'>per seat</span>
             </td>
         </tr>
-        <tr><td colspan="2"><hr /></td></tr>
+        <tr><td colspan="2"><hr class="placeFormHr"/></td></tr>
         <tr>
             <td colspan="2">
                 <span class="primaryTextStyle">Other ride details:</span><br />
