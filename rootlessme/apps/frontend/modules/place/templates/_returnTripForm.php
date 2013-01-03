@@ -1,6 +1,6 @@
 <form id="roundTripForm" action="<?php echo url_for('place_create_ride') ?>" method="post">
     <input id="placeIdInput" type="hidden" name="place_id" value="<?php echo $place->getPlaceId(); ?>" />
-  <table>
+  <table class="placeForm">
     <tbody>
         <tr>
             <td><span class="primaryTextStyle">I am a</span></td>
