@@ -170,6 +170,16 @@ Rootless.Map.Place = Rootless.Map.extend({
         }
     },
     
+    showDriverForm : function() {
+        alert('view driver form');
+    },
+    showPassengerForm : function() {
+        alert('passenger form');
+    },
+    showEitherForm : function(){
+        alert('either form');
+    },
+    
     MaybeSubmitForm : function() {           
        // variable that keeps object available in inner functions
        var self = this;
@@ -182,5 +192,20 @@ Rootless.Map.Place = Rootless.Map.extend({
     }
     
 });
+
+window.onload=function() {
+  var radios = document.forms[0].elements["ride_type"];
+  for (var i = 0; i < radios.length; i++)
+    radios[i].onclick=radioClicked;
+    alert('load function');
+}
+
+
+function RadioClicked() {
+//    if (this.value == "one") {
+//      document.forms[0].elements["line_text"].disabled=true;
+//   }
+alert('radioClicked');
+}
 
 Class.addSingleton(Rootless.Map.Place);

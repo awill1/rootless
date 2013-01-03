@@ -73,6 +73,7 @@
                 <span class='dollar-sign'>$</span> <input id="driverPriceTextBox" class="tinyField" type="text" name="driver_price" /> <span class='fourthTextStyle'>per seat</span>
             </td>
         </tr>
+        <tr><td colspan="2"><hr class="placeFormHr"/></td></tr>
         <tr>
             <td class="secondaryTextStyle" colspan="2">As a passenger:</td>
         </tr>
@@ -92,7 +93,6 @@
                 <span class='dollar-sign'>$</span> <input id="passengerPriceTextBox" class="tinyField" type="text" name="passenger_price" /> <span class='fourthTextStyle'>per seat</span>
             </td>
         </tr>
-        <tr><td colspan="2"><hr class="placeFormHr"/></td></tr>
         <tr>
             <td colspan="2">
                 <span class="primaryTextStyle">Other ride details:</span><br />
