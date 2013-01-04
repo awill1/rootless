@@ -86,6 +86,7 @@ class placeActions extends sfActions
             $placeId = $request->getParameter('place_id');
             $rideType = $request->getParameter('ride_type');
             $origin = $request->getParameter('origin');
+            $destination = $request->getParameter('destination');
             $startDate = $request->getParameter('start_date');
             $startTime = $request->getParameter('start_time');
             $startDateAny = $request->getParameter('start_date_any');
@@ -101,6 +102,9 @@ class placeActions extends sfActions
             $destinationData = $request->getParameter('destination_data');
             $departureRouteData = $request->getParameter('departure_route_data');
             $returnRouteData = $request->getParameter('return_route_data');
+            
+            // This function is not ready yet
+            throw new Exception('This function is not ready yet.');
 
             // Validate the input parameters
             

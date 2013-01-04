@@ -178,7 +178,7 @@ place_delete:
 
 place_create_ride:
   url:     /places/createRide
-  param:   { module: place, action: create}
+  param:   { module: place, action: createRideToPlace}
   requirements: { sf_method: post }
   
 place_show:

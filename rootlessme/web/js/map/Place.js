@@ -1,6 +1,6 @@
 /*
  * Place Map Class
- * @constructor Rootless.Map.Request
+ * @constructor Rootless.Map.Place
  * @params spec <Object> Object that holds all the variables for the maps
  * This script requires the Google Map and JQuery scripts to already be loaded
  * in the browser.
@@ -10,7 +10,7 @@ Namespace('Rootless.Map.Place');
 
 Rootless.Map.Place = Rootless.Map.extend({
    /**
-    *  Initializes the Google Maps API for request forms
+    *  Initializes the Google Maps API for place forms
     *  @param params {arguments} - but mapId is needed to initialize map
     */
    init : function(params) {
@@ -37,12 +37,16 @@ Rootless.Map.Place = Rootless.Map.extend({
            //all html elements referred in the code should go here (including jquery)
            el : {
                $originTextBox        : $("#originTextBox"),
-               $destinationTextBox   : $("#destinationTextBox"),
+               $destinationTextBox   : $("#destinationInput"),
                originTextBox         : "#originTextBox",
-               destinationTextBox    : "#destinationTextBox",
-               $submitButton         : $('.submitButton'),
+               destinationTextBox    : "#destinationInput",
+               $submitButton         : $('.postRideButton'),
                $newRideFormArea	     : $("#newRideFormArea"),
-               rideForm              : "#roundTripForm"
+               rideForm              : "#roundTripForm",
+               originDataField       : "#originDataInput",
+               destinationDataField  : "#destinationDataInput",
+               routeDataField        : "#departureRouteDataInput", 
+               returnRouteDataField  : "#departureRouteDataInput" 
            },
            
            // Variables used to block form submitting before map api results are returned
@@ -115,9 +119,9 @@ Rootless.Map.Place = Rootless.Map.extend({
              self._.formBlock.isFormSubmitPending = true;
                 
              // Block the fragment-vehicles div
-             self._.el.$newRideFormArea.block({ 
-                  message: 'saving'
-             }); 
+//             self._.el.$newRideFormArea.block({ 
+//                  message: 'saving'
+//             }); 
 
              // Disable the default submission. We will let the helper 
              // function do it
@@ -127,7 +131,7 @@ Rootless.Map.Place = Rootless.Map.extend({
    },
    
     geocodeOrigin : function(results, status) {     
-        var map = Rootless.Map.Request.getInstance();
+        var map = Rootless.Map.Place.getInstance();
         // Display the results
         
         map.showResults(results, status, map._.mapItem.marker.originMarker);
@@ -142,7 +146,7 @@ Rootless.Map.Place = Rootless.Map.extend({
     },
     
     geocodeDestination : function(results, status) {
-    	var map = Rootless.Map.Request.getInstance();
+    	var map = Rootless.Map.Place.getInstance();
 
         // Display the results
         map.showResults(results, status, map._.mapItem.marker.destinationMarker);
@@ -186,8 +190,7 @@ Rootless.Map.Place = Rootless.Map.extend({
        
        // Check to make sure nothing is blocking submitting the form
        if (this.canSubmitForm() && this._.formBlock.isFormSubmitPending) {
-            $().submit();
-            $(map._.el.rideForm).ajaxSubmit(self.formAjaxOptions);
+            $(self._.el.rideForm).ajaxSubmit(self.formAjaxOptions);
         }
     }
     
