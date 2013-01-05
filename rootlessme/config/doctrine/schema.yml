@@ -852,12 +852,12 @@ Places:
       class: Routes
       local: place_id
       foreign: origin_place_id
-      type: one
+      type: many
     Destination_Route:
       class: Routes
       local: place_id
       foreign: destination_place_id
-      type: one
+      type: many
 Profiles:
   connection: doctrine
   tableName: profiles
