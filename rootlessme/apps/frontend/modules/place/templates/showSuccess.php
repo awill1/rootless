@@ -1,6 +1,9 @@
 <?php use_javascript(sfConfig::get('app_google_map_script')) ?>
 <?php use_stylesheet(sfConfig::get('app_css_place')) ?>
-
+<?php slot(
+  'title',
+  sprintf('Rootless - Offer rides and find carpools to %s ', $place->getName()))
+?>
 
 <?php slot('gmapheader'); ?>
     <script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
