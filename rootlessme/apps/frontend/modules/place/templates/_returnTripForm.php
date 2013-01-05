@@ -14,7 +14,7 @@
                 <label for="rideTypeDriver">driver</label>
                 <input id="rideTypePassenger" type="radio" name="ride_type" value="passenger" />
                 <label for="rideTypePassenger">passenger</label>
-                <input id="rideTypeEither" type="radio" name="ride_type" value="either" />
+                <input id="rideTypeEither" type="radio" name="ride_type" value="either" checked />
                 <label for="rideTypeEither">either</label>
             </td>
         </tr>

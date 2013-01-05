@@ -46,6 +46,7 @@ Rootless.Map = Class.extend({
                 isOriginDecodePending      : false,
                 isDestinationDecodePending : false,
                 isDirectionsPending        : false,
+                isReturnDirectionsPending  : false,
                 isFormSubmitPending        : false
             },
            
@@ -58,9 +59,7 @@ Rootless.Map = Class.extend({
                 marker : {
                     
                 }
-           
-           },
-           
+           }
            
        }, params);
    },
@@ -252,6 +251,19 @@ Rootless.Map = Class.extend({
         }
      },
      
+    /**
+     * Clears the return directions pending flag used to block form submission before
+     * the map api returns
+     */
+     clearReturnDirectionsPendingFlag : function() {
+        // Clear the flag
+        this._.formBlock.isReturnDirectionsPending = false;
+        // Submit the form if necessary and if the function is defined
+        if (typeof(MaybeSubmitForm) == typeof(Function)) {
+            this.MaybeSubmitForm();
+        }
+     },
+     
      /**
      * Previews a route on the map
      */
@@ -262,6 +274,7 @@ Rootless.Map = Class.extend({
         this._.formBlock.isOriginDecodePending = true;
         this._.formBlock.isDestinationDecodePending = true;
         this._.formBlock.isDirectionsPending = true;
+        this._.formBlock.isReturnDirectionsPending = true;
 
         var originValue = $(this._.el.originTextBox).val();
         if (originValue){
@@ -331,9 +344,10 @@ Rootless.Map = Class.extend({
         }
         else
         {
-            // Clear the directions pending flag
+            // Clear the directions pending flag s
             this.clearDirectionsPendingFlag();
-
+            this.clearReturnDirectionsPendingFlag();
+            
             // Clear the directions from the map
             this._.mapItem.polyline.routePolyline.setMap(null);
 
@@ -342,11 +356,21 @@ Rootless.Map = Class.extend({
             {
                 $(this._.el.routeDataField).val("");
             }
+            // Clear the return route data
+            if (typeof($(this._.el.returnRouteDataField)) != "undefined")
+            {
+                $(this._.el.returnRouteDataField).val("");
+            }
             
             // Clear the route polyline field 
             if (typeof($(this._.el.polyline)) != "undefined")
             {
                 $(this._.el.polyline).val("");
+            }
+            // Clear the return route polyline field 
+            if (typeof($(this._.el.returnPolyline)) != "undefined")
+            {
+                $(this._.el.returnPolyline).val("");
             }
         }
       },
@@ -386,37 +410,65 @@ Rootless.Map = Class.extend({
     },
     
     calcRoute : function(formElem) {
-      var self = this;
-      var request = {
-        origin: $(self._.el.originTextBox).val(),
-        destination: $(self._.el.destinationTextBox).val(),
-        travelMode: google.maps.TravelMode.DRIVING
-      };
-      
-      this.directionsService.route(request, function(result, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-            // Set the route field to the results object for posting to the
-            // server
-            if (typeof(self._.el.routeDataField) != "undefined")
-            {    
-               $(self._.el.routeDataField).val(self.formatGoogleJSON(self.strangeLat, self.strangeLon, JSON.stringify(result)));
-            }
+        var self = this;
+        var request = {
+            origin: $(self._.el.originTextBox).val(),
+            destination: $(self._.el.destinationTextBox).val(),
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        var returnRequest = {
+            origin: $(self._.el.destinationTextBox).val(),
+            destination: $(self._.el.originTextBox).val(),
+            travelMode: google.maps.TravelMode.DRIVING
+        };
 
-            // Display the directions
-            self._.mapItem.polyline.routePolyline.setPath(result.routes[0].overview_path);
-            self._.mapItem.polyline.routePolyline.setMap(self._.MapObject);
-            self._.MapObject.fitBounds(result.routes[0].bounds);
-            
-            // Set the route field to the results object for posting to the
-            // server
-            if (typeof($(self._.el.polyline)) != "undefined")
-            {
-                $(self._.el.polyline).val(result.routes[0].overview_polyline.points);
+        this.directionsService.route(request, function(result, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                // Set the route field to the results object for posting to the
+                // server
+                if (typeof(self._.el.routeDataField) != "undefined")
+                {    
+                   $(self._.el.routeDataField).val(self.formatGoogleJSON(self.strangeLat, self.strangeLon, JSON.stringify(result)));
+                }
+
+                // Display the directions
+                self._.mapItem.polyline.routePolyline.setPath(result.routes[0].overview_path);
+                self._.mapItem.polyline.routePolyline.setMap(self._.MapObject);
+                self._.MapObject.fitBounds(result.routes[0].bounds);
+
+                // Set the route field to the results object for posting to the
+                // server
+                if (typeof($(self._.el.polyline)) != "undefined")
+                {
+                    $(self._.el.polyline).val(result.routes[0].overview_polyline.points);
+                }
             }
-        }
-        // Finally, clear the directions pending flag to allow form submission
-        self.clearDirectionsPendingFlag();
-      });
+            // Finally, clear the directions pending flag to allow form submission
+            self.clearDirectionsPendingFlag();
+        });
+
+        // Get the directions for the return trip
+        this.directionsService.route(returnRequest, function(result, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                // Set the route field to the results object for posting to the
+                // server
+                if (typeof(self._.el.returnRouteDataField) != "undefined")
+                {    
+                   $(self._.el.returnRouteDataField).val(self.formatGoogleJSON(self.strangeLat, self.strangeLon, JSON.stringify(result)));
+                }
+
+                // Do not display the return route directions
+
+                // Set the route field to the results object for posting to the
+                // server
+                if (typeof($(self._.el.returnPolyline)) != "undefined")
+                {
+                    $(self._.el.returnPolyline).val(result.routes[0].overview_polyline.points);
+                }
+            }
+            // Finally, clear the directions pending flag to allow form submission
+            self.clearReturnDirectionsPendingFlag();
+        });
     },
     
     /**
@@ -463,18 +515,18 @@ Rootless.Map = Class.extend({
     },
         
     unHighlightPolyline : function(polyline) {
-    	var self = this;
-       polyline.setOptions({strokeColor: self._.CONST.PRIMARY_ROUTE_COLOR, zIndex: 1});
+        var self = this;
+        polyline.setOptions({strokeColor: self._.CONST.PRIMARY_ROUTE_COLOR, zIndex: 1});
     },
 	
-	passengerUnHighlightPolyline : function(polyline) {
-	   var self = this;
-       polyline.setOptions({strokeColor: self._.CONST.SECONDARY_ROUTE_COLOR, zIndex: -1});
+    passengerUnHighlightPolyline : function(polyline) {
+        var self = this;
+        polyline.setOptions({strokeColor: self._.CONST.SECONDARY_ROUTE_COLOR, zIndex: -1});
     },
    
     pendingUnHighlightPolyline : function(polyline) {
-       var self = this;
-       polyline.setOptions({strokeColor: self._.CONST.SECONDARY_ROUTE_COLOR, zIndex: -1, strokeOpacity: 0 });
+        var self = this;
+        polyline.setOptions({strokeColor: self._.CONST.SECONDARY_ROUTE_COLOR, zIndex: -1, strokeOpacity: 0 });
     },
 
     /**

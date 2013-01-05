@@ -158,12 +158,12 @@ class placeActions extends sfActions
                 // If the user is a passenger or either, create the passenger post
                 if ($rideType == 'passenger' || $rideType == 'either')
                 {
-                    $returnPassenger = PassengerFactory::createRide($startDate, $startTime, $person, $passengerSeats, $passengerPrice, $returnRouteData, $destinationData, $originData, $otherDetails);
+                    $returnPassenger = PassengerFactory::createRide($returnDate, $returnTime, $person, $passengerSeats, $passengerPrice, $returnRouteData, $destinationData, $originData, $otherDetails);
                 }
                 // If the user will drive, create the driver post
                 if ($rideType == 'driver' || $rideType == 'either')
                 {
-                    $returnCarpool = CarpoolFactory::createRide($startDate, $startTime, $person, $driverSeats, $driverPrice, $returnRouteData, $destinationData, $originData, $otherDetails);
+                    $returnCarpool = CarpoolFactory::createRide($returnDate, $returnTime, $person, $driverSeats, $driverPrice, $returnRouteData, $destinationData, $originData, $otherDetails);
                 }
             }
 

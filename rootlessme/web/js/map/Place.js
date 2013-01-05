@@ -46,7 +46,7 @@ Rootless.Map.Place = Rootless.Map.extend({
                originDataField       : "#originDataInput",
                destinationDataField  : "#destinationDataInput",
                routeDataField        : "#departureRouteDataInput", 
-               returnRouteDataField  : "#departureRouteDataInput" 
+               returnRouteDataField  : "#returnRouteDataInput" 
            },
            
            // Variables used to block form submitting before map api results are returned
@@ -54,6 +54,7 @@ Rootless.Map.Place = Rootless.Map.extend({
                 isOriginDecodePending      : false,
                 isDestinationDecodePending : false,
                 isDirectionsPending        : false,
+                isReturnDirectionsPending  : false,
                 isFormSubmitPending        : false
             },
            
