@@ -30,7 +30,9 @@
         map.mapInit();
       });
     </script>
-
+    <style type="text/css">
+        <?php echo $place->getCssStyle(); ?>
+    </style>
 <?php end_slot();?>
 <div id="placeHead">
     <h1>Share a ride to <?php echo $place->getName() ?></h1>

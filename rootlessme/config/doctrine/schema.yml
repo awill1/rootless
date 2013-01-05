@@ -834,6 +834,19 @@ Places:
       primary: false
       notnull: false
       autoincrement: false
+    css_style:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    location_id:
+      type: integer(5)
+      fixed: false
+      unsigned: false
+      notnull: false
+      autoincrement: false
   relations:
     Origin_Route:
       class: Routes

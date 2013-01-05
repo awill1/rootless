@@ -10,7 +10,7 @@ abstract class RideFactory {
     /**
      * Creates a ride
      */
-    abstract public static function createRide();
+//    abstract public static function createRide();
 }
 
 ?>

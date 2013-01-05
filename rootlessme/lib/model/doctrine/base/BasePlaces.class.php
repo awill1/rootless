@@ -15,6 +15,8 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @property string $contact_phone_number
  * @property string $logo_url
  * @property string $tags
+ * @property string $css_style
+ * @property integer $location_id
  * @property Routes $Origin_Route
  * @property Routes $Destination_Route
  * 
@@ -26,6 +28,8 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @method string  getContactPhoneNumber()    Returns the current record's "contact_phone_number" value
  * @method string  getLogoUrl()               Returns the current record's "logo_url" value
  * @method string  getTags()                  Returns the current record's "tags" value
+ * @method string  getCssStyle()              Returns the current record's "css_style" value
+ * @method integer getLocationId()            Returns the current record's "location_id" value
  * @method Routes  getOriginRoute()           Returns the current record's "Origin_Route" value
  * @method Routes  getDestinationRoute()      Returns the current record's "Destination_Route" value
  * @method Places  setPlaceId()               Sets the current record's "place_id" value
@@ -36,6 +40,8 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @method Places  setContactPhoneNumber()    Sets the current record's "contact_phone_number" value
  * @method Places  setLogoUrl()               Sets the current record's "logo_url" value
  * @method Places  setTags()                  Sets the current record's "tags" value
+ * @method Places  setCssStyle()              Sets the current record's "css_style" value
+ * @method Places  setLocationId()            Sets the current record's "location_id" value
  * @method Places  setOriginRoute()           Sets the current record's "Origin_Route" value
  * @method Places  setDestinationRoute()      Sets the current record's "Destination_Route" value
  * 
@@ -116,6 +122,23 @@ abstract class BasePlaces extends sfDoctrineRecord
              'notnull' => false,
              'autoincrement' => false,
              'length' => 128,
+             ));
+        $this->hasColumn('css_style', 'string', null, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => '',
+             ));
+        $this->hasColumn('location_id', 'integer', 5, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 5,
              ));
     }
 
