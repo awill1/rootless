@@ -35,7 +35,7 @@ class CarpoolFactory extends RideFactory {
         // Save the carpool
         $carpool->save();
         
-        return $passenger;
+        return $carpool;
     }
 }
 

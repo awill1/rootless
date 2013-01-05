@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Places form.
+ * Places form with embedded location form.
  *
  * @package    RootlessMe
  * @subpackage form
@@ -10,10 +10,10 @@
  */
 class PlacesForm extends BasePlacesForm
 {
-  public function configure()
-  {
+    public function configure()
+    {
         // Choose the fields that will be displayed
         unset($this['created_at']);
         unset($this['updated_at']);
-  }
+    }
 }

@@ -82,8 +82,9 @@ class PassengersTable extends Doctrine_Table
     public function addCurrentRidesFilter($query)
     {
         // Add a where clause to the query to only return carpools today or in
-        // the future
-        return $query->andWhere('pa.start_date >= ?', date('Y-m-d'))
+        // the future. Start date = null is valid because
+        // it represents an open ended ride.
+        return $query->andWhere('(pa.start_date >= ? OR pa.start_date IS NULL)', date('Y-m-d'))
                      ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED])
                      ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_CLOSED]);
     }

@@ -101,8 +101,7 @@
         <tr>
             <td colspan="2">
                 <span class="primaryTextStyle">Other ride details:</span><br />
-                <textarea id="otherDetailsTextArea" name="other_details" placeholder="How much space do you have/need for equipment, plans at the place, etc." >
-                </textarea>
+                <textarea id="otherDetailsTextArea" name="other_details" placeholder="How much space do you have/need for equipment, plans at the place, etc." ></textarea>
             </td>
         </tr>
     </tbody>

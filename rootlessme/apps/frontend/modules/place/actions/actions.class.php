@@ -26,6 +26,7 @@ class placeActions extends sfActions
     public function executeNew(sfWebRequest $request)
     {
         $this->form = new PlacesForm();
+//        $this->form = new PlacesWithLocationForm();
     }
 
     public function executeCreate(sfWebRequest $request)
@@ -81,6 +82,13 @@ class placeActions extends sfActions
             require_once sfConfig::get('app_amazon_sdk_file');
         
             // Make sure the user is authenticated
+            $personId = null;
+            $person = null;
+            if ($this->getUser()->isAuthenticated())
+            {
+                $personId = $this->getUser()->getGuardUser()->getPersonId();
+                $person = $this->getUser()->getGuardUser()->getPeople();
+            }
 
             // Get the input parameters
             $placeId = $request->getParameter('place_id');
@@ -103,9 +111,6 @@ class placeActions extends sfActions
             $departureRouteData = $request->getParameter('departure_route_data');
             $returnRouteData = $request->getParameter('return_route_data');
             
-            // This function is not ready yet
-            throw new Exception('This function is not ready yet.');
-
             // Validate the input parameters
             
             // Create the user's rides
@@ -115,9 +120,9 @@ class placeActions extends sfActions
             $returnCarpool = NULL;
 
             // Create a ride to the place
-            if (!is_null($startDate) || $startDateAny)
+            if (!CommonHelpers::IsNullOrEmptyString($startDate) || $startDateAny)
             {
-                if (CommonHelpers::IsNullOrEmptyString($startDate) && $startDateAny)
+                if ($startDateAny)
                 {
                     $startDate = null;
                 }
@@ -127,21 +132,21 @@ class placeActions extends sfActions
                 }
                 
                 // If the user is a passenger or either, create the passenger post
-                if ($rideType == 'ride' || $rideType == 'either')
+                if ($rideType == 'passenger' || $rideType == 'either')
                 {
                     $departurePassenger = PassengerFactory::createRide($startDate, $startTime, $person, $passengerSeats, $passengerPrice, $departureRouteData, $originData, $destinationData, $otherDetails);
                 }
                 // If the user will drive, create the driver post
-                if ($rideType == 'drive' || $rideType == 'either')
+                if ($rideType == 'driver' || $rideType == 'either')
                 {
                     $departureCarpool = CarpoolFactory::createRide($startDate, $startTime, $person, $driverSeats, $driverPrice, $departureRouteData, $originData, $destinationData, $otherDetails);
                 }
             }
 
             // Create a ride back from the place
-            if (!is_null($returnDate) || $returnDateAny)
+            if (!CommonHelpers::IsNullOrEmptyString($returnDate) || $returnDateAny)
             {
-                if (CommonHelpers::IsNullOrEmptyString($returnDate) && $returnDateAny)
+                if ($returnDateAny)
                 {
                     $returnDate = null;
                 }
@@ -151,12 +156,12 @@ class placeActions extends sfActions
                 }
                 
                 // If the user is a passenger or either, create the passenger post
-                if ($rideType == 'ride' || $rideType == 'either')
+                if ($rideType == 'passenger' || $rideType == 'either')
                 {
                     $returnPassenger = PassengerFactory::createRide($startDate, $startTime, $person, $passengerSeats, $passengerPrice, $returnRouteData, $destinationData, $originData, $otherDetails);
                 }
                 // If the user will drive, create the driver post
-                if ($rideType == 'drive' || $rideType == 'either')
+                if ($rideType == 'driver' || $rideType == 'either')
                 {
                     $returnCarpool = CarpoolFactory::createRide($startDate, $startTime, $person, $driverSeats, $driverPrice, $returnRouteData, $destinationData, $originData, $otherDetails);
                 }

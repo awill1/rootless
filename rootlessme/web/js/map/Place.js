@@ -100,8 +100,6 @@ Rootless.Map.Place = Rootless.Map.extend({
         // Route preview changes whenever the user finished editing the
         // origin or destination textboxes
         self.bindTextBoxesToMap();
-        self.strangeLat;
-        self.strangeLon;
         self.testPoint = new google.maps.LatLng(23,45);
 		
         // Discover the strange keys used for longitude and latitude

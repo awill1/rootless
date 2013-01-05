@@ -6,6 +6,9 @@
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
   <table>
+    <tbody>
+      <?php echo $form ?>
+    </tbody>
     <tfoot>
       <tr>
         <td colspan="2">
@@ -17,8 +20,5 @@
         </td>
       </tr>
     </tfoot>
-    <tbody>
-      <?php echo $form ?>
-    </tbody>
   </table>
 </form>
