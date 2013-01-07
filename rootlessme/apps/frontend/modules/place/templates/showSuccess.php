@@ -60,7 +60,7 @@
         </div>
         <div id="mapCaption">
             <span class="strongSpan"><?php echo $place->getName() ?> |</span> <a href='<?php echo $place->getWebsiteUrl() ?>'><?php echo $place->getWebsiteUrl() ?></a>
-            <br />Long address goes here
+            <br /><?php echo $place->getAddressString(); ?>
         </div>
         </div>
         <div id="placeHowBox" class="helpBox">

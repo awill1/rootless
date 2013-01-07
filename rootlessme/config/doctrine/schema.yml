@@ -847,6 +847,13 @@ Places:
       unsigned: false
       notnull: false
       autoincrement: false
+    address_string:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
   relations:
     Origin_Route:
       class: Routes

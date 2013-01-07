@@ -17,6 +17,7 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @property string $tags
  * @property string $css_style
  * @property integer $location_id
+ * @property string $address_string
  * @property Doctrine_Collection $Origin_Route
  * @property Doctrine_Collection $Destination_Route
  * 
@@ -30,6 +31,7 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @method string              getTags()                  Returns the current record's "tags" value
  * @method string              getCssStyle()              Returns the current record's "css_style" value
  * @method integer             getLocationId()            Returns the current record's "location_id" value
+ * @method string              getAddressString()         Returns the current record's "address_string" value
  * @method Doctrine_Collection getOriginRoute()           Returns the current record's "Origin_Route" collection
  * @method Doctrine_Collection getDestinationRoute()      Returns the current record's "Destination_Route" collection
  * @method Places              setPlaceId()               Sets the current record's "place_id" value
@@ -42,6 +44,7 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @method Places              setTags()                  Sets the current record's "tags" value
  * @method Places              setCssStyle()              Sets the current record's "css_style" value
  * @method Places              setLocationId()            Sets the current record's "location_id" value
+ * @method Places              setAddressString()         Sets the current record's "address_string" value
  * @method Places              setOriginRoute()           Sets the current record's "Origin_Route" collection
  * @method Places              setDestinationRoute()      Sets the current record's "Destination_Route" collection
  * 
@@ -139,6 +142,15 @@ abstract class BasePlaces extends sfDoctrineRecord
              'notnull' => false,
              'autoincrement' => false,
              'length' => 5,
+             ));
+        $this->hasColumn('address_string', 'string', 255, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 255,
              ));
     }
 

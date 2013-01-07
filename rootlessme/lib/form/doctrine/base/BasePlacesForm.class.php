@@ -25,6 +25,7 @@ abstract class BasePlacesForm extends BaseFormDoctrine
       'tags'                  => new sfWidgetFormInputText(),
       'css_style'             => new sfWidgetFormTextarea(),
       'location_id'           => new sfWidgetFormInputText(),
+      'address_string'        => new sfWidgetFormInputText(),
       'created_at'            => new sfWidgetFormDateTime(),
       'updated_at'            => new sfWidgetFormDateTime(),
     ));
@@ -40,6 +41,7 @@ abstract class BasePlacesForm extends BaseFormDoctrine
       'tags'                  => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'css_style'             => new sfValidatorString(array('required' => false)),
       'location_id'           => new sfValidatorInteger(array('required' => false)),
+      'address_string'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'            => new sfValidatorDateTime(),
       'updated_at'            => new sfValidatorDateTime(),
     ));
