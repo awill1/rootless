@@ -277,6 +277,7 @@ Rootless.Map = Class.extend({
 
             // There is no origin so clear the marker from the map
             this._.mapItem.marker.originMarker.setMap(null);
+            this._.mapItem.marker.currentLocation.setMap(null);
             
             if (typeof($(self._.el.originDataField)) != "undefined")
             {

@@ -120,7 +120,6 @@ Rootless.Map.Search = Rootless.Map.extend({
         self._.el.$ridefind.click(function(){
             self._.el.$loader.show();
             self._.el.$results.toggle('blind');
-            self.ClearPolylinesFromMap();
         });
               
         self._.el.$rideSearchForm.submit(function(){
@@ -211,6 +210,7 @@ Rootless.Map.Search = Rootless.Map.extend({
                     map: self._.MapObject,
                     icon : new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|119D49"),
                 });
+                self._.mapItem.marker.currentLocation = marker;
                 
         	    self.geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
         	        self._.el.$originTextBox.val(results[0].formatted_address);
@@ -239,6 +239,8 @@ Rootless.Map.Search = Rootless.Map.extend({
             // This handler function will run when the form is complete
             $('#loader').hide();
             $('#results').show('blind');
+            
+            map.ClearPolylinesFromMap();
 
             // Add the results to the google map
             map.LoadItemsIntoGoogleMap();
