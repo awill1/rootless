@@ -6,6 +6,7 @@
             <th>&nbsp;</th>
             <th>Destination</th>
             <th>Creator</th>
+            <th>Asking Price</th>
             <th>Type</th>
             <th># of Seats</th>
         </tr>
@@ -34,6 +35,7 @@
                 <img class="rideListDriverCreatorProfileImage" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $carpool->getPeople()->getProfiles()->getPictureUrlSmall(); ?>" alt="<?php echo $carpool->getPeople() ?>" />
                 <?php echo $carpool->getPeople() ?>
             </td>
+            <td><?php echo '$' . $carpool->getAskingPrice() ?></td>
             <td>
                 <a class="tableLink" href="<?php echo url_for("ride_show",array('ride_id'=>$carpool->getCarpoolId(), 'ride_type'=>'offer')) ?>">Offer</a>
                 <span id="ride-carpool-<?php echo $carpool->getCarpoolId() ?>" class="hidden routePolyline"><?php echo $carpool->getRoutes()->getEncodedPolyline(); ?></span>
@@ -66,6 +68,7 @@
                 <img class="rideListDriverCreatorProfileImage" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $passenger->getPeople()->getProfiles()->getPictureUrlSmall(); ?>" alt="<?php echo $passenger->getPeople() ?>" />
                 <?php echo $passenger->getPeople() ?>
             </td>
+            <td><?php echo '$' . $passenger->getAskingPrice() ?></td>
             <td>
                 <a class="tableLink" href="<?php echo url_for("ride_show",array('ride_id'=>$passenger->getPassengerId(), 'ride_type'=>'request')) ?>">Request</a>
                 <span id="ride-passenger-<?php echo $passenger->getPassengerId() ?>" class="hidden routePolyline"><?php echo $passenger->getRoutes()->getEncodedPolyline(); ?></span> 
