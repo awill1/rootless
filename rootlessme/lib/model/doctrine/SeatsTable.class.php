@@ -173,7 +173,7 @@ class SeatsTable extends Doctrine_Table
     {
         // Add a where clause to the query to only return seats today or in
         // the future
-        return $query->andWhere('s.pickup_date >= ?', date('Y-m-d'));
+        return $query->andWhere('(s.pickup_date >= ? OR s.pickup_date IS NULL)', date('Y-m-d'));
     }
     
     /**
