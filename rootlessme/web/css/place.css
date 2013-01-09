@@ -132,6 +132,50 @@ h1{
     margin-right: 25px;
     padding: 15px;
 }
+/*form parts*/
+#iAmA{
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+#startingFrom{
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+#departDate{
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+#returnDate{
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+#asADriver{
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+#asAPassenger{
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+#seatsAvailable{
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+#seatsNeeded{
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+.placeFormHr{
+    background-color: #7a7a7a;
+    border: medium none;
+    color: #7a7a7a;
+    height: 1px;
+    width: 540px;
+}
+.formSection{
+    float:left;
+}
+/*end form parts*/
 #placeMapBox{
     float:left;
     margin-bottom: 20px;
@@ -237,13 +281,12 @@ h3{
     padding: 5px;
 }
 #otherDetailsTextArea{
-    width:520px;
+    width:540px;
     height:112px;
 }
 .postRideButton{
     float: right;
     font-weight: bold;
-    
     padding: 5px;
 }
 .placeForm tr{
@@ -252,16 +295,7 @@ h3{
 .dividerTR{
     height: 5px;
 }
-.placeFormHr{
-    background-color: #7a7a7a;
-    border: medium none;
-    color: #7a7a7a;
-    height: 1px;
-/*    width: 670px;*/
-}
-.formSection{
-    float:left;
-}
+
 
 
 
