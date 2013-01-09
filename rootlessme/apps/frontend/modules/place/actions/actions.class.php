@@ -10,6 +10,10 @@
  */
 class placeActions extends sfActions
 {
+    /**
+     * Executes the index action
+     * @param sfWebRequest $request The web request
+     */
     public function executeIndex(sfWebRequest $request)
     {
         $this->places = Doctrine_Core::getTable('Places')
@@ -17,18 +21,30 @@ class placeActions extends sfActions
           ->execute();
     }
 
+    /**
+     * Executes the show action
+     * @param sfWebRequest $request The web request
+     */
     public function executeShow(sfWebRequest $request)
     {
         $this->place = Doctrine_Core::getTable('Places')->find(array($request->getParameter('place_id')));
         $this->forward404Unless($this->place);
     }
 
+    /**
+     * Executes the new action
+     * @param sfWebRequest $request The web request
+     */
     public function executeNew(sfWebRequest $request)
     {
         $this->form = new PlacesForm();
 //        $this->form = new PlacesWithLocationForm();
     }
 
+    /**
+     * Executes the create action
+     * @param sfWebRequest $request The web request
+     */
     public function executeCreate(sfWebRequest $request)
     {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
@@ -40,12 +56,20 @@ class placeActions extends sfActions
         $this->setTemplate('new');
     }
 
+    /**
+     * Executes the edit action
+     * @param sfWebRequest $request The web request
+     */
     public function executeEdit(sfWebRequest $request)
     {
         $this->forward404Unless($place = Doctrine_Core::getTable('Places')->find(array($request->getParameter('place_id'))), sprintf('Object place does not exist (%s).', $request->getParameter('place_id')));
         $this->form = new PlacesForm($place);
     }
 
+    /**
+     * Executes the update action
+     * @param sfWebRequest $request The web request
+     */
     public function executeUpdate(sfWebRequest $request)
     {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
@@ -57,6 +81,10 @@ class placeActions extends sfActions
         $this->setTemplate('edit');
     }
 
+    /**
+     * Executes the delete action
+     * @param sfWebRequest $request The web request
+     */
     public function executeDelete(sfWebRequest $request)
     {
         $request->checkCSRFProtection();
@@ -80,6 +108,9 @@ class placeActions extends sfActions
         {
             // Load the AWS SDK
             require_once sfConfig::get('app_amazon_sdk_file');
+            
+            // This action always returns json
+            $this->getResponse()->setContentType('application/json');
         
             // Make sure the user is authenticated
             $personId = null;
@@ -112,6 +143,46 @@ class placeActions extends sfActions
             $returnRouteData = $request->getParameter('return_route_data');
             
             // Validate the input parameters
+            if(CommonHelpers::IsNullOrEmptyString($placeId))
+            {
+                throw new Exception('Place id was not specified.');
+            }
+            if(CommonHelpers::IsNullOrEmptyString($rideType))
+            {
+                throw new Exception('Ride type was not specified.');
+            }
+            if(CommonHelpers::IsNullOrEmptyString($origin))
+            {
+                throw new Exception('Origin was not specified.');
+            }
+            if(CommonHelpers::IsNullOrEmptyString($destination))
+            {
+                throw new Exception('Destination was not specified.');
+            }
+            if(CommonHelpers::IsNullOrEmptyString($driverSeats))
+            {
+                throw new Exception('Driver seat count was not specified.');
+            }
+            if(CommonHelpers::IsNullOrEmptyString($passengerSeats))
+            {
+                throw new Exception('Passenger seat count was not specified.');
+            }
+            if(CommonHelpers::IsNullOrEmptyString($originData))
+            {
+                throw new Exception('Origin data was not specified.');
+            }
+            if(CommonHelpers::IsNullOrEmptyString($destinationData))
+            {
+                throw new Exception('Destination data was not specified.');
+            }
+            if(CommonHelpers::IsNullOrEmptyString($departureRouteData))
+            {
+                throw new Exception('Departure route data was not specified.');
+            }
+            if(CommonHelpers::IsNullOrEmptyString($returnRouteData))
+            {
+                throw new Exception('Return route data was not specified.');
+            }
             
             // Create the user's rides
             $departurePassenger = NULL;
@@ -191,31 +262,28 @@ class placeActions extends sfActions
                 $recommendedReturnDrivers = $returnPassenger->recommendDrivers($searchRadius);
             }
 
-            // If this was an ajax request
-            if ($request->isXmlHttpRequest())
-            {
-                // Return success json with no layout
-                $this->setLayout(sfView::NONE);
-                return $this->renderText("{ success: true }");
-            }
-            else
-            {
-                // This is not an ajax request
-
-            }
-            
+            // Return success json with no layout
+            $this->setLayout(sfView::NONE);
+            return $this->renderText('{ "success": true }');            
         }
         catch (Exception $e)
         {
             // Log the error
             $this->logMessage($e->getMessage()."; ".$e->getTraceAsString(), 'err');
+            // Set the error code
+            $this->getResponse()->setStatusCode('500');
             // Return the error json
-            return $this->renderText('{ success: false, message: "'.$e->getMessage().'" }');
+            return $this->renderText('{ "success": false, "message": "'.$e->getMessage().'" }');
         }
         
         
     }
 
+    /**
+     * Processes the form for saving.
+     * @param sfWebRequest $request The web request
+     * @param sfForm $form The form to process
+     */
     protected function processForm(sfWebRequest $request, sfForm $form)
     {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));

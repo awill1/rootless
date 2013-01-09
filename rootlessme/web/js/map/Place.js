@@ -116,11 +116,6 @@ Rootless.Map.Place = Rootless.Map.extend({
         self._.el.$submitButton.click(function(){
             // Set the form submit flag
              self._.formBlock.isFormSubmitPending = true;
-                
-             // Block the fragment-vehicles div
-//             self._.el.$newRideFormArea.block({ 
-//                  message: 'saving'
-//             }); 
 
              // Disable the default submission. We will let the helper 
              // function do it
@@ -161,12 +156,23 @@ Rootless.Map.Place = Rootless.Map.extend({
     
     // Form submit options used for the ajax form
     formAjaxOptions : {
-        success: function()
+        dataType:  'json', 
+        success: function(data)
         {
             var map = Rootless.Map.Place.getInstance();
             // Clear the form submit pending flag
             isFormSubmitPending = false;
 
+            // This handler function will run when the form is complete
+            $('#loader').hide();
+            $('#placeRideConfirmationContainer').show('blind');
+        },
+        error : function(xhr, status, errMsg)
+        {
+            // If the resulting object has a message, display it in an alert
+            var obj = jQuery.parseJSON(xhr.responseText);
+            alert('There was a problem creating the ride. ' + obj.message); 
+            
             // This handler function will run when the form is complete
             $('#loader').hide();
             $('#placeRideConfirmationContainer').show('blind');
