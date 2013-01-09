@@ -3,7 +3,7 @@
     <h1>Share rides to your favorite places</h1>
     <ul class="placesList">
         <?php foreach ($places as $place): ?>
-        <a href="<?php echo url_for('place/show?place_id='.$place->getPlaceId()) ?>">
+        <a href="<?php echo url_for('place_show', array('place_id'=>$place->getPlaceId())) ?>">
             <li>
                 <div class="placeBox">
                     <div class="placeImg">
@@ -39,7 +39,10 @@
   <tbody>
     <?php foreach ($places as $place): ?>
     <tr>
-      <td><a href="<?php echo url_for('place/show?place_id='.$place->getPlaceId()) ?>"><?php echo $place->getPlaceId() ?></a></td>
+      <td>
+          <a href="<?php echo url_for('place_show', array('place_id'=>$place->getPlaceId())) ?>"><?php echo $place->getPlaceId() ?></a>
+          <a href="<?php echo url_for('place_edit', array('place_id' => $place->getPlaceId())) ?>">Edit</a>
+      </td>
       <td><?php echo $place->getName() ?></td>
       <td><?php echo $place->getWebsiteUrl() ?></td>
       <td><?php echo $place->getIsPartner() ?></td>
