@@ -85,9 +85,8 @@ tbody {
 
 
 
-.rideListSelectedRow {
-    background-color: #393C39;
-    color: white;
+#rideTable tbody tr.rideListSelectedRow {
+    background-color: #eaeaea;
     cursor: pointer;
 }
 
@@ -190,6 +189,7 @@ tbody {
 
 .middleRidesFormArea {
     display: inline-block;
+    width: 300px;
 }
 
 #map {
@@ -239,8 +239,8 @@ tbody {
     display: block;
 }
 
-#rideSearchForm input, #rideSearchForm select {
-    
+#rideSearchForm input, 
+#rideSearchForm select {
     width: 175px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -259,7 +259,8 @@ tbody {
 
 }
 
-#rideSearchForm th, #rideSearchForm td {
+#rideSearchForm th, 
+#rideSearchForm td {
     clear:both;
     float:left;
 }
@@ -275,13 +276,71 @@ tbody {
     background-color: #119D49;
 }
 
-input[type="text"]:focus, textarea:focus {
+input[type="text"]:focus, 
+textarea:focus {
    background-color: #ffffff;
    color: #000;
 } 
 
 #rideSearchForm input#rides_find:hover {
     background-color: #D14D2F;
+}
+
+#rideTable {
+	background-color: #faf9f9;
+}
+
+#rideTable thead {
+	background-color: #fff;
+}
+
+#rideTable tbody tr {
+	background-color: #fff;
+    border: 20px solid #FAF9F9;
+    border-bottom-width: 10px;
+    border-top-width: 10px;
+    height: 80px;
+}
+
+#rideTable tbody tr:first-child {
+    border-top-width: 20px;
+}
+
+#rideTable tbody tr:last-child {
+    border-bottom-width: 20px;
+}
+
+.icon {
+	background: url('/images/type-sprite.png') no-repeat;
+	display: block;
+}
+
+.icon.driver {
+	width: 30px;
+    height: 30px;
+    display: block;
+    background-position: -25px 0px;
+}
+
+.icon.passenger {
+	width: 26px;
+    height: 30px;
+    display: block;
+    background-position: 0px 0px;
+}
+
+.icon.destination-arrow {
+    width: 18px;
+    height: 30px;
+    display: block;
+    background-position: -57px 0px;
+}
+
+.ride-table-name {
+	font-size: 11px;
+	display: inline-block;
+	top: 8px;
+    position: relative;
 }
 
 .pendingListBlock {
@@ -302,7 +361,7 @@ input[type="text"]:focus, textarea:focus {
 	margin-right: 20px;
 	margin-bottom: 20px;
 	float: left;
-        border: 2px solid #f4f4f4
+    border: 2px solid #f4f4f4
 }
 
 .pendingListBlock .riderListItem a {
@@ -311,20 +370,24 @@ input[type="text"]:focus, textarea:focus {
     padding: 10px;
 }
 
-.pendingListBlock .riderListItem:hover, .pendingListBlock .riderListItem.selectedUser {
+.pendingListBlock .riderListItem:hover, 
+.pendingListBlock .riderListItem.selectedUser {
 	background: #2E2E2E;
-        border: 2px solid #f4f4f4
+    border: 2px solid #f4f4f4
 }
 
 .pendingListBlock .riderListItem.selectedUser  {
 	border: 2px solid #119D49;
 }
 
-.pendingListBlock .riderListItem:hover p, .pendingListBlock .riderListItem.selectedUser p {
+.pendingListBlock .riderListItem:hover p, 
+.pendingListBlock .riderListItem.selectedUser p {
 	color: #fff;
 }
 
-.pendingListBlock .riderListItem h3, .pendingListBlock .riderListItem img, .pendingListBlock .riderListItem p {
+.pendingListBlock .riderListItem h3, 
+.pendingListBlock .riderListItem img, 
+.pendingListBlock .riderListItem p {
 	float: left;
 	font-style: normal;
 	margin: 0;
