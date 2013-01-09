@@ -6,8 +6,6 @@
         Styles for the places pages
 */
 
-
-
 #indexMain{
     margin-top:11px;
     margin-left:30px;
@@ -95,19 +93,14 @@ h1{
 #content{
     
 }
-backgroundContainer{
-    background-image: url('../images/eaglePoint_background_cropped.jpg');
-/*    background-repeat: no-repeat;*/
-    display: overflow;
-    width: 500px;
-    height: 500px;
-    position: absolute;
-    left:-500px;
-    top:-500px;
-    z-index:-1;
-}
-body{
-/*    background-image: url('../images/eaglePoint_background_cropped.jpg');*/
+.placeTitleText{
+    float:left;
+    margin-top: 34px;
+    font-weight: bold;
+    color:#fff;
+    font-size: 42px;
+    width: 410px;
+    height: 410px;
 }
 #middleContent{
     margin-left: 0px !important;
@@ -167,6 +160,13 @@ body{
     width:312px;
     padding: 20px;
 }
+#placeHowBox a{
+    color: #E26C59;
+}
+#placeHowBox a:hover{
+    color: #E26C59;
+    text-decoration: underline;
+}
 .placeContentHeader{
     color: #009F40;
     font-weight: bold;
@@ -207,6 +207,7 @@ body{
 h3{
     font-size:18px;
     color:#565656;
+    margin: 0px;
 }
 .howtoList li{
     margin-bottom: 15px;
@@ -248,6 +249,9 @@ h3{
 .placeForm tr{
     height: 50px;
 }
+.dividerTR{
+    height: 5px;
+}
 .placeFormHr{
     background-color: #7a7a7a;
     border: medium none;
@@ -255,6 +259,18 @@ h3{
     height: 1px;
 /*    width: 670px;*/
 }
+.formSection{
+    float:left;
+}
+
+
+
+table,th, td
+{
+border: 1px solid black;
+}
+
+
 
 
 
