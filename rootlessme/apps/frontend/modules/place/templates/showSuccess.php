@@ -31,11 +31,11 @@
       });
     </script>
     <style type="text/css">
-        <?php echo $place->getCssStyle(); ?>
+        <?php echo htmlspecialchars_decode($place->getCssStyle()); ?>
     </style>
 <?php end_slot();?>
 <div id="placeHead">
-    <h1>Share a ride to <?php echo $place->getName() ?></h1>
+    <div class="placeTitleText">Share a ride to <?php echo $place->getName() ?></div>
     <div id="placeLogo"></div>
 </div>
     
@@ -49,7 +49,7 @@
     <br/>
     
     <div id="placeFormBox">
-            <?php include_partial('returnTripForm', array('place' => $place)) ?>
+            <?php include_partial('returnTripFormAlt', array('place' => $place)) ?>
         <div id="placeRideConfirmationContainer">
 
         </div>
@@ -81,7 +81,7 @@
             </ol>
             <h3>Questions</h3>
             <p>
-                Feel free to email us at contact@rootless.me with any questions you might have!
+                Feel free to email us at <a href="mailto:contact@rootless.me?Subject=Question">contact@rootless.me</a> with any questions you might have!
             </p>
         </div>
     </div>
