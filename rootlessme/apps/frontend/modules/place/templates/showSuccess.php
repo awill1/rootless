@@ -38,7 +38,6 @@
     <div class="placeTitleText">Share a ride to <?php echo $place->getName() ?></div>
     <div id="placeLogo"></div>
 </div>
-    
 <div id="placeContent">
     <div id="headerAndLikeBox" >
         <span class="placeContentHeader">Post a ride</span>
