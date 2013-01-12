@@ -1,44 +1,117 @@
 <?php use_helper('I18N') ?>
 
-<h2>Options form</h2>
-<p><?php echo $testString; ?></p>
-<h2>Signin form</h2>
-<form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
-  <table>
-    <tbody>
-      <?php echo $signinForm ?>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="2">
-          <input type="submit" value="<?php echo __('Log in', null, 'sf_guard') ?>" />
-          
-          <?php $routes = $sf_context->getRouting()->getRoutes() ?>
-          <?php if (isset($routes['sf_guard_forgot_password'])): ?>
-            <?php if (!isset($showForgotPassword) || $showForgotPassword): ?>
-                <a href="<?php echo url_for('@sf_guard_forgot_password') ?>"><?php echo __('Forgot your password?', null, 'sf_guard') ?></a>
-            <?php endif; ?>
-          <?php endif; ?>
-
-          <?php if (isset($routes['sf_guard_register'])): ?>
-            &nbsp; <a href="<?php echo url_for('@sf_guard_register') ?>"><?php echo __('Want to register?', null, 'sf_guard') ?></a>
-          <?php endif; ?>
-        </td>
-      </tr>
-    </tfoot>
-  </table>
-</form>
-
-<h2>Register form</h2>
-<form action="<?php echo url_for('@sf_guard_register') ?>" method="post">
-  <table>
-    <?php echo $registerForm ?>
-    <tfoot>
-      <tr>
-        <td colspan="2">
-          <input type="submit" name="register" value="<?php echo __('Register', null, 'sf_guard') ?>" />
-        </td>
-      </tr>
-    </tfoot>
-  </table>
-</form>
+<div id="loginDialogChoiceContainer">
+    <h2>Log in with Rootless</h2>
+    <hr />
+    <div>
+        <a href="#" class="facebookLink" >Register with Facebook</a>
+    </div>
+    <div>
+        or
+    </div>
+    <div>
+        <a href="#" class="registerLink" >Sign up with your email</a>
+    </div>
+    <hr />
+    <div>
+        Already a member? <a href="#" class="signinLink" >Sign in</a>
+    </div>
+</div>
+<div id="loginDialogLoginContainer">
+    <h2>Signin form</h2>
+    <form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
+        <?php echo $signinForm->renderHiddenFields() ?>
+        <table>
+            <tbody>
+                <tr>
+                    <th>
+                        <?php echo $signinForm['username']->renderLabel(); ?>
+                    </th>
+                    <td>
+                        <?php echo $signinForm['username']->render(); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <?php echo $signinForm['password']->renderLabel(); ?>
+                    </th>
+                    <td>
+                        <?php echo $signinForm['password']->render(); ?>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="<?php echo __('Log in', null, 'sf_guard') ?>" />
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </form>
+    <hr />
+    <div>
+        Not a member? <a href="#" class="registerLink" >Sign up</a>
+    </div>
+</div>
+<div id="loginDialogJoinContainer">
+    <h2>Register form</h2>
+    <form action="<?php echo url_for('@sf_guard_register') ?>" method="post">
+      <?php echo $registerForm->renderHiddenFields() ?>
+        <table>
+            <tbody>
+                <tr>
+                    <th>
+                        <?php echo $registerForm['first_name']->renderLabel(); ?>
+                    </th>
+                    <td>
+                        <?php echo $registerForm['first_name']->render(); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <?php echo $registerForm['last_name']->renderLabel(); ?>
+                    </th>
+                    <td>
+                        <?php echo $registerForm['last_name']->render(); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <?php echo $registerForm['email_address']->renderLabel(); ?>
+                    </th>
+                    <td>
+                        <?php echo $registerForm['email_address']->render(); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <?php echo $registerForm['password']->renderLabel(); ?>
+                    </th>
+                    <td>
+                        <?php echo $registerForm['password']->render(); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <?php echo $registerForm['password_again']->renderLabel(); ?>
+                    </th>
+                    <td>
+                        <?php echo $registerForm['password_again']->render(); ?>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" name="register" value="<?php echo __('Join Rootless!', null, 'sf_guard') ?>" />
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </form>
+    <hr />
+    <div>
+        Already a member? <a href="#" class="signinLink" >Sign in</a>
+    </div>
+</div>
