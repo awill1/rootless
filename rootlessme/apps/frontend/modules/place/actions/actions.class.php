@@ -26,7 +26,7 @@ class placeActions extends sfActions
      * @param sfWebRequest $request The web request
      */
     public function executeShow(sfWebRequest $request)
-    {
+    {        
         $this->place = Doctrine_Core::getTable('Places')->find(array($request->getParameter('place_id')));
         $this->forward404Unless($this->place);
     }

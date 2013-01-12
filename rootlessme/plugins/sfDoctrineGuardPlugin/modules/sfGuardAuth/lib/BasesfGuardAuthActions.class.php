@@ -32,6 +32,14 @@ class BasesfGuardAuthActions extends sfActions
 
     $class = sfConfig::get('app_sf_guard_plugin_signin_form', 'sfGuardFormSignin'); 
     $this->form = new $class();
+    
+    if ($request->isXmlHttpRequest())
+    {
+        $this->getResponse()->setHeaderOnly(true);
+        $this->getResponse()->setStatusCode(401);
+
+        return sfView::NONE;
+    }
 
     if ($request->isMethod('post'))
     {
@@ -54,15 +62,7 @@ class BasesfGuardAuthActions extends sfActions
       }
     }
     else
-    {
-      if ($request->isXmlHttpRequest())
-      {
-        $this->getResponse()->setHeaderOnly(true);
-        $this->getResponse()->setStatusCode(401);
-
-        return sfView::NONE;
-      }
-      
+    {      
       // if we have been forwarded, then the referer is the current URL
       // if not, this is the referer of the current request
       $user->setReferer($this->getContext()->getActionStack()->getSize() > 1 ? $request->getUri() : $request->getReferer());

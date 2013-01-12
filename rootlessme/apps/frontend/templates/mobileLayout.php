@@ -8,7 +8,7 @@
             Rootless - Share your ride or find a carpool.
           <?php endif; ?>
       </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> 
     <meta property="og:image" content="https://rootlessme.s3.amazonaws.com/images/rootless_logo_square.jpg"/>
     <meta property="og:site_name" content="Rootless"/>
     <meta property="og:type" content="website"/>

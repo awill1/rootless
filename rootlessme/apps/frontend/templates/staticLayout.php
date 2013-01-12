@@ -8,7 +8,7 @@
             Rootless - Share your ride or find a carpool.
           <?php endif; ?>
       </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> 
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php use_stylesheet(sfConfig::get('app_css_main')) ?>
     <?php use_javascript(sfConfig::get('app_jquery_script')) ?>

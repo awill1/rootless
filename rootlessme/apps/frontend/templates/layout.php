@@ -25,7 +25,7 @@
     <script type="text/javascript" src="/js/Class.js"></script>
     <script type="text/javascript" src="/js/Rootless.js"></script>
     <?php if (has_slot('gmapheader')): ?>
-    	<link type="text/css" href="/css/tipsy.css" rel="stylesheet">
+    	<link type="text/css" href="/css/tipsy.css" rel="stylesheet" />
     	<script type="text/javascript" src="/js/ext/jquery.tipsy.js"></script>
         <script type="text/javascript" src="/js/Map.js"></script>
         <?php include_slot('gmapheader') ?>

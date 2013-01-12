@@ -122,6 +122,9 @@ Rootless.Map.Place = Rootless.Map.extend({
              self.MaybeSubmitForm();
              return false;
          });
+         
+         // Login form for late login
+         $('#loginFormDialogContainer').dialog({ autoOpen: false, modal : true});
    },
    
     geocodeOrigin : function(results, status) {     
@@ -169,13 +172,20 @@ Rootless.Map.Place = Rootless.Map.extend({
         },
         error : function(xhr, status, errMsg)
         {
-            // If the resulting object has a message, display it in an alert
-            var obj = jQuery.parseJSON(xhr.responseText);
-            alert('There was a problem creating the ride. ' + obj.message); 
-            
-            // This handler function will run when the form is complete
-            $('#loader').hide();
-            $('#placeRideConfirmationContainer').show('blind');
+            if (xhr.status == 401)
+            {
+                $('#loginFormDialogContainer').dialog("open");
+            }
+            else
+            {
+                // If the resulting object has a message, display it in an alert
+                var obj = jQuery.parseJSON(xhr.responseText);
+                alert('There was a problem creating the ride. ' + obj.message); 
+
+                // This handler function will run when the form is complete
+                $('#loader').hide();
+                $('#placeRideConfirmationContainer').show('blind');
+            }
         }
     },
     
@@ -192,7 +202,6 @@ Rootless.Map.Place = Rootless.Map.extend({
     MaybeSubmitForm : function() {           
        // variable that keeps object available in inner functions
        var self = this;
-       
        // Check to make sure nothing is blocking submitting the form
        if (this.canSubmitForm() && this._.formBlock.isFormSubmitPending) {
             $(self._.el.rideForm).ajaxSubmit(self.formAjaxOptions);
