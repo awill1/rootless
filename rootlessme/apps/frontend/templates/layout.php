@@ -24,6 +24,7 @@
     <?php include_javascripts() ?>
     <script type="text/javascript" src="/js/Class.js"></script>
     <script type="text/javascript" src="/js/Rootless.js"></script>
+    <script type="text/javascript" src="/js/Utils.js"></script>
     <?php if (has_slot('gmapheader')): ?>
     	<link type="text/css" href="/css/tipsy.css" rel="stylesheet" />
     	<script type="text/javascript" src="/js/ext/jquery.tipsy.js"></script>
