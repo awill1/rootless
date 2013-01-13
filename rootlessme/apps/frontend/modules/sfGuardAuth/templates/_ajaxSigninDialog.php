@@ -28,7 +28,7 @@
                         <?php echo $signinForm['username']->renderLabel(); ?>
                     </th>
                     <td>
-                        <?php echo $signinForm['username']->render(); ?>
+                        <?php echo $signinForm['username']->render(array('class' => 'required')); ?>
                     </td>
                 </tr>
                 <tr>
@@ -36,7 +36,7 @@
                         <?php echo $signinForm['password']->renderLabel(); ?>
                     </th>
                     <td>
-                        <?php echo $signinForm['password']->render(); ?>
+                        <?php echo $signinForm['password']->render(array('class' => 'required')); ?>
                     </td>
                 </tr>
             </tbody>
@@ -65,7 +65,7 @@
                         <?php echo $registerForm['first_name']->renderLabel(); ?>
                     </th>
                     <td>
-                        <?php echo $registerForm['first_name']->render(); ?>
+                        <?php echo $registerForm['first_name']->render(array('class' => 'required')); ?>
                     </td>
                 </tr>
                 <tr>
@@ -73,7 +73,7 @@
                         <?php echo $registerForm['last_name']->renderLabel(); ?>
                     </th>
                     <td>
-                        <?php echo $registerForm['last_name']->render(); ?>
+                        <?php echo $registerForm['last_name']->render(array('class' => 'required')); ?>
                     </td>
                 </tr>
                 <tr>
@@ -81,7 +81,7 @@
                         <?php echo $registerForm['email_address']->renderLabel(); ?>
                     </th>
                     <td>
-                        <?php echo $registerForm['email_address']->render(); ?>
+                        <?php echo $registerForm['email_address']->render(array('class' => 'required email')); ?>
                     </td>
                 </tr>
                 <tr>
@@ -89,7 +89,7 @@
                         <?php echo $registerForm['password']->renderLabel(); ?>
                     </th>
                     <td>
-                        <?php echo $registerForm['password']->render(); ?>
+                        <?php echo $registerForm['password']->render(array('class' => 'required')); ?>
                     </td>
                 </tr>
                 <tr>
@@ -97,7 +97,7 @@
                         <?php echo $registerForm['password_again']->renderLabel(); ?>
                     </th>
                     <td>
-                        <?php echo $registerForm['password_again']->render(); ?>
+                        <?php echo $registerForm['password_again']->render(array('class' => 'required')); ?>
                     </td>
                 </tr>
             </tbody>
