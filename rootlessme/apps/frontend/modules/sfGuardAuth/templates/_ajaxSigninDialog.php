@@ -19,7 +19,7 @@
 </div>
 <div id="loginDialogLoginContainer">
     <h2>Signin form</h2>
-    <form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
+    <form id="loginForm" action="<?php echo url_for('sf_guard_ajax_signin') ?>" method="post">
         <?php echo $signinForm->renderHiddenFields() ?>
         <table>
             <tbody>
@@ -56,7 +56,7 @@
 </div>
 <div id="loginDialogJoinContainer">
     <h2>Register form</h2>
-    <form action="<?php echo url_for('@sf_guard_register') ?>" method="post">
+    <form id ="registerForm" action="<?php echo url_for('@sf_guard_register') ?>" method="post">
       <?php echo $registerForm->renderHiddenFields() ?>
         <table>
             <tbody>

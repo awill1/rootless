@@ -478,6 +478,10 @@ sf_guard_forgot_password_change:
 sf_guard_signin:
   url:   /login
   param: { module: sfGuardAuth, action: signin }
+  
+sf_guard_ajax_signin:
+  url:   /ajaxLogin
+  param: { module: sfGuardAuth, action: ajaxSignin }
 
 sf_guard_signout:
   url:   /logout

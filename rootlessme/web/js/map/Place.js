@@ -67,6 +67,9 @@ Rootless.Map.Place = Rootless.Map.extend({
                 }
            }
        }, params);
+       
+        var utils = Rootless.Static.Utils.getInstance();
+        utils.signInDialogInit();
    },
    /**
     * Initializes a Google Map into a div
