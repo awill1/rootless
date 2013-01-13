@@ -67,9 +67,6 @@ Rootless.Map.Place = Rootless.Map.extend({
                 }
            }
        }, params);
-       
-        var utils = Rootless.Static.Utils.getInstance();
-        utils.signInDialogInit();
    },
    /**
     * Initializes a Google Map into a div
@@ -126,7 +123,10 @@ Rootless.Map.Place = Rootless.Map.extend({
              return false;
          });
          
-         // Login form for late login
+        // Login form for late login
+        var place = Rootless.Map.Place.getInstance();
+        var utils = Rootless.Static.Utils.getInstance();
+        utils.signInDialogInit(place.MaybeSubmitForm);
          $('#loginFormDialogContainer').dialog({ autoOpen: false, modal : true});
    },
    
@@ -202,12 +202,13 @@ Rootless.Map.Place = Rootless.Map.extend({
         alert('either form');
     },
     
-    MaybeSubmitForm : function() {           
+    MaybeSubmitForm : function() {
+    	var place = Rootless.Map.Place.getInstance();    
        // variable that keeps object available in inner functions
        var self = this;
        // Check to make sure nothing is blocking submitting the form
-       if (this.canSubmitForm() && this._.formBlock.isFormSubmitPending) {
-            $(self._.el.rideForm).ajaxSubmit(self.formAjaxOptions);
+       if (place.canSubmitForm() && place._.formBlock.isFormSubmitPending) {
+            $(place._.el.rideForm).ajaxSubmit(place.formAjaxOptions);
         }
     }
     

@@ -82,7 +82,13 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
                 }
                 else
                 {
-                    throw new Exception('Login Failed');
+                    // The login was not valid. Get the error message.
+                    $message = "";
+                    foreach($this->form->getErrorSchema()->getErrors() as $e) 
+                    {
+                        $message .= ($e->__toString() . ' ');          
+                    }
+                    throw new Exception($message);
                 }
             }
             else

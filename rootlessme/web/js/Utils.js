@@ -15,7 +15,7 @@ Rootless.Static.Utils = Class.extend({
             
         }, params);
     },
-    signInDialogInit : function() {       
+    signInDialogInit : function(onAuthenticated) {       
         // Hide all of the login forms
         $("#loginDialogChoiceContainer").hide();
         $("#loginDialogLoginContainer").hide();
@@ -43,7 +43,12 @@ Rootless.Static.Utils = Class.extend({
             dataType:  'json', 
             success: function(data)
             {
-                alert("success!");
+                // Close the dialog
+                $('#loginFormDialogContainer').dialog("close");
+                
+                // Call the onAuthenticated callback
+                onAuthenticated();
+                
             },
             error : function(xhr, status, errMsg)
             {
@@ -59,7 +64,6 @@ Rootless.Static.Utils = Class.extend({
 
                     // This handler function will run when the form is complete
                     $('#loader').hide();
-                    $('#placeRideConfirmationContainer').show('blind');
                 }
             }
         });
