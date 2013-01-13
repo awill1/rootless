@@ -17,14 +17,14 @@
       </div>    
       <div id="startingFrom">
             <span class="primaryTextStyle">Starting From</span>
-            <input id="originTextBox" class="longField" type="text" name="origin" placeholder="Address, City, State" />
+            <input id="originTextBox" class="longField required" type="text" name="origin" placeholder="Address, City, State" />
       </div>
   </div>
   <div class="formSection"><hr class="placeFormHr"></div>
   <div class="formSection">
       <div id="departDate">
             <span class="primaryTextStyle">Depart Date</span>
-                <input id="startDateTextBox" class="datePicker shortField" type="text" name="start_date" placeholder="MM/DD/YYYY" />
+                <input id="startDateTextBox" class="datePicker shortField date" type="text" name="start_date" placeholder="MM/DD/YYYY" />
                 <select id="startTimeDropDown" class="dropDown" name="start_time">
                     <option value="">Anytime</option>
                     <?php for($i = 0; $i < 24 ; $i++): ?>
@@ -38,7 +38,7 @@
       </div>
       <div id="returnDate">
             <span class="primaryTextStyle">Return Date</span>
-                <input id="returnDateTextBox" class="datePicker shortField" type="text" name="return_date" placeholder="MM/DD/YYYY" />
+                <input id="returnDateTextBox" class="datePicker shortField date" type="text" name="return_date" placeholder="MM/DD/YYYY" />
                 <select id="returnTimeDropDown" class="dropDown" name="return_time">
                     <option value="">Anytime</option>
                     <?php for($i = 0; $i < 24 ; $i++): ?>
@@ -62,7 +62,7 @@
                     <?php endfor; ?>
                 </select>
             <span class="primaryTextStyle">Price</span>
-            <span class='dollar-sign'>$</span> <input id="driverPriceTextBox" class="tinyField" type="text" name="driver_price" /> <span class='fourthTextStyle'>per seat</span>
+            <span class='dollar-sign'>$</span> <input id="driverPriceTextBox" class="tinyField number" type="text" name="driver_price" /> <span class='fourthTextStyle'>per seat</span>
         </div>   
   </div>
   <div class="formSection"><hr class="placeFormHr"/></div>
@@ -76,7 +76,7 @@
                     <?php endfor; ?>
                 </select>
                 <span class="primaryTextStyle">Willing to pay</span>
-                <span class='dollar-sign'>$</span> <input id="passengerPriceTextBox" class="tinyField" type="text" name="passenger_price" /> <span class='fourthTextStyle'>per seat</span>
+                <span class='dollar-sign'>$</span> <input id="passengerPriceTextBox" class="tinyField number" type="text" name="passenger_price" /> <span class='fourthTextStyle'>per seat</span>
             </div>
         
             <div id="otherRideDetails">

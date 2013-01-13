@@ -113,15 +113,25 @@ Rootless.Map.Place = Rootless.Map.extend({
         
         // Use the safe form submit function incase the google map api has
         // not returned yet
-        self._.el.$submitButton.click(function(){
-            // Set the form submit flag
-             self._.formBlock.isFormSubmitPending = true;
-
-             // Disable the default submission. We will let the helper 
-             // function do it
-             self.MaybeSubmitForm();
-             return false;
-         });
+        $(self._.el.rideForm).validate({
+            submitHandler: function() {
+                // Set the form submit flag
+                 self._.formBlock.isFormSubmitPending = true;
+                 // Disable the default submission. We will let the helper 
+                 // function do it
+                 self.MaybeSubmitForm();
+//                 return false;
+            }
+        });
+//        self._.el.$submitButton.click(function(){
+//            // Set the form submit flag
+//             self._.formBlock.isFormSubmitPending = true;
+//
+//             // Disable the default submission. We will let the helper 
+//             // function do it
+//             self.MaybeSubmitForm();
+//             return false;
+//         });
          
         // Login form for late login
         var place = Rootless.Map.Place.getInstance();
