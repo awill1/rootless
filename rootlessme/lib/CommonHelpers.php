@@ -137,6 +137,33 @@ class CommonHelpers {
         }
         return $lastName;
     }
+	
+	/**
+	 * Combine objects into an array (check _ridesList.php for sample usage)
+	 * @param Integer $key the iteration number in for loop
+	 * @param Object $object the object that needs place in array
+	 * @param Reference of Array &$array the array that is being edited
+	 * @return nothing because this is used in for loops and is editing a reference variable you set
+	 */
+	public static function combineObjectsIntoArray($key, $object, &$array) 
+	{
+		if (!isset($array[$key])) {
+    	    $array[$key] = $object;
+		} else {
+		    $length = count($array);
+		    $array[$length] = $object;
+		}
+	}
+	
+	/**
+	 * Reorder array by date
+	 * @param Array $array the array to reorder
+	 * @return Array The reordered Array
+	 */
+	public static function reorderArrayByDate($array)
+	{
+		
+	}
 
 }
 

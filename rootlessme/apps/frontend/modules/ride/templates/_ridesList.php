@@ -11,6 +11,23 @@
             <th>Seats</th>
         </tr>
     </thead>
+    <?php 
+        $rides = array();
+  
+        foreach ($passengers as $key => $passenger) {
+        	CommonHelpers::combineObjectsIntoArray($key, $passenger, $rides);
+	    }
+		
+		foreach ($carpools as $key => $carpool) {
+			CommonHelpers::combineObjectsIntoArray($key, $carpool, $rides);
+		}
+
+        foreach ($rides as $key => $ride) {
+        	$id = $ride->getRideType() == 'offer' ? $ride->getCarpoolId() : $ride->getPassengerId();
+    	    print $id . '<br />';
+	    }
+		
+	?> 
     <tbody>
         <?php foreach ($carpools as $i => $carpool):
                   $route = $carpool->getRoutes(); ?>
