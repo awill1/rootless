@@ -120,24 +120,17 @@ Rootless.Map.Place = Rootless.Map.extend({
                  // Disable the default submission. We will let the helper 
                  // function do it
                  self.MaybeSubmitForm();
-//                 return false;
             }
         });
-//        self._.el.$submitButton.click(function(){
-//            // Set the form submit flag
-//             self._.formBlock.isFormSubmitPending = true;
-//
-//             // Disable the default submission. We will let the helper 
-//             // function do it
-//             self.MaybeSubmitForm();
-//             return false;
-//         });
          
         // Login form for late login
         var place = Rootless.Map.Place.getInstance();
         var utils = Rootless.Static.Utils.getInstance();
         utils.signInDialogInit(place.MaybeSubmitForm);
-         $('#loginFormDialogContainer').dialog({ autoOpen: false, modal : true});
+        $('#loginFormDialogContainer').dialog({ autoOpen: false, modal : true});
+         
+        // Show the place marker by previewing the route
+        self.previewRoute($(self._.el.destinationTextBox));
    },
    
     geocodeOrigin : function(results, status) {     
