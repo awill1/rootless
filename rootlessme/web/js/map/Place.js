@@ -43,6 +43,7 @@ Rootless.Map.Place = Rootless.Map.extend({
                $submitButton         : $('.postRideButton'),
                $newRideFormArea	     : $("#newRideFormArea"),
                rideForm              : "#roundTripForm",
+               placeFormBox         : "#placeFormBox",
                originDataField       : "#originDataInput",
                destinationDataField  : "#destinationDataInput",
                routeDataField        : "#departureRouteDataInput", 
@@ -127,7 +128,7 @@ Rootless.Map.Place = Rootless.Map.extend({
         var place = Rootless.Map.Place.getInstance();
         var utils = Rootless.Static.Utils.getInstance();
         utils.signInDialogInit(place.MaybeSubmitForm);
-        $('#loginFormDialogContainer').dialog({ autoOpen: false, modal : true});
+        $('#loginFormDialogContainer').dialog({ autoOpen: false, modal : true, zIndex: 2000});
          
         // Show the place marker by previewing the route
         self.previewRoute($(self._.el.destinationTextBox));
@@ -168,18 +169,24 @@ Rootless.Map.Place = Rootless.Map.extend({
         dataType:  'json', 
         success: function(data)
         {
-            var map = Rootless.Map.Place.getInstance();
+            var place = Rootless.Map.Place.getInstance();
             // Clear the form submit pending flag
             isFormSubmitPending = false;
+            
+            // Unblock the form
+            $(place._.el.placeFormBox).unblock();
 
             // This handler function will run when the form is complete
-            $('#loader').hide();
             $('#placeRideConfirmationContainer').show('blind');
         },
         error : function(xhr, status, errMsg)
         {
+            var place = Rootless.Map.Place.getInstance();
+            
+            // See if this is an authentication error
             if (xhr.status == 401)
             {
+                // The user is not authorizes, so show the login dialog
                 $('#loginFormDialogContainer').dialog("open");
             }
             else
@@ -187,11 +194,13 @@ Rootless.Map.Place = Rootless.Map.extend({
                 // If the resulting object has a message, display it in an alert
                 var obj = jQuery.parseJSON(xhr.responseText);
                 alert('There was a problem creating the ride. ' + obj.message); 
-
+                
                 // This handler function will run when the form is complete
-                $('#loader').hide();
                 $('#placeRideConfirmationContainer').show('blind');
             }
+            
+            // Unblock the form
+            $(place._.el.placeFormBox).unblock();
         }
     },
     
@@ -207,10 +216,11 @@ Rootless.Map.Place = Rootless.Map.extend({
     
     MaybeSubmitForm : function() {
     	var place = Rootless.Map.Place.getInstance();    
-       // variable that keeps object available in inner functions
-       var self = this;
-       // Check to make sure nothing is blocking submitting the form
-       if (place.canSubmitForm() && place._.formBlock.isFormSubmitPending) {
+        // variable that keeps object available in inner functions
+        var self = this;
+        // Check to make sure nothing is blocking submitting the form
+        if (place.canSubmitForm() && place._.formBlock.isFormSubmitPending) {
+            $(place._.el.placeFormBox).block();
             $(place._.el.rideForm).ajaxSubmit(place.formAjaxOptions);
         }
     }
