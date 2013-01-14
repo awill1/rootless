@@ -101,11 +101,20 @@ class placeActions extends sfActions
      */
     public function executeCreateRideToPlace(sfWebRequest $request)
     {
-        //Success variable and message
-        $success = 'false';
-        
         try
         {
+            if (!$request->isMethod('post'))
+            {      
+                // GET is not supported
+                throw new Exception('GET is not supported.');
+            }
+            
+            // This method is only valid for ajax calls
+            if (!$request->isXmlHttpRequest())
+            {
+                throw new Exception('Request must be XHR.');
+            }
+            
             // Load the AWS SDK
             require_once sfConfig::get('app_amazon_sdk_file');
             

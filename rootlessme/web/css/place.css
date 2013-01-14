@@ -125,12 +125,26 @@ h1{
 #facebookLikeBox{
     float:right;
 }
-#placeFormBox{
+/*#placeFormBox{
     float: left;
     background-color: #f3f3f3;
     width: 543px;
     margin-right: 25px;
     padding: 15px;
+}*/
+#placeRideContainer{
+    float: left;
+    background-color: #f3f3f3;
+    width: 543px;
+    margin-right: 25px;
+    padding: 15px;
+}
+#placeFormBox{
+    clear: left;
+}
+#placeRideConfirmationContainer
+{
+    clear: left;
 }
 /*form parts*/
 #iAmA{

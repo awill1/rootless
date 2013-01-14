@@ -43,11 +43,12 @@ Rootless.Map.Place = Rootless.Map.extend({
                $submitButton         : $('.postRideButton'),
                $newRideFormArea	     : $("#newRideFormArea"),
                rideForm              : "#roundTripForm",
-               placeFormBox         : "#placeFormBox",
+               placeFormBox          : "#placeFormBox",
                originDataField       : "#originDataInput",
                destinationDataField  : "#destinationDataInput",
                routeDataField        : "#departureRouteDataInput", 
-               returnRouteDataField  : "#returnRouteDataInput" 
+               returnRouteDataField  : "#returnRouteDataInput",
+               anotherRideButton     : "#confirmationPostAnotherRide"
            },
            
            // Variables used to block form submitting before map api results are returned
@@ -132,6 +133,17 @@ Rootless.Map.Place = Rootless.Map.extend({
          
         // Show the place marker by previewing the route
         self.previewRoute($(self._.el.destinationTextBox));
+        
+        // Show the ride form and hide the confirmation section
+        $('#placeFormBox').show();
+        $('#placeRideConfirmationContainer').hide();
+        
+        // Add more click handlers
+        $(self._.el.anotherRideButton).click(function(){
+            $('#placeRideConfirmationContainer').hide();
+            $('#placeFormBox').show('blind');
+            return false;
+        });
    },
    
     geocodeOrigin : function(results, status) {     
@@ -177,6 +189,7 @@ Rootless.Map.Place = Rootless.Map.extend({
             $(place._.el.placeFormBox).unblock();
 
             // This handler function will run when the form is complete
+            $('#placeFormBox').hide();
             $('#placeRideConfirmationContainer').show('blind');
         },
         error : function(xhr, status, errMsg)
