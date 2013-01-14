@@ -495,6 +495,10 @@ sf_guard_register:
   url:   /register
   param: { module: sfGuardRegister, action: index }
   
+sf_guard_ajax_register:
+  url:   /ajaxRegister
+  param: { module: sfGuardRegister, action: ajaxRegister }
+  
 # Symfony routes javascript helper
 sf_routes_js:
   url: /js/sf.routes.js

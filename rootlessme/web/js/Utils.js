@@ -76,7 +76,34 @@ Rootless.Static.Utils = Class.extend({
         // Validate then ajax submit the register form
         $("#registerForm").validate({
             submitHandler: function() {
-                $('#registerForm').ajaxSubmit();
+                $('#registerForm').ajaxSubmit({
+                    dataType:  'json', 
+                    success: function(data)
+                    {
+                        // Close the dialog
+                        $('#loginFormDialogContainer').dialog("close");
+
+                        // Call the onAuthenticated callback
+                        onAuthenticated();
+
+                    },
+                    error : function(xhr, status, errMsg)
+                    {
+                        if (xhr.status == 401)
+                        {
+                            $('#loginFormDialogContainer').dialog("open");
+                        }
+                        else
+                        {
+                            // If the resulting object has a message, display it in an alert
+                            var obj = jQuery.parseJSON(xhr.responseText);
+                            alert('There was a problem registering. ' + obj.message); 
+
+                            // This handler function will run when the form is complete
+                            $('#loader').hide();
+                        }
+                    }
+                });
             }
         });
         

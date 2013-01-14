@@ -56,7 +56,7 @@
 </div>
 <div id="loginDialogJoinContainer">
     <h2>Register form</h2>
-    <form id ="registerForm" action="<?php echo url_for('@sf_guard_register') ?>" method="post">
+    <form id ="registerForm" action="<?php echo url_for('sf_guard_ajax_register') ?>" method="post">
       <?php echo $registerForm->renderHiddenFields() ?>
         <table>
             <tbody>

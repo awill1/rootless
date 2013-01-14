@@ -1,31 +1,24 @@
 <?php
 
-/*
- * This file is part of the symfony package.
- * (c) 2004-2006 Fabien Potencier <fabien.potencier@symfony-project.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
-require_once(dirname(__FILE__).'/../../../../../plugins/sfDoctrineGuardPlugin/modules/sfGuardAuth/lib/BasesfGuardAuthActions.class.php');
+require_once dirname(__FILE__).'/../../../../../plugins/sfDoctrineGuardPlugin/modules/sfGuardRegister/lib/BasesfGuardRegisterActions.class.php';
 
 /**
+ * sfGuardRegister actions.
  *
- * @package    symfony
- * @subpackage plugin
- * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: actions.class.php 23319 2009-10-25 12:22:23Z Kris.Wallsmith $
+ * @package    guard
+ * @subpackage sfGuardRegister
+ * @author     Your name here
+ * @version    SVN: $Id: actions.class.php 12479 2008-10-31 10:54:40Z jwage $
  */
-class sfGuardAuthActions extends BasesfGuardAuthActions
+class sfGuardRegisterActions extends BasesfGuardRegisterActions
 {
     /**
-     *Executes the ajax signin action
+     * Executes the ajax register action
      * @param sfWebRequest $request the web request
      * @return String Result json
      */  
-    public function executeAjaxSignin($request)
-    {
+    public function executeAjaxRegister($request)
+    {        
         try 
         {
             // This action always returns json with no template
@@ -43,23 +36,23 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
                 return $this->renderText('{ "success": true, "message": "" }');
             }
 
-            $class = sfConfig::get('app_sf_guard_plugin_signin_form', 'sfGuardFormSignin'); 
-            $this->form = new $class();
-
             // This method is only valid for ajax calls
             if (!$request->isXmlHttpRequest())
             {
                 throw new Exception('Request must be XHR.');
             }
 
+            // Create the register form
+            $this->form = new sfGuardRegisterForm();
+
             if ($request->isMethod('post'))
             {
-                $this->form->bind($request->getParameter('signin'));
+                $this->form->bind($request->getParameter($this->form->getName()));
                 if ($this->form->isValid())
                 {
-                    $values = $this->form->getValues(); 
-                    $this->getUser()->signin($values['user'], array_key_exists('remember', $values) ? $values['remember'] : false);
-                    
+                    $user = $this->form->save();
+                    $this->getUser()->signIn($user);
+
                     // Set the response code to OK
                     $this->getResponse()->setStatusCode('200');
                     // Return the error json
@@ -67,7 +60,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
                 }
                 else
                 {
-                    // The login was not valid. Get the error message.
+                    // The registration was not valid. Get the error message.
                     $message = "";
                     foreach($this->form->getErrorSchema()->getErrors() as $e) 
                     {
@@ -80,7 +73,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
             {      
                 // GET is not supported
                 throw new Exception('GET is not supported.');
-            }
+            }           
         }
         catch (Exception $e)
         {
