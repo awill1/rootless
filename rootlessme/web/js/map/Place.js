@@ -207,9 +207,6 @@ Rootless.Map.Place = Rootless.Map.extend({
                 // If the resulting object has a message, display it in an alert
                 var obj = jQuery.parseJSON(xhr.responseText);
                 alert('There was a problem creating the ride. ' + obj.message); 
-                
-                // This handler function will run when the form is complete
-                $('#placeRideConfirmationContainer').show('blind');
             }
             
             // Unblock the form
