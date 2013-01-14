@@ -192,19 +192,17 @@ tbody {
     width: 300px;
 }
 
+#rideProfileMap, 
 #map {
-    width: 400px;
-    height: 230px;
-    float: right;
-}
-
-
-#rideProfileMap {
     width: 100%;
     height: 300px;
     float: left;
     margin-bottom: 20px;
     border: 1px solid #ccc;
+}
+
+#map {
+	margin-top: 43px;
 }
 
 #informationContainer {
@@ -237,6 +235,10 @@ tbody {
 .driverPicture {
     width: 270px;
     display: block;
+}
+
+#searchForm label {
+	display: none;
 }
 
 #rideSearchForm input, 
@@ -314,14 +316,14 @@ textarea:focus {
 .icon.driver {
 	width: 30px;
     height: 30px;
-    display: block;
+    display: inline-block;
     background-position: -25px 0px;
 }
 
 .icon.passenger {
 	width: 26px;
     height: 30px;
-    display: block;
+    display: inline-block;
     background-position: 0px 0px;
 }
 

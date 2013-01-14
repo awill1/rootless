@@ -134,7 +134,6 @@ textarea {
     left: 0;
     background-color: #000000;
     overflow: hidden;
-    /*background-image: url("../images/frontpagebackground3.jpg");*/
 }
 
 .home {
@@ -231,7 +230,6 @@ textarea {
   padding: 5px;
   color: #ccc;
   margin-top: 10px;
-  /*margin-left: 55px;*/
   left: 55px;
   width: 155px;
   margin-right: 10px;
@@ -273,7 +271,6 @@ textarea {
     height: 56px;
     left: 0;
     position: absolute;
-    /*top: 11px;*/
     border: 1px solid #575656;
     
 }
@@ -320,13 +317,6 @@ textarea {
     top: 10px;
 
 }
-
-.home #loginFormContainerB tbody tr:last-child th {
-   /* float:right;*/
-}
-.home #loginFormContainerB tbody tr:last-child td {
-   /* float: left;*/
-}    
 
 .home #loginFormContainerB tfoot a:hover {
     text-decoration: underline;
@@ -459,7 +449,6 @@ textarea {
 }
 
 .home #rideSearchForm {
-   /* border-left: 1px solid #cebea9; */
     padding-left: 25px;
     margin-left: 25px;
     float: left;
@@ -655,7 +644,6 @@ textarea {
 
 
 #header {
-    /*background: #333333;*/
     color: #FFFFFF;
     vertical-align: middle;
     height: 62px;
@@ -664,7 +652,6 @@ textarea {
 }
 
 #headerLogin {
-    /*background: #333333;*/
     width: 960px;
     z-index: 1000;
 }
@@ -902,7 +889,6 @@ textarea {
 #leftContent {
     background-color: #F4F4F4;
     margin-top: 40px;
-/*    background-image: url("../images/leftContentBackground.jpg");*/
     background-repeat: repeat-y;
     width: 159px;
     padding: 12px 12px 12px 12px;
@@ -1078,15 +1064,12 @@ textarea {
 }
 
 #middleContent {
-    margin-left: 240px;
- /*   margin-right: 210px;*/
+    margin-left: 230px;
     margin-right: 10px;
     margin-top: 0px;
 }
 
 #middleContentFrontPage {
-/*    margin-left: 240px;*/
- /*   margin-right: 210px;*/
     margin-right: 10px;
     margin-top: 0px;
 }
@@ -1118,7 +1101,6 @@ textarea {
     top: 0;
     right: 0;
     margin-right: 240px;
-    /*margin-top: -109px;*/
     z-index: 1001;
 }
 
@@ -1198,7 +1180,6 @@ textarea {
 .frontPageContent {
     padding: 0px;
     color: #ffffff;
-    /*margin-bottom: 90px;*/
     margin-top: 50px;
 }
 
@@ -1208,7 +1189,6 @@ textarea {
     max-width: 815px;
     padding: 12px 5px;
     margin: 25px 0px;
-    /*margin: 0px;*/
     font-weight: bold;
     text-rendering: optimizelegibility;
     text-shadow: 0 0 15px rgba(0, 0, 0, 0.6), 0 -1px 1px rgba(0, 0, 0, 0.6);

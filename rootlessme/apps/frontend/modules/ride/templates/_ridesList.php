@@ -25,12 +25,13 @@
 		$rideType = $ride->getRideType();
 		$id = $rideType == 'offer' ? $ride->getCarpoolId() : $ride->getPassengerId();
 		$seats = $rideType == 'offer' ? $ride->getSeatsAvailable() : $ride->getPassengerCount(); 
+		$seatText = $rideType == 'offer' ? ' available' : ' requested';
 		$route = $ride->getRoutes();
     ?>
         <tr>
            <td>
                <a class="tableLink hide" href="<?php echo url_for("ride_show",array('ride_id'=>$id, 'ride_type'=>$rideType)) ?>"></a>
-               <img class="rideListDriverCreatorProfileImage" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $profile->getPictureUrlMedium(); ?>" alt="<?php echo $people ?>" />
+               <img class="rideListDriverCreatorProfileImage" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $profile->getPictureUrlSmall(); ?>" alt="<?php echo $people ?>" />
                <span class="ride-table-name">
                    <?php echo $profile->getFirstName(); ?><br />
                    <?php echo $profile->getLastName(); ?><br />
@@ -42,8 +43,8 @@
             <td><span class="icon destination-arrow"></span></td>
             <td><?php echo $route->getDestinationString(); ?></td>
             <td>
-            	<strong><?php echo $seats; ?></strong>
-            	<?php echo '$' . $ride->getAskingPrice(); ?>
+            	<strong><?php echo $seats . " seat"; if($seats != 1) { echo 's'; } echo $seatText ?></strong>
+            	<?php echo '$' . $ride->getAskingPrice() . ' per seat'; ?>
             </td>
         </tr>
     <?php endforeach; ?>
