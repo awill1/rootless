@@ -246,15 +246,13 @@ Rootless.Map.Search = Rootless.Map.extend({
             map.LoadItemsIntoGoogleMap();
 
             // Change the hover style
-            $("#rideTable tbody tr")
+            $(".rideTable tbody tr")
             .hover(function(){
                    map.HighlightRow($(this));
                 }, function() {
                    map.UnHighlightRow($(this));
-                })
-            .find('td:not(:has(:checkbox, a))')
-                .click(function () {
-                window.location = $(this).parent().find("a").attr("href");
+                }).click(function () {
+                window.location = $(this).find('.tableLink').attr("href");
             });
         }
     },

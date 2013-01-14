@@ -148,21 +148,11 @@ class CommonHelpers {
 	public static function combineObjectsIntoArray($key, $object, &$array) 
 	{
 		if (!isset($array[$key])) {
-    	    $array[$key] = $object;
+    	    $array[$key] = array($object);
 		} else {
-		    $length = count($array);
-		    $array[$length] = $object;
+			$length = count($array[$key]);
+		    $array[$key][$length] = $object;
 		}
-	}
-	
-	/**
-	 * Reorder array by date
-	 * @param Array $array the array to reorder
-	 * @return Array The reordered Array
-	 */
-	public static function reorderArrayByDate($array)
-	{
-		
 	}
 
 }

@@ -59,7 +59,7 @@ tbody {
     margin: 10px 10px 10px 10px;
 }
 
-#rideTable {
+.rideTable {
     clear: right;
     width: 100%;
     border-collapse: collapse;
@@ -85,7 +85,7 @@ tbody {
 
 
 
-#rideTable tbody tr.rideListSelectedRow {
+.rideTable tbody tr.rideListSelectedRow {
     background-color: #eaeaea;
     cursor: pointer;
 }
@@ -286,15 +286,11 @@ textarea:focus {
     background-color: #D14D2F;
 }
 
-#rideTable {
+.rideTable {
 	background-color: #faf9f9;
 }
 
-#rideTable thead {
-	background-color: #fff;
-}
-
-#rideTable tbody tr {
+.rideTable tbody tr {
 	background-color: #fff;
     border: 20px solid #FAF9F9;
     border-bottom-width: 10px;
@@ -302,11 +298,11 @@ textarea:focus {
     height: 80px;
 }
 
-#rideTable tbody tr:first-child {
+.rideTable tbody tr:first-child {
     border-top-width: 20px;
 }
 
-#rideTable tbody tr:last-child {
+.rideTable tbody tr:last-child {
     border-bottom-width: 20px;
 }
 
