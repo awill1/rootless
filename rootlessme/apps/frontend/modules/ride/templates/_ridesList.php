@@ -23,7 +23,16 @@
                         <?php echo date("j",strtotime($carpool->getStartDate())) ?>
                     </div>
                     <div class="dateBlockTime">
-                        <?php echo date("g:i A",strtotime($carpool->getStartTime())) ?>
+                        <?php 
+                            if (is_null($carpool->getStartTime()))
+                            {
+                                echo "Anytime";
+                            }
+                            else
+                            {
+                                echo date("g:i A",strtotime($carpool->getStartTime()));
+                            }
+                        ?>
                     </div>
                 </div>
             </td>
@@ -55,7 +64,16 @@
                         <?php echo date("j",strtotime($passenger->getStartDate())) ?>
                     </div>
                     <div class="dateBlockTime">
-                        <?php echo date("g:i A",strtotime($passenger->getStartTime())) ?>
+                        <?php 
+                            if (is_null($passenger->getStartTime()))
+                            {
+                                echo "Anytime";
+                            }
+                            else
+                            {
+                                echo date("g:i A",strtotime($passenger->getStartTime()));
+                            }
+                        ?>
                     </div>
                 </div>
             </td>

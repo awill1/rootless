@@ -29,7 +29,16 @@
                         <div class="dateCont">
                             <div class="monthCont"><?php echo date("M",strtotime($carpool->getStartDate())) ?></div>
                             <div class="dayCont"><?php echo date("j",strtotime($carpool->getStartDate())) ?></div>
-                            <div class="timeCont"><?php echo date("g:i A",strtotime($carpool->getStartTime())) ?></div>
+                            <div class="timeCont"><?php 
+                                if (is_null($carpool->getStartTime()))
+                                {
+                                    echo "Anytime";
+                                }
+                                else
+                                {
+                                    echo date("g:i A",strtotime($carpool->getStartTime()));
+                                }?></div>
+                            
                         </div>
                         <div class="locationCont">
                             <div class="deleteRideCont" >
@@ -70,7 +79,15 @@
                         <div class="dateCont">
                             <div class="monthCont"><?php echo date("M",strtotime($passenger->getStartDate())) ?></div>
                             <div class="dayCont"><?php echo date("j",strtotime($passenger->getStartDate())) ?></div>
-                            <div class="timeCont"><?php echo date("g:i A",strtotime($passenger->getStartTime())) ?></div>
+                            <div class="timeCont"><?php 
+                                if (is_null($passenger->getStartTime()))
+                                {
+                                    echo "Anytime";
+                                }
+                                else
+                                {
+                                    echo date("g:i A",strtotime($passenger->getStartTime()));
+                                }?></div>
                         </div>
                         <div class="locationCont">
                             <div class="deleteRideCont" >

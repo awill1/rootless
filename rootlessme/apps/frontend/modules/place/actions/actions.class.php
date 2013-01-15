@@ -211,6 +211,12 @@ class placeActions extends sfActions
                     $startDate = date('Y-m-d H:i:s', strtotime($startDate));
                 }
                 
+                // Set the time to null if it was anytime
+                if (CommonHelpers::IsNullOrEmptyString($startTime))
+                {
+                    $startTime = null;
+                }
+                
                 // If the user is a passenger or either, create the passenger post
                 if ($rideType == 'passenger' || $rideType == 'either')
                 {
@@ -233,6 +239,12 @@ class placeActions extends sfActions
                 elseif (!CommonHelpers::IsNullOrEmptyString($returnDate)) 
                 {
                     $returnDate = date('Y-m-d H:i:s', strtotime($returnDate));
+                }
+                
+                // Set the time to null if it was anytime
+                if (CommonHelpers::IsNullOrEmptyString($returnTime))
+                {
+                    $returnTime = null;
                 }
                 
                 // If the user is a passenger or either, create the passenger post

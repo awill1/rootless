@@ -73,7 +73,16 @@
                 <?php echo date("j",strtotime($carpool->getStartDate())) ?>
             </div>
             <div class="dateBlockTime">
-                <?php echo date("g:i A",strtotime($carpool->getStartTime())) ?>
+                <?php 
+                    if (is_null($carpool->getStartTime()))
+                    {
+                        echo "Anytime";
+                    }
+                    else
+                    {
+                        echo date("g:i A",strtotime($carpool->getStartTime()));
+                    }
+                ?>
             </div>
         </div>
         <h1 id="mainEventTitle">

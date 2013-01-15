@@ -74,7 +74,16 @@
                 <?php echo date("j",strtotime($passenger->getStartDate())) ?>
             </div>
             <div class="dateBlockTime">
-                <?php echo date("g:i A",strtotime($passenger->getStartTime())) ?>
+                <?php 
+                    if (is_null($passenger->getStartTime()))
+                    {
+                        echo "Anytime";
+                    }
+                    else
+                    {
+                        echo date("g:i A",strtotime($passenger->getStartTime()));
+                    }
+                ?>
             </div>
         </div>
         <h1 id="mainEventTitle">
