@@ -134,35 +134,120 @@ h1{
 }
 /*form parts*/
 #iAmA{
+    float: left;
+    margin-bottom: 0px;
+    margin-top: 30px;
+    margin-left: 0px;
+}
+#iAmAButtons{
+    float:left;
+    margin-left: 20px;
+}
+#iAmAText{
+    float:left;
+    margin-left: 75px;
+}
+#startingFrom{
+    float:left;
     margin-bottom: 20px;
     margin-top: 30px;
 }
-#startingFrom{
-    margin-bottom: 20px;
-    margin-top: 30px;
+#startingFromText{
+    float:left;
+    margin-left: 7px;
+}
+#startingFromInput{
+    float:left;
+    margin-left: 25px;
 }
 #departDate{
     margin-bottom: 20px;
     margin-top: 30px;
 }
+#departDateText{
+    float:left;
+    margin-left: 22px;
+}
+#departDateInput{
+    float:left;
+    margin-left: 27px;
+}
+#departDatePicker{
+    float:left;
+    margin-left: 23px;
+}
+#departDateAnyDay{
+    float:left;
+    margin-left: 145px;
+}
 #returnDate{
     margin-bottom: 20px;
-    margin-top: 30px;
+    margin-top: 0px;
+}
+#returnDateText{
+    float:left;
+    margin-left: 22px;
+}
+#returnDateInput{
+    float:left;
+    margin-left: 26px;
+}
+#returnDatePicker{
+    float:left;
+    margin-left: 24px;
+}
+#returnDateAnyDay{
+    float:left;
+    margin-left: 145px;
 }
 #asADriver{
     margin-bottom: 20px;
-    margin-top: 30px;
+    margin-top: 0px;
 }
 #asAPassenger{
     margin-bottom: 20px;
-    margin-top: 30px;
+    margin-top: 0px;
 }
 #seatsAvailable{
+    float: left;
     margin-bottom: 20px;
-    margin-top: 30px;
+    margin-top: 0px;
+}
+#seatsAvailablePicker{
+    float:left;
+    margin-left: 20px;
+}
+#priceText{
+    float:left;
+    margin-left: 125px;
+}
+#priceInput{
+    float:left;
+    margin-left: 22px;
 }
 #seatsNeeded{
+    float: left;
     margin-bottom: 20px;
+    margin-top: 0px;
+}
+#seatsNeededText{
+    float: left;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+#seatsNeededPicker{
+    float:left;
+    margin-left: 35px;
+}
+#willingToPayText{
+    float:left;
+    margin-left: 51px;
+}
+#willingToPayInput{
+    float:left;
+    margin-left: 25px;
+}
+#otherRideDetails{
     margin-top: 30px;
 }
 .placeFormHr{
