@@ -52,7 +52,9 @@ Rootless.Map.Place = Rootless.Map.extend({
                startDateTextBox         : "#startDateTextBox",
                departureAnyDayCheckbox  : "#startDateAnydayCheckBox",
                returnDateTextBox        : "#returnDateTextBox",
-               returnAnyDayCheckbox     : "#returnDateAnydayCheckBox"
+               returnAnyDayCheckbox     : "#returnDateAnydayCheckBox",
+               trackableClickField      : ".trackableClickField",
+               trackableField           : ".trackableField"
            },
            
            // Variables used to block form submitting before map api results are returned
@@ -120,6 +122,16 @@ Rootless.Map.Place = Rootless.Map.extend({
         // Use the safe form submit function incase the google map api has
         // not returned yet
         $(self._.el.rideForm).validate({
+            invalidHandler: function(form, validator) {
+                var numberOfInvalidElements = validator.numberOfInvalids();
+                var invalidElements = validator.invalidElements();
+                for (var i = 0 ; i < numberOfInvalidElements ; i++)
+                {
+                    var invalidElementName = invalidElements[i].name;
+                    // Send an event to google analytics for the form validation error
+                    _gaq.push(['_trackEvent', 'places', 'validationError', invalidElementName]);
+                }
+            },
             submitHandler: function() {
                 // Set the form submit flag
                  self._.formBlock.isFormSubmitPending = true;
@@ -160,6 +172,16 @@ Rootless.Map.Place = Rootless.Map.extend({
             } else {
                 $(self._.el.returnDateTextBox).removeAttr("disabled");
             } 
+        });
+        
+        // Form field change event handlers
+        $(self._.el.trackableField).change(function(){
+            // Send an event to google analytics for the type of form field changed
+            _gaq.push(['_trackEvent', 'places', 'changeFormField', $(this).attr('name')]);
+        });
+        $(self._.el.trackableClickField).change(function(){
+            // Send an event to google analytics for the type of form field changed
+            _gaq.push(['_trackEvent', 'places', 'changeFormField', $(this).attr('name')]);
         });
         
         // Another ride button on cofirmation section
@@ -203,6 +225,10 @@ Rootless.Map.Place = Rootless.Map.extend({
     // Form submit options used for the ajax form
     formAjaxOptions : {
         dataType:  'json', 
+        beforeSubmit : function() {
+            // Send an event to google analytics for the form submission
+            _gaq.push(['_trackEvent', 'places', 'createRideSubmitted']);
+        },
         success: function(data)
         {
             var place = Rootless.Map.Place.getInstance();
@@ -215,6 +241,9 @@ Rootless.Map.Place = Rootless.Map.extend({
             // This handler function will run when the form is complete
             $('#placeFormBox').hide();
             $('#placeRideConfirmationContainer').show('blind');
+            
+            // Send an event to google analytics to show the form was submitted properly
+            _gaq.push(['_trackEvent', 'places', 'createRideSuccess']);
         },
         error : function(xhr, status, errMsg)
         {
@@ -225,12 +254,18 @@ Rootless.Map.Place = Rootless.Map.extend({
             {
                 // The user is not authorizes, so show the login dialog
                 $('#loginFormDialogContainer').dialog("open");
+                
+                // Send an event to google analytics for the form submission
+                _gaq.push(['_trackEvent', 'places', 'createRideUnauthenticated']);
             }
             else
             {
                 // If the resulting object has a message, display it in an alert
                 var obj = jQuery.parseJSON(xhr.responseText);
                 alert('There was a problem creating the ride. ' + obj.message); 
+                
+                // Send an event to google analytics for the form submission
+                _gaq.push(['_trackEvent', 'places', 'createRideError']);
             }
             
             // Unblock the form
