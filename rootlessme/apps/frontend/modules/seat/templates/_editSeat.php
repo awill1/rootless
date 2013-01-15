@@ -21,7 +21,7 @@
                 <p><span>Dropoff Location:</span> <?php echo $form['route']['destination']->render(array('class'=>'editSeatFields required', 'placeholder'=>'Address, City, State')) ?></p>
                 <p><span>Price:</span> <?php echo $form['price']->render(array('class'=>'editSeatFields editSeatFieldsShort number')) ?><span class='editSeat-dollar-sign' style='font-weight: normal;'>$</span> per seat</p>
                 <p><span>Number of seats:</span> <?php echo $form['seat_count']->render(array('class'=>'editSeatFields editSeatFieldsShort digits')) ?></p>
-                <p><span>Day:</span> <?php echo $form['pickup_date']->render(array('class'=>'datePicker editSeatFields editSeatFieldsMedium date')) ?></p>
+                <p><span>Day:</span> <?php echo $form['pickup_date']->render(array('class'=>'datePicker editSeatFields editSeatFieldsMedium required date')) ?></p>
                 <p><span>Time:</span> <?php echo $form['pickup_time']->render(array('class'=>'timePicker editSeatFields editSeatFieldsMedium time')) ?></p>
                 <p><span>Note:</span> <?php echo $form['description']->render(array('class'=>'rideDetailsFields', 'placeholder'=>'Chat...')) ?></p>
                 <div id="seatFormButtons">
