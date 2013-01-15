@@ -346,3 +346,7 @@ border: 1px solid black;
 	background: url('../images/clist156x32.png') no-repeat;
 	overflow: hidden;
 }
+
+input[type="text"][disabled] {
+    background-color: #F2F2F2;
+}

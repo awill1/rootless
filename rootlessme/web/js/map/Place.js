@@ -36,19 +36,23 @@ Rootless.Map.Place = Rootless.Map.extend({
            
            //all html elements referred in the code should go here (including jquery)
            el : {
-               $originTextBox        : $("#originTextBox"),
-               $destinationTextBox   : $("#destinationInput"),
-               originTextBox         : "#originTextBox",
-               destinationTextBox    : "#destinationInput",
-               $submitButton         : $('.postRideButton'),
-               $newRideFormArea	     : $("#newRideFormArea"),
-               rideForm              : "#roundTripForm",
-               placeFormBox          : "#placeFormBox",
-               originDataField       : "#originDataInput",
-               destinationDataField  : "#destinationDataInput",
-               routeDataField        : "#departureRouteDataInput", 
-               returnRouteDataField  : "#returnRouteDataInput",
-               anotherRideButton     : "#confirmationPostAnotherRide"
+               $originTextBox           : $("#originTextBox"),
+               $destinationTextBox      : $("#destinationInput"),
+               originTextBox            : "#originTextBox",
+               destinationTextBox       : "#destinationInput",
+               $submitButton            : $('.postRideButton'),
+               $newRideFormArea	        : $("#newRideFormArea"),
+               rideForm                 : "#roundTripForm",
+               placeFormBox             : "#placeFormBox",
+               originDataField          : "#originDataInput",
+               destinationDataField     : "#destinationDataInput",
+               routeDataField           : "#departureRouteDataInput", 
+               returnRouteDataField     : "#returnRouteDataInput",
+               anotherRideButton        : "#confirmationPostAnotherRide",
+               startDateTextBox         : "#startDateTextBox",
+               departureAnyDayCheckbox  : "#startDateAnydayCheckBox",
+               returnDateTextBox        : "#returnDateTextBox",
+               returnAnyDayCheckbox     : "#returnDateAnydayCheckBox"
            },
            
            // Variables used to block form submitting before map api results are returned
@@ -139,6 +143,26 @@ Rootless.Map.Place = Rootless.Map.extend({
         $('#placeRideConfirmationContainer').hide();
         
         // Add more click handlers
+        
+        // Anyday checkbox click handlers
+        $(self._.el.departureAnyDayCheckbox).click(function(){
+            // If the any day checkbox is checked, diable the date picker
+            if ($(this).is(':checked')) {
+                $(self._.el.startDateTextBox).attr("disabled", "disabled"); 
+            } else {
+                $(self._.el.startDateTextBox).removeAttr("disabled");
+            } 
+        });
+        $(self._.el.returnAnyDayCheckbox).click(function(){
+            // If the any day checkbox is checked, diable the date picker
+            if ($(this).is(':checked')) {
+                $(self._.el.returnDateTextBox).attr("disabled", "disabled"); 
+            } else {
+                $(self._.el.returnDateTextBox).removeAttr("disabled");
+            } 
+        });
+        
+        // Another ride button on cofirmation section
         $(self._.el.anotherRideButton).click(function(){
             $('#placeRideConfirmationContainer').hide();
             $('#placeFormBox').show('blind');
