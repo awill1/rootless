@@ -36,30 +36,32 @@ Rootless.Map.Place = Rootless.Map.extend({
            
            //all html elements referred in the code should go here (including jquery)
            el : {
-               $originTextBox           : $("#originTextBox"),
-               $destinationTextBox      : $("#destinationInput"),
-               originTextBox            : "#originTextBox",
-               destinationTextBox       : "#destinationInput",
-               $submitButton            : $('.postRideButton'),
-               $newRideFormArea	        : $("#newRideFormArea"),
-               rideForm                 : "#roundTripForm",
-               placeFormBox             : "#placeFormBox",
-               originDataField          : "#originDataInput",
-               destinationDataField     : "#destinationDataInput",
-               routeDataField           : "#departureRouteDataInput", 
-               returnRouteDataField     : "#returnRouteDataInput",
-               anotherRideButton        : "#confirmationPostAnotherRide",
-               startDateTextBox         : "#startDateTextBox",
-               departureAnyDayCheckbox  : "#startDateAnydayCheckBox",
-               returnDateTextBox        : "#returnDateTextBox",
-               returnAnyDayCheckbox     : "#returnDateAnydayCheckBox",
-               trackableClickField      : ".trackableClickField",
-               trackableField           : ".trackableField",
-               rideTypeDriver           : "#rideTypeDriver",
-               rideTypePassenger        : "#rideTypePassenger",
-               rideTypeEither           : "#rideTypeEither",
-               driverContainer          : "#driverContainer",
-               passengerContainer       : "#passengerContainer"
+               $originTextBox                 : $("#originTextBox"),
+               $destinationTextBox            : $("#destinationInput"),
+               originTextBox                  : "#originTextBox",
+               destinationTextBox             : "#destinationInput",
+               $submitButton                  : $('.postRideButton'),
+               $newRideFormArea	              : $("#newRideFormArea"),
+               rideForm                       : "#roundTripForm",
+               placeFormBox                   : "#placeFormBox",
+               originDataField                : "#originDataInput",
+               destinationDataField           : "#destinationDataInput",
+               routeDataField                 : "#departureRouteDataInput", 
+               returnRouteDataField           : "#returnRouteDataInput",
+               anotherRideButton              : "#confirmationPostAnotherRide",
+               startDateTextBox               : "#startDateTextBox",
+               departureAnyDayCheckbox        : "#startDateAnydayCheckBox",
+               returnDateTextBox              : "#returnDateTextBox",
+               returnAnyDayCheckbox           : "#returnDateAnydayCheckBox",
+               trackableClickField            : ".trackableClickField",
+               trackableField                 : ".trackableField",
+               rideTypeDriver                 : "#rideTypeDriver",
+               rideTypePassenger              : "#rideTypePassenger",
+               rideTypeEither                 : "#rideTypeEither",
+               driverContainer                : "#driverContainer",
+               passengerContainer             : "#passengerContainer",
+               loginFormDialogContainer       : "#loginFormDialogContainer",
+               placeRideConfirmationContainer : "#placeRideConfirmationContainer"
            },
            
            // Variables used to block form submitting before map api results are returned
@@ -150,14 +152,14 @@ Rootless.Map.Place = Rootless.Map.extend({
         var place = Rootless.Map.Place.getInstance();
         var utils = Rootless.Static.Utils.getInstance();
         utils.signInDialogInit(place.MaybeSubmitForm);
-        $('#loginFormDialogContainer').dialog({ autoOpen: false, modal : true, zIndex: 2000});
+        $(place._.el.loginFormDialogContainer).dialog({ autoOpen: false, modal : true, zIndex: 2000});
          
         // Show the place marker by previewing the route
         self.previewRoute($(self._.el.destinationTextBox));
         
         // Show the ride form and hide the confirmation section
-        $('#placeFormBox').show();
-        $('#placeRideConfirmationContainer').hide();
+        $(place._.el.placeFormBox).show();
+        $(place._.el.placeRideConfirmationContainer).hide();
         
         // Add more click handlers
         
@@ -205,8 +207,8 @@ Rootless.Map.Place = Rootless.Map.extend({
         
         // Another ride button on cofirmation section
         $(self._.el.anotherRideButton).click(function(){
-            $('#placeRideConfirmationContainer').hide();
-            $('#placeFormBox').show('blind');
+            $(place._.el.placeRideConfirmationContainer).hide();
+            $(place._.el.placeFormBox).show('blind');
             return false;
         });
    },
@@ -258,8 +260,8 @@ Rootless.Map.Place = Rootless.Map.extend({
             $(place._.el.placeFormBox).unblock();
 
             // This handler function will run when the form is complete
-            $('#placeFormBox').hide();
-            $('#placeRideConfirmationContainer').show('blind');
+            $(place._.el.placeFormBox).hide();
+            $(place._.el.placeRideConfirmationContainer).show('blind');
             
             // Send an event to google analytics to show the form was submitted properly
             _gaq.push(['_trackEvent', 'places', 'createRideSuccess']);
@@ -272,7 +274,7 @@ Rootless.Map.Place = Rootless.Map.extend({
             if (xhr.status == 401)
             {
                 // The user is not authorizes, so show the login dialog
-                $('#loginFormDialogContainer').dialog("open");
+                $(place._.el.loginFormDialogContainer).dialog("open");
                 
                 // Send an event to google analytics for the form submission
                 _gaq.push(['_trackEvent', 'places', 'createRideUnauthenticated']);
