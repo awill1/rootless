@@ -38,7 +38,7 @@
                         <div><?php echo $seatForm['route']['destination']->render(array('class'=>'rideDetailsFields required', 'placeholder'=>'Address, City, State', 'original-title'=>'Address, City, State')) ?></div>
                         
                         <h2>What day would you like to leave?</h2>
-                        <div><?php echo $seatForm['pickup_date']->render(array('class'=>'datePicker rideDetailsFields date')) ?></div>
+                        <div><?php echo $seatForm['pickup_date']->render(array('class'=>'datePicker rideDetailsFields required date')) ?></div>
                         
                         <h2>What time would you like to leave?</h2>
                         <div><?php echo $seatForm['pickup_time']->render(array('class'=>'timePicker rideDetailsFields time', 'placeholder'=>'click to add a time')) ?></div>         

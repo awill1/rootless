@@ -125,12 +125,26 @@ h1{
 #facebookLikeBox{
     float:right;
 }
-#placeFormBox{
+/*#placeFormBox{
     float: left;
     background-color: #f3f3f3;
     width: 543px;
     margin-right: 25px;
     padding: 15px;
+}*/
+#placeRideContainer{
+    float: left;
+    background-color: #f3f3f3;
+    width: 543px;
+    margin-right: 25px;
+    padding: 15px;
+}
+#placeFormBox{
+    clear: left;
+}
+#placeRideConfirmationContainer
+{
+    clear: left;
 }
 /*form parts*/
 #iAmA{
@@ -416,4 +430,8 @@ border: 1px solid black;
 	font: 12px/21px arial,sans-serif;
 	background: url('../images/clist156x32.png') no-repeat;
 	overflow: hidden;
+}
+
+input[type="text"][disabled] {
+    background-color: #F2F2F2;
 }

@@ -12,9 +12,9 @@
           <div id="iAmAButtons">
             <input id="rideTypeDriver" type="radio" name="ride_type" value="driver" />
             <label for="rideTypeDriver">driver</label>
-            <input id="rideTypePassenger" type="radio" name="ride_type" value="passenger" />
+            <input id="rideTypePassenger" class="trackableClickField" type="radio" name="ride_type" value="passenger" />
             <label for="rideTypePassenger">passenger</label>
-            <input id="rideTypeEither" type="radio" name="ride_type" value="either" checked />
+            <input id="rideTypeEither" class="trackableClickField" type="radio" name="ride_type" value="either" checked />
             <label for="rideTypeEither">either</label>
           </div>
       </div>    
@@ -99,7 +99,7 @@
         <br/><br/><br/>
             <div id="otherRideDetails">
                 <span class="primaryTextStyle">Other ride details:</span><br />
-                <textarea id="otherDetailsTextArea" name="other_details" placeholder="How much space do you have/need for equipment, plans at the place, etc." ></textarea>
+                <textarea id="otherDetailsTextArea" class="trackableField" name="other_details" placeholder="How much space do you have/need for equipment, plans at the place, etc." ></textarea>
             </div>
   </div>
           <input type="submit" class="postRideButton" value="Post Ride" />

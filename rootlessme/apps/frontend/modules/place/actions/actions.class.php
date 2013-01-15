@@ -101,11 +101,20 @@ class placeActions extends sfActions
      */
     public function executeCreateRideToPlace(sfWebRequest $request)
     {
-        //Success variable and message
-        $success = 'false';
-        
         try
         {
+            if (!$request->isMethod('post'))
+            {      
+                // GET is not supported
+                throw new Exception('GET is not supported.');
+            }
+            
+            // This method is only valid for ajax calls
+            if (!$request->isXmlHttpRequest())
+            {
+                throw new Exception('Request must be XHR.');
+            }
+            
             // Load the AWS SDK
             require_once sfConfig::get('app_amazon_sdk_file');
             
@@ -238,8 +247,9 @@ class placeActions extends sfActions
                 }
             }
 
-            // Run recommendations on the rides
-            // Do recommendations
+            // Run code on the created rides after they have already been created.
+            //  - Tagging the rides with the place id for querying purposes
+            //  - Do recommendations
             $searchRadius = sfConfig::get('app_default_search_distance');
             $recommendedDeparturePassengers = NULL;
             $recommendedDepartureDrivers = NULL;
@@ -248,18 +258,22 @@ class placeActions extends sfActions
             if (!is_null($departureCarpool))
             {
                 $recommendedDeparturePassengers = $departureCarpool->recommendPassengers($searchRadius);
+                $departureCarpool->getRoutes()->setDestinationPlaceId($placeId)->save();
             }
             if (!is_null($departurePassenger))
             {
                 $recommendedDepartureDrivers = $departurePassenger->recommendDrivers($searchRadius);
+                $departurePassenger->getRoutes()->setDestinationPlaceId($placeId)->save();
             }
             if (!is_null($returnCarpool))
             {
                 $recommendedReturnPassengers = $returnCarpool->recommendPassengers($searchRadius);
+                $returnCarpool->getRoutes()->setOriginPlaceId($placeId)->save();
             }
             if (!is_null($returnPassenger))
             {
                 $recommendedReturnDrivers = $returnPassenger->recommendDrivers($searchRadius);
+                $returnPassenger->getRoutes()->setOriginPlaceId($placeId)->save();
             }
 
             // Return success json with no layout

@@ -46,11 +46,26 @@
         </div>
     </div>
     <br/>
-    
-    <div id="placeFormBox">
-            <?php include_partial('returnTripFormAlt', array('place' => $place)) ?>
+    <div id="placeRideContainer" >
+        <div id="placeFormBox">
+                <?php include_partial('returnTripFormAlt', array('place' => $place)) ?>
+        </div>
         <div id="placeRideConfirmationContainer">
-
+            <h2>Yay! Your ride has been posted! Now what?</h2>
+            <ul id="placeCreatedRidesList">
+                
+            </ul>
+            
+            <p>Share with your friends, they might
+            be heading to the mountain too!</p>
+            <div id="rideShareButtonsContainer" >
+                Send Tweet
+            </div>
+            <p>or</p>
+            <div id="rideOtherActionsContainer">
+                <a href="<?php echo url_for('profile_edit_user'); ?>">Upload a photo</a>
+                <a id="confirmationPostAnotherRide" href="#">Create another ride</a>
+            </div>
         </div>
     </div>
     <div id="placeDetailsSection" >

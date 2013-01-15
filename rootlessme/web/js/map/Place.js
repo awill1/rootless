@@ -36,18 +36,25 @@ Rootless.Map.Place = Rootless.Map.extend({
            
            //all html elements referred in the code should go here (including jquery)
            el : {
-               $originTextBox        : $("#originTextBox"),
-               $destinationTextBox   : $("#destinationInput"),
-               originTextBox         : "#originTextBox",
-               destinationTextBox    : "#destinationInput",
-               $submitButton         : $('.postRideButton'),
-               $newRideFormArea	     : $("#newRideFormArea"),
-               rideForm              : "#roundTripForm",
-               placeFormBox         : "#placeFormBox",
-               originDataField       : "#originDataInput",
-               destinationDataField  : "#destinationDataInput",
-               routeDataField        : "#departureRouteDataInput", 
-               returnRouteDataField  : "#returnRouteDataInput" 
+               $originTextBox           : $("#originTextBox"),
+               $destinationTextBox      : $("#destinationInput"),
+               originTextBox            : "#originTextBox",
+               destinationTextBox       : "#destinationInput",
+               $submitButton            : $('.postRideButton'),
+               $newRideFormArea	        : $("#newRideFormArea"),
+               rideForm                 : "#roundTripForm",
+               placeFormBox             : "#placeFormBox",
+               originDataField          : "#originDataInput",
+               destinationDataField     : "#destinationDataInput",
+               routeDataField           : "#departureRouteDataInput", 
+               returnRouteDataField     : "#returnRouteDataInput",
+               anotherRideButton        : "#confirmationPostAnotherRide",
+               startDateTextBox         : "#startDateTextBox",
+               departureAnyDayCheckbox  : "#startDateAnydayCheckBox",
+               returnDateTextBox        : "#returnDateTextBox",
+               returnAnyDayCheckbox     : "#returnDateAnydayCheckBox",
+               trackableClickField      : ".trackableClickField",
+               trackableField           : ".trackableField"
            },
            
            // Variables used to block form submitting before map api results are returned
@@ -115,6 +122,16 @@ Rootless.Map.Place = Rootless.Map.extend({
         // Use the safe form submit function incase the google map api has
         // not returned yet
         $(self._.el.rideForm).validate({
+            invalidHandler: function(form, validator) {
+                var numberOfInvalidElements = validator.numberOfInvalids();
+                var invalidElements = validator.invalidElements();
+                for (var i = 0 ; i < numberOfInvalidElements ; i++)
+                {
+                    var invalidElementName = invalidElements[i].name;
+                    // Send an event to google analytics for the form validation error
+                    _gaq.push(['_trackEvent', 'places', 'validationError', invalidElementName]);
+                }
+            },
             submitHandler: function() {
                 // Set the form submit flag
                  self._.formBlock.isFormSubmitPending = true;
@@ -132,6 +149,47 @@ Rootless.Map.Place = Rootless.Map.extend({
          
         // Show the place marker by previewing the route
         self.previewRoute($(self._.el.destinationTextBox));
+        
+        // Show the ride form and hide the confirmation section
+        $('#placeFormBox').show();
+        $('#placeRideConfirmationContainer').hide();
+        
+        // Add more click handlers
+        
+        // Anyday checkbox click handlers
+        $(self._.el.departureAnyDayCheckbox).click(function(){
+            // If the any day checkbox is checked, diable the date picker
+            if ($(this).is(':checked')) {
+                $(self._.el.startDateTextBox).attr("disabled", "disabled"); 
+            } else {
+                $(self._.el.startDateTextBox).removeAttr("disabled");
+            } 
+        });
+        $(self._.el.returnAnyDayCheckbox).click(function(){
+            // If the any day checkbox is checked, diable the date picker
+            if ($(this).is(':checked')) {
+                $(self._.el.returnDateTextBox).attr("disabled", "disabled"); 
+            } else {
+                $(self._.el.returnDateTextBox).removeAttr("disabled");
+            } 
+        });
+        
+        // Form field change event handlers
+        $(self._.el.trackableField).change(function(){
+            // Send an event to google analytics for the type of form field changed
+            _gaq.push(['_trackEvent', 'places', 'changeFormField', $(this).attr('name')]);
+        });
+        $(self._.el.trackableClickField).change(function(){
+            // Send an event to google analytics for the type of form field changed
+            _gaq.push(['_trackEvent', 'places', 'changeFormField', $(this).attr('name')]);
+        });
+        
+        // Another ride button on cofirmation section
+        $(self._.el.anotherRideButton).click(function(){
+            $('#placeRideConfirmationContainer').hide();
+            $('#placeFormBox').show('blind');
+            return false;
+        });
    },
    
     geocodeOrigin : function(results, status) {     
@@ -167,6 +225,10 @@ Rootless.Map.Place = Rootless.Map.extend({
     // Form submit options used for the ajax form
     formAjaxOptions : {
         dataType:  'json', 
+        beforeSubmit : function() {
+            // Send an event to google analytics for the form submission
+            _gaq.push(['_trackEvent', 'places', 'createRideSubmitted']);
+        },
         success: function(data)
         {
             var place = Rootless.Map.Place.getInstance();
@@ -177,7 +239,11 @@ Rootless.Map.Place = Rootless.Map.extend({
             $(place._.el.placeFormBox).unblock();
 
             // This handler function will run when the form is complete
+            $('#placeFormBox').hide();
             $('#placeRideConfirmationContainer').show('blind');
+            
+            // Send an event to google analytics to show the form was submitted properly
+            _gaq.push(['_trackEvent', 'places', 'createRideSuccess']);
         },
         error : function(xhr, status, errMsg)
         {
@@ -188,6 +254,9 @@ Rootless.Map.Place = Rootless.Map.extend({
             {
                 // The user is not authorizes, so show the login dialog
                 $('#loginFormDialogContainer').dialog("open");
+                
+                // Send an event to google analytics for the form submission
+                _gaq.push(['_trackEvent', 'places', 'createRideUnauthenticated']);
             }
             else
             {
@@ -195,8 +264,8 @@ Rootless.Map.Place = Rootless.Map.extend({
                 var obj = jQuery.parseJSON(xhr.responseText);
                 alert('There was a problem creating the ride. ' + obj.message); 
                 
-                // This handler function will run when the form is complete
-                $('#placeRideConfirmationContainer').show('blind');
+                // Send an event to google analytics for the form submission
+                _gaq.push(['_trackEvent', 'places', 'createRideError']);
             }
             
             // Unblock the form
