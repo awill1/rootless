@@ -54,7 +54,12 @@ Rootless.Map.Place = Rootless.Map.extend({
                returnDateTextBox        : "#returnDateTextBox",
                returnAnyDayCheckbox     : "#returnDateAnydayCheckBox",
                trackableClickField      : ".trackableClickField",
-               trackableField           : ".trackableField"
+               trackableField           : ".trackableField",
+               rideTypeDriver           : "#rideTypeDriver",
+               rideTypePassenger        : "#rideTypePassenger",
+               rideTypeEither           : "#rideTypeEither",
+               driverContainer          : "#driverContainer",
+               passengerContainer       : "#passengerContainer"
            },
            
            // Variables used to block form submitting before map api results are returned
@@ -96,7 +101,7 @@ Rootless.Map.Place = Rootless.Map.extend({
        this.directionsDisplay = new google.maps.DirectionsRenderer();
       
         self._.MapObject = new google.maps.Map(document.getElementById(self._.mapId),
-            myOptions);;
+            myOptions);
         self.directionsDisplay.setMap(self._.MapObject);
 
         // Setup the origin and destination marker, the maps are null
@@ -182,6 +187,20 @@ Rootless.Map.Place = Rootless.Map.extend({
         $(self._.el.trackableClickField).change(function(){
             // Send an event to google analytics for the type of form field changed
             _gaq.push(['_trackEvent', 'places', 'changeFormField', $(this).attr('name')]);
+        });
+        
+        // Show and hide the detail forms based on ride type
+        $(self._.el.rideTypeDriver).click(function() {
+            $(self._.el.driverContainer).show();
+            $(self._.el.passengerContainer).hide();
+        });
+        $(self._.el.rideTypePassenger).click(function() {
+            $(self._.el.driverContainer).hide();
+            $(self._.el.passengerContainer).show();
+        });
+        $(self._.el.rideTypeEither).click(function() {
+            $(self._.el.driverContainer).show();
+            $(self._.el.passengerContainer).show();
         });
         
         // Another ride button on cofirmation section
@@ -273,16 +292,6 @@ Rootless.Map.Place = Rootless.Map.extend({
         }
     },
     
-    showDriverForm : function() {
-        alert('view driver form');
-    },
-    showPassengerForm : function() {
-        alert('passenger form');
-    },
-    showEitherForm : function(){
-        alert('either form');
-    },
-    
     MaybeSubmitForm : function() {
     	var place = Rootless.Map.Place.getInstance();    
         // variable that keeps object available in inner functions
@@ -295,20 +304,5 @@ Rootless.Map.Place = Rootless.Map.extend({
     }
     
 });
-
-window.onload=function() {
-  var radios = document.forms[0].elements["ride_type"];
-  for (var i = 0; i < radios.length; i++)
-    radios[i].onclick=radioClicked;
-    alert('load function');
-}
-
-
-function RadioClicked() {
-//    if (this.value == "one") {
-//      document.forms[0].elements["line_text"].disabled=true;
-//   }
-alert('radioClicked');
-}
 
 Class.addSingleton(Rootless.Map.Place);
