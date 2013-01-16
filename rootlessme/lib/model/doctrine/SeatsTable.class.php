@@ -205,9 +205,17 @@ class SeatsTable extends Doctrine_Table
         // Default most of the recommendation to the passenger settings
         $newRecommendation->setPrice($passenger->getAskingPrice());
         $newRecommendation->setSeatCount($passenger->getPassengerCount());
-        $newRecommendation->setPickupDate($passenger->getStartDate());
         $newRecommendation->setPickupTime($passenger->getStartTime());
         $newRecommendation->setRoutes($passenger->getRoutes());
+        // If the passenger ride is open ended, use the driver date
+        if (is_null($passenger->getStartDate()))
+        {
+            $newRecommendation->setPickupDate($driver->getStartDate());
+        }
+        else
+        {
+            $newRecommendation->setPickupDate($passenger->getStartDate());
+        }
              
         // Save the recommendation
         $newRecommendation->save();
