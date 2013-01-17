@@ -53,7 +53,6 @@ Rootless.Map.Place = Rootless.Map.extend({
                departureAnyDayCheckbox        : "#startDateAnydayCheckBox",
                returnDateTextBox              : "#returnDateTextBox",
                returnAnyDayCheckbox           : "#returnDateAnydayCheckBox",
-               trackableClickField            : ".trackableClickField",
                trackableField                 : ".trackableField",
                rideTypeDriver                 : "#rideTypeDriver",
                rideTypePassenger              : "#rideTypePassenger",
@@ -183,10 +182,6 @@ Rootless.Map.Place = Rootless.Map.extend({
         
         // Form field change event handlers
         $(self._.el.trackableField).change(function(){
-            // Send an event to google analytics for the type of form field changed
-            _gaq.push(['_trackEvent', 'places', 'changeFormField', $(this).attr('name')]);
-        });
-        $(self._.el.trackableClickField).change(function(){
             // Send an event to google analytics for the type of form field changed
             _gaq.push(['_trackEvent', 'places', 'changeFormField', $(this).attr('name')]);
         });
