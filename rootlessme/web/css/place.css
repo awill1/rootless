@@ -100,14 +100,14 @@ h1{
     color:#fff;
     font-size: 42px;
     width: 410px;
-    height: 410px;
+    height: 345px;
 }
 #middleContent{
     margin-left: 0px !important;
 }
 #placeHead{
     width: auto;
-    height: 382px;
+    height: 390px;
     margin-left: 240px;
 }
 #placeContent{
@@ -347,7 +347,7 @@ h1{
     width:113px;
     height:129px;
     position: absolute;
-    top: 290px;
+    top: 270px;
     left: 35px;
 }
 h3{
