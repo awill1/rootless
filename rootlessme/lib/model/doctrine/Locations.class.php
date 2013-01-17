@@ -24,6 +24,21 @@ class Locations extends BaseLocations
 
         return Locations::createCityStateString($city, $state);
     }
+    
+    /**
+     * Gets a string containing the location's full address in one line
+     * @return string The address string all in one line
+     */
+    public function getAddressString()
+    {
+        // Get the variables
+        $street1 = $this->getStreet1();
+        $city = $this->getCity();
+        $state = $this->getState();
+        $postal = $this->getPostalCode();
+
+        return Locations::createAddressString($street1, $city, $state, $postal);
+    }
 
     /**
      * Creates and saves a location based on a json string from the 
@@ -182,7 +197,13 @@ class Locations extends BaseLocations
         return $this->getCityStateString();
     }
 
-
+    /**
+     * Creates a city, state string
+     * @param String $city The city
+     * @param String $state The state code
+     * @return string The city, state string. Empty string if city and state
+     * are null
+     */
     public static function createCityStateString($city = null, $state = null)
     {
         // Return variable
@@ -200,6 +221,46 @@ class Locations extends BaseLocations
         if ($state != null)
         {
             $returnString = $returnString.$state;
+        }
+
+        return $returnString;
+    }
+    
+    /**
+     * Creates an address string
+     * @param String $street1 The street address
+     * @param String $city The city
+     * @param String $state The state code
+     * @param String $postal Postal code
+     * @return string The address string
+     */
+    public static function createAddressString($street1 = null, $city = null, $state = null, $postal = null)
+    {
+        // Return variable
+        $returnString = "";
+
+        // Depending on what information is known, build the return string
+        if ($street1 != null )
+        {
+            $returnString .= $street1;
+        }
+        // Get a city state string
+        $cityStateString = Locations::createCityStateString($city, $state);
+        if ($cityStateString != "")
+        {
+            if ($returnString != "")
+            {
+                $returnString .= ", ";
+            }
+            $returnString .= $cityStateString;
+        }
+        if (!CommonHelpers::IsNullOrEmptyString($postal))
+        {
+            if ($returnString != "")
+            {
+                $returnString .= " ";
+            }
+            $returnString .= $postal;
         }
 
         return $returnString;

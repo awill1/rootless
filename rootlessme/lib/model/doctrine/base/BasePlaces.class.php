@@ -17,9 +17,10 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @property string $tags
  * @property string $css_style
  * @property integer $location_id
- * @property string $address_string
+ * @property integer $is_deleted
  * @property Doctrine_Collection $Origin_Route
  * @property Doctrine_Collection $Destination_Route
+ * @property Locations $Location
  * 
  * @method integer             getPlaceId()               Returns the current record's "place_id" value
  * @method string              getName()                  Returns the current record's "name" value
@@ -31,9 +32,10 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @method string              getTags()                  Returns the current record's "tags" value
  * @method string              getCssStyle()              Returns the current record's "css_style" value
  * @method integer             getLocationId()            Returns the current record's "location_id" value
- * @method string              getAddressString()         Returns the current record's "address_string" value
+ * @method integer             getIsDeleted()             Returns the current record's "is_deleted" value
  * @method Doctrine_Collection getOriginRoute()           Returns the current record's "Origin_Route" collection
  * @method Doctrine_Collection getDestinationRoute()      Returns the current record's "Destination_Route" collection
+ * @method Locations           getLocation()              Returns the current record's "Location" value
  * @method Places              setPlaceId()               Sets the current record's "place_id" value
  * @method Places              setName()                  Sets the current record's "name" value
  * @method Places              setWebsiteUrl()            Sets the current record's "website_url" value
@@ -44,9 +46,10 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @method Places              setTags()                  Sets the current record's "tags" value
  * @method Places              setCssStyle()              Sets the current record's "css_style" value
  * @method Places              setLocationId()            Sets the current record's "location_id" value
- * @method Places              setAddressString()         Sets the current record's "address_string" value
+ * @method Places              setIsDeleted()             Sets the current record's "is_deleted" value
  * @method Places              setOriginRoute()           Sets the current record's "Origin_Route" collection
  * @method Places              setDestinationRoute()      Sets the current record's "Destination_Route" collection
+ * @method Places              setLocation()              Sets the current record's "Location" value
  * 
  * @package    RootlessMe
  * @subpackage model
@@ -143,14 +146,15 @@ abstract class BasePlaces extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 5,
              ));
-        $this->hasColumn('address_string', 'string', 255, array(
-             'type' => 'string',
+        $this->hasColumn('is_deleted', 'integer', 1, array(
+             'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
+             'default' => '0',
              'notnull' => false,
              'autoincrement' => false,
-             'length' => 255,
+             'length' => 1,
              ));
     }
 
@@ -164,6 +168,10 @@ abstract class BasePlaces extends sfDoctrineRecord
         $this->hasMany('Routes as Destination_Route', array(
              'local' => 'place_id',
              'foreign' => 'destination_place_id'));
+
+        $this->hasOne('Locations as Location', array(
+             'local' => 'location_id',
+             'foreign' => 'location_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

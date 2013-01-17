@@ -24,8 +24,8 @@ abstract class BasePlacesForm extends BaseFormDoctrine
       'logo_url'              => new sfWidgetFormInputText(),
       'tags'                  => new sfWidgetFormInputText(),
       'css_style'             => new sfWidgetFormTextarea(),
-      'location_id'           => new sfWidgetFormInputText(),
-      'address_string'        => new sfWidgetFormInputText(),
+      'location_id'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Location'), 'add_empty' => true)),
+      'is_deleted'            => new sfWidgetFormInputText(),
       'created_at'            => new sfWidgetFormDateTime(),
       'updated_at'            => new sfWidgetFormDateTime(),
     ));
@@ -40,8 +40,8 @@ abstract class BasePlacesForm extends BaseFormDoctrine
       'logo_url'              => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'tags'                  => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'css_style'             => new sfValidatorString(array('required' => false)),
-      'location_id'           => new sfValidatorInteger(array('required' => false)),
-      'address_string'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'location_id'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Location'), 'required' => false)),
+      'is_deleted'            => new sfValidatorInteger(array('required' => false)),
       'created_at'            => new sfValidatorDateTime(),
       'updated_at'            => new sfValidatorDateTime(),
     ));

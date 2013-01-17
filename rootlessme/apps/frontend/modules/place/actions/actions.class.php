@@ -18,6 +18,8 @@ class placeActions extends sfActions
     {
         $this->places = Doctrine_Core::getTable('Places')
           ->createQuery('a')
+          ->leftJoin('a.Location l')
+          ->where('a.is_deleted = false')
           ->execute();
     }
 
@@ -37,8 +39,12 @@ class placeActions extends sfActions
      */
     public function executeNew(sfWebRequest $request)
     {
-        $this->form = new PlacesForm();
-//        $this->form = new PlacesWithLocationForm();
+        // Security hack until better system is in place
+        // Only admins can use this action. 
+        $this->forward404If(!$this->getUser()->isAuthenticated());
+        $this->forward404If(!SecurityHelpers::IsRootlessAdmin($this->getUser()->getGuardUser()->getEmailAddress()));
+        
+        $this->form = new PlacesWithLocationForm();
     }
 
     /**
@@ -48,8 +54,13 @@ class placeActions extends sfActions
     public function executeCreate(sfWebRequest $request)
     {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
+        
+        // Security hack until better system is in place
+        // Only admins can use this action. 
+        $this->forward404If(!$this->getUser()->isAuthenticated());
+        $this->forward404If(!SecurityHelpers::IsRootlessAdmin($this->getUser()->getGuardUser()->getEmailAddress()));
 
-        $this->form = new PlacesForm();
+        $this->form = new PlacesWithLocationForm();
 
         $this->processForm($request, $this->form);
 
@@ -62,8 +73,13 @@ class placeActions extends sfActions
      */
     public function executeEdit(sfWebRequest $request)
     {
+        // Security hack until better system is in place
+        // Only admins can use this action. 
+        $this->forward404If(!$this->getUser()->isAuthenticated());
+        $this->forward404If(!SecurityHelpers::IsRootlessAdmin($this->getUser()->getGuardUser()->getEmailAddress()));
+        
         $this->forward404Unless($place = Doctrine_Core::getTable('Places')->find(array($request->getParameter('place_id'))), sprintf('Object place does not exist (%s).', $request->getParameter('place_id')));
-        $this->form = new PlacesForm($place);
+        $this->form = new PlacesWithLocationForm($place);
     }
 
     /**
@@ -72,9 +88,14 @@ class placeActions extends sfActions
      */
     public function executeUpdate(sfWebRequest $request)
     {
+        // Security hack until better system is in place
+        // Only admins can use this action. 
+        $this->forward404If(!$this->getUser()->isAuthenticated());
+        $this->forward404If(!SecurityHelpers::IsRootlessAdmin($this->getUser()->getGuardUser()->getEmailAddress()));
+        
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($place = Doctrine_Core::getTable('Places')->find(array($request->getParameter('place_id'))), sprintf('Object place does not exist (%s).', $request->getParameter('place_id')));
-        $this->form = new PlacesForm($place);
+        $this->form = new PlacesWithLocationForm($place);
 
         $this->processForm($request, $this->form);
 
@@ -87,12 +108,18 @@ class placeActions extends sfActions
      */
     public function executeDelete(sfWebRequest $request)
     {
+        // Security hack until better system is in place
+        // Only admins can use this action. 
+        $this->forward404If(!$this->getUser()->isAuthenticated());
+        $this->forward404If(!SecurityHelpers::IsRootlessAdmin($this->getUser()->getGuardUser()->getEmailAddress()));
+        
         $request->checkCSRFProtection();
 
         $this->forward404Unless($place = Doctrine_Core::getTable('Places')->find(array($request->getParameter('place_id'))), sprintf('Object place does not exist (%s).', $request->getParameter('place_id')));
-        $place->delete();
+        $place->setIsDeleted(true);
+        $place->save();
 
-        $this->redirect('place/index');
+        $this->redirect('places');
     }
   
     /**
