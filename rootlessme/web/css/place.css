@@ -404,14 +404,6 @@ h3{
 
 
 
-table,th, td
-{
-border: 1px solid black;
-}
-
-
-
-
 
 
 /*custom drop down and radio buttons stuff*/
@@ -440,4 +432,40 @@ border: 1px solid black;
 
 input[type="text"][disabled] {
     background-color: #F2F2F2;
+}
+
+
+/*login/signup popup*/
+.loginPrompt{
+    color: #565656;
+    font-weight: bold;
+    font-size:21px;
+}
+.lightText{
+    color: #BFBFBF;
+    font-weight: normal;
+    font-size:18px;
+}
+.alreadyAMember{
+    color: #565656;
+    font-style: italic;
+    font-size:12px;
+}
+.alreadyAMember a:hover{
+    color: #E26C59;
+    text-decoration: underline;
+    font-size:12px;
+    font-weight: bold;
+}
+.alreadyAMember a{
+    color: #E26C59;
+    font-size:12px;
+    font-weight: bold;
+}
+.loginBoxHr{
+    background-color: #7a7a7a;
+    border: medium none;
+    color: #7a7a7a;
+    height: 1px;
+    width: 90%;
 }
