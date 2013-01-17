@@ -185,10 +185,6 @@ Rootless.Map.Place = Rootless.Map.extend({
             // Send an event to google analytics for the type of form field changed
             _gaq.push(['_trackEvent', 'places', 'changeFormField', $(this).attr('name')]);
         });
-        $(self._.el.trackableClickField).change(function(){
-            // Send an event to google analytics for the type of form field changed
-            _gaq.push(['_trackEvent', 'places', 'changeFormField', $(this).attr('name')]);
-        });
         
         // Show and hide the detail forms based on ride type
         $(self._.el.rideTypeDriver).click(function() {
