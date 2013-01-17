@@ -53,7 +53,6 @@ Rootless.Map.Place = Rootless.Map.extend({
                departureAnyDayCheckbox        : "#startDateAnydayCheckBox",
                returnDateTextBox              : "#returnDateTextBox",
                returnAnyDayCheckbox           : "#returnDateAnydayCheckBox",
-               trackableClickField            : ".trackableClickField",
                trackableField                 : ".trackableField",
                rideTypeDriver                 : "#rideTypeDriver",
                rideTypePassenger              : "#rideTypePassenger",
