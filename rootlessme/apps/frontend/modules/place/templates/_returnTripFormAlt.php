@@ -63,7 +63,7 @@
                 </div>
             </div>
         </div>   
-        <div class="formSection"><hr class="placeFormHr"/></div>
+        <div class="formSection"><hr class="placeFormHr hrHolder"/></div>
         <div id="driverContainer" class="formSection">
             <div id="asADriver" class="secondaryTextStyle">As a driver:</div>
             <div id="seatsAvailable">    
@@ -80,7 +80,7 @@
             <div id="priceInput">
                 <span class='dollar-sign'>$</span> <input id="driverPriceTextBox" class="tinyField number trackableField" type="text" name="driver_price" /> <span class='fourthTextStyle'>per seat</span>
             </div>   
-            <div class="formSection"><hr class="placeFormHr"/></div>
+            <div class="formSection"><hr class="placeFormHr hrHolder"/></div>
         </div>
         <div id="passengerContainer" class="formSection">
             <div id="asAPassenger" class="secondaryTextStyle">As a passenger:</div>
@@ -96,7 +96,7 @@
                 <div id="willingToPayText"><span class="primaryTextStyle">Willing to pay</span></div>
                 <div id="willingToPayInput"><span class='dollar-sign'>$</span> <input id="passengerPriceTextBox" class="tinyField number trackableField" type="text" name="passenger_price" /> <span class='fourthTextStyle'>per seat</span></div>
             </div>
-            <div class="formSection"><hr class="placeFormHr"/></div>
+            <div class="formSection"><hr class="placeFormHr hrHolder"/></div>
         </div>
         <div class="formSection">
             <div id="otherRideDetails">

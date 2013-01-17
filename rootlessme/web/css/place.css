@@ -258,7 +258,7 @@ h1{
 }
 #willingToPayInput{
     float:left;
-    margin-left: 25px;
+    margin-left: 24px;
 }
 #otherRideDetails{
     margin-top: 30px;
@@ -272,6 +272,10 @@ h1{
 }
 .formSection{
     float:left;
+}
+.hrHolder{
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 /*end form parts*/
 #placeMapBox{
@@ -324,7 +328,7 @@ h1{
     font-size: 18px;
 }
 .secondaryTextStyle{
-    color:#A0A0A0;
+    color:#B2B2B2;
     font-weight:bold;
     font-size: 18px;
 }
@@ -379,8 +383,11 @@ h3{
     padding: 5px;
 }
 #otherDetailsTextArea{
-    width:540px;
+    width:527px;
     height:112px;
+    padding: 6px;
+    margin-top:15px;
+    margin-bottom:15px;
 }
 .postRideButton{
     float: right;
