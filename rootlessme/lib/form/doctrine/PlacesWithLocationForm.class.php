@@ -12,11 +12,7 @@ class PlacesWithLocationForm extends PlacesForm
 {
     public function configure()
     {
-        
-        // Embedd a location form
-        $location = new Locations();
-        $locationForm = new LocationsForm($location);
-        $this->embedForm('location2',$locationForm);
+        $this->embedRelation('Location', 'SimpleLocationsForm');
         
         parent::configure();
     }

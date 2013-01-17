@@ -74,7 +74,7 @@
         </div>
         <div id="mapCaption">
             <span class="strongSpan"><?php echo $place->getName() ?> |</span> <a href='<?php echo $place->getWebsiteUrl() ?>'><?php echo $place->getWebsiteUrl() ?></a>
-            <br /><?php echo $place->getAddressString(); ?>
+            <br /><?php echo $place->getLocation()->getAddressString(); ?>
         </div>
         </div>
         <div id="placeHowBox" class="helpBox">

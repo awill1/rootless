@@ -1,20 +1,24 @@
 <?php
 
 /**
- * Places form with embedded location form.
+ * Locations form.
  *
  * @package    RootlessMe
  * @subpackage form
  * @author     awilliams
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class PlacesForm extends BasePlacesForm
+class SimpleLocationsForm extends BaseLocationsForm
 {
     public function configure()
     {
-        // Choose the fields that will be 
-        unset($this['location_id']);
+        // Choose the fields that will be displayed
         unset($this['created_at']);
         unset($this['updated_at']);
+        $this->useFields(array(
+            'street1',
+            'city',
+            'state',
+            'postal_code'));
     }
 }

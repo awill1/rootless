@@ -385,6 +385,10 @@ Locations:
       local: step_id
       foreign: step_id
       type: one
+    Places:
+      local: location_id
+      foreign: location_id
+      type: one
 MessageRecipients:
   connection: doctrine
   tableName: message_recipients
@@ -847,11 +851,12 @@ Places:
       unsigned: false
       notnull: false
       autoincrement: false
-    address_string:
-      type: string(255)
+    is_deleted:
+      type: integer(1)
       fixed: false
       unsigned: false
       primary: false
+      default: '0'
       notnull: false
       autoincrement: false
   relations:
@@ -865,6 +870,11 @@ Places:
       local: place_id
       foreign: destination_place_id
       type: many
+    Location:
+      class: Locations
+      local: location_id
+      foreign: location_id
+      type: one
 Profiles:
   connection: doctrine
   tableName: profiles
