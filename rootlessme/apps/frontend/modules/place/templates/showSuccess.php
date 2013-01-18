@@ -46,7 +46,7 @@
 <?php end_slot();?>
 <div id="placeHead">
     <div class="placeTitleText">Share a ride to <?php echo $place->getName() ?></div>
-    <div id="placeLogo"></div>
+    <div id="placeLogo"><img src="<?php echo $place->getLogoUrl(); ?>" width="113" /></div>
 </div>
 <div id="placeContent">
     <div id="headerAndLikeBox" >

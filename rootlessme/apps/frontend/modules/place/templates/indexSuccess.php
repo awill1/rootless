@@ -7,7 +7,7 @@
             <li>
                 <div class="placeBox">
                     <div class="placeImg">
-                        <img src="C:\Users\Russ\rootless\ski\placesindeximg.jpg" width="361"/>
+                        <img src="<?php echo $place->getIndexImageUrl(); ?>" width="261"/>
                     </div>
                     <div class="placeInfo">
                         <div class='placeName'><?php echo $place->getName() ?></div>

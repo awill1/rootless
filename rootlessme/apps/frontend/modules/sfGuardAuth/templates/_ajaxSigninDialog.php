@@ -10,7 +10,7 @@
         <div class="lightText">or</div>
     </div>-->
     <div class="emailSignup">
-        <a href="#" class="registerLink" >Sign up with your email</a>
+        <a href="#" class="registerLink emailSignup" >Sign up with your email</a>
     </div>
     <hr />
     <div class="alreadyAMember">

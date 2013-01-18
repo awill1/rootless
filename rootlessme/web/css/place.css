@@ -62,7 +62,7 @@ h1{
     width: 261px;
     height: 115px;
     background-color: #E87C62;
-    background-image: url('../images/placesindeximg.jpg');
+/*    background-image: url('../images/placesindeximg.jpg');*/
 }
 .placeInfo{
     float: left;
@@ -343,7 +343,7 @@ h1{
     
 }
 #placeLogo{
-    background-image: url('../images/eaglePointLogo.png');
+    /*background-image: url('../images/eaglePointLogo.png');*/
     width:113px;
     height:129px;
     position: absolute;
@@ -476,6 +476,8 @@ input[type="text"][disabled] {
     color: #fff;
     background-color: #009F40;
     padding: 5px;
+    width:143px;
+    margin: auto;
 }
 .facebookSignup{
     color: #fff;
