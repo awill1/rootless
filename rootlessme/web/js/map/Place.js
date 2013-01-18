@@ -289,6 +289,16 @@ Rootless.Map.Place = Rootless.Map.extend({
         }
     },
     
+    /**
+     * Verifies a form can be submitted and is not blocked
+     * @returns bool True, if the form can be submitted. False, if the form is blocked.
+     */
+    canSubmitForm : function(){
+//    	var place = Rootless.Map.Place.getInstance();
+//        return !place._.formBlock.isOriginDecodePending && !place._.formBlock.isDestinationDecodePending && !place._.formBlock.isDirectionsPending && !place._.formBlock.isReturnDirectionsPending;
+        return !this._.formBlock.isOriginDecodePending && !this._.formBlock.isDestinationDecodePending && !this._.formBlock.isDirectionsPending && !this._.formBlock.isReturnDirectionsPending;
+    },
+    
     MaybeSubmitForm : function() {
     	var place = Rootless.Map.Place.getInstance();    
         // variable that keeps object available in inner functions
