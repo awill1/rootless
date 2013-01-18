@@ -1261,6 +1261,13 @@ textarea {
     text-align: center;
 }
 
+.anyDateBlockLarge {
+    width: 55px;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+}
+
 .dateBlockMonth {
 }
 
