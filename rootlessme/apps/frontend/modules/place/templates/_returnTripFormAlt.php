@@ -67,7 +67,7 @@
         <div id="driverContainer" class="formSection">
             <div id="asADriver" class="secondaryTextStyle">As a driver:</div>
             <div id="seatsAvailable">    
-                <span class="primaryTextStyle">Seats Available</span>
+                <span class="primaryTextStyle">Seats available</span>
             </div>
             <div id="seatsAvailablePicker">
                 <select id="driverSeatsDropDown" class="tinyDropDown trackableField" name="driver_seats">

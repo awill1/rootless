@@ -439,17 +439,20 @@ input[type="text"][disabled] {
 .loginPrompt{
     color: #565656;
     font-weight: bold;
-    font-size:21px;
+    font-size:18px;
+    text-align: center;
 }
 .lightText{
     color: #BFBFBF;
     font-weight: normal;
-    font-size:18px;
+    font-size:14px;
+    text-align: center;
 }
 .alreadyAMember{
     color: #565656;
     font-style: italic;
     font-size:12px;
+    text-align: center;
 }
 .alreadyAMember a:hover{
     color: #E26C59;
