@@ -9,6 +9,16 @@
     <script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
     <script type="text/javascript" src="/js/map/Place.js"></script>
     <script type="text/javascript" src="/js/custom-form-elements.js"></script>
+        <!-- facebook like button script -->
+            <div id="fb-root"></div>
+            <script>(function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+    <!-- end facebook like button script -->
     <script type="text/javascript">   
       $(document).ready(function(){
 
@@ -42,7 +52,7 @@
     <div id="headerAndLikeBox" >
         <span class="placeContentHeader">Post a ride</span>
         <div id="facebookLikeBox" >
-            <div class="fb-like" data-href="http://rootless.me/ski" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+            <div class="fb-like" data-href="http://www.facebook.com/rootlessme" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="arial"></div>
         </div>
     </div>
     <br/>
