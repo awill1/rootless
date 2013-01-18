@@ -31,6 +31,11 @@ class placeActions extends sfActions
     {        
         $this->place = Doctrine_Core::getTable('Places')->find(array($request->getParameter('place_id')));
         $this->forward404Unless($this->place);
+        
+        // Metas for facebook sharing
+        $response = $this->getResponse();
+        $response->addMeta('og:title', sprintf('Rootless - Offer rides and find carpools to %s ', $this->place->getName()));
+        $response->addMeta('og:description', sprintf('Rootless is the carpooling solution to %s. Find a ride or share the empty seats in your car.', $this->place->getName()));
     }
 
     /**
@@ -151,10 +156,16 @@ class placeActions extends sfActions
             // Make sure the user is authenticated
             $personId = null;
             $person = null;
+            $email = null;
             if ($this->getUser()->isAuthenticated())
             {
                 $personId = $this->getUser()->getGuardUser()->getPersonId();
                 $person = $this->getUser()->getGuardUser()->getPeople();
+                $email = $this->getUser()->getGuardUser()->getEmailAddress();
+            }
+            else 
+            {
+                throw new Exception('User is not authenticated');
             }
 
             // Get the input parameters
@@ -313,6 +324,51 @@ class placeActions extends sfActions
             {
                 $recommendedReturnDrivers = $returnPassenger->recommendDrivers($searchRadius);
                 $returnPassenger->getRoutes()->setOriginPlaceId($placeId)->save();
+            }
+            
+            //check to see if administration notifications are desried
+            if (sfConfig::get('app_send_administration_notifications'))
+            {
+                // Send the notification using Amazon SNS  
+                $snsService = new AmazonSNS(array('key' => sfConfig::get('app_amazon_sns_access_key'), 
+                                                  'secret' => sfConfig::get('app_amazon_sns_secret_key')));
+                $messageTemplate = 
+                    "New ride to place created
+                    PlaceId: %placeId%
+                    RideType: %rideType%
+                    Email: %email%
+                    Origin: %origin%
+                    Destination: %destination%
+                    Seats: %seats%
+                    StartDate: %startDate%
+                    StartTime: %startTime%
+                    StartDateAny: %startDateAny%
+                    ReturnDate: %returnDate%
+                    ReturnTime: %returnTime%
+                    ReturnDayAny: %returnDateAny%";
+
+
+                $formattedMessage = strtr($messageTemplate, array(
+                    '%rideType%'    => $rideType,
+                    '%email%'       => $email,
+                    '%placeId%'     => $placeId,
+                    '%origin%'      => $origin,
+                    '%destination%' => $destination,
+                    '%startDate%' => $startDate,
+                    '%startTime%' => $startTime,
+                    '%startDateAny%' => $startDateAny,
+                    '%returnDate%' => $returnDate,
+                    '%returnTime%' => $returnTime,
+                    '%returnDateAny%' => $returnDateAny
+                ));
+                $subjectTemplate = "%email% has created a ride to place %placeId%";
+                $formattedSubject = strtr($subjectTemplate, array(
+                    '%email%'     => $email,
+                    '%placeId%'      => $placeId
+                ));
+                $snsService->publish(sfConfig::get('app_amazon_sns_site_activity_arn'), 
+                        $formattedMessage, 
+                        array('Subject' => $formattedSubject));
             }
 
             // Return success json with no layout
