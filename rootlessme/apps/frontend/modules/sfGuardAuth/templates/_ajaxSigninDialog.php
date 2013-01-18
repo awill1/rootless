@@ -17,6 +17,7 @@
         <span class="alreadyAMember">Already a member? <a href="#" class="signinLink" >Sign in</a></span>
     </div>
 </div>
+
 <div id="loginDialogLoginContainer">
     <h2>Sign in to Rootless</h2>
     <hr class="loginBoxHr"/>
