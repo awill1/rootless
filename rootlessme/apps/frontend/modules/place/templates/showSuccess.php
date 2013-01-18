@@ -62,7 +62,7 @@
         </div>
         <div id="placeRideConfirmationContainer">
             <h2>Yay! Your ride has been posted! Now what?</h2>
-            <ul id="placeCreatedRidesList">
+<!--            <ul id="placeCreatedRidesList">
                 
             </ul>
             
@@ -71,10 +71,10 @@
             <div id="rideShareButtonsContainer" >
                 Send Tweet
             </div>
-            <p>or</p>
+            <p>or</p>-->
             <div id="rideOtherActionsContainer">
-                <a href="<?php echo url_for('profile_edit_user'); ?>">Upload a photo</a>
-                <a id="confirmationPostAnotherRide" href="#">Create another ride</a>
+                <a class="cta" href="<?php echo url_for('profile_edit_user'); ?>">Upload a photo</a>
+                <a id="confirmationPostAnotherRide" class="cta" href="#">Create another ride</a>
             </div>
         </div>
     </div>
