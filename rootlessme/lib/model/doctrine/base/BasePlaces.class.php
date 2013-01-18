@@ -14,6 +14,7 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @property string $contact_email_address
  * @property string $contact_phone_number
  * @property string $logo_url
+ * @property string $index_image_url
  * @property string $tags
  * @property string $css_style
  * @property integer $location_id
@@ -29,6 +30,7 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @method string              getContactEmailAddress()   Returns the current record's "contact_email_address" value
  * @method string              getContactPhoneNumber()    Returns the current record's "contact_phone_number" value
  * @method string              getLogoUrl()               Returns the current record's "logo_url" value
+ * @method string              getIndexImageUrl()         Returns the current record's "index_image_url" value
  * @method string              getTags()                  Returns the current record's "tags" value
  * @method string              getCssStyle()              Returns the current record's "css_style" value
  * @method integer             getLocationId()            Returns the current record's "location_id" value
@@ -43,6 +45,7 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @method Places              setContactEmailAddress()   Sets the current record's "contact_email_address" value
  * @method Places              setContactPhoneNumber()    Sets the current record's "contact_phone_number" value
  * @method Places              setLogoUrl()               Sets the current record's "logo_url" value
+ * @method Places              setIndexImageUrl()         Sets the current record's "index_image_url" value
  * @method Places              setTags()                  Sets the current record's "tags" value
  * @method Places              setCssStyle()              Sets the current record's "css_style" value
  * @method Places              setLocationId()            Sets the current record's "location_id" value
@@ -112,6 +115,15 @@ abstract class BasePlaces extends sfDoctrineRecord
              'length' => 32,
              ));
         $this->hasColumn('logo_url', 'string', 255, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 255,
+             ));
+        $this->hasColumn('index_image_url', 'string', 255, array(
              'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,

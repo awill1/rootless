@@ -66,26 +66,32 @@
     <?php end_slot();?>
 
     <div id="mainRideSummary">
-        <div id="mainRideDate" class="dateBlockLarge">
-            <div class="dateBlockMonth">
-                <?php echo date("M",strtotime($passenger->getStartDate())) ?>
+        <?php if (is_null($passenger->getStartDate())) : ?>
+            <div id="mainRideDate" class="anyDateBlockLarge">    
+                Any day
             </div>
-            <div class="dateBlockDate">
-                <?php echo date("j",strtotime($passenger->getStartDate())) ?>
+        <?php else : ?>
+            <div id="mainRideDate" class="dateBlockLarge">
+                <div class="dateBlockMonth">
+                    <?php echo date("M",strtotime($passenger->getStartDate())) ?>
+                </div>
+                <div class="dateBlockDate">
+                    <?php echo date("j",strtotime($passenger->getStartDate())) ?>
+                </div>
+                <div class="dateBlockTime">
+                    <?php 
+                        if (is_null($passenger->getStartTime()))
+                        {
+                            echo "Anytime";
+                        }
+                        else
+                        {
+                            echo date("g:i A",strtotime($passenger->getStartTime()));
+                        }
+                    ?>
+                </div>
             </div>
-            <div class="dateBlockTime">
-                <?php 
-                    if (is_null($passenger->getStartTime()))
-                    {
-                        echo "Anytime";
-                    }
-                    else
-                    {
-                        echo date("g:i A",strtotime($passenger->getStartTime()));
-                    }
-                ?>
-            </div>
-        </div>
+        <?php endif; ?>
         <h1 id="mainEventTitle">
             <span class="rideLocations">
                 <?php echo $route->getOriginString() ?>

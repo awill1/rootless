@@ -831,6 +831,13 @@ Places:
       primary: false
       notnull: false
       autoincrement: false
+    index_image_url:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
     tags:
       type: string(128)
       fixed: false

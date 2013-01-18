@@ -15,26 +15,32 @@
                   $route = $carpool->getRoutes(); ?>
         <tr class="<?php echo fmod($i, 2) ? 'rideListNotSelectedAltRow' : 'rideListNotSelectedRow' ?>">
             <td>
-                <div class="dateBlockLarge">
-                    <div class="dateBlockMonth">
-                        <?php echo date("M",strtotime($carpool->getStartDate())) ?>
+                <?php if (is_null($carpool->getStartDate())) : ?>
+                    <div class="anyDateBlockLarge">
+                        Any day
                     </div>
-                    <div class="dateBlockDate">
-                        <?php echo date("j",strtotime($carpool->getStartDate())) ?>
+                <?php else : ?>
+                    <div class="dateBlockLarge">
+                        <div class="dateBlockMonth">
+                            <?php echo date("M",strtotime($carpool->getStartDate())) ?>
+                        </div>
+                        <div class="dateBlockDate">
+                            <?php echo date("j",strtotime($carpool->getStartDate())) ?>
+                        </div>
+                        <div class="dateBlockTime">
+                            <?php 
+                                if (is_null($carpool->getStartTime()))
+                                {
+                                    echo "Anytime";
+                                }
+                                else
+                                {
+                                    echo date("g:i A",strtotime($carpool->getStartTime()));
+                                }
+                            ?>
+                        </div>
                     </div>
-                    <div class="dateBlockTime">
-                        <?php 
-                            if (is_null($carpool->getStartTime()))
-                            {
-                                echo "Anytime";
-                            }
-                            else
-                            {
-                                echo date("g:i A",strtotime($carpool->getStartTime()));
-                            }
-                        ?>
-                    </div>
-                </div>
+                <?php endif; ?>
             </td>
             <td><?php echo $route->getOriginString() ?></td>
             <td>to</td>
@@ -56,26 +62,32 @@
             $lineNumber = $i + count($carpools);?>
         <tr class="<?php echo fmod($lineNumber, 2) ? 'rideListNotSelectedAltRow' : 'rideListNotSelectedRow' ?>">
             <td>
-                <div class="dateBlockLarge">
-                    <div class="dateBlockMonth">
-                        <?php echo date("M",strtotime($passenger->getStartDate())) ?>
+                <?php if (is_null($passenger->getStartDate())) : ?>
+                    <div class="anyDateBlockLarge">
+                        Any day
                     </div>
-                    <div class="dateBlockDate">
-                        <?php echo date("j",strtotime($passenger->getStartDate())) ?>
+                <?php else : ?>
+                    <div class="dateBlockLarge">
+                        <div class="dateBlockMonth">
+                            <?php echo date("M",strtotime($passenger->getStartDate())) ?>
+                        </div>
+                        <div class="dateBlockDate">
+                            <?php echo date("j",strtotime($passenger->getStartDate())) ?>
+                        </div>
+                        <div class="dateBlockTime">
+                            <?php 
+                                if (is_null($passenger->getStartTime()))
+                                {
+                                    echo "Anytime";
+                                }
+                                else
+                                {
+                                    echo date("g:i A",strtotime($passenger->getStartTime()));
+                                }
+                            ?>
+                        </div>
                     </div>
-                    <div class="dateBlockTime">
-                        <?php 
-                            if (is_null($passenger->getStartTime()))
-                            {
-                                echo "Anytime";
-                            }
-                            else
-                            {
-                                echo date("g:i A",strtotime($passenger->getStartTime()));
-                            }
-                        ?>
-                    </div>
-                </div>
+                <?php endif; ?>
             </td>
             <td><?php echo $route->getOriginString() ?></td>
             <td>to</td>
