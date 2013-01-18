@@ -5,7 +5,9 @@
     Description:
         Styles for the places pages
 */
-
+#leftColumn{
+    margin-top: 17px;
+}
 #indexMain{
     margin-top:11px;
     margin-left:30px;
