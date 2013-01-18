@@ -110,7 +110,6 @@
         </div>
     </div>
     <div id="loginFormDialogContainer">
-        <h1>Login Dialog</h1>
         <div id="registerFormContainer">
             <?php echo get_component('sfGuardAuth', 'ajaxSigninDialog'); ?>
         </div>
