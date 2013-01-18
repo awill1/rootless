@@ -472,3 +472,19 @@ input[type="text"][disabled] {
     height: 1px;
     width: 90%;
 }
+.emailSignup{
+    color: #fff;
+    background-color: #009F40;
+    padding: 5px;
+}
+.facebookSignup{
+    color: #fff;
+    background-color: #29447E;
+    padding: 5px;
+}
+.facebookLink a{
+    color:#fff;
+}
+.registerLink a{
+    color:#fff;
+}

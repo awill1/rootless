@@ -1,25 +1,25 @@
 <?php use_helper('I18N') ?>
 
 <div id="loginDialogChoiceContainer">
-    <span class="loginPrompt">Log in with Rootless</span>
+    <div class="loginPrompt">Log in with Rootless</div>
     <hr />
-    <div>
+<!--    <div class="facebookSignup">
         <a href="#" class="facebookLink" >Register with Facebook</a>
     </div>
     <div>
-        <span class="lightText">or</span>
-    </div>
-    <div>
+        <div class="lightText">or</div>
+    </div>-->
+    <div class="emailSignup">
         <a href="#" class="registerLink" >Sign up with your email</a>
     </div>
     <hr />
-    <div>
-        <span class="alreadyAMember">Already a member? <a href="#" class="signinLink" >Sign in</a></span>
+    <div class="alreadyAMember">
+        Already a member? <a href="#" class="signinLink" >Sign in</a>
     </div>
 </div>
 
 <div id="loginDialogLoginContainer">
-    <h2>Sign in to Rootless</h2>
+    <div class="loginPrompt">Sign in to Rootless</div>
     <hr class="loginBoxHr"/>
     <form id="loginForm" action="<?php echo url_for('sf_guard_ajax_signin') ?>" method="post">
         <?php echo $signinForm->renderHiddenFields() ?>
@@ -57,7 +57,7 @@
     </div>
 </div>
 <div id="loginDialogJoinContainer">
-    <h2>Join Rootless</h2>
+    <div class="loginPrompt">Join Rootless</div>
     <hr class="loginBoxHr"/>
     <form id ="registerForm" action="<?php echo url_for('sf_guard_ajax_register') ?>" method="post">
       <?php echo $registerForm->renderHiddenFields() ?>
