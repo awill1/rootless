@@ -9,16 +9,6 @@
     <script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
     <script type="text/javascript" src="/js/map/Place.js"></script>
     <script type="text/javascript" src="/js/custom-form-elements.js"></script>
-        <!-- facebook like button script -->
-            <div id="fb-root"></div>
-            <script>(function(d, s, id) {
-              var js, fjs = d.getElementsByTagName(s)[0];
-              if (d.getElementById(id)) return;
-              js = d.createElement(s); js.id = id;
-              js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-              fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));</script>
-    <!-- end facebook like button script -->
     <script type="text/javascript">   
       $(document).ready(function(){
 
@@ -40,13 +30,13 @@
         map.mapInit();
       });
     </script>
-    <style type="text/css">
+    <style>
         <?php echo htmlspecialchars_decode($place->getCssStyle()); ?>
     </style>
 <?php end_slot();?>
 <div id="placeHead">
     <div class="placeTitleText">Share a ride to <?php echo $place->getName() ?></div>
-    <div id="placeLogo"><img src="<?php echo $place->getLogoUrl(); ?>" width="113" /></div>
+    <div id="placeLogo"><img class="placeLogo" src="<?php echo $place->getLogoUrl(); ?>" alt="<?php echo $place->getName() ?> logo" /></div>
 </div>
 <div id="placeContent">
     <div id="headerAndLikeBox" >

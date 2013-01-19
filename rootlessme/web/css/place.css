@@ -436,6 +436,9 @@ input[type="text"][disabled] {
     background-color: #F2F2F2;
 }
 
+.placeLogo {
+    width: 113px;
+}
 
 /*login/signup popup*/
 .loginPrompt{

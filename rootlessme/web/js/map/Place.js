@@ -60,6 +60,7 @@ Rootless.Map.Place = Rootless.Map.extend({
                driverContainer                : "#driverContainer",
                passengerContainer             : "#passengerContainer",
                loginFormDialogContainer       : "#loginFormDialogContainer",
+               placeRideContainer             : "#placeRideContainer",
                placeRideConfirmationContainer : "#placeRideConfirmationContainer"
            },
            
@@ -252,7 +253,7 @@ Rootless.Map.Place = Rootless.Map.extend({
             isFormSubmitPending = false;
             
             // Unblock the form
-            $(place._.el.placeFormBox).unblock();
+            $(place._.el.placeRideContainer).unblock();
 
             // This handler function will run when the form is complete
             $(place._.el.placeFormBox).hide();
@@ -285,7 +286,7 @@ Rootless.Map.Place = Rootless.Map.extend({
             }
             
             // Unblock the form
-            $(place._.el.placeFormBox).unblock();
+            $(place._.el.placeRideContainer).unblock();
         }
     },
     
@@ -305,7 +306,7 @@ Rootless.Map.Place = Rootless.Map.extend({
         var self = this;
         // Check to make sure nothing is blocking submitting the form
         if (place.canSubmitForm() && place._.formBlock.isFormSubmitPending) {
-            $(place._.el.placeFormBox).block();
+            $(place._.el.placeRideContainer).block();
             $(place._.el.rideForm).ajaxSubmit(place.formAjaxOptions);
         }
     }
