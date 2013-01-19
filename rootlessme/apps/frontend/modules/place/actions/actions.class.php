@@ -31,11 +31,6 @@ class placeActions extends sfActions
     {        
         $this->place = Doctrine_Core::getTable('Places')->find(array($request->getParameter('place_id')));
         $this->forward404Unless($this->place);
-        
-        // Metas for facebook sharing
-        $response = $this->getResponse();
-        $response->addMeta('og:title', sprintf('Rootless - Offer rides and find carpools to %s ', $this->place->getName()));
-        $response->addMeta('og:description', sprintf('Rootless is the carpooling solution to %s. Find a ride or share the empty seats in your car.', $this->place->getName()));
     }
 
     /**
