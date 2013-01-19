@@ -246,7 +246,7 @@ Rootless.Map = Class.extend({
         // Clear the flag
         this._.formBlock.isDirectionsPending = false;
         // Submit the form if necessary and if the function is defined
-        if (typeof(MaybeSubmitForm) == typeof(Function)) {
+        if (typeof(this.MaybeSubmitForm) == typeof(Function)) {
             this.MaybeSubmitForm();
         }
      },
@@ -259,7 +259,7 @@ Rootless.Map = Class.extend({
         // Clear the flag
         this._.formBlock.isReturnDirectionsPending = false;
         // Submit the form if necessary and if the function is defined
-        if (typeof(MaybeSubmitForm) == typeof(Function)) {
+        if (typeof(this.MaybeSubmitForm) == typeof(Function)) {
             this.MaybeSubmitForm();
         }
      },
@@ -534,7 +534,7 @@ Rootless.Map = Class.extend({
      * @returns bool True, if the form can be submitted. False, if the form is blocked.
      */
     canSubmitForm : function(){
-        return !this._.formBlock.isOriginDecodePending && !this._.formBlock.isDestinationDecodePending && !this._.formBlock.isDirectionsPending;
+        return !this._.formBlock.isOriginDecodePending && !this._.formBlock.isDestinationDecodePending && !this._.formBlock.isDirectionsPending && !this._.formBlock.isReturnDirectionsPending;
     },
     
     /**

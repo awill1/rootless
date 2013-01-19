@@ -241,16 +241,17 @@ Rootless.Map.Place = Rootless.Map.extend({
     
     // Form submit options used for the ajax form
     formAjaxOptions : {
-        dataType:  'json', 
+        dataType:  'json',
         beforeSubmit : function() {
+            // Clear the form submit pending flag
+            isFormSubmitPending = false;
+            
             // Send an event to google analytics for the form submission
             _gaq.push(['_trackEvent', 'places', 'createRideSubmitted']);
         },
         success: function(data)
         {
             var place = Rootless.Map.Place.getInstance();
-            // Clear the form submit pending flag
-            isFormSubmitPending = false;
             
             // Unblock the form
             $(place._.el.placeRideContainer).unblock();
@@ -288,16 +289,6 @@ Rootless.Map.Place = Rootless.Map.extend({
             // Unblock the form
             $(place._.el.placeRideContainer).unblock();
         }
-    },
-    
-    /**
-     * Verifies a form can be submitted and is not blocked
-     * @returns bool True, if the form can be submitted. False, if the form is blocked.
-     */
-    canSubmitForm : function(){
-//    	var place = Rootless.Map.Place.getInstance();
-//        return !place._.formBlock.isOriginDecodePending && !place._.formBlock.isDestinationDecodePending && !place._.formBlock.isDirectionsPending && !place._.formBlock.isReturnDirectionsPending;
-        return !this._.formBlock.isOriginDecodePending && !this._.formBlock.isDestinationDecodePending && !this._.formBlock.isDirectionsPending && !this._.formBlock.isReturnDirectionsPending;
     },
     
     MaybeSubmitForm : function() {

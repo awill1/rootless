@@ -189,11 +189,16 @@ Rootless.Map.Search = Rootless.Map.extend({
     // Form submit options used for the ajax form
     formAjaxOptions : {
         target: '#results',
+        beforeSubmit : function() {
+            // Clear the form submit pending flag
+            isFormSubmitPending = false;
+            
+            // Send an event to google analytics for the form submission
+            _gaq.push(['_trackEvent', 'rides', 'searchSubmitted']);
+        },
         success: function()
         {
             var map = Rootless.Map.Search.getInstance();
-            // Clear the form submit pending flag
-            isFormSubmitPending = false;
 
             // This handler function will run when the form is complete
             $('#loader').hide();
