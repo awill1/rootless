@@ -234,7 +234,7 @@ class CarpoolsTable extends Doctrine_Table
         {
             // Reformat the date to work with the database
             $date = date('Y-m-d', strtotime($date));
-            $q = $q->andWhere('c.start_date = ?', $date)
+            $q = $q->andWhere('(c.start_date = ? OR c.start_date IS NULL)', $date)
                    ->andWhere('c.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED])
                    ->andWhere('c.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_CLOSED]);
         }

@@ -260,7 +260,7 @@ class PassengersTable extends Doctrine_Table
         {
             // Reformat the date to work with the database
             $date = date('Y-m-d', strtotime($date));
-            $q = $q->andWhere('pa.start_date = ?', $date)
+            $q = $q->andWhere('(pa.start_date = ? OR pa.start_date IS NULL)', $date)
                    ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED])
                    ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_CLOSED]);
         }
@@ -398,7 +398,7 @@ class PassengersTable extends Doctrine_Table
         {
             // Reformat the date to work with the database
             $date = date('Y-m-d', strtotime($date));
-            $q = $q->andWhere('pa.start_date = ?', $date)
+            $q = $q->andWhere('(pa.start_date = ? OR pa.start_date IS NULL)', $date)
                    ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED])
                    ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_CLOSED]);
         }
@@ -434,7 +434,7 @@ class PassengersTable extends Doctrine_Table
         {
             // Reformat the date to work with the database
             $date = date('Y-m-d', strtotime($date));
-            $q = $q->andWhere('pa.start_date = ?', $date)
+            $q = $q->andWhere('(pa.start_date = ? OR pa.start_date IS NULL)', $date)
                    ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED])
                    ->andWhere('pa.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_CLOSED]);
         }
