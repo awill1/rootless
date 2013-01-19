@@ -9,7 +9,7 @@
     <p>This ride has been deleted.</p>
 <?php else: // The ride is not deleted ?>
     <?php slot('gmapheader'); ?>
-        <script type="text/javascript" src="/js/map/Negotiation.js"></script>
+        <script type="text/javascript" src="/js/map/<?php echo sfConfig::get('app_js_map_negotiation'); ?>"></script>
         <script type="text/javascript">
 			$(document).ready(function(){
 				 // Change all of the appropriate textboxes to date and time pickers

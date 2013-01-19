@@ -7,7 +7,7 @@
 ?>
 
 <?php slot('gmapheader'); ?>
-    <script type="text/javascript" src="/js/map/Search.js"></script>
+    <script type="text/javascript" src="/js/map/<?php echo sfConfig::get('app_js_map_search'); ?>"></script>
     <script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
 
     <script type="text/javascript">   

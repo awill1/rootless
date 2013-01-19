@@ -6,7 +6,7 @@
   sprintf('Rootless - New ride '.$rideType))
 ?>
 <?php slot('gmapheader'); ?>
-    <script type="text/javascript" src="/js/map/Request.js"></script>
+    <script type="text/javascript" src="/js/map/<?php echo sfConfig::get('app_js_map_request'); ?>"></script>
     <script type="text/javascript">   
       $(document).ready(function(){
         

@@ -25,13 +25,13 @@
     <?php use_javascript(sfConfig::get('app_js_navigation')) ?>
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
-    <script type="text/javascript" src="/js/Class.js"></script>
-    <script type="text/javascript" src="/js/Rootless.js"></script>
-    <script type="text/javascript" src="/js/Utils.js"></script>
+    <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_js_class'); ?>"></script>
+    <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_js_rootless'); ?>"></script>
+    <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_js_utils'); ?>"></script>
     <?php if (has_slot('gmapheader')): ?>
     	<link type="text/css" href="/css/tipsy.css" rel="stylesheet" />
     	<script type="text/javascript" src="/js/ext/jquery.tipsy.js"></script>
-        <script type="text/javascript" src="/js/Map.js"></script>
+        <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_js_map'); ?>"></script>
         <?php include_slot('gmapheader') ?>
     <?php endif; ?>
     

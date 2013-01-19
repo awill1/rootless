@@ -5,7 +5,7 @@
 <?php end_slot();?>
 
 <script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
-<script type="text/javascript" src="/js/seatNegotiation.js"></script>
+<script type="text/javascript" src="/js/seat/<?php echo sfConfig::get('app_js_map_negotiation'); ?>"></script>
 <div id="seatDetailsBlock" title="Seat details">
     <div id='seatNegotiationContainer'>
     <form id="seatNegotiationForm" class="userInputForm" action="<?php echo url_for('seats_update', array('seat_id'=>$seat->getSeatId())) ?>" method="post">
