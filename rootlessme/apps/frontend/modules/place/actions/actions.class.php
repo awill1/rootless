@@ -373,7 +373,9 @@ class placeActions extends sfActions
         catch (Exception $e)
         {
             // Log the error
-            $this->logMessage($e->getMessage()."; ".$e->getTraceAsString(), 'err');
+            $this->logMessage($e->getMessage().
+                              '; Trace: '.$e->getTraceAsString().
+                              ' Content: '.$request->getContent(), 'err');
             // Set the error code
             $this->getResponse()->setStatusCode('500');
             // Return the error json
