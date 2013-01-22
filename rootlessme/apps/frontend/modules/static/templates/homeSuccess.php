@@ -59,26 +59,18 @@
     </div>
 </div>
 <div class="subHead">
-    Featured Events!
+    Featured events and places
     <div class="featuredEvents">
+        <?php foreach ($partnerPlaces as $place): ?>
+            <a href="<?php echo url_for('place_show', array('place_id'=>$place->getPlaceId()))?>" class="featureLink">
+                <div id="placeBox">
+                    <?php echo $place->getName() ?>
+                </div>
+            </a>
+        <?php endforeach; ?>
         <a href="<?php echo url_for('nyc') ?>" class="featureLink">
             <div id="nycBox">
                 Carpool NYC
-            </div>
-        </a>
-        <a href="<?php echo url_for('novascotiamusicweek') ?>" class="featureLink">
-            <div id="nsmusicweekBox">
-                Nova Scotia Music Week
-            </div>
-        </a>
-        <a href="<?php echo url_for('hangtownHalloween') ?>" class="featureLink">
-            <div id="hangtownHalloweenBallBox">
-                Hangtown Halloween Ball
-            </div>
-        </a>
-        <a href="<?php echo url_for('mullummusicfestival') ?>" class="featureLink">
-            <div id="mullumMusicFestivalBox">
-                Mullum Music Festival
             </div>
         </a>
     </div>
