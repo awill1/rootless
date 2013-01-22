@@ -21,7 +21,7 @@
     float:left;
 }
 
-#map {
+#map{
     width: 352px;
     height: 277px;
 }
@@ -38,17 +38,17 @@ h1{
 }
 .placeBox{
     width: 586px;
-    height: 115px;
+    height: 80px;
     float: left;
     background-color: #EAEAEA;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 .placeBox:hover{
     width: 586px;
-    height: 115px;
+    height: 80px;
     float: left;
     background-color: #565656;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 .placeBox:hover .placeName{
     color: #E87C62;
@@ -62,7 +62,7 @@ h1{
 .placeImg{
     float: left;
     width: 261px;
-    height: 115px;
+    height: 80px;
     background-color: #E87C62;
 /*    background-image: url('../images/placesindeximg.jpg');*/
 }
@@ -86,9 +86,12 @@ h1{
     
 }
 .placeTags{
+    float: right;
     color:#565656;
     font-weight: bold;
     font-size: 14px;
+    margin-top: 55px;
+    margin-right: 10px;
 }
 
 /*place page stuff*/
@@ -97,12 +100,12 @@ h1{
 }
 .placeTitleText{
     float:left;
-    margin-top: 34px;
+    margin-top: 50px;
     font-weight: bold;
     color:#fff;
     font-size: 42px;
     width: 410px;
-    height: 345px;
+    height: 315px;
 }
 #middleContent{
     margin-left: 0px !important;
@@ -481,7 +484,7 @@ input[type="text"][disabled] {
     color: #fff;
     background-color: #009F40;
     padding: 5px;
-    width:143px;
+    width: 145px;
     margin: auto;
 }
 .facebookSignup{

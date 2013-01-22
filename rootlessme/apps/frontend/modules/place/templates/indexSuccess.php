@@ -12,8 +12,8 @@
                     <div class="placeInfo">
                         <div class='placeName'><?php echo $place->getName() ?></div>
                         <div class='placeLocation'><?php echo $place->getLocation()->getCityStateString(); ?></div>
-                        <div class='placeTags'><?php echo $place->getTags() ?></div>
                     </div>
+                    <div class='placeTags'><?php echo $place->getTags() ?></div>
                 </div>
             </li>
         </a>
