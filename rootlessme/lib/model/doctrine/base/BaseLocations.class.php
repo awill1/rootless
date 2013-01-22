@@ -23,6 +23,7 @@ Doctrine_Manager::getInstance()->bindComponent('Locations', 'doctrine');
  * @property timestamp $created_at
  * @property timestamp $updated_at
  * @property Steps $Steps
+ * @property Places $Places
  * 
  * @method integer   getLocationId()     Returns the current record's "location_id" value
  * @method integer   getStepId()         Returns the current record's "step_id" value
@@ -40,6 +41,7 @@ Doctrine_Manager::getInstance()->bindComponent('Locations', 'doctrine');
  * @method timestamp getCreatedAt()      Returns the current record's "created_at" value
  * @method timestamp getUpdatedAt()      Returns the current record's "updated_at" value
  * @method Steps     getSteps()          Returns the current record's "Steps" value
+ * @method Places    getPlaces()         Returns the current record's "Places" value
  * @method Locations setLocationId()     Sets the current record's "location_id" value
  * @method Locations setStepId()         Sets the current record's "step_id" value
  * @method Locations setName()           Sets the current record's "name" value
@@ -56,6 +58,7 @@ Doctrine_Manager::getInstance()->bindComponent('Locations', 'doctrine');
  * @method Locations setCreatedAt()      Sets the current record's "created_at" value
  * @method Locations setUpdatedAt()      Sets the current record's "updated_at" value
  * @method Locations setSteps()          Sets the current record's "Steps" value
+ * @method Locations setPlaces()         Sets the current record's "Places" value
  * 
  * @package    RootlessMe
  * @subpackage model
@@ -80,7 +83,7 @@ abstract class BaseLocations extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => true,
+             'notnull' => false,
              'autoincrement' => false,
              'length' => 4,
              ));
@@ -209,6 +212,10 @@ abstract class BaseLocations extends sfDoctrineRecord
         $this->hasOne('Steps', array(
              'local' => 'step_id',
              'foreign' => 'step_id'));
+
+        $this->hasOne('Places', array(
+             'local' => 'location_id',
+             'foreign' => 'location_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

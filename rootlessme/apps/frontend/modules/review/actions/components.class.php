@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * The components for the review module
+ */
 class reviewComponents extends sfComponents
 {
+    /**
+     * Executes the reviews component action
+     * @param sfWebRequest $request The web request
+     */
     public function executeReviews(sfWebRequest $request)
     {
         $this->profile = Doctrine_Core::getTable('Profiles')->find(array($request->getParameter('profile_name')));

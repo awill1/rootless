@@ -59,12 +59,8 @@ Rootless.Map.Request = Rootless.Map.extend({
                 },
                 
                 marker : {
-                    
                 }
-           
            }
-           
-           
        }, params);
    },
    /**

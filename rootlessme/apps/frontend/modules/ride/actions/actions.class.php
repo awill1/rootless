@@ -153,17 +153,16 @@ class rideActions extends sfActions
         }
         else
         {
+            $searchRadius = sfConfig::get('app_default_search_distance');
             switch ($this->rideType) {
                 case "offer":
                     $ride_id = $ride->getCarpoolId();
                     // Do the recommendations
-                    $searchRadius = sfConfig::get('app_default_search_distance');
                     $ride->recommendPassengers($searchRadius);
                     break;
                 case "request":
                     $ride_id = $ride->getPassengerId();
                     // Do the recommendations
-                    $searchRadius = sfConfig::get('app_default_search_distance');
                     $ride->recommendDrivers($searchRadius);       
                     break;
             }
@@ -423,6 +422,43 @@ class rideActions extends sfActions
         $this->getUser()->setFlash( 'message', 'Some message here' );
         $this->forward('ride', 'show', array('ride_id'=> $this->rideId, 'ride_type' => $this->rideType));
     }
+    
+//    /**
+//     * Executes create to place action
+//     *
+//     * @param sfRequest $request A request object
+//     */
+//    public function executeCreateToPlace(sfWebRequest $request)
+//    {        // Return nothing to the page 
+//        $this->setLayout(sfView::NONE);
+//        
+//        //Success variable and message
+//        $success = 'false';
+//        
+//        try
+//        {
+//        
+//            // Load the AWS SDK
+//            require_once sfConfig::get('app_amazon_sdk_file');
+//
+//            // Verify the request parameters
+//            $userType = $request->getParameter('userType');
+//            $originData = $request->getParameter('rides_origin_data');
+//            $destinationData = $request->getParameter('rides_destination_data');
+//            $routeData = $request->getParameter('rides_route_data');
+//            $origin = $request->getParameter('origin');
+//            $destination = $request->getParameter('destination');
+//            $date = $request->getParameter('date');
+//            $time = $request->getParameter('time');
+//            $name = $request->getParameter('name');
+//            $email = $request->getParameter('email');
+//            $phone = $request->getParameter('phone');
+//
+//            if(CommonHelpers::IsNullOrEmptyString($originData))
+//            {
+//                throw new Exception('Origin data was not specified. Origin: '.$origin);
+//            }
+//    }
 
     protected function processForm(sfWebRequest $request, sfForm $form)
     {

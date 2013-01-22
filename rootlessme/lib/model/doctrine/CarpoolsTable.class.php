@@ -234,7 +234,7 @@ class CarpoolsTable extends Doctrine_Table
         {
             // Reformat the date to work with the database
             $date = date('Y-m-d', strtotime($date));
-            $q = $q->andWhere('c.start_date = ?', $date)
+            $q = $q->andWhere('(c.start_date = ? OR c.start_date IS NULL)', $date)
                    ->andWhere('c.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED])
                    ->andWhere('c.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_CLOSED]);
         }
@@ -297,9 +297,9 @@ class CarpoolsTable extends Doctrine_Table
     public function addCurrentRidesFilter($query)
     {
         // Add a where clause to the query to only return carpools today or in
-        // the future 
-        // that are not deleted
-        return $query->andWhere('c.start_date >= ?', date('Y-m-d'))
+        // the future that are not deleted. Start date = null is valid because
+        // it represents an open ended ride.
+        return $query->andWhere('(c.start_date >= ? OR c.start_date IS NULL)', date('Y-m-d'))
                      ->andWhere('c.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_DELETED])
                      ->andWhere('c.status_id != ?', RideStatuses::$statuses[RideStatuses::RIDE_CLOSED]);
         

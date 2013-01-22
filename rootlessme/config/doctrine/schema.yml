@@ -49,7 +49,7 @@ Carpools:
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
+      notnull: false
       autoincrement: false
     start_time:
       type: time(25)
@@ -287,7 +287,7 @@ Locations:
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
+      notnull: false
       autoincrement: false
     name:
       type: string(255)
@@ -384,6 +384,10 @@ Locations:
     Steps:
       local: step_id
       foreign: step_id
+      type: one
+    Places:
+      local: location_id
+      foreign: location_id
       type: one
 MessageRecipients:
   connection: doctrine
@@ -777,6 +781,107 @@ People:
       local: person_id
       foreign: person_id
       type: many
+Places:
+  connection: doctrine
+  tableName: places
+  actAs: { Timestampable: ~ }
+  columns:
+    place_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    name:
+      type: string(45)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    website_url:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    isPartner:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+    contact_email_address:
+      type: string(255)
+      notnull: false
+    contact_phone_number:
+      type: string(32)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    logo_url:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    index_image_url:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    tags:
+      type: string(128)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    css_style:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    location_id:
+      type: integer(5)
+      fixed: false
+      unsigned: false
+      notnull: false
+      autoincrement: false
+    is_deleted:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+  relations:
+    Origin_Route:
+      class: Routes
+      local: place_id
+      foreign: origin_place_id
+      type: many
+    Destination_Route:
+      class: Routes
+      local: place_id
+      foreign: destination_place_id
+      type: many
+    Location:
+      class: Locations
+      local: location_id
+      foreign: location_id
+      type: one
 Profiles:
   connection: doctrine
   tableName: profiles
@@ -1193,6 +1298,12 @@ Routes:
       primary: false
       notnull: false
       autoincrement: false
+    origin_place_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      autoincrement: false
+      notnull: false
     destination_address:
       type: string(255)
       fixed: false
@@ -1228,6 +1339,12 @@ Routes:
       primary: false
       notnull: false
       autoincrement: false
+    destination_place_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      autoincrement: false
+      notnull: false
     distance:
       type: integer(4)
       fixed: false
@@ -1282,6 +1399,16 @@ Routes:
       local: route_id
       foreign: solo_route_id
       type: many
+    Origin_Places:
+      class: Places
+      local: origin_place_id
+      foreign: place_id
+      type: one
+    Destination_Places:
+      class: Places
+      local: destination_place_id
+      foreign: place_id
+      type: one
 SeatStatuses:
   connection: doctrine
   tableName: seat_statuses

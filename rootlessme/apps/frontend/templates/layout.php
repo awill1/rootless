@@ -8,6 +8,9 @@
             Rootless - Share your ride or find a carpool.
           <?php endif; ?>
       </title>
+    <meta property="og:image" content="https://rootlessme.s3.amazonaws.com/images/rootless_logo_square.jpg"/>
+    <meta property="og:site_name" content="Rootless"/>
+    <meta property="og:type" content="website"/>
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php use_stylesheet(sfConfig::get('app_css_main')) ?>
     <?php use_javascript(sfConfig::get('app_jquery_script')) ?>
@@ -18,16 +21,17 @@
     <?php use_javascript(sfConfig::get('app_jquery_block_ui_script')) ?>
     <?php use_javascript(url_for('sf_routes_js')) ?>
     <?php use_javascript(sfConfig::get('app_jquery_facebook_script')) ?>
-    <?php use_javascript('headerMenu') ?>
-    <?php use_javascript('navigation') ?>
+    <?php use_javascript(sfConfig::get('app_js_header_menu')) ?>
+    <?php use_javascript(sfConfig::get('app_js_navigation')) ?>
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
-    <script type="text/javascript" src="/js/Class.js"></script>
-    <script type="text/javascript" src="/js/Rootless.js"></script>
+    <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_js_class'); ?>"></script>
+    <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_js_rootless'); ?>"></script>
+    <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_js_utils'); ?>"></script>
     <?php if (has_slot('gmapheader')): ?>
-    	<link type="text/css" href="/css/tipsy.css" rel="stylesheet">
+    	<link type="text/css" href="/css/tipsy.css" rel="stylesheet" />
     	<script type="text/javascript" src="/js/ext/jquery.tipsy.js"></script>
-        <script type="text/javascript" src="/js/Map.js"></script>
+        <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_js_map'); ?>"></script>
         <?php include_slot('gmapheader') ?>
     <?php endif; ?>
     
@@ -142,13 +146,11 @@
                             travelers
                         </a>
                     </li>
-                    <?php if ($sf_user->isAuthenticated()): ?>
-                    <li  id="navigationMessages" class="navigationItem">
-                        <a class="navigationItemLink" href="<?php echo url_for("messages") ?>">
-                            messages
+                    <li id="navigationPlaces" class="navigationItem">
+                        <a class="navigationItemLink" href="<?php echo url_for("places") ?>">
+                            places
                         </a>
                     </li>
-                    <?php endif ?>
                 </ul>
                 <?php if ($sf_user->isAuthenticated()): ?>
                 <div id="leftContent" >

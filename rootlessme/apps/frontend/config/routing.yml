@@ -139,6 +139,63 @@ messages_show:
   param: { module: message, action: show }
   requirements:
     sf_method: [get]
+    
+# place rules
+place_new:
+  url:     /places/new
+  class:   sfDoctrineRoute
+  options: { model: Places, type: object }
+  param:   { module: place, action: new}
+  requirements: { sf_method: get }
+
+place_create:
+  url:     /places/create
+  class:   sfDoctrineRoute
+  options: { model: Places, type: object }
+  param:   { module: place, action: create}
+  requirements: { sf_method: post }
+
+place_edit:
+  url:     /places/:place_id/edit
+  class:   sfDoctrineRoute
+  options: { model: Places, type: object }
+  param:   { module: place, action: edit}
+  requirements: { sf_method: get }
+
+place_update:
+  url:     /places/:place_id/update
+  class:   sfDoctrineRoute
+  options: { model: Places, type: object }
+  param:   { module: place, action: update}
+  requirements: { sf_method: put }
+  
+place_delete:
+  url:     /places/:place_id/delete
+  class:   sfDoctrineRoute
+  options: { model: Places, type: object }
+  param:   { module: place, action: delete}
+  requirements: { sf_method: post }
+
+place_create_ride:
+  url:     /places/createRide
+  param:   { module: place, action: createRideToPlace}
+  requirements: { sf_method: post }
+  
+place_show:
+  url:     /places/:place_id
+  class:   sfDoctrineRoute
+  options: { model: Places, type: object }
+  param:   { module: place, action: show}
+  requirements: { sf_method: get }
+
+places:
+  url: /places
+  param:
+    module: place
+    action: index
+  requirements:
+    sf_method: [get]
+
 
 # profile rules
 profile:
@@ -421,6 +478,10 @@ sf_guard_forgot_password_change:
 sf_guard_signin:
   url:   /login
   param: { module: sfGuardAuth, action: signin }
+  
+sf_guard_ajax_signin:
+  url:   /ajaxLogin
+  param: { module: sfGuardAuth, action: ajaxSignin }
 
 sf_guard_signout:
   url:   /logout
@@ -433,6 +494,10 @@ sf_guard_password:
 sf_guard_register:
   url:   /register
   param: { module: sfGuardRegister, action: index }
+  
+sf_guard_ajax_register:
+  url:   /ajaxRegister
+  param: { module: sfGuardRegister, action: ajaxRegister }
   
 # Symfony routes javascript helper
 sf_routes_js:

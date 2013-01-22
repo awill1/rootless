@@ -9,7 +9,7 @@
     <p>This ride has been deleted.</p>
 <?php else: // The ride is not deleted ?>
     <?php slot('gmapheader'); ?>
-        <script type="text/javascript" src="/js/map/Negotiation.js"></script>
+        <script type="text/javascript" src="/js/map/<?php echo sfConfig::get('app_js_map_negotiation'); ?>"></script>
         <script type="text/javascript">
 			$(document).ready(function(){
 				 // Change all of the appropriate textboxes to date and time pickers
@@ -65,17 +65,32 @@
     <?php end_slot();?>
 
     <div id="mainRideSummary">
-        <div id="mainRideDate" class="dateBlockLarge">
-            <div class="dateBlockMonth">
-                <?php echo date("M",strtotime($carpool->getStartDate())) ?>
+        <?php if (is_null($carpool->getStartDate())) : ?>
+            <div id="mainRideDate" class="anyDateBlockLarge">    
+                Any day
             </div>
-            <div class="dateBlockDate">
-                <?php echo date("j",strtotime($carpool->getStartDate())) ?>
+        <?php else : ?>
+            <div id="mainRideDate" class="dateBlockLarge">
+                <div class="dateBlockMonth">
+                    <?php echo date("M",strtotime($carpool->getStartDate())) ?>
+                </div>
+                <div class="dateBlockDate">
+                    <?php echo date("j",strtotime($carpool->getStartDate())) ?>
+                </div>
+                <div class="dateBlockTime">
+                    <?php 
+                        if (is_null($carpool->getStartTime()))
+                        {
+                            echo "Anytime";
+                        }
+                        else
+                        {
+                            echo date("g:i A",strtotime($carpool->getStartTime()));
+                        }
+                    ?>
+                </div>
             </div>
-            <div class="dateBlockTime">
-                <?php echo date("g:i A",strtotime($carpool->getStartTime())) ?>
-            </div>
-        </div>
+        <?php endif; ?>
         <h1 id="mainEventTitle">
             <span class="rideLocations">
                 <?php echo $route->getOriginString() ?>

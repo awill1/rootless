@@ -18,7 +18,7 @@ abstract class BaseCarpoolsFormFilter extends BaseFormFilterDoctrine
       'route_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Routes'), 'add_empty' => true)),
       'solo_route_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Routes_3'), 'add_empty' => true)),
       'seats_available' => new sfWidgetFormFilterInput(),
-      'start_date'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'start_date'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'start_time'      => new sfWidgetFormFilterInput(),
       'asking_price'    => new sfWidgetFormFilterInput(),
       'description'     => new sfWidgetFormFilterInput(),

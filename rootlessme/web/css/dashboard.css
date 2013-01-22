@@ -31,7 +31,16 @@
 }
 
 .dateCont {
-    
+    float: left;
+    width: 46px;
+    height: 46px;
+    background-color:#E5E5E5;
+    margin: 2px 10px 2px 2px;
+}
+
+.anyDateCont {
+    color:  #000000;
+    font-size: 80%;
     float: left;
     width: 46px;
     height: 46px;

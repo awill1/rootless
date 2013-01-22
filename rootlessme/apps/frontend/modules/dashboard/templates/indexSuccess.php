@@ -26,11 +26,28 @@
                       $route = $carpool->getRoutes(); ?>
                 <li class="ridesListItem">
                     <div class="rideCont">
-                        <div class="dateCont">
-                            <div class="monthCont"><?php echo date("M",strtotime($carpool->getStartDate())) ?></div>
-                            <div class="dayCont"><?php echo date("j",strtotime($carpool->getStartDate())) ?></div>
-                            <div class="timeCont"><?php echo date("g:i A",strtotime($carpool->getStartTime())) ?></div>
-                        </div>
+                        <?php if (is_null($carpool->getStartDate())) : ?>
+                            <div class="anyDateCont">
+                                Any day
+                            </div>
+                        <?php else : ?>
+                            <div class="dateCont">
+                                <div class="monthCont"><?php echo date("M",strtotime($carpool->getStartDate())) ?></div>
+                                <div class="dayCont"><?php echo date("j",strtotime($carpool->getStartDate())) ?></div>
+                                <div class="timeCont">
+                                    <?php 
+                                        if (is_null($carpool->getStartTime()))
+                                        {
+                                            echo "Anytime";
+                                        }
+                                        else
+                                        {
+                                            echo date("g:i A",strtotime($carpool->getStartTime()));
+                                        }
+                                    ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
                         <div class="locationCont">
                             <div class="deleteRideCont" >
                                 <a class="quickBoxDeleteRideButton" title="Delete" href="<?php echo url_for('ride_delete', array('ride_type' => 'offer', 'ride_id' => $carpool->getCarpoolId())) ?>">
@@ -66,12 +83,29 @@
             <?php foreach ($passengers as $passenger):
                   $route = $passenger->getRoutes(); ?>
                 <li class="ridesListItem">
-                    <div class="rideCont"> 
-                        <div class="dateCont">
-                            <div class="monthCont"><?php echo date("M",strtotime($passenger->getStartDate())) ?></div>
-                            <div class="dayCont"><?php echo date("j",strtotime($passenger->getStartDate())) ?></div>
-                            <div class="timeCont"><?php echo date("g:i A",strtotime($passenger->getStartTime())) ?></div>
-                        </div>
+                    <div class="rideCont">
+                        <?php if (is_null($passenger->getStartDate())) : ?>
+                            <div class="anyDateCont">
+                                Any day
+                            </div>
+                        <?php else : ?>
+                            <div class="dateCont">
+                                <div class="monthCont"><?php echo date("M",strtotime($passenger->getStartDate())) ?></div>
+                                <div class="dayCont"><?php echo date("j",strtotime($passenger->getStartDate())) ?></div>
+                                <div class="timeCont">
+                                    <?php 
+                                        if (is_null($passenger->getStartTime()))
+                                        {
+                                            echo "Anytime";
+                                        }
+                                        else
+                                        {
+                                            echo date("g:i A",strtotime($passenger->getStartTime()));
+                                        }
+                                    ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
                         <div class="locationCont">
                             <div class="deleteRideCont" >
                                 <a class="quickBoxDeleteRideButton" title="Delete" href="<?php echo url_for('ride_delete', array('ride_type' => 'request', 'ride_id' => $passenger->getPassengerId())) ?>">

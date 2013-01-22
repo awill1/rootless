@@ -173,7 +173,7 @@ class SeatsTable extends Doctrine_Table
     {
         // Add a where clause to the query to only return seats today or in
         // the future
-        return $query->andWhere('s.pickup_date >= ?', date('Y-m-d'));
+        return $query->andWhere('(s.pickup_date >= ? OR s.pickup_date IS NULL)', date('Y-m-d'));
     }
     
     /**
@@ -205,9 +205,17 @@ class SeatsTable extends Doctrine_Table
         // Default most of the recommendation to the passenger settings
         $newRecommendation->setPrice($passenger->getAskingPrice());
         $newRecommendation->setSeatCount($passenger->getPassengerCount());
-        $newRecommendation->setPickupDate($passenger->getStartDate());
         $newRecommendation->setPickupTime($passenger->getStartTime());
         $newRecommendation->setRoutes($passenger->getRoutes());
+        // If the passenger ride is open ended, use the driver date
+        if (is_null($passenger->getStartDate()))
+        {
+            $newRecommendation->setPickupDate($driver->getStartDate());
+        }
+        else
+        {
+            $newRecommendation->setPickupDate($passenger->getStartDate());
+        }
              
         // Save the recommendation
         $newRecommendation->save();

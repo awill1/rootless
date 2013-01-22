@@ -1,0 +1,497 @@
+/* 
+    Document   : place
+    Created on : Dec 15, 2012, 9:29:51 PM
+    Author     : awilliams
+    Description:
+        Styles for the places pages
+*/
+#leftColumn{
+    margin-top: 17px;
+}
+#indexMain{
+    margin-top:11px;
+    margin-left:30px;
+    float:left;
+}
+#devTable{
+    float:left;
+    margin-top: 100px;
+}
+#devNew{
+    float:left;
+}
+
+#map {
+    width: 352px;
+    height: 277px;
+}
+h1{
+    color: #E87C62;
+    font-weight: bold;
+    font-size: 33px;
+    margin-bottom: 15px;
+}
+.placesList{
+    list-style: none;
+    margin-left: 0;
+    padding: 0;
+}
+.placeBox{
+    width: 586px;
+    height: 115px;
+    float: left;
+    background-color: #EAEAEA;
+    margin-bottom: 25px;
+}
+.placeBox:hover{
+    width: 586px;
+    height: 115px;
+    float: left;
+    background-color: #565656;
+    margin-bottom: 25px;
+}
+.placeBox:hover .placeName{
+    color: #E87C62;
+}
+.placeBox:hover .placeLocation{
+    color: #fff;
+}
+.placeBox:hover .placeTags{
+    color: #fff;
+}
+.placeImg{
+    float: left;
+    width: 261px;
+    height: 115px;
+    background-color: #E87C62;
+/*    background-image: url('../images/placesindeximg.jpg');*/
+}
+.placeInfo{
+    float: left;
+/*    width: 315px;*/
+    padding-top: 10px;
+    margin-left: 14px;
+}
+.placeName{
+    color: #119F49;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 3px;
+}
+.placeLocation{
+    font-style: italic;
+    color:#565656;
+    font-size: 12px;
+    margin-bottom: 36px;
+    
+}
+.placeTags{
+    color:#565656;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/*place page stuff*/
+#content{
+    
+}
+.placeTitleText{
+    float:left;
+    margin-top: 34px;
+    font-weight: bold;
+    color:#fff;
+    font-size: 42px;
+    width: 410px;
+    height: 345px;
+}
+#middleContent{
+    margin-left: 0px !important;
+}
+#placeHead{
+    width: auto;
+    height: 390px;
+    margin-left: 240px;
+}
+#placeContent{
+    float: left;
+}
+#headerAndLikeBox{
+    width: 940px;
+    float: left;
+    margin-bottom: 10px;
+}
+#placePostRideHeader{
+    float: left;
+    width: 300px;
+}
+#facebookLikeBox{
+    float:right;
+}
+/*#placeFormBox{
+    float: left;
+    background-color: #f3f3f3;
+    width: 543px;
+    margin-right: 25px;
+    padding: 15px;
+}*/
+#placeRideContainer{
+    float: left;
+    background-color: #f3f3f3;
+    width: 543px;
+    margin-right: 25px;
+    padding: 15px;
+}
+#placeFormBox{
+    clear: left;
+}
+#placeRideConfirmationContainer
+{
+    clear: left;
+}
+/*form parts*/
+#iAmA{
+    float: left;
+    margin-bottom: 0px;
+    margin-top: 30px;
+    margin-left: 0px;
+}
+#iAmAButtons{
+    float:left;
+    margin-left: 20px;
+}
+#iAmAText{
+    float:left;
+    margin-left: 75px;
+}
+#startingFrom{
+    float:left;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+#startingFromText{
+    float:left;
+    margin-left: 7px;
+}
+#startingFromInput{
+    float:left;
+    margin-left: 25px;
+}
+#departDate{
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+#departDateText{
+    float:left;
+    margin-left: 22px;
+}
+#departDateInput{
+    float:left;
+    margin-left: 27px;
+}
+#departDatePicker{
+    float:left;
+    margin-left: 23px;
+}
+#departDateAnyDay{
+    float:left;
+    margin-left: 145px;
+}
+#returnDate{
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+#returnDateText{
+    float:left;
+    margin-left: 22px;
+}
+#returnDateInput{
+    float:left;
+    margin-left: 26px;
+}
+#returnDatePicker{
+    float:left;
+    margin-left: 24px;
+}
+#returnDateAnyDay{
+    float:left;
+    margin-left: 145px;
+}
+#asADriver{
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+#asAPassenger{
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+#seatsAvailable{
+    float: left;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+#seatsAvailablePicker{
+    float:left;
+    margin-left: 20px;
+}
+#priceText{
+    float:left;
+    margin-left: 125px;
+}
+#priceInput{
+    float:left;
+    margin-left: 22px;
+}
+#seatsNeeded{
+    float: left;
+    margin-top: 0px;
+}
+#seatsNeededText{
+    float: left;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+#seatsNeededPicker{
+    float:left;
+    margin-left: 35px;
+}
+#willingToPayText{
+    float:left;
+    margin-left: 51px;
+}
+#willingToPayInput{
+    float:left;
+    margin-left: 24px;
+}
+#otherRideDetails{
+    margin-top: 30px;
+}
+.placeFormHr{
+    background-color: #7a7a7a;
+    border: medium none;
+    color: #7a7a7a;
+    height: 1px;
+    width: 540px;
+}
+.formSection{
+    float:left;
+}
+.hrHolder{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+/*end form parts*/
+#placeMapBox{
+    float:left;
+    margin-bottom: 20px;
+}
+#mapCaption{
+    margin-top: 15px;
+}
+#mapCaption a{
+    color: #E26C59;
+}
+#mapCaption a:hover{
+    color: #E26C59;
+    text-decoration: underline;
+}
+.strongSpan{
+    font-weight: bold;
+    color:#565656;
+}
+#placeTravelersBox{
+    float: left;
+    
+}
+#placeHowBox{
+    float:left;
+    background-color: #f3f3f3;
+    width:312px;
+    padding: 20px;
+}
+#placeHowBox a{
+    color: #E26C59;
+}
+#placeHowBox a:hover{
+    color: #E26C59;
+    text-decoration: underline;
+}
+.placeContentHeader{
+    color: #009F40;
+    font-weight: bold;
+    font-size: 24px;
+}
+#placeDetailsSection{
+    float:left;
+    width: 352px;
+}
+.primaryTextStyle{
+    color: #E26C59;
+    font-weight:bold;
+    font-size: 18px;
+}
+.secondaryTextStyle{
+    color:#B2B2B2;
+    font-weight:bold;
+    font-size: 18px;
+}
+.tertiaryTextStyle{
+    color:#969696;
+    font-weight:normal;
+    font-size: 12px;
+}
+.fourthTextStyle{
+    color:#969696;
+    font-size: 12px;
+    
+}
+#placeLogo{
+    /*background-image: url('../images/eaglePointLogo.png');*/
+    width:113px;
+    height:129px;
+    position: absolute;
+    top: 270px;
+    left: 35px;
+}
+h3{
+    font-size:18px;
+    color:#565656;
+    margin: 0px;
+}
+.howtoList li{
+    margin-bottom: 15px;
+}
+.dollar-sign{
+    color:#565656;
+    font-size:18px;
+}
+.longField{
+    width: 287px;
+    padding: 5px;
+}
+.shortField{
+    width: 166px;
+    padding: 5px;
+}
+.tinyField{
+    width: 54px;
+    padding: 5px;
+}
+.dropDown{
+    width: 155px;
+    padding: 5px;
+}
+.tinyDropDown{
+    width: 65px;
+    padding: 5px;
+}
+#otherDetailsTextArea{
+    width:527px;
+    height:112px;
+    padding: 6px;
+    margin-top:15px;
+    margin-bottom:15px;
+}
+.postRideButton{
+    float: right;
+    font-weight: bold;
+    padding: 5px;
+}
+.placeForm tr{
+    height: 50px;
+}
+.dividerTR{
+    height: 5px;
+}
+
+
+
+
+
+
+/*custom drop down and radio buttons stuff*/
+.checkbox, .radio {
+	width: 19px;
+	height: 25px;
+	padding: 0 5px 0 0;
+	background: url(checkbox.png) no-repeat;
+	display: block;
+	clear: left;
+	float: left;
+}
+.radio {
+	background: url(radio.png) no-repeat;
+}
+.select {
+	position: absolute;
+	width: 124px; /* With the padding included, the width is 190 pixels: the actual width of the image. */
+	height: 21px;
+	padding: 0 24px 0 8px;
+	color: #fff;
+	font: 12px/21px arial,sans-serif;
+	background: url('../images/clist156x32.png') no-repeat;
+	overflow: hidden;
+}
+
+input[type="text"][disabled] {
+    background-color: #F2F2F2;
+}
+
+.placeLogo {
+    width: 113px;
+}
+
+/*login/signup popup*/
+.loginPrompt{
+    color: #565656;
+    font-weight: bold;
+    font-size:18px;
+    text-align: center;
+}
+.lightText{
+    color: #BFBFBF;
+    font-weight: normal;
+    font-size:14px;
+    text-align: center;
+}
+.alreadyAMember{
+    color: #565656;
+    font-style: italic;
+    font-size:12px;
+    text-align: center;
+}
+.alreadyAMember a:hover{
+    color: #E26C59;
+    text-decoration: underline;
+    font-size:12px;
+    font-weight: bold;
+}
+.alreadyAMember a{
+    color: #E26C59;
+    font-size:12px;
+    font-weight: bold;
+}
+.loginBoxHr{
+    background-color: #7a7a7a;
+    border: medium none;
+    color: #7a7a7a;
+    height: 1px;
+    width: 90%;
+}
+.emailSignup{
+    color: #fff;
+    background-color: #009F40;
+    padding: 5px;
+    width:143px;
+    margin: auto;
+}
+.facebookSignup{
+    color: #fff;
+    background-color: #29447E;
+    padding: 5px;
+}
+.facebookLink a{
+    color:#fff;
+}
+.registerLink a{
+    color:#fff;
+}
