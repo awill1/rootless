@@ -181,6 +181,17 @@ Rootless.Map = Class.extend({
      */
     bindTextBoxesToMap : function() {
     	var self = this;
+    	if ($('.title-n')) { 
+        	$('.title-n').tipsy({
+	        	gravity : 'n',
+	        	title   : 'placeholder',
+	        	trigger : 'focus',
+	        	html    : false,
+	        	live    : true,
+	        	offset  : 0,
+	        	opacity : 1
+	        });
+        }
    
         if ($(this._.el.originTextBox).text) {
 	        $(this._.el.originTextBox).tipsy({
@@ -206,6 +217,7 @@ Rootless.Map = Class.extend({
 	        	opacity : 1
 	        });
         }
+        
         // Route preview changes whenever the user finished editing the
         // seat pickup and dropoff textboxes
         $(this._.el.originTextBox).bind('change', function() {self.previewRoute($(self._.el.originTextBox))});

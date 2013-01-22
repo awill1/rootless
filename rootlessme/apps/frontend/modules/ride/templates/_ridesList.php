@@ -15,7 +15,7 @@
 <table class="rideTable">
     <thead>
         <tr>
-            <th><h2><?php echo date("F j, Y", strtotime($key)); ?></h2></th>
+            <th><h2 class="dateHeader orange"><?php echo date("F j, Y", strtotime($key)); ?></h2></th>
         </tr>
     </thead>
     <tbody>

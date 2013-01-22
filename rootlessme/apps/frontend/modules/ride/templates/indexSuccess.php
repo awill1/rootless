@@ -34,7 +34,7 @@
 <?php end_slot();?>
 
 <div id="map"></div>
-<h1>Find rides</h1>
+<h1 class="findRide green">Find rides</h1>
 <div id="searchForm" class="middleRidesFormArea">
     <?php include_partial('rideSearchForm', array('rideSearchForm' => $searchForm)) ?>
 </div>

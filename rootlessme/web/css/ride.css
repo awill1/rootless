@@ -5,8 +5,14 @@
     Description: This stylesheet formats the ride pages of the rootlessme website.
 */
 
-h1 {
-    
+h1.findRide {
+    margin-bottom: 10px;
+}
+
+.dateHeader {
+	margin: 0;
+	font-size: 18px;
+    font-style: normal;
 }
 
 #findARideFieldset {
@@ -71,6 +77,10 @@ tbody {
     height: 305px;
 }
 
+#searchForm {
+	width: 100%;
+}
+
 .rideListNotSelectedRow {
     background-color: #EAEAEA;
     height: 67px;
@@ -81,6 +91,10 @@ tbody {
     background-color: #FFFFFF;
     height: 67px;
     padding: 0px 0px 0px 0px;
+}
+
+.rideTable thead th {
+	padding: 0px 0px 0px 0px;
 }
 
 
@@ -290,13 +304,13 @@ textarea:focus {
 
 .rideTable {
 	background-color: #faf9f9;
+	border: 15px solid #FAF9F9;
 }
 
 .rideTable tbody tr {
 	background-color: #fff;
-    border: 20px solid #FAF9F9;
-    border-bottom-width: 10px;
-    border-top-width: 10px;
+    border-bottom: 10px solid #faf9f9;
+    border-top: 10px solid #faf9f9;
     height: 80px;
 }
 
@@ -763,7 +777,6 @@ label span.dollar-sign {
 	margin: -5px 0px 0px -2px;
 	padding: 0px;
 	float: right;
-/*	clear: both;*/
 }
 
 .editOfferBtn .rideActionButtonsList {

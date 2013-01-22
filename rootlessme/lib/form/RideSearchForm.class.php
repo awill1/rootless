@@ -25,10 +25,13 @@ class RideSearchForm extends BaseForm
           'destination_longitude' => new sfWidgetFormInputHidden()
         ));
         
-        // Set labels on some widgets
-        // Correct a misspelling
-        $this->widgetSchema->setLabel('origin', 'From');
-        $this->widgetSchema->setLabel('destination', 'To');
+        //set title
+        $this->widgetSchema['origin']->setAttribute('placeholder', 'Where are you leaving from?');
+        $this->widgetSchema['destination']->setAttribute('placeholder', 'Where do you want to go?');
+		$this->widgetSchema['date']->setAttribute('placeholder', 'Date');
+
+        $this->widgetSchema['origin']->setAttribute('class', 'title-n');
+        $this->widgetSchema['destination']->setAttribute('class', 'title-n');
 
         // Setup the name format
         $this->widgetSchema->setNameFormat('rides[%s]');
