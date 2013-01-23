@@ -67,6 +67,68 @@ json_ride_show:
     sf_method: [get]
     ride_type: (offer|request)
   
+# event rules
+event_new:
+  url:     /events/new
+  class:   sfDoctrineRoute
+  options: { model: Events, type: object }
+  param:   { module: event, action: new}
+  requirements: { sf_method: get }
+
+event_create:
+  url:     /events/create
+  class:   sfDoctrineRoute
+  options: { model: Events, type: object }
+  param:   { module: event, action: create}
+  requirements: { sf_method: post }
+
+event_edit:
+  url:     /events/:event_id/edit
+  class:   sfDoctrineRoute
+  options: { model: Events, type: object }
+  param:   { module: event, action: edit}
+  requirements: { sf_method: get }
+
+event_update:
+  url:     /events/:event_id/update
+  class:   sfDoctrineRoute
+  options: { model: Events, type: object }
+  param:   { module: event, action: update}
+  requirements: { sf_method: put }
+  
+event_delete:
+  url:     /events/:event_id/delete
+  class:   sfDoctrineRoute
+  options: { model: Events, type: object }
+  param:   { module: event, action: delete}
+  requirements: { sf_method: post }
+
+event_create_ride:
+  url:     /events/createRide
+  param:   { module: event, action: createRideToEvent}
+  requirements: { sf_method: post }
+  
+event_show:
+  url:     /events/:event_id
+  class:   sfDoctrineRoute
+  options: { model: Events, type: object }
+  param:   { module: event, action: show}
+  requirements: { sf_method: get }
+  
+event_show_slug:
+  url:     /events/:event_id/:slug
+  class:   sfDoctrineRoute
+  options: { model: Events, type: object }
+  param:   { module: event, action: show}
+  requirements: { sf_method: get }
+
+events:
+  url: /events
+  param:
+    module: event
+    action: index
+  requirements:
+    sf_method: [get]
 
 # message rules
 messages:
