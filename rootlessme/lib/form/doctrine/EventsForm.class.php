@@ -12,5 +12,9 @@ class EventsForm extends BaseEventsForm
 {
   public function configure()
   {
+        $this->setWidget('event_id', new sfWidgetFormInputHidden());
+      // Choose the fields that will be 
+        unset($this['created_at']);
+        unset($this['updated_at']);
   }
 }
