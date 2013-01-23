@@ -147,8 +147,13 @@ class CommonHelpers {
 	 */
 	public static function combineObjectsIntoArray($key, $object, &$array) 
 	{
-		if (!isset($array[$key])) {
+		if (!isset($array[$key]) && $key != "") {
     	    $array[$key] = array($object);
+		} elseif($key == "") {
+			foreach ($array as $key => $value) {
+				$length = count($array[$key]);
+				$array[$key][$length]  = $object;
+			}
 		} else {
 			$length = count($array[$key]);
 		    $array[$key][$length] = $object;

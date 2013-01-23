@@ -10,6 +10,7 @@
 	 }
      
      ksort($ridesArray);
+	 
      foreach ($ridesArray as $key => $rides):
 ?> 
 <table class="rideTable">
