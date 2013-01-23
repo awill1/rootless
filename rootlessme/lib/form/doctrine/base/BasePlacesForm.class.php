@@ -27,6 +27,7 @@ abstract class BasePlacesForm extends BaseFormDoctrine
       'css_style'             => new sfWidgetFormTextarea(),
       'location_id'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Location'), 'add_empty' => true)),
       'is_deleted'            => new sfWidgetFormInputText(),
+      'slug'                  => new sfWidgetFormInputText(),
       'created_at'            => new sfWidgetFormDateTime(),
       'updated_at'            => new sfWidgetFormDateTime(),
     ));
@@ -44,9 +45,14 @@ abstract class BasePlacesForm extends BaseFormDoctrine
       'css_style'             => new sfValidatorString(array('required' => false)),
       'location_id'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Location'), 'required' => false)),
       'is_deleted'            => new sfValidatorInteger(array('required' => false)),
+      'slug'                  => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'created_at'            => new sfValidatorDateTime(),
       'updated_at'            => new sfValidatorDateTime(),
     ));
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'Places', 'column' => array('slug')))
+    );
 
     $this->widgetSchema->setNameFormat('places[%s]');
 
