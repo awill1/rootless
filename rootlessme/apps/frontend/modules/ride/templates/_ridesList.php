@@ -11,6 +11,13 @@
      
      ksort($ridesArray);
 	 
+	 if (isset($ridesArray[0])) {
+	     foreach($ridesArray[0] as $key => $ride) {
+	         CommonHelpers::addOpenEndedRidesToArray($ride, $ridesArray);
+		 }
+		 unset($ridesArray[0]);
+	 }
+	 
      foreach ($ridesArray as $key => $rides):
 ?> 
 <table class="rideTable">
