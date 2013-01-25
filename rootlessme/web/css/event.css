@@ -101,17 +101,34 @@ h1{
     float:left;
     margin-top: 50px;
     font-weight: bold;
-    color:#fff;
+    color:#E9168C;
     font-size: 42px;
-    width: 410px;
-    height: 315px;
+    width: 650px;
+/*    height: 315px;*/
+}
+.eventSubheading{
+    float:left;
+    margin-top: 10px;
+    font-weight: bold;
+    color:#E2E2E2;
+    font-size: 28px;
+}
+.blackbox{
+    background-color: #231E20;
+    padding:10px;
+    float:left;
+}
+.blackboxSide{
+    background-color: #231E20;
+    padding: 10px 10px 10px 0px;
+    float:left;
 }
 #middleContent{
     margin-left: 0px !important;
 }
 #eventHead{
     width: auto;
-    height: 390px;
+    height: 280px;
     margin-left: 240px;
 }
 #eventContent{
@@ -139,8 +156,8 @@ h1{
 #eventRideContainer{
     float: left;
     background-color: #f3f3f3;
-    width: 543px;
-    margin-right: 25px;
+    width: 518px;
+/*    margin-right: 25px;*/
     padding: 15px;
 }
 #eventFormBox{
@@ -237,7 +254,7 @@ h1{
 }
 #priceText{
     float:left;
-    margin-left: 125px;
+    margin-left: 107px;
 }
 #priceInput{
     float:left;
@@ -258,7 +275,7 @@ h1{
 }
 #willingToPayText{
     float:left;
-    margin-left: 51px;
+    margin-left: 30px;
 }
 #willingToPayInput{
     float:left;
@@ -272,7 +289,7 @@ h1{
     border: medium none;
     color: #7a7a7a;
     height: 1px;
-    width: 540px;
+    width: 517px;
 }
 .formSection{
     float:left;
@@ -387,7 +404,7 @@ h3{
     padding: 5px;
 }
 #otherDetailsTextArea{
-    width:527px;
+    width:504px;
     height:112px;
     padding: 6px;
     margin-top:15px;

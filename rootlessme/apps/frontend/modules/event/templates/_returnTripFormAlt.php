@@ -1,6 +1,6 @@
-<form id="roundTripForm" action="<?php echo url_for('place_create_ride') ?>" method="post">
-    <input id="placeIdInput" type="hidden" name="place_id" value="<?php echo $place->getPlaceId(); ?>" />
-    <input id="destinationInput" type="hidden" name="destination" value="<?php echo $place->getLocation()->getAddressString(); ?>" />
+<form id="roundTripForm" action="<?php echo url_for('event_create_ride') ?>" method="post">
+    <input id="placeIdInput" type="hidden" name="event_id" value="<?php echo $event->getEventId(); ?>" />
+    <input id="destinationInput" type="hidden" name="destination" value="<?php// echo $event->getLocation()->getAddressString(); ?>" />
     <input id="originDataInput" type="hidden" name="origin_data" value="" />
     <input id="destinationDataInput" type="hidden" name="destination_data" value="" />
     <input id="departureRouteDataInput" type="hidden" name="departure_route_data" value="" />
@@ -23,7 +23,7 @@
                 <div id="startingFromInput"><input id="originTextBox" class="longField required trackableField" type="text" name="origin" placeholder="Address, City, State" /></div>
             </div>
         </div>
-        <div class="formSection"><hr class="placeFormHr"></div>
+        <div class="formSection"><hr class="eventFormHr"></div>
         <div class="formSection">
             <div id="departDate">
                 <div id="departDateText"><span class="primaryTextStyle">Depart Date</span></div>
@@ -63,7 +63,7 @@
                 </div>
             </div>
         </div>   
-        <div class="formSection"><hr class="placeFormHr hrHolder"/></div>
+        <div class="formSection"><hr class="eventFormHr hrHolder"/></div>
         <div id="driverContainer" class="formSection">
             <div id="asADriver" class="secondaryTextStyle">As a driver:</div>
             <div id="seatsAvailable">    
@@ -80,7 +80,7 @@
             <div id="priceInput">
                 <span class='dollar-sign'>$</span> <input id="driverPriceTextBox" class="tinyField number trackableField" type="text" name="driver_price" /> <span class='fourthTextStyle'>per seat</span>
             </div>   
-            <div class="formSection"><hr class="placeFormHr hrHolder"/></div>
+            <div class="formSection"><hr class="eventFormHr hrHolder"/></div>
         </div>
         <div id="passengerContainer" class="formSection">
             <div id="asAPassenger" class="secondaryTextStyle">As a passenger:</div>
@@ -96,7 +96,7 @@
                 <div id="willingToPayText"><span class="primaryTextStyle">Willing to pay</span></div>
                 <div id="willingToPayInput"><span class='dollar-sign'>$</span> <input id="passengerPriceTextBox" class="tinyField number trackableField" type="text" name="passenger_price" /> <span class='fourthTextStyle'>per seat</span></div>
             </div>
-            <div class="formSection"><hr class="placeFormHr hrHolder"/></div>
+            <div class="formSection"><hr class="eventFormHr hrHolder"/></div>
         </div>
         <div class="formSection">
             <div id="otherRideDetails">
