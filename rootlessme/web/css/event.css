@@ -30,61 +30,61 @@ h1{
     font-size: 33px;
     margin-bottom: 15px;
 }
-.placesList{
+.eventsList{
     list-style: none;
     margin-left: 0;
     padding: 0;
 }
-.placeBox{
+.eventBox{
     width: 586px;
     height: 80px;
     float: left;
     background-color: #EAEAEA;
     margin-bottom: 20px;
 }
-.placeBox:hover{
+.eventBox:hover{
     width: 586px;
     height: 80px;
     float: left;
     background-color: #565656;
     margin-bottom: 20px;
 }
-.placeBox:hover .placeName{
+.eventBox:hover .eventName{
     color: #E87C62;
 }
-.placeBox:hover .placeLocation{
+.eventBox:hover .eventLocation{
     color: #fff;
 }
-.placeBox:hover .placeTags{
+.eventBox:hover .eventTags{
     color: #fff;
 }
-.placeImg{
+.eventImg{
     float: left;
     width: 261px;
     height: 80px;
     background-color: #E87C62;
-/*    background-image: url('../images/placesindeximg.jpg');*/
+/*    background-image: url('../images/eventsindeximg.jpg');*/
 }
-.placeInfo{
+.eventInfo{
     float: left;
 /*    width: 315px;*/
     padding-top: 10px;
     margin-left: 14px;
 }
-.placeName{
+.eventName{
     color: #119F49;
     font-weight: bold;
     font-size: 18px;
     margin-bottom: 3px;
 }
-.placeLocation{
+.eventLocation{
     font-style: italic;
     color:#565656;
     font-size: 12px;
     margin-bottom: 36px;
     
 }
-.placeTags{
+.eventTags{
     float: right;
     color:#565656;
     font-weight: bold;
@@ -93,11 +93,11 @@ h1{
     margin-right: 10px;
 }
 
-/*place page stuff*/
+/*event page stuff*/
 #content{
     
 }
-.placeTitleText{
+.eventTitleText{
     float:left;
     margin-top: 50px;
     font-weight: bold;
@@ -109,12 +109,12 @@ h1{
 #middleContent{
     margin-left: 0px !important;
 }
-#placeHead{
+#eventHead{
     width: auto;
     height: 390px;
     margin-left: 240px;
 }
-#placeContent{
+#eventContent{
     float: left;
 }
 #headerAndLikeBox{
@@ -122,31 +122,31 @@ h1{
     float: left;
     margin-bottom: 10px;
 }
-#placePostRideHeader{
+#eventPostRideHeader{
     float: left;
     width: 300px;
 }
 #facebookLikeBox{
     float:right;
 }
-/*#placeFormBox{
+/*#eventFormBox{
     float: left;
     background-color: #f3f3f3;
     width: 543px;
     margin-right: 25px;
     padding: 15px;
 }*/
-#placeRideContainer{
+#eventRideContainer{
     float: left;
     background-color: #f3f3f3;
     width: 543px;
     margin-right: 25px;
     padding: 15px;
 }
-#placeFormBox{
+#eventFormBox{
     clear: left;
 }
-#placeRideConfirmationContainer
+#eventRideConfirmationContainer
 {
     clear: left;
 }
@@ -267,7 +267,7 @@ h1{
 #otherRideDetails{
     margin-top: 30px;
 }
-.placeFormHr{
+.eventFormHr{
     background-color: #7a7a7a;
     border: medium none;
     color: #7a7a7a;
@@ -282,7 +282,7 @@ h1{
     margin-bottom: 15px;
 }
 /*end form parts*/
-#placeMapBox{
+#eventMapBox{
     float:left;
     margin-bottom: 20px;
 }
@@ -300,29 +300,29 @@ h1{
     font-weight: bold;
     color:#565656;
 }
-#placeTravelersBox{
+#eventTravelersBox{
     float: left;
     
 }
-#placeHowBox{
+#eventHowBox{
     float:left;
     background-color: #f3f3f3;
     width:312px;
     padding: 20px;
 }
-#placeHowBox a{
+#eventHowBox a{
     color: #E26C59;
 }
-#placeHowBox a:hover{
+#eventHowBox a:hover{
     color: #E26C59;
     text-decoration: underline;
 }
-.placeContentHeader{
+.eventContentHeader{
     color: #009F40;
     font-weight: bold;
     font-size: 24px;
 }
-#placeDetailsSection{
+#eventDetailsSection{
     float:left;
     width: 352px;
 }
@@ -346,7 +346,7 @@ h1{
     font-size: 12px;
     
 }
-#placeLogo{
+#eventLogo{
     /*background-image: url('../images/eaglePointLogo.png');*/
     width:113px;
     height:129px;
@@ -398,7 +398,7 @@ h3{
     font-weight: bold;
     padding: 5px;
 }
-.placeForm tr{
+.eventForm tr{
     height: 50px;
 }
 .dividerTR{
@@ -438,7 +438,7 @@ input[type="text"][disabled] {
     background-color: #F2F2F2;
 }
 
-.placeLogo {
+.eventLogo {
     width: 113px;
 }
 

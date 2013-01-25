@@ -1,23 +1,23 @@
 <?php use_stylesheet(sfConfig::get('app_css_event')) ?>
 <div id="indexMain">
-    <h1>Share rides to your favorite places</h1>
-    <ul class="placesList">
-        <?php foreach ($places as $place): ?>
-            <?php if ($place->getSlug()!=null): ?>
-                <a href="<?php echo url_for('place_show_slug', array('place_id'=>$place->getPlaceId(), 'slug'=>$place->getSlug()))?>" class="featureLink">
+    <h1>Share rides to your favorite events</h1>
+    <ul class="eventsList">
+        <?php foreach ($events as $event): ?>
+            <?php if ($event->getSlug()!=null): ?>
+                <a href="<?php echo url_for('event_show_slug', array('event_id'=>$event->getEventId(), 'slug'=>$event->getSlug()))?>" class="featureLink">
             <?php else: ?>
-                <a href="<?php echo url_for('place_show', array('place_id'=>$place->getPlaceId())) ?>">
+                <a href="<?php echo url_for('event_show', array('event_id'=>$event->getEventId())) ?>">
             <?php endif; ?>
             <li>
-                <div class="placeBox">
-                    <div class="placeImg">
-                        <img src="<?php echo $place->getIndexImageUrl(); ?>" width="261"/>
+                <div class="eventBox">
+                    <div class="eventImg">
+                        <img src="<?php echo $event->getIndexImageUrl(); ?>" width="261"/>
                     </div>
-                    <div class="placeInfo">
-                        <div class='placeName'><?php echo $place->getName() ?></div>
-                        <div class='placeLocation'><?php echo $place->getLocation()->getCityStateString(); ?></div>
+                    <div class="eventInfo">
+                        <div class='eventName'><?php echo $event->getName() ?></div>
+                        <div class='eventLocation'></div>
                     </div>
-                    <div class='placeTags'><?php echo $place->getTags() ?></div>
+                    <div class='eventTags'><?php echo $event->getTags() ?></div>
                 </div>
             </li>
         </a>
@@ -27,7 +27,7 @@
 
 
 
-<h1>Events List</h1>
+<!--<h1>Events List</h1>
 
 <table>
   <thead>
@@ -74,4 +74,4 @@
   </tbody>
 </table>
 
-  <a href="<?php echo url_for('event/new') ?>">New</a>
+  <a href="<?php echo url_for('event/new') ?>">New</a>-->
