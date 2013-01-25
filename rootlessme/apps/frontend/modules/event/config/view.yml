@@ -1,0 +1,6 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/book/1_2/07-Inside-the-View-Layer
+
+# The places show success uses a layout with a short left bar
+showSuccess:
+  layout: shortLeftBarLayout
