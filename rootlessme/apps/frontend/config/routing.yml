@@ -187,6 +187,13 @@ place_show:
   options: { model: Places, type: object }
   param:   { module: place, action: show}
   requirements: { sf_method: get }
+  
+place_show_slug:
+  url:     /places/:place_id/:slug
+  class:   sfDoctrineRoute
+  options: { model: Places, type: object }
+  param:   { module: place, action: show}
+  requirements: { sf_method: get }
 
 places:
   url: /places

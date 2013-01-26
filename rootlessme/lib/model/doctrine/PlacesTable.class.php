@@ -16,4 +16,16 @@ class PlacesTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Places');
     }
+    /**
+     * Gets rootless partner places
+     * @return Doctrine_Collection The partner places 
+     */
+    public function getPartnerPlaces()
+    {
+
+        $q = $this->createQuery('p')
+                ->where('p.isPartner = 1')
+                ->andWhere('p.is_deleted != 1');
+        return $q->execute();
+    }
 }

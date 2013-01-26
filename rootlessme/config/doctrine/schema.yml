@@ -866,6 +866,14 @@ Places:
       default: '0'
       notnull: false
       autoincrement: false
+    slug:
+      type: string(128)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+      unique: true
   relations:
     Origin_Route:
       class: Routes
