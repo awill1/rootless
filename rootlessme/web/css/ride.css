@@ -220,6 +220,23 @@ tbody {
 	margin-top: 43px;
 }
 
+.fixed #map {
+	width: 720px;
+    height: 175px;
+    top: 0px;
+    z-index: 100;
+    margin: 0;
+    position: fixed !important;
+}
+
+.fixed #middleContent {
+	margin-top: 250px;
+}
+
+.fixed #leftColumn {
+	float: none;
+}
+
 #informationContainer {
 	position: relative;
     float: left;

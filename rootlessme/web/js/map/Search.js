@@ -20,10 +20,10 @@ Rootless.Map.Search = Rootless.Map.extend({
             CONST : {
                 PRIMARY_ROUTE_COLOR     : "#119F49",
                 PRIMARY_ROUTE_OPACITY   : .5,
-                PRIMARY_ROUTE_WEIGHT    : 5,
+                PRIMARY_ROUTE_WEIGHT    : 2,
                 SECONDARY_ROUTE_COLOR   : "#FF0000",
-                SECONDARY_ROUTE_OPACITY : .5,
-                SECONDARY_ROUTE_WEIGHT  : 5,
+                SECONDARY_ROUTE_OPACITY : .8,
+                SECONDARY_ROUTE_WEIGHT  : 3,
                 TERTIARY_ROUTE_COLOR    : "#FF0000",
                 TERTIARY_ROUTE_OPACITY  : .2,
                 TERTIARY_ROUTE_WEIGHT   : 5,
@@ -143,6 +143,21 @@ Rootless.Map.Search = Rootless.Map.extend({
         if (destination != null) {
         	this._.el.$destinationTextBox.val(destination);
         }
+        
+        // bind scroll to resize the map
+        $(window).scroll(function(e) {
+        	var top = $(this).scrollTop();
+        	var b_Class = $('body').hasClass('fixed');
+        	if (top > 250 && !b_Class) {
+        		$('body').addClass('fixed');
+        		var latlng = (self._.mapItem.originMarker != '') ? self._.mapItem.marker.originMarker.getPosition() : self._.mapItem.marker.currentLocation.getPosition();
+        		self._.MapObject.setCenter(latlng);
+        	} else if(top < 250 && b_Class) {
+        	    $('body').removeClass('fixed');
+        	    var latlng = (self._.mapItem.originMarker != '') ? self._.mapItem.marker.originMarker.getPosition() : self._.mapItem.marker.currentLocation.getPosition();
+        	    self._.MapObject.setCenter(latlng);
+        	}
+        });
             
     },
 	

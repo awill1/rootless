@@ -8,15 +8,19 @@
 	 foreach ($carpools as $key => $carpool) {
 	     CommonHelpers::combineObjectsIntoArray($carpool->getStartDate(), $carpool, $ridesArray);
 	 }
-     
-     ksort($ridesArray);
 	 
 	 if (isset($ridesArray[0])) {
+	 	 $today = date('Y-m-d');
+	 	 if(!isset($ridesArray[$today])) {
+	 	 	$ridesArray[$today] = array();
+		 }
 	     foreach($ridesArray[0] as $key => $ride) {
 	         CommonHelpers::addOpenEndedRidesToArray($ride, $ridesArray);
 		 }
 		 unset($ridesArray[0]);
 	 }
+	 
+	 ksort($ridesArray);
 	 
      foreach ($ridesArray as $key => $rides):
 ?> 
