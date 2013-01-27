@@ -222,7 +222,7 @@ tbody {
 
 .fixed #map {
 	width: 720px;
-    height: 175px;
+    height: 200px;
     top: 0px;
     z-index: 100;
     margin: 0;
