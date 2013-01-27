@@ -40,6 +40,7 @@ label {
 td {
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 10px;
+    position: relative;
 }
 
 th {
@@ -255,14 +256,60 @@ tbody {
 	display: none;
 }
 
+#searchForm {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #BBB;	
+}
+
+#rideSearchForm {
+	position: relative;
+}
+
+#rideSearchForm table {
+	border-collapse: collapse;
+}
+
+#rideSearchForm table tr {
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+#rideSearchForm tbody, 
+#rideSearchForm tfoot {
+	float: left;
+	padding: 0;
+	margin: 0;
+}
+
 #rideSearchForm input, 
 #rideSearchForm select {
-    width: 175px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    width: 205px;
+    padding: 10px;
+    font-size: 12px;
     float: left;
     border: 1px solid #999;
     outline-color: #119D49;
+}
+
+#rideSearchForm input[name="rides[date]"] {
+	width: 85px;
+}
+
+#rideSearchForm input[name="rides[origin]"] {
+	margin-right: 20px;
+}
+
+#rideSearchForm:after {
+	content: "";
+	background: url('/images/type-sprite.png') no-repeat;
+	width: 18px;
+    height: 30px;
+    display: block;
+    background-position: -57px 0px;
+    position: absolute;
+    top: 12px;
+    left: 244px;
 }
 
 #rideSearchForm th {
@@ -272,24 +319,27 @@ tbody {
 
 #rideSearchForm td {
     padding:5px 10px 7px 10px;
-
+    position: relative;
 }
 
 #rideSearchForm th, 
 #rideSearchForm td {
     clear:both;
     float:left;
+    padding-right: 0;
+    padding-top: 3px;
 }
 
 #rideSearchForm input#rides_find {
-    
-    width: 100px;
-    height: 24px;
+    width: 85px;
+    height: 37px;
     font-size: 14px;
-    color: white;
-    cursor: pointer;
-    border: 0px;
-    background-color: #119D49;
+    font-weight: bold;
+	color: white;
+	cursor: pointer;
+	border: 0px;
+	background-color: #119D49;
+	margin-top: 5px;
 }
 
 input[type="text"]:focus, 
@@ -332,6 +382,9 @@ textarea:focus {
     height: 30px;
     display: inline-block;
     background-position: -25px 0px;
+    top: 38px;
+    left: 72px;
+    position: absolute;
 }
 
 .icon.passenger {
@@ -339,6 +392,9 @@ textarea:focus {
     height: 30px;
     display: inline-block;
     background-position: 0px 0px;
+    top: 38px;
+    left: 72px;
+    position: absolute;
 }
 
 .icon.destination-arrow {
@@ -349,11 +405,49 @@ textarea:focus {
 }
 
 .ride-table-name {
-	font-size: 11px;
-	display: inline-block;
-	top: 8px;
+	font-size: 10px;
+    display: inline-block;
+    top: -11px;
     position: relative;
+    left: 5px;
 }
+
+.person-td {
+	width: 125px;
+	padding: 10px;
+}
+
+.destination-td,
+.origin-td {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555555;	
+    width: 175px;
+}
+
+.seatContainer {
+    clear: both;	
+}
+
+.seatCount {
+	font-size: 31px;
+	color: #555555;
+    margin: 0;
+    float: left;
+}
+
+.seatText {
+	width: 60px;
+    display: inline-block;	
+    padding-left: 5px;
+}
+
+.cost {
+	font-style: italic;
+	clear: both;
+	font-size: 11px;
+}
+
 
 .pendingListBlock {
 	width: 97.4%;
@@ -481,7 +575,39 @@ textarea:focus {
 }
 
 .riderListItem {
-	display: inline-block;
+    display: inline-block;
+}
+
+.noRide {
+	text-align: center;
+	font-weight: bold;
+	background-color: #FAF9F9;
+	padding: 10px;
+	margin-top: 10px;
+}
+
+.noRide p {
+    color: #555555;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.noRide .or {
+    opacity: .7;
+    padding: 0px 20px;
+    color: #555555;
+    font-size: 16px;
+}
+
+.noRide .options {
+    padding: 5px;
+    margin-top: 6px;
+}
+
+
+.noRide .cta {
+    font-size: 18px;
 }
 
 #seatDetailsBlock {

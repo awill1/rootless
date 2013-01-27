@@ -147,20 +147,22 @@ class CommonHelpers {
 	 */
 	public static function combineObjectsIntoArray($key, $object, &$array) 
 	{
-		if (!isset($array[$key])) {
-			$setKey = ($key == "") ? "0" : $key;
+		$setKey = ($key == "") ? 0 : $key;
+		if (!isset($array[$setKey])) {
     	    $array[$setKey] = array($object);
 		} else {
-			$length = count($array[$key]);
-		    $array[$key][$length] = $object;
+			$length = count($array[$setKey]);
+		    $array[$setKey][$length] = $object;
 		}
 	}
 	
 	public static function addOpenEndedRidesToArray($openRides, &$array)
 	{
 		foreach ($array as $key => $value) {
-		    $length = count($array[$key]);
-			$array[$key][$length]  = $openRides;
+			if ($key != 0) {
+			    $length = count($array[$key]);
+				$array[$key][$length]  = $openRides;
+			}
 		}
 	}
 
