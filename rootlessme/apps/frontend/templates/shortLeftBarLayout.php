@@ -150,6 +150,11 @@
                             places
                         </a>
                     </li>
+                    <li id="navigationEvents" class="navigationItem">
+                        <a class="navigationItemLink" href="<?php echo url_for("events") ?>">
+                            events
+                        </a>
+                    </li>
                 </ul>
             </div>
 
