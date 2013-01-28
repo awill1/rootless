@@ -234,6 +234,13 @@ Events:
       unsigned: false
       primary: true
       autoincrement: true
+    place_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+      notnull: false
     name:
       type: string(45)
       fixed: false
@@ -324,6 +331,11 @@ Events:
       notnull: false
       autoincrement: false
       unique: true
+  relations:
+    Places:
+      local: place_id
+      foreign: place_id
+      type: one
 Legs:
   connection: doctrine
   tableName: legs
@@ -991,6 +1003,10 @@ Places:
       local: location_id
       foreign: location_id
       type: one
+    Events:
+      local: place_id
+      foreign: place_id
+      type: many
 Profiles:
   connection: doctrine
   tableName: profiles

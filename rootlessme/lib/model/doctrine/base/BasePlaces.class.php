@@ -23,6 +23,7 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @property Doctrine_Collection $Origin_Route
  * @property Doctrine_Collection $Destination_Route
  * @property Locations $Location
+ * @property Doctrine_Collection $Events
  * 
  * @method integer             getPlaceId()               Returns the current record's "place_id" value
  * @method string              getName()                  Returns the current record's "name" value
@@ -40,6 +41,7 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @method Doctrine_Collection getOriginRoute()           Returns the current record's "Origin_Route" collection
  * @method Doctrine_Collection getDestinationRoute()      Returns the current record's "Destination_Route" collection
  * @method Locations           getLocation()              Returns the current record's "Location" value
+ * @method Doctrine_Collection getEvents()                Returns the current record's "Events" collection
  * @method Places              setPlaceId()               Sets the current record's "place_id" value
  * @method Places              setName()                  Sets the current record's "name" value
  * @method Places              setWebsiteUrl()            Sets the current record's "website_url" value
@@ -56,6 +58,7 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @method Places              setOriginRoute()           Sets the current record's "Origin_Route" collection
  * @method Places              setDestinationRoute()      Sets the current record's "Destination_Route" collection
  * @method Places              setLocation()              Sets the current record's "Location" value
+ * @method Places              setEvents()                Sets the current record's "Events" collection
  * 
  * @package    RootlessMe
  * @subpackage model
@@ -197,6 +200,10 @@ abstract class BasePlaces extends sfDoctrineRecord
         $this->hasOne('Locations as Location', array(
              'local' => 'location_id',
              'foreign' => 'location_id'));
+
+        $this->hasMany('Events', array(
+             'local' => 'place_id',
+             'foreign' => 'place_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

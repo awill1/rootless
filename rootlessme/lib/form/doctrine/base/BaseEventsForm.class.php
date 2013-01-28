@@ -16,6 +16,7 @@ abstract class BaseEventsForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'event_id'              => new sfWidgetFormInputHidden(),
+      'place_id'              => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Places'), 'add_empty' => true)),
       'name'                  => new sfWidgetFormInputText(),
       'subheading'            => new sfWidgetFormInputText(),
       'start_date'            => new sfWidgetFormDate(),
@@ -35,6 +36,7 @@ abstract class BaseEventsForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'event_id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('event_id')), 'empty_value' => $this->getObject()->get('event_id'), 'required' => false)),
+      'place_id'              => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Places'), 'required' => false)),
       'name'                  => new sfValidatorString(array('max_length' => 45)),
       'subheading'            => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'start_date'            => new sfValidatorDate(array('required' => false)),

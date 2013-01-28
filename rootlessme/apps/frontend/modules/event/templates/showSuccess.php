@@ -18,7 +18,7 @@
         $( ".datePicker" ).datepicker();  
 
         //rootless namespace that should be added to our global template
-        var rootless = Rootless.getInstance({sessionId : 'showPlace'});
+        var rootless = Rootless.getInstance({sessionId : 'showEvent'});
 
        //the map object
         var map = Rootless.Map.Place.getInstance({
@@ -70,7 +70,7 @@
             </div>
             <div id="mapCaption">
                 <span class="strongSpan"><?php echo $event->getName() ?> |</span> <a href='<?php echo $event->getWebsiteUrl() ?>'><?php echo $event->getWebsiteUrl() ?></a>
-                <br /><?php// echo $event->getLocation()->getAddressString(); ?>
+                <br /><?php echo $event->getPlaces()->getLocation()->getAddressString(); ?>
             </div>
             </div>
             <div id="eventHowBox" class="helpBox">
