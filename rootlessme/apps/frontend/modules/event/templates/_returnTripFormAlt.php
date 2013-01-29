@@ -1,6 +1,6 @@
 <form id="roundTripForm" action="<?php echo url_for('event_create_ride') ?>" method="post">
     <input id="placeIdInput" type="hidden" name="event_id" value="<?php echo $event->getEventId(); ?>" />
-    <input id="destinationInput" type="hidden" name="destination" value="<?php// echo $event->getLocation()->getAddressString(); ?>" />
+    <input id="destinationInput" type="hidden" name="destination" value="<?php echo $event->getPlaces()->getLocation()->getAddressString(); ?>" />
     <input id="originDataInput" type="hidden" name="origin_data" value="" />
     <input id="destinationDataInput" type="hidden" name="destination_data" value="" />
     <input id="departureRouteDataInput" type="hidden" name="departure_route_data" value="" />

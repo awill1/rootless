@@ -1,5 +1,4 @@
 <?php use_javascript(sfConfig::get('app_google_map_script')) ?>
-<?php use_stylesheet(sfConfig::get('app_css_place')) ?>
 <?php use_stylesheet(sfConfig::get('app_css_event')) ?>
 <?php slot(
   'title',
@@ -10,7 +9,7 @@
     <meta property="og:title" content="Rootless - Offer rides and find carpools to <?php echo $event->getName(); ?>"/>
     <meta property="og:description" content="Rootless is the carpooling solution to <?php echo $event->getName(); ?>. Find a ride or share the empty seats in your car."/>
     <script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
-    <script type="text/javascript" src="/js/map/<?php echo sfConfig::get('app_js_map_place'); ?>"></script>
+    <script type="text/javascript" src="/js/map/<?php echo sfConfig::get('app_js_map_event'); ?>"></script>
     <script type="text/javascript" src="/js/custom-form-elements.js"></script>
     <script type="text/javascript">   
       $(document).ready(function(){
@@ -21,7 +20,7 @@
         var rootless = Rootless.getInstance({sessionId : 'showEvent'});
 
        //the map object
-        var map = Rootless.Map.Place.getInstance({
+        var map = Rootless.Map.Event.getInstance({
             mapId : 'map',
             el: {
                 $originLatitude       : $("#rides_origin_latitude"),

@@ -336,6 +336,16 @@ Events:
       local: place_id
       foreign: place_id
       type: one
+    Origin_Route:
+      class: Routes
+      local: event_id
+      foreign: origin_event_id
+      type: many
+    Destination_Route:
+      class: Routes
+      local: event_id
+      foreign: destination_event_id
+      type: many
 Legs:
   connection: doctrine
   tableName: legs
@@ -1429,6 +1439,12 @@ Routes:
       unsigned: false
       autoincrement: false
       notnull: false
+    origin_event_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      autoincrement: false
+      notnull: false
     destination_address:
       type: string(255)
       fixed: false
@@ -1465,6 +1481,12 @@ Routes:
       notnull: false
       autoincrement: false
     destination_place_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      autoincrement: false
+      notnull: false
+    destination_event_id:
       type: integer(4)
       fixed: false
       unsigned: false
@@ -1533,6 +1555,16 @@ Routes:
       class: Places
       local: destination_place_id
       foreign: place_id
+      type: one
+    Origin_Events:
+      class: Events
+      local: origin_event_id
+      foreign: event_id
+      type: one
+    Destination_Events:
+      class: Events
+      local: destination_event_id
+      foreign: event_id
       type: one
 SeatStatuses:
   connection: doctrine

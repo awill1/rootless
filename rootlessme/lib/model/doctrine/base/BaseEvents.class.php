@@ -23,39 +23,45 @@ Doctrine_Manager::getInstance()->bindComponent('Events', 'doctrine');
  * @property integer $is_deleted
  * @property string $slug
  * @property Places $Places
+ * @property Doctrine_Collection $Origin_Route
+ * @property Doctrine_Collection $Destination_Route
  * 
- * @method integer getEventId()               Returns the current record's "event_id" value
- * @method integer getPlaceId()               Returns the current record's "place_id" value
- * @method string  getName()                  Returns the current record's "name" value
- * @method string  getSubheading()            Returns the current record's "subheading" value
- * @method date    getStartDate()             Returns the current record's "start_date" value
- * @method date    getEndDate()               Returns the current record's "end_date" value
- * @method string  getWebsiteUrl()            Returns the current record's "website_url" value
- * @method integer getIsPartner()             Returns the current record's "isPartner" value
- * @method string  getContactEmailAddress()   Returns the current record's "contact_email_address" value
- * @method string  getContactPhoneNumber()    Returns the current record's "contact_phone_number" value
- * @method string  getIndexImageUrl()         Returns the current record's "index_image_url" value
- * @method string  getTags()                  Returns the current record's "tags" value
- * @method string  getCssStyle()              Returns the current record's "css_style" value
- * @method integer getIsDeleted()             Returns the current record's "is_deleted" value
- * @method string  getSlug()                  Returns the current record's "slug" value
- * @method Places  getPlaces()                Returns the current record's "Places" value
- * @method Events  setEventId()               Sets the current record's "event_id" value
- * @method Events  setPlaceId()               Sets the current record's "place_id" value
- * @method Events  setName()                  Sets the current record's "name" value
- * @method Events  setSubheading()            Sets the current record's "subheading" value
- * @method Events  setStartDate()             Sets the current record's "start_date" value
- * @method Events  setEndDate()               Sets the current record's "end_date" value
- * @method Events  setWebsiteUrl()            Sets the current record's "website_url" value
- * @method Events  setIsPartner()             Sets the current record's "isPartner" value
- * @method Events  setContactEmailAddress()   Sets the current record's "contact_email_address" value
- * @method Events  setContactPhoneNumber()    Sets the current record's "contact_phone_number" value
- * @method Events  setIndexImageUrl()         Sets the current record's "index_image_url" value
- * @method Events  setTags()                  Sets the current record's "tags" value
- * @method Events  setCssStyle()              Sets the current record's "css_style" value
- * @method Events  setIsDeleted()             Sets the current record's "is_deleted" value
- * @method Events  setSlug()                  Sets the current record's "slug" value
- * @method Events  setPlaces()                Sets the current record's "Places" value
+ * @method integer             getEventId()               Returns the current record's "event_id" value
+ * @method integer             getPlaceId()               Returns the current record's "place_id" value
+ * @method string              getName()                  Returns the current record's "name" value
+ * @method string              getSubheading()            Returns the current record's "subheading" value
+ * @method date                getStartDate()             Returns the current record's "start_date" value
+ * @method date                getEndDate()               Returns the current record's "end_date" value
+ * @method string              getWebsiteUrl()            Returns the current record's "website_url" value
+ * @method integer             getIsPartner()             Returns the current record's "isPartner" value
+ * @method string              getContactEmailAddress()   Returns the current record's "contact_email_address" value
+ * @method string              getContactPhoneNumber()    Returns the current record's "contact_phone_number" value
+ * @method string              getIndexImageUrl()         Returns the current record's "index_image_url" value
+ * @method string              getTags()                  Returns the current record's "tags" value
+ * @method string              getCssStyle()              Returns the current record's "css_style" value
+ * @method integer             getIsDeleted()             Returns the current record's "is_deleted" value
+ * @method string              getSlug()                  Returns the current record's "slug" value
+ * @method Places              getPlaces()                Returns the current record's "Places" value
+ * @method Doctrine_Collection getOriginRoute()           Returns the current record's "Origin_Route" collection
+ * @method Doctrine_Collection getDestinationRoute()      Returns the current record's "Destination_Route" collection
+ * @method Events              setEventId()               Sets the current record's "event_id" value
+ * @method Events              setPlaceId()               Sets the current record's "place_id" value
+ * @method Events              setName()                  Sets the current record's "name" value
+ * @method Events              setSubheading()            Sets the current record's "subheading" value
+ * @method Events              setStartDate()             Sets the current record's "start_date" value
+ * @method Events              setEndDate()               Sets the current record's "end_date" value
+ * @method Events              setWebsiteUrl()            Sets the current record's "website_url" value
+ * @method Events              setIsPartner()             Sets the current record's "isPartner" value
+ * @method Events              setContactEmailAddress()   Sets the current record's "contact_email_address" value
+ * @method Events              setContactPhoneNumber()    Sets the current record's "contact_phone_number" value
+ * @method Events              setIndexImageUrl()         Sets the current record's "index_image_url" value
+ * @method Events              setTags()                  Sets the current record's "tags" value
+ * @method Events              setCssStyle()              Sets the current record's "css_style" value
+ * @method Events              setIsDeleted()             Sets the current record's "is_deleted" value
+ * @method Events              setSlug()                  Sets the current record's "slug" value
+ * @method Events              setPlaces()                Sets the current record's "Places" value
+ * @method Events              setOriginRoute()           Sets the current record's "Origin_Route" collection
+ * @method Events              setDestinationRoute()      Sets the current record's "Destination_Route" collection
  * 
  * @package    RootlessMe
  * @subpackage model
@@ -208,6 +214,14 @@ abstract class BaseEvents extends sfDoctrineRecord
         $this->hasOne('Places', array(
              'local' => 'place_id',
              'foreign' => 'place_id'));
+
+        $this->hasMany('Routes as Origin_Route', array(
+             'local' => 'event_id',
+             'foreign' => 'origin_event_id'));
+
+        $this->hasMany('Routes as Destination_Route', array(
+             'local' => 'event_id',
+             'foreign' => 'destination_event_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);
