@@ -1,6 +1,6 @@
 <?php use_stylesheet(sfConfig::get('app_css_event')) ?>
 <div id="indexMain">
-    <h1>Share rides to your favorite events</h1>
+    <h1>Share rides to the best events</h1>
     <ul class="eventsList">
         <?php foreach ($events as $event): ?>
             <?php if ($event->getSlug()!=null): ?>
@@ -15,7 +15,7 @@
                     </div>
                     <div class="eventInfo">
                         <div class='eventName'><?php echo $event->getName() ?></div>
-                        <div class='eventLocation'></div>
+<!--                        <div class='eventLocation'></div>-->
                     </div>
                     <div class='eventTags'><?php echo $event->getTags() ?></div>
                 </div>
