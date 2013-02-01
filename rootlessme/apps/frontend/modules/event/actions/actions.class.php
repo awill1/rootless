@@ -10,61 +10,85 @@
  */
 class eventActions extends sfActions
 {
-  public function executeIndex(sfWebRequest $request)
-  {
-    $this->events = Doctrine_Core::getTable('Events')
-      ->createQuery('a')
-      ->execute();
-  }
+    public function executeIndex(sfWebRequest $request)
+    {
+        $this->events = Doctrine_Core::getTable('Events')
+          ->createQuery('a')
+          ->execute();
+    }
 
-  public function executeShow(sfWebRequest $request)
-  {
-    $this->event = Doctrine_Core::getTable('Events')->find(array($request->getParameter('event_id')));
-    $this->forward404Unless($this->event);
-  }
+    public function executeShow(sfWebRequest $request)
+    {
+        $this->event = Doctrine_Core::getTable('Events')->find(array($request->getParameter('event_id')));
+        $this->forward404Unless($this->event);
+    }
 
-  public function executeNew(sfWebRequest $request)
-  {
-    $this->form = new EventsForm();
-  }
+    public function executeNew(sfWebRequest $request)
+    {
+        // Security hack until better system is in place
+        // Only admins can use this action. 
+        $this->forward404If(!$this->getUser()->isAuthenticated());
+        $this->forward404If(!SecurityHelpers::IsRootlessAdmin($this->getUser()->getGuardUser()->getEmailAddress()));
+        
+        $this->form = new EventsForm();
+    }
 
-  public function executeCreate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod(sfRequest::POST));
+    public function executeCreate(sfWebRequest $request)
+    {
+        $this->forward404Unless($request->isMethod(sfRequest::POST));
+        
+        // Security hack until better system is in place
+        // Only admins can use this action. 
+        $this->forward404If(!$this->getUser()->isAuthenticated());
+        $this->forward404If(!SecurityHelpers::IsRootlessAdmin($this->getUser()->getGuardUser()->getEmailAddress()));
 
-    $this->form = new EventsForm();
+        $this->form = new EventsForm();
 
-    $this->processForm($request, $this->form);
+        $this->processForm($request, $this->form);
 
-    $this->setTemplate('new');
-  }
+        $this->setTemplate('new');
+    }
 
-  public function executeEdit(sfWebRequest $request)
-  {
-    $this->forward404Unless($event = Doctrine_Core::getTable('Events')->find(array($request->getParameter('event_id'))), sprintf('Object event does not exist (%s).', $request->getParameter('event_id')));
-    $this->form = new EventsForm($event);
-  }
+    public function executeEdit(sfWebRequest $request)
+    {
+        // Security hack until better system is in place
+        // Only admins can use this action. 
+        $this->forward404If(!$this->getUser()->isAuthenticated());
+        $this->forward404If(!SecurityHelpers::IsRootlessAdmin($this->getUser()->getGuardUser()->getEmailAddress()));
+        $this->forward404Unless($event = Doctrine_Core::getTable('Events')->find(array($request->getParameter('event_id'))), sprintf('Object event does not exist (%s).', $request->getParameter('event_id')));
+        $this->form = new EventsForm($event);
+    }
 
-  public function executeUpdate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($event = Doctrine_Core::getTable('Events')->find(array($request->getParameter('event_id'))), sprintf('Object event does not exist (%s).', $request->getParameter('event_id')));
-    $this->form = new EventsForm($event);
+    public function executeUpdate(sfWebRequest $request)
+    {
+        // Security hack until better system is in place
+        // Only admins can use this action. 
+        $this->forward404If(!$this->getUser()->isAuthenticated());
+        $this->forward404If(!SecurityHelpers::IsRootlessAdmin($this->getUser()->getGuardUser()->getEmailAddress()));
+        
+        $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
+        $this->forward404Unless($event = Doctrine_Core::getTable('Events')->find(array($request->getParameter('event_id'))), sprintf('Object event does not exist (%s).', $request->getParameter('event_id')));
+        $this->form = new EventsForm($event);
 
-    $this->processForm($request, $this->form);
+        $this->processForm($request, $this->form);
 
-    $this->setTemplate('edit');
-  }
+        $this->setTemplate('edit');
+    }
 
-  public function executeDelete(sfWebRequest $request)
-  {
-    $request->checkCSRFProtection();
+    public function executeDelete(sfWebRequest $request)
+    {
+        // Security hack until better system is in place
+        // Only admins can use this action. 
+        $this->forward404If(!$this->getUser()->isAuthenticated());
+        $this->forward404If(!SecurityHelpers::IsRootlessAdmin($this->getUser()->getGuardUser()->getEmailAddress()));
+        
+        $request->checkCSRFProtection();
 
-    $this->forward404Unless($event = Doctrine_Core::getTable('Events')->find(array($request->getParameter('event_id'))), sprintf('Object event does not exist (%s).', $request->getParameter('event_id')));
-    $event->delete();
+        $this->forward404Unless($event = Doctrine_Core::getTable('Events')->find(array($request->getParameter('event_id'))), sprintf('Object event does not exist (%s).', $request->getParameter('event_id')));
+        $event->delete();
 
-    $this->redirect('event/index');
-  }
+        $this->redirect('event/index');
+    }
 
       /**
      * Executes the CreateRideToPlace action
