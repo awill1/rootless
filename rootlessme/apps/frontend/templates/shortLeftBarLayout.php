@@ -12,7 +12,6 @@
     <meta property="og:site_name" content="Rootless"/>
     <meta property="og:type" content="website"/>
     <link rel="shortcut icon" href="/favicon.ico" />
-    <?php use_stylesheet(sfConfig::get('app_css_place')) ?>
     <?php use_stylesheet(sfConfig::get('app_css_main')) ?>
     
     <?php use_javascript(sfConfig::get('app_jquery_script')) ?>
@@ -148,6 +147,11 @@
                     <li id="navigationPlaces" class="navigationItem">
                         <a class="navigationItemLink" href="<?php echo url_for("places") ?>">
                             places
+                        </a>
+                    </li>
+                    <li id="navigationEvents" class="navigationItem">
+                        <a class="navigationItemLink" href="<?php echo url_for("events") ?>">
+                            events
                         </a>
                     </li>
                 </ul>

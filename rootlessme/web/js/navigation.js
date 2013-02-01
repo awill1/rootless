@@ -35,10 +35,15 @@ $(document).ready(function()
            $('#navigationMessages').removeClass('navigationItem');
            $('#navigationMessages').addClass('navigationItemSelected');
     }
-    // Messages
+    // Places
     else if(loc.indexOf('/places') > -1){
            $('#navigationPlaces').removeClass('navigationItem');
            $('#navigationPlaces').addClass('navigationItemSelected');
+    }
+    // Events
+    else if(loc.indexOf('/events') > -1){
+           $('#navigationEvents').removeClass('navigationItem');
+           $('#navigationEvents').addClass('navigationItemSelected');
     }
 
 
