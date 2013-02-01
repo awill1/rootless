@@ -272,8 +272,8 @@ class eventActions extends sfActions
                 $snsService = new AmazonSNS(array('key' => sfConfig::get('app_amazon_sns_access_key'), 
                                                   'secret' => sfConfig::get('app_amazon_sns_secret_key')));
                 $messageTemplate = 
-                    "New ride to place created
-                    PlaceId: %placeId%
+                    "New ride to event created
+                    EventId: %eventId%
                     RideType: %rideType%
                     Email: %email%
                     Origin: %origin%
@@ -290,7 +290,7 @@ class eventActions extends sfActions
                 $formattedMessage = strtr($messageTemplate, array(
                     '%rideType%'    => $rideType,
                     '%email%'       => $email,
-                    '%placeId%'     => $placeId,
+                    '%eventId%'     => $eventId,
                     '%origin%'      => $origin,
                     '%destination%' => $destination,
                     '%startDate%' => $startDate,
@@ -300,10 +300,10 @@ class eventActions extends sfActions
                     '%returnTime%' => $returnTime,
                     '%returnDateAny%' => $returnDateAny
                 ));
-                $subjectTemplate = "%email% has created a ride to place %placeId%";
+                $subjectTemplate = "%email% has created a ride to event %eventId%";
                 $formattedSubject = strtr($subjectTemplate, array(
                     '%email%'     => $email,
-                    '%placeId%'      => $placeId
+                    '%eventId%'      => $eventId
                 ));
                 $snsService->publish(sfConfig::get('app_amazon_sns_site_activity_arn'), 
                         $formattedMessage, 
