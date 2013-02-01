@@ -48,7 +48,7 @@
         </div>
     </div>
     <br/>
-    <div id="leftWrap" class="blackbox">
+    <div id="leftWrap" class="borderLeft">
         <div id="eventRideContainer">
             <div id="eventFormBox">
                     <?php include_partial('returnTripFormAlt', array('event' => $event)) ?>
@@ -62,7 +62,7 @@
             </div>
         </div>
     </div>
-    <div id="rightWrap" class="blackboxSide">
+    <div id="rightWrap" class="borderRight">
         <div id="eventDetailsSection" >
             <div id="eventMapBox">
                 <div id="map" >

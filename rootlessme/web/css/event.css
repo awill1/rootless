@@ -82,7 +82,7 @@ h1{
     font-style: italic;
     color:#565656;
     font-size: 12px;
-    margin-bottom: 36px;
+/*    margin-bottom: 36px;*/
     
 }
 .eventTags{
@@ -90,7 +90,7 @@ h1{
     color:#565656;
     font-weight: bold;
     font-size: 14px;
-    margin-top: 24px;
+    margin-top: 10px;
     margin-right: 10px;
 }
 
@@ -115,12 +115,12 @@ h1{
     color:#E2E2E2;
     font-size: 35px;
 }
-.blackbox{
+.borderLeft{
     background-color: #231E20;
     padding:10px;
     float:left;
 }
-.blackboxSide{
+.borderRight{
     background-color: #231E20;
     padding: 10px 10px 10px 0px;
     float:left;
@@ -148,13 +148,7 @@ h1{
 #facebookLikeBox{
     float:right;
 }
-/*#eventFormBox{
-    float: left;
-    background-color: #f3f3f3;
-    width: 543px;
-    margin-right: 25px;
-    padding: 15px;
-}*/
+
 #eventRideContainer{
     float: left;
     background-color: #f3f3f3;
@@ -307,6 +301,7 @@ h1{
     margin-bottom: 20px;
 }
 #mapCaption{
+    color: #fff;
     margin-top: 15px;
     padding-left:5px;
 }
@@ -319,7 +314,7 @@ h1{
 }
 .strongSpan{
     font-weight: bold;
-    color:#565656;
+/*    color:#565656;*/
 }
 #eventTravelersBox{
     float: left;
