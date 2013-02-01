@@ -1,3 +1,4 @@
+<?php use_helper('Date'); ?>
 <form id="roundTripForm" action="<?php echo url_for('event_create_ride') ?>" method="post">
     <input id="placeIdInput" type="hidden" name="event_id" value="<?php echo $event->getEventId(); ?>" />
     <input id="destinationInput" type="hidden" name="destination" value="<?php echo $event->getPlaces()->getLocation()->getAddressString(); ?>" />
@@ -27,7 +28,9 @@
         <div class="formSection">
             <div id="departDate">
                 <div id="departDateText"><span class="primaryTextStyle">Depart Date</span></div>
-                <div id="departDateInput"><input id="startDateTextBox" class="datePicker shortField date trackableField" type="text" name="start_date" placeholder="MM/DD/YYYY" /></div>
+                <div id="departDateInput">
+                    <input id="startDateTextBox" class="datePicker shortField date trackableField" type="text" name="start_date" placeholder="MM/DD/YYYY" value="<?php echo format_date($event->getStartDate(), 'MM/dd/yyyy');?>" />
+                </div>
                 <div id="departDatePicker">
                       <select id="startTimeDropDown" class="dropDown trackableField" name="start_time">
                           <option value="">Anytime</option>
@@ -46,7 +49,9 @@
             <br /><br />
             <div id="returnDate">
                 <div id="returnDateText"><span class="primaryTextStyle">Return Date</span></div>
-                <div id="returnDateInput"><input id="returnDateTextBox" class="datePicker shortField date trackableField" type="text" name="return_date" placeholder="MM/DD/YYYY" /></div>
+                <div id="returnDateInput">
+                    <input id="returnDateTextBox" class="datePicker shortField date trackableField" type="text" name="return_date" placeholder="MM/DD/YYYY"  value="<?php echo format_date($event->getEndDate(), 'MM/dd/yyyy');?>" />
+                </div>
                 <div id="returnDatePicker">
                     <select id="returnTimeDropDown" class="dropDown trackableField" name="return_time">
                           <option value="">Anytime</option>

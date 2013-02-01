@@ -20,14 +20,18 @@
             </div>    
             <div id="startingFrom">
                 <div id="startingFromText"><span class="primaryTextStyle">Starting From</span></div>
-                <div id="startingFromInput"><input id="originTextBox" class="longField required trackableField" type="text" name="origin" placeholder="Address, City, State" /></div>
+                <div id="startingFromInput">
+                    <input id="originTextBox" class="longField required trackableField" type="text" name="origin" placeholder="Address, City, State" />
+                </div>
             </div>
         </div>
         <div class="formSection"><hr class="placeFormHr"></div>
         <div class="formSection">
             <div id="departDate">
                 <div id="departDateText"><span class="primaryTextStyle">Depart Date</span></div>
-                <div id="departDateInput"><input id="startDateTextBox" class="datePicker shortField date trackableField" type="text" name="start_date" placeholder="MM/DD/YYYY" /></div>
+                <div id="departDateInput">
+                    <input id="startDateTextBox" class="datePicker shortField date trackableField" type="text" name="start_date" placeholder="MM/DD/YYYY" />
+                </div>
                 <div id="departDatePicker">
                       <select id="startTimeDropDown" class="dropDown trackableField" name="start_time">
                           <option value="">Anytime</option>
