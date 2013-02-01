@@ -76,6 +76,9 @@ class staticActions extends sfActions
         }
         //Get Partner Places
         $this->partnerPlaces = Doctrine_Core::getTable('Places')->getPartnerPlaces();
+        
+        //Get Partner Events
+        $this->partnerEvents = Doctrine_Core::getTable('Events')->getPartnerEvents();
     }
 
     /**

@@ -16,4 +16,12 @@ class EventsTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Events');
     }
+    public function getPartnerEvents()
+    {
+
+        $q = $this->createQuery('e')
+                ->where('e.isPartner = 1')
+                ->andWhere('e.is_deleted != 1');
+        return $q->execute();
+    }
 }
