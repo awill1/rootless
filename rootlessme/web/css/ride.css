@@ -111,6 +111,7 @@ tbody {
 
 .rideListDriverCreatorProfileImage {
     vertical-align: middle;
+    float: left;
 }
 
 .rideLocations {
@@ -209,11 +210,13 @@ tbody {
 
 #rideProfileMap, 
 #map {
-    width: 100%;
+    width: 700px;
+    border: 10px solid #FAF9F9;
     height: 300px;
     float: left;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
+    -webkit-box-shadow: 1px 1px 1px 0px #ddd;
+    box-shadow: 1px 1px 1px 0px #ddd;
 }
 
 #map {
@@ -221,16 +224,16 @@ tbody {
 }
 
 .fixed #map {
-	width: 720px;
     height: 200px;
     top: 0px;
     z-index: 100;
     margin: 0;
+    border: 10px solid #FAF9F9;
     position: fixed !important;
 }
 
 .fixed #middleContent {
-	margin-top: 250px;
+	margin-top: -35px;
 }
 
 .fixed #leftColumn {
@@ -372,6 +375,7 @@ textarea:focus {
 .rideTable {
 	background-color: #faf9f9;
 	border: 15px solid #FAF9F9;
+	position: relative;
 }
 
 .rideTable tbody tr {
@@ -389,6 +393,14 @@ textarea:focus {
     border-bottom-width: 20px;
 }
 
+.rideTable thead tr {
+	height: 38px;
+}
+
+.rideTable thead tr th {
+    position: absolute;
+}
+
 .icon {
 	background: url('/images/type-sprite.png') no-repeat;
 	display: block;
@@ -399,9 +411,10 @@ textarea:focus {
     height: 30px;
     display: inline-block;
     background-position: -25px 0px;
-    top: 38px;
-    left: 72px;
-    position: absolute;
+    position: relative;
+    margin-left: 5px;
+    margin-top: 0px;
+    float: left;
 }
 
 .icon.passenger {
@@ -409,9 +422,10 @@ textarea:focus {
     height: 30px;
     display: inline-block;
     background-position: 0px 0px;
-    top: 38px;
-    left: 72px;
-    position: absolute;
+    float: left;
+    margin-left: 5px;
+    margin-top: 0px;
+    position: relative;
 }
 
 .icon.destination-arrow {
@@ -423,10 +437,11 @@ textarea:focus {
 
 .ride-table-name {
 	font-size: 10px;
-    display: inline-block;
-    top: -11px;
+    float: left;
+    top: -2px;
     position: relative;
     left: 5px;
+    width: 50px;
 }
 
 .person-td {

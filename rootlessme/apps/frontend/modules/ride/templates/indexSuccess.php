@@ -38,5 +38,5 @@
 <div id="searchForm" class="middleRidesFormArea">
     <?php include_partial('rideSearchForm', array('rideSearchForm' => $searchForm)) ?>
 </div>
-<img id="loader" alt="Loading spinner" src="/images/ajax-loader.gif" style="left: 10%; position: relative; top: 75px;" />
+<img id="loader" alt="Loading spinner" src="/images/ajax-loader.gif" style="left: 50%; margin-left: -15px; top: 0; position: relative; top: 75px;" />
 <div id="results"></div>

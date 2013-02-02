@@ -49,7 +49,8 @@
                    <?php echo $profile->getFirstName(); ?><br />
                    <?php echo $profile->getLastName(); ?><br />
                </span>
-               <span class="icon <?php $rideType == 'offer'? print "driver": print "passenger" ?>"></span>
+               <div class="icon <?php $rideType == 'offer'? print "driver": print "passenger" ?>"></div>
+
                <span id="ride-<?php if($rideType == 'offer') { echo 'carpool-';} else { echo 'passenger-';} echo $id; ?>" class="hidden routePolyline"><?php echo $route->getEncodedPolyline(); ?></span>
             </td>
             <td class="origin-td"><?php echo $route->getOriginString(); ?></td>

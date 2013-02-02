@@ -80,8 +80,7 @@ Rootless.Map.Search = Rootless.Map.extend({
     mapInit : function(){
         // variable that keeps object available in inner functions
         var self = this;
-    
-        self.setLatLng();
+        
         var latlng = new google.maps.LatLng(self._.CONST.MAP_DEFAULT_LATITUDE, self._.CONST.MAP_DEFAULT_LONGITUDE);
        
         var myOptions = {
@@ -131,7 +130,6 @@ Rootless.Map.Search = Rootless.Map.extend({
             return false;
         });
         
-        
         // Set textboxes to match the query string variables
         var origin = self.getParameterByName('rides\\[origin]');
         var destination = self.getParameterByName('rides\\[destination]');
@@ -158,6 +156,8 @@ Rootless.Map.Search = Rootless.Map.extend({
         	    self._.MapObject.setCenter(latlng);
         	}
         });
+        self.previewRoute(); 
+        self._.el.$ridefind.click();
             
     },
 	
@@ -218,8 +218,8 @@ Rootless.Map.Search = Rootless.Map.extend({
        	        self._.CONST.MAP_DEFAULT_LATITUDE = position.coords.latitude;
        	        self._.CONST.MAP_DEFAULT_LONGITUDE = position.coords.longitude;
        	        var latlng = new google.maps.LatLng(self._.CONST.MAP_DEFAULT_LATITUDE, self._.CONST.MAP_DEFAULT_LONGITUDE);
-       	        self._.MapObject.setCenter(latlng);
-       	        self._.MapObject.setZoom(9);
+       	        // self._.MapObject.setCenter(latlng);
+       	        // self._.MapObject.setZoom(9);
        	        var marker = new google.maps.Marker({ 
        	        	position: latlng,
                     map: self._.MapObject,
@@ -229,8 +229,8 @@ Rootless.Map.Search = Rootless.Map.extend({
                 
         	    self.geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
         	        self._.el.$originTextBox.val(results[0].formatted_address);
-        	        self.previewRoute();  
-        	        self._.el.$ridefind.click();
+        	        //self.previewRoute();  
+        	        //self._.el.$ridefind.click();
         	        
                 });
        	    }, function() {
