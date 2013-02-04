@@ -14,8 +14,6 @@ class eventActions extends sfActions
     {
         $this->events = Doctrine_Core::getTable('Events')
         ->getEvents();
-//          ->createQuery('a')
-//          ->execute();
     }
 
     public function executeShow(sfWebRequest $request)
