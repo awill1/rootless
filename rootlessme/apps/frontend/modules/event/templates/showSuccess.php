@@ -1,5 +1,6 @@
 <?php use_javascript(sfConfig::get('app_google_map_script')) ?>
 <?php use_stylesheet(sfConfig::get('app_css_event')) ?>
+<?php use_helper('Date'); ?>
 <?php slot(
   'title',
   sprintf('Rootless - Offer rides and find carpools to %s ', $event->getName()))
@@ -69,7 +70,7 @@
             </div>
             <div id="mapCaption">
                 <span class="strongSpan"><?php echo $event->getName() ?> |</span> <a href='<?php echo $event->getWebsiteUrl() ?>'><?php echo $event->getWebsiteUrl() ?></a>
-                <br /><?php echo $event->getPlaces()->getLocation()->getAddressString(); ?>
+                <br /><?php echo $event->getPlaces()->getLocation()->getAddressString(); ?> <br/> <?php echo format_date($event->getStartDate(), 'MMMM dd');?> – <?php echo format_date($event->getEndDate(), 'MMMM dd, yyyy');?>
             </div>
             </div>
             <div id="eventHowBox" class="helpBox">

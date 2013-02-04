@@ -24,4 +24,9 @@ class EventsTable extends Doctrine_Table
                 ->andWhere('e.is_deleted != 1');
         return $q->execute();
     }
+    public function getEvents(){
+                $q = $this->createQuery('e')
+                ->where('e.is_deleted != 1');
+        return $q->execute();
+    }
 }

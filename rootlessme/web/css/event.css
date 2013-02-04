@@ -79,7 +79,7 @@ h1{
     width:300px;
 }
 .eventLocation{
-    font-style: italic;
+/*    font-style: italic;*/
     color:#565656;
     font-size: 12px;
 /*    margin-bottom: 36px;*/
@@ -315,6 +315,9 @@ h1{
 .strongSpan{
     font-weight: bold;
 /*    color:#565656;*/
+}
+.italicSpan{
+    font-style: italic;
 }
 #eventTravelersBox{
     float: left;
