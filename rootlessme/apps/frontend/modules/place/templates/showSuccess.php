@@ -8,6 +8,9 @@
 <?php slot('gmapheader'); ?>
     <meta property="og:title" content="Rootless - Offer rides and find carpools to <?php echo $place->getName(); ?>"/>
     <meta property="og:description" content="Rootless is the carpooling solution to <?php echo $place->getName(); ?>. Find a ride or share the empty seats in your car."/>
+    <?php  if ($place->getShareImageUrl() != null): ?>
+    <meta property="og:image" content="<?php echo $place->getShareImageUrl() ?>"/>
+    <?php endif; ?>
     <script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
     <script type="text/javascript" src="/js/map/<?php echo sfConfig::get('app_js_map_place'); ?>"></script>
     <script type="text/javascript" src="/js/custom-form-elements.js"></script>
