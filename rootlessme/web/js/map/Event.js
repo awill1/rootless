@@ -207,6 +207,9 @@ Rootless.Map.Event = Rootless.Map.extend({
             $(event._.el.eventFormBox).show('blind');
             return false;
         });
+        
+        //event starting from auto complete
+        autocomplete = new google.maps.places.Autocomplete(document.getElementById("originTextBox"));
    },
    
     geocodeOrigin : function(results, status) {     
