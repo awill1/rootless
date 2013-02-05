@@ -21,12 +21,14 @@ class EventsTable extends Doctrine_Table
 
         $q = $this->createQuery('e')
                 ->where('e.isPartner = 1')
-                ->andWhere('e.is_deleted != 1');
+                ->andWhere('e.is_deleted != 1')
+                ->orderBy('e.start_date');
         return $q->execute();
     }
     public function getEvents(){
                 $q = $this->createQuery('e')
-                ->where('e.is_deleted != 1');
+                ->where('e.is_deleted != 1')
+                ->orderBy('e.start_date');
         return $q->execute();
     }
 }
