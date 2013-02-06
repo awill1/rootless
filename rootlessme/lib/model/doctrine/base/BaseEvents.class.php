@@ -22,6 +22,7 @@ Doctrine_Manager::getInstance()->bindComponent('Events', 'doctrine');
  * @property string $css_style
  * @property integer $is_deleted
  * @property string $slug
+ * @property string $share_image_url
  * @property Places $Places
  * @property Doctrine_Collection $Origin_Route
  * @property Doctrine_Collection $Destination_Route
@@ -41,6 +42,7 @@ Doctrine_Manager::getInstance()->bindComponent('Events', 'doctrine');
  * @method string              getCssStyle()              Returns the current record's "css_style" value
  * @method integer             getIsDeleted()             Returns the current record's "is_deleted" value
  * @method string              getSlug()                  Returns the current record's "slug" value
+ * @method string              getShareImageUrl()         Returns the current record's "share_image_url" value
  * @method Places              getPlaces()                Returns the current record's "Places" value
  * @method Doctrine_Collection getOriginRoute()           Returns the current record's "Origin_Route" collection
  * @method Doctrine_Collection getDestinationRoute()      Returns the current record's "Destination_Route" collection
@@ -59,6 +61,7 @@ Doctrine_Manager::getInstance()->bindComponent('Events', 'doctrine');
  * @method Events              setCssStyle()              Sets the current record's "css_style" value
  * @method Events              setIsDeleted()             Sets the current record's "is_deleted" value
  * @method Events              setSlug()                  Sets the current record's "slug" value
+ * @method Events              setShareImageUrl()         Sets the current record's "share_image_url" value
  * @method Events              setPlaces()                Sets the current record's "Places" value
  * @method Events              setOriginRoute()           Sets the current record's "Origin_Route" collection
  * @method Events              setDestinationRoute()      Sets the current record's "Destination_Route" collection
@@ -205,6 +208,15 @@ abstract class BaseEvents extends sfDoctrineRecord
              'autoincrement' => false,
              'unique' => true,
              'length' => 128,
+             ));
+        $this->hasColumn('share_image_url', 'string', 255, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 255,
              ));
     }
 

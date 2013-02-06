@@ -79,7 +79,7 @@ h1{
     width:300px;
 }
 .eventLocation{
-    font-style: italic;
+/*    font-style: italic;*/
     color:#565656;
     font-size: 12px;
 /*    margin-bottom: 36px;*/
@@ -153,7 +153,7 @@ h1{
     float: left;
     background-color: #f3f3f3;
     min-height: 680px;
-    width: 518px;
+    width: 520px;
 /*    margin-right: 25px;*/
     padding: 15px;
 }
@@ -255,7 +255,7 @@ h1{
 }
 #priceInput{
     float:left;
-    margin-left: 22px;
+    margin-left: 12px;
 }
 #seatsNeeded{
     float: left;
@@ -276,7 +276,7 @@ h1{
 }
 #willingToPayInput{
     float:left;
-    margin-left: 24px;
+    margin-left: 14px;
 }
 #otherRideDetails{
     margin-top: 30px;
@@ -315,6 +315,9 @@ h1{
 .strongSpan{
     font-weight: bold;
 /*    color:#565656;*/
+}
+.italicSpan{
+    font-style: italic;
 }
 #eventTravelersBox{
     float: left;

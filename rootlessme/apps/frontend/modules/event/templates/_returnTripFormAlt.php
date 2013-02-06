@@ -33,11 +33,19 @@
                 </div>
                 <div id="departDatePicker">
                       <select id="startTimeDropDown" class="dropDown trackableField" name="start_time">
-                          <option value="">Anytime</option>
-                          <?php for($i = 0; $i < 24 ; $i++): ?>
-                              <option value="<?php echo $i; ?>:00"><?php echo $i; ?>:00</option>
-                              <option value="<?php echo $i; ?>:30"><?php echo $i; ?>:30</option>
-                          <?php endfor; ?>
+                            <option value="">Anytime</option>
+                            <option value="0:00">12:00 am</option>
+                            <option value="0:30">12:30 am</option>
+                            <?php for($i = 1; $i < 12 ; $i++): ?>
+                                <option value="<?php echo $i; ?>:00"><?php echo $i; ?>:00 am</option>
+                                <option value="<?php echo $i; ?>:30"><?php echo $i; ?>:30 am</option>
+                            <?php endfor; ?>
+                            <option value="12:00">12:00 pm</option>
+                            <option value="12:30">12:30 pm</option>
+                            <?php for($i = 1; $i < 12 ; $i++): ?>
+                                <option value="<?php echo ($i+12); ?>:00"><?php echo $i; ?>:00 pm</option>
+                                <option value="<?php echo ($i+12); ?>:30"><?php echo $i; ?>:30 pm</option>
+                            <?php endfor; ?>
                       </select>
                 </div>
                 <br/><br/>
@@ -55,10 +63,18 @@
                 <div id="returnDatePicker">
                     <select id="returnTimeDropDown" class="dropDown trackableField" name="return_time">
                           <option value="">Anytime</option>
-                          <?php for($i = 0; $i < 24 ; $i++): ?>
-                              <option value="<?php echo $i; ?>:00"><?php echo $i; ?>:00</option>
-                              <option value="<?php echo $i; ?>:30"><?php echo $i; ?>:30</option>
-                          <?php endfor; ?>
+                            <option value="0:00">12:00 am</option>
+                            <option value="0:30">12:30 am</option>
+                            <?php for($i = 1; $i < 12 ; $i++): ?>
+                                <option value="<?php echo $i; ?>:00"><?php echo $i; ?>:00 am</option>
+                                <option value="<?php echo $i; ?>:30"><?php echo $i; ?>:30 am</option>
+                            <?php endfor; ?>
+                            <option value="12:00">12:00 pm</option>
+                            <option value="12:30">12:30 pm</option>
+                            <?php for($i = 1; $i < 12 ; $i++): ?>
+                                <option value="<?php echo ($i+12); ?>:00"><?php echo $i; ?>:00 pm</option>
+                                <option value="<?php echo ($i+12); ?>:30"><?php echo $i; ?>:30 pm</option>
+                            <?php endfor; ?>
                       </select>
                 </div>
                 <br /><br/>

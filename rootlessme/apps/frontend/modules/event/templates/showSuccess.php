@@ -1,5 +1,6 @@
 <?php use_javascript(sfConfig::get('app_google_map_script')) ?>
 <?php use_stylesheet(sfConfig::get('app_css_event')) ?>
+<?php use_helper('Date'); ?>
 <?php slot(
   'title',
   sprintf('Rootless - Offer rides and find carpools to %s ', $event->getName()))
@@ -8,6 +9,10 @@
 <?php slot('gmapheader'); ?>
     <meta property="og:title" content="Rootless - Offer rides and find carpools to <?php echo $event->getName(); ?>"/>
     <meta property="og:description" content="Rootless is the carpooling solution to <?php echo $event->getName(); ?>. Find a ride or share the empty seats in your car."/>
+    <?php  if ($event->getShareImageUrl() != null): ?>
+    <meta property="og:image" content="<?php echo $event->getShareImageUrl() ?>"/>
+    <?php endif; ?>
+    
     <script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
     <script type="text/javascript" src="/js/map/<?php echo sfConfig::get('app_js_map_event'); ?>"></script>
     <script type="text/javascript" src="/js/custom-form-elements.js"></script>
@@ -69,7 +74,7 @@
             </div>
             <div id="mapCaption">
                 <span class="strongSpan"><?php echo $event->getName() ?> |</span> <a href='<?php echo $event->getWebsiteUrl() ?>'><?php echo $event->getWebsiteUrl() ?></a>
-                <br /><?php echo $event->getPlaces()->getLocation()->getAddressString(); ?>
+                <br /><?php echo $event->getPlaces()->getLocation()->getAddressString(); ?> <br/> <?php echo format_date($event->getStartDate(), 'MMMM dd');?> – <?php echo format_date($event->getEndDate(), 'MMMM dd, yyyy');?>
             </div>
             </div>
             <div id="eventHowBox" class="helpBox">

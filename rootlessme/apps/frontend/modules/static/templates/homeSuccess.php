@@ -61,6 +61,18 @@
 <div class="subHead">
     Featured events and places
     <div class="featuredEvents">
+        <?php foreach ($partnerEvents as $event): ?>
+            <?php if ($event->getSlug()!=null): ?>
+                <a href="<?php echo url_for('event_show_slug', array('event_id'=>$event->getEventId(), 'slug'=>$event->getSlug()))?>" class="featureLink">
+            <?php else: ?>
+                <a href="<?php echo url_for('event_show', array('event_id'=>$event->getEventId())) ?>">
+            <?php endif; ?>        
+                <div id="placeBox">
+                    <?php echo $event->getName() ?>
+                </div>
+            </a>
+        <?php endforeach; ?>
+        
         <?php foreach ($partnerPlaces as $place): ?>
             <?php if ($place->getSlug()!=null): ?>
                 <a href="<?php echo url_for('place_show_slug', array('place_id'=>$place->getPlaceId(), 'slug'=>$place->getSlug()))?>" class="featureLink">
