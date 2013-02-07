@@ -112,7 +112,7 @@ h1{
 }
 #placeHead{
     width: auto;
-    height: 290px;
+/*    height: 290px;*/
     margin-left: 240px;
 }
 #placeContent{
@@ -121,6 +121,7 @@ h1{
 #headerAndLikeBox{
     width: 940px;
     float: left;
+    margin-top: 30px;
     margin-bottom: 10px;
 }
 #placePostRideHeader{
