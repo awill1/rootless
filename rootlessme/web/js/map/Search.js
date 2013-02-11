@@ -46,6 +46,7 @@ Rootless.Map.Search = Rootless.Map.extend({
                 destinationLatitude   : "#rides_destination_latitude",
                 destinationLongitude  : "#rides_destination_longitude",
                 $loader               : $('#loader'),
+                $rideDates            : $('#rides_dates'),
                 $ridefind             : $('#rides_find'),
                 $results              : $('#results'),
                 $rideSearchForm       : $('#rideSearchForm')
@@ -94,7 +95,6 @@ Rootless.Map.Search = Rootless.Map.extend({
         this.geocoder          = new google.maps.Geocoder();
        	this.directionsDisplay = new google.maps.DirectionsRenderer();
       
-        
         self._.MapObject = new google.maps.Map(document.getElementById(self._.mapId),
             myOptions);
         self.directionsDisplay.setMap(self._.MapObject);
@@ -245,6 +245,7 @@ Rootless.Map.Search = Rootless.Map.extend({
     // Form submit options used for the ajax form
     formAjaxOptions : {
         target: '#results',
+        url: "/mockup/json/rideSearchResult.json",
         beforeSubmit : function() {
             // Clear the form submit pending flag
             isFormSubmitPending = false;
@@ -252,31 +253,40 @@ Rootless.Map.Search = Rootless.Map.extend({
             // Send an event to google analytics for the form submission
             _gaq.push(['_trackEvent', 'rides', 'searchSubmitted']);
         },
-        success: function()
+        success: function(data)
         {
-            var map = Rootless.Map.Search.getInstance();
+        	console.log(data);
+        	var map = Rootless.Map.Search.getInstance();
+        	if (data.success == true) {
+        		$('#loader').hide();
+        		
+        		var count = data.results.length;
+        		
+        		for(var i = 0; i < count; i++) {
+        			var table = _.template($('#rideTableTemplate').html(), data.results[i]);
+        			console.log($(table).find('tbody'));
+        			$('#results').append(table);
+        			
+        		}
+        		$('#results').show('blind');
+        		
+        		map.ClearPolylinesFromMap();
 
-            // This handler function will run when the form is complete
-            $('#loader').hide();
-            $('#results').show('blind');
-            
-            map.ClearPolylinesFromMap();
+            	// Add the results to the google map
+            	map.LoadItemsIntoGoogleMap();
 
-            // Add the results to the google map
-            map.LoadItemsIntoGoogleMap();
-
-            // Change the hover style
-            $(".rideTable tbody tr")
-            .hover(function(){
-                   map.HighlightRow($(this));
-                }, function() {
-                   map.UnHighlightRow($(this));
-                }).click(function () {
-                window.location = $(this).find('.tableLink').attr("href");
-            });
+	            // Change the hover style
+	            $(".rideTable tbody tr")
+	            .hover(function(){
+	                   map.HighlightRow($(this));
+	                }, function() {
+	                   map.UnHighlightRow($(this));
+	                }).click(function () {
+	                window.location = $(this).find('.tableLink').attr("href");
+	            });
+        	}
         }
     },
-
 		
     getParameterByName : function(name) {
     	var queryString = window.location.search;

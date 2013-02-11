@@ -9,7 +9,8 @@
 <?php slot('gmapheader'); ?>
     <script type="text/javascript" src="/js/map/<?php echo sfConfig::get('app_js_map_search'); ?>"></script>
     <script type="text/javascript" src="<?php echo sfConfig::get('app_jquery_form_script') ?>"></script>
-    <script type="text/javascript" src="/js/mustache.js"></script>
+    <script type="text/javascript" src="/js/underscore.js"></script>
+    <script type="text/javascript" src="/js/ext/moment.js"></script>
 
     <script type="text/javascript">   
       $(document).ready(function(){
@@ -45,33 +46,32 @@
     <table class="rideTable">
         <thead>
             <tr>
-                <th><h2 class="dateHeader orange">{{startDate}}</h2></th>
+                <th><h2 class="dateHeader orange"><%= moment(date).format('MMMM D, YYYY') %></h2></th>
             </tr>
     	</thead>
         <tbody>
-        </tbody>
+            <% _.each(obj.rides, function(ride) { %>
+                <tr>
+                	<td class="person-td">
+	                	<a class="tableLink hide" href="/rides/<%= (ride.is_driver) ? 'offer': 'request' %>/<%= ride.id %>"></a>
+	                	<img class="rideListDriverCreatorProfileImage" src="<%= ride.person.picture_small_url %>" />
+		                <span class="ride-table-name">
+		                    <%= ride.person.first_name %><br />
+		                    <%= ride.person.last_name %><br />
+		                </span>
+	               	    <div class="icon <%= (ride.is_driver) ? 'driver': 'passenger' %>"></div>
+	
+	                    <span id="ride-<% if(ride.is_driver) { print('carpool-'); } else { print('passenger-'); } print(ride.id); %>" class="hidden routePolyline"><%= ride.route.encoded_polyline %></span>
+                    </td>
+                    <td class="origin-td"><%= ride.route.origin_string %></td>
+            		<td><span class="icon destination-arrow"></span></td>
+            		<td class="destination-td"><%= ride.route.destination_string %></td>
+            		<td>
+            	        <div class="seatContainer"><h2 class="seatCount"><%= ride.seat_count %></h2><span class="seatText">seat<%= (ride.seat_count == 1) ? '' : 's' %> <%= (ride.is_driver) ? 'available': 'requested' %></span></div>
+            	        <div class="cost green"><%= (ride.asking_price != null) ? '$' + ride.asking_price + ' per seat' : 'price negotiable' %></div>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody> 
     </table>
-</script>
-
-<script id="rideItemTemplate" type="template/javascript">
-    <tr>
-		<td class="person-td">
-        	<a class="tableLink hide" href="{{rideType}}"></a>
-            <img class="rideListDriverCreatorProfileImage" src="<?php echo sfConfig::get('app_profile_picture_directory') ?><?php echo $profile->getPictureUrlSmall(); ?>" alt="<?php echo $people ?>" />
-            <span class="ride-table-name">
-            	<?php echo $profile->getFirstName(); ?><br />
-                <?php echo $profile->getLastName(); ?><br />
-            </span>
-            <div class="icon <?php $rideType == 'offer'? print "driver": print "passenger" ?>"></div>
-
-            <span id="ride-<?php if($rideType == 'offer') { echo 'carpool-';} else { echo 'passenger-';} echo $id; ?>" class="hidden routePolyline"><?php echo $route->getEncodedPolyline(); ?></span>
-		</td>
-        <td class="origin-td"><?php echo $route->getOriginString(); ?></td>
-        <td><span class="icon destination-arrow"></span></td>
-        <td class="destination-td"><?php echo $route->getDestinationString(); ?></td>
-        <td>
-        	<div class="seatContainer"><?php $seats = $seats != '' ? $seats : 1; echo "<h2 class='seatCount'>" . $seats . "</h2>" . "<span class='seatText'>seat"; if($seats != 1) { echo 's'; } echo $seatText. "</span>"; ?></div>
-            <div class="cost green"><?php echo $seatCost; ?></div>
-        </td>
-    </tr>
 </script>

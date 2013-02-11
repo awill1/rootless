@@ -82,7 +82,7 @@
                     "is_passenger": true,
                     "start_date": null,
                     "start_time": null,
-                    "asking_price": 25,
+                    "asking_price": null,
                     "seat_count": 1, 
                     "person" : {
                         "id": 2,
@@ -158,7 +158,7 @@
                     "start_date": null,
                     "start_time": null,
                     "asking_price": 25,
-                    "seat_count": 1, 
+                    "seat_count": 2, 
                     "person" : {
                         "id": 2,
                         "first_name": "Christy",
