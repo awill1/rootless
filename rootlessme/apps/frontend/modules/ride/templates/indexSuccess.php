@@ -75,3 +75,22 @@
         </tbody> 
     </table>
 </script>
+<script id="noRide" type="template/javascript">
+	<div class="noRide">
+	    <% if(obj.results.length) { %>
+	    	<div class="options">
+		        <a class="cta" href="/rides/new/offer">Offer a ride</a> 
+		        <span class='or'>or</span>
+		        <a class="cta" href="/rides/new/request">Request a ride</a>
+	        </div>
+	        <p>Haven’t found what you are looking for? Post your ride!</p>
+        <% } else { %>
+        	<div class="options">
+	            <p>No rides matched your search, but all is not lost! Search again or post your ride!</p>
+		        <a class="cta" href="/rides/new/offer">Offer a ride</a> 
+		        <span class='or'>or</span>
+		        <a class="cta" href="/rides/new/request">Request a ride</a>
+	        </div>
+        <% } %>
+    </div>
+</script>

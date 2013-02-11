@@ -270,6 +270,10 @@ Rootless.Map.Search = Rootless.Map.extend({
         		}
         		$('#results').show('blind');
         		
+        		
+        		var bottomMessage = _.template($('#noRide').html(), data);
+        		$('#results').append(bottomMessage);
+        		
         		map.ClearPolylinesFromMap();
 
             	// Add the results to the google map
