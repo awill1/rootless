@@ -460,6 +460,29 @@ input[type="text"][disabled] {
 .eventLogo {
     width: 113px;
 }
+/*validation*/
+.error{
+    color: #E26C59;
+    font-size: 10px;
+}
+#startingFromInputError{
+    float:left;
+    color: #E26C59;
+    font-size: 10px;
+    margin-left: 150px;
+}
+#driverPriceTextBoxError{
+    float:left;
+    color: #E26C59;
+    font-size: 10px;
+    margin-left: 262px;
+}
+#passengerPriceTextBoxError{
+    float:left;
+    color: #E26C59;
+    font-size: 10px;
+    margin-left: 274px;
+}
 
 /*login/signup popup*/
 .loginPrompt{

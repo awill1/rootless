@@ -420,7 +420,29 @@ h3{
 }
 
 
-
+/*validation*/
+.error{
+    color: #E26C59;
+    font-size: 10px;
+}
+#startingFromInputError{
+    float:left;
+    color: #E26C59;
+    font-size: 10px;
+    margin-left: 150px;
+}
+#driverPriceTextBoxError{
+    float:left;
+    color: #E26C59;
+    font-size: 10px;
+    margin-left: 272px;
+}
+#passengerPriceTextBoxError{
+    float:left;
+    color: #E26C59;
+    font-size: 10px;
+    margin-left: 285px;
+}
 
 
 /*custom drop down and radio buttons stuff*/

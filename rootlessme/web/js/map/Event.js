@@ -61,7 +61,8 @@ Rootless.Map.Event = Rootless.Map.extend({
                passengerContainer             : "#passengerContainer",
                loginFormDialogContainer       : "#loginFormDialogContainer",
                eventRideContainer             : "#eventRideContainer",
-               eventRideConfirmationContainer : "#eventRideConfirmationContainer"
+               eventRideConfirmationContainer : "#eventRideConfirmationContainer",
+               startingFromInputError         : "#startingFromInputError"
            },
            
            // Variables used to block form submitting before map api results are returned
@@ -146,6 +147,9 @@ Rootless.Map.Event = Rootless.Map.extend({
                  // function do it
                  self.MaybeSubmitForm();
             }
+//            errorPlacement: function(error, element){
+//                error.appendTo(startingFromInputError);
+//            }
         });
          
         // Login form for late login
