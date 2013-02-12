@@ -78,6 +78,76 @@ class rideActions extends sfActions
         }
 
     }
+    
+    /**
+     * Executes the paging search action
+     * @param sfWebRequest $request A request object
+     */
+    public function executePagingSearch(sfWebRequest $request)
+    {
+        try
+        {
+            // This action always returns json
+            $this->getResponse()->setContentType('application/json');
+            
+            // This method is only valid for ajax calls
+            if (!$request->isXmlHttpRequest())
+            {
+                throw new Exception('Request must be XHR.');
+            }
+            
+            // Get the request parameters
+            $ride_parameters = $this->getRequestParameter('rides');
+            $searchDate = $ride_parameters['date'];
+
+            // Get the search parameters
+            $myStartLatitude = $ride_parameters['origin_latitude'];
+            $myStartLongitude = $ride_parameters['origin_longitude'];
+            $myEndLatitude = $ride_parameters['destination_latitude'];
+            $myEndLongitude = $ride_parameters['destination_longitude'];
+            $startDate = $ride_parameters['start_date'];
+            $endDate = $ride_parameters['end_date'];
+            $myPolyline = $ride_parameters['polyline'];
+            // Use the application default distance setting
+            $myDistance = sfConfig::get('app_default_search_distance');
+            
+            // Get the list of driver matches
+            $this->carpools = Doctrine_Core::getTable('Carpools')
+                 ->getNearPoints($myDistance, $myStartLatitude, $myStartLongitude, $myEndLatitude, $myEndLongitude, $searchDate);
+
+            // Get the list of passenger matches
+            $this->passengers = null;
+            if (CommonHelpers::IsNullOrEmptyString($myPolyline))
+            {
+                // The origin and destination points were not both specified, so do
+                // a search near the point specified
+                $this->passengers = Doctrine_Core::getTable('Passengers')
+                     ->getNearPoints($myDistance, $myStartLatitude, $myStartLongitude, $myEndLatitude, $myEndLongitude, $searchDate);
+            }
+            else
+            {
+                // The origin and destination points were both specified, so 
+                // search along the route
+                $this->passengers = Doctrine_Core::getTable('Passengers')
+                     ->getAlongRoute($myDistance, $myPolyline, $searchDate);
+            }
+            
+            // Return success json with no layout
+            $this->setLayout(sfView::NONE);
+            return $this->renderText('{ "success": true }');            
+        }
+        catch (Exception $e)
+        {
+            // Log the error
+            $this->logMessage($e->getMessage().
+                              '; Trace: '.$e->getTraceAsString().
+                              ' Content: '.$request->getContent(), 'err');
+            // Set the error code
+            $this->getResponse()->setStatusCode('500');
+            // Return the error json
+            return $this->renderText('{ "success": false, "message": "'.$e->getMessage().'" }');
+        }
+    }
 
     /**
      * Executes new action

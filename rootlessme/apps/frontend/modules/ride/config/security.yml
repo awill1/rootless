@@ -9,6 +9,9 @@ index:
 
 search:
   is_secure: false
+  
+pagingSearch:
+  is_secure: false
 
 show:
   is_secure: false

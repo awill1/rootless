@@ -283,6 +283,13 @@ ride_search:
   param: { module: ride, action: search, sf_format: html }
   requirements:
     sf_format: (?:html)
+    
+ride_search_paging:
+  url: /rides/pagingSearch
+  param:
+    module: ride
+    action: pagingSearch
+  requirements:
 
 # Ride creation
 ride_new:
