@@ -22,6 +22,11 @@
             <div id="startingFrom">
                 <div id="startingFromText"><span class="primaryTextStyle">Starting From</span></div>
                 <div id="startingFromInput"><input id="originTextBox" class="longField required trackableField" type="text" name="origin" placeholder="Address, City, State" /></div>
+                <div id="startingFromInputError">
+                    <div id="id-error">
+                        <label for="originTextBox" class="error" generated="true"></label>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="formSection"><hr class="eventFormHr"></div>
@@ -100,13 +105,17 @@
             <div id="priceText"><span class="primaryTextStyle">Price</span></div>
             <div id="priceInput">
                 <span class='dollar-sign'>$</span> <input id="driverPriceTextBox" class="tinyField number trackableField" type="text" name="driver_price" /> <span class='fourthTextStyle'>per seat</span>
-            </div>   
+            </div>
+            <div id="driverPriceTextBoxError" class="error">
+                <label for="driverPriceTextBox" class="error" generated="true"></label>
+            </div>
             <div class="formSection"><hr class="eventFormHr hrHolder"/></div>
         </div>
         <div id="passengerContainer" class="formSection">
             <div id="asAPassenger" class="secondaryTextStyle">As a passenger:</div>
             <div id="seatsNeeded">
                 <div id="seatsNeededText"><span class="primaryTextStyle">Seats needed</span></div>
+            </div>
                 <div id="seatsNeededPicker">
                     <select id="passengerSeatsDropDown" class="tinyDropDown trackableField" name="passenger_seats">
                         <?php for($i = 1; $i < 30 ; $i++): ?>
@@ -116,6 +125,9 @@
                 </div>
                 <div id="willingToPayText"><span class="primaryTextStyle">Willing to pay</span></div>
                 <div id="willingToPayInput"><span class='dollar-sign'>$</span> <input id="passengerPriceTextBox" class="tinyField number trackableField" type="text" name="passenger_price" /> <span class='fourthTextStyle'>per seat</span></div>
+            
+            <div id="passengerPriceTextBoxError" class="error">
+                <label for="passengerPriceTextBox" class="error" generated="true"></label>
             </div>
             <div class="formSection"><hr class="eventFormHr hrHolder"/></div>
         </div>
