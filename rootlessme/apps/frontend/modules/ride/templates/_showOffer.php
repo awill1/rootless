@@ -214,7 +214,19 @@
         <div id="mainRideDetails">
             <h4>Ride Details</h4>
         	<p><?php echo nl2br($carpool->getDescription()) ?></p>
-        	<p><span>Start date:</span> <?php echo date("F",strtotime($carpool->getStartDate())) ?> <?php echo date("j",strtotime($carpool->getStartDate())) ?> at <?php echo date("g:i A",strtotime($carpool->getStartTime())) ?></p>
+                
+                <?php if (is_null($carpool->getStartDate())) : ?>
+                    <p><span>Start date:</span> Any day at 
+                        <?php if (is_null($carpool->getStartTime())) : ?>
+                            any time </p>
+                        <?php else :?>
+                            <?php echo date("g:i A",strtotime($carpool->getStartTime())) ?></p>
+                        <?php endif; ?>
+                <?php else : ?>
+                    <p><span>Start date:</span> <?php echo date("F",strtotime($carpool->getStartDate())) ?> <?php echo date("j",strtotime($carpool->getStartDate())) ?> at <?php echo date("g:i A",strtotime($carpool->getStartTime())) ?></p>
+        	<?php endif; ?>
+                
+<!--        	<p><span>Start date:</span> <?php echo date("F",strtotime($carpool->getStartDate())) ?> <?php echo date("j",strtotime($carpool->getStartDate())) ?> at <?php echo date("g:i A",strtotime($carpool->getStartTime())) ?></p>-->
         	<p><span>Price:</span> $<?php echo $carpool->getAskingPrice() ?> per seat</p>
         	<p><span>Number of seats:</span> <?php echo $carpool->getSeatsAvailable() ?></p>
             <?php if ($myUserId == null) : ?>
