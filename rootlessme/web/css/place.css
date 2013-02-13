@@ -44,7 +44,6 @@ h1{
 .placeBox:hover{
     width: 586px;
     height: 80px;
-    float: left;
     background-color: #565656;
     margin-bottom: 20px;
 }
