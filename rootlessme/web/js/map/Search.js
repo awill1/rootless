@@ -245,7 +245,7 @@ Rootless.Map.Search = Rootless.Map.extend({
     // Form submit options used for the ajax form
     formAjaxOptions : {
         target: '#results',
-        url: "/mockup/json/rideSearchResult.json",
+        url: "rides/pagingSearch",
         beforeSubmit : function() {
             // Clear the form submit pending flag
             isFormSubmitPending = false;
