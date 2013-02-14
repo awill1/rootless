@@ -223,7 +223,12 @@
                             <?php echo date("g:i A",strtotime($carpool->getStartTime())) ?></p>
                         <?php endif; ?>
                 <?php else : ?>
-                    <p><span>Start date:</span> <?php echo date("F",strtotime($carpool->getStartDate())) ?> <?php echo date("j",strtotime($carpool->getStartDate())) ?> at <?php echo date("g:i A",strtotime($carpool->getStartTime())) ?></p>
+                    <p><span>Start date:</span> <?php echo date("F",strtotime($carpool->getStartDate())) ?> <?php echo date("j",strtotime($carpool->getStartDate())) ?> at 
+                        <?php if (is_null($carpool->getStartTime())) : ?>
+                            any time </p>
+                        <?php else :?>
+                            <?php echo date("g:i A",strtotime($carpool->getStartTime())) ?></p>
+                        <?php endif; ?>
         	<?php endif; ?>
         	<p><span>Price:</span> $<?php echo $carpool->getAskingPrice() ?> per seat</p>
         	<p><span>Number of seats:</span> <?php echo $carpool->getSeatsAvailable() ?></p>

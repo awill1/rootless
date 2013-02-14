@@ -168,7 +168,6 @@
         <div id="mainRideDetails">
         	<h4>Ride Details</h4>
         	<p><?php echo nl2br($passenger->getDescription()) ?></p>
-<!--                !!!!! edit here !!!!-->
                 <?php if (is_null($passenger->getStartDate())) : ?>
                     <p><span>Start date:</span> Any day at 
                         <?php if (is_null($passenger->getStartTime())) : ?>
@@ -177,8 +176,13 @@
                             <?php echo date("g:i A",strtotime($passenger->getStartTime())) ?></p>
                         <?php endif; ?>
                 <?php else : ?>
-                    <p><span>Start date:</span> <?php echo date("F",strtotime($passenger->getStartDate())) ?> <?php echo date("j",strtotime($passenger->getStartDate())) ?> at <?php echo date("g:i A",strtotime($passenger->getStartTime())) ?></p>
-        	<?php endif; ?>
+                    <p><span>Start date:</span> <?php echo date("F",strtotime($passenger->getStartDate())) ?> <?php echo date("j",strtotime($passenger->getStartDate())) ?> at
+                        <?php if (is_null($passenger->getStartTime())) : ?>
+                            any time </p>
+                        <?php else :?>
+                            <?php echo date("g:i A",strtotime($passenger->getStartTime())) ?></p>
+                        <?php endif; ?>
+                <?php endif; ?>
                 <p><span>Price:</span> $<?php echo $passenger->getAskingPrice() ?> per seat</p>
         	<p><span>Number of seats:</span> <?php echo $passenger->getPassengerCount() ?></p>
         	<!-- if user is not logged in -->
