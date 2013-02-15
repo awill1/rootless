@@ -20,7 +20,7 @@ class userActions extends sfActions
     {        
         //Creating a new Facebook object from the Facebook PHP SDK
         require_once sfConfig::get('app_facebook_sdk_file');
-
+        
         $facebook = new Facebook(array(
             'appId'  => sfConfig::get('app_facebook_app_id'),
             'secret' => sfConfig::get('app_facebook_secret'),
