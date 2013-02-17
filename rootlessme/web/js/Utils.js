@@ -37,6 +37,46 @@ Rootless.Static.Utils = Class.extend({
             // Do not follow the link url by returning false
             return false;
         });
+        //popup dialogue facebook login
+        $('.facebookButtonSoft').click(function(){
+            //// Block all login forms while the facebook login works
+            blockLoginContainers();
+
+            //Use the FB object's login method from the Facebook Javascript SDK to authenticate the user
+            //If the user has already approved your app, she is simply logged in
+            //If not, the app authentication dialog box is shown
+            FB.login(function(response){
+                var facebookConnectUrl = sf.url_for('user_facebook_login', { });
+
+                //If the user is succesfully authenticated, we execute some code to handle the freshly
+                //logged in user, if not, we do nothing
+                if (response.authResponse) {
+                    //Use ajax to execute an action that handles authenticated user
+                    $.ajax({
+                        url: facebookConnectUrl,
+                        complete: function(){
+
+                            //close the dialogue
+                            //resubmit the form
+                            //utils.js
+                            //
+                            // Close the dialog
+                            $('#loginFormDialogContainer').dialog("close");
+
+                            // Call the onAuthenticated callback
+                            onAuthenticated();
+                        }
+                    });
+                }
+                else {
+                    // Unblock the login containers
+                    unblockLoginContainers();
+                }
+            }, {scope: facebook_scope}); 
+
+            // Make sure the link does not cause navigation
+            return false;
+        });
         
         // Add in form validators
         $("#loginForm").validate({
@@ -72,6 +112,8 @@ Rootless.Static.Utils = Class.extend({
                 });
             }
         });
+        
+        
         
         // Validate then ajax submit the register form
         $("#registerForm").validate({
@@ -110,7 +152,6 @@ Rootless.Static.Utils = Class.extend({
         // Show the choice form first
         $("#loginDialogChoiceContainer").show();
     }
-    
 });
 
 Class.addSingleton(Rootless.Static.Utils);
