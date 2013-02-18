@@ -524,6 +524,11 @@ input[type="text"][disabled] {
     color: #fff;
     background-color: #29447E;
     padding: 5px;
+    margin: auto;
+    width: 158px;
+}
+.facebookSignup a{
+    color:#fff;
 }
 .facebookLink a{
     color:#fff;
