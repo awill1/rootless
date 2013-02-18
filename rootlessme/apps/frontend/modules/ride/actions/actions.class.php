@@ -88,13 +88,14 @@ class rideActions extends sfActions
         try
         {
             // This action always returns json
+            $this->setLayout(sfView::NONE);
             $this->getResponse()->setContentType('application/json');
             
-            // This method is only valid for ajax calls
-            if (!$request->isXmlHttpRequest())
-            {
-                throw new Exception('Request must be XHR.');
-            }
+//            // This method is only valid for ajax calls
+//            if (!$request->isXmlHttpRequest())
+//            {
+//                throw new Exception('Request must be XHR.');
+//            }
             
             // Get the request parameters
             $ride_parameters = $this->getRequestParameter('rides');
@@ -105,14 +106,42 @@ class rideActions extends sfActions
             $myStartLongitude = $ride_parameters['origin_longitude'];
             $myEndLatitude = $ride_parameters['destination_latitude'];
             $myEndLongitude = $ride_parameters['destination_longitude'];
-            $startDate = $ride_parameters['start_date'];
-            $endDate = $ride_parameters['end_date'];
-            $myPolyline = $ride_parameters['polyline'];
+            $startDate = null;
+            if (array_key_exists('date', $ride_parameters))
+            {
+                $startDate =  new DateTime($ride_parameters['date']);
+            }
+            else
+            {
+                // Get the current date
+                $startDate = new DateTime();
+            }
+            $endDate = null;
+            if (array_key_exists('end_date', $ride_parameters))
+            {
+                $endDate = new DateTime($ride_parameters['end_date']);
+            }
+            else
+            {
+                // The end date is a fixed amount off of start date
+                $endDate = clone $startDate;
+                $daysPerPage = sfConfig::get('app_ride_search_days_per_page');
+                $endDate->modify('+'.$daysPerPage.' day');
+            }
+            $myPolyline = null;
+            if (array_key_exists('polyline', $ride_parameters))
+            {
+                $myPolyline = $ride_parameters['polyline'];
+            }
+            
+            // Validate the parameters
+            
+            
             // Use the application default distance setting
             $myDistance = sfConfig::get('app_default_search_distance');
             
             // Get the list of driver matches
-            $this->carpools = Doctrine_Core::getTable('Carpools')
+            $this->drivers = Doctrine_Core::getTable('Carpools')
                  ->getNearPoints($myDistance, $myStartLatitude, $myStartLongitude, $myEndLatitude, $myEndLongitude, $searchDate);
 
             // Get the list of passenger matches
@@ -132,8 +161,10 @@ class rideActions extends sfActions
                      ->getAlongRoute($myDistance, $myPolyline, $searchDate);
             }
             
+            $this->rides = RideHelpers::combinePassengersAndDrivers($this->passengers, $this->drivers, $startDate, $endDate);
+            
             // Return success json with no layout
-            $this->setLayout(sfView::NONE);
+            return $this->renderPartial('ride/searchResultsJson', array('rides'=>$this->rides));
             return $this->renderText('{ "success": true }');            
         }
         catch (Exception $e)
