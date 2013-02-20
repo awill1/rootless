@@ -35,7 +35,7 @@ class ImageHelpers
             
             // Create the resized picture sizes
             $sizes = array('tiny', 'small', 'medium', 'large');
-            $imgUrlArray = array('picture_url_tiny' => $genUrl);
+            $imgFileNameArray = array('picture_url' => $basename);
 
             // Resize the picture for each desired size
             foreach ($sizes as $size)
@@ -60,12 +60,15 @@ class ImageHelpers
                 $img->thumbnail($maxWidth, $maxHeight, $transformMethod);
                 $img->saveAs($newFilename);
                 $filesToCopy[] = $newShortFilename;
+                
+                $imgFileNameArray['picture_url_'.$size] = $newShortFilename;
             }
             
             // Copy all files to the destination directory and delete the old one.
             // This is needed if the environment is saving images to Amazon S3. 
             foreach($filesToCopy as $fileToCopy)
             {
+                
                 $tempFile = $uploadDirectory.$fileToCopy;
                 // Make sure the file exists and the outpu directory is 
                 // different than the upload directory
@@ -75,7 +78,7 @@ class ImageHelpers
                     unlink($tempFile);
                 }
             }
-        return array();
+        return $imgFileNameArray;
     }
 }
 

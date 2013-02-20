@@ -102,26 +102,20 @@ class ProfilesForm extends BaseProfilesForm
             // Save the form data to the database
             $response = parent::doSave($con);
             
-            //helper function
+            //create tiny, small, medium, and large thumbnails
             $imgArray = ImageHelpers::resizeImage($this->getValue('picture_url'));
                 
-            //new saver
-            //get OBJEVCT (profile)
-            foreach($imgArray as $image){
-                // Create the resized picture sizes
-                $sizes = array('tiny', 'small', 'medium', 'large');
-                foreach($sizes as $size){
-                    // Update the file name to be saved in the database
-                    $this->values['picture_url_'.$size] = $imgArray[''];
-                    //dont do above line set OBJECT properties
-                }
+            //get object and fill all image size filenames
+            $curProfile = $this->getObject();
+            $curProfile->setPictureUrl($imgArray['picture_url']);
+            $curProfile->setPictureUrlTiny($imgArray['picture_url_tiny']);
+            $curProfile->setPictureUrlSmall($imgArray['picture_url_small']);
+            $curProfile->setPictureUrlMedium($imgArray['picture_url_medium']);
+            $curProfile->setPictureUrlLarge($imgArray['picture_url_large']);
+                    
             // Save the resized files to the database
-            //$response = parent::doSave($con); -- don't do this
-                // get update and save the object
-                //
-                //$this->getObject-getPicture
-                
-           //save the OBJECT
+      
+           $curProfile->save();
             
             return $response;
         }
