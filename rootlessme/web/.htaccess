@@ -1,5 +1,5 @@
-Options +FollowSymLinks +ExecCGI 
-##-Multiviews -Indexes ##multiviews & indexes added
+Options +FollowSymLinks +ExecCGI -Multiviews -Indexes 
+##multiviews & indexes added
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
@@ -28,19 +28,3 @@ Options +FollowSymLinks +ExecCGI
   # remove trailing slash
   RewriteRule ^(.*)\/(\?.*)?$ $1$2 [R=301,L]
 </IfModule>
-
-##redirect trailing slashes to clean url with no slash
-######################################################
-##Options -Multiviews -Indexes +FollowSymLinks
-##RewriteEngine On
-##RewriteBase /
-##DirectorySlash Off
-
-# remove trailing slash
-##RewriteRule ^(.*)\/(\?.*)?$ $1$2 [R=301,L]
-
-# rewrite /dir/file?query to /dir/file.php?query
-##RewriteRule ^([\w\/-]+)(\?.*)?$ $1.php$2 [L,T=application/x-httpd-php]
-
-##end trailing slash redirect
-####################
