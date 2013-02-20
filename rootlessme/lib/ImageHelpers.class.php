@@ -35,6 +35,7 @@ class ImageHelpers
             
             // Create the resized picture sizes
             $sizes = array('tiny', 'small', 'medium', 'large');
+            $imgUrlArray = array('picture_url_tiny' => $genUrl);
 
             // Resize the picture for each desired size
             foreach ($sizes as $size)
@@ -45,7 +46,8 @@ class ImageHelpers
                 $newFilename = $uploadDirectory.$newShortFilename;
                 
                 // Update the file name to be saved in the database
-                //$this->values['picture_url_'.$size] = $newShortFilename;
+                // change $this to getProfile()
+                // $getProfile()->values['picture_url_'.$size] = $newShortFilename;
 
                 // Now resize the original picture to make the smaller versions
                 $img = new sfImage($temporaryImage);
