@@ -329,7 +329,25 @@ class Profiles extends BaseProfiles
                 $this->setBirthday($birthdayString);
             }
         }
-        
+        //set profile picture from facebook
+        if ($shouldOverwrite || CommonHelpers::IsNullOrEmptyString($this->getPictureUrl()))
+        {
+            if (property_exists($facebook_user_profile, 'picture'))
+            {
+                $tempPicUrl = 'http://graph.facebook.com/'.$facebook_user_profile->id.'/picture?type=large';
+                $imageName = CommonHelpers::CreateSimpleUuid().'.jpg';
+                $uploadDirectory = sfConfig::get('sf_upload_dir').'/assets/profile_pictures/';
+                copy($tempPicUrl, $uploadDirectory.$imageName);
+                $tempPicUrl = $uploadDirectory.$imageName;
+                
+                $imgArray = ImageHelpers::resizeImage($tempPicUrl);
+                $this->setPictureUrl($imgArray['picture_url']);
+                $this->setPictureUrlTiny($imgArray['picture_url_tiny']);
+                $this->setPictureUrlSmall($imgArray['picture_url_small']);
+                $this->setPictureUrlMedium($imgArray['picture_url_medium']);
+                $this->setPictureUrlLarge($imgArray['picture_url_large']);
+            }
+        }
         //$this->setProfilePicture($facebook_user_profile->picture);
     }
     
