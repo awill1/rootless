@@ -32,32 +32,7 @@
 </div>
 
 <br />
-<div class="subHead">
-    Join Rootless!
-    <div class="joinRootless">
-        <div class="facebookButton">
-            <div class="facebookButton">
-            <table class="facebookButtonTable" cellspacing="0" cellpadding="0">
-                <tr>
-                    <td>
-                        <i class="facebookButtonLogo"> </i>
-                    </td>
-                    <td>
-                        <span class="facebookButtonBorder">
-                            <span class="facebookButtonText">Register with Facebook</span>
-                        </span>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        </div>
-        <a href="<?php echo url_for('sf_guard_register') ?>" class="featureLink">
-            <div id="rootlessBox">
-                Sign up with your email
-            </div>
-        </a>
-    </div>
-</div>
+
 <div class="subHead">
     Featured events and places
     <div class="featuredEvents">
@@ -87,6 +62,37 @@
         <a href="<?php echo url_for('nyc') ?>" class="featureLink">
             <div id="nycBox">
                 Carpool NYC
+            </div>
+        </a>
+        <a href="<?php echo url_for('events') ?>" class="featureLink">
+            <div id="placeBox">
+                See more events
+            </div>
+        </a>
+    </div>
+</div>
+<div class="subHead">
+    Join Rootless!
+    <div class="joinRootless">
+        <div class="facebookButton">
+            <div class="facebookButton">
+            <table class="facebookButtonTable" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        <i class="facebookButtonLogo"> </i>
+                    </td>
+                    <td>
+                        <span class="facebookButtonBorder">
+                            <span class="facebookButtonText">Register with Facebook</span>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+        <a href="<?php echo url_for('sf_guard_register') ?>" class="featureLink">
+            <div id="rootlessBox">
+                Sign up with your email
             </div>
         </a>
     </div>
