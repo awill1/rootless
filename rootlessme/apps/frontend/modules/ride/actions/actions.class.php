@@ -164,7 +164,7 @@ class rideActions extends sfActions
             $this->rides = RideHelpers::combinePassengersAndDrivers($this->passengers, $this->drivers, $startDate, $endDate);
             
             // Return success json with no layout
-            return $this->renderPartial('ride/searchResultsJson', array('rides'=>$this->rides));
+            return $this->renderPartial('ride/searchResultsJson', array('rides'=>$this->rides, 'startDate'=>$startDate, 'endDate'=>$endDate));
             return $this->renderText('{ "success": true }');            
         }
         catch (Exception $e)

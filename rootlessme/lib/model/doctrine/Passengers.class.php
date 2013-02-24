@@ -31,6 +31,16 @@ class Passengers extends BasePassengers
     }
     
     /**
+     * Gets the number of seats needed. Common function for ride types. This
+     * should be an interface.
+     * @return Integer The seat count
+     */
+    public function getSeatCount()
+    {
+        return $this->getPassengerCount();
+    }
+    
+    /**
      * Gets the origin location for a route
      * @return Locations The origin
      */

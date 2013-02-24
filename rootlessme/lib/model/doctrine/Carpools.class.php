@@ -31,6 +31,16 @@ class Carpools extends BaseCarpools
     }
     
     /**
+     * Gets the number of seats available. Common function for ride types. This
+     * should be an interface.
+     * @return Integer The seat count
+     */
+    public function getSeatCount()
+    {
+        return $this->getSeatsAvailable();
+    }
+    
+    /**
      * Gets the origin location for a route
      * @return Locations The origin
      */
