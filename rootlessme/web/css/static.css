@@ -72,7 +72,7 @@ html, body {
 
 .subHead{
     float: left;
-    margin-right: 67px;
+    margin-right: 84px;
     margin-bottom: 50px;
     color: #FFFFFF;
     font-size: 140%;
@@ -161,6 +161,13 @@ html, body {
     margin-bottom: 6px;
 }
 #nycBox{
+    background-color: #109545;
+    color: #ffffff;
+    margin: 4px;
+    padding: 4px;
+    margin-bottom: 6px;
+}
+#placeBox{
     background-color: #109545;
     color: #ffffff;
     margin: 4px;

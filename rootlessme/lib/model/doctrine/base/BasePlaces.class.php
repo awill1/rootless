@@ -19,9 +19,12 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @property string $css_style
  * @property integer $location_id
  * @property integer $is_deleted
+ * @property string $slug
+ * @property string $share_image_url
  * @property Doctrine_Collection $Origin_Route
  * @property Doctrine_Collection $Destination_Route
  * @property Locations $Location
+ * @property Doctrine_Collection $Events
  * 
  * @method integer             getPlaceId()               Returns the current record's "place_id" value
  * @method string              getName()                  Returns the current record's "name" value
@@ -35,9 +38,12 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @method string              getCssStyle()              Returns the current record's "css_style" value
  * @method integer             getLocationId()            Returns the current record's "location_id" value
  * @method integer             getIsDeleted()             Returns the current record's "is_deleted" value
+ * @method string              getSlug()                  Returns the current record's "slug" value
+ * @method string              getShareImageUrl()         Returns the current record's "share_image_url" value
  * @method Doctrine_Collection getOriginRoute()           Returns the current record's "Origin_Route" collection
  * @method Doctrine_Collection getDestinationRoute()      Returns the current record's "Destination_Route" collection
  * @method Locations           getLocation()              Returns the current record's "Location" value
+ * @method Doctrine_Collection getEvents()                Returns the current record's "Events" collection
  * @method Places              setPlaceId()               Sets the current record's "place_id" value
  * @method Places              setName()                  Sets the current record's "name" value
  * @method Places              setWebsiteUrl()            Sets the current record's "website_url" value
@@ -50,9 +56,12 @@ Doctrine_Manager::getInstance()->bindComponent('Places', 'doctrine');
  * @method Places              setCssStyle()              Sets the current record's "css_style" value
  * @method Places              setLocationId()            Sets the current record's "location_id" value
  * @method Places              setIsDeleted()             Sets the current record's "is_deleted" value
+ * @method Places              setSlug()                  Sets the current record's "slug" value
+ * @method Places              setShareImageUrl()         Sets the current record's "share_image_url" value
  * @method Places              setOriginRoute()           Sets the current record's "Origin_Route" collection
  * @method Places              setDestinationRoute()      Sets the current record's "Destination_Route" collection
  * @method Places              setLocation()              Sets the current record's "Location" value
+ * @method Places              setEvents()                Sets the current record's "Events" collection
  * 
  * @package    RootlessMe
  * @subpackage model
@@ -168,6 +177,25 @@ abstract class BasePlaces extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 1,
              ));
+        $this->hasColumn('slug', 'string', 128, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'unique' => true,
+             'length' => 128,
+             ));
+        $this->hasColumn('share_image_url', 'string', 255, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 255,
+             ));
     }
 
     public function setUp()
@@ -184,6 +212,10 @@ abstract class BasePlaces extends sfDoctrineRecord
         $this->hasOne('Locations as Location', array(
              'local' => 'location_id',
              'foreign' => 'location_id'));
+
+        $this->hasMany('Events', array(
+             'local' => 'place_id',
+             'foreign' => 'place_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

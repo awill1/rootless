@@ -32,6 +32,45 @@
 </div>
 
 <br />
+
+<div class="subHead">
+    Featured events and places
+    <div class="featuredEvents">
+        <?php foreach ($partnerEvents as $event): ?>
+            <?php if ($event->getSlug()!=null): ?>
+                <a href="<?php echo url_for('event_show_slug', array('event_id'=>$event->getEventId(), 'slug'=>$event->getSlug()))?>" class="featureLink">
+            <?php else: ?>
+                <a href="<?php echo url_for('event_show', array('event_id'=>$event->getEventId())) ?>">
+            <?php endif; ?>        
+                <div id="placeBox">
+                    <?php echo $event->getName() ?>
+                </div>
+            </a>
+        <?php endforeach; ?>
+        
+        <?php foreach ($partnerPlaces as $place): ?>
+            <?php if ($place->getSlug()!=null): ?>
+                <a href="<?php echo url_for('place_show_slug', array('place_id'=>$place->getPlaceId(), 'slug'=>$place->getSlug()))?>" class="featureLink">
+            <?php else: ?>
+                <a href="<?php echo url_for('place_show', array('place_id'=>$place->getPlaceId())) ?>">
+            <?php endif; ?>        
+                <div id="placeBox">
+                    <?php echo $place->getName() ?>
+                </div>
+            </a>
+        <?php endforeach; ?>
+        <a href="<?php echo url_for('nyc') ?>" class="featureLink">
+            <div id="nycBox">
+                Carpool NYC
+            </div>
+        </a>
+        <a href="<?php echo url_for('events') ?>" class="featureLink">
+            <div id="placeBox">
+                See more events
+            </div>
+        </a>
+    </div>
+</div>
 <div class="subHead">
     Join Rootless!
     <div class="joinRootless">
@@ -54,31 +93,6 @@
         <a href="<?php echo url_for('sf_guard_register') ?>" class="featureLink">
             <div id="rootlessBox">
                 Sign up with your email
-            </div>
-        </a>
-    </div>
-</div>
-<div class="subHead">
-    Featured Events!
-    <div class="featuredEvents">
-        <a href="<?php echo url_for('nyc') ?>" class="featureLink">
-            <div id="nycBox">
-                Carpool NYC
-            </div>
-        </a>
-        <a href="<?php echo url_for('novascotiamusicweek') ?>" class="featureLink">
-            <div id="nsmusicweekBox">
-                Nova Scotia Music Week
-            </div>
-        </a>
-        <a href="<?php echo url_for('hangtownHalloween') ?>" class="featureLink">
-            <div id="hangtownHalloweenBallBox">
-                Hangtown Halloween Ball
-            </div>
-        </a>
-        <a href="<?php echo url_for('mullummusicfestival') ?>" class="featureLink">
-            <div id="mullumMusicFestivalBox">
-                Mullum Music Festival
             </div>
         </a>
     </div>

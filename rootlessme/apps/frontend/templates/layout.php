@@ -151,6 +151,11 @@
                             places
                         </a>
                     </li>
+                    <li id="navigationEvents" class="navigationItem">
+                        <a class="navigationItemLink" href="<?php echo url_for("events") ?>">
+                            events
+                        </a>
+                    </li>
                 </ul>
                 <?php if ($sf_user->isAuthenticated()): ?>
                 <div id="leftContent" >

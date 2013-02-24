@@ -9,7 +9,6 @@
       <tr>
         <td colspan="2">
           <input type="submit" value="<?php echo __('Log in', null, 'sf_guard') ?>" />
-          
           <?php $routes = $sf_context->getRouting()->getRoutes() ?>
           <?php if (isset($routes['sf_guard_forgot_password'])): ?>
             <?php if (!isset($showForgotPassword) || $showForgotPassword): ?>

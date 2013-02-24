@@ -73,8 +73,12 @@ class staticActions extends sfActions
         
         // Get the ride search form
         $this->rideSearchForm = new RideSearchForm();
-        
         }
+        //Get Partner Places
+        $this->partnerPlaces = Doctrine_Core::getTable('Places')->getPartnerPlaces();
+        
+        //Get Partner Events
+        $this->partnerEvents = Doctrine_Core::getTable('Events')->getPartnerEvents();
     }
 
     /**
