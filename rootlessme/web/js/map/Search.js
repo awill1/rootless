@@ -46,10 +46,11 @@ Rootless.Map.Search = Rootless.Map.extend({
                 destinationLatitude   : "#rides_destination_latitude",
                 destinationLongitude  : "#rides_destination_longitude",
                 $loader               : $('#loader'),
-                $rideDates            : $('#rides_dates'),
+                rideDates              : '#rides_date',
                 $ridefind             : $('#rides_find'),
                 $results              : $('#results'),
-                $rideSearchForm       : $('#rideSearchForm')
+                $rideSearchForm       : $('#rideSearchForm'),
+                viewMoreButton        : "#view-more-rides"
             },
            
             // Variables used to block form submitting before map api results are returned
@@ -157,6 +158,7 @@ Rootless.Map.Search = Rootless.Map.extend({
         	}
         });
         self.previewRoute(); 
+        
         self._.el.$ridefind.click();
             
     },
@@ -253,18 +255,19 @@ Rootless.Map.Search = Rootless.Map.extend({
             // Send an event to google analytics for the form submission
             _gaq.push(['_trackEvent', 'rides', 'searchSubmitted']);
         },
-        success: function(data)
+        success: function(data, status, response, formData)
         {
-        	console.log(data);
         	var map = Rootless.Map.Search.getInstance();
+        	
+        	$(map._.el.viewMoreButton).unbind('click');
+        	
+        	map.endDate = moment(data.end_date).add('days', 1).calendar();
         	if (data.success == true) {
         		$('#loader').hide();
-        		
         		var count = data.results.length;
         		
         		for(var i = 0; i < count; i++) {
         			var table = _.template($('#rideTableTemplate').html(), data.results[i]);
-        			console.log($(table).find('tbody'));
         			$('#results').append(table);
         			
         		}
@@ -274,13 +277,15 @@ Rootless.Map.Search = Rootless.Map.extend({
         		var bottomMessage = _.template($('#noRide').html(), data);
         		$('#results').append(bottomMessage);
         		
+        		$(map._.el.viewMoreButton).bind('click', map.viewMoreRides);
+        		
         		map.ClearPolylinesFromMap();
 
             	// Add the results to the google map
             	map.LoadItemsIntoGoogleMap();
 
 	            // Change the hover style
-	            $(".rideTable tbody tr")
+	            $(".rideTable tbody tr:not(.no-post)")
 	            .hover(function(){
 	                   map.HighlightRow($(this));
 	                }, function() {
@@ -299,7 +304,12 @@ Rootless.Map.Search = Rootless.Map.extend({
         	.exec(queryString);
         return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
     },
-
+    
+    viewMoreRides : function(e) {
+    	var map = Rootless.Map.Search.getInstance();
+    	$(map._.el.rideDates).val(map.endDate);
+    	map._.el.$rideSearchForm.ajaxSubmit(map.formAjaxOptions);
+    },
 
     HighlightRow : function(tableRow) {
     	tableRow.addClass("rideListSelectedRow");
@@ -364,7 +374,7 @@ Rootless.Map.Search = Rootless.Map.extend({
     MaybeSubmitForm : function() {            
        // Check to make sure nothing is blocking submitting the form
        if (this.canSubmitForm() && this._.formBlock.isFormSubmitPending) {
-            $('#rideSearchForm').ajaxSubmit(this.formAjaxOptions);
+            this._.el.$rideSearchForm.ajaxSubmit(this.formAjaxOptions);
         }
      }
     

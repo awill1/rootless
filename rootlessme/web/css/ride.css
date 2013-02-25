@@ -226,14 +226,14 @@ tbody {
 .fixed #map {
     height: 200px;
     top: 0px;
-    z-index: 100;
+    z-index: 100000;
     margin: 0;
     border: 10px solid #FAF9F9;
     position: fixed !important;
 }
 
 .fixed #middleContent {
-	margin-top: 200px;
+	margin-top: -100px;
 }
 
 .fixed #leftColumn {
@@ -433,6 +433,33 @@ textarea:focus {
     height: 30px;
     display: block;
     background-position: -57px 0px;
+}
+
+#view-more-rides {
+    width: 718px;
+    padding: 10px 0;
+    cursor: pointer;
+    color: #6d6d6d;
+    border: 1px solid #bfbfbf;
+    text-align: center;
+    font-size: 14px;
+    background-image: linear-gradient(bottom, rgb(224,225,226) 0%, rgb(248,248,248) 75%);
+    background-image: -o-linear-gradient(bottom, rgb(224,225,226) 0%, rgb(248,248,248) 75%);
+	background-image: -moz-linear-gradient(bottom, rgb(224,225,226) 0%, rgb(248,248,248) 75%);
+	background-image: -webkit-linear-gradient(bottom, rgb(224,225,226) 0%, rgb(248,248,248) 75%);
+	background-image: -ms-linear-gradient(bottom, rgb(224,225,226) 0%, rgb(248,248,248) 75%);
+
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, rgb(224,225,226)),color-stop(0.75, rgb(248,248,248)));
+}
+
+#view-more-rides:hover {
+    background-image: linear-gradient(top, rgb(248,248,248) 0%, rgb(224,225,226) 75%);
+    background-image: -o-linear-gradient(top, rgb(248,248,248) 0%, rgb(224,225,226) 75%);
+	background-image: -moz-linear-gradient(top, rgb(248,248,248) 0%, rgb(224,225,226) 75%);
+	background-image: -webkit-linear-gradient(top, rgb(248,248,248) 0%, rgb(224,225,226) 75%);
+	background-image: -ms-linear-gradient(top, rgb(248,248,248) 0%, rgb(224,225,226) 75%);
+
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, rgb(248,248,248)),color-stop(0.75, rgb(224,225,226)));
 }
 
 .ride-table-name {

@@ -40,7 +40,7 @@
 <div id="searchForm" class="middleRidesFormArea">
     <?php include_partial('rideSearchForm', array('rideSearchForm' => $searchForm)) ?>
 </div>
-<img id="loader" alt="Loading spinner" src="/images/ajax-loader.gif" style="left: 50%; margin-left: -15px; top: 0; position: relative; top: 75px;" />
+<img id="loader" alt="Loading spinner" src="/images/ajax-loader.gif" style="left: 50%; margin-left: -15px; top: 0; position: relative; top: 10px;" />
 <div id="results"></div>
 <script id="rideTableTemplate" type="template/javascript">
     <table class="rideTable">
@@ -50,32 +50,43 @@
             </tr>
     	</thead>
         <tbody>
-            <% _.each(obj.rides, function(ride) { %>
-                <tr>
-                	<td class="person-td">
-	                	<a class="tableLink hide" href="/rides/<%= (ride.is_driver) ? 'offer': 'request' %>/<%= ride.id %>"></a>
-	                	<img class="rideListDriverCreatorProfileImage" src="<%= ride.person.picture_small_url %>" />
-		                <span class="ride-table-name">
-		                    <%= ride.person.first_name %><br />
-		                    <%= ride.person.last_name %><br />
-		                </span>
-	               	    <div class="icon <%= (ride.is_driver) ? 'driver': 'passenger' %>"></div>
-	
-	                    <span id="ride-<% if(ride.is_driver) { print('carpool-'); } else { print('passenger-'); } print(ride.id); %>" class="hidden routePolyline"><%= ride.route.encoded_polyline %></span>
-                    </td>
-                    <td class="origin-td"><%= ride.route.origin_string %></td>
-            		<td><span class="icon destination-arrow"></span></td>
-            		<td class="destination-td"><%= ride.route.destination_string %></td>
-            		<td>
-            	        <div class="seatContainer"><h2 class="seatCount"><%= ride.seat_count %></h2><span class="seatText">seat<%= (ride.seat_count == 1) ? '' : 's' %> <%= (ride.is_driver) ? 'available': 'requested' %></span></div>
-            	        <div class="cost green"><%= (ride.asking_price != null) ? '$' + ride.asking_price + ' per seat' : 'price negotiable' %></div>
-                    </td>
-                </tr>
-            <% }); %>
+	        <% if(obj.rides.length > 0) { %>
+	            <% _.each(obj.rides, function(ride) { %>
+	                <tr>
+	                	<td class="person-td">
+		                	<a class="tableLink hide" href="/rides/<%= (ride.is_driver) ? 'offer': 'request' %>/<%= ride.id %>"></a>
+		                	<img class="rideListDriverCreatorProfileImage" src="<%= ride.person.picture_small_url %>" />
+			                <span class="ride-table-name">
+			                    <%= ride.person.first_name %><br />
+			                    <%= ride.person.last_name %><br />
+			                </span>
+		               	    <div class="icon <%= (ride.is_driver) ? 'driver': 'passenger' %>"></div>
+		
+		                    <span id="ride-<% if(ride.is_driver) { print('carpool-'); } else { print('passenger-'); } print(ride.id); %>" class="hidden routePolyline"><%= ride.route.encoded_polyline %></span>
+	                    </td>
+	                    <td class="origin-td"><%= ride.route.origin_string %></td>
+	            		<td><span class="icon destination-arrow"></span></td>
+	            		<td class="destination-td"><%= ride.route.destination_string %></td>
+	            		<td>
+	            	        <div class="seatContainer"><h2 class="seatCount"><%= ride.seat_count %></h2><span class="seatText">seat<%= (ride.seat_count == 1) ? '' : 's' %> <%= (ride.is_driver) ? 'available': 'requested' %></span></div>
+	            	        <div class="cost green"><%= (ride.asking_price != null) ? '$' + ride.asking_price + ' per seat' : 'price negotiable' %></div>
+	                    </td>
+	                </tr>
+	            <% }); %>
+	        <% } else { %>
+	            <tr class="no-post">
+	                <td>No ride posts have been made on this date with your search terms. Want to <a class="green" href="/rides/new/request">request</a> or <a class="green" href="/rides/new/offer">offer</a> a ride?</td>    	
+	            </tr>
+	        <% } %>
         </tbody> 
     </table>
 </script>
 <script id="noRide" type="template/javascript">
+    <% if(obj.results.length) { %>
+    	<div id="view-more-rides">
+    	    show more rides
+    	</div>
+    <% } %>
 	<div class="noRide">
 	    <% if(obj.results.length) { %>
 	    	<div class="options">
