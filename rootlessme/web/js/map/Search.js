@@ -20,7 +20,7 @@ Rootless.Map.Search = Rootless.Map.extend({
             CONST : {
                 PRIMARY_ROUTE_COLOR     : "#119F49",
                 PRIMARY_ROUTE_OPACITY   : .5,
-                PRIMARY_ROUTE_WEIGHT    : 2,
+                PRIMARY_ROUTE_WEIGHT    : 3,
                 SECONDARY_ROUTE_COLOR   : "#FF0000",
                 SECONDARY_ROUTE_OPACITY : .8,
                 SECONDARY_ROUTE_WEIGHT  : 3,
@@ -119,7 +119,7 @@ Rootless.Map.Search = Rootless.Map.extend({
         // Handler for the find button
         self._.el.$ridefind.click(function(){
             self._.el.$loader.show();
-            self._.el.$results.toggle('blind');
+            self._.el.$results.hide('blind');
         });
               
         self._.el.$rideSearchForm.submit(function(){
@@ -246,7 +246,6 @@ Rootless.Map.Search = Rootless.Map.extend({
     
     // Form submit options used for the ajax form
     formAjaxOptions : {
-        target: '#results',
         url: "rides/pagingSearch",
         beforeSubmit : function() {
             // Clear the form submit pending flag
@@ -260,6 +259,11 @@ Rootless.Map.Search = Rootless.Map.extend({
         	var map = Rootless.Map.Search.getInstance();
         	
         	$(map._.el.viewMoreButton).unbind('click');
+        	if (!map.moreRideEvent) {
+        		$('#results').empty();
+        		$('.noRide, #view-more-rides').remove();
+        		$('#results').show('blind');
+        	}
         	
         	map.endDate = moment(data.end_date).add('days', 1).calendar();
         	if (data.success == true) {
@@ -271,11 +275,13 @@ Rootless.Map.Search = Rootless.Map.extend({
         			$('#results').append(table);
         			
         		}
-        		$('#results').show('blind');
         		
-        		
-        		var bottomMessage = _.template($('#noRide').html(), data);
-        		$('#results').append(bottomMessage);
+			    if (!map.moreRideEvent) {
+                	var bottomMessage = _.template($('#noRide').html(), data);
+        			$('#middleContent').append(bottomMessage);
+       			 } else {
+        			map.moreRideEvent = undefined;
+        		}
         		
         		$(map._.el.viewMoreButton).bind('click', map.viewMoreRides);
         		
@@ -307,6 +313,7 @@ Rootless.Map.Search = Rootless.Map.extend({
     
     viewMoreRides : function(e) {
     	var map = Rootless.Map.Search.getInstance();
+    	map.moreRideEvent = e;
     	$(map._.el.rideDates).val(map.endDate);
     	map._.el.$rideSearchForm.ajaxSubmit(map.formAjaxOptions);
     },
@@ -317,6 +324,7 @@ Rootless.Map.Search = Rootless.Map.extend({
         // Get the polyline from the row
         tableRow.find(".routePolyline").each(function(index) {
         	var key = $(this).attr('id');
+
             polyline = map._.mapItem.polyline.polylines[key];
             map.HighlightPolyline(polyline);
         });
@@ -340,11 +348,13 @@ Rootless.Map.Search = Rootless.Map.extend({
     LoadItemsIntoGoogleMap : function() {
     	var self = this;
     	$(".routePolyline").each(function(index) {
-        	var key = $(this).attr('id');
-            var encodedPolyline = $(this).text();
-            // Load the polylines into the google map
-            var polyline = self.displayEncodedPolyline(self._.MapObject, encodedPolyline, true);
-            self._.mapItem.polyline.polylines[key] = polyline;
+    		var key = $(this).attr('id');
+            if(!self._.mapItem.polyline.polylines[key]) {
+            	var encodedPolyline = $(this).text();
+            	// Load the polylines into the google map
+            	var polyline = self.displayEncodedPolyline(self._.MapObject, encodedPolyline, true);
+            	self._.mapItem.polyline.polylines[key] = polyline;
+            }
         });
             
 	},
@@ -354,10 +364,13 @@ Rootless.Map.Search = Rootless.Map.extend({
 
     	for (var polyline in self._.mapItem.polyline.polylines) {
         	// Clear the polyline from the google map
+        	console.log(polyline);
            	self._.mapItem.polyline.polylines[polyline].setMap(null);
+           	console.log(self._.mapItem.polyline.polylines[polyline]);
            	// Remove the polyline from the list of lines
            	delete self._.mapItem.polyline.polylines[polyline];
         }
+        
     }, 
     
     HighlightPolyline : function(polyline) {
