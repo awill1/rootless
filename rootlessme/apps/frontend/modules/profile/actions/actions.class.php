@@ -149,6 +149,19 @@ class profileActions extends sfActions
         }
     }
 
+    public function executeQuickView(sfWebRequest $request)
+	{
+		$this->profile = Doctrine_Core::getTable('Profiles')->find(array($request->getParameter('profile_name')));
+		$this->forward404Unless($this->profile);
+		$personID = $this->profile->getPersonID();
+	    $this->ratings = Doctrine_Core::getTable('Reviews')->getReviewsSummaryForPerson($personID);
+        $this->travelHistories = Doctrine_Core::getTable('Seats')->getTravelHistoryForPerson($personID);
+		
+		// Return success json with no layout
+        return $this->renderPartial('profile/userSearchJson', array('profile'=>$this->profile, 'ratings'=>$this->ratings, 'history'=>$this->travelHistories));
+        return $this->renderText('{ "success": true }');   
+	}
+
     /**
      * Processes a profile form to create or update a profile
      * @param sfWebRequest $request The http request

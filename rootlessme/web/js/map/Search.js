@@ -147,11 +147,11 @@ Rootless.Map.Search = Rootless.Map.extend({
         $(window).scroll(function(e) {
         	var top = $(this).scrollTop();
         	var b_Class = $('body').hasClass('fixed');
-        	if (top > 250 && !b_Class) {
+        	if (top > 125 && !b_Class) {
         		$('body').addClass('fixed');
         		var latlng = (self._.mapItem.originMarker != '') ? self._.mapItem.marker.originMarker.getPosition() : self._.mapItem.marker.currentLocation.getPosition();
         		self._.MapObject.setCenter(latlng);
-        	} else if(top < 250 && b_Class) {
+        	} else if(top < 125 && b_Class) {
         	    $('body').removeClass('fixed');
         	    var latlng = (self._.mapItem.originMarker != '') ? self._.mapItem.marker.originMarker.getPosition() : self._.mapItem.marker.currentLocation.getPosition();
         	    self._.MapObject.setCenter(latlng);
@@ -364,9 +364,7 @@ Rootless.Map.Search = Rootless.Map.extend({
 
     	for (var polyline in self._.mapItem.polyline.polylines) {
         	// Clear the polyline from the google map
-        	console.log(polyline);
            	self._.mapItem.polyline.polylines[polyline].setMap(null);
-           	console.log(self._.mapItem.polyline.polylines[polyline]);
            	// Remove the polyline from the list of lines
            	delete self._.mapItem.polyline.polylines[polyline];
         }

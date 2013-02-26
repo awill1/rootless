@@ -9,3 +9,6 @@ index:
 
 show:
   is_secure: false
+  
+quickView:
+  is_secure: false 
