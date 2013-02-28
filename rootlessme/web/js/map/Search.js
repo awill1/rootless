@@ -20,13 +20,13 @@ Rootless.Map.Search = Rootless.Map.extend({
             CONST : {
                 PRIMARY_ROUTE_COLOR     : "#119F49",
                 PRIMARY_ROUTE_OPACITY   : .5,
-                PRIMARY_ROUTE_WEIGHT    : 3,
+                PRIMARY_ROUTE_WEIGHT    : 4,
                 SECONDARY_ROUTE_COLOR   : "#FF0000",
                 SECONDARY_ROUTE_OPACITY : .8,
-                SECONDARY_ROUTE_WEIGHT  : 3,
+                SECONDARY_ROUTE_WEIGHT  : 4,
                 TERTIARY_ROUTE_COLOR    : "#FF0000",
                 TERTIARY_ROUTE_OPACITY  : .2,
-                TERTIARY_ROUTE_WEIGHT   : 5,
+                TERTIARY_ROUTE_WEIGHT   : 4,
                 MAP_DEFAULT_LATITUDE    : 37.0625,
                 MAP_DEFAULT_LONGITUDE   : -95.677068,
                 MAP_DEFAULT_ZOOM        : 3
@@ -149,18 +149,16 @@ Rootless.Map.Search = Rootless.Map.extend({
         	var b_Class = $('body').hasClass('fixed');
         	if (top > 125 && !b_Class) {
         		$('body').addClass('fixed');
-        		var latlng = (self._.mapItem.originMarker != '') ? self._.mapItem.marker.originMarker.getPosition() : self._.mapItem.marker.currentLocation.getPosition();
-        		self._.MapObject.setCenter(latlng);
+        		google.maps.event.trigger(self._.MapObject, "resize");
+        		self.centerMapOnAllRoutes();
         	} else if(top < 125 && b_Class) {
         	    $('body').removeClass('fixed');
-        	    var latlng = (self._.mapItem.originMarker != '') ? self._.mapItem.marker.originMarker.getPosition() : self._.mapItem.marker.currentLocation.getPosition();
-        	    self._.MapObject.setCenter(latlng);
+        	    google.maps.event.trigger(self._.MapObject, "resize");
+        	    self.centerMapOnAllRoutes();
         	}
         });
         self.previewRoute(); 
-        
-        self._.el.$ridefind.click();
-            
+        self._.el.$ridefind.click();            
     },
 	
     geocodeOrigin : function(results, status) {     
@@ -299,6 +297,7 @@ Rootless.Map.Search = Rootless.Map.extend({
 	                }).click(function () {
 	                window.location = $(this).find('.tableLink').attr("href");
 	            });
+	            map.centerMapOnAllRoutes();
         	}
         }
     },
@@ -354,6 +353,7 @@ Rootless.Map.Search = Rootless.Map.extend({
             	// Load the polylines into the google map
             	var polyline = self.displayEncodedPolyline(self._.MapObject, encodedPolyline, true);
             	self._.mapItem.polyline.polylines[key] = polyline;
+            	self._.mapItem.polyline.polylines.length += 1;
             }
         });
             
@@ -365,6 +365,7 @@ Rootless.Map.Search = Rootless.Map.extend({
     	for (var polyline in self._.mapItem.polyline.polylines) {
         	// Clear the polyline from the google map
            	self._.mapItem.polyline.polylines[polyline].setMap(null);
+           	self._.mapItem.polyline.polylines.length -= 1;
            	// Remove the polyline from the list of lines
            	delete self._.mapItem.polyline.polylines[polyline];
         }
@@ -378,7 +379,7 @@ Rootless.Map.Search = Rootless.Map.extend({
         
     UnHighlightPolyline : function(polyline) {
     	var map = Rootless.Map.Search.getInstance();
-  		polyline.setOptions({strokeColor: map._.CONST.PRIMARY_ROUTE_COLOR, zIndex: 1});
+  		polyline.setOptions({strokeColor: map._.CONST.PRIMARY_ROUTE_COLOR, zIndex: 1, strokeOpacity: map._.CONST.PRIMARY_ROUTE_OPACITY});
 	},
 
         

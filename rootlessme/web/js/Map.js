@@ -497,6 +497,23 @@ Rootless.Map = Class.extend({
         
         self._.MapObject.fitBounds(bounds);
     },
+    
+    centerMapOnAllRoutes : function() {
+    	if (this._.mapItem.polyline.polylines.length) {
+	    	var bounds = new google.maps.LatLngBounds();
+	    	for (var polyline in this._.mapItem.polyline.polylines) {
+	    		var route = this._.mapItem.polyline.polylines[polyline].getPath().b;
+	            var length = route.length;
+	    		for (var i = 0; i < length; i++) {
+	        	    bounds.extend(route[i]);
+	            }
+	        }
+	        this._.MapObject.fitBounds(bounds);
+    	} else {
+    		var latlng = (this._.mapItem.originMarker != '') ? this._.mapItem.marker.originMarker.getPosition() : this._.mapItem.marker.destinationMarker.getPosition();
+    		this._.MapObject.setCenter(latlng);
+    	}
+    },
     	
     hoverOverPassenger : function(passengerItem) {
 		self = this;
