@@ -183,6 +183,10 @@ Rootless.Static.Utils = Class.extend({
         
         // Show the choice form first
         $("#loginDialogChoiceContainer").show();
+    },
+    
+    userQuickView : function(userId) {
+    	console.log(userId);
     }
 });
 
