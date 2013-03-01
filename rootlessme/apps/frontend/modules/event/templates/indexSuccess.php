@@ -24,4 +24,5 @@
         </a>
         <?php endforeach; ?>
     </ul>
+    <div id="suggestBox"><a href="mailto:contact@rootless.me?Subject=Hi%20I%20have%20a%20new%20event">Want to share rides to an event that's not here? Let us know and we'll add it!</a></div>
 </div>
