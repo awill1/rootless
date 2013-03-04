@@ -308,11 +308,11 @@ profile_show_user:
   requirements:
     sf_method: [get]
     
-profile_quickview_user:
-  url:   /profiles/quickview/:profile_name
+profile_preview_user:
+  url:   /profiles/preview/:profile_name
   class:   sfDoctrineRoute
   options: { model: Profiles, type: object }
-  param: { module: profile, action: quickView }
+  param: { module: profile, action: preview }
   requirements:
     sf_method: [get]
     

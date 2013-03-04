@@ -10,5 +10,5 @@ index:
 show:
   is_secure: false
   
-quickView:
+preview:
   is_secure: false 

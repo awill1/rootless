@@ -53,7 +53,7 @@
 	        <% if(obj.rides.length > 0) { %>
 	            <% _.each(obj.rides, function(ride) { %>
 	                <tr>
-	                	<td class="person-td">
+	                	<td class="person-td" data-id="<%= ride.person.id %>">
 		                	<a class="tableLink hide" href="/rides/<%= (ride.is_driver) ? 'offer': 'request' %>/<%= ride.id %>"></a>
 		                	<img class="rideListDriverCreatorProfileImage" src="<%= ride.person.picture_small_url %>" />
 			                <span class="ride-table-name">
@@ -104,4 +104,18 @@
 	        </div>
         <% } %>
     </div>
+</script>
+
+<script id="QuickView" type="template/javascript">
+	<div id="driverRatingSummary">
+	    <ul id="feedbackSummaryList">
+	        <li class="feedbackSummaryListItem"><div id="safeDriverRating" class="feedbackRatingBar"><div class="feedbackRatingBarValue" style="width: 100%;"><%= !_.isNull(obj.ratings.safetyAverage) ? Math.round(obj.ratings.safetyAverage) : 0 %>%</div></div><div class="feedbackRatingBarLabel">Safe Driver</div></li>
+	        <li class="feedbackSummaryListItem"><div id="puncualityRating" class="feedbackRatingBar"><div class="feedbackRatingBarValue" style="width: 100%;"><%= !_.isNull(obj.ratings.punctualityAverage) ? Math.round(obj.ratings.punctualityAverage) : 0 %>%</div></div><div class="feedbackRatingBarLabel">Punctuality</div></li>
+	        <li class="feedbackSummaryListItem"><div id="friendlinessRating" class="feedbackRatingBar"><div class="feedbackRatingBarValue" style="width: 100%;"><%= !_.isNull(obj.ratings.friendlinessAverage) ? Math.round(obj.ratings.friendlinessAverage) : 0 %>%</div></div><div class="feedbackRatingBarLabel">Friendliness</div></li>
+	        <li class="feedbackSummaryListItem"><div id="goodRiderRating" class="feedbackRatingBar"><div class="feedbackRatingBarValue" style="width: 100%;"><%= !_.isNull(obj.ratings.riderAverage) ? Math.round(obj.ratings.riderAverage) : 0 %>%</div></div><div class="feedbackRatingBarLabel">Good Rider</div></li>
+	    </ul>
+	    <div id="howmanyReviews">
+	        Based on <% print(Rootless.Static.Utils.getInstance().pluralize(obj.ratings.reviewCount, 'review')); %>.
+	    </div>
+	</div>
 </script>

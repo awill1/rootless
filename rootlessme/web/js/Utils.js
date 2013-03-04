@@ -185,8 +185,30 @@ Rootless.Static.Utils = Class.extend({
         $("#loginDialogChoiceContainer").show();
     },
     
-    userQuickView : function(userId) {
-    	console.log(userId);
+    userPreview : function(userId) {	
+    	var self = this;
+    	self.users = self.users ? self.users : {};
+    	if (!self.users[userId]) { 	
+    		self.users[userId] = {};
+	    	$.ajax({
+	    		url: "profiles/preview/" + userId,
+	    		dataType: "json",
+	    		success: function(data) {
+	    	        self.users[userId] = data.results;
+                    self.userPreview(userId);
+	    		}
+	    	});
+    	} else {
+    		return self.users[userId];
+    	}
+    		
+    },
+    
+    /*
+     * Easy way to make items plural or not based on number
+     */
+    pluralize : function(number, str) {
+        return number + ' ' + ( number == 1? str: str+'s');
     }
 });
 

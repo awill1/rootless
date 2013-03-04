@@ -149,7 +149,7 @@ class profileActions extends sfActions
         }
     }
 
-    public function executeQuickView(sfWebRequest $request)
+    public function executePreview(sfWebRequest $request)
 	{
 		$this->profile = Doctrine_Core::getTable('Profiles')->find(array($request->getParameter('profile_name')));
 		$this->forward404Unless($this->profile);

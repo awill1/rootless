@@ -297,6 +297,21 @@ Rootless.Map.Search = Rootless.Map.extend({
 	                }).click(function () {
 	                window.location = $(this).find('.tableLink').attr("href");
 	            });
+	            
+	            // user preview set up            
+	            $(".rideTable tbody tr td.person-td").each(function() {
+	            	map.setUsers($(this).data('id'));
+	            });
+	            
+	            // user preview
+	            $(".rideTable tbody tr td.person-td").tipsy({
+	            	live: true,
+	            	html: true,
+	            	opacity: 1,
+	            	title: map.getUserPreview,
+	            	gravity : "e"
+	            });
+
 	            map.centerMapOnAllRoutes();
         	}
         }
@@ -308,6 +323,18 @@ Rootless.Map.Search = Rootless.Map.extend({
         var match = RegExp('[?&]' + name + '=([^&]*)')
         	.exec(queryString);
         return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+    },
+    
+    setUsers : function(userId) {
+    	var id = userId ? userId : $(this).data('id');
+    	Rootless.Static.Utils.getInstance().userPreview(id);
+    },
+    
+    getUserPreview : function(userId) {
+    	var id = userId ? userId : $(this).data('id');
+    	var user = Rootless.Static.Utils.getInstance().userPreview(id);
+    	var userInfo = _.template($('#QuickView').html(), user);
+    	return userInfo;
     },
     
     viewMoreRides : function(e) {
