@@ -267,8 +267,8 @@ Rootless.Map.Search = Rootless.Map.extend({
         		
         		var needsPaging = 0;
 			    for(var i = 0; i < count; i++) {
-                	needsPaging = data.results[i].rides.length ? needsPaging+1 : needsPaging-1;
-        		}	    	
+                	needsPaging = data.results[i].rides.length ? needsPaging+1 : needsPaging;
+        		}
         			
         	    if (needsPaging > 0) {
         		    data.canPage = true;
