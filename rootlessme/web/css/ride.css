@@ -460,6 +460,34 @@ textarea:focus {
 	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, rgb(248,248,248)),color-stop(0.75, rgb(224,225,226)));
 }
 
+#searchRatingSummary {
+	text-align: left;
+}
+
+#searchRatingSummary ul,
+#searchRatingSummary li {
+	margin-left: 0;
+	padding-left: 0;
+}
+
+#searchRatingSummary ul {
+	margin-top: 0;
+}
+
+#searchRatingSummary li .feedbackRatingBar {
+	background-color: #707171;
+	color: #FAF9F9;
+	border: 1px solid #EAEAEA;
+	font-size: 14px;
+	overflow: hidden;
+	margin-bottom: 2px;
+}
+
+#searchRatingSummary li .feedbackRatingBarValue {
+	background-color: #E86A5D;	
+	padding: 5px;
+}
+
 .ride-table-name {
 	font-size: 10px;
     float: left;

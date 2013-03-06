@@ -107,14 +107,14 @@
 </script>
 
 <script id="QuickView" type="template/javascript">
-	<div id="driverRatingSummary">
+	<div id="searchRatingSummary">
 	    <ul id="feedbackSummaryList">
-	        <li class="feedbackSummaryListItem"><div id="safeDriverRating" class="feedbackRatingBar"><div class="feedbackRatingBarValue" style="width: 100%;"><%= !_.isNull(obj.ratings.safetyAverage) ? Math.round(obj.ratings.safetyAverage) : 0 %>%</div></div><div class="feedbackRatingBarLabel">Safe Driver</div></li>
-	        <li class="feedbackSummaryListItem"><div id="puncualityRating" class="feedbackRatingBar"><div class="feedbackRatingBarValue" style="width: 100%;"><%= !_.isNull(obj.ratings.punctualityAverage) ? Math.round(obj.ratings.punctualityAverage) : 0 %>%</div></div><div class="feedbackRatingBarLabel">Punctuality</div></li>
-	        <li class="feedbackSummaryListItem"><div id="friendlinessRating" class="feedbackRatingBar"><div class="feedbackRatingBarValue" style="width: 100%;"><%= !_.isNull(obj.ratings.friendlinessAverage) ? Math.round(obj.ratings.friendlinessAverage) : 0 %>%</div></div><div class="feedbackRatingBarLabel">Friendliness</div></li>
-	        <li class="feedbackSummaryListItem"><div id="goodRiderRating" class="feedbackRatingBar"><div class="feedbackRatingBarValue" style="width: 100%;"><%= !_.isNull(obj.ratings.riderAverage) ? Math.round(obj.ratings.riderAverage) : 0 %>%</div></div><div class="feedbackRatingBarLabel">Good Rider</div></li>
+	        <li class="feedbackSummaryListItem"><div id="safeDriverRating" class="feedbackRatingBar"><div class="feedbackRatingBarValue" style="width: <%= !_.isNull(obj.ratings.safetyAverage) ? Math.round(obj.ratings.safetyAverage) : 0 %>%;"><%= !_.isNull(obj.ratings.safetyAverage) ? Math.round(obj.ratings.safetyAverage) : 0 %>%</div></div><div class="feedbackRatingBarLabel">Safe Driver</div></li>
+	        <li class="feedbackSummaryListItem"><div id="puncualityRating" class="feedbackRatingBar"><div class="feedbackRatingBarValue" style="width: <%= !_.isNull(obj.ratings.punctualityAverage) ? Math.round(obj.ratings.punctualityAverage) : 0 %>%;"><%= !_.isNull(obj.ratings.punctualityAverage) ? Math.round(obj.ratings.punctualityAverage) : 0 %>%</div></div><div class="feedbackRatingBarLabel">Punctuality</div></li>
+	        <li class="feedbackSummaryListItem"><div id="friendlinessRating" class="feedbackRatingBar"><div class="feedbackRatingBarValue" style="width: <%= !_.isNull(obj.ratings.friendlinessAverage) ? Math.round(obj.ratings.friendlinessAverage) : 0 %>%;"><%= !_.isNull(obj.ratings.friendlinessAverage) ? Math.round(obj.ratings.friendlinessAverage) : 0 %>%</div></div><div class="feedbackRatingBarLabel">Friendliness</div></li>
+	        <li class="feedbackSummaryListItem"><div id="goodRiderRating" class="feedbackRatingBar"><div class="feedbackRatingBarValue" style="width: <%= !_.isNull(obj.ratings.riderAverage) ? Math.round(obj.ratings.riderAverage) : 0 %>%;"><%= !_.isNull(obj.ratings.riderAverage) ? Math.round(obj.ratings.riderAverage) : 0 %>%</div></div><div class="feedbackRatingBarLabel">Good Rider</div></li>
 	    </ul>
-	    <div id="howmanyReviews">
+	    <div id="howmanyReviews" class="green">
 	        Based on <% print(Rootless.Static.Utils.getInstance().pluralize(obj.ratings.reviewCount, 'review')); %>.
 	    </div>
 	</div>

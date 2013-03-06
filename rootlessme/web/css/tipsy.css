@@ -8,7 +8,7 @@
   /* Rules to colour arrows */
   .tipsy-arrow-n { border-bottom-color: #D05A36; }
   .tipsy-arrow-s { border-top-color: #D05A36; }
-  .tipsy-arrow-e { border-left-color: #FFFFFF; }
+  .tipsy-arrow-e { border-left-color: #FAF9F9; }
   .tipsy-arrow-w { border-right-color: #D05A36; }
   
 	.tipsy-n .tipsy-arrow { top: 0px; left: 50%; margin-left: -10px; border-bottom-style: solid; border-top: none; border-left-color: transparent; border-right-color: transparent; }
@@ -20,4 +20,4 @@
   .tipsy-e .tipsy-arrow { right: -6px; top: 50%; margin-top: -13px; border-left-style: solid; border-right: none; border-top-color: transparent; border-bottom-color: transparent; }
   .tipsy-w .tipsy-arrow { left: -6px; top: 50%; margin-top: -13px; border-right-style: solid; border-left: none; border-top-color: transparent; border-bottom-color: transparent; }
   
-  .tipsy-e .tipsy-inner {background: #FFFFFF !important; color: #3D3D3D; font-weight: bold;}
+  .tipsy-e .tipsy-inner {-webkit-box-shadow: 1px 1px 1px 0px #DDD; box-shadow: 1px 1px 1px 0px #DDD; background: #FAF9F9 !important; color: #3D3D3D; font-weight: bold; border: 5px solid #FAF9F9;}
