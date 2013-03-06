@@ -1,7 +1,12 @@
 Options +FollowSymLinks +ExecCGI
+#Options +FollowSymLinks +ExecCGI -Multiviews -Indexes 
+##multiviews & indexes added
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  #remove trailing slashes from urls
+  #RewriteBase /
+  #DirectorySlash Off
 
   # uncomment the following line, if you are having trouble
   # getting no_script_name to work
@@ -19,4 +24,8 @@ Options +FollowSymLinks +ExecCGI
 
   # no, so we redirect to our front web controller
   RewriteRule ^(.*)$ index.php [QSA,L]
+
+  
+  # remove trailing slash
+  #RewriteRule ^(.*)\/(\?.*)?$ $1$2 [R=301,L]
 </IfModule>

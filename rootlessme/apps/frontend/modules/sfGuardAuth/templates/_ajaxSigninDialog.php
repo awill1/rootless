@@ -1,14 +1,14 @@
 <?php use_helper('I18N') ?>
 
 <div id="loginDialogChoiceContainer">
-    <div class="loginPrompt">Log in with Rootless</div>
+    <div class="loginPrompt">Log in to Rootless</div>
     <hr />
-<!--    <div class="facebookSignup">
-        <a href="#" class="facebookLink" >Register with Facebook</a>
+    <div class="facebookSignup">
+        <a href="#" class="facebookLink facebookButtonSoft" >Sign up with your facebook</a>
     </div>
     <div>
         <div class="lightText">or</div>
-    </div>-->
+    </div>
     <div class="emailSignup">
         <a href="#" class="registerLink emailSignup" >Sign up with your email</a>
     </div>

@@ -38,14 +38,12 @@ h1{
 .placeBox{
     width: 586px;
     height: 80px;
-    float: left;
     background-color: #EAEAEA;
     margin-bottom: 20px;
 }
 .placeBox:hover{
     width: 586px;
     height: 80px;
-    float: left;
     background-color: #565656;
     margin-bottom: 20px;
 }
@@ -98,20 +96,21 @@ h1{
     
 }
 .placeTitleText{
-    float:left;
+        float:left;
     margin-top: 50px;
     font-weight: bold;
-    color:#fff;
-    font-size: 42px;
-    width: 410px;
-    height: 315px;
+    color:#009F40;
+    font-size: 57px;
+    width: 685px;
+    line-height: 95%;
+/*    height: 185px;*/
 }
 #middleContent{
     margin-left: 0px !important;
 }
 #placeHead{
     width: auto;
-    height: 390px;
+/*    height: 290px;*/
     margin-left: 240px;
 }
 #placeContent{
@@ -120,6 +119,7 @@ h1{
 #headerAndLikeBox{
     width: 940px;
     float: left;
+    margin-top: 30px;
     margin-bottom: 10px;
 }
 #placePostRideHeader{
@@ -139,9 +139,10 @@ h1{
 #placeRideContainer{
     float: left;
     background-color: #f3f3f3;
-    width: 543px;
-    margin-right: 25px;
+    width: 528px;
+/*    margin-right: 25px;*/
     padding: 15px;
+    min-height: 680px;
 }
 #placeFormBox{
     clear: left;
@@ -241,7 +242,7 @@ h1{
 }
 #priceInput{
     float:left;
-    margin-left: 22px;
+    margin-left: 10px;
 }
 #seatsNeeded{
     float: left;
@@ -262,7 +263,7 @@ h1{
 }
 #willingToPayInput{
     float:left;
-    margin-left: 24px;
+    margin-left: 10px;
 }
 #otherRideDetails{
     margin-top: 30px;
@@ -272,7 +273,7 @@ h1{
     border: medium none;
     color: #7a7a7a;
     height: 1px;
-    width: 540px;
+    width: 527px;
 }
 .formSection{
     float:left;
@@ -287,6 +288,8 @@ h1{
     margin-bottom: 20px;
 }
 #mapCaption{
+    padding-left: 5px;
+    color: #fff;
     margin-top: 15px;
 }
 #mapCaption a{
@@ -298,7 +301,7 @@ h1{
 }
 .strongSpan{
     font-weight: bold;
-    color:#565656;
+/*    color:#565656;*/
 }
 #placeTravelersBox{
     float: left;
@@ -387,7 +390,7 @@ h3{
     padding: 5px;
 }
 #otherDetailsTextArea{
-    width:527px;
+    width:512px;
     height:112px;
     padding: 6px;
     margin-top:15px;
@@ -404,10 +407,41 @@ h3{
 .dividerTR{
     height: 5px;
 }
+.borderLeft{
+    background-color: #231E20;
+    padding:10px;
+    float:left;
+}
+.borderRight{
+    background-color: #231E20;
+    padding: 10px 10px 10px 0px;
+    float:left;
+}
 
 
-
-
+/*validation*/
+.error{
+    color: #E26C59;
+    font-size: 10px;
+}
+#startingFromInputError{
+    float:left;
+    color: #E26C59;
+    font-size: 10px;
+    margin-left: 150px;
+}
+#driverPriceTextBoxError{
+    float:left;
+    color: #E26C59;
+    font-size: 10px;
+    margin-left: 272px;
+}
+#passengerPriceTextBoxError{
+    float:left;
+    color: #E26C59;
+    font-size: 10px;
+    margin-left: 285px;
+}
 
 
 /*custom drop down and radio buttons stuff*/
@@ -490,6 +524,11 @@ input[type="text"][disabled] {
     color: #fff;
     background-color: #29447E;
     padding: 5px;
+    margin: auto;
+    width: 158px;
+}
+.facebookSignup a{
+    color:#fff;
 }
 .facebookLink a{
     color:#fff;

@@ -61,7 +61,8 @@ Rootless.Map.Event = Rootless.Map.extend({
                passengerContainer             : "#passengerContainer",
                loginFormDialogContainer       : "#loginFormDialogContainer",
                eventRideContainer             : "#eventRideContainer",
-               eventRideConfirmationContainer : "#eventRideConfirmationContainer"
+               eventRideConfirmationContainer : "#eventRideConfirmationContainer",
+               startingFromInputError         : "#startingFromInputError"
            },
            
            // Variables used to block form submitting before map api results are returned
@@ -146,6 +147,9 @@ Rootless.Map.Event = Rootless.Map.extend({
                  // function do it
                  self.MaybeSubmitForm();
             }
+//            errorPlacement: function(error, element){
+//                error.appendTo(startingFromInputError);
+//            }
         });
          
         // Login form for late login
@@ -207,6 +211,9 @@ Rootless.Map.Event = Rootless.Map.extend({
             $(event._.el.eventFormBox).show('blind');
             return false;
         });
+        
+        //event starting from auto complete
+//        autocomplete = new google.maps.places.Autocomplete(document.getElementById("originTextBox"));
    },
    
     geocodeOrigin : function(results, status) {     

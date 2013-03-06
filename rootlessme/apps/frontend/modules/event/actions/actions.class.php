@@ -13,8 +13,7 @@ class eventActions extends sfActions
     public function executeIndex(sfWebRequest $request)
     {
         $this->events = Doctrine_Core::getTable('Events')
-          ->createQuery('a')
-          ->execute();
+        ->getEvents();
     }
 
     public function executeShow(sfWebRequest $request)

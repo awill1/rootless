@@ -20,7 +20,7 @@ class userActions extends sfActions
     {        
         //Creating a new Facebook object from the Facebook PHP SDK
         require_once sfConfig::get('app_facebook_sdk_file');
-
+        
         $facebook = new Facebook(array(
             'appId'  => sfConfig::get('app_facebook_app_id'),
             'secret' => sfConfig::get('app_facebook_secret'),
@@ -148,6 +148,14 @@ class userActions extends sfActions
         }
 
         //This is all done via AJAX, so no html is rendered
-        $this->redirect($this->getController()->genUrl('dashboard', true));
+        //$this->redirect($this->getController()->genUrl('dashboard', true));
+        // This action always returns json with no template
+            $this->getResponse()->setContentType('application/json');
+            $this->setLayout(sfView::NONE);
+            
+            // Set the response code to OK
+            $this->getResponse()->setStatusCode('200');
+            // Return the error json
+            return $this->renderText('{ "success": true, "message": "" }');
     }
 }

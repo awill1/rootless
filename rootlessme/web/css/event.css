@@ -38,14 +38,12 @@ h1{
 .eventBox{
     width: 586px;
     height: 80px;
-    float: left;
     background-color: #EAEAEA;
     margin-bottom: 20px;
 }
 .eventBox:hover{
     width: 586px;
     height: 80px;
-    float: left;
     background-color: #565656;
     margin-bottom: 20px;
 }
@@ -76,10 +74,10 @@ h1{
     font-weight: bold;
     font-size: 18px;
     margin-bottom: 3px;
-    width:300px;
+    width: 300px;
 }
 .eventLocation{
-    font-style: italic;
+/*    font-style: italic;*/
     color:#565656;
     font-size: 12px;
 /*    margin-bottom: 36px;*/
@@ -130,7 +128,7 @@ h1{
 }
 #eventHead{
     width: auto;
-    height: 280px;
+/*    height: 280px;*/
     margin-left: 240px;
 }
 #eventContent{
@@ -140,6 +138,7 @@ h1{
     width: 931px;
     float: left;
     margin-bottom: 10px;
+    margin-top: 30px;
 }
 #eventPostRideHeader{
     float: left;
@@ -153,7 +152,7 @@ h1{
     float: left;
     background-color: #f3f3f3;
     min-height: 680px;
-    width: 518px;
+    width: 520px;
 /*    margin-right: 25px;*/
     padding: 15px;
 }
@@ -255,7 +254,7 @@ h1{
 }
 #priceInput{
     float:left;
-    margin-left: 22px;
+    margin-left: 12px;
 }
 #seatsNeeded{
     float: left;
@@ -276,7 +275,7 @@ h1{
 }
 #willingToPayInput{
     float:left;
-    margin-left: 24px;
+    margin-left: 14px;
 }
 #otherRideDetails{
     margin-top: 30px;
@@ -315,6 +314,9 @@ h1{
 .strongSpan{
     font-weight: bold;
 /*    color:#565656;*/
+}
+.italicSpan{
+    font-style: italic;
 }
 #eventTravelersBox{
     float: left;
@@ -457,6 +459,29 @@ input[type="text"][disabled] {
 .eventLogo {
     width: 113px;
 }
+/*validation*/
+.error{
+    color: #E26C59;
+    font-size: 10px;
+}
+#startingFromInputError{
+    float:left;
+    color: #E26C59;
+    font-size: 10px;
+    margin-left: 150px;
+}
+#driverPriceTextBoxError{
+    float:left;
+    color: #E26C59;
+    font-size: 10px;
+    margin-left: 262px;
+}
+#passengerPriceTextBoxError{
+    float:left;
+    color: #E26C59;
+    font-size: 10px;
+    margin-left: 274px;
+}
 
 /*login/signup popup*/
 .loginPrompt{
@@ -506,10 +531,26 @@ input[type="text"][disabled] {
     color: #fff;
     background-color: #29447E;
     padding: 5px;
+    margin: auto;
+    width: 158px;
+}
+.facebookSignup a{
+    color:#fff;
 }
 .facebookLink a{
     color:#fff;
 }
 .registerLink a{
     color:#fff;
+}
+#suggestBox a{
+    color: #119F49;
+    font-weight: bold;
+    font-size: 15px;
+}
+#suggestBox a:hover{
+    color: #119F49;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 15px;
 }

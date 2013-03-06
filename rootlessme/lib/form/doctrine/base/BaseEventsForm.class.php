@@ -30,6 +30,7 @@ abstract class BaseEventsForm extends BaseFormDoctrine
       'css_style'             => new sfWidgetFormTextarea(),
       'is_deleted'            => new sfWidgetFormInputText(),
       'slug'                  => new sfWidgetFormInputText(),
+      'share_image_url'       => new sfWidgetFormInputText(),
       'created_at'            => new sfWidgetFormDateTime(),
       'updated_at'            => new sfWidgetFormDateTime(),
     ));
@@ -50,6 +51,7 @@ abstract class BaseEventsForm extends BaseFormDoctrine
       'css_style'             => new sfValidatorString(array('required' => false)),
       'is_deleted'            => new sfValidatorInteger(array('required' => false)),
       'slug'                  => new sfValidatorString(array('max_length' => 128, 'required' => false)),
+      'share_image_url'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'            => new sfValidatorDateTime(),
       'updated_at'            => new sfValidatorDateTime(),
     ));

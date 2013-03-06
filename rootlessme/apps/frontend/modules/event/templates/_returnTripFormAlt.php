@@ -22,6 +22,11 @@
             <div id="startingFrom">
                 <div id="startingFromText"><span class="primaryTextStyle">Starting From</span></div>
                 <div id="startingFromInput"><input id="originTextBox" class="longField required trackableField" type="text" name="origin" placeholder="Address, City, State" /></div>
+                <div id="startingFromInputError">
+                    <div id="id-error">
+                        <label for="originTextBox" class="error" generated="true"></label>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="formSection"><hr class="eventFormHr"></div>
@@ -33,11 +38,19 @@
                 </div>
                 <div id="departDatePicker">
                       <select id="startTimeDropDown" class="dropDown trackableField" name="start_time">
-                          <option value="">Anytime</option>
-                          <?php for($i = 0; $i < 24 ; $i++): ?>
-                              <option value="<?php echo $i; ?>:00"><?php echo $i; ?>:00</option>
-                              <option value="<?php echo $i; ?>:30"><?php echo $i; ?>:30</option>
-                          <?php endfor; ?>
+                            <option value="">Anytime</option>
+                            <option value="0:00">12:00 am</option>
+                            <option value="0:30">12:30 am</option>
+                            <?php for($i = 1; $i < 12 ; $i++): ?>
+                                <option value="<?php echo $i; ?>:00"><?php echo $i; ?>:00 am</option>
+                                <option value="<?php echo $i; ?>:30"><?php echo $i; ?>:30 am</option>
+                            <?php endfor; ?>
+                            <option value="12:00">12:00 pm</option>
+                            <option value="12:30">12:30 pm</option>
+                            <?php for($i = 1; $i < 12 ; $i++): ?>
+                                <option value="<?php echo ($i+12); ?>:00"><?php echo $i; ?>:00 pm</option>
+                                <option value="<?php echo ($i+12); ?>:30"><?php echo $i; ?>:30 pm</option>
+                            <?php endfor; ?>
                       </select>
                 </div>
                 <br/><br/>
@@ -55,10 +68,18 @@
                 <div id="returnDatePicker">
                     <select id="returnTimeDropDown" class="dropDown trackableField" name="return_time">
                           <option value="">Anytime</option>
-                          <?php for($i = 0; $i < 24 ; $i++): ?>
-                              <option value="<?php echo $i; ?>:00"><?php echo $i; ?>:00</option>
-                              <option value="<?php echo $i; ?>:30"><?php echo $i; ?>:30</option>
-                          <?php endfor; ?>
+                            <option value="0:00">12:00 am</option>
+                            <option value="0:30">12:30 am</option>
+                            <?php for($i = 1; $i < 12 ; $i++): ?>
+                                <option value="<?php echo $i; ?>:00"><?php echo $i; ?>:00 am</option>
+                                <option value="<?php echo $i; ?>:30"><?php echo $i; ?>:30 am</option>
+                            <?php endfor; ?>
+                            <option value="12:00">12:00 pm</option>
+                            <option value="12:30">12:30 pm</option>
+                            <?php for($i = 1; $i < 12 ; $i++): ?>
+                                <option value="<?php echo ($i+12); ?>:00"><?php echo $i; ?>:00 pm</option>
+                                <option value="<?php echo ($i+12); ?>:30"><?php echo $i; ?>:30 pm</option>
+                            <?php endfor; ?>
                       </select>
                 </div>
                 <br /><br/>
@@ -84,13 +105,17 @@
             <div id="priceText"><span class="primaryTextStyle">Price</span></div>
             <div id="priceInput">
                 <span class='dollar-sign'>$</span> <input id="driverPriceTextBox" class="tinyField number trackableField" type="text" name="driver_price" /> <span class='fourthTextStyle'>per seat</span>
-            </div>   
+            </div>
+            <div id="driverPriceTextBoxError" class="error">
+                <label for="driverPriceTextBox" class="error" generated="true"></label>
+            </div>
             <div class="formSection"><hr class="eventFormHr hrHolder"/></div>
         </div>
         <div id="passengerContainer" class="formSection">
             <div id="asAPassenger" class="secondaryTextStyle">As a passenger:</div>
             <div id="seatsNeeded">
                 <div id="seatsNeededText"><span class="primaryTextStyle">Seats needed</span></div>
+            </div>
                 <div id="seatsNeededPicker">
                     <select id="passengerSeatsDropDown" class="tinyDropDown trackableField" name="passenger_seats">
                         <?php for($i = 1; $i < 30 ; $i++): ?>
@@ -100,6 +125,9 @@
                 </div>
                 <div id="willingToPayText"><span class="primaryTextStyle">Willing to pay</span></div>
                 <div id="willingToPayInput"><span class='dollar-sign'>$</span> <input id="passengerPriceTextBox" class="tinyField number trackableField" type="text" name="passenger_price" /> <span class='fourthTextStyle'>per seat</span></div>
+            
+            <div id="passengerPriceTextBoxError" class="error">
+                <label for="passengerPriceTextBox" class="error" generated="true"></label>
             </div>
             <div class="formSection"><hr class="eventFormHr hrHolder"/></div>
         </div>
