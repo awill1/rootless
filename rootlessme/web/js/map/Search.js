@@ -110,16 +110,11 @@ Rootless.Map.Search = Rootless.Map.extend({
         // Route preview changes whenever the user finished editing the
         // origin or destination textboxes
         self.bindTextBoxesToMap();
-        
-        //elements used on ride search pages
-        
-        
-        self._.el.$loader.hide();
 
         // Handler for the find button
         self._.el.$ridefind.click(function(){
             self._.el.$loader.show();
-            self._.el.$results.hide('blind');
+            self._.el.$results.hide();
         });
               
         self._.el.$rideSearchForm.submit(function(){
@@ -264,7 +259,7 @@ Rootless.Map.Search = Rootless.Map.extend({
         	}
         	
         	map.endDate = moment(data.end_date).add('days', 1).format('L');;
-        	console.log(map.endDate);
+
         	if (data.success == true) {
         		$('#loader').hide();
         		var count = data.results.length;
@@ -341,6 +336,7 @@ Rootless.Map.Search = Rootless.Map.extend({
     viewMoreRides : function(e) {
     	var map = Rootless.Map.Search.getInstance();
     	map.moreRideEvent = e;
+        map._.el.$loader.css('display','block');
     	$(map._.el.rideDates).val(map.endDate);
     	map._.el.$rideSearchForm.ajaxSubmit(map.formAjaxOptions);
     },

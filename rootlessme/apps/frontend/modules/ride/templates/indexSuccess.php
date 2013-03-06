@@ -40,8 +40,8 @@
 <div id="searchForm" class="middleRidesFormArea">
     <?php include_partial('rideSearchForm', array('rideSearchForm' => $searchForm)) ?>
 </div>
-<img id="loader" alt="Loading spinner" src="/images/ajax-loader.gif" style="left: 50%; margin-left: -15px; top: 0; position: relative; top: 10px;" />
 <div id="results"></div>
+<img id="loader" alt="Loading spinner" src="/images/ajax-loader.gif" style="left: 50%; margin-left: -15px; position: relative; bottom: 5px;" />
 <script id="rideTableTemplate" type="template/javascript">
     <table class="rideTable">
         <thead>
