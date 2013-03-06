@@ -263,7 +263,8 @@ Rootless.Map.Search = Rootless.Map.extend({
         		$('#results').show('blind');
         	}
         	
-        	map.endDate = moment(data.end_date).add('days', 1).calendar();
+        	map.endDate = moment(data.end_date).add('days', 1).format('L');;
+        	console.log(map.endDate);
         	if (data.success == true) {
         		$('#loader').hide();
         		var count = data.results.length;
