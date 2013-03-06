@@ -264,10 +264,20 @@ Rootless.Map.Search = Rootless.Map.extend({
         		$('#loader').hide();
         		var count = data.results.length;
         		
-        		for(var i = 0; i < count; i++) {
-        			var table = _.template($('#rideTableTemplate').html(), data.results[i]);
-        			$('#results').append(table);
+        		
+        		var needsPaging = 0;
+			    for(var i = 0; i < count; i++) {
+                	needsPaging = data.results[i].rides.length ? needsPaging+1 : needsPaging-1;
+        		}	    	
         			
+        	    if (needsPaging > 0) {
+        		    data.canPage = true;
+
+        		    for(var i = 0; i < count; i++) {
+        				var table = _.template($('#rideTableTemplate').html(), data.results[i]);
+        				$('#results').append(table);
+        			
+        			}
         		}
         		
 			    if (!map.moreRideEvent) {

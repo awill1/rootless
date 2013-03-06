@@ -82,13 +82,13 @@
     </table>
 </script>
 <script id="noRide" type="template/javascript">
-    <% if(obj.results.length) { %>
+    <% if(obj.results.length && obj.canPage) { %>
     	<div id="view-more-rides">
     	    show more rides
     	</div>
     <% } %>
 	<div class="noRide">
-	    <% if(obj.results.length) { %>
+	    <% if(obj.results.length && obj.canPage) { %>
 	    	<div class="options">
 		        <a class="cta" href="/rides/new/offer">Offer a ride</a> 
 		        <span class='or'>or</span>
