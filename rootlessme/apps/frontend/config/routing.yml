@@ -57,6 +57,17 @@ dashboard:
     module: dashboard
     action: index
     
+# admin rules
+admin_index:
+  url: /admin
+  param:   { module: admin, action: index}
+  requirements: { sf_method: get }
+  
+admin_delete_anyday_rides_to_events:
+  url: /admin/deleteRidesToExpiredEvents
+  param:   { module: admin, action: deleteRidesToExpiredEvents}
+  requirements: { sf_method: post }
+    
 # json rules
 json_ride_show:
   url: /rides/json/show/:ride_type/:ride_id
