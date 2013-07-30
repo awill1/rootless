@@ -1,3 +1,12 @@
+<?php slot(
+  'title',
+  sprintf('Rootless - Administration'))
+?>
+
+<?php slot('gmapheader'); ?>
+    <script type="text/javascript" src="/js/<?php echo sfConfig::get('app_js_admin'); ?>"></script>
+<?php end_slot();?>
+
 <h1>Admin Page</h1>
 
 This page is used for some administration tasks
