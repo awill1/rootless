@@ -2,3 +2,6 @@
 /rootlessme/log/*
 /rootlessme/data/profile.*.index/*
 /rootlessme/web/uploads/assets/profile_pictures/
+/rootlessme/config/properties.ini
+/rootlessme/config/databases.yml
+/rootlessme/apps/frontend/config/app.yml
