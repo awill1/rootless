@@ -1,3 +1,4 @@
 /rootlessme/cache/*
 /rootlessme/log/*
 /rootlessme/data/profile.*.index/*
+/rootlessme/web/uploads/assets/profile_pictures/
