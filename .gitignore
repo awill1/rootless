@@ -5,3 +5,4 @@
 /rootlessme/config/properties.ini
 /rootlessme/config/databases.yml
 /rootlessme/apps/frontend/config/app.yml
+/rootlessme/apps/frontend/config/factories.yml
